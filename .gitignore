@@ -15,3 +15,4 @@
 /web/*/
 /vagrant/.vagrant
 /.idea
+/nbproject
