@@ -1,0 +1,16 @@
+/web/bundles/
+/web/css/*
+/web/js/*
+/app/bootstrap.php.cache
+/app/check.php
+/app/SymfonyRequirements.php
+/app/cache/*
+/app/config/parameters.yml
+/app/config/config_ignored.yml
+/app/logs/*
+/build/
+/vendor/
+/bin/
+/composer.phar
+/web/*/
+/vagrant/.vagrant
