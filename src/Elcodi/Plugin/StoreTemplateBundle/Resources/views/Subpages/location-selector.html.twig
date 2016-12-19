@@ -1,0 +1,25 @@
+{###############################################################################
+#   IMPORTANT: To make this work with JS you have to keep:                     #
+#       - The identifier "js-location-selectors" wrapping the selectors        #
+#       - The "data-url" attribute                                             #
+#       - In each selector the "if" telling us if is the max location we can   #
+#         choose                                                               #
+###############################################################################}
+<div id="js-location-selectors" data-url="{{ url('location_selectors') }}" class="grid">
+    <div class="col-1-1">
+    {% for select in selects %}
+        <div class="form-inline">
+            {% set fieldType = 'store.address.form.fields.' ~ select.type ~ '.label' %}
+            <label for="{{ select.type }}">{{ fieldType|trans  }}</label>
+            <select{% if select.type == maxLocationType %} data-max-type{% endif %}{% if loop.last %} class="last"{% endif %}>
+                <option>Select one</option>
+                {% for key, value in select.options %}
+                    <option value="{{ key }}"{% if key == select.selected %} selected{% endif %}>
+                        {{ value }}
+                    </option>
+                {% endfor%}
+            </select>
+        </div>
+    {% endfor %}
+    </div>
+</div>

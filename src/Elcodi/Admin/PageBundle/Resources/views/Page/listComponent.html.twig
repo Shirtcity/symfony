@@ -1,0 +1,70 @@
+{% extends 'AdminCoreBundle::Common/listComponent.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'page',
+} %}
+
+
+{% block title 'admin.page.list'|trans %}
+
+
+{% block no_items
+    lists.no_items(
+        'admin.page.single'|trans,
+        'admin.page.plural'|trans,
+        url('admin_page_new')
+    )
+%}
+
+
+{% block table_head %}
+    {% include '@AdminCore/Tables/head.html.twig' with {
+        class: 'page',
+        rows: [
+            { name: 'admin.page.field.title.title'|trans },
+            { name: 'admin.page.field.link.title'|trans },
+            { name: 'admin.page.field.enabled.title'|trans, width: 25 },
+        ]
+    } %}
+{% endblock table_head %}
+
+
+{% block table_body_row %}
+    <td>
+        <a href="{{ url('admin_page_edit', { id: entity.id }) }}">
+            <strong>{{ entity.title|truncate(20, '…') }}</strong>
+        </a>
+    </td>
+    <td>
+        {% set path = url('elcodi.route.page_render', {
+            'id': entity.id,
+            'path': entity.path
+        }) %}
+        <a target="_blank" href="{{ path }}">
+            {{ entity.path }}
+        </a>
+    </td>
+    <td>
+        {% if entity.enabled %}
+            <span class="label label-ok">{{ 'ui.label.enabled'|trans }}</span>
+        {% else %}
+            <span class="label">{{ 'ui.label.disabled'|trans }}</span>
+        {% endif %}
+    </td>
+
+    {% include '@AdminCore/Tables/actions.html.twig' with {
+        entity: entity,
+        delete: not entity.persistent,
+        class: 'page',
+    } %}
+
+{% endblock table_body_row %}
+
+
+{% block table_paginator_links %}
+
+    {% set url = 'admin_page_list' %}
+    {{ parent() }}
+
+{% endblock table_paginator_links %}

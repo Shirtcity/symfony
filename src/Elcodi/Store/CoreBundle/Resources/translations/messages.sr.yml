@@ -1,0 +1,102 @@
+store:
+    address:
+        billing: naplata
+        delete:
+            response_ok: 'Adresa ispravno obrisana'
+        delivery: isporuka
+        form:
+            fields:
+                address:
+                    label: Adresa
+                addressMore:
+                    label: 'Dodatna adresa (opciono)'
+                city:
+                    label: Grad
+                comments:
+                    label: Komentar
+                country:
+                    label: Zemlja
+                mobile:
+                    label: 'Mobilni telefon'
+                name:
+                    label: Adresa
+                phone:
+                    label: Telefon
+                postalcode:
+                    label: 'Poštanski broj'
+                province:
+                    label: Opština
+                recipientName:
+                    label: 'Ime primaoca'
+                recipientSurname:
+                    label: 'Prezime primaoca'
+                send:
+                    label: 'Sačuvaj adresu'
+                state:
+                    label: Pokrajina
+        save:
+            response_ok: 'Adresa sačuvana'
+        select_address_type: 'Izaberi %1 adresu'
+    coupon:
+        applied:
+            message_ko: 'Kupon nije iskorišćen'
+            message_ok: 'Kupon uspešno iskorišćen'
+        form:
+            fields:
+                apply:
+                    label: 'Primeni kupon kod'
+                code:
+                    label: 'Kupon kod'
+    error:
+        page_not_found: 'Otkrio si naš tajni plan da zavladamo svetom'
+        page_not_found_title: 'Stranica nije pronađena'
+        store_is_disabled: 'Ova prodavnica je trenutno isključena'
+        store_is_under_construction: 'Ova prodavnica je trenutno u razvoju'
+        store_unavailable_title: 'Prodavnica nije trenutno dostupna'
+    login:
+        form:
+            fields:
+                email:
+                    label: Email
+                password:
+                    label: Lozinka
+                send:
+                    label: Pošalji
+        wrong_combination: 'Pogrešna kombinacija mail-a i lozinke'
+    pagination:
+        current: Trenutna
+        first: Prva
+        last: Poslednja
+        next: Sledeća
+        previous: Prethodna
+    recovery:
+        form:
+            fields:
+                email:
+                    label: email
+                password:
+                    label: Lozinka
+                remember:
+                    label: Zapamti
+                repeat_password:
+                    label: 'Ponovi lozinku'
+                send:
+                    label: Pošalji
+    user:
+        form:
+            fields:
+                email:
+                    label: Email
+                firstname:
+                    label: Ime
+                lastname:
+                    label: Prezime
+                password:
+                    label: Lozinka
+                repeat_password:
+                    label: 'Ponovi lozinku'
+                send:
+                    label: Sačuvaj
+        profile:
+            save:
+                message_ok: 'Profil sačuvan'

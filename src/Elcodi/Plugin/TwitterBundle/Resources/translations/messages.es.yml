@@ -1,0 +1,8 @@
+elcodi_plugin:
+    twitter:
+        description: 'Integración de Twitter pera tu tienda'
+        field:
+            twitter_account:
+                label: 'Cuenta de Twitter'
+                placeholder: maríadelao
+        name: Twitter

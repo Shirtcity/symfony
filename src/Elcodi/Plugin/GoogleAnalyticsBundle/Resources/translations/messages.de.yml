@@ -1,0 +1,8 @@
+elcodi_plugin:
+    google_analytics:
+        description: 'Google Analytics Integration für Ihren Shop'
+        field:
+            analytics_tracker_id:
+                label: 'Analytics Tracker- ID'
+                placeholder: 'z.B. 123456789'
+        name: 'Google Analytics'

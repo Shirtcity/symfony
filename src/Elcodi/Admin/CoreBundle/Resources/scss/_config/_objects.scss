@@ -1,0 +1,49 @@
+$objects-custom: (
+	style: flat,
+	boxes: default,
+	buttons: default,
+	filters: default,
+	footer: default,
+	form: default,
+	form-search: default,
+	header: true,
+	image-circle: default,
+	image-polaroid: default,
+	lists: default,
+	messages: default,
+	navigation: tabbed,
+	navigation-sub: default,
+	pagination: default,
+	ratings: default,
+	slides: default,
+	steps: default,
+	tabs: default,
+	tags: default
+) !global !default;
+
+$object-navigation-vars-custom : (
+	background-color: #354051,
+	background-color-dark: #2E3847,
+	color: #FFF,
+	font-family: unquote( map_get($fonts-custom, face-title) ),
+	font-size: map_get($fonts-custom, size-m),
+	vertical-separator: false
+
+) !global !default;
+
+$object-forms-vars-custom: (
+	// Field focus
+	field-focus-border: rgba(map-get($colors-custom, info), .5),
+	field-focus-background: lighten(map-get($colors-custom, info), 55),
+) !global !default;
+
+$object-buttons-vars-custom: (
+
+	// Default button
+	default-background: rgba(#354051, .8),
+	default-color: #FFF,
+
+	// Button primary
+	primary-color: #FFF,
+
+) !global !default;

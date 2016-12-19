@@ -1,0 +1,33 @@
+.address-list {
+	& {
+		padding-bottom: $spacing*3;
+	}
+}
+
+.address-list-add {
+	position: absolute;
+	right: $spacing;
+	margin-top: -($spacing*2.5);
+}
+
+.address-list-profile {
+
+	.address-item {
+		padding-top: $spacing;
+	}
+	.address-item-selection {
+		display: none !important;
+	}
+
+}
+
+@mixin address-list-desktop {
+	.address-list {
+		.address-item {
+			width: 47%;
+			display: inline-block;
+			vertical-align: top;
+			margin: 0 1% $spacing;
+		}
+	}
+}

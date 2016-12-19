@@ -1,0 +1,100 @@
+{% import "AdminCoreBundle::Navs/side_elements.html.twig" as side_elements %}
+{% import "AdminCoreBundle::Navs/side_elements_mobile.html.twig" as side_elements_mobile %}
+<p class="pa-m mb-n">
+    <img src="{{ asset('bundles/admincore/images/logo.png') }}" width="130" />
+</p>
+<nav id="menu" class="navigation navigation-vertical desktop">
+    <ul>
+        <hr class="mb-n" />
+        {{ side_elements.showNodes(menu, 'dashboard', route) }}
+        {{ side_elements.separator() }}
+        {{ side_elements.showNodes(menu, 'order', route) }}
+        {{ side_elements.separator() }}
+        {{ side_elements.showNodes(menu, 'catalog', route) }}
+        {{ side_elements.separator() }}
+        {{ side_elements.showNodes(menu, 'design', route) }}
+        {{ side_elements.separator() }}
+        {{ side_elements.showNodes(menu, 'communication', route) }}
+        {{ side_elements.separator() }}
+        {{ side_elements.showNodes(menu, 'settings', route) }}
+        {{ side_elements.separator() }}
+        {{ side_elements.showNodes(menu, 'extra', route) }}
+        <li>
+            <a href="#sidebar-user-dropdown" data-fc-modules="toggle" class="c-background">
+                 <span class=" tablet va-m">
+                    <img src="{{ gravatar(app.user.email, 40) }}" alt="Avatar" class="image-circle">
+                </span>
+                <span class="sidebar-user-info desktop">
+                    <i class="icon-caret-down fl-r"></i>
+                    <img src="{{ gravatar(app.user.email, 15) }}" alt="Avatar" class="image-circle va-m">
+                    {{ app.user.username }}
+                </span>
+            </a>
+            <ul id="sidebar-user-dropdown" class="sidebar-user-dropdown hidden">
+                <li data-test="menu-profile">
+                    <a href="{{ url('admin_admin_user_edit', {id: app.user.id }) }}">
+                    <span class="mobile tablet">
+                        <i class="icon-user fz-xl"></i> {{ 'admin.profile.single'|trans }}
+                    </span>
+                    <span class="desktop">
+                        <i class="icon-angle-right"></i> {{ 'admin.profile.single'|trans }}
+                    </span>
+                    </a>
+                </li>
+                <li data-test="menu-logout">
+                    <a href="{{ url('admin_logout') }}">
+                    <span class="mobile tablet">
+                        <i class="icon-sign-out fz-xl"></i> {{ 'admin.login.action.logout'|trans }}
+                    </span>
+                    <span class="desktop">
+                        <i class="icon-angle-right"></i> {{ 'admin.login.action.logout'|trans }}
+                    </span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<div class="d-n">
+    <nav id="menu-mobile" class="navigation navigation-vertical">
+        <ul>
+            {{ side_elements_mobile.showNodes(menu, 'dashboard', route) }}
+            {{ side_elements_mobile.separator() }}
+            {{ side_elements_mobile.showNodes(menu, 'catalog', route) }}
+            {{ side_elements_mobile.separator() }}
+            {{ side_elements_mobile.showNodes(menu, 'order', route) }}
+            {{ side_elements_mobile.separator() }}
+            {{ side_elements_mobile.showNodes(menu, 'design', route) }}
+            {{ side_elements_mobile.separator() }}
+            {{ side_elements_mobile.showNodes(menu, 'communication', route) }}
+            {{ side_elements_mobile.separator() }}
+            {{ side_elements_mobile.showNodes(menu, 'settings', route) }}
+            {{ side_elements_mobile.separator() }}
+            {{ side_elements_mobile.showNodes(menu, 'extra', route) }}
+        </ul>
+    </nav>
+    <nav id="sidebar-user-mobile" class="navigation navigation-vertical">
+        <ul>
+            <li data-test="menu-profile">
+                <a href="{{ url('admin_admin_user_edit', {id: app.user.id }) }}">
+                    <span class="mobile tablet">
+                        <i class="icon-user fz-xl"></i> {{ 'admin.profile.single'|trans }}
+                    </span>
+                    <span class="desktop">
+                        <i class="icon-user"></i> {{ 'admin.profile.single'|trans }}
+                    </span>
+                </a>
+            </li>
+            <li data-test="menu-logout">
+                <a href="{{ url('admin_logout') }}">
+                    <span class="mobile tablet">
+                        <i class="icon-sign-out fz-xl"></i> {{ 'admin.login.action.logout'|trans }}
+                    </span>
+                    <span class="desktop">
+                        <i class="icon-sign-out"></i> {{ 'admin.login.action.logout'|trans }}
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

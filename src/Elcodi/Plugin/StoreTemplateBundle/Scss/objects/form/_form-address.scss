@@ -1,0 +1,12 @@
+.form-address {
+	& {
+		padding: $spacing;
+	}
+	.message {
+		border: 0px none;
+		margin-bottom: $spacing;
+	}
+	.grid {
+		min-width: 100px;
+	}
+}

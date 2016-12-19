@@ -1,0 +1,61 @@
+{% extends '::_base.html.twig' %}
+
+{% block head_style %}
+    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/storetemplate/css/main.css') }}" />
+
+    <!-- External Font assets -->
+    <link href="//fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet" type="text/css" />
+{% endblock head_style %}
+
+{% block body %}
+    {% if store.backgroundImage %}
+    <style>
+       html {
+           background-image:url('{{ store.backgroundImage|resize({ height: 1200, width: 1200, type: 2 })  }}');
+       }
+    </style>
+    {% endif %}
+    {% block header %}
+        {% include '@StoreTemplate/Modules/_header.html.twig' %}
+    {% endblock header %}
+
+    {% block container %}
+
+        {% block messages %}
+            {% include "@StoreTemplate/Modules/_message-list.html.twig" %}
+        {% endblock messages %}
+
+        <div class="grid grid-pad">
+            <div class="col-1-1">
+                {% block breadcrumb_container %}
+                    <nav class="breadcrumb desktop">
+                        <ul>
+                            <li>
+                                <a href="{{ url('store_homepage') }}" class="logo">
+                                    <i class="fa fa-home"></i> {{ store.name }}
+                                </a>
+                                <i class="fa fa-angle-right"></i>
+                            </li>
+                            {% block breadcrumb %}{% endblock breadcrumb %}
+                        </ul>
+                    </nav>
+
+                {% endblock breadcrumb_container %}
+
+                {% block content %}{% endblock content %}
+            </div>
+        </div>
+        {% block prefooter %}{% endblock prefooter %}
+        {%  block footer %}
+
+        {% include '@StoreTemplate/Modules/_footer.html.twig' %}
+
+        {%  endblock footer %}
+
+    {% endblock container %}
+{% endblock body %}
+
+{% block foot_script %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="{{ asset('bundles/storetemplate/js/bootstrap.min.js') }}"></script>
+{% endblock foot_script %}

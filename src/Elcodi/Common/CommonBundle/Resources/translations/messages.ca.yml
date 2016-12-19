@@ -1,0 +1,14 @@
+common:
+    order:
+        states:
+            cancelled: Cancel·lat
+            delivered: Entregat
+            'in delivery': 'En entrega'
+            initial: 'Comanda nova'
+            paid: Pagat
+            preparing: 'En preparació'
+            processed: Processat
+            refunded: Reemborsat
+            returned: Retornat
+            title: Historial
+            unpaid: 'Sense pagar'

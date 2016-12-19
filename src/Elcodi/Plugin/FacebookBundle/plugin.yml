@@ -1,0 +1,12 @@
+plugin:
+    type: plugin
+    category: social
+    name: elcodi_plugin.facebook.name
+    description: elcodi_plugin.facebook.description
+    fa_icon: facebook
+    fields:
+        facebook_account:
+            type: text
+            label: elcodi_plugin.facebook.field.facebook_account.label
+            attr:
+                placeholder: elcodi_plugin.facebook.field.facebook_account.placeholder

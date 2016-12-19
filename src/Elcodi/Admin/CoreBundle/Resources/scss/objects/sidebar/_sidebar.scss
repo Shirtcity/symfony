@@ -1,0 +1,81 @@
+.sidebar {
+	& {
+		background: map-get($object-navigation-vars, background-color);
+		overflow: hidden;
+		z-index: 150;
+	}
+	.active {
+		& > a {
+			& {
+				overflow: hidden;
+			}
+			&:after {
+				content: "";
+				background: $color-body;
+				height: $spacing*1.5;
+				width: $spacing;
+				right: -$spacing;
+				top: $spacing/8;
+				position: absolute;
+				@include transform(rotate(-45deg));
+			}
+		}
+	}
+}
+
+.navigation-vertical {
+	& {
+		@include text-shadow(1px 1px 0 rgba($color-foreground,.2));
+		background: map-get($object-navigation-vars, background-color);
+	}
+	hr {
+		border-width: 1px 0 0 0;
+		border-style:solid;
+		border-color: rgba($color-background, .1);
+		height: 1px;
+	}
+}
+
+.badge {
+	float: right;
+	background: rgba($color-background,.2);
+	@include border-radius(100px);
+	padding: 0 $spacing/4;
+	min-width: 35px;
+	text-align: center;
+	font-size: $font-size-s;
+}
+
+.active {
+	.badge {
+		margin-right: $spacing;
+	}
+}
+
+.badge-alert {
+	background: rgba($color-ko, .5);
+	text-shadow: 1px 1px 1px $color-foreground;
+}
+
+.sidebar-title {
+	display: block;
+	color: $color-background;
+	font-family: $font-face-title;
+	font-weight: 400;
+	font-size: $font-size-l;
+}
+
+@mixin papa-sidebar(){
+	.sidebar {
+		&{
+			height: 100%;
+			position: fixed;
+			overflow-y: auto;
+		}
+		.navigation-vertical{
+			z-index: 100;
+			position: relative;
+			margin-bottom: 80px;
+		}
+	}
+}

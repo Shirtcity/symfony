@@ -1,0 +1,203 @@
+store:
+    pagination:
+        first: Primeira
+        last: Última
+        next: seguinte
+        previous: Anterior
+template:
+    store_template_bundle:
+        address:
+            edit:
+                add_new_address: 'Engadir novo enderezo'
+                edit_address: 'Editar enderezo'
+            item:
+                actions: Accións
+                address: Enderezo
+                address_name: Nome
+                billing: Facturación
+                city: Cidade
+                comment: Comentarios
+                country: País
+                delivery: Entrega
+                edit: Editar
+                fullname: 'Nome completo'
+                phone_and_mobile: 'Teléfono / Móbil'
+                postal_code: 'Código postal'
+                province: Provincia
+                remove: Eliminar
+                state: Estado
+            list:
+                add_new_address: 'Engade un novo enderezo'
+                addresses: Enderezos
+                no_addresses: 'Non hai enderezos'
+            new:
+                address:
+                    example: 'p.ex. Rúa Alegría, 21'
+                address_more:
+                    example: 'p.ex. Empresas Alonso'
+                cancel: Cancelar
+                comments:
+                    example: 'p.ex. É unha casa'
+                mobile:
+                    example: 'p.ex. 555 555 555'
+                name:
+                    example: 'p.ex. O meu enderezo por defecto'
+                phone:
+                    example: 'p.ex. 935 555 555'
+                postalcode:
+                    example: 'p.ex. 08080'
+                recipient:
+                    example_name: 'p.ex. Xoan'
+                    example_surname: 'p.ex. Alonso'
+        blog:
+            post:
+                list:
+                    blog_posts: 'Entradas do blog'
+                    next_posts: 'Seguintes entradas'
+                    previous_posts: 'Entradas anteriores'
+                    read_more: 'Ler máis'
+                view:
+                    last_post: 'Última entrada'
+                    read_more: 'Ler máis'
+        cart:
+            item:
+                image: Imaxe
+                item: Elemento
+                price: Prezo
+                remove: Eliminar
+                total: Total
+                units: Unidades
+            nav:
+                amount: Cantidade
+                items: Elementos
+            view:
+                checkout: Caixa
+                checkout_title: 'Comproba todos os elementos e aplica cupóns'
+                continue_shopping: 'Continuar comprando'
+                empty_basket: 'Cesta baleira'
+                title: 'A túa cesta de compra'
+                total: Total
+                update_basket: 'Actualizar cesta'
+                your_cart_is_empty: 'A túa cesta está baleira'
+        category:
+            nav:
+                new: Nova
+            view:
+                category: Categoría
+        checkout:
+            address:
+                add_new_address: 'Engadir novo enderezo'
+                payment: Pago
+                select_address: 'Selecciona enderezo de entrega e facturación'
+            back: Atrás
+            layout:
+                total: Total
+                your_cart: 'A túa cesta'
+            payment:
+                back: Atrás
+                bankwire: 'Transferencia bancaria'
+                continue: Continuar
+                credit_debit_card: 'Tarxeta de crédito/débito'
+                payment_method: 'Método de pago'
+                paypal: Paypal
+                set_shipping_payment: 'Configura o transporte e o pago'
+                shipping_carrier_method: 'Método de envío'
+                try_again: 'Por favor téntao de novo.'
+        coupon:
+            item:
+                coupon: Cupón
+                description: Descrición
+                remove: Eliminar
+                total: Total
+                units: Unidades
+                value: Valor
+        footer:
+            follow_us: Síguenos
+            latest_news: 'Últimas novas'
+            more: Máis
+            quick_links: 'Enlaces rápidos'
+        header:
+            menu: Menú
+        order:
+            coupon:
+                coupon: Cupón
+                description: Descrición
+                total: Total
+                units: Unidades
+                values: Valores
+            item:
+                image: Imaxe
+                item: Elemento
+                price: Prezo
+                total: Total
+                units: Unidades
+            list:
+                date: Data
+                image: Imaxe
+                no_orders: 'Non hai pedidos'
+                number_of_order: 'Número de pedido'
+                order_number: 'Pedido #'
+                orders: Pedidos
+                payment_state: 'Estado de pago'
+                shipping_state: 'Estado do envío'
+                total: Total
+            view:
+                congratulations: PARABÉNS!
+                continue_shopping: 'Continuar comprando'
+                order: Pedido
+                shipping: 'Envío:'
+                status: 'Estado:'
+                thanks: 'Grazas polo teu pedido! Imos traballar para enviarcho oaxiña.'
+                total: Total
+        payment:
+            credit_card_numbers: 'Números de tarxeta de crédito'
+            credit_card_owner: 'Propietario da tarxeta de crédito'
+            month: Mes
+            security_code: 'Código de seguridade'
+            year: Ano
+        product:
+            also_like: 'Tamén pode gustarche...'
+            item:
+                offer: Oferta
+            list:
+                no_products_in_category: 'Sentímolo, non temos produtos para esta categoría'
+            view_item:
+                add_to_cart: 'Engadir á cesta'
+                delivery: Entrega
+                description: Descrición
+                in_stock: 'En stock e listo para envío!'
+                no_stock: 'Sen stock'
+                not_available: 'Este produto non está dispoñible actualmente'
+                offer: Oferta
+                product: Produto
+                stock: Stock
+                usually_dispatched_24_hours: 'Despachado normalmente en 24 horas'
+        shipping:
+            carrier: Transportista
+            costs_will_be_calculated_after_address: 'Tras configurar o teu enderezo, calcularemos os custos de transporte.'
+            costs_will_be_calculated_after_login: 'Unha vez accedas ou engadas o teu enderezo de envío calcularemos os custos do envío.'
+            from: desde
+            no_shipping_matching: 'Non se atoparon métodos de envío. Contacta con nós antes de seleccionar un envío.'
+        user:
+            edit:
+                profile: Perfil
+            home:
+                dashboard: Panel
+                my_addresses: 'Os meus enderezos'
+                my_orders: 'Os meus pedidos'
+                profile: Perfil
+            login:
+                create_new_account: 'Crear nova conta'
+                forgot_your_password: 'Esqueciches o contrasinal?'
+                login_with_account: 'Accede coa túa conta'
+                login_with_social: 'Accede coas túas contas de redes sociais'
+                unregistered: 'Non estás rexistrado?'
+            nav:
+                create_new_account: 'Crear nova conta'
+                login: Acceder
+                logout: Saír
+            password:
+                password_sent: 'Contrasinal enviado'
+                password_sent_text: 'Enviámosche un correo con toda a información para recuperar o teu contrasinal.'
+                recover_password: 'Recuperar contrasinal'
+                register: Rexistro

@@ -1,0 +1,23 @@
+{% extends '@StoreTemplate/Layout/_layout.html.twig' %}
+
+{% block breadcrumb_container %}{% endblock breadcrumb_container %}
+
+{% block content %}
+    {% if address.name %}
+        <h2>{{ 'template.store_template_bundle.address.edit.edit_address'|trans }}</h2>
+    {% else %}
+        <h2>{{ 'template.store_template_bundle.address.edit.add_new_address'|trans }}</h2>
+    {% endif %}
+
+    {% include '@StoreTemplate/Modules/_address-new.html.twig' with {'form' : form} %}
+
+
+{###########################################################################
+#   IMPORTANT This JS is used on the location-selector to make the city    #
+#   selectors work. If you remove this you should implement the same       #
+#   functionality by yourself                                              #
+###########################################################################}
+    {% javascripts '@StoreGeoBundle/Resources/public/js/LocationSelectors.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock content %}

@@ -1,0 +1,10 @@
+services:
+
+    #
+    # Event listener for HTTP exceptions
+    #
+    elcodi_store.exception_controller:
+        class: Elcodi\Store\CoreBundle\Controller\ExceptionController
+        parent: twig.controller.exception
+        arguments:
+            - "@elcodi_store.template_locator.core"

@@ -1,0 +1,8 @@
+elcodi_plugin:
+    twitter:
+        description: 'Twitter integration for your shop'
+        field:
+            twitter_account:
+                label: 'Twitter account'
+                placeholder: 'e.g. jondoe'
+        name: Twitter

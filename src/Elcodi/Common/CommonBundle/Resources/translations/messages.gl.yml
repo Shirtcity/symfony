@@ -1,0 +1,14 @@
+common:
+    order:
+        states:
+            cancelled: Cancelado
+            delivered: Entregado
+            'in delivery': 'En reparto'
+            initial: 'Novo pedido'
+            paid: Pagado
+            preparing: 'En preparación'
+            processed: Procesado
+            refunded: Devolto
+            returned: Devolto
+            title: Historia
+            unpaid: 'Pendente de pago'

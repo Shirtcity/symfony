@@ -1,0 +1,92 @@
+.welcome {
+	& {
+		overflow: hidden;
+		background: $color-box;
+		padding-bottom: $spacing/4;
+	}
+	h2 {
+		& {
+			display: block;
+			position: relative;
+			padding: $spacing/4;
+			background: map-get($object-navigation-vars, background-color);
+			color: contrast-color(map-get($object-navigation-vars, background-color));
+			text-align: center;
+			margin-bottom: $spacing/8;
+			overflow: hidden;
+		}
+		span {
+			position: absolute;
+			margin-left: -100px;
+			@include opacity(.2);
+			top: -12px;
+		}
+	}
+}
+
+.welcome-mini {
+	& {
+		border-bottom:1px solid map-get($object-navigation-vars, background-color);
+		padding-bottom: 0px;
+	}
+	h2 {
+		font-size: $font-size-xl !important;
+		min-height: 28px;
+		padding: $spacing/4;
+	}
+}
+
+.welcome-item {
+	& {
+		text-align: center;
+		position: relative;
+		padding: $spacing/2 $spacing/2;
+		@include border-radius;
+	}
+	i {
+		@extend %icon-rounded;
+		min-width: 60px;
+
+	}
+	.welcome-done-sign {
+		display: none;
+	}
+}
+
+.welcome-active {
+	& {
+		background: $color-background;
+	}
+	i {
+		border-color: $color-primary;
+		color: $color-primary;
+	}
+	.button {
+		background: $color-primary;
+	}
+
+}
+
+.welcome-done {
+	& {
+		@include opacity(.3);
+	}
+	.button {
+		background: map-get($object-navigation-vars, background-color);
+		color: contrast-color(map-get($object-navigation-vars, background-color));
+	}
+	.welcome-done-sign {
+		position: absolute;
+		@include transform(rotate(-15deg));
+		background: map-get($object-navigation-vars, background-color);
+		display: inline-block;
+		color: contrast-color(map-get($object-navigation-vars, background-color));
+		padding: $spacing/8 $spacing/2;
+		top: 103px;
+		font-size: 2rem;
+		left: 32%;
+		@include border-radius;
+
+	}
+}
+

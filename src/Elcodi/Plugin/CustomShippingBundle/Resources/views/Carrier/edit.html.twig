@@ -1,0 +1,41 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'carrier',
+} %}
+
+
+{% block breadcrumb %}
+
+    {% set title = 'admin.carrier.plural'|trans %}
+    {%
+        set header = carrier.id
+            ? 'admin.carrier.edit'|trans({ '%name%': carrier.name })
+            : 'admin.carrier.new'|trans
+    %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: 'admin.settings.plural'|trans },
+            { name: title, url: url('admin_carrier_list'), },
+            { name: header, active: true, },
+        ]
+    } %}
+
+{% endblock breadcrumb %}
+
+
+{% block content %}
+
+    {% if carrier.id %}
+        {{
+            render(url('admin_carrier_edit_component', {
+                id: carrier.id,
+            }))
+        }}
+    {% else %}
+        {{ render(url('admin_carrier_new_component')) }}
+    {% endif %}
+
+{% endblock content %}

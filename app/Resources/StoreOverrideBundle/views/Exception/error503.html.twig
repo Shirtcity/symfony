@@ -1,0 +1,14 @@
+{% extends '@AdminCore/layouts/center_box.html.twig' %}
+
+
+{% block title_container 'store.error.store_unavailable_title'|trans %}
+
+{% block center_width "600" %}
+{% block center_height "600" %}
+
+{% block content %}
+
+    <h1>{{ exception.message|trans }}</h1>
+    <img src="{{ asset('bundles/admincore/images/uh-si.png') }}" width="250" class="fl-r ml-m" />
+
+{% endblock content %}

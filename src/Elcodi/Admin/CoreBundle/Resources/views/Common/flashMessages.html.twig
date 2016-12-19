@@ -1,0 +1,16 @@
+{% for flashMessage in app.session.flashbag.get('success') %}
+    <script type="text/javascript">
+        var Mediator,
+            sUrl;
+            if ( window!=window.top ) {
+                document.body.innerHTML = '';
+                Mediator = window.parent.FrontendMediator;
+                sUrl = window.parent.document.getElementById('variants-url') !== null? window.parent.document.getElementById('variants-url').value : '';
+                Mediator.publish( 'response:success', { url : sUrl } );
+            }
+    </script>
+    <input type="hidden"  data-fc-modules="notification" data-fc-event="load" data-fc-type="ok" data-fc-text="{{ flashMessage|trans }}" />
+{% endfor %}
+{% for flashMessage in app.session.flashbag.get('error') %}
+    <input type="hidden"  data-fc-modules="notification" data-fc-event="load" data-fc-type="ko" data-fc-text="{{ flashMessage|trans }}" />
+{% endfor %}

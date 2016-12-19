@@ -1,0 +1,29 @@
+%focus {
+	border-color: map-get($object-forms-vars, field-focus-border);
+	background: map-get($object-forms-vars, field-focus-background);
+	outline: none;
+}
+
+%field {
+	& {
+		display: block;
+		padding: map-get($object-forms-vars, field-padding);
+		border: map-get($object-forms-vars, field-border);
+		background: $color-background;
+		@include border-radius( map-get($object-forms-vars, field-border-radius));
+		@include box-sizing(border-box);
+		@include box-shadow(map-get($object-forms-vars, field-box-shadow))
+	}
+	&:focus {
+		@extend %focus;
+	}
+	&.error {
+		background: rgba($color-ko, .1);
+		border: 1px solid $color-ko;
+	}
+}
+
+%field-error {
+	border: map-get($object-forms-vars, field-error-border);
+	background: map-get($object-forms-vars, field-error-background);
+}

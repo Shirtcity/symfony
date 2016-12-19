@@ -1,0 +1,102 @@
+store:
+    address:
+        billing: billing
+        delete:
+            response_ok: 'Indirizzo rimosso correttamente'
+        delivery: delivery
+        form:
+            fields:
+                address:
+                    label: Indirizzo
+                addressMore:
+                    label: 'Indirizzo secondario (opzionale)'
+                city:
+                    label: Città
+                comments:
+                    label: Commenti
+                country:
+                    label: Nazione
+                mobile:
+                    label: Cellulare
+                name:
+                    label: 'Address name'
+                phone:
+                    label: Telefono
+                postalcode:
+                    label: CAP
+                province:
+                    label: Provincia
+                recipientName:
+                    label: 'Recipient name'
+                recipientSurname:
+                    label: 'Recipient surname'
+                send:
+                    label: 'Salva indirizzo'
+                state:
+                    label: Regione
+        save:
+            response_ok: 'Indirizzo salvato'
+        select_address_type: 'Select a %1 address'
+    coupon:
+        applied:
+            message_ko: 'Coupon non applicabile'
+            message_ok: 'Coupon applicato con successo'
+        form:
+            fields:
+                apply:
+                    label: 'Applica coupon'
+                code:
+                    label: 'Codice Coupon'
+    error:
+        page_not_found: 'Quindi hai scoperto il nostro piano segreto per la conquista del mondo...'
+        page_not_found_title: 'Pagina non trovata'
+        store_is_disabled: 'Questo store è al momento disabilitato'
+        store_is_under_construction: 'Questo store è in costruzione'
+        store_unavailable_title: 'Store non disponibile'
+    login:
+        form:
+            fields:
+                email:
+                    label: Email
+                password:
+                    label: Password
+                send:
+                    label: Invia
+        wrong_combination: 'Email e/o password sbagliate.'
+    pagination:
+        current: Attuale
+        first: Prima
+        last: Ultima
+        next: Prossima
+        previous: Precedente
+    recovery:
+        form:
+            fields:
+                email:
+                    label: email
+                password:
+                    label: Password
+                remember:
+                    label: Ricordami
+                repeat_password:
+                    label: 'Conferma password'
+                send:
+                    label: Invia
+    user:
+        form:
+            fields:
+                email:
+                    label: Email
+                firstname:
+                    label: Nome
+                lastname:
+                    label: Cognome
+                password:
+                    label: Password
+                repeat_password:
+                    label: 'Conferma password'
+                send:
+                    label: Invia
+        profile:
+            save:
+                message_ok: 'Profilo salvato'

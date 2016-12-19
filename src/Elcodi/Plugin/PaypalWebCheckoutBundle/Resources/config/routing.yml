@@ -1,0 +1,2 @@
+paypal_web_checkout_bundle:
+    resource: "@PaypalWebCheckoutBundle/Resources/config/routing.yml"

@@ -1,0 +1,40 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'admin_user',
+} %}
+
+
+{% block breadcrumb %}
+
+    {% set title = 'admin.admin_user.plural'|trans %}
+    {%
+        set header = adminUser.id
+            ? 'admin.admin_user.edit'|trans({ '%name%': adminUser.fullname })
+            : 'admin.admin_user.new'|trans
+    %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: title, url: url('admin_admin_user_list'), },
+            { name: header, active: true, },
+        ]
+    } %}
+
+{% endblock breadcrumb %}
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            {% if adminUser.id %}
+                {{ render(url('admin_admin_user_edit_component', { id: adminUser.id })) }}
+            {% else %}
+                {{ render(url('admin_admin_user_new_component')) }}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock content %}

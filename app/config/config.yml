@@ -1,0 +1,219 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: heroku.php, ignore_errors: true }
+    - { resource: security/security.yml }
+
+    # Common Elcodi configuration
+    - { resource: common/translations.yml }
+    - { resource: common/filesystem.yml }
+    - { resource: common/cache.yml }
+    - { resource: common/twig.yml }
+    - { resource: common/metrics.yml }
+    - { resource: common/sitemap.yml }
+
+    # Specific service overrides
+    - { resource: common/services.yml }
+
+    # Project-specific configuration
+    - { resource: config_local.yml }
+    - { resource: config_ignored.yml, ignore_errors: true }
+
+#
+# Framework configuration
+#
+framework:
+    secret: "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+    translator:
+        fallback: "%locale%"
+
+#
+# Twig Configuration
+#
+twig:
+    debug: "%kernel.debug%"
+    strict_variables: false
+
+    globals:
+        elcodi_context: []
+        currency_wrapper: "@elcodi.wrapper.currency"
+        store: "@elcodi.store"
+        store_tracker: "@elcodi.store_tracker"
+        elcodi_languages: "@elcodi.languages_with_master_promoted"
+
+#
+# Doctrine Configuration
+#
+doctrine:
+    dbal:
+        connections:
+            default:
+                driver:   "%database_driver%"
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%database_name%"
+                user:     "%database_user%"
+                password: "%database_password%"
+                charset:  UTF8
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        entity_managers:
+            default:
+                connection: default
+                auto_mapping: false
+                metadata_cache_driver: array
+                query_cache_driver: array
+                result_cache_driver: array
+
+#
+# Assetic Configuration
+#
+assetic:
+    bundles:
+        - AdminCoreBundle
+        - StoreCoreBundle
+        - StoreTemplateBundle
+        - AdminGeoBundle
+        - AdminStoreBundle
+    debug:          "%kernel.debug%"
+    use_controller: false
+    filters:
+        cssrewrite: ~
+
+#
+# Swiftmailer Configuration
+#
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+#
+# Disabling auto converter for annotations in Sensio Framework Extra Bundle
+#
+sensio_framework_extra:
+    request:
+        converters: false
+
+#
+# By default, ControllerExtraBundle works with $factory->create()
+#
+controller_extra:
+    factory:
+        default_method: create
+        default_static: false
+
+#
+# Oauth configuration
+#
+hwi_oauth:
+    firewall_name: %bamboo_store_firewall%
+    resource_owners:
+        github:
+            type: github
+            client_id: %bamboo_social_github_client_id%
+            client_secret: %bamboo_social_github_client_secret%
+        paypal:
+            type: paypal
+            client_id: %bamboo_social_paypal_client_id%
+            client_secret: %bamboo_social_paypal_client_secret%
+            options:
+                sandbox: %bamboo_social_paypal_client_is_sandbox%
+
+#
+# Dynamic routing configuration
+#
+jms_i18n_routing:
+    strategy: prefix_except_default
+    #
+    # Locale values exist here only for validation purposes.
+    # All references to this configuration are overriden.
+    # See common/services.yml file in this folder for more insight.
+    #
+    default_locale: en
+    locales: [en]
+
+#
+# HTTP Headers
+# Fill this data to ensure your ecommerce is unique and belongs to developers
+# Checkout the configuration in https://github.com/mmoreram/HTTPHeadersBundle
+#
+http_headers:
+    response:
+        x_elcodi:
+            name: X-Elcodi
+            values:
+                - This E-commerce is built using Elcodi and Symfony
+
+#
+# Elcodi media resize adapter. By default, Bamboo uses internal PHP GD adapter,
+# but there are more available adapters. You can configure them by changing here
+# the value
+#
+# elcodi_media:
+#     images:
+#         resize:
+#             adapter: elcodi.media_resize.imagemagick
+#             converter_bin_path: /usr/bin/convert
+#
+
+#
+# Location manager. If your location is going to be managed through another
+# entity manager, be sure to change this value with the name of it. By default,
+# the "default" entity manager will be used
+#
+# elcodi_geo:
+#     mapping:
+#         location:
+#             manager: default
+#
+# For retrieving location data through the API instead of a simple service, you
+# can use the API adapter and configure the host your API is located.
+#
+# elcodi_geo:
+#     location_provider: elcodi.location_provider.api
+#     location_api_host: http://my.server:9090
+#
+
+#
+# Defining the template renderers for Elcodi
+#
+elcodi_page:
+    renderers:
+        - elcodi_common.renderer.template_renderer
+
+#
+# Overwrite your Error templates
+#
+store_core:
+    error_templates:
+        fallback: true
+        default: Exception:error.html.twig
+        by_code:
+            404: Exception:error404.html.twig
+            503: Exception:error503.html.twig
+
+#
+# Number of posts for the blog
+#
+store_page:
+    blog:
+        posts_per_page: 5

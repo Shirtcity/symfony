@@ -1,0 +1,29 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'mailing',
+} %}
+
+
+{% block breadcrumb %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: 'admin.communication.single'|trans, active: false },
+            { name: 'admin.mailing.plural'|trans, active: true },
+        ]
+    } %}
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            {{ render(url('admin_email_list_component')) }}
+        </div>
+    </div>
+
+{% endblock content %}

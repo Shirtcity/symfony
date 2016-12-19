@@ -1,0 +1,9 @@
+services:
+
+    #
+    # Event listeners
+    #
+    elcodi_admin.event_listener.category_position:
+        class: Elcodi\Admin\ProductBundle\EventListener\NewCategoryPositionEventListener
+        tags:
+            - { name: doctrine.event_listener, event: preFlush, method: preFlush }

@@ -1,0 +1,5 @@
+elcodi_plugin:
+    product_csv:
+        action: Export
+        description: 'Export your products in format CSV'
+        name: 'Product export'

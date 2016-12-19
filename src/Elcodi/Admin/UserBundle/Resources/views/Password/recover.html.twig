@@ -1,0 +1,48 @@
+{% extends 'AdminCoreBundle::layouts/center_box.html.twig' %}
+
+{% block center_height "450" %}
+
+{% block content %}
+    {{ form_start(form, {
+        attr: {
+            class: 'form-horizontal',
+            style: 'margin-bottom: 0px !important;'
+        }
+    }) }}
+    <fieldset>
+        <legend>{{ 'admin.recover_user.title'|trans }}</legend>
+        <ol>
+            <li>
+                {{ form_row(form.email, {
+                    label: false,
+                    attr: {
+                        class: 'form-control',
+                        placeholder: 'admin.recover_user.field.email.placeholder'
+                    }
+                }) }}
+            </li>
+            <li>
+                {{ form_errors(form.password) }}
+                {{ form_row(form.password.first, {
+                    label: false,
+                    attr: {
+                        class: 'form-control',
+                        placeholder: 'admin.recover_user.field.password.placeholder',
+                    }
+                }) }}
+            </li>
+            <li>
+                {{ form_row(form.password.second, {
+                    label: false,
+                    attr: {
+                        class: 'form-control',
+                        placeholder: 'admin.recover_user.field.repeat_password.placeholder',
+                    }
+                }) }}
+            </li>
+        </ol>
+        <button type="submit" class="button-primary">{{ 'ui.forms.save'|trans }}</button>
+    </fieldset>
+    {{ form_end(form) }}
+
+{% endblock content %}

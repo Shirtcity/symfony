@@ -1,0 +1,19 @@
+<ul class="thumbnail-group">
+    {% for image in images %}
+        <li>
+            {{ entity.name }}
+            <a href="{{ image|resize({'width': 1024,'height': 1024,'type': 4}) }}" data-fc-modules="modal" class="thumbnail">
+                <img src="{{ image|resize({'width': 150,'height': 150,'type': 5}) }}" width="150" height="150"/>
+            </a>
+            <ul class="thumbnail-actions">
+                <li>
+                    <a href="{{ url('admin_image_delete', { id: image.id }) }}"
+                       data-fc-modules="confirm" data-fc-name="{{ image.name }}"
+                       data-fc-text="{{ 'ui.confirm.delete'|trans }}">
+                        <i class="icon-trash-o"></i>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    {% endfor %}
+</ul>

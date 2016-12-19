@@ -1,0 +1,9 @@
+services:
+
+    #
+    # Object Managers
+    #
+    store.connect.object_manager.authorization:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %store.connect.entity.authorization.class%

@@ -1,0 +1,35 @@
+.sidebar-user {
+	& {
+		display: none;
+		background: rgba($color-foreground,.2);
+		margin: 0;
+		padding: $spacing/2 $spacing/2 0;
+		overflow: hidden;
+		border-bottom: 1px solid rgba($color-background, .2);
+	}
+}
+
+.sidebar-user-avatar {
+	display: inline-block;
+	vertical-align: top;
+	margin-right: $spacing/4;
+
+}
+
+.sidebar-user-info {
+	& {
+		display: inline-block;
+		overflow: hidden;
+		margin-bottom: $spacing/2;
+	}
+	a {
+		color: $color-background;
+	}
+}
+
+.sidebar-user-dropdown {
+	& {
+		clear: both;
+		margin-bottom: $spacing/2 !important;
+	}
+}

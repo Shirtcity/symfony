@@ -1,0 +1,8 @@
+elcodi_plugin:
+    google_analytics:
+        description: 'Integració de Google Analytics per a la teva botiga'
+        field:
+            analytics_tracker_id:
+                label: 'Id de Google Analytics'
+                placeholder: 123456789
+        name: 'Google Analytics'

@@ -1,0 +1,40 @@
+.product-to-basket {
+	& {
+		background: rgba($color-foreground, .1);
+		padding: 0;
+		margin-bottom: $spacing;
+		box-shadow: 0 2px 2px rgba($color-foreground, .2);
+	}
+	h5 {
+		padding: $spacing/2 $spacing/2 0;
+		text-align: center;
+	}
+	img {
+		display: block;
+		margin: 0;
+		position: relative;
+		z-index: 100;
+		width: 100%;
+	}
+	.product-actions {
+		& {
+			background: $color-background;
+			padding: $spacing/4;
+			position: relative;
+			margin-bottom: 0;
+			text-align: center;
+			max-height: inherit;
+			overflow: hidden;
+		}
+		.button {
+			box-shadow: 0 2px 2px rgba($color-foreground, .2);
+		}
+	}
+	.product-pricing {
+		&:after {
+			background: $color-background;
+
+		}
+
+	}
+}

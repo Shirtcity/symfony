@@ -1,0 +1,26 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% block breadcrumb %}
+
+    {% include "@AdminCore/Common/breadcrumb.html.twig" with {
+        breadcrumb: [
+            { name: 'admin.dashboard.title'|trans, active: true },
+        ]
+    } %}
+
+{% endblock %}
+
+{% block header_actions %}
+
+    <a href="{{ url('store_homepage') }}" target="_blank" class="button button-primary">
+        <i class="icon-home"></i> <span>{{ 'admin.dashboard.view_store'|trans }}</span>
+    </a>
+
+{% endblock header_actions %}
+
+{% block content %}
+
+    {% render(controller("AdminMetricBundle:Panel:metricPanelToday")) %}
+
+{% endblock content %}

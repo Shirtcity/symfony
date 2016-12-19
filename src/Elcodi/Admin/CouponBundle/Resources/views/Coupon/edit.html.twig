@@ -1,0 +1,36 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'coupon',
+} %}
+
+
+{% block breadcrumb %}
+
+    {% set title = 'admin.coupon.plural'|trans %}
+
+    {% if coupon.id %}
+        {% set header = 'admin.coupon.edit'|trans({ '%code%': coupon.code }) %}
+    {% else %}
+        {% set header = 'admin.coupon.new'|trans %}
+    {% endif %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: title, url: url('admin_coupon_list') },
+            { name: header, active: true },
+        ]
+    } %}
+{% endblock breadcrumb %}
+
+
+{% block content %}
+
+    {% if coupon.id %}
+        {{ render(url('admin_coupon_edit_component', { id: coupon.id })) }}
+    {% else %}
+        {{ render(url('admin_coupon_new_component')) }}
+    {% endif %}
+
+{% endblock content %}

@@ -1,0 +1,53 @@
+security:
+    firewalls:
+        dev_area:
+            pattern:  ^/_(?:profiler|wdt|error)/
+            security: false
+
+        public_area:
+            pattern:  ^/(?:css|images|js)/
+            security: false
+
+        api_area:
+            pattern:  ^/%bamboo_api_prefix%/
+            security: false
+
+        admin_area:
+            provider: adminuser
+            pattern: ^/%bamboo_admin_prefix%(?:$|/)
+            anonymous: true
+            simple-preauth:
+                authenticator: elcodi_admin.security.one_time_login_authenticator
+            form_login:
+                login_path: admin_login
+                check_path: admin_login_check
+                username_parameter: elcodi_admin_user_form_type_login[email]
+                password_parameter: elcodi_admin_user_form_type_login[password]
+                default_target_path: admin_homepage
+            logout:
+                path:   admin_logout
+                target: admin_login
+                invalidate_session: false
+
+        store_area:
+            provider: customer
+            pattern: ^/
+            anonymous: true
+            form_login:
+                login_path: store_login
+                check_path: store_login_check
+                username_parameter: store_user_form_type_login[email]
+                password_parameter: store_user_form_type_login[password]
+            logout:
+                path:   store_logout
+                target: store_homepage
+                invalidate_session: false
+            oauth:
+                login_path: store_login
+                use_forward: false
+                failure_path: store_login
+                oauth_user_provider:
+                    service: elcodi_store.provider.oauth
+                resource_owners:
+                    github: /login/check-github
+                    paypal: /login/check-paypal

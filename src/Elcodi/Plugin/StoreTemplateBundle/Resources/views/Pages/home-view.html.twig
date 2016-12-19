@@ -1,0 +1,11 @@
+{% extends '@StoreTemplate/Layout/_layout.html.twig' %}
+
+
+{% block breadcrumb_container %}{% endblock breadcrumb_container %}
+
+
+{% block content %}
+    {% include '@StoreTemplate/Modules/_purchasable-list.html.twig' with {
+        purchasables: purchasables
+    } %}
+{% endblock content %}

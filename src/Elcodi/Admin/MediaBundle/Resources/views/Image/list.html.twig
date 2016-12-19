@@ -1,0 +1,19 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% block breadcrumb %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: 'admin.media.plural'|trans, active: true },
+        ]
+    } %}
+
+{% endblock breadcrumb %}
+
+
+{% block content %}
+
+    {{ render(url('admin_image_list_component')) }}
+
+{% endblock content %}

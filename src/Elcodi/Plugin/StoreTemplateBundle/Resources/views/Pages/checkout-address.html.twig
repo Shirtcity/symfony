@@ -1,0 +1,62 @@
+{% extends '@StoreTemplate/Layout/_checkout.html.twig' %}
+
+{% block breadcrumb_container %}{% endblock breadcrumb_container %}
+
+{% block content_checkout %}
+    <div class="checkout">
+    {% if addresses is not empty %}
+        <h1 class="checkout-title">{{ 'template.store_template_bundle.checkout.address.select_address'|trans }}</h1>
+        <form method="post" action="{{ url('store_checkout_address_save') }}" {% if addresses|length > 1 %}class="address-list" {% endif %}>
+            <p class="checkout-actions checkout-actions-top">
+                <button type="submit" name="payment" class="button button-secondary desktop" data-test="payment-button">
+                    {{ 'template.store_template_bundle.checkout.address.payment'|trans }}
+                    <i class="fa fa-arrow-right"></i>
+                </button>
+                <a class="button desktop" href="{{ url('store_cart_view') }}">
+                    <i class="fa fa-arrow-left"></i>
+                    {{ 'template.store_template_bundle.checkout.back'|trans }}
+                </a>
+                {% include '@StoreTemplate/Modules/_checkout-progress.html.twig' with { step: 2 } %}
+            </p>
+            {% for address in addresses %}
+                {% include '@StoreTemplate/Modules/_address-item.html.twig' with { address: address, source: 'checkout' } %}
+            {% endfor %}
+            <p class="checkout-actions checkout-actions-bottom">
+                <button type="submit" name="payment" class="button button-secondary" data-test="payment-button">
+                    {{ 'template.store_template_bundle.checkout.address.payment'|trans }}
+                    <i class="fa fa-arrow-right"></i>
+                </button>
+                <a class="button" href="{{ url('store_cart_view') }}">
+                    <i class="fa fa-arrow-left"></i>
+                    {{ 'template.store_template_bundle.checkout.back'|trans }}
+                </a>
+            </p>
+        </form>
+    {% else %}
+        <h1 class="checkout-title">{{ 'template.store_template_bundle.checkout.address.add_new_address'|trans }}</h1>
+        <p class="checkout-actions checkout-actions-top">
+            <a class="button desktop" href="{{ url('store_cart_view') }}">
+                <i class="fa fa-arrow-left"></i>
+                {{ 'template.store_template_bundle.checkout.back'|trans }}
+            </a>
+            {% include '@StoreTemplate/Modules/_checkout-progress.html.twig' with { step: 2 } %}
+        </p>
+    {% endif %}
+
+    {% if addresses is not empty %}
+        <h1 class="checkout-title">{{ "template.store_template_bundle.checkout.address.add_new_address"|trans }}</h1>
+    {% endif %}
+
+    {###########################################################################
+    #   IMPORTANT This JS is used on the location-selector to make the city    #
+    #   selectors work. If you remove this you should implement the same       #
+    #   functionality by yourself                                              #
+    ###########################################################################}
+
+    {% javascripts '@StoreGeoBundle/Resources/public/js/LocationSelectors.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% include '@StoreTemplate/Modules/_address-new.html.twig' with { form: form } %}
+    </div>
+{% endblock content_checkout %}

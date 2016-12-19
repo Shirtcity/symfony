@@ -1,0 +1,7 @@
+elcodi_plugin:
+    pinterest:
+        description: 'Integración de Pinterest coa tenda'
+        field:
+            asynchronous:
+                label: 'Usar Pinterest asincronamente'
+        name: Pinterest

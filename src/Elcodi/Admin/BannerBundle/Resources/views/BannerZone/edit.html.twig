@@ -1,0 +1,14 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            {{ render(url("admin_banner_zone_edit_component", {
+                'id': id
+            })) }}
+        </div>
+    </div>
+
+{% endblock content %}

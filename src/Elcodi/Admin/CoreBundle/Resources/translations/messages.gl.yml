@@ -1,0 +1,982 @@
+admin:
+    UI:
+        show_code: 'Amosar código HTML'
+        show_visual: 'Agochar código HTML'
+    address:
+        edit:
+            billing_address: 'Enderezo de facturación para a túa tenda'
+            description: 'O enderezo que debería aparecer nas facturas da túa tenda. Se tes unha empresa, introducee o seu enderezo fiscal. Se non, introduce o teu enderezo físico.'
+        field:
+            address:
+                placeholder: 'p.ex. Rúa Alegría, 42'
+                title: Enderezo
+            address_more:
+                placeholder: 'e.g. Empresas Alonso'
+                title: 'Máis enderezo (opcional)'
+            cif:
+                title: 'CIF / NIF'
+            city:
+                title: Cidade
+            comments:
+                placeholder: 'p.ex. É unha casa'
+                title: Comentarios
+            country:
+                title: País
+            email:
+                placeholder: 'p.ex. xoan@example.com'
+                title: Correo
+            isCompany:
+                title: 'Tes unha empresa?'
+                value:
+                    company: Empresa
+                    individual: Individual
+            mobile:
+                placeholder: 'p.ex. 555 555 555'
+                title: Móbil
+            phone:
+                placeholder: 'p.ex. 935 555 555'
+                title: Teléfono
+            postalcode:
+                placeholder: 'p.ex. 08080'
+                title: 'Código postal'
+            province:
+                title: Provincia
+            recipient_name:
+                placeholder: 'p.ex. Xoan'
+                title: 'Nome / Empresa'
+            recipient_surname:
+                placeholder: 'p.ex. Alonso'
+                title: 'Apelido (opcional se é una empresa)'
+            save: 'Gardar enderezo'
+            state:
+                title: Estado
+        plural: Enderezos
+        saved: 'Enderezo gardado'
+        select:
+            placeholder: 'Selecciona un'
+        single: Enderezo
+    admin_user:
+        edit: 'Editar "%name%"'
+        error:
+            cant_disable_yourself: 'Non podes deshabilitar a túa propia conta.'
+            cant_remove_yourself: 'Non podes borrar a túa propia conta'
+        list: 'Lista de administradores'
+        new: 'Crear novo usuario Admin'
+        plural: Administradores
+        saved: 'Cambios gardados'
+        section:
+            contact:
+                description: 'A información de contacto para este administrador.'
+                title: 'Detalles de contacto'
+            login:
+                description: 'Cada usuario debería ter un correuo único.'
+                title: 'Detalles de acceso'
+            status:
+                description: 'Podes activar ou desactivar administradores'
+                title: 'Estado do usuario'
+        single: Administrador
+    attribute:
+        edit: 'Editar "%name%"'
+        field:
+            enabled:
+                title: Estado
+            name:
+                placeholder: 'p.ex. Color'
+                title: Nome
+                values: Valores
+        list: 'Lista de atributos'
+        new: 'Novo atributo'
+        plural: Atributos
+        saved: 'Atributo gardado'
+        section:
+            basic:
+                description: 'Define o nome do atributo e os seus valores (separados por comas).'
+                title: 'Detalles básicos'
+            visibility:
+                description: 'Configura a visibilidade deste atributo.'
+                title: Visibilidade
+        single: Atributo
+    blog:
+        plural: Blogs
+        single: Blog
+    blog_post:
+        edit: 'Editar "%name%"'
+        field:
+            content:
+                placeholder: 'p.ex. Esta entrada xenial do blog é o que estás a buscar.'
+                title: Contido
+            enabled:
+                title: Habilitado
+            link:
+                title: Enlace
+            metadescription:
+                placeholder: 'p.ex. Esta entrada xenial do blog é o que estás a buscar.'
+            metakeywords:
+                placeholder: 'p.ex. blog,entrada,xenial'
+            metatitle:
+                placeholder: 'p.ex. A miña entrada xenial de blog'
+            path:
+                customize: 'Personalizar slug'
+                placeholder: 'p.ex. entrada/xenial/de/blog'
+                title: Ruta
+            publication_date:
+                title: 'Data de publicación'
+            title:
+                placeholder: 'p.ex. Entrada de blog xenial'
+                title: Título
+        in_store: 'Ver na tenda'
+        list: 'Lista de entradas do blog'
+        new: 'Crear entrada de blog'
+        plural: 'Entradas do blog'
+        saved: 'Entrada gardada'
+        section:
+            basic:
+                description: 'Proporciona un título moi específico para a túa entrada do blog, que explique e axude a vender a entrada. A descrición debe proporcionar toda a información necesaria para os teus consumidores.'
+                title: 'Detalles básicos'
+            visibility:
+                description: 'Configurar esta entrada do blog coma visible ou agochada.'
+                title: Visibilidade
+        show_metrics: 'Amosar métricas'
+        single: 'Entrada de blog'
+    carrier:
+        action:
+            add_shipping_range: 'Engadir rango'
+        edit: 'Editar "%name%"'
+        error:
+            no_active_carrier: 'Atención! Non hai transportista activo'
+        field:
+            description:
+                placeholder: 'p.ex. Mellor opción para entregas locais'
+                title: Descrición
+            name:
+                placeholder: 'p.ex. O mellor transportista'
+                title: Nome
+            status:
+                title: Habilitado
+            taxes:
+                format: '%value% Imposto'
+                title: Impostos
+        info:
+            shipping_rates_before_saving: 'Poderás engadir tarifas de envío tras gardar o transportista'
+        list: 'Lista de transportistas'
+        new: 'Novo transportista'
+        plural: Transportistas
+        saved: 'Cambios gardados'
+        section:
+            basic:
+                description: 'Proporciona o nome do transportista e unha descrición interna se é necesario.'
+                title: 'Detalles básicos'
+            shipping_rates:
+                description: 'Engadir tarifas de envío'
+                title: 'Tarifas de envío'
+            taxes:
+                description: 'Os impostos que se aplicarán a este transportista.'
+                title: 'Taxas de transporte'
+            visibility:
+                description: 'Configura este transportista como habilitado ou deshabilitado.'
+                title: Visibilidade
+        single: Transportista
+    catalog:
+        plural: Catálogos
+        single: Catlálogo
+    categorization:
+        plural: Categorizacións
+        single: Categorización
+    category:
+        edit: 'Editar "%name%"'
+        field:
+            contains:
+                title: 'contén %count% produtos'
+            enabled:
+                options:
+                    active: Activo
+                    inactive: Inactivo
+                title: Habilitada
+            metadescription:
+                placeholder: 'p.ex. Esta categoría xenial é xusto o que buscas.'
+            metakeywords:
+                placeholder: 'p.ex. categoría,xenial'
+            metatitle:
+                placeholder: 'p.ex. A miña categoría xenial'
+            name:
+                placeholder: 'p.ex. A miña categoría xenial'
+                title: 'Nome da categoría'
+            parent:
+                title: Padre
+            root:
+                title: 'Categoría raíz'
+            slug:
+                customize: 'Axustar slug'
+                placeholder: 'p.ex. categoria/xenial'
+                title: Slug
+        in_store: 'Ver na tenda'
+        list: 'Lista de categorías'
+        new: 'Nova categoría'
+        plural: Categorías
+        saved: 'Categoría gardada'
+        section:
+            basic:
+                description: 'Proporciona un nome moi específico tan curto coma poidas que axude aos teus usuarios a atopar os produtos desta categoría.'
+                title: 'Detalles básicos'
+            categorization:
+                description: 'Configura a túa categoría coma raíz se non ten unha categoría nai ou se vai ser categoría nai doutras.'
+                title: Categorización
+            edit:
+                description:
+                    - 'Arrastra e solta as categorías para ordealas ou aniñalas unhas dentro doutras (2 niveis máx).'
+                    - 'Clic nunha categoría para editar.'
+                    - 'Fai clic na papeleira para borrar unha categoría.'
+                title: 'Ordenar e editar'
+            visibility:
+                description: 'Configura esta categoría coma visible ou agochada.'
+                title: Visibilidade
+        single: Categoría
+    communication:
+        plural: Comunicacións
+        single: Comunicación
+    coupon:
+        edit: 'Editar "%code%"'
+        field:
+            code:
+                placeholder: 'p.ex. OMEUCODIGO'
+                title: Código
+            count:
+                title: 'Límite de uso'
+            datetime:
+                title: 'Data e hora'
+            description:
+                placeholder: 'p.ex. Código desconto 10%'
+                title: Descrición
+            discount:
+                title: '% total'
+            enabled:
+                title: Estado
+            enforcement:
+                options:
+                    automatic: 'Aplicar automaticamente'
+                    manual: 'Aplicar manualmente'
+                title: Modo
+            minimum_purchase:
+                title: 'Compra mínima'
+            price:
+                title: Cantidade
+            priority:
+                title: Prioridade
+            rule:
+                placeholder: 'Sen regras'
+                title: Regra
+            stackable:
+                title: 'Este cupón pode aplicarse xunto con outros cupóns'
+            status:
+                title: Estado
+            type:
+                options:
+                    fixed: 'Cantidade fixa'
+                    percent: 'Porcentaxe da cantidade'
+                title: Tipo
+            used:
+                title: Usado
+            valid_from:
+                title: Desde
+            valid_to:
+                title: Ata
+        list: 'Lista de cupóns'
+        new: 'Novo cupón'
+        plural: Cupóns
+        saved: 'Cupón gardado'
+        section:
+            basic:
+                description:
+                    - 'Configura o código do cupón (o que os usuarios deberían introducir na cesta para activar o cupón)'
+                    - 'Configura a descrición para identificar o cupón, o tipo e o modo que se aplicará.'
+                title: 'Datos básicos'
+            fixed_amount:
+                description: 'Configura a cantidade fixa de desconto directamente na cesta.'
+                title: 'Cantidade fixa'
+            percent_amount:
+                description: 'Configura a porcentaxe do desconto directamente na cesta.'
+                title: 'Porcentaxe da suma'
+            rules:
+                description: 'Escolle a regra para o cupón e unha compra mínima sobre a que aplicar o cupón (opcional)'
+                title: Regras
+            validity:
+                description: 'Configura o período de validez e o estado do cupón.'
+                title: Validez
+        single: Cupón
+    currency:
+        error:
+            disable_master_currency: 'Non podes deshabilitar a túa moeda mestra'
+            setting_disabled_master_currency: 'Non podes configurar una moeda deshabilitada coma mestra'
+        field:
+            iso: ISO
+            master: 'Moeda mestra'
+            name: Nome
+            status: Habilitado
+            symbol: Símbolo
+        list: 'Lista de moedas'
+        plural: Moedas
+        saved:
+            disabled: 'Deshabilitouse a moeda'
+            enabled: 'Habilitouse esta moeda'
+            master: 'Moeda principal gardada'
+        single: Moeda
+    customer:
+        edit: 'Editar "%name%"'
+        error:
+            password_change: 'Erro ao cambiar o contrasinal'
+        field:
+            guest:
+                title: Convidado
+            identity_document:
+                placeholder: 'p.ex. 12345678A'
+                title: Identidade
+            language:
+                title: 'Lingua preferida'
+            newsletter:
+                title: 'Boletín de novas'
+            order_count:
+                title: '# Pedidos'
+            phone:
+                placeholder: 'p.ex. 555 55 55 55'
+                title: Teléfono
+            username:
+                placeholder: 'p.e. xoan_alonso'
+                title: 'Nome de usuario'
+        info:
+            password_changed: 'Contrasinal cambiado con éxito'
+        list: 'Lista de clientes'
+        new: 'Crear novo cliente'
+        plural: Clientes
+        saved: 'Cambios gardados'
+        section:
+            contact:
+                description: 'Información de contacto para este usuario.'
+                title: 'Detalles de contacto'
+            login:
+                description: 'Cada usuario debería ter un ncorreo único e un nome de usuario único.'
+                title: 'Detalles de login'
+            status:
+                description: 'Configura o estado do usuario e as preferencias.'
+                title: 'Estados e preferencias'
+        single: Cliente
+    dashboard:
+        chart:
+            cart_conversion:
+                billing_shipping: Facturación/Envío
+                cart_view: 'Vista da cesta'
+                ordered: 'Pedido realizado'
+                payment: Pago
+                title: 'Conversión da cesta'
+            devices:
+                desktop: Escritorio
+                mobile: Móbil
+                title: Dispositivos
+            sales:
+                sales: Vendas
+                title: Vendas
+            traffic_source:
+                direct: Directo
+                referrals: Referrals
+                search_engine: 'Motores de busca'
+                title: 'Fonte de tráfico'
+            visitors:
+                title: Visitas
+                total: Total
+                unique: Único
+        chart_range:
+            last30days: 'Últimos 30 días'
+            last7days: '´Últimos 7 días'
+            last90days: 'Últimos 90 días'
+            today: Hoxe
+            yesterday: Onte
+        plural: Paneis
+        single: Panel
+        title: Panel
+        view_store: 'Ver a miña tenda'
+    identity:
+        field:
+            leitmotiv:
+                placeholder: 'p.ex.: produtos xeniais para persoas xeniais'
+                title: Lema
+            name:
+                placeholder: 'p.ex. A miña tenda xenial'
+                title: 'Nome da tenda'
+        less: Menos
+        more: Máis
+        section:
+            backgroundImage:
+                description: 'Engade unha imaxe tan grande como sexa posible (cadrada ou en formato vertical) e convertirémola nunha imaxe de fondo espectacular para a túa tenda. Se engades unha imaxe de fondo é mellor non usar unha imaxe de cabeceira.'
+                title: 'Imaxe de fondo'
+            headerImage:
+                description: 'Engade unha imaxe de fondo á cabeceira da túa tenda.'
+                title: 'Imaxe de cabeceira'
+            info:
+                description: 'Proporciona o nome da túa tenda e un lema (optional).'
+                title: 'Información básica'
+            logo:
+                description: 'Aquí podes engadir unha imaxe co teu logo. Por favor usa a calidaede máxima posible.'
+                title: Logo
+            mobileLogo:
+                description: 'Amosaremos esta imaxe aos clientes que usen un móbil para navegar pola tenda. É opcional, pero se queres mellorar a experiencia co móbil, podes facelo.'
+                title: 'Logo para o móbil'
+            secondaryLogo:
+                description: 'Se queres personalizar o logo do pé (opcional) podes facelo.'
+                title: 'Logo para o pé'
+        singular: 'Imaxe corporativa'
+    image:
+        info:
+            deleted: 'Imaxe borrada'
+            format: 'Formato JPG, PNG ou GIF. Máx 20mb.'
+            principal: 'A primeira imaxe será a imaxe principal.'
+            reorder: 'Podes arrastrar e soltar as imaxes para reordealas.'
+            upload: 'Subir imaxes'
+            upload_logo: 'Subir logo'
+            upload_single: 'Subir imaxe'
+        plural: Imaxes
+        single: Imaxe
+    language:
+        error:
+            disable_master_language: 'Non podes desactivar a lingua mestra'
+            setting_disabled_master_language: 'Non podes configurar unha lingua deshabilitada coma mestra'
+        field:
+            iso: ISO
+            master: 'Lingua mestra'
+            status: Habilitado
+        list: 'Lista de linguas'
+        plural: Linguas
+        saved:
+            disabled: 'EDeshabilitouse a lingua'
+            enabled: 'Habilitouse a lingua'
+            master: 'Lingua principal gardada'
+        single: Lingua
+    login:
+        action:
+            login: Acceder
+            logout: Saír
+            remember: 'Esqueciches o teu contrasinal?'
+        field:
+            email:
+                placeholder: 'Introduce o teu correo'
+            password:
+                placeholder: 'Introduce o contrasinal'
+        title: 'É necesario acceder á conta'
+    mailing:
+        edit: 'Editar "%title%"'
+        field:
+            content:
+                placeholder: 'p.ex. Esta lista de correo xenial é xusto o que necesitas.'
+                title: Contido
+            title:
+                placeholder: 'p.ex. ALista de correo moi interesante'
+                title: Título
+        list: 'Lista de correo'
+        new: 'Crear nova lista de correo'
+        plural: Mailings
+        saved: 'Lista de correo gardada'
+        section:
+            basic:
+                description: 'Introduce un título descriptivo para a túa lista de correo e o seu contido.'
+                title: 'Contido básico'
+        single: Mailing
+    manufacturer:
+        edit: 'Editar "%name%"'
+        field:
+            description:
+                placeholder: 'p.ex. Este fabricante  xenial é exactamente o que estás buscando.'
+                title: Descrición
+            enabled:
+                options:
+                    active: Activo
+                    inactive: Inactivo
+                title: Habilitado
+            image:
+                title: Imaxe
+            metadescription:
+                placeholder: 'p.ex. Este fabricante xenial é xusto o que necesitas.'
+            metakeywords:
+                placeholder: 'p.ex. fabricante,xenial'
+            metatitle:
+                placeholder: 'p.ex. O meu fabricante xenial'
+            name:
+                placeholder: 'p.ex. Fabricante Xenial'
+                title: 'Nome do fabricante'
+            name_slug:
+                title: 'Nome e slug'
+            product_count:
+                title: Produtos
+            slug:
+                customize: 'Configura o slug'
+                placeholder: 'p.ex. fabricante/xenial'
+                title: Slug
+        list: 'Lista de fabricantes'
+        new: 'Novo fabricante'
+        plural: Fabricante
+        saved: 'Fabricante gardado'
+        section:
+            basic:
+                description: 'Proporciona un nome moi específico e tan curto coma poidas que axude aos teus usuarios a atopar o produto deste fabricante. Tamén podes engadir unha descrición que se amosará na páxina de fabricante nda tenda.'
+                title: 'Detalles básicos'
+            logo:
+                description: 'Subir unha imaxe de logo do fabricante tan grande como sexa posible. Mellor se non contén texto adicional.'
+                title: 'Logo do fabricante'
+            visibility:
+                description: 'Configurar este fabricante coma visible ou agochado'
+                title: Visibilidade
+        single: Fabricante
+    media:
+        list: 'Lista de media'
+        plural: Media
+        single: Media
+    menu:
+        design: 'Personalizar tenda'
+    metadata:
+        customize: 'Configurar metadatos'
+        disclaimer:
+            - 'Área para usuarios avanzados.'
+            - 'Deixa estes campos en branco para obter automaticamente os metadatos da túa páxina.'
+        field:
+            metadescription:
+                title: 'Meta descrición'
+            metakeywords:
+                title: 'Meta keywords'
+            metatitle:
+                title: 'Meta title'
+        section:
+            metadata:
+                description: 'A descripción e palabras clave nas etiquetas meta eserven para describir o contido da páxina. A maioría dos motores de búsqueda usan estes datos ao engadir a páxina ao seu índice de buscas.'
+                title: Metadata
+    metrics:
+        action:
+            show: 'Amosar métricas'
+        info:
+            no_data: 'Sen datos'
+            visitors: Visitantes
+        plural: Métricas
+        single: Métrica
+        type:
+            line:
+                total: Total
+                unique: Único
+    name: Administrador
+    order:
+        all: 'Todos os pedidos'
+        details:
+            discount: 'Cupón de desconto'
+            item: Elemento
+            price: Prezo
+            shipping: Envío
+            subtotal: Subtotal
+            title: Detalles
+            units: Unidades
+        edit: 'Editar #%id%'
+        field:
+            billing_address: 'Enderezo de facturación'
+            both_addresses: 'Enderezo de entrega e de facturación'
+            carrier: Transportista
+            customer: Cliente
+            date: Data
+            delivery_address: 'Enderezo de entrega'
+            id: 'Pedido #%id%'
+            status: Estado
+            total: Total
+        from_user: 'Pedidos de %name%'
+        list: 'Lista de pedidos'
+        new: 'Novo pedido'
+        notes: Notas
+        plural: Pedidos
+        single: Pedido
+        states:
+            title: Estado
+        to_user: 'Ir ao cliente'
+        transition:
+            cancel: Cancelar
+            delivered: Entregado
+            'order ready': 'Pedido listo'
+            'picked up by carrier': 'Recollido polo transportista'
+            'picked up on store': 'Recollido na tenda'
+            refund: Devolver
+            return: Volver
+    page:
+        edit: 'Editar "%name%"'
+        error:
+            cant_modify_permanent: 'Esta páxina é permanente e non se pode modificar'
+        field:
+            content:
+                placeholder: 'p.ex. Esta páxina xenial é o que estabas a buscar.'
+                title: Contido
+            enabled:
+                title: Habilitada
+            link:
+                title: Enlace
+            metadescription:
+                placeholder: 'p.ex. Esta páxina xenial é exactamente o que estabas buscando.'
+            metakeywords:
+                placeholder: 'p.ex. páxina,xenial'
+            metatitle:
+                placeholder: 'p.ex. A miña páxina xenial'
+            path:
+                customize: 'Modificar ruta'
+                placeholder: 'p.ex. paxina/xenial'
+                title: Ruta
+            title:
+                placeholder: 'p.ex. A miña páxina xenial'
+                title: Título
+        in_store: 'Ver na tenda'
+        list: 'Listado de páxinas'
+        new: 'Páxina nova'
+        plural: Páxinas
+        saved: 'Cambios gardados'
+        section:
+            basic:
+                description: 'Proporciona un título moi específico para a túa páxina que explique e axude a vender a páxina. A descrición debe conter toda a información necesaria para os teus consumidores.'
+                title: 'Detalles básicos'
+            visibility:
+                description: 'Configura esta páxina visible ou agochada, e faina visible na páxina de inicio.'
+                title: Visibilidade
+        single: Páxina
+    plugin:
+        app_store: 'Tenda de aplicacións'
+        field:
+            visibility: 'Habilitar:'
+        plural: Apps
+        saved: 'Gardouse o estado do plugin'
+        section:
+            settings: Configuración
+        single: App
+    product:
+        edit: 'Editar "%name%"'
+        error:
+            no_category: 'Atención! Este produto non ten categoría asociada'
+            no_manufacturer: 'Atención! Este produto non ten fabricante asociado'
+            price_negative: 'Atención! O prezo non pode ser negativo'
+        field:
+            depth:
+                title: 'Profundidade (en cm)'
+            description:
+                placeholder: 'p.ex. Este produto xenial é xusto o que necesitas.'
+                title: Descrición
+            enabled:
+                options:
+                    active: Activo
+                    inactive: Inactivo
+                title: Visibilidade
+            height:
+                title: 'Altura (en cm)'
+            image:
+                title: Imaxe
+            in_home:
+                title: 'Amosar na páxina de inicio'
+            main_category:
+                placeholder: 'p.ex. Ordenadores, bolsos...'
+                title: Categoría
+            manufacturer:
+                placeholder: 'p.ex. Apple, Disney...'
+                title: Fabricante
+            metadescription:
+                placeholder: 'p.ex. Este produto xenial é o que necesitas.'
+            metakeywords:
+                placeholder: 'p.ex. produto,xenial'
+            metatitle:
+                placeholder: 'p.ex. O meu produto xenial'
+            name:
+                placeholder: 'p.ex. O meu produto xenial'
+                title: Título
+            name_details:
+                title: 'Nome e detalles'
+            price:
+                title: Prezo
+            reduced_price:
+                title: 'Prezo reducido'
+            sku:
+                placeholder: 'p.ex. SAU102'
+                title: SKU
+            slug:
+                customize: 'Configurar slug'
+                placeholder: 'p.ex. o/meu/produto/xenial'
+                title: Slug
+            stock:
+                title: Stock
+            weight:
+                title: 'Peso (en g)'
+            width:
+                title: 'Anchura (en cm)'
+        in_store: Ver
+        info:
+            variants_before_saving: 'Poderás engadir variantes tras gardar o produto'
+        list: 'Lista de produtos'
+        new: 'Novo produto'
+        note: Notas
+        plural: Produtos
+        saved: 'Produto gardado'
+        section:
+            basic:
+                description: 'Proporciona un título moi específico para o teu produto que explique e axude a vendelo. A descrición debe conter toda a información requerida polos teus consumidores.'
+                title: 'Detalles básicos'
+            categorization:
+                description: 'Tes que asociar o produto a unha categoría e un fabricante. Serán visibles na túa tenda e axudarán aos clientes a navegar pola tenda.'
+                title: Categorización
+            dimensions:
+                description: 'Introduce as dimensións e peso do produto. Esta información será útil para calcular os  custos de eenvío'
+                title: Dimensións
+            pricing:
+                description: 'Introduce o prezo do teu produto, sen incluír impostos ou transporte. Tamén podes introducir un prezo de oferta.'
+                title: Prezo
+            sku:
+                description: 'SKU é un identificador que permite identifcar os produtos. Cada SKU está relacionado cun único produto.'
+                title: SKU
+            stock:
+                description: 'Configura o stock do teu produto. Cada pedido reducirá este número.'
+                title: Stock
+            variants:
+                description: 'As variantes son diferentes versións deste produto (color, taalla...). As variantes poden ter diferentes prezos ou outros atributos.'
+                title: Variantes
+            visibility:
+                description: 'Configura a visibilidade do produto, e faino visible na páxina de inicio.'
+                title: Visibilidade
+        show_metrics: 'Amosar métricas'
+        single: Produto
+        tag:
+            has_variants: 'Ten variantes'
+            in_home: 'Páxina de inicio'
+            no_category: 'Sen categoría'
+            no_manufacturer: 'Sen fabricante'
+    profile:
+        plural: Perfís
+        single: Perfil
+    recover_user:
+        action:
+            email_sent:
+                description: 'Por favor, comprova o teu correo e segue as instrucións para recuperar ao teu contrasinal.'
+                title: 'Correo enviado'
+        field:
+            email:
+                placeholder: 'Introduce o teu correo.'
+            password:
+                placeholder: 'Novo contrasinal'
+            repeat_password:
+                placeholder: 'Repetir contrasinal'
+        title: 'Novo contrasinal'
+    remember_user:
+        description: 'Non te preocupes, enviarémosche un correo para resetear o teu contrasinal.'
+        title: 'Esqueciches o contrasinal?'
+    settings:
+        field:
+            currency: 'Configuración de moedas'
+            product_stock:
+                description: 'Habilita esta opción para activar o control de stock'
+                title: Stock
+            store_email: 'Correo da tenda'
+            store_enabled: 'Tenda habilitada'
+            store_leitmotiv: 'Lema da tenda'
+            store_name: 'Nome da tenda'
+            store_phone: 'Teléfono da tenda'
+            store_under_construction: 'Tenda en construción'
+        plural: Configuracións
+        saved: 'Configuración gardada'
+        section:
+            address:
+                title: 'Enderezo e contacto'
+            corporate:
+                title: 'Imaxe corporativa'
+            payment:
+                title: 'Métodos de pago'
+            products:
+                description: 'Configura os datos do produto.'
+                title: 'Configuración de produtos'
+            profile:
+                title: 'Imaxe corporativa'
+            store:
+                title: Xeral
+        single: Configuración
+    shipping_payment:
+        plural: 'Pagos e transportes'
+        single: 'Pagos e envíos'
+    shipping_range:
+        edit: 'Editar rango "%name%"'
+        field:
+            fromPrice:
+                title: 'Desde prezo'
+            fromWeight:
+                title: 'A partir do peso'
+            name:
+                placeholder: 'p.ex. Entrega en 3-5 días'
+                title: 'Nome do rango de envío'
+            price:
+                title: Prezo
+            toPrice:
+                title: 'Ata prezo'
+            toWeight:
+                title: 'Ata peso'
+            to_zone:
+                title: 'A zona'
+            type:
+                options:
+                    price: 'Baseado no prezo do pedido'
+                    weight: 'Baseado no peso do pedido'
+                title: 'Calcularánse os prezos…'
+            value:
+                price_format: 'De %from% a %to%'
+                title: Valor
+                weight_format: 'Desde %from% g a %to% g'
+        list: 'Lista de rangos de envío'
+        new: 'Crear un novo rango'
+        plural: 'Rangos de envío'
+        saved: 'Cambios gardados'
+        section:
+            basic:
+                description: 'Proporciona o nome do rango de envío e en qué zona estará dispoñible.'
+                title: 'Detalles básicos'
+            pricing:
+                description: 'Configura o prezo para este envío e define se vai ser calculado baseándose no prezo do pedido ou no peso do pedido.'
+                title: Prezos
+            visibility:
+                description: 'Configura este rango de envío coma activo ou inactivo.'
+                title: Visibilidade
+        single: 'Rango de transporte'
+    store:
+        field:
+            enabled:
+                title: 'Tenda habilitada'
+            routingStrategy:
+                custom: 'Sen prefixo para linguas, só urls traducidas'
+                prefix: 'Todas as urls teñen un prefixo de lingua'
+                prefix_except_default: 'Todas as urls teñen un prefixo de lingua excepto na lingua por defecto'
+                title: 'Formato de urls multilingüe'
+            useStock:
+                title: 'Activar control de stocks'
+        saved: 'Configuración gardada.'
+        section:
+            advanced:
+                description: 'Configuración avanzada para a túa tenda.'
+                title: Avanzado
+            status:
+                description: 'Controla se a tenda está aberta ou pechada.'
+                title: Estado
+            stock:
+                description: 'Se activas esta opción poderás configurar o stock dos teus produtos.'
+                title: Stock
+        settings: Configuración
+    template:
+        action:
+            preview: 'Vista previa'
+        label:
+            status: 'Habilitar:'
+        plural: Temas
+        single: Tema
+    user:
+        field:
+            birthday:
+                title: Aniversario
+            email:
+                placeholder: 'p.ex. xoan.alonso@example.com'
+                title: Correo
+            enabled:
+                options:
+                    active: Activo
+                    inactive: Inactivo
+                title: Estado
+            firstname:
+                placeholder: Xoan
+                title: Nome
+            fullname:
+                title: 'Nome e apelidos'
+            gender:
+                options:
+                    female: Feminino
+                    male: Home
+                title: Xénero
+            lastname:
+                placeholder: 'e.g. Alonso'
+                title: Apelido
+            password:
+                title: Contrasinal
+            username:
+                title: 'Nome de usuario'
+    variant:
+        edit: 'Editar variante "%name%"'
+        field:
+            enabled:
+                options:
+                    active: Activo
+                    inactive: Inactivo
+                title: Estado
+            name:
+                title: 'Nome da variante'
+            options:
+                title: 'Selecciona un ou máis atributos:'
+            price:
+                title: Prezo
+            reduced_price:
+                title: 'Prezo reducido'
+            stock:
+                title: Stock
+        list: 'Lista de variantes'
+        new: 'Nova variante'
+        plural: Variantes
+        saved: 'Variante gardada'
+        section:
+            attributes:
+                description: 'Configura os atributos principais desta variante.'
+                title: Atributos
+            pricing:
+                description: 'Configura o prezo da túa variante, sen incluír impostos ou transporte. Tamén podes configurar un prezo de oferta.'
+                title: Prezos
+            visibility:
+                description: 'Configura esta variable coma visible ou agochada.'
+                title: Visibilidade
+        single: Variante
+plugin:
+    paymill:
+        register:
+            call_to_action: 'Crea unha conta de Paymill agora!'
+            title: 'Non tes unha conta de Paymill?'
+        settings:
+            private_key: 'Clave privada de pago Paymill'
+            public_key: 'Clave pública de pago Paymill'
+        title: 'Configuración de conta Paymill'
+    paypal:
+        register:
+            call_to_action: 'Crear unha conta de PayPal'
+            title: 'Non tes unha conta de PayPal?'
+        settings:
+            recipient_email: 'Correo do receptor de pagos de Paypal'
+        title: 'Configuración de conta de Paypal'
+plugin_type:
+    app: Apps
+    payment: 'Métodos de pago'
+    shipping: 'Métodos de envío'
+    social: Social
+ui:
+    address:
+        address: Enderezo
+        city: Cidade
+        comment: Comentario
+        full_name: 'Nome completo'
+        phone: Teléfono
+        zipcode: 'Código postal'
+    confirm:
+        delete: 'Estás seguro de que o queres borrar?'
+    date:
+        today_at: 'Hoxe ás %time%'
+        yesterday_at: 'Onte ás %time%'
+    delete:
+        success: 'Borrado correctamente'
+    editor:
+        help: 'Selecciona texto para obter opcións de formato'
+    forms:
+        cancel: Cancelar
+        delete: Borrar
+        save: Gardar
+    label:
+        disabled: Deshabilitado
+        enabled: Habilitado
+    language:
+        master_language: 'Lingua mestra (obrigatoria)'
+    list:
+        create_first: 'Crear o meu primeiro %item%.'
+        no_items: 'Non hai %items%.'
+    paginator:
+        elements: 'Amosando %first% ata %last% de %total% entradas.'
+    tags:
+        placeholder:
+            comma_separated: 'Engade etiquetas separadas por coma.'

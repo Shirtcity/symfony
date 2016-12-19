@@ -1,0 +1,30 @@
+doctrine_cache:
+    providers:
+
+        #
+        # Categories cache
+        #
+        elcodi_categories:
+            type: array
+            namespace: %elcodi.core.bamboo.cache_prefix%categories
+
+        #
+        # Menus cache
+        #
+        elcodi_menus:
+            type: array
+            namespace: %elcodi.core.bamboo.cache_prefix%menus
+
+        #
+        # Entity translations cache
+        #
+        elcodi_translations:
+            type: array
+            namespace: %elcodi.core.bamboo.cache_prefix%translations
+
+        #
+        # Comments cache
+        #
+        elcodi_comments:
+            type: array
+            namespace: %elcodi.core.bamboo.cache_prefix%comments

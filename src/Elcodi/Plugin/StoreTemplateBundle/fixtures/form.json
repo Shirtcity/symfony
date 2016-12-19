@@ -1,0 +1,76 @@
+{
+  "form" : {
+    "email" : {
+      "label" : "Email <span class='mand'>*</span>",
+      "type" : "email"
+    },
+    "firstname" : {
+      "label" : "First Name <span class='mand'>*</span>",
+      "type" : "text"
+    },
+    "lastname" : {
+      "label" : "LastName <span class='mand'>*</span>",
+      "type" : "text"
+    },
+    "recipientName" : {
+      "label" : "First Name <span class='mand'>*</span>",
+      "type" : "text"
+    },
+    "recipientSurname" : {
+      "label" : "LastName <span class='mand'>*</span>",
+      "type" : "text"
+    },
+    "username" : {
+      "label" : "LastName <span class='mand'>*</span>",
+      "type" : "text"
+    },
+    "deliveryAddress" : {
+      "label" : "Delivery Address",
+      "type" : "text"
+    },
+    "address" : {
+      "label" : "Address",
+      "type" : "text"
+    },
+    "addressMore" : {
+      "label" : "Address more",
+      "type" : "text"
+    },
+    "postalcode" : {
+      "label" : "Postal Code",
+      "type" : "text"
+    },
+    "phone" : {
+      "label" : "Postal Code",
+      "type" : "text"
+    },
+    "mobile" : {
+      "label" : "Postal Code",
+      "type" : "text"
+    },
+    "comments" : {
+      "label" : "Postal Code",
+      "type" : "text"
+    },
+    "name" : {
+      "label" : "Postal Code",
+      "type" : "text"
+    },
+    "password" : {
+      "label" : "Password <span class='mand'>*</span>",
+      "type" : "password",
+      "first" : {
+        "label" : "Password <span class='mand'>*</span>",
+        "type" : "password"
+      },
+      "second" : {
+        "label" : "Password <span class='mand'>*</span>",
+        "type" : "password"
+      }
+    },
+    "send" : {
+      "label" : "Send",
+      "type" : "submit"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+.dashboard-tabs {
+	& {
+		text-align: center;
+	}
+	li {
+		display: block;
+	}
+}
+
+[class^='dashboard-tabs-'] {
+	& {
+		display: inline-block;
+		margin-right: $spacing;
+		font-weight: normal;
+		padding: $spacing/8 0;
+	}
+	a {
+		text-align: left;
+	}
+}
+.dashboard-tabs-range {
+	text-transform: uppercase;
+}
+
+.dashboard-tabs-amount {
+	font-family: $font-face-title;
+	font-size: $font-size-xl;
+	color: $color-primary;
+}
+
+.dashboard-tabs-orders {
+	padding-bottom: $spacing/2;
+}
+
+@mixin papa-dashboard-tabs {
+
+	[class^='dashboard-tabs-'] {
+		& {
+			display: block;
+			margin-right: 0;
+		}
+		a {
+			text-align: center;
+		}
+	}
+	.dashboard-tabs {
+		li {
+			display: inline-block;
+			width: 20%;
+		}
+	}
+}

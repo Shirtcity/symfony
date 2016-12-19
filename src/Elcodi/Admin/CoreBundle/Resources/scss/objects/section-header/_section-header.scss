@@ -1,0 +1,73 @@
+#cboxContent {
+	margin: 0 !important;
+}
+.section-header {
+	& {
+		display: block;
+		background: $color-background;
+		padding: $spacing/2 $spacing/2 $spacing/2 $spacing/1.5;
+		min-height: 53px;
+
+	}
+	.list-horizontal {
+		& {
+			margin-bottom: 0;
+			font-size: $font-size-xl;
+			font-family: $font-face-title;
+			line-height: 100%;
+			padding: $spacing/4;
+		}
+		li {
+			margin-right: 0;
+		}
+		a {
+			& {
+				color: rgba($color-foreground, .4);
+			}
+			&:hover {
+				color: $color-link;
+			}
+		}
+	}
+	.buttons-group {
+		float: right;
+		margin-bottom: 0;
+		padding: 0 !important;
+		min-width: 30%;
+		text-align: right;
+	}
+	[class^='button'] {
+		& {
+			min-width: $spacing*1.4;
+			padding: $spacing/4;
+		}
+		span {
+			display: none;
+		}
+
+	}
+
+}
+
+@mixin papa-section-header(){
+	.section-header {
+		& {
+			padding: $spacing/1.5 $spacing $spacing/2;
+			min-height: 68px;
+		}
+		.list-horizontal {
+			font-size: $font-size-xxl;
+			padding: 0;
+		}
+		[class^='button'] {
+			& {
+				min-width: inherit;
+				padding: $spacing/4 $spacing/2;
+			}
+			span {
+				display: inline-block;
+			}
+		}
+	}
+
+}

@@ -1,0 +1,14 @@
+common:
+    order:
+        states:
+            cancelled: Cancelled
+            delivered: Delivered
+            'in delivery': 'In delivery'
+            initial: 'New order'
+            paid: Paid
+            preparing: Preparing
+            processed: Processed
+            refunded: Refunded
+            returned: Returned
+            title: History
+            unpaid: Unpaid

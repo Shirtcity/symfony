@@ -1,0 +1,20 @@
+security:
+    access_control:
+
+        # admin
+        admin_login_area:
+            path: ^/%bamboo_admin_prefix%/login.*
+            roles: IS_AUTHENTICATED_ANONYMOUSLY
+
+        admin_password_area:
+            path: ^/%bamboo_admin_prefix%/password.*
+            roles: IS_AUTHENTICATED_ANONYMOUSLY
+
+        admin_public_area:
+            path: ^/%bamboo_admin_prefix%/.*
+            roles: ROLE_ADMIN
+
+        # store
+        public_area:
+            path: ^/.*
+            roles: IS_AUTHENTICATED_ANONYMOUSLY

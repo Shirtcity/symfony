@@ -1,0 +1,58 @@
+default:
+    calls:
+        error_reporting: 14335 # E_ALL & ~E_USER_DEPRECATED
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                path: app/AppKernel.php
+                class: AppKernel
+                env: test
+                debug: false
+        Behat\MinkExtension:
+            base_url: http://localhost:8000/app_test.php
+            show_auto: false
+            selenium2:
+                wd_host: 127.0.0.1:4444/wd/hub
+                capabilities:
+                    "browser": "firefox"
+                    "version": "21"
+            sessions:
+                default:
+                    symfony2: ~
+                javascript:
+                    selenium2: ~
+
+    suites:
+        store:
+            paths:
+                - %paths.base%/features/store
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - Elcodi\Bridge\BehatBridgeBundle\DoctrineContext
+                - Elcodi\Bridge\BehatBridgeBundle\Context
+                - Elcodi\Store\CoreBundle\Behat\Context
+                - Elcodi\Store\ProductBundle\Behat\Context
+                - Elcodi\Store\CartBundle\Behat\Context
+                - Elcodi\Store\GeoBundle\Behat\Context
+
+        admin:
+            paths:
+                - %paths.base%/features/admin
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - Elcodi\Bridge\BehatBridgeBundle\DoctrineContext
+                - Elcodi\Bridge\BehatBridgeBundle\Context
+                - Elcodi\Admin\CoreBundle\Behat\Context
+
+        workflow:
+            paths:
+                - %paths.base%/features/workflow
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - Elcodi\Bridge\BehatBridgeBundle\DoctrineContext
+                - Elcodi\Bridge\BehatBridgeBundle\Context
+                - Elcodi\Store\CoreBundle\Behat\Context
+                - Elcodi\Store\ProductBundle\Behat\Context
+                - Elcodi\Store\CartBundle\Behat\Context
+                - Elcodi\Store\GeoBundle\Behat\Context
+                - Elcodi\Admin\CoreBundle\Behat\Context

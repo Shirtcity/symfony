@@ -1,0 +1,10 @@
+plugin:
+    type: plugin
+    category: social
+    name: elcodi_plugin.pinterest.name
+    description: elcodi_plugin.pinterest.description
+    fa_icon: pinterest
+    fields:
+        asynchronous:
+            type: checkbox
+            label: elcodi_plugin.pinterest.field.asynchronous.label

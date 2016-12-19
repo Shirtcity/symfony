@@ -1,0 +1,170 @@
+{
+    "name": "elcodi/bamboo",
+    "description": "Bamboo, an e-commerce suite built with Elcodi",
+    "keywords": [
+        "elcodi",
+        "bamboo",
+        "symfony",
+        "ecommerce"
+    ],
+    "support": {
+        "email": "devs@elcodi.com",
+        "forum": "https://gitter.im/elcodi/bamboo",
+        "source": "https://github.com/elcodi/bamboo",
+        "issues": "https://github.com/elcodi/bamboo/issues"
+    },
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marc Morera",
+            "email": "yuhu@mmoreram.com"
+        },
+        {
+            "name": "Aldo Chiecchia",
+            "email": "aldo.chiecchia@befactory.es"
+        },
+        {
+            "name": "The Awesome Elcodi Community",
+            "homepage": "https://github.com/elcodi/bamboo/contributors"
+        }
+    ],
+    "require": {
+        "php": "^5.4|^7.0",
+        "ext-bcmath": "*",
+        "ext-openssl": "*",
+
+        "symfony/symfony": "~2.7.0",
+        "symfony/assetic-bundle": "^2.7|^3.0",
+        "symfony/swiftmailer-bundle": "^2.3.8|^3.0",
+        "symfony/monolog-bundle": "^2.7|^3.0",
+
+        "ocramius/proxy-manager": "^1.0",
+        "doctrine/orm": "^2.5",
+        "doctrine/dbal": "^2.5",
+        "doctrine/common": "^2.5",
+        "doctrine/doctrine-bundle": "^1.5.0",
+        "doctrine/annotations": "^1.2",
+        "doctrine/doctrine-fixtures-bundle": "^2.2",
+        "doctrine/doctrine-migrations-bundle": "^1.0",
+
+        "twig/twig": "^1.23",
+        "twig/extensions": "^1.0",
+        "sensio/distribution-bundle": "^3.0",
+        "sensio/framework-extra-bundle": "^3.0",
+        "jms/aop-bundle": "^1.0",
+        "jms/serializer-bundle": "^0.13.0",
+
+        "guzzlehttp/guzzle": "^5.2",
+        "ornicar/gravatar-bundle" : "1.1.3",
+        "knplabs/knp-gaufrette-bundle": "^0.3.0",
+        "incenteev/composer-parameter-handler": "^2.0",
+        "hwi/oauth-bundle": "^0.4.0",
+        "snc/redis-bundle": "^1.1.9",
+        "predis/predis": "^1.0.1",
+        "acasademont/i18n-routing-bundle": "2.0.0",
+
+        "mmoreram/controller-extra-bundle": "^1.2.1",
+        "mmoreram/extractor": "^1.2",
+        "mmoreram/cache-flush-bundle": "^0.2",
+        "mmoreram/http-headers-bundle": "1.0.0",
+        "mmoreram/symfony-bundle-dependencies": "^1.1.1",
+
+        "elcodi/elcodi": "^2.0.2",
+        "paymentsuite/paymentsuite": "^2.0.3"
+    },
+    "replace": {
+        "elcodi-templates/template": "dev-master",
+        "elcodi-templates/store-template-bundle": "dev-master",
+
+        "elcodi-plugin/google-analytics": "dev-master",
+        "elcodi-plugin/pinterest": "dev-master",
+        "elcodi-plugin/product-csv": "dev-master",
+        "elcodi-plugin/store-setup-wizard": "dev-master",
+        "elcodi-plugin/disqus": "dev-master",
+        "elcodi-plugin/twitter": "dev-master",
+        "elcodi-plugin/facebook": "dev-master",
+        "elcodi-plugin/paypal-web-checkout": "dev-master",
+        "elcodi-plugin/stripe": "dev-master",
+        "elcodi-plugin/free-payment": "dev-master",
+        "elcodi-plugin/custom-shipping": "dev-master"
+    },
+    "require-dev": {
+        "doctrine/data-fixtures": "^1.1",
+        "behat/behat": "^3.0",
+        "behat/symfony2-extension": "^2.0",
+        "behat/mink-extension": "^2.0.1",
+        "behat/mink-browserkit-driver": "^1.2",
+        "behat/mink-selenium2-driver": "^1.2",
+        "behat/mink": "^1.6",
+        "phpunit/phpunit": "4.8.19",
+
+        "mmoreram/php-formatter": "1.1.0",
+        "mmoreram/translation-server": "^1.0.1",
+        "fabpot/php-cs-fixer": "1.4.2",
+        "visithor/visithor-bundle": "^0.2.0"
+    },
+    "suggest": {
+        "ext-redis": "If doctrine cache works on top of redis"
+    },
+    "scripts": {
+        "check-style": [
+            "bin/php-cs-fixer fix --config-file=.php_cs || true",
+            "bin/php-formatter f:u:s src || true",
+            "bin/php-formatter f:u:s app || true",
+            "bin/php-formatter f:h:f src || true",
+            "bin/php-formatter f:h:f app || true"
+        ],
+        "compile": [
+            "app/console -n doctrine:migrations:status",
+            "app/console -n doctrine:migrations:migrate",
+            "app/console -n elcodi:plugins:load",
+            "app/console -n assets:install",
+            "app/console -n assetic:dump"
+        ],
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "test": [
+            "bin/behat",
+            "bin/phpunit -c app",
+            "app/console -n visithor:go --format=pretty --env=test"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "": [
+                "src/"
+            ],
+            "Elcodi\\": [
+                "src/Elcodi"
+            ]
+        },
+        "classmap": [
+            "app/AppKernel.php",
+            "app/AppCache.php"
+        ]
+    },
+    "prefer-stable": true,
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        }
+    }
+}

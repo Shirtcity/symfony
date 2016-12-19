@@ -1,0 +1,9 @@
+services:
+
+    #
+    # Repository for Authentication entities
+    #
+    store.connect.repository.authorization:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %store.connect.entity.authorization.class%

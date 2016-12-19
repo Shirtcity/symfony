@@ -1,0 +1,7 @@
+@media screen and  (min-width:800px) and (max-width: 978px) {
+
+	@include tablet-core;
+	@include papa-section-header;
+	@include papa-air;
+	@include papa-dashboard-tabs;
+}

@@ -1,0 +1,399 @@
+{% extends 'AdminCoreBundle::Common/formComponent.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'product',
+} %}
+
+
+{% form_theme form 'AdminCoreBundle::Forms/fields.html.twig' %}
+
+
+{% block content %}
+
+    {% set formAction =
+        product.id
+            ? url('admin_product_update', { id: product.id })
+            : url('admin_product_save')
+     %}
+
+
+    {{ form_start(form, { action: formAction }) }}
+        <fieldset>
+            {{ elcodi_hook("admin.product_top", {
+                'product': product
+            }) }}
+            <div class="grid">
+                <div class="col-1-3">
+                    <div class="box-none">
+                        <h3 class="fw-n">{{ 'admin.product.section.basic.title'|trans }}</h3>
+                        <p>{{ 'admin.product.section.basic.description'|trans }}</p>
+                        {% if elcodi_languages|length > 1 %}
+                            <p><i class="icon-star"></i> = {{ 'ui.language.master_language'|trans }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-2-3">
+                    <div {% if elcodi_languages|length > 1 %}data-fc-modules="tabs" class="tabs-box loading" {% endif %}>
+                        {% for language in elcodi_languages %}
+                        <section id="tab-{{ language }}" data-fc-name="{% if loop.first %}{{ '<i class="icon-star"></i>'|e }} {% endif %}{{ language|capitalize }}">
+                            <div class="box">
+                                <ol>
+                                    <li>
+                                        {{
+                                            form_row(form.name["#{language}_name"], {
+                                                label: 'admin.product.field.name.title',
+                                                attr: {
+                                                    placeholder: 'admin.product.field.name.placeholder',
+                                                }
+                                            })
+                                        }}
+                                        <div class="pt-m">
+                                            <p class="ta-r mb-n"><a data-fc-modules="toggle" href="#slug-{{ language }}" class="fz-default"><i class="icon-plus-circle"></i> {{ 'admin.product.field.slug.customize'|trans }}</a></p>
+                                            <div id="slug-{{ language }}" class="hidden mt-m">
+                                            {{
+                                                form_row(form.slug["#{language}_slug"], {
+                                                    label: false,
+                                                    attr: {
+                                                        placeholder: 'admin.product.field.slug.placeholder',
+                                                        'data-fc-modules': 'slug',
+                                                        'data-fc-parent': form.name["#{language}_name"].vars.id,
+                                                        'pattern' : '^[a-z0-9-]+$'
+                                                    }
+                                                })
+                                            }}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        {{
+                                            form_row(form.description["#{language}_description"], {
+                                                label: 'admin.product.field.description.title',
+                                                attr: {
+                                                    placeholder: 'admin.product.field.description.placeholder',
+                                                    'data-fc-modules': 'wysiwyg',
+                                                    'data-fc-fullscreen': 'false',
+                                                    'data-fc-text-html': 'admin.UI.show_code'|trans,
+                                                    'data-fc-text-visual': 'admin.UI.show_visual'|trans,
+                                                    'data-fc-text-help': 'ui.editor.help'|trans,
+                                                }
+                                            })
+                                        }}
+                                    </li>
+                                </ol>
+                            </div>
+                        </section>
+                        {% endfor %}
+                        </div>
+                </div>
+            </div>
+            <div class="grid{% if product.hasVariants %} d-n{% endif %}">
+                <div class="col-1-3">
+                    <div class="box-none">
+                        <h3 class="fw-n">{{ 'admin.product.section.pricing.title'|trans }}</h3>
+                        <p>{{ 'admin.product.section.pricing.description'|trans }}</p>
+                    </div>
+                </div>
+                <div class="col-2-3">
+                    <div class="box pb-n">
+                        <ol class="grid">
+                            <li class="col-1-2">
+                                {{
+                                    form_row(form.price, {
+                                        label: 'admin.product.field.price.title',
+                                    })
+                                }}
+                            </li>
+                            <li class="col-1-2">
+                                {{
+                                    form_row(form.reducedPrice, {
+                                        label: 'admin.product.field.reduced_price.title',
+                                    })
+                                }}
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="grid{% if not useStock %} d-n{% endif %}">
+                <div class="col-1-3">
+                    <div class="box-none">
+                        <h3 class="fw-n">{{ 'admin.product.section.stock.title'|trans }}</h3>
+                        <p>{{ 'admin.product.section.stock.description'|trans }}</p>
+                    </div>
+                </div>
+                <div class="col-2-3">
+                    <div class="box pb-n">
+                        <ol>
+                            <li>
+                                {{
+                                    form_row(form.stock, {
+                                        label: 'admin.product.field.stock.title',
+                                        attr: {
+                                        class: 'w-10'
+                                    }
+                                    })
+                                }}
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            {% include '@AdminMedia/Module/_images-form-field.html.twig' with {
+                images: product.getSortedImages,
+                redirect_path: product.id
+                    ? path('admin_product_edit', { id: product.id })
+                    : path('admin_product_new')
+            } %}
+            <div class="grid">
+                <div class="col-1-3">
+                    <div class="box-none">
+                        <h3 class="fw-n">{{ 'admin.product.section.categorization.title'|trans }}</h3>
+                        <p>{{ 'admin.product.section.categorization.description'|trans }}</p>
+                    </div>
+                </div>
+                <div class="col-2-3">
+                    <div class="box">
+                        <ol class="grid">
+                            <li class="col-1-2 pb-n">
+                                <div class="pr-l">
+                                    {{
+                                    form_row(form.principalCategory, {
+                                        label: 'admin.product.field.main_category.title',
+                                        label_help: 'admin.product.field.main_category.placeholder'|trans,
+                                    })
+                                    }}
+                                    <p class="pt-s fz-default mb-n ta-r">
+                                        <a href="{{ url('admin_category_new') }}" data-fc-modules="window-content">
+                                            <i class="icon-plus"></i>
+                                            {{ 'admin.category.new'|trans }}
+                                        </a>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="col-1-2 pb-n">
+                                {{
+                                form_row(form.manufacturer, {
+                                    label: 'admin.product.field.manufacturer.title',
+                                    label_help: 'admin.product.field.manufacturer.placeholder'|trans,
+                                })
+                                }}
+                                <p class="pt-s fz-default mb-n ta-r">
+                                    <a href="{{ url('admin_manufacturer_new') }}" data-fc-modules="window-content">
+                                        <i class="icon-plus"></i>
+                                        {{ 'admin.manufacturer.new'|trans }}
+                                    </a>
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="ph-n pt-m mb-n">
+                <div class="box-background pv-s mb-n">
+                    <a data-fc-modules="toggle" href="#variants-edit"><i class="icon-plus-circle"></i> {{ 'admin.product.section.variants.title'|trans }}</a>
+                </div>
+                <div id="variants-edit" class="grid pt-s {% if not product.hasVariants() %}hidden{% endif %}">
+                    <div class="col-1-3">
+                        <div class="box-none">
+                            <h3 class="fw-n">{{ 'admin.product.section.variants.title'|trans }}</h3>
+                            <p>{{ 'admin.product.section.variants.description'|trans }}</p>
+                            {% if product.id %}
+                                <a href="{{ url('admin_product_variant_new', { productId: product.id }) }}" data-fc-modules="window-content" class="button">
+                                    {{ 'admin.variant.new'|trans }}
+                                </a>
+                                <p>
+                                    <a href="{{ url('admin_attribute_new') }}" id="modal-attribute" class="button" data-fc-modules="window-content">
+                                        {{ 'admin.attribute.new'|trans }}
+                                    </a>
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-2-3" data-fc-modules="variants">
+                        <div class="box" id="variants-list">
+                            {% if product.id %}
+                                <input id="variants-url" type="hidden" value="{{ url('admin_product_variant_list_component', { productId: product.id }) }}" />
+                                <input id="variants-message-ok" type="hidden" value="{{ 'admin.variant.saved'|trans }}" />
+                                {{ render(url('admin_product_variant_list_component', { productId: product.id })) }}
+                            {% else %}
+                                <div class="box-background pa-n">
+                                    <p class="msg-info ma-n">{{ 'admin.product.info.variants_before_saving'|trans }}</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ph-n pt-m mb-n">
+                <div class="box-background pv-s mb-n">
+                    <a data-fc-modules="toggle" href="#dimensions-edit"><i class="icon-plus-circle"></i> {{ 'admin.product.section.dimensions.title'|trans }}  {% if not product.hasVariants() %}/ {{ 'admin.product.section.sku.title'|trans }}{% endif %}</a>
+                </div>
+                <div id="dimensions-edit" class="hidden">
+                    <div class="grid pt-s">
+                        <div class="col-1-3">
+                            <div class="box-none">
+                                <h3 class="fw-n">{{ 'admin.product.section.dimensions.title'|trans }}</h3>
+                                <p>{{ 'admin.product.section.dimensions.description'|trans }}</p>
+                            </div>
+                        </div>
+                        <div class="col-2-3">
+                            <div class="box pb-n">
+                                <ol class="grid">
+                                    <li class="col-1-3">
+                                        <div class="pr-l">
+                                            {{
+                                            form_row(form.width, {
+                                                label: 'admin.product.field.width.title',
+                                            })
+                                        }}
+                                        </div>
+                                    </li>
+                                    <li class="col-1-3">
+                                        <div class="pr-l">
+                                        {{
+                                            form_row(form.height, {
+                                                label: 'admin.product.field.height.title',
+                                            })
+                                        }}
+                                        </div>
+                                    </li>
+                                    <li class="col-1-3">
+                                        <div class="pr-l">
+                                        {{
+                                            form_row(form.depth, {
+                                                label: 'admin.product.field.depth.title',
+                                            })
+                                        }}
+                                        </div>
+                                    </li>
+                                </ol>
+                                <ol>
+                                    <li class="col-1-3">
+                                        {{
+                                        form_row(form.weight, {
+                                            label: 'admin.product.field.weight.title',
+                                        })
+                                        }}
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid {% if product.hasVariants() %}hidden{% endif %}">
+                        <div class="col-1-3">
+                            <div class="box-none">
+                                <h3 class="fw-n">{{ 'admin.product.section.sku.title'|trans }}</h3>
+                                <p>{{ 'admin.product.section.sku.description'|trans }}</p>
+                            </div>
+                        </div>
+                        <div class="col-2-3">
+                            <div class="box">
+                                {{
+                                form_row(form.sku, {
+                                    label: 'admin.product.field.sku.title',
+                                })
+                                }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ph-n pt-m mb-l">
+                <div class="box-background pv-s mb-n">
+                    <a data-fc-modules="toggle" href="#metadata-info"><i class="icon-plus-circle"></i> {{ 'admin.metadata.customize'|trans }}</a>
+                </div>
+                <div id="metadata-info" class="grid pt-s hidden">
+                    <div class="col-1-3">
+                        <div class="box-none">
+                            <h3 class="fw-n">{{ 'admin.metadata.section.metadata.title'|trans }}</h3>
+                            <p>{{ 'admin.metadata.section.metadata.description'|trans }}</p>
+                            {% if elcodi_languages|length > 1 %}
+                                <p><i class="icon-star"></i> = {{ 'ui.language.master_language'|trans }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-2-3">
+                        <div {% if elcodi_languages|length > 1 %}data-fc-modules="tabs" class="tabs-box loading"{% endif %}>
+                            {% for language in elcodi_languages %}
+                                <section id="metadata-{{ language }}" data-fc-name="{% if loop.first %}{{ '<i class="icon-star"></i>'|e }} {% endif %}{{ language|capitalize }}">
+                                    <div class="box">
+                                        <ol>
+                                            <li>
+                                                {{
+                                                    form_row(form.metaTitle["#{language}_metaTitle"], {
+                                                        label: 'admin.metadata.field.metatitle.title',
+                                                        attr: {
+                                                            placeholder: 'admin.product.field.metatitle.placeholder',
+                                                        },
+                                                    })
+                                                }}
+                                            </li>
+                                            <li>
+                                                {{
+                                                    form_row(form.metaDescription["#{language}_metaDescription"], {
+                                                        label: 'admin.metadata.field.metadescription.title',
+                                                        attr: {
+                                                            placeholder: 'admin.product.field.metadescription.placeholder',
+                                                        },
+                                                    })
+                                                }}
+                                            </li>
+                                            <li>
+                                                {{
+                                                    form_row(form.metaKeywords["#{language}_metaKeywords"], {
+                                                        label: 'admin.metadata.field.metakeywords.title',
+                                                        attr: {
+                                                            placeholder: 'admin.product.field.metakeywords.placeholder',
+                                                        },
+                                                    })
+                                                }}
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </section>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-1-3">
+                    <div class="box-none mb-n pb-m">
+                        <h3 class="fw-n">{{ 'admin.product.section.visibility.title'|trans }}</h3>
+                        <p>{{ 'admin.product.section.visibility.description'|trans }}</p>
+                    </div>
+                </div>
+                <div class="col-2-3">
+                    <div class="box mb-n pb-n">
+                        <ol class="grid pt-m">
+                            <li class="col-1-1">
+                                {{
+                                    form_row(form.showInHome, {
+                                        label: 'admin.product.field.in_home.title'
+                                    })
+                                }}
+                                {{
+                                    form_row(form.enabled, {
+                                        label: 'admin.product.field.enabled.title',
+                                    })
+                                }}
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="grid fixed-bottom animated fade-in-up">
+            <div class="col-1-3">
+                &nbsp;
+            </div>
+            <div class="col-2-3">
+                <button id="submit-save" type="submit" class="button-primary button-fat pv-s mr-l">{{ 'ui.forms.save'|trans }}</button>
+                <a href="{{ path('admin_product_list') }}">{{ 'ui.forms.cancel'|trans }}</a>
+            </div>
+        </div>
+    {{ form_end(form) }}
+
+{% endblock content %}

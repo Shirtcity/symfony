@@ -1,0 +1,102 @@
+store:
+    address:
+        billing: billing
+        delete:
+            response_ok: 'Address correctly removed'
+        delivery: delivery
+        form:
+            fields:
+                address:
+                    label: Address
+                addressMore:
+                    label: 'Address more (optional)'
+                city:
+                    label: City
+                comments:
+                    label: Comments
+                country:
+                    label: Country
+                mobile:
+                    label: Mobile
+                name:
+                    label: 'Address name'
+                phone:
+                    label: Phone
+                postalcode:
+                    label: Postalcode
+                province:
+                    label: Province
+                recipientName:
+                    label: 'Recipient name'
+                recipientSurname:
+                    label: 'Recipient surname'
+                send:
+                    label: 'Save address'
+                state:
+                    label: State
+        save:
+            response_ok: 'Address saved'
+        select_address_type: 'Select a %1 address'
+    coupon:
+        applied:
+            message_ko: 'Could not apply coupon'
+            message_ok: 'Coupon applied successfully'
+        form:
+            fields:
+                apply:
+                    label: 'Apply coupon'
+                code:
+                    label: 'Coupon Code'
+    error:
+        page_not_found: 'So, you''ve discovered our secret plans to take on the world.'
+        page_not_found_title: 'Page not found'
+        store_is_disabled: 'This store is currently disabled'
+        store_is_under_construction: 'This store is under construction'
+        store_unavailable_title: 'Store not available'
+    login:
+        form:
+            fields:
+                email:
+                    label: Email
+                password:
+                    label: Password
+                send:
+                    label: Send
+        wrong_combination: 'Wrong Email and password combination.'
+    pagination:
+        current: Current
+        first: First
+        last: Last
+        next: Next
+        previous: Previos
+    recovery:
+        form:
+            fields:
+                email:
+                    label: email
+                password:
+                    label: Password
+                remember:
+                    label: Remember
+                repeat_password:
+                    label: 'Repeat password'
+                send:
+                    label: Send
+    user:
+        form:
+            fields:
+                email:
+                    label: Email
+                firstname:
+                    label: Firstname
+                lastname:
+                    label: Lastname
+                password:
+                    label: Password
+                repeat_password:
+                    label: 'Repeat password'
+                send:
+                    label: Save
+        profile:
+            save:
+                message_ok: 'Profile saved'

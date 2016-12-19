@@ -1,0 +1,38 @@
+services:
+
+    jms_i18n_routing.locale_choosing_listener:
+        class: %jms_i18n_routing.locale_choosing_listener.class%
+        public: false
+        arguments:
+            - "@elcodi.store_default_language_iso"
+            - "@elcodi.languages_iso_array"
+            - "@jms_i18n_routing.locale_resolver"
+
+    jms_i18n_routing.pattern_generation_strategy.default:
+        class: %jms_i18n_routing.pattern_generation_strategy.class%
+        arguments:
+            - "@elcodi.store_routing_strategy"
+            - "@translator"
+            - "@elcodi.languages_iso_array"
+            - %kernel.cache_dir%
+            - %jms_i18n_routing.catalogue%
+            - "@elcodi.store_default_language_iso"
+
+    #
+    # Page renderer
+    #
+    elcodi_common.renderer.template_renderer:
+        class: Elcodi\Component\Page\Renderer\TemplatedPageRenderer
+        arguments:
+            - "@templating.engine.twig"
+            - "Layout:_static.html.twig"
+            - ["@elcodi.store_template_bundle"]
+
+    #
+    # Default currency
+    #
+    elcodi.wrapper.default_currency:
+        class: Elcodi\Component\Currency\Wrapper\DefaultCurrencyWrapper
+        arguments:
+            - "@elcodi.repository.currency"
+            - "@elcodi.store_default_currency_iso"

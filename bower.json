@@ -1,0 +1,26 @@
+{
+  "name": "bamboo-admin",
+  "version": "0.3.6",
+  "authors": [
+    "Toni Pinel <toni.pinel@elcodi.com>"
+  ],
+  "main": "Gruntfile.js",
+  "moduleType": [
+    "amd"
+  ],
+  "homepage": "http://www.elcodi.io",
+  "private": true,
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "tests"
+  ],
+  "dependencies": {
+    "frontendcore-scss": "https://github.com/Frontendcore/scss.git",
+    "frontendcore-js": "https://github.com/Frontendcore/js.git",
+    "plupload": "~2.1.2"
+  },
+  "devDependencies": {
+    "twig.js": "~0.8.1"
+  }
+}

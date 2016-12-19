@@ -1,0 +1,8 @@
+elcodi_plugin:
+    facebook:
+        description: 'Integración de Facebook pera tu tienda'
+        field:
+            facebook_account:
+                label: 'Cuenta de Facebook'
+                placeholder: maríadelao
+        name: Facebook

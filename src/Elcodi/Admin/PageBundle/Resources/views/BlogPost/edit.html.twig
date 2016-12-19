@@ -1,0 +1,90 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'blog_post',
+} %}
+
+{% block body_down %}
+
+    {% if blog_post.id > 0 %}
+        {% set author_token = app.user.token %}
+        {% set context = 'admin' %}
+        {% set source = "blog-post-#{blog_post.id}" %}
+
+        <a data-fc-modules="side-panel" data-fc-position="right" data-fc-width="60%" data-fc-tab-top="48%" href="#box-populi" data-fc-tab="true" class="button-primary ph-m"><i class="icon-comment"></i> </a>
+        <div id="box-populi" class="boxpopuli-container">
+            <div class="boxpopuli-overflow" data-fc-modules="boxpopuli"
+                 data-token="{{ author_token }}"
+                 data-author-name="{{ app.user.fullname }}"
+                 data-author-email="{{ app.user.email }}"
+                 data-context="{{ context }}"
+                 data-source="{{ source }}"
+                 data-route-list="{{ url('elcodi_comments_list', { source: source, context: context }) }}"
+                 data-route-add="{{ url('elcodi_comments_add', { source: source, context: context, authorToken: author_token }) }}"
+                    ></div>
+        </div>
+    {% endif %}
+{% endblock body_down %}
+
+{% block header_actions %}
+
+    {% if blog_post.id > 0 %}
+        <a target="_blank" href="{{ url('store_blog_post_view', { id: blog_post.id, slug: blog_post.path }) }}" class="button-primary">
+            <i class="icon-eye"></i>
+            <span>{{ 'admin.blog_post.in_store'|trans }}</span>
+        </a>
+        <a data-fc-modules="modal" href="#metrics-panel" class="button-secondary">
+            <i class="icon-bar-chart-o"></i>
+            <span>{{ 'admin.metrics.action.show'|trans }}</span>
+        </a>
+    {% endif %}
+
+{% endblock header_actions %}
+
+
+{% block breadcrumb %}
+
+    {% set title = 'admin.blog_post.plural'|trans %}
+    {%
+        set header = blog_post.id
+            ? 'admin.blog_post.edit'|trans({ '%name%': blog_post.title })
+            : 'admin.blog_post.new'|trans
+    %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: 'admin.communication.single'|trans, active: false },
+            { name: title, url: url('admin_blog_post_list'), },
+            { name: header, active: true, },
+        ]
+    } %}
+
+{% endblock breadcrumb %}
+
+
+{% block content %}
+
+    {% if blog_post.id %}
+        {{
+            render(url('admin_blog_post_edit_component', {
+                id: blog_post.id,
+            }))
+        }}
+
+        <div class="hidden-placeholder">
+            <div id="metrics-panel" class="box-background">
+                <h2>{{ 'admin.metrics.info.visitors'|trans }}</h2>
+                {% include 'AdminMetricBundle:Metric:metricLine.html.twig' with {
+                    tracker: store.tracker,
+                    event: "pv_store_blog_post_view_#{blog_post.id}",
+                    intervalContainer: metric_create_interval_container(3),
+                } %}
+            </div>
+        </div>
+
+    {% else %}
+        {{ render(url('admin_blog_post_new_component')) }}
+    {% endif %}
+
+{% endblock content %}

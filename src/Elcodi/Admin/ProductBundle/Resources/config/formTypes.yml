@@ -1,0 +1,58 @@
+services:
+
+    #
+    # Form Types
+    #
+    elcodi_admin.form_type.product:
+        class: Elcodi\Admin\ProductBundle\Form\Type\ProductType
+        arguments:
+            - %elcodi.entity.manufacturer.class%
+            - %elcodi.entity.category.class%
+            - %elcodi.entity.image.class%
+        calls:
+            - [setFactory, ["@elcodi.factory.product"]]
+            - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_product_form_type_product }
+
+    elcodi_admin.form_type.product_variant:
+        class: Elcodi\Admin\ProductBundle\Form\Type\VariantType
+        arguments:
+            - %elcodi.entity.attribute_value.class%
+            - %elcodi.entity.image.class%
+        calls:
+            - [setFactory, ["@elcodi.factory.product_variant"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_product_form_type_product_variant }
+
+    elcodi_admin.form_type.purchasable_pack:
+        class: Elcodi\Admin\ProductBundle\Form\Type\PackType
+        arguments:
+            - "@elcodi.name_resolver.purchasable"
+            - %elcodi.entity.purchasable.class%
+            - %elcodi.entity.manufacturer.class%
+            - %elcodi.entity.category.class%
+            - %elcodi.entity.image.class%
+        calls:
+            - [setFactory, ["@elcodi.factory.purchasable_pack"]]
+            - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_product_form_type_purchasable_pack }
+
+    elcodi_admin.form_type.category:
+        class: Elcodi\Admin\ProductBundle\Form\Type\CategoryType
+        calls:
+            - [setFactory, ["@elcodi.factory.category"]]
+            - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_product_form_type_category }
+
+    elcodi_admin.form_type.manufacturer:
+        class: Elcodi\Admin\ProductBundle\Form\Type\ManufacturerType
+        arguments:
+            - %elcodi.entity.image.class%
+        calls:
+            - [setFactory, ["@elcodi.factory.manufacturer"]]
+            - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_product_form_type_manufacturer }

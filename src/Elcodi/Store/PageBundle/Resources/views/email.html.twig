@@ -1,0 +1,5 @@
+{% extends locate_template('Layout:_email.html.twig') %}
+
+{% block body %}
+    {% include template_from_string(content) %}
+{% endblock %}

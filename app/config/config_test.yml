@@ -1,0 +1,26 @@
+imports:
+    - { resource: config_dev.yml }
+    - { resource: parameters_test.yml }
+    - { resource: "@ElcodiCoreBundle/Resources/config/test/cache.test.yml" }
+
+framework:
+    test: ~
+    session:
+        storage_id: session.storage.mock_file
+    profiler:
+        collect: false
+
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        dbname:   "%database_name%"
+        path:     "%database_path%"
+        charset:  UTF8
+
+    orm:
+        auto_generate_proxy_classes: true
+        auto_mapping: false
+
+web_profiler:
+    toolbar: false
+    intercept_redirects: false

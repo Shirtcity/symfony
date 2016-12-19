@@ -1,0 +1,21 @@
+{% extends '@StoreTemplate/Layout/_layout.html.twig' %}
+
+
+{% block title %}{{ "template.store_template_bundle.category.view.category"|trans }}{{ category.name }}{% endblock title %}
+
+{% block breadcrumb %}
+    {% if category.parent is not null %}
+        <li>
+            <a href="{{ url('store_category_purchasables_list', { slug: category.parent.slug, id: category.parent.id }) }}">{{ category.parent.name }}</a> >
+        </li>
+    {% endif %}
+    <li>
+        <a href="{{ url('store_category_purchasables_list', { slug: category.slug, id: category.id }) }}"><strong>{{ category.name }}</strong></a>
+    </li>
+{% endblock breadcrumb %}
+
+{% block content %}
+	{% include '@StoreTemplate/Modules/_purchasable-list.html.twig' with {
+        'purchasables' : purchasables
+    } %}
+{% endblock content %}

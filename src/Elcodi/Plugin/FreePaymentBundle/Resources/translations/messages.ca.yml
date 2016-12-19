@@ -1,0 +1,4 @@
+elcodi_plugin:
+    free_payment:
+        description: 'Suport per al pagament gratuït a la teva botiga'
+        name: 'Pagament gratuït'

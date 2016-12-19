@@ -1,0 +1,56 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'page',
+} %}
+
+
+{% block header_actions %}
+
+    {% if page.id > 0 %}
+        <a target="_blank" href="{{ url('elcodi.route.page_render', {
+            id: page.id,
+            path: page.path
+        }) }}" class="button-primary">
+            <i class="icon-eye"></i>
+            <span>{{ 'admin.page.in_store'|trans }}</span>
+        </a>
+    {% endif %}
+
+{% endblock header_actions %}
+
+
+{% block breadcrumb %}
+
+    {% set title = 'admin.page.plural'|trans %}
+    {%
+        set header = page.id
+            ? 'admin.page.edit'|trans({ '%name%': page.title })
+            : 'admin.page.new'|trans
+    %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: 'admin.communication.single'|trans, active: false },
+            { name: title, url: url('admin_page_list'), },
+            { name: header, active: true, },
+        ]
+    } %}
+
+{% endblock breadcrumb %}
+
+
+{% block content %}
+
+    {% if page.id %}
+        {{
+            render(url('admin_page_edit_component', {
+                id: page.id,
+            }))
+        }}
+    {% else %}
+        {{ render(url('admin_page_new_component')) }}
+    {% endif %}
+
+{% endblock content %}

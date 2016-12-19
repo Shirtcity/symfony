@@ -1,0 +1,50 @@
+{% extends 'AdminCoreBundle::layouts/center_box.html.twig' %}
+
+
+{% block body %}
+
+    {{ include('@AdminCore/Common/flashMessages.html.twig') }}
+    {{ parent() }}
+
+{% endblock body %}
+
+
+{% block content %}
+
+                {{ form_start(form, {
+                    attr: {
+                        class: 'form'
+                    }
+                }) }}
+                    <fieldset>
+                        <legend>{{ 'admin.login.title'|trans }}</legend>
+                        <ol>
+                            <li>
+                                {{ form_row(form.email, {
+                                    label: false,
+                                    attr: {
+                                        class: 'form-control',
+                                        placeholder: 'admin.login.field.email.placeholder',
+                                    }
+                                }) }}
+                            </li>
+                            <li>
+                                {{ form_row(form.password, {
+                                    label: false,
+                                    attr: {
+                                        class: 'form-control',
+                                        placeholder: 'admin.login.field.password.placeholder',
+                                    }
+                                }) }}
+                            </li>
+                        </ol>
+                        <button id="submit-login" type="submit" class="button-primary button-fat pv-s mr-l" data-test="submit-login">
+                            {{ 'admin.login.action.login'|trans }}
+                        </button>
+                        <a href="{{ url('admin_password_remember') }}" data-dismiss="modal" type="warning" class="fl-r">
+                            {{ 'admin.login.action.remember'|trans }}
+                        </a>
+                    </fieldset>
+                {{ form_end(form) }}
+
+{% endblock content %}

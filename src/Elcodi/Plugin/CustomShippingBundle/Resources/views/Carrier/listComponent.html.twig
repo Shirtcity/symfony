@@ -1,0 +1,65 @@
+{% extends 'AdminCoreBundle::Common/listComponent.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'carrier',
+} %}
+
+
+{% block title 'admin.carrier.list'|trans %}
+
+
+{% block no_items
+    lists.no_items(
+        'admin.carrier.single'|trans,
+        'admin.carrier.plural'|trans,
+        url('admin_carrier_new')
+    )
+%}
+
+
+{% block table_head %}
+
+    {% include '@AdminCore/Tables/head.html.twig' with {
+        class: 'carriers',
+        rows: [
+            { name: 'admin.carrier.field.name.title'|trans, },
+            { name: 'admin.carrier.field.description.title'|trans, },
+            { name: 'admin.carrier.field.taxes.title'|trans, width: 20 },
+            { name: 'admin.carrier.field.status.title'|trans, width: 10 },
+        ],
+    } %}
+
+{% endblock table_head %}
+
+
+{% block table_body_row %}
+
+    <td>
+        <a href="{{ url('admin_carrier_edit', { id: entity.id }) }}">
+            {{ entity.name }}
+        </a>
+    </td>
+    <td>
+        {{ entity.description }}
+    </td>
+    <td>
+        {{ 'admin.carrier.field.taxes.format'|trans({ '%value%': entity.tax.value }) }}
+    </td>
+    <td>
+        {% if entity.enabled %}
+            <span class="label label-success">{{ 'ui.label.enabled'|trans }}</span>
+        {% else %}
+            <span class="label label-danger">{{ 'ui.label.disabled'|trans }}</span>
+        {% endif %}
+    </td>
+
+    {% include '@AdminCore/Tables/actions.html.twig' with {
+        entity: entity,
+        class: 'carrier',
+    } %}
+
+{% endblock table_body_row %}
+
+
+{% block table_pagination '' %}

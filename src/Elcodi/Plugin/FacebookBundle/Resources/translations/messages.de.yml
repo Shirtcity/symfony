@@ -1,0 +1,8 @@
+elcodi_plugin:
+    facebook:
+        description: 'Facebook-Integration für Ihren Shop'
+        field:
+            facebook_account:
+                label: 'Facebook Account'
+                placeholder: 'z.B. jondoe'
+        name: Facebook

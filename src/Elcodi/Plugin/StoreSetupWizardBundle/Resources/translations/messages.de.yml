@@ -1,0 +1,32 @@
+elcodi_plugin:
+    store_wizard:
+        description: "Ein Assistent zum Einrichten der Speicher zum ersten Mal .\nAuf dem ersten Schritt der physikalischen Adresse und die Shop-Besitzer konfiguriert\nDaten. Schließlich zielt darauf ab, die erste Kategorie , Produkt- und Hersteller hinzuzufügen\nund am Ende fragt Shop -Administrator für den Träger und Zahlungsdaten"
+        disable_under_construction: 'Deaktivieren Sie die <strong> Under construction </ strong> Modus zu starten den Verkauf'
+        done: Fertig!
+        estimated_time: 'Geschätzter Aufwand% 1 min'
+        first_finish_wizard: 'Führen Sie die folgenden Schritte aus, bevor Sie online gehen'
+        go_enable_store: 'Gehen Sie zu Setup und deaktivieren Sie die "under construction" Modus .'
+        go_general_settings: 'Zum allgemeinen Einstellungen'
+        go_next_step: 'Zum nächsten Schritt'
+        name: 'Shop -Assistenten'
+        ready_launch: 'Startbereit !'
+        step1:
+            action: 'Erstelle meine erste Produkt'
+            description: 'Das Wichtigste, was in Ihrem Geschäft ... , nachdem Ihre Kunden.'
+            title: 'In Artikel'
+        step2:
+            action: 'Adresse hinzufügen'
+            description: 'Um in der Lage , online zu verkaufen sein, wir müssen Sie Ihre Shop-Adresse einzuführen.'
+            title: 'Richten Sie Ihre Adresse'
+        step3:
+            action: 'Setup- Zahlungsmethoden'
+            description: 'Möchten Sie bezahlt? Sagen Sie einfach , wie und wo .'
+            title: 'Setup die Zahlungen'
+        step4:
+            action_carrier: 'Träger hinzufügen'
+            action_range: 'Setup Versandbereich'
+            description: 'Sie müssen sich Handling und Versand Preise hinzufügen. (Auch wenn sie frei sind )'
+            title: 'Richten Sie die Versand'
+        step_finished: '<strong> Yehaaaaa ! </ strong> Ein Schritt weniger zu gehen!'
+        time_to_sell: 'Sie sind <strong> 1 % Schritten </ strong> mehr Eröffnung Ihrem Geschäft'
+        welcome_title: 'Willkommen in Ihrem neuen Speicher!'

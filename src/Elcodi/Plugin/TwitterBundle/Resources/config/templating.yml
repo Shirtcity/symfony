@@ -1,0 +1,33 @@
+services:
+
+    #
+    # Twig renderer
+    #
+    elcodi_plugin.twitter.javascript_renderer:
+        class: Elcodi\Plugin\TwitterBundle\Templating\JavascriptRenderer
+        calls:
+            - [setTemplating, ["@twig"]]
+            - [setPlugin, ["@elcodi_plugin.twitter"]]
+        tags:
+            - { name: kernel.event_listener, event: store.body_bottom, method: renderJavascript }
+            - { name: kernel.event_listener, event: admin.footer_script, method: renderJavascript }
+
+    elcodi_plugin.twitter.share_tweet_renderer:
+        class: Elcodi\Plugin\TwitterBundle\Templating\ShareTweetRenderer
+        arguments:
+            - "@router"
+            - "@translator"
+        calls:
+            - [setTemplating, ["@twig"]]
+            - [setPlugin, ["@elcodi_plugin.twitter"]]
+        tags:
+            - { name: kernel.event_listener, event: store.product_pin_top, method: renderShareProduct }
+            - { name: kernel.event_listener, event: store.order_thanks, method: renderShareOrder }
+
+    elcodi_plugin.twitter.follow_renderer:
+        class: Elcodi\Plugin\TwitterBundle\Templating\FollowRenderer
+        calls:
+            - [setTemplating, ["@twig"]]
+            - [setPlugin, ["@elcodi_plugin.twitter"]]
+        tags:
+            - { name: kernel.event_listener, event: store.footer_social, method: renderFollowButton }

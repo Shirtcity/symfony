@@ -1,0 +1,74 @@
+{% extends 'AdminCoreBundle::Common/listComponent.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'coupon',
+} %}
+
+
+{% block title 'admin.coupon.list'|trans %}
+
+
+{% block no_items
+    lists.no_items(
+        'admin.coupon.single'|trans,
+        'admin.coupon.plural'|trans,
+        url('admin_coupon_new')
+    )
+%}
+
+
+{% block table_head %}
+
+    {% include '@AdminCore/Tables/head.html.twig' with {
+        rows: [
+            { name: 'admin.coupon.field.code.title'|trans },
+            { name: 'admin.coupon.field.description.title'|trans, width: 40 },
+            { name: 'admin.coupon.field.rule.title'|trans, width: 20 },
+            { name: 'admin.coupon.field.status.title'|trans, width: 10 },
+        ],
+        class: 'coupon',
+    } %}
+
+{% endblock table_head %}
+
+
+{% block table_body_row %}
+
+    <td>
+        <a href="{{ url('admin_coupon_edit', { id: entity.id }) }}">
+            <strong>{{ entity.code }}</strong>
+        </a>
+    </td>
+    <td>
+        {{ entity.name }}
+    </td>
+    <td>
+        {% if entity.rule %}
+            {{ entity.rule.name }}
+        {% else %}
+            -
+        {% endif %}
+    </td>
+    <td>
+        {% if entity.enabled %}
+            <span class="label-ok">{{ 'ui.label.enabled'|trans }}</span>
+        {% else %}
+            <span class="label">{{ 'ui.label.disabled'|trans }}</span>
+        {% endif %}
+    </td>
+
+    {% include '@AdminCore/Tables/actions.html.twig' with {
+        entity: entity,
+        class: 'coupon',
+    } %}
+
+{% endblock table_body_row %}
+
+
+{% block table_paginator_links %}
+
+    {% set url = 'admin_coupon_list' %}
+    {{ parent() }}
+
+{% endblock table_paginator_links %}

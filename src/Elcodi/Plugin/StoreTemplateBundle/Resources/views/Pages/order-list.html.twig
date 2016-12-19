@@ -1,0 +1,47 @@
+{% extends '@StoreTemplate/Layout/_layout.html.twig' %}
+
+{% block breadcrumb_container %}{% endblock breadcrumb_container %}
+
+{% block content %}
+<div class="white-panel">
+    <div class="order-list">
+        <h1>{{ 'template.store_template_bundle.order.list.orders'|trans }}</h1>
+        {% for order in orders %}
+        <dl class="order-item">
+            <dt class="order-item-image">
+                {{ 'template.store_template_bundle.order.list.image'|trans }}
+            </dt>
+            <dd class="order-item-image">
+                {% set purchasable = order.orderLines.first.purchasable %}
+                {% set purchasableName = purchasable|purchasable_name %}
+                {% set validImage = purchasable|valid_image %}
+                <img src="{{ validImage ? validImage|resize({
+                   'width': 80,
+                   'height': 80,
+                   'type': 5
+               }) : '//placehold.it/80x80' }}" alt="{{ purchasableName }}" class="product-thumbnail" />
+            </dd>
+            <dt class="order-item-id">
+                {{ 'template.store_template_bundle.order.list.number_of_order'|trans }}
+            </dt>
+            <dd class="order-item-id">
+                <a href="{{ url('store_order_view', { id: order.id }) }}" class="order-title">{{ 'template.store_template_bundle.order.list.order_number'|trans }}{{ order.id }}</a>
+            </dd>
+            <dt class="order-item-payment-status">{{ 'template.store_template_bundle.order.list.payment_state'|trans }}</dt>
+            <dd class="order-item-payment-status">{{ "common.order.states.#{order.paymentStateLineStack.lastStateLine.name}"|trans }}</dd>
+            <dt class="order-item-shipping-status">{{ 'template.store_template_bundle.order.list.shipping_state'|trans }}</dt>
+            <dd class="order-item-shipping-status">{{ "common.order.states.#{order.shippingStateLineStack.lastStateLine.name}"|trans }}</dd>
+            <dt class="order-item-date">{{ 'template.store_template_bundle.order.list.date'|trans }}</dt>
+            <dd class="order-item-date">{{ order.createdAt|date('d.m.Y') }}</dd>
+            <dt class="order-item-total">{{ 'template.store_template_bundle.order.list.total'|trans }}</dt>
+            <dd class="order-item-total">{{ order.amount|print_convert_money() }}</dd>
+        </dl>
+        {% else %}
+            <div class="empty-page">
+                <i class="fa fa-shopping-cart fa-3x"></i>
+                <h2 class="product-title">{{ "template.store_template_bundle.order.list.no_orders"|trans}}</h2>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'AdminCoreBundle::layouts/center_box.html.twig' %}
+
+{% block center_height "350" %}
+
+{% block content %}
+
+    {{ form_start(form, {
+        attr: {
+            class: 'form-horizontal',
+            style: 'margin-bottom: 0px !important;'
+        }
+    }) }}
+        <fieldset>
+            <legend>{{ 'admin.remember_user.title'|trans }}</legend>
+            <p>{{ 'admin.remember_user.description'|trans }}</p>
+            <ol>
+                <li>
+                    {{ form_row(form.email, {
+                        label: false,
+                        attr: {
+                            class: 'form-control',
+                            placeholder: 'admin.recover_user.field.email.placeholder',
+                        }
+                    }) }}
+                </li>
+            </ol>
+            <button type="submit" class="button-primary">{{ 'admin.login.action.remember'|trans }}</button>
+        </fieldset>
+    {{ form_end(form) }}
+{% endblock content %}

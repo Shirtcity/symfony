@@ -1,0 +1,7 @@
+parameters:
+
+    locale: en
+
+    database_driver: pdo_sqlite
+    database_name: bamboo_test
+    database_path: %kernel.cache_dir%/bamboo.test

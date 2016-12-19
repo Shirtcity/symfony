@@ -1,0 +1,15 @@
+{% extends 'AdminCoreBundle::layouts/center_box.html.twig' %}
+
+
+{% block center_height "150" %}
+
+{% block container %}
+
+    <div class="msg-ok">
+        <h3>{{ 'admin.recover_user.action.email_sent.title'|trans }}</h3>
+    </div>
+    <p>
+        {{ 'admin.recover_user.action.email_sent.description'|trans }}
+    </p>
+
+{% endblock container %}

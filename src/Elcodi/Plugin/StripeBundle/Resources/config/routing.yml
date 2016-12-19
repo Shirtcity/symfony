@@ -1,0 +1,2 @@
+stripe_routes:
+    resource: "@StripeBundle/Resources/config/routing.yml"

@@ -1,0 +1,848 @@
+admin:
+    address:
+        edit:
+            billing_address: 'Mettre à jour l''adresse de facturation'
+        field:
+            address:
+                placeholder: 'e.g. 7 rue de la Paix'
+                title: Adresse
+            address_more:
+                placeholder: 'e.g. Dupont Entreprises'
+                title: 'Complément d''adresse (optionnel)'
+            city:
+                title: City
+            comments:
+                placeholder: 'e.g. C''est ma maison'
+                title: Commentaires
+            country:
+                title: Pays
+            mobile:
+                placeholder: 'e.g. 06 07 05 04 03'
+                title: 'Téléphone mobile'
+            phone:
+                placeholder: 'e.g. 01 02 03 04 05'
+                title: 'Téléphone fixe'
+            postalcode:
+                placeholder: 'e.g. 75000'
+                title: 'Code postal'
+            province:
+                title: Province/Département
+            recipient_name:
+                placeholder: 'e.g. Julien'
+                title: 'Nom du destinataire'
+            recipient_surname:
+                placeholder: 'e.g. Dupont'
+                title: 'Prénom du destinataire'
+            save: 'Enregistrer l''adresse'
+            state:
+                title: Etat/Région
+        plural: Adresses
+        select:
+            placeholder: 'Choisir une option'
+        single: Adress
+    admin_user:
+        edit: 'Mettre à jour "%name%"'
+        error:
+            cant_disable_yourself: 'Vous ne pouvez pas désactiver votre propre compte'
+            cant_remove_yourself: 'Vous ne pouvez pas supprimer votre propre compte'
+        list: 'Liste des Administrateurs'
+        new: 'Créer un nouvel Administrateur'
+        plural: Administrateurs
+        saved: 'Modifications enregistrées'
+        section:
+            contact:
+                description: 'Les informations de contact pour cet administrateur.'
+                title: 'Détails de contact'
+            login:
+                description: 'Chaque utilisateur doit avoir un email unique.'
+                title: 'Détails de connexion'
+            status:
+                description: 'Vous pouvez activer ou désactiver l''utilisateur.'
+                title: 'Statut de l''utilisateur'
+        single: Administrateur
+    attribute:
+        edit: 'Mettre à jour "%name%"'
+        field:
+            enabled:
+                title: Statut
+            name:
+                placeholder: 'e.g. Couleur'
+                title: Nom
+                values: Valeur
+        list: 'Liste d''attributs'
+        new: 'Nouvel attribut'
+        plural: Attributs
+        section:
+            basic:
+                description: 'Définir le nom de l''attribut et ses valeurs (séparées par une virgule).'
+                title: 'Détails de base'
+            visibility:
+                description: 'L''attribut peut être visible ou caché.'
+                title: Visibilité
+        single: Attribut
+    blog:
+        plural: Blogs
+        single: Blog
+    blog_post:
+        edit: 'Mettre à jour "%name%"'
+        field:
+            content:
+                placeholder: 'e.g. Cet article de blog est exactement ce que vous recherchiez.'
+                title: Contenu
+            enabled:
+                title: Activer
+            link:
+                title: Lien
+            metadescription:
+                placeholder: 'e.g. Cet article de blog est exactement ce que vous recherchiez.'
+            metakeywords:
+                placeholder: 'e.g. blog,article,super'
+            metatitle:
+                placeholder: 'e.g. Mon super article de blog'
+            path:
+                customize: 'Customiser le slug'
+                placeholder: 'e.g. mon/super/article-de-blog'
+                title: Path
+            publication_date:
+                title: 'Date de publication'
+            title:
+                placeholder: 'e.g. Mon super article de blog'
+                title: Titre
+        in_store: 'Visible dans la boutique'
+        list: 'Liste des articles de blog'
+        new: 'Créer un nouvel article'
+        plural: 'Articles de blog'
+        saved: 'Article sauvegardé'
+        section:
+            basic:
+                description: 'Donnez un titre très spécifique qui explique et rend attrayant votre blog ainsi qu''une description qui fournit toutes les informations nécessaires à vos consommateurs.'
+                title: 'Détails de base'
+            visibility:
+                description: 'Rendre l''article visible ou invisible.'
+                title: Visibilité
+        show_metrics: 'Voir statistiques'
+        single: 'Article de blog'
+    carrier:
+        action:
+            add_shipping_range: 'Ajouter fourchette de prix'
+        edit: 'Mettre à jour "%name%"'
+        error:
+            no_active_carrier: 'Attention! Vous n''avez aucun transporteur d''activé'
+        field:
+            description:
+                placeholder: 'e.g. La meilleure solution pour une livraison près de chez vous'
+                title: Description
+            name:
+                placeholder: 'e.g. SuperTransporteur'
+                title: Nom
+            status:
+                title: Activé
+            taxes:
+                format: '%value%% Taxe'
+                title: Taxes
+        info:
+            shipping_rates_before_saving: 'Vous pourrez modifier les coûts de livraison après avoir crée le transporteur'
+        list: 'Liste des transporteurs'
+        new: 'Nouveau transporteur'
+        plural: Transporteurs
+        saved: 'Modifications enregistrées'
+        section:
+            basic:
+                description: 'Fournir le nom du transporteur et une description interne si souhaité.'
+                title: 'Détails de base'
+            shipping_rates:
+                description: 'Ajouter des coûts de livraison.'
+                title: 'Coûts de livraison'
+            visibility:
+                description: 'Activer ou désactiver le transporteur.'
+                title: Visibilité
+        single: Transporteur
+    catalog:
+        plural: Catalogues
+        single: Catalogue
+    category:
+        edit: 'Mettre à jour "%name%"'
+        field:
+            contains:
+                title: 'contient %count% produits'
+            enabled:
+                options:
+                    active: Actif
+                    inactive: Inactif
+                title: Statut
+            metadescription:
+                placeholder: 'e.g. Cette Super Catégorie est exactement ce que je recherchais.'
+            metakeywords:
+                placeholder: 'e.g. catégorie,super'
+            metatitle:
+                placeholder: 'e.g. Ma Super Catégorie'
+            name:
+                placeholder: 'e.g. Ma Super Catégorie'
+                title: 'Nom de catégorie'
+            parent:
+                title: Parent
+            root:
+                title: 'Catégorie racine'
+            slug:
+                customize: 'Customiser slug'
+                placeholder: 'e.g. ma/super/categorie'
+                title: Slug
+        in_store: 'Visible dans la boutique'
+        list: 'Liste des catégories'
+        new: 'Nouvelle Catégorie'
+        plural: Catégories
+        section:
+            basic:
+                description: 'Choisissez un nom spécifique aussi court que possible pour aider vos clients à trouver les produits de la catégorie.'
+                title: 'Détails de base'
+            categorization:
+                description: 'Déclarez votre catégorie en tant que racine si elle n''a aucun parent ou qu''elle va être parent d''autres catégories'
+                title: Catégorisation
+            edit:
+                description:
+                    - 'Drag & Drop les catégories pour ordonner ou en insérer une dans une autre. (2 niveaux de profondeur max).'
+                    - 'Cliquer sur une catégorie pour éditer.'
+                    - 'Cliquer sur la poubelle pour supprimer une catégorie.'
+                title: 'Ordre & édition'
+            visibility:
+                description: 'Mettez la catégorie en visible ou non dans la boutique.'
+                title: Visibilité
+        single: Catégorie
+    coupon:
+        edit: 'Mettre à jour "%code%"'
+        field:
+            code:
+                placeholder: 'e.g. MONCODE'
+                title: Code
+            count:
+                title: 'Limite d''usage'
+            datetime:
+                title: 'Date & Durée'
+            description:
+                placeholder: 'e.g. Code de promotion 10%'
+                title: Description
+            discount:
+                title: '% Montant'
+            enabled:
+                title: Statut
+            enforcement:
+                options:
+                    automatic: 'Application automatique'
+                    manual: 'Application manuelle'
+                title: Mode
+            minimum_purchase:
+                title: 'Minimum d''achat'
+            price:
+                title: Montant
+            priority:
+                title: Priorité
+            rule:
+                placeholder: 'Pas de règle'
+                title: Règle
+            stackable:
+                title: 'Ce coupon peut être appliqué même si d''autres coupons sont présents'
+            status:
+                title: Statut
+            type:
+                options:
+                    fixed: 'Montant fixé'
+                    percent: 'Pourcentage du montant'
+                title: Type
+            used:
+                title: Utilisé
+            valid_from:
+                title: Du
+            valid_to:
+                title: Au
+        list: 'Liste de coupons'
+        new: 'Nouveau coupon'
+        plural: Coupons
+        section:
+            basic:
+                description:
+                    - 'Mettre le nom de code (ce que les utilisateurs devront écrire dans le panier pour activer le coupon'
+                    - 'Mettre aussi la description pour identifier le coupon, le type et le mode à appliquer.'
+                title: 'Données de base'
+            fixed_amount:
+                description: 'Mettre le montant à retirer directement du panier.'
+                title: 'Montant fixe'
+            percent_amount:
+                description: 'Mettre le pourcentage du total à retirer directement du panier.'
+                title: 'Pourcentage du montant'
+            rules:
+                description: 'Sélectionner la règle que le coupon utilisera et le montant d''achat minimum nécessaire pour que le coupon soit utilisable (optionnel).'
+                title: Règles
+            validity:
+                description: 'Mettre la date de validité et le statut du coupon.'
+                title: Validité
+        single: Coupon
+    currency:
+        field:
+            iso: ISO
+            name: Nom
+            status: Activé
+            symbol: Symbole
+        list: 'Liste des monnaies'
+        plural: Monnaies
+        single: Monnaie
+    customer:
+        edit: 'Mettre à jour "%name%"'
+        error:
+            password_change: 'Une erreur est survenue lors du changement de mot de passe'
+        field:
+            guest:
+                title: Client
+            identity_document:
+                placeholder: 'e.g. 12345678A'
+                title: 'Carte d''indentité'
+            language:
+                title: 'Langue de préférence'
+            newsletter:
+                title: Newsletter
+            order_count:
+                title: '# Commandes'
+            phone:
+                placeholder: 'e.g. 555 55 55 55'
+                title: Téléphone
+            username:
+                placeholder: 'e.g. julien_dupont'
+                title: Surnom
+        info:
+            password_changed: 'Mot de passe mis à jour avec succès'
+        list: 'Liste de clients'
+        new: 'Créer un nouveau client'
+        plural: Clients
+        saved: 'Modifications enregistrées'
+        section:
+            contact:
+                description: 'Les détails de contact pour cet utilisateur.'
+                title: 'Détail de contact'
+            login:
+                description: 'Chaque utilisateur doit avoir un email et un surnom unique.'
+                title: 'Détails de connexion'
+            status:
+                description: 'Modifier le statut et les préférences de l''utilisateur.'
+                title: 'Statuts & Préférences'
+        single: Client
+    dashboard:
+        chart:
+            cart_conversion:
+                billing_shipping: Facturation/Expédition
+                cart_view: 'Vue du panier'
+                ordered: ordonné
+                payment: Paiement
+                title: 'Conversion du panier'
+            devices:
+                desktop: Bureau
+                mobile: Mobile
+                title: Supports
+            sales:
+                sales: Ventes
+                title: Ventes
+            traffic_source:
+                direct: Direct
+                referrals: 'Liens de retour (referrals)'
+                search_engine: 'Moteurs de recherche'
+                title: 'Source du trafic'
+            visitors:
+                title: Visiteurs
+                total: Total
+                unique: Unique
+        chart_range:
+            last30days: 'Les 30 derniers jours'
+            last7days: 'Les 7 derniers jours'
+            last90days: 'Les 90 derniers jours'
+            today: 'Aujourd''hui'
+            yesterday: Hier
+        plural: 'Tableaux de bord'
+        single: 'Tableau de bord'
+        title: 'Tableau de bord'
+    image:
+        info:
+            principal: 'La première image sera l''image principale.'
+            reorder: 'Vous pouvez drag & drop les images pour les ré-ordonner.'
+            upload: 'Uploader des images'
+        plural: Images
+        single: Image
+    language:
+        list: 'Liste de langues'
+        plural: Langues
+        single: Langue
+    login:
+        action:
+            login: 'Se connecter'
+            logout: 'Se déconnecter'
+            remember: 'Se rappeler de moi'
+        field:
+            email:
+                placeholder: 'Entrer email'
+            password:
+                placeholder: 'Entrer mot de passe'
+        title: 'Connexion requise'
+    mailing:
+        edit: 'Mettre à jour "%title%"'
+        field:
+            content:
+                placeholder: 'e.g. Cette super campagne est exactement ce que vous recherchez.'
+                title: Contenu
+            title:
+                placeholder: 'e.g. Ma super campagne'
+                title: Titre
+        list: 'Liste des campagnes'
+        new: 'Créer une nouvelle campagne d''emailing'
+        plural: 'Campagnes d''e-mailing'
+        section:
+            basic:
+                description: 'Fournissez un titre descriptif pour votre campagne et le contenu à délivrer.'
+                title: 'Contenu basique'
+        single: 'Campagne d''e-mailing'
+    manufacturer:
+        edit: 'Mettre à jour "%name%"'
+        field:
+            description:
+                placeholder: 'e.g. Ce super fabricant est exactement ce que vous recherchez.'
+                title: Description
+            enabled:
+                options:
+                    active: Actif
+                    inactive: Inactif
+                title: Statut
+            image:
+                title: Image
+            metadescription:
+                placeholder: 'e.g. Ce super fabricant est exactement ce que vous recherchez.'
+            metakeywords:
+                placeholder: 'e.g. fabricant,super'
+            metatitle:
+                placeholder: 'e.g. Mon Super Fabricant'
+            name:
+                placeholder: 'e.g. Mon Super Fabricant'
+                title: 'Nom du fabricant'
+            name_slug:
+                title: 'Nom & slug'
+            product_count:
+                title: Produits
+            slug:
+                customize: 'Customiser slug'
+                placeholder: 'e.g. mon/super/fabricant'
+                title: Slug
+        list: 'Liste des Fabricants'
+        new: 'Nouveau Fabricant'
+        plural: Fabricants
+        section:
+            basic:
+                description: 'Choisissez un nom spécifique aussi court que possible pour aider vos clients à trouver les produits du fabricant. Vous pouvez ajouter une description du fabricant qui sera affichée sur votre boutique.'
+                title: 'Détails de base'
+            visibility:
+                description: 'Mettez le fabricant visible ou non dans la boutique.'
+                title: Visibilité
+        single: Fabricant
+    media:
+        list: Médiathèque
+        plural: Médias
+        single: Média
+    metadata:
+        customize: 'Customisation des Meta données'
+        disclaimer:
+            - 'Cette partie est pour des utilisateurs avancés.'
+            - 'Laissez les champs vides pour utiliser automatiquement les méta données de la page.'
+        field:
+            metadescription:
+                title: 'Méta "description"'
+            metakeywords:
+                title: 'Méta "keywords"'
+            metatitle:
+                title: 'Méta "title"'
+        section:
+            metadata:
+                description: 'Description et mot clés dans les balises meta tags are communément utilisés pour décrire le contenu de la page web. La plupart des moteurs de recherche exploitent ces données pour ajouter ces pages à leur index de recherche.'
+                title: 'Méta données'
+    metrics:
+        action:
+            show: 'Voir statistiques'
+        info:
+            no_data: 'Aucune donnée'
+            visitors: Visiteurs
+        plural: Statistiques
+        single: Statistique
+        type:
+            line:
+                total: Total
+                unique: Unique
+    name: Administrateur
+    order:
+        all: 'Toutes les commandes'
+        details:
+            discount: 'Réduction (coupon)'
+            item: article
+            price: Prix
+            shipping: Livraison
+            subtotal: Sous-total
+            title: Détails
+            units: Unités
+        edit: 'Mettre à jour #%id%'
+        field:
+            billing_address: 'Adresse de facturation'
+            both_addresses: 'Adresse de livraison & facturation'
+            carrier: Transporteur
+            customer: Client
+            date: Date
+            delivery_address: 'Adresse de livraison'
+            id: 'Commande #%id%'
+            status: Statut
+            total: Total
+        from_user: 'Commandes de %name%'
+        list: 'Liste de commandes'
+        new: 'Nouvelle commande'
+        plural: Commandes
+        single: Commande
+        states:
+            title: Statut
+        to_user: 'Accéder au client'
+        transition:
+            refund: Remboursement
+    page:
+        edit: 'Mettre à jour "%name%"'
+        error:
+            cant_modify_permanent: 'Cette page est permanente et ne pourra pas être modifiée'
+        field:
+            content:
+                placeholder: 'e.g. Cette super page est exactement ce que vous recherchez.'
+                title: Contenu
+            enabled:
+                title: Activé
+            link:
+                title: Lien
+            metadescription:
+                placeholder: 'e.g. Cette super page est exactement ce que vous recherchez.'
+            metakeywords:
+                placeholder: 'e.g. page,super'
+            metatitle:
+                placeholder: 'e.g. Ma super Page'
+            path:
+                customize: 'Customiser l''utl'
+                placeholder: 'e.g. ma/super/page'
+                title: 'Url d''accès'
+            title:
+                placeholder: 'e.g. Ma super Page'
+                title: Titre
+        in_store: 'Visible dans la boutique'
+        list: 'Liste des pages'
+        new: 'Nouvelle Page'
+        plural: Pages
+        saved: 'Modifications enregistrées'
+        section:
+            basic:
+                description: 'Choisissez un titre très spécifique pour expliquer et promouvoir la page et une description avec toutes les informations utiles pour vos clients.'
+                title: 'Détails de base'
+            visibility:
+                description: 'Rendez cette page visible ou cachée, et disponible sur votre page d''accueil'
+                title: Visibilité
+        single: Page
+    plugin:
+        field:
+            visibility: 'Activé:'
+        plural: Apps
+        saved: 'Statut du plugin enregistré'
+        section:
+            settings: Paramètres
+        single: Application
+    product:
+        edit: 'Mettre à jour "%name%"'
+        error:
+            no_category: 'Attention! Ce produit n''est associé à aucune catégorie'
+            no_manufacturer: 'Attention! Ce produit n''est associé à aucun fabricant'
+        field:
+            depth:
+                title: 'Profondeur (en cm)'
+            description:
+                placeholder: 'e.g. Ce super produit est exactement ce que vous recherchez.'
+                title: Description
+            enabled:
+                options:
+                    active: Actif
+                    inactive: Inactif
+                title: Visibilité
+            height:
+                title: 'Hauteur (en cm)'
+            image:
+                title: Image
+            in_home:
+                title: 'Montrer en page d''accueil'
+            main_category:
+                placeholder: 'e.g. Ordinateurs, sacs à main...'
+                title: Catégorie
+            manufacturer:
+                placeholder: 'e.g. Apple, Disney...'
+                title: Fabricant
+            metadescription:
+                placeholder: 'e.g. Ce super produit est exactement ce que vous recherchez.'
+            metakeywords:
+                placeholder: 'e.g. produit,super'
+            metatitle:
+                placeholder: 'e.g. Mon Super Produit'
+            name:
+                placeholder: 'e.g. Mon super Produit'
+                title: Titre
+            name_details:
+                title: 'Nom & Détails'
+            price:
+                title: Prix
+            reduced_price:
+                title: 'Prix réduit'
+            sku:
+                placeholder: 'ej. SAU102'
+                title: 'Numéro de référence'
+            slug:
+                customize: 'Customiser slug'
+                placeholder: 'e.g. mon/super/produit'
+                title: Slug
+            stock:
+                title: Stock
+            weight:
+                title: 'Poids (en g)'
+            width:
+                title: 'Largeur (en cm)'
+        in_store: 'Visible dans la boutique'
+        info:
+            variants_before_saving: 'Vous pourrez ajouter des déclinaisons après avoir sauvé le produit.'
+        list: 'Liste de produits'
+        new: 'Nouveau Produit'
+        plural: Produits
+        saved: 'Produit enregistré'
+        section:
+            basic:
+                description: 'Fournissez un titre très spécifique pour expliquer et promouvoir le produit et une description pour donner les informations nécessaires à vos clients.'
+                title: 'Détails de base'
+            categorization:
+                description: 'Le produit doit être classé dans une catégorie et un fabricant. Ils seront visibles dans la partie publique et aideront vos clients à naviguer dans la boutique.'
+                title: Catégorisation
+            dimensions:
+                description: 'Mettez les dimensions et le poids de votre produit. Cette information sera utile pour calculer les coûts de livraison.'
+                title: Dimensions
+            pricing:
+                description: 'Mettez le prix de votre produit, taxes et frais de livraison exclus. Vous pouvez également mettre un prix pour l''offre.'
+                title: 'Politique de prix (pricing)'
+            sku:
+                description: 'Le numéro de référence (SKU) est un identifiant unique associé à un produit. Chaque produit a donc un SKU qui lui est propre.'
+                title: 'Numéro de référence'
+            stock:
+                description: 'Configurez le stock de votre produit. Chaque commande réduira ce nombre.'
+                title: Stock
+            variants:
+                description: 'Les déclinaisons sont différentes versions d''un produit (couleur, taille ...). Les déclinaisons peuvent avoir un prix ou des attributs différents.'
+                title: Déclinaisons
+            visibility:
+                description: 'Mettez le produit disponible ou non dans la boutique, et visible en page d''accueil.'
+                title: Visibilité
+        show_metrics: 'Voir statistiques'
+        single: Produit
+        tag:
+            has_variants: 'A des déclinaisons'
+            in_home: Accueil
+            no_category: 'Aucune catégorie'
+            no_manufacturer: 'Aucun fabricant'
+    profile:
+        plural: Profils
+        single: Profil
+    recover_user:
+        action:
+            email_sent:
+                description: 'S''il vous plait, surveillez votre boite mail et suivez les instructions pour changer de mot de passe.'
+                title: 'Email envoyé'
+        field:
+            email:
+                placeholder: 'Entrer email'
+            password:
+                placeholder: 'Mot de passe'
+            repeat_password:
+                placeholder: 'Confirmer mot de passe'
+        title: 'Nouveau mot de passe'
+    remember_user:
+        description: 'Pas d''inquiétude, vous recevrez un email pour mettre à jour votre mot de passe.'
+        title: 'Mot de passe oublié ?'
+    settings:
+        field:
+            currency: 'Configuration de la monnaie'
+            product_stock:
+                description: 'Activez cette option pour activer le contrôle du stock'
+                title: Stock
+            store_email: 'E-mail de la boutique'
+            store_enabled: 'Boutique activée'
+            store_leitmotiv: 'Leitmotiv de la boutique'
+            store_name: 'Nom de la boutique'
+            store_phone: 'Téléphone de la boutique'
+            store_under_construction: 'Boutique en construction'
+        plural: Paramètres
+        saved: 'Paramètres enregistrés'
+        section:
+            payment:
+                title: 'Méthodes de paiement'
+            products:
+                description: 'Définissez les données des produits.'
+                title: 'Configuration des produits'
+            store:
+                description: 'Définissez les données de la boutique.'
+                title: 'Configuration de la boutique'
+        single: Paramètre
+    shipping_range:
+        edit: 'Mettre à jour la plage "%name%"'
+        field:
+            fromPrice:
+                title: 'A partir du prix'
+            fromWeight:
+                title: 'A partir du poids'
+            name:
+                placeholder: 'e.g. Livraison en 3 à 5 jours'
+                title: 'Nom de la plage d''expédition'
+            price:
+                title: Prix
+            toPrice:
+                title: 'Jusqu''au prix'
+            toWeight:
+                title: 'Jusqu''au poids'
+            to_zone:
+                title: 'sur Zone'
+            type:
+                options:
+                    price: 'Basés sur le prix de la commande'
+                    weight: 'Basés sur le poids de la commande'
+                title: 'Prix seront calculés…'
+            value:
+                price_format: 'De %from% à %to%'
+                title: Valeur
+                weight_format: 'De %from% g à %to% g'
+        list: 'Liste des plages d''expédition'
+        new: 'Nouvelle plage'
+        plural: 'Plages d''expéditions'
+        saved: 'Modifications enregistrées'
+        section:
+            basic:
+                description: 'Choisissez le nom de la plage d''exposition et dans quelle zone elle doit être disponible.'
+                title: 'Détails de base'
+            pricing:
+                description: 'Choisissez le prix pour cette plage d''expédition et définissez si la méthode de calcul: prix ou poids.'
+                title: 'Politique de prix (pricing)'
+            visibility:
+                description: 'Définis si la plage d''exposition est visible ou non sur la boutique'
+                title: Visibilité
+        single: 'Plage d''expédition'
+    template:
+        action:
+            preview: Preview
+        label:
+            status: 'Activé:'
+        plural: Thèmes
+        single: Thème
+    user:
+        field:
+            birthday:
+                title: Anniversaire
+            email:
+                placeholder: 'e.g. julien.dupont@mail.com'
+                title: Email
+            enabled:
+                options:
+                    active: Actif
+                    inactive: Innactif
+                title: Statut
+            firstname:
+                placeholder: 'e.g. Julien'
+                title: Prénom
+            fullname:
+                title: 'Nom complet'
+            gender:
+                options:
+                    female: Féminin
+                    male: Masculin
+                title: Genre
+            lastname:
+                placeholder: 'e.g. Dupont'
+                title: Nom
+            password:
+                title: 'Mot de passe'
+            username:
+                title: Surnom
+    variant:
+        edit: 'Mettre à jour la déclinaison "%name%"'
+        field:
+            enabled:
+                options:
+                    active: Actif
+                    inactive: Inactif
+                title: Statut
+            name:
+                title: 'Nom de la déclinaison'
+            options:
+                title: 'Selectionner un ou plusieurs attributs:'
+            price:
+                title: Prix
+            reduced_price:
+                title: 'Prix réduit'
+            stock:
+                title: Stock
+        list: 'Liste des déclinaison'
+        new: 'Nouvelle déclinaison'
+        plural: Déclinaisons
+        saved: 'Modifications enregistrées'
+        section:
+            attributes:
+                description: 'Choisissez les attributs principaux de cette déclinaison.'
+                title: Attributs
+            pricing:
+                description: 'Choisissez le prix de cette déclinaison, taxes et frais de livraison exclus. Vous pouvez également mettre un prix pour l''offre.'
+                title: 'Politique de prix (pricing)'
+            visibility:
+                description: 'Mettez la variante visible ou non dans la boutique.'
+                title: Visibilité
+        single: Déclinaison
+plugin:
+    paymill:
+        register:
+            call_to_action: 'Créez un compte Paymill MAINTENANT!'
+            title: 'Vous n''avez pas de compte Paymill?'
+        settings:
+            private_key: 'clé privée de paiement Paymill'
+            public_key: 'clé publique de paiement Paymill'
+        title: 'Configuration du compte Paymill'
+    paypal:
+        register:
+            call_to_action: 'Créez un compte PayPal'
+            title: 'Vous n''avez pas de compte Paypal?'
+        settings:
+            recipient_email: 'Email du destinataire "Payment Paypal"'
+        title: 'Configuration du compte Paypal'
+ui:
+    address:
+        address: Adresse
+        city: Ville
+        comment: Commentaire
+        full_name: 'Nom complet'
+        phone: Téléphone
+        zipcode: 'Code postal'
+    confirm:
+        delete: 'Êtes-vous sûr de vouloir supprimer cela?'
+    date:
+        today_at: 'Aujourd''hui à %time%'
+        yesterday_at: 'Hier à %time%'
+    delete:
+        success: 'Supprimé avec succès'
+    editor:
+        help: 'Sélectionnez un texte pour accéder à des options de formatage'
+    forms:
+        cancel: Annuler
+        delete: Supprimer
+        save: Sauvegarder
+    label:
+        disabled: Désactivé
+        enabled: Activé
+    language:
+        master_language: 'Langage principal (Obligatoire)'
+    list:
+        create_first: 'Créer mon premier %item%.'
+        no_items: 'Il n''y a aucun %items%.'
+    paginator:
+        elements: 'Voir %first% de %last% à %total% entrées.'
+    tags:
+        placeholder:
+            comma_separated: 'Ajouter des tags séparés par une virgule.'

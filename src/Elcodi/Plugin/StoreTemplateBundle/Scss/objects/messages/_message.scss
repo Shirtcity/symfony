@@ -1,0 +1,12 @@
+.message {
+	& {
+		padding: $spacing/1.5 $spacing $spacing/2 $spacing;
+		margin: 0 0 $spacing/2;
+		color: $color-foreground;
+		overflow: hidden;
+		border: $spacing/4 dotted $color-body;
+		background: $color-background;
+		position: relative;
+		min-height: 54px;
+	}
+}

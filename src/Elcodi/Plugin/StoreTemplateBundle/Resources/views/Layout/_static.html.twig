@@ -1,0 +1,42 @@
+{% extends '@StoreTemplate/Layout/_layout.html.twig' %}
+
+{% block meta_tags %}
+    <meta name="description" content="{{ page.metadescription }}">
+    {% if page.metakeywords is not empty %}
+        <meta name="keywords" content="{{ page.metakeywords }}">
+    {% endif %}
+{% endblock meta_tags %}
+
+{% block body %}
+<div class="pages">
+    {% block header %}
+        {% include '@StoreTemplate/Modules/_header.html.twig' %}
+    {% endblock header %}
+
+    {% block container %}
+
+        {% block messages %}
+            {% include "@StoreTemplate/Modules/_message-list.html.twig" %}
+        {% endblock messages %}
+
+        <div class="grid grid-pad">
+            {% block content %}
+                <article class="blog-post">
+                    <h1>{{ block('title') }}</h1>
+                    <div class="blog-post-content">
+                        {{ page.content|raw }}
+                    </div>
+                </article>
+            {% endblock content %}
+        </div>
+        {% block prefooter %}{% endblock prefooter %}
+        {%  block footer %}
+
+            {% include '@StoreTemplate/Modules/_footer.html.twig' %}
+
+        {%  endblock footer %}
+
+    {% endblock container %}
+</div>
+{% endblock body %}
+{% block title %}{{ page.title }}{% endblock title %}

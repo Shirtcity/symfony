@@ -1,0 +1,40 @@
+services:
+
+    #
+    # Event Listeners
+    #
+    elcodi_elcodi_store.event_listener.password_remember_credentials:
+        class: Elcodi\Store\UserBundle\EventListener\RememberPasswordCredentialsEventListener
+        arguments:
+            - "@security.token_storage"
+            - %bamboo_store_firewall%
+        tags:
+            - { name: kernel.event_listener, event: password.recover, method: giveCredentialsWithNewPassword }
+
+    elcodi_elcodi_store.event_listener.send_customer_registration_email:
+        class: Elcodi\Store\UserBundle\EventListener\SendRegistrationEmailEventListener
+        parent: store.abstract_email_sender_event_listener
+        tags:
+            - { name: kernel.event_listener, event: customer.register, method: sendCustomerRegistrationEmail }
+
+    elcodi_elcodi_store.event_listener.send_password_remember_email:
+        class: Elcodi\Store\UserBundle\EventListener\SendPasswordRememberEmailEventListener
+        parent: store.abstract_email_sender_event_listener
+        tags:
+            - { name: kernel.event_listener, event: password.remember, method: sendPasswordRememberEmail }
+
+    elcodi_elcodi_store.event_listener.send_password_recover_email:
+        class: Elcodi\Store\UserBundle\EventListener\SendPasswordRecoverEmailEventListener
+        parent: store.abstract_email_sender_event_listener
+        tags:
+            - { name: kernel.event_listener, event: password.recover, method: sendPasswordRecoverEmail }
+
+    elcodi_elcodi_store.event_listener.autologin_on_register:
+        class: Elcodi\Component\User\EventListener\AutologinOnRegisterEventListener
+        arguments:
+            - "@request_stack"
+            - "@security.token_storage"
+            - "@event_dispatcher"
+            - %bamboo_store_firewall%
+        tags:
+            - { name: firewall_listener, firewall: %bamboo_store_firewall%, event: user.register, method: onUserRegister }

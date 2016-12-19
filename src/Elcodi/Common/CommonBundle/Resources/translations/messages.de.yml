@@ -1,0 +1,14 @@
+common:
+    order:
+        states:
+            cancelled: Abgesagt
+            delivered: geliefert
+            'in delivery': 'im Lieferumfang'
+            initial: 'Neue Bestellung'
+            paid: Bezahlt
+            preparing: Vorbereitung
+            processed: verarbeitet
+            refunded: Zurückerstattet
+            returned: zurückgegeben
+            title: Verlauf
+            unpaid: Unbezahlt

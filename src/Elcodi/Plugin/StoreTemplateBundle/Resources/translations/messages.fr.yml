@@ -1,0 +1,197 @@
+template:
+    store_template_bundle:
+        address:
+            edit:
+                add_new_address: 'Ajouter nouvelle adresse'
+                edit_address: 'Editer l''adresse'
+            item:
+                actions: Actions
+                address: Adresse
+                address_name: Nom
+                billing: Facturation
+                city: Ville
+                comment: Commentaires
+                country: Pays
+                delivery: Livraison
+                edit: Editer
+                fullname: 'Nom complet'
+                phone_and_mobile: 'Téléphone / Mobile'
+                postal_code: 'Code postal'
+                province: 'Province / Département'
+                remove: Supprimer
+                state: 'Etat / Région'
+            list:
+                add_new_address: 'Ajouter nouvelle adresse'
+                addresses: Adresses
+                no_addresses: 'Il n''y a pas d''adresses'
+            new:
+                address:
+                    example: 'e.g. 1 rue de la Paix'
+                address_more:
+                    example: 'e.g. Dupont Entreprises'
+                cancel: Annuler
+                comments:
+                    example: 'e.g. C''est une maison'
+                mobile:
+                    example: 'e.g. 06 07 08 09 10'
+                name:
+                    example: 'e.g. Mon adresse par défaut'
+                phone:
+                    example: 'e.g. 01 02 03 04 05'
+                postalcode:
+                    example: 'e.g. 75000'
+                recipient:
+                    example_name: 'e.g. Julien'
+                    example_surname: 'e.g. Dupont'
+        blog:
+            post:
+                list:
+                    blog_posts: 'Articles de blog'
+                    next_posts: 'Articles suivants'
+                    previous_posts: 'Articles précédents'
+                    read_more: 'Autres articles'
+                view:
+                    last_post: 'Dernier article'
+                    read_more: 'Autres articles'
+        cart:
+            item:
+                image: Image
+                item: Article
+                price: Prix
+                remove: Supprimer
+                total: Total
+                units: Unités
+            nav:
+                amount: Montant
+                items: Articles
+            view:
+                checkout: Vérification
+                checkout_title: 'Vérifiez tous les articles et / ou appliquer les coupons'
+                continue_shopping: 'Continuez vos achats'
+                empty_basket: 'Vider panier'
+                title: 'Votre panier'
+                total: Total
+                update_basket: 'Mettre à jour le panier'
+                your_cart_is_empty: 'Vos informations de carte bancaires sont vides'
+        category:
+            nav:
+                new: Nouvelle
+            view:
+                category: Catégorie
+        checkout:
+            address:
+                add_new_address: 'Ajouter une nouvelle adresse'
+                payment: Paiement
+                select_address: 'Choisissez les adresses de livraison et de facturation'
+            back: Arrière
+            layout:
+                total: Total
+                your_cart: 'Vos achats'
+            payment:
+                back: Retour
+                bankwire: Bankwire
+                continue: Continuer
+                credit_debit_card: 'Carte de crédit / débit'
+                payment_method: 'Méthode de paiement'
+                paypal: Paypal
+                set_shipping_payment: 'Choisissez les options de livraison et de paiement'
+                shipping_carrier_method: 'Mode de livraison / transporteur'
+                try_again: 'Essayez à nouveau.'
+        coupon:
+            item:
+                coupon: Coupon
+                description: Description
+                remove: Supprimer
+                total: Total
+                units: Unités
+                value: Valeur
+        footer:
+            follow_us: 'Suivez nous'
+            latest_news: 'Dernières nouvelles'
+            more: Plus
+            quick_links: 'Liens rapides'
+        header:
+            menu: Menu
+        order:
+            coupon:
+                coupon: Coupon
+                description: Description
+                total: Total
+                units: Unités
+                values: Valeurs
+            item:
+                image: Image
+                item: Article
+                price: Prix
+                total: Total
+                units: Unités
+            list:
+                date: Date
+                image: Image
+                no_orders: 'Il n''y a aucune commande'
+                number_of_order: 'Numéro de commande'
+                order_number: 'Commande #'
+                orders: Commandes
+                payment_state: 'Statut de payement'
+                shipping_state: 'Statut de livraison'
+                total: Total
+            view:
+                congratulations: Félicitations!
+                continue_shopping: 'Continuez vos achats'
+                order: Comande
+                shipping: 'Livraison:'
+                status: 'Statut:'
+                thanks: ' Merci pour votre commande! Nous nous assurons qu''il vous sera envoyé le plus rapidement possible.'
+                total: Total
+        payment:
+            credit_card_numbers: 'Numéro de carte bancaire'
+            credit_card_owner: Propriétaire
+            month: Mois
+            security_code: 'Code de sécurité'
+            year: Année
+        product:
+            also_like: 'Vous aimerez peut-être aussi...'
+            item:
+                offer: 'Offre spéciale'
+            list:
+                no_products_in_category: 'Désolé, cette catégorie ne contient pas d''articles'
+            view_item:
+                add_to_cart: 'Ajouter au panier'
+                delivery: Livraison
+                description: Description
+                in_stock: 'Cet article est en stock et prêt à être livré!'
+                no_stock: 'Plus en stock'
+                not_available: 'Cet article n''est actuellement plus disponible'
+                offer: 'Offre spéciale'
+                product: Produit
+                stock: Stock
+                usually_dispatched_24_hours: 'Livré dans les 24h'
+        shipping:
+            carrier: Transporteur
+            costs_will_be_calculated_after_address: 'Après que vous ayez choisi votre adresse, les frais de transport seront re-calculés.'
+            costs_will_be_calculated_after_login: 'Après vous être connecté ou avoir ajouté votre adresse expédition les frais de port seront re-calculés.'
+            from: De
+            no_shipping_matching: 'Aucune correspondance avec un mode de livraison.Contactez nous afin de terminer le processus de livraison.'
+        user:
+            edit:
+                profile: Profil
+            home:
+                dashboard: 'Tableau de bord'
+                my_addresses: 'Mes adresses'
+                my_orders: 'Mes commandes'
+                profile: Profil
+            login:
+                create_new_account: 'Créer un compte'
+                forgot_your_password: 'Mot de passe oublié ?'
+                login_with_account: 'Connectez vous à votre compte'
+                login_with_social: 'Connectez vous avec un compte "social"'
+                unregistered: 'Pas encore enregistré?'
+            nav:
+                create_new_account: 'Créer un compte'
+                login: 'Se connecter'
+                logout: 'Se déconnecter'
+            password:
+                password_sent: 'Mot de passe envoyé'
+                password_sent_text: 'Un email vous a été envoyé avec toutes les informations pour que vous puissiez récupérer un mot de passe.'
+                recover_password: 'Récupérer un nouveau mot de passe'
+                register: 'S''enregistrer'

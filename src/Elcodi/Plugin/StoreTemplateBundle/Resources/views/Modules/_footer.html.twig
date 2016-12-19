@@ -1,0 +1,59 @@
+<div id="mobile-menu" class="grid mobile">
+    {{ render(url('store_categories_nav')) }}
+</div>
+<footer class="footer">
+    <div class="grid">
+        <div class="col-1-1">
+            <a href="{{ url('store_homepage') }}" class="logo">
+                {% if store.secondaryLogo %}
+                    <img src="{{ store.secondaryLogo|resize({ height: 59, width: 200, type: 2 })  }}" />
+                {% else %}
+                    {{ store.name }}
+                {% endif %}
+            </a>
+            <p class="leitmotiv"><strong>{{ store.leitmotiv }}</strong></p>
+        </div>
+    </div>
+    <div class="grid">
+        {% set last_post = elcodi_blog_pages()[0] %}
+        {% if last_post %}
+            <div class="col-1-3">
+                <h5>{{ 'template.store_template_bundle.footer.latest_news'|trans }}</h5>
+                <ul>
+                    <li>
+                        <a href="{{ url("store_blog_post_view", {
+                            "id": last_post.id,
+                            "slug": last_post.path
+                        }) }}">
+                            <strong>{{ last_post.title }}</strong>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('store_blog_view') }}">{{ 'template.store_template_bundle.footer.more'|trans }}</a>
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
+        <div class="col-1-3">
+            <h5>{{ 'template.store_template_bundle.footer.quick_links'|trans }}</h5>
+            <ul>
+                {% set pages = elcodi_footer_pages() %}
+
+                {% for page in pages %}
+                    <li>
+                        <a href="{{ url("elcodi.route.page_render", {
+                            "id": page.id,
+                            "path": page.path
+                        }) }}">{{ page.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-1-3">
+            <h5>{{ 'template.store_template_bundle.footer.follow_us'|trans }}</h5>
+            <ul>
+                {{ elcodi_hook("store.footer_social") }}
+            </ul>
+        </div>
+    </div>
+</footer>

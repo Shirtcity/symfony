@@ -1,0 +1,102 @@
+store:
+    address:
+        billing: facturation
+        delete:
+            response_ok: 'Adresse supprimée avec succès'
+        delivery: livraison
+        form:
+            fields:
+                address:
+                    label: Adresse
+                addressMore:
+                    label: 'Adresse complément (optionnel)'
+                city:
+                    label: Ville
+                comments:
+                    label: Commentaires
+                country:
+                    label: Pays
+                mobile:
+                    label: 'Téléphone mobile'
+                name:
+                    label: 'Nom de l''adresse'
+                phone:
+                    label: 'Téléphone fixe'
+                postalcode:
+                    label: 'Code postal'
+                province:
+                    label: Département
+                recipientName:
+                    label: 'Nom du destinataire'
+                recipientSurname:
+                    label: 'Nom de famille du destinataire'
+                send:
+                    label: 'Sauvegarder adresse'
+                state:
+                    label: Etat/Région
+        save:
+            response_ok: 'Adresse sauvée'
+        select_address_type: 'Choisissez %1 adresse(s)'
+    coupon:
+        applied:
+            message_ko: 'Une erreur est survenue lors de l''application du coupon'
+            message_ok: 'Le Coupon a été appliqué avec succès'
+        form:
+            fields:
+                apply:
+                    label: 'Appliquer le coupon'
+                code:
+                    label: 'Code du Coupon'
+    error:
+        page_not_found: 'Oh, vous avez découvert notre plan secret pour conquérir le monde'
+        page_not_found_title: 'Page non trouvée'
+        store_is_disabled: 'La boutique est désactivée'
+        store_is_under_construction: 'La boutique est en cours de construction'
+        store_unavailable_title: 'Boutique pas disponible'
+    login:
+        form:
+            fields:
+                email:
+                    label: Email
+                password:
+                    label: 'Mot de passe'
+                send:
+                    label: 'Se connecter'
+        wrong_combination: 'Mauvaise combinaison Email / Mot de passe.'
+    pagination:
+        current: Actual
+        first: Première
+        last: Dernière
+        next: Suivant
+        previous: Précédent
+    recovery:
+        form:
+            fields:
+                email:
+                    label: email
+                password:
+                    label: 'Mot de passe'
+                remember:
+                    label: 'Se souvenir de moi'
+                repeat_password:
+                    label: 'Confirmer mot de passe'
+                send:
+                    label: Envoyer
+    user:
+        form:
+            fields:
+                email:
+                    label: Email
+                firstname:
+                    label: Prénom
+                lastname:
+                    label: Nom
+                password:
+                    label: 'Mot de passe'
+                repeat_password:
+                    label: 'Confirmer mot de passe'
+                send:
+                    label: Enregistrer
+        profile:
+            save:
+                message_ok: 'Profil enregistré'

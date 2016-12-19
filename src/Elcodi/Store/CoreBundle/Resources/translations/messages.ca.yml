@@ -1,0 +1,102 @@
+store:
+    address:
+        billing: facturació
+        delete:
+            response_ok: 'Adreça guardada correctament'
+        delivery: entrega
+        form:
+            fields:
+                address:
+                    label: Adreça
+                addressMore:
+                    label: 'Més adreça (opcional)'
+                city:
+                    label: Ciutat
+                comments:
+                    label: Comentaris
+                country:
+                    label: Pais
+                mobile:
+                    label: 'Telèfon mòvil'
+                name:
+                    label: 'Nom de l''adreça'
+                phone:
+                    label: Telèfon
+                postalcode:
+                    label: 'Codi postal'
+                province:
+                    label: Provincia
+                recipientName:
+                    label: 'Nom del destinatari'
+                recipientSurname:
+                    label: 'Cognom del destinatari'
+                send:
+                    label: 'Guardar adreça'
+                state:
+                    label: 'Comunitat Autònoma'
+        save:
+            response_ok: 'Adreça guardada'
+        select_address_type: 'Sel·lecciona una adreça de %1'
+    coupon:
+        applied:
+            message_ko: 'No es pot aplicar el cupó'
+            message_ok: 'Cupó aplicat correctament'
+        form:
+            fields:
+                apply:
+                    label: 'Aplicar cupó'
+                code:
+                    label: 'Codi de cupó'
+    error:
+        page_not_found: 'Uh si, has descobert els nostres plans secrets per conquerir el mon'
+        page_not_found_title: 'Pàgina no trobada'
+        store_is_disabled: 'La botiga està desactivada'
+        store_is_under_construction: 'La botiga està en construcció'
+        store_unavailable_title: 'Botiga no disponible'
+    login:
+        form:
+            fields:
+                email:
+                    label: 'Correu electrònic'
+                password:
+                    label: Contrasenya
+                send:
+                    label: Enviar
+        wrong_combination: 'Combinació de email i contrasenya incorrectes.'
+    pagination:
+        current: Actual
+        first: Primer
+        last: Darrer
+        next: Següent
+        previous: Anterior
+    recovery:
+        form:
+            fields:
+                email:
+                    label: 'Correu electrònic'
+                password:
+                    label: Contrasenya
+                remember:
+                    label: 'No recordo la meva contrasenya'
+                repeat_password:
+                    label: 'Repetir Contrasenya'
+                send:
+                    label: Enviar
+    user:
+        form:
+            fields:
+                email:
+                    label: 'Correo electrònic'
+                firstname:
+                    label: Nom
+                lastname:
+                    label: Cognom
+                password:
+                    label: Contrasenya
+                repeat_password:
+                    label: 'Repetir Contrasenya'
+                send:
+                    label: Guardar
+        profile:
+            save:
+                message_ok: 'Perfil guardat'

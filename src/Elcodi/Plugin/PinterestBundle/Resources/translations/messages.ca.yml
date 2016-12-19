@@ -1,0 +1,7 @@
+elcodi_plugin:
+    pinterest:
+        description: 'Integració de Pinterest per a la teva botiga'
+        field:
+            asynchronous:
+                label: 'Usa Pinterest de forma asíncrona'
+        name: Pinterest

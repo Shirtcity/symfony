@@ -1,0 +1,19 @@
+services:
+
+    #
+    # Plugin
+    #
+    elcodi_plugin.custom_shipping:
+        parent: elcodi.abstract_plugin
+        arguments:
+            - "Elcodi\\Plugin\\CustomShippingBundle\\ElcodiCustomShippingBundle"
+
+    #
+    # Providers
+    #
+    elcodi_plugin.custom_shipping.provider.shipping_ranges:
+        class: Elcodi\Plugin\CustomShippingBundle\Provider\ShippingRangesProvider
+        arguments:
+            - "@elcodi.repository.carrier"
+            - "@elcodi.converter.currency"
+            - "@elcodi.matcher.zone"

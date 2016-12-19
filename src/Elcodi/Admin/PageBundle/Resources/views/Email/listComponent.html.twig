@@ -1,0 +1,43 @@
+{% extends 'AdminCoreBundle::Common/listComponent.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'mailing',
+} %}
+
+
+{% block title 'admin.mailing.list'|trans %}
+
+
+{% block no_items
+    lists.no_items(
+        'admin.mailing.single'|trans,
+        'admin.mailing.plural'|trans
+    )
+%}
+
+
+{% block table_head %}
+
+    {% include '@AdminCore/Tables/head.html.twig' with {
+        class: 'email',
+        rows: [
+            { name: 'admin.mailing.field.title.title'|trans },
+        ],
+    } %}
+
+{% endblock table_head %}
+
+
+{% block table_body_row %}
+
+    <td>
+        <a href="{{ url('admin_email_edit', { id: entity.id }) }}">
+            {{ entity.title }}
+        </a>
+    </td>
+
+{% endblock table_body_row %}
+
+
+{% block table_pagination '' %}
