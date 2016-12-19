@@ -97,7 +97,7 @@
         "behat/mink-browserkit-driver": "^1.2",
         "behat/mink-selenium2-driver": "^1.2",
         "behat/mink": "^1.6",
-        "phpunit/phpunit": "4.8.19",
+        "phpunit/phpunit": "5.4.6",
 
         "mmoreram/php-formatter": "1.1.0",
         "mmoreram/translation-server": "^1.0.1",
