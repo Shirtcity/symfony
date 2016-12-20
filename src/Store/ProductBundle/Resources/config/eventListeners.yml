@@ -9,17 +9,3 @@ services:
             - "@elcodi_store.store_category_tree"
         tags:
             - { name: kernel.event_listener, event: categories.onchange, method: onChange }
-            
-    elcodi.event_listener.fix_category_integrity:
-        class: Elcodi\Component\Product\EventListener\CategoryIntegrityEventListener
-        arguments:
-            - '@elcodi.service.category_integrity_fixer'
-        tags:
-            - { name: doctrine.event_listener, event: preFlush, method: preFlush }
-            - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }
-
-    elcodi.event_listener.root_category:
-        class: Elcodi\Component\Product\EventListener\RootCategoryEventListener
-        tags:
-            - { name: doctrine.event_listener, event: preFlush, method: preFlush }
-            - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }

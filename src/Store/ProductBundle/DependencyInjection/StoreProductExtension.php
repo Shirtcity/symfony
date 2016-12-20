@@ -18,15 +18,13 @@
 namespace Store\ProductBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\ConfigurationInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 use Elcodi\Bundle\CoreBundle\DependencyInjection\Abstracts\AbstractExtension;
-use Elcodi\Bundle\CoreBundle\DependencyInjection\Interfaces\EntitiesOverridableExtensionInterface;
 
 /**
  * Class StoreProductExtension
  */
-class StoreProductExtension extends AbstractExtension implements EntitiesOverridableExtensionInterface
+class StoreProductExtension extends AbstractExtension
 {
     /**
      * @var string
@@ -59,7 +57,7 @@ class StoreProductExtension extends AbstractExtension implements EntitiesOverrid
      */
     protected function getConfigurationInstance()
     {
-        return new Configuration(static::EXTENSION_NAME);
+        return new Configuration();
     }
 
     /**
@@ -79,40 +77,6 @@ class StoreProductExtension extends AbstractExtension implements EntitiesOverrid
     {
         return [
             'store.product.menu_cache_key' => $config['menu']['menu_cache_key'],
-			
-			'elcodi.entity.purchasable.class' => $config['mapping']['purchasable']['class'],
-            'elcodi.entity.purchasable.mapping_file' => $config['mapping']['purchasable']['mapping_file'],
-            'elcodi.entity.purchasable.manager' => $config['mapping']['purchasable']['manager'],
-            'elcodi.entity.purchasable.enabled' => $config['mapping']['purchasable']['enabled'],
-
-            'elcodi.entity.product.class' => $config['mapping']['product']['class'],
-            'elcodi.entity.product.mapping_file' => $config['mapping']['product']['mapping_file'],
-            'elcodi.entity.product.manager' => $config['mapping']['product']['manager'],
-            'elcodi.entity.product.enabled' => $config['mapping']['product']['enabled'],
-
-            'elcodi.entity.product_variant.class' => $config['mapping']['product_variant']['class'],
-            'elcodi.entity.product_variant.mapping_file' => $config['mapping']['product_variant']['mapping_file'],
-            'elcodi.entity.product_variant.manager' => $config['mapping']['product_variant']['manager'],
-            'elcodi.entity.product_variant.enabled' => $config['mapping']['product_variant']['enabled'],
-
-            'elcodi.entity.purchasable_pack.class' => $config['mapping']['purchasable_pack']['class'],
-            'elcodi.entity.purchasable_pack.mapping_file' => $config['mapping']['purchasable_pack']['mapping_file'],
-            'elcodi.entity.purchasable_pack.manager' => $config['mapping']['purchasable_pack']['manager'],
-            'elcodi.entity.purchasable_pack.enabled' => $config['mapping']['purchasable_pack']['enabled'],
-
-            'elcodi.entity.category.class' => $config['mapping']['category']['class'],
-            'elcodi.entity.category.mapping_file' => $config['mapping']['category']['mapping_file'],
-            'elcodi.entity.category.manager' => $config['mapping']['category']['manager'],
-            'elcodi.entity.category.enabled' => $config['mapping']['category']['enabled'],
-
-            'elcodi.entity.manufacturer.class' => $config['mapping']['manufacturer']['class'],
-            'elcodi.entity.manufacturer.mapping_file' => $config['mapping']['manufacturer']['mapping_file'],
-            'elcodi.entity.manufacturer.manager' => $config['mapping']['manufacturer']['manager'],
-            'elcodi.entity.manufacturer.enabled' => $config['mapping']['manufacturer']['enabled'],
-
-            'elcodi.core.product.use_stock' => $config['products']['use_stock'],
-            'elcodi.core.product.load_only_categories_with_products' => $config['categories']['load_only_categories_with_products'],
-            'elcodi.core.product.cache_key' => $config['categories']['cache_key'],
         ];
     }
 
@@ -135,55 +99,7 @@ class StoreProductExtension extends AbstractExtension implements EntitiesOverrid
             'services',
             'eventListeners',
             'sitemapTransformers',
-            'factories',
-            'repositories',
-            'objectManagers',
-            'twig',
-            'directors',
-            'adapters',
-            'nameResolvers',
-            'stockUpdaters',
-            'stockValidators',
-            'imageResolvers',
         ];
-    }
-	
-	/**
-     * Get entities overrides.
-     *
-     * Result must be an array with:
-     * index: Original Interface
-     * value: Parameter where class is defined.
-     *
-     * @return array Overrides definition
-     */
-    public function getEntitiesOverrides()
-    {
-        return [
-            'Elcodi\Component\Product\Entity\Interfaces\PurchasableInterface' => 'elcodi.entity.purchasable.class',
-            'Elcodi\Component\Product\Entity\Interfaces\ProductInterface' => 'elcodi.entity.product.class',
-            'Elcodi\Component\Product\Entity\Interfaces\VariantInterface' => 'elcodi.entity.product_variant.class',
-            'Elcodi\Component\Product\Entity\Interfaces\PackInterface' => 'elcodi.entity.purchasable_pack.class',
-            'Elcodi\Component\Product\Entity\Interfaces\ManufacturerInterface' => 'elcodi.entity.manufacturer.class',
-            'Elcodi\Component\Product\Entity\Interfaces\CategoryInterface' => 'elcodi.entity.category.class',
-        ];
-    }
-		
-	/**
-     * Post load implementation.
-     *
-     * @param array            $config    Parsed configuration
-     * @param ContainerBuilder $container A ContainerBuilder instance
-     */
-    protected function postLoad(array $config, ContainerBuilder $container)
-    {
-        parent::postLoad($config, $container);
-
-        $relatedProductsAdapterId = $config['related_purchasables_provider']['adapter'];
-        $container->setAlias(
-            'elcodi.related_purchasables_provider',
-            $relatedProductsAdapterId
-        );
     }
 
     /**

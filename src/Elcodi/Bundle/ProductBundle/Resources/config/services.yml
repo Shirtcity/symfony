@@ -1,0 +1,15 @@
+services:
+
+    #
+    # Services
+    #
+    elcodi.provider.category_tree:
+        class: Elcodi\Component\Product\Services\CategoryTree
+        arguments:
+            - '@elcodi.repository.category'
+
+    elcodi.service.category_integrity_fixer:
+        class: Elcodi\Component\Product\Services\CategoryIntegrityFixer
+
+    elcodi.resolver.product_options:
+        class: Elcodi\Component\Product\Services\ProductOptionsResolver
