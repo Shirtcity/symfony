@@ -1,0 +1,17 @@
+services:
+
+    #
+    # Services
+    #
+    elcodi_plugin.store_setup_wizard.wizard_status:
+        class: Plugin\StoreSetupWizardBundle\Services\WizardStatus
+        arguments:
+            - "@elcodi.repository.product"
+            - "@elcodi.store"
+            - "@elcodi.enabled_payment_plugins"
+            - "@elcodi.enabled_shipping_plugins"
+
+    elcodi_plugin.store_setup_wizard.wizard_routes:
+        class: Plugin\StoreSetupWizardBundle\Services\WizardRoutes
+        arguments:
+            - "@elcodi_plugin.store_setup_wizard.wizard_status"

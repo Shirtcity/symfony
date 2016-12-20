@@ -1,0 +1,85 @@
+Elcodi\Component\Product\Entity\Manufacturer:
+    type: entity
+    repositoryClass: Elcodi\Component\Product\Repository\ManufacturerRepository
+    table: manufacturer
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            column: name
+            type: string
+            length: 255
+            nullable: false
+        slug:
+            column: slug
+            type: string
+            length: 255
+            nullable: false
+        description:
+            column: description
+            type: text
+            nullable: true
+        imagesSort:
+            column: images_sort
+            type: string
+            lentgh: 2048
+            nullable: true
+        metaTitle:
+            column: meta_title
+            type: string
+            length: 255
+            nullable: true
+        metaDescription:
+            column: meta_description
+            type: string
+            length: 255
+            nullable: true
+        metaKeywords:
+            column: meta_keywords
+            type: string
+            length: 255
+            nullable: true
+        createdAt:
+            column: created_at
+            type: datetime
+        updatedAt:
+            column: updated_at
+            type: datetime
+        enabled:
+            column: enabled
+            type: boolean
+
+    oneToMany:
+        purchasables:
+            targetEntity: Elcodi\Component\Product\Entity\Interfaces\PurchasableInterface
+            mappedBy: manufacturer
+
+    manyToOne:
+        principalImage:
+            targetEntity: Elcodi\Component\Media\Entity\Interfaces\ImageInterface
+            joinColumn:
+                name: principal_image_id
+                referencedColumnName: id
+                nullable: true
+                onDelete: SET NULL
+
+    manyToMany:
+        images:
+            targetEntity: Elcodi\Component\Media\Entity\Interfaces\ImageInterface
+            joinTable:
+                name: manufacturer_image
+                joinColumns:
+                    product_id:
+                        referencedColumnName: id
+                        onDelete: "CASCADE"
+                inverseJoinColumns:
+                    image_id:
+                        referencedColumnName: id
+                        onDelete: "CASCADE"
+
+    lifecycleCallbacks:
+        preUpdate: [loadUpdateAt]
+        prePersist: [loadUpdateAt]

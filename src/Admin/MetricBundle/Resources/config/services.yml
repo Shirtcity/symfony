@@ -1,0 +1,7 @@
+services:
+
+    #
+    # Services
+    #
+    elcodi_admin.metric_intervals_resolver:
+        class: Admin\MetricBundle\Services\MetricIntervalsResolver

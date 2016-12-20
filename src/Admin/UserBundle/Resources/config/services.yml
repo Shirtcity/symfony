@@ -1,0 +1,10 @@
+services:
+
+    #
+    # Authenticator
+    #
+    elcodi_admin.security.one_time_login_authenticator:
+        class: Admin\UserBundle\Security\OneTimeLoginAuthenticator
+        arguments:
+            - "@elcodi.object_manager.admin_user"
+            - "@elcodi.repository.admin_user"

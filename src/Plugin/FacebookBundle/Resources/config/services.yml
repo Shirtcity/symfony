@@ -1,0 +1,15 @@
+services:
+
+    #
+    # Services
+    #
+    elcodi_plugin.service.facebook_username_cleaner:
+        class: Plugin\FacebookBundle\Services\FacebookUsernameCleaner
+
+    #
+    # Plugin
+    #
+    elcodi_plugin.facebook:
+        parent: elcodi.abstract_plugin
+        arguments:
+            - "Plugin\\FacebookBundle\\ElcodiFacebookBundle"

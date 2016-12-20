@@ -1,0 +1,11 @@
+services:
+
+    #
+    # Form Types
+    #
+    elcodi_admin.form_type.newsletter_subscription:
+        class: Admin\NewsletterBundle\Form\Type\NewsletterSubscriptionType
+        calls:
+            - [setFactory, ["@elcodi.factory.newsletter_subscription"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_newsletter_form_type_newsletter_subscription }

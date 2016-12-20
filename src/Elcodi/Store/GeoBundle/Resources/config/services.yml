@@ -1,9 +1,0 @@
-services:
-
-    #
-    # Services
-    #
-    elcodi_store.form.location_selector_builder:
-        class: Elcodi\Store\GeoBundle\Form\LocationSelectorBuilder
-        arguments:
-            - "@elcodi.location_provider"

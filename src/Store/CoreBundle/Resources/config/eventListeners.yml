@@ -1,0 +1,12 @@
+services:
+
+    #
+    # Event Listeners
+    #
+    elcodi_store.event_listener.store_disabled:
+        class: Store\CoreBundle\EventListener\StoreUnavailableEventListener
+        arguments:
+            - "@elcodi.store"
+            - store.error.store_is_disabled
+        tags:
+            - { name: firewall_listener, firewall: %bamboo_store_firewall%, priority: -16 }

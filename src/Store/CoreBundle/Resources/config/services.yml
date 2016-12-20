@@ -1,0 +1,14 @@
+services:
+
+    #
+    # Services
+    #
+    elcodi_store.template_locator.core:
+        class: Store\CoreBundle\Services\TemplateLocator
+        arguments:
+            engine: "@templating.engine.twig"
+            bundles:
+                - StoreOverrideBundle
+                - "@elcodi.store_template_bundle"
+                - StoreFallbackBundle
+

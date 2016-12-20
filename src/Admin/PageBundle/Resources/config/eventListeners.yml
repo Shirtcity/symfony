@@ -1,0 +1,7 @@
+services:
+
+    #
+    # Event Listeners
+    #
+    elcodi_admin.form_event_listener.permanent_page:
+         class:  AdminPageBundle\Form\EventListener\PermanentPageSubscriber
