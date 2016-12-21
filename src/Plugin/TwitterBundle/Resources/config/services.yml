@@ -1,7 +1,0 @@
-services:
-
-    #
-    # Services
-    #
-    elcodi_plugin.service.twitter_username_cleaner:
-        class: Plugin\TwitterBundle\Services\TwitterUsernameCleaner

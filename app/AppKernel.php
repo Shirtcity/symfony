@@ -101,77 +101,77 @@ class AppKernel extends Kernel
             /**
              * Elcodi store bundle
              */
-            'Store\CoreBundle\StoreCoreBundle',
-            'Store\ProductBundle\StoreProductBundle',
-            'Store\UserBundle\StoreUserBundle',
-            'Store\GeoBundle\StoreGeoBundle',
-            'Store\CartBundle\StoreCartBundle',
-            'Store\CurrencyBundle\StoreCurrencyBundle',
-            'Store\CartCouponBundle\StoreCartCouponBundle',
-            'Store\ConnectBundle\StoreConnectBundle',
-            'Store\MetricBundle\StoreMetricBundle',
-            'Store\PageBundle\StorePageBundle',
-            'Store\LanguageBundle\StoreLanguageBundle',
-            'Store\OverrideBundle\StoreOverrideBundle',
-            'Store\FallbackBundle\StoreFallbackBundle',
+            'Elcodi\Store\CoreBundle\StoreCoreBundle',
+            'Elcodi\Store\ProductBundle\StoreProductBundle',
+            'Elcodi\Store\UserBundle\StoreUserBundle',
+            'Elcodi\Store\GeoBundle\StoreGeoBundle',
+            'Elcodi\Store\CartBundle\StoreCartBundle',
+            'Elcodi\Store\CurrencyBundle\StoreCurrencyBundle',
+            'Elcodi\Store\CartCouponBundle\StoreCartCouponBundle',
+            'Elcodi\Store\ConnectBundle\StoreConnectBundle',
+            'Elcodi\Store\MetricBundle\StoreMetricBundle',
+            'Elcodi\Store\PageBundle\StorePageBundle',
+            'Elcodi\Store\LanguageBundle\StoreLanguageBundle',
+            'Elcodi\Store\OverrideBundle\StoreOverrideBundle',
+            'Elcodi\Store\FallbackBundle\StoreFallbackBundle',
 
             /**
              * Elcodi admin bundles
              */
-            'Admin\CoreBundle\AdminCoreBundle',
-            'Admin\UserBundle\AdminUserBundle',
-            'Admin\AttributeBundle\AdminAttributeBundle',
-            'Admin\BannerBundle\AdminBannerBundle',
-            'Admin\CartBundle\AdminCartBundle',
-            'Admin\CouponBundle\AdminCouponBundle',
-            'Admin\CurrencyBundle\AdminCurrencyBundle',
-            'Admin\LanguageBundle\AdminLanguageBundle',
-            'Admin\MediaBundle\AdminMediaBundle',
-            'Admin\NewsletterBundle\AdminNewsletterBundle',
-            'Admin\ProductBundle\AdminProductBundle',
-            'Admin\PageBundle\AdminPageBundle',
-            'Admin\TemplateBundle\AdminTemplateBundle',
-            'Admin\MetricBundle\AdminMetricBundle',
-            'Admin\PluginBundle\AdminPluginBundle',
-            'Admin\ShippingBundle\AdminShippingBundle',
-            'Admin\GeoBundle\AdminGeoBundle',
-            'Admin\PaymentBundle\AdminPaymentBundle',
-            'Admin\StoreBundle\AdminStoreBundle',
+            'Elcodi\Admin\CoreBundle\AdminCoreBundle',
+            'Elcodi\Admin\UserBundle\AdminUserBundle',
+            'Elcodi\Admin\AttributeBundle\AdminAttributeBundle',
+            'Elcodi\Admin\BannerBundle\AdminBannerBundle',
+            'Elcodi\Admin\CartBundle\AdminCartBundle',
+            'Elcodi\Admin\CouponBundle\AdminCouponBundle',
+            'Elcodi\Admin\CurrencyBundle\AdminCurrencyBundle',
+            'Elcodi\Admin\LanguageBundle\AdminLanguageBundle',
+            'Elcodi\Admin\MediaBundle\AdminMediaBundle',
+            'Elcodi\Admin\NewsletterBundle\AdminNewsletterBundle',
+            'Elcodi\Admin\ProductBundle\AdminProductBundle',
+            'Elcodi\Admin\PageBundle\AdminPageBundle',
+            'Elcodi\Admin\TemplateBundle\AdminTemplateBundle',
+            'Elcodi\Admin\MetricBundle\AdminMetricBundle',
+            'Elcodi\Admin\PluginBundle\AdminPluginBundle',
+            'Elcodi\Admin\ShippingBundle\AdminShippingBundle',
+            'Elcodi\Admin\GeoBundle\AdminGeoBundle',
+            'Elcodi\Admin\PaymentBundle\AdminPaymentBundle',
+            'Elcodi\Admin\StoreBundle\AdminStoreBundle',
 
             /**
              * Elcodi common bundle
              */
-            'Common\FirewallBundle\ElcodiFirewallBundle',
-            'Common\CommonBundle\ElcodiCommonBundle',
+            'Elcodi\Common\FirewallBundle\ElcodiFirewallBundle',
+            'Elcodi\Common\CommonBundle\ElcodiCommonBundle',
 
             /**
              * Elcodi Plugins
              */
-            'Plugin\GoogleAnalyticsBundle\ElcodiGoogleAnalyticsBundle',
-            'Plugin\PinterestBundle\ElcodiPinterestBundle',
-            'Plugin\ProductCsvBundle\ElcodiProductCsvBundle',
-            'Plugin\StoreSetupWizardBundle\ElcodiStoreSetupWizardBundle',
-            'Plugin\DisqusBundle\ElcodiDisqusBundle',
-            'Plugin\TwitterBundle\ElcodiTwitterBundle',
-            'Plugin\FacebookBundle\ElcodiFacebookBundle',
-            'Plugin\StoreTemplateBundle\StoreTemplateBundle',
-            'Plugin\PaypalWebCheckoutBundle\ElcodiPaypalWebCheckoutBundle',
-            'Plugin\FreePaymentBundle\ElcodiFreePaymentBundle',
-            'Plugin\StripeBundle\ElcodiStripeBundle',
-            'Plugin\CustomShippingBundle\ElcodiCustomShippingBundle',
-            'Plugin\BankwireBundle\ElcodiBankwireBundle',
+            'Elcodi\Plugin\GoogleAnalyticsBundle\ElcodiGoogleAnalyticsBundle',
+            'Elcodi\Plugin\PinterestBundle\ElcodiPinterestBundle',
+            'Elcodi\Plugin\ProductCsvBundle\ElcodiProductCsvBundle',
+            'Elcodi\Plugin\StoreSetupWizardBundle\ElcodiStoreSetupWizardBundle',
+            'Elcodi\Plugin\DisqusBundle\ElcodiDisqusBundle',
+            'Elcodi\Plugin\TwitterBundle\ElcodiTwitterBundle',
+            'Elcodi\Plugin\FacebookBundle\ElcodiFacebookBundle',
+            'Elcodi\Plugin\StoreTemplateBundle\StoreTemplateBundle',
+            'Elcodi\Plugin\PaypalWebCheckoutBundle\ElcodiPaypalWebCheckoutBundle',
+            'Elcodi\Plugin\FreePaymentBundle\ElcodiFreePaymentBundle',
+            'Elcodi\Plugin\StripeBundle\ElcodiStripeBundle',
+            'Elcodi\Plugin\CustomShippingBundle\ElcodiCustomShippingBundle',
+            'Elcodi\Plugin\BankwireBundle\ElcodiBankwireBundle',
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {
             $bundles[] = 'Elcodi\Bundle\FixturesBoosterBundle\ElcodiFixturesBoosterBundle';
-            $bundles[] = 'Bridge\BehatBridgeBundle\BehatBridgeBundle';
+            $bundles[] = 'Elcodi\Bridge\BehatBridgeBundle\BehatBridgeBundle';
             $bundles[] = 'Symfony\Bundle\WebProfilerBundle\WebProfilerBundle';
             $bundles[] = 'Sensio\Bundle\DistributionBundle\SensioDistributionBundle';
         }
 
         if (class_exists('Visithor\Bundle\VisithorBundle')) {
             $bundles[] = 'Visithor\Bundle\VisithorBundle';
-            $bundles[] = 'Bridge\VisithorBridgeBundle\ElcodiVisithorBridgeBundle';
+            $bundles[] = 'Elcodi\Bridge\VisithorBridgeBundle\ElcodiVisithorBridgeBundle';
         }
 
         return $this
