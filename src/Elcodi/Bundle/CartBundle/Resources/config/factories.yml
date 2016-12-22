@@ -1,0 +1,45 @@
+services:
+
+    #
+    # Factories
+    #
+
+    #
+    # Factory for entity cart
+    #
+    elcodi.factory.cart:
+        class: Elcodi\Component\Cart\Factory\CartFactory
+        parent: elcodi.factory.abstract.purchasable
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.cart.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+
+    #
+    # Factory for entity order
+    #
+    elcodi.factory.order:
+        class: Elcodi\Component\Cart\Factory\OrderFactory
+        parent: elcodi.factory.abstract.purchasable
+        calls:
+            - [setPaymentMachineManager, ["@elcodi.order_payment_states_machine_manager"]]
+            - [setShippingMachineManager, ["@elcodi.order_shipping_states_machine_manager"]]
+            - [setEntityNamespace, ["%elcodi.entity.order.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+
+    #
+    # Factory for entity cart_line
+    #
+    elcodi.factory.cart_line:
+        class: Elcodi\Component\Cart\Factory\CartLineFactory
+        parent: elcodi.factory.abstract.purchasable
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.cart_line.class%"]]
+
+    #
+    # Factory for entity order_line
+    #
+    elcodi.factory.order_line:
+        class: Elcodi\Component\Cart\Factory\OrderLineFactory
+        parent: elcodi.factory.abstract.purchasable
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.order_line.class%"]]

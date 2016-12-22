@@ -1,0 +1,26 @@
+services:
+
+    #
+    # Services
+    #
+    elcodi.manager.comment:
+        class: Elcodi\Component\Comment\Services\CommentManager
+        arguments:
+            - '@elcodi.event_dispatcher.comment'
+            - '@elcodi.director.comment'
+
+    elcodi.comment_cache:
+        class: Elcodi\Component\Comment\Services\CommentCache
+        arguments:
+            - '@elcodi.repository.comment'
+            - '@elcodi.manager.comment_vote'
+            - %elcodi.comment.cache_key%
+        calls:
+            - [setCache, ['@doctrine_cache.providers.elcodi_comments']]
+            - [setEncoder, ['@elcodi.json_encoder']]
+
+    elcodi.manager.comment_vote:
+        class: Elcodi\Component\Comment\Services\VoteManager
+        arguments:
+            - '@elcodi.event_dispatcher.comment'
+            - '@elcodi.director.comment_vote'

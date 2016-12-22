@@ -1,0 +1,22 @@
+services:
+
+    #
+    # Factories
+    #
+
+    #
+    # Factory for Attribute entities
+    #
+    elcodi.factory.attribute:
+        class: Elcodi\Component\Attribute\Factory\AttributeFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.attribute.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+
+    #
+    # Factory for Value entities
+    #
+    elcodi.factory.attribute_value:
+        class: Elcodi\Component\Attribute\Factory\ValueFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.attribute_value.class%"]]

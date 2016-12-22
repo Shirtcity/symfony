@@ -1,0 +1,8 @@
+services:
+
+    #
+    # Event Dispatchers
+    #
+    elcodi.event_dispatcher.newsletter:
+        class: Elcodi\Component\Newsletter\EventDispatcher\NewsletterEventDispatcher
+        parent: elcodi.event_dispatcher.abstract

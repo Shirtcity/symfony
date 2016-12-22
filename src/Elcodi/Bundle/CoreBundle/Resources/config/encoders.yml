@@ -1,0 +1,10 @@
+services:
+
+    #
+    # Encoders
+    #
+    elcodi.json_encoder:
+        class: Elcodi\Component\Core\Encoder\JsonEncoder
+
+    elcodi.php_encoder:
+        class: Elcodi\Component\Core\Encoder\PHPEncoder

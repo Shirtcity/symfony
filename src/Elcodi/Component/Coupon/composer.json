@@ -1,0 +1,59 @@
+{
+    "name": "elcodi/coupon",
+    "description": "Elcodi Coupon Component",
+    "keywords": [
+        "elcodi",
+        "coupon",
+        "ecommerce",
+        "component"
+    ],
+    "homepage": "https://github.com/elcodi/Coupon",
+    "type": "library",
+    "license": "MIT",
+    "support": {
+        "email": "devs@elcodi.com",
+        "forum": "https://gitter.im/elcodi/elcodi",
+        "source": "https://github.com/elcodi/elcodi",
+        "issues": "https://github.com/elcodi/elcodi/issues"
+    },
+    "authors": [
+        {
+            "name": "Marc Morera",
+            "email": "yuhu@mmoreram.com"
+        },
+        {
+            "name": "Aldo Chiecchia",
+            "email": "zimage@tiscali.it"
+        },
+        {
+            "name": "The Awesome Elcodi Community",
+            "homepage": "https://github.com/elcodi/Coupon/contributors"
+        }
+    ],
+    "require": {
+        "php": "^5.4|^7.0",
+        "doctrine/common": "^2.5",
+        "doctrine/orm": "^2.5",
+        "symfony/event-dispatcher": "^2.7|^3.0",
+
+        "elcodi/core": "^2.0",
+        "elcodi/currency": "^2.0",
+        "elcodi/rule": "^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.8.19"
+    },
+    "autoload": {
+        "exclude-from-classmap": [
+            "/Tests/"
+        ],
+        "psr-4": {
+            "Elcodi\\Component\\Coupon\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}

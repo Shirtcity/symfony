@@ -1,0 +1,181 @@
+Elcodi\Component\Cart\Entity\Order:
+    type: entity
+    repositoryClass: Elcodi\Component\Cart\Repository\OrderRepository
+    table: orders
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        quantity:
+            column: quantity
+            type: integer
+        purchasableAmount:
+            column: purchasable_amount
+            type: integer
+            nullable: false
+        couponAmount:
+            column: coupon_amount
+            type: integer
+            nullable: true
+        shippingAmount:
+            column: shipping_amount
+            type: integer
+            nullable: true
+        shippingMethod:
+            column: shipping_method
+            type: array
+        shippingMethodExtra:
+            column: shipping_method_extra
+            type: array
+            nullable: true
+        paymentMethod:
+            column: payment_method
+            type: array
+            nullable: true
+        paymentMethodExtra:
+            column: payment_method_extra
+            type: array
+            nullable: true
+        amount:
+            column: amount
+            type: integer
+            nullable: false
+        height:
+            column: height
+            type: integer
+            nullable: false
+        width:
+            column: width
+            type: integer
+            nullable: false
+        depth:
+            column: depth
+            type: integer
+            nullable: false
+        weight:
+            column: weight
+            type: integer
+            nullable: false
+        createdAt:
+            column: created_at
+            type: datetime
+        updatedAt:
+            column: updated_at
+            type: datetime
+
+    oneToOne:
+        cart:
+            targetEntity: Elcodi\Component\Cart\Entity\Interfaces\CartInterface
+            inversedBy: order
+            joinColumn:
+                name: cart_id
+                referencedColumnName: id
+                onDelete: "SET NULL"
+                onUpdate: "CASCADE"
+                nullable: true
+
+        paymentLastStateLine:
+            targetEntity: Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateLineInterface
+            cascade: ["persist"]
+            joinColumn:
+                name: payment_last_state_line_id
+                referencedColumnName: id
+                nullable: false
+
+        shippingLastStateLine:
+            targetEntity: Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateLineInterface
+            cascade: ["persist"]
+            joinColumn:
+                name: shipping_last_state_line_id
+                referencedColumnName: id
+                nullable: false
+
+    manyToOne:
+        customer:
+            targetEntity: Elcodi\Component\User\Entity\Interfaces\CustomerInterface
+            inversedBy: orders
+            joinColumn:
+                name: customer_id
+                referencedColumnName: id
+                nullable: true
+                onDelete: "SET NULL"
+
+        currency:
+            targetEntity: Elcodi\Component\Currency\Entity\Interfaces\CurrencyInterface
+            joinColumn:
+                 name: currency_iso
+                 referencedColumnName: iso
+                 nullable: false
+
+        purchasableCurrency:
+            targetEntity: Elcodi\Component\Currency\Entity\Interfaces\CurrencyInterface
+            joinColumn:
+                 name: purchasable_currency_iso
+                 referencedColumnName: iso
+                 nullable: false
+
+        couponCurrency:
+            targetEntity: Elcodi\Component\Currency\Entity\Interfaces\CurrencyInterface
+            joinColumn:
+                 name: coupon_currency_iso
+                 referencedColumnName: iso
+                 nullable: true
+
+        shippingCurrency:
+            targetEntity: Elcodi\Component\Currency\Entity\Interfaces\CurrencyInterface
+            joinColumn:
+                 name: shipping_currency_iso
+                 referencedColumnName: iso
+                 nullable: true
+
+        deliveryAddress:
+            targetEntity: Elcodi\Component\Geo\Entity\Interfaces\AddressInterface
+            joinColumn:
+                name: delivery_address_id
+                referencedColumnName: id
+                nullable: true
+
+        billingAddress:
+            targetEntity: Elcodi\Component\Geo\Entity\Interfaces\AddressInterface
+            joinColumn:
+                 name: billing_address_id
+                 referencedColumnName: id
+                 nullable: true
+
+    oneToMany:
+        orderLines:
+            targetEntity: Elcodi\Component\Cart\Entity\Interfaces\OrderLineInterface
+            mappedBy: order
+            cascade: [ "all" ]
+            orphanRemoval: true
+
+    manyToMany:
+        shippingStateLines:
+            targetEntity: Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateLineInterface
+            cascade: ["persist"]
+            joinTable:
+                name: shipping_state_lines
+                joinColumns:
+                    order_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    state_line_id:
+                        referencedColumnName: id
+
+        paymentStateLines:
+            targetEntity: Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateLineInterface
+            cascade: ["persist"]
+            joinTable:
+                name: payment_state_lines
+                joinColumns:
+                    order_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    state_line_id:
+                        referencedColumnName: id
+
+    lifecycleCallbacks:
+        preUpdate: [loadUpdateAt]
+        prePersist: [loadUpdateAt]

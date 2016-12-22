@@ -1,0 +1,13 @@
+services:
+
+    #
+    # Repositories
+    #
+
+    #
+    # Repository for entity coupon
+    #
+    elcodi.repository.coupon:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.coupon.class%

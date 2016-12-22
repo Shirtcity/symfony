@@ -1,0 +1,23 @@
+services:
+
+    #
+    # Factories
+    #
+
+    #
+    # Factory for entity comment
+    #
+    elcodi.factory.comment:
+        class: Elcodi\Component\Comment\Factory\CommentFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.comment.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+
+    #
+    # Factory for entity vote
+    #
+    elcodi.factory.comment_vote:
+        class: Elcodi\Component\Comment\Factory\VoteFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.comment_vote.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]

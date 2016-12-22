@@ -1,0 +1,13 @@
+services:
+
+    #
+    # Services
+    #
+    elcodi.manager.newsletter:
+        class: Elcodi\Component\Newsletter\Services\NewsletterManager
+        arguments:
+            - '@elcodi.event_dispatcher.newsletter'
+            - '@validator'
+            - '@elcodi.factory.newsletter_subscription'
+            - '@elcodi.repository.newsletter_subscription'
+            - '@elcodi.generator.sha1'

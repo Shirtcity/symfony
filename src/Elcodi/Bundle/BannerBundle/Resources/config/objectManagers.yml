@@ -1,0 +1,14 @@
+services:
+
+    #
+    # Object Managers
+    #
+    elcodi.object_manager.banner:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.banner.class%
+
+    elcodi.object_manager.banner_zone:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.banner_zone.class%

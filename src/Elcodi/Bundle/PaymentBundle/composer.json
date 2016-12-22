@@ -1,0 +1,61 @@
+{
+    "name": "elcodi/payment-bundle",
+    "description": "Elcodi Payment Bundle",
+    "keywords": [
+        "elcodi",
+        "payment",
+        "ecommerce"
+    ],
+    "homepage": "https://github.com/elcodi/PaymentBundle",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "support": {
+        "email": "devs@elcodi.com",
+        "forum": "https://gitter.im/elcodi/elcodi",
+        "source": "https://github.com/elcodi/elcodi",
+        "issues": "https://github.com/elcodi/elcodi/issues"
+    },
+    "authors": [
+        {
+            "name": "Marc Morera",
+            "email": "yuhu@mmoreram.com"
+        },
+        {
+            "name": "Aldo Chiecchia",
+            "email": "zimage@tiscali.it"
+        },
+        {
+            "name": "The Awesome Elcodi Community",
+            "homepage": "https://github.com/elcodi/PaymentBundle/contributors"
+        }
+    ],
+    "require": {
+        "php": "^5.4|^7.0",
+
+        "symfony/http-kernel": "^2.7|^3.0",
+        "symfony/dependency-injection": "^2.7|^3.0",
+        "mmoreram/symfony-bundle-dependencies": "^1.1.1",
+
+        "elcodi/core-bundle": "^2.0",
+        "elcodi/payment": "^2.0"
+    },
+    "require-dev": {
+        "elcodi/test-common-bundle": "^2.0",
+        "elcodi/fixtures-booster-bundle": "^2.0",
+        "doctrine/data-fixtures": "^1.1",
+        "phpunit/phpunit": "4.8.19"
+    },
+    "autoload": {
+        "exclude-from-classmap": [
+            "/Tests/"
+        ],
+        "psr-4": {
+            "Elcodi\\Bundle\\PaymentBundle\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}

@@ -1,0 +1,13 @@
+services:
+
+    #
+    # Repositories
+    #
+
+    #
+    # Repository for entity newsletter_subscription
+    #
+    elcodi.repository.newsletter_subscription:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.newsletter_subscription.class%

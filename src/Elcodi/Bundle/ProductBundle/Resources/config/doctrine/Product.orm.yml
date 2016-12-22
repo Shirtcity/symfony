@@ -1,0 +1,35 @@
+Elcodi\Component\Product\Entity\Product:
+    type: entity
+    repositoryClass: Elcodi\Component\Product\Repository\ProductRepository
+    table: product
+
+    manyToOne:
+        principalVariant:
+            targetEntity: Elcodi\Component\Product\Entity\Interfaces\VariantInterface
+            joinColumn:
+                name: principal_variant_id
+                referencedColumnName: id
+                nullable: true
+                onDelete: "SET NULL"
+
+    oneToMany:
+        variants:
+            targetEntity: Elcodi\Component\Product\Entity\Interfaces\VariantInterface
+            mappedBy: product
+            cascade: [ "all" ]
+            orphanRemoval: true
+
+    manyToMany:
+        attributes:
+            targetEntity: Elcodi\Component\Attribute\Entity\Interfaces\AttributeInterface
+            joinTable:
+                name: product_attribute
+                joinColumns:
+                    product_id:
+                        referencedColumnName: id
+                        onDelete: "CASCADE"
+                inverseJoinColumns:
+                    attribute_id:
+                        referencedColumnName: id
+                        onDelete: "CASCADE"
+

@@ -1,0 +1,7 @@
+services:
+
+    #
+    # Page renderers
+    #
+    elcodi.page_renderer_chain:
+        class: Elcodi\Component\Page\Renderer\PageRendererChain

@@ -1,0 +1,15 @@
+services:
+
+    #
+    # Generators
+    #
+    elcodi.generator.random_string:
+        class: Elcodi\Component\Core\Generator\RandomGenerator
+
+    elcodi.generator.sha1:
+        class: Elcodi\Component\Core\Generator\Sha1Generator
+        arguments:
+            - '@elcodi.generator.random_string'
+
+    elcodi.generator.uniqid:
+        class: Elcodi\Component\Core\Generator\UniqIdGenerator

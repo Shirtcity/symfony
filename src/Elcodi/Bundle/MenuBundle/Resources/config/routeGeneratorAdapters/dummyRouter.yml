@@ -1,0 +1,10 @@
+services:
+
+    #
+    # DummyRouter Adapter
+    #
+    elcodi.adapter.menu_route_generator.dummy:
+        class: Elcodi\Component\Menu\Adapter\RouteGenerator\DummyRouteGeneratorAdapter
+
+    elcodi.adapter.menu_route_generator:
+        alias: elcodi.adapter.menu_route_generator.dummy

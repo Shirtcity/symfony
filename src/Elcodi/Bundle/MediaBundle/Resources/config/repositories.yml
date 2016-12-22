@@ -1,0 +1,13 @@
+services:
+
+    #
+    # Repositories
+    #
+
+    #
+    # Repository for entity image
+    #
+    elcodi.repository.image:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.image.class%

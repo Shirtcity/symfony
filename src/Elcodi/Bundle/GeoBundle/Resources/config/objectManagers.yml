@@ -1,0 +1,14 @@
+services:
+
+    #
+    # Object Managers
+    #
+    elcodi.object_manager.address:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.address.class%
+
+    elcodi.object_manager.location:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.location.class%

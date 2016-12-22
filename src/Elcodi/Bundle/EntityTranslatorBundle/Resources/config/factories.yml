@@ -1,0 +1,21 @@
+services:
+
+    #
+    # Factories
+    #
+
+    #
+    # Factory for entity tax
+    #
+    elcodi.factory.entity_translation:
+        class: Elcodi\Component\EntityTranslator\Factory\EntityTranslationFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.entity_translation.class%"]]
+
+    #
+    # Factory for Translator service
+    #
+    elcodi.factory.entity_translator:
+        class: Elcodi\Component\EntityTranslator\Factory\EntityTranslatorFactory
+        calls:
+            - [setEntityNamespace, [ Elcodi\Component\EntityTranslator\Services\EntityTranslator ]]

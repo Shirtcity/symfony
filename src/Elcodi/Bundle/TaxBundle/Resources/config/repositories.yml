@@ -1,0 +1,13 @@
+services:
+
+    #
+    # Repositories
+    #
+
+    #
+    # Repository for entity tax
+    #
+    elcodi.repository.tax:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.tax.class%

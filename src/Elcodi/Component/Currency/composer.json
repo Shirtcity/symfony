@@ -1,0 +1,63 @@
+{
+    "name": "elcodi/currency",
+    "description": "Elcodi Currency Component",
+    "keywords": [
+        "elcodi",
+        "currency",
+        "ecommerce",
+        "component"
+    ],
+    "homepage": "https://github.com/elcodi/Currency",
+    "type": "library",
+    "license": "MIT",
+    "support": {
+        "email": "devs@elcodi.com",
+        "forum": "https://gitter.im/elcodi/elcodi",
+        "source": "https://github.com/elcodi/elcodi",
+        "issues": "https://github.com/elcodi/elcodi/issues"
+    },
+    "authors": [
+        {
+            "name": "Marc Morera",
+            "email": "yuhu@mmoreram.com"
+        },
+        {
+            "name": "Aldo Chiecchia",
+            "email": "zimage@tiscali.it"
+        },
+        {
+            "name": "The Awesome Elcodi Community",
+            "homepage": "https://github.com/elcodi/Currency/contributors"
+        }
+    ],
+    "require": {
+        "php": "^5.4|^7.0",
+        "doctrine/common": "^2.5",
+        "doctrine/orm": "^2.5",
+        "symfony/http-foundation": "^2.7|^3.0",
+        "sebastian/money": "^1.5",
+        "twig/twig": "^1.23",
+
+        "elcodi/core": "^2.0",
+        "elcodi/language": "^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.8.19"
+    },
+    "suggest": {
+        "guzzle/http": "Required for OpenExchangeRates adapter"
+    },
+    "autoload": {
+        "exclude-from-classmap": [
+            "/Tests/"
+        ],
+        "psr-4": {
+            "Elcodi\\Component\\Currency\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}

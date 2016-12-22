@@ -1,0 +1,28 @@
+security:
+
+    providers:
+        customer:
+            entity:
+                class: %elcodi.entity.customer.class%
+                property: email
+        adminuser:
+            entity:
+                class: %elcodi.entity.admin_user.class%
+                property: email
+
+services:
+    elcodi.event_listener.customer_password:
+        class: Elcodi\Component\User\EventListener\CustomerPasswordEventListener
+        arguments:
+            - '@elcodi.provider.customer_provider'
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }
+            - { name: doctrine.event_listener, event: prePersist, method: prePersist }
+
+    elcodi.event_listener.admin_user_password:
+        class: Elcodi\Component\User\EventListener\AdminUserPasswordEventListener
+        arguments:
+            - '@elcodi.provider.admin_user_provider'
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }
+            - { name: doctrine.event_listener, event: prePersist, method: prePersist }

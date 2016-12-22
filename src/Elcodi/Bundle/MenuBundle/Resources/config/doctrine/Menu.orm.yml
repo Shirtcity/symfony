@@ -1,0 +1,39 @@
+Elcodi\Component\Menu\Entity\Menu\Menu:
+    type: entity
+    repositoryClass: Elcodi\Component\Menu\Repository\MenuRepository
+    table: menu
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        code:
+            column: code
+            type: string
+            length: 255
+            nullable: false
+        description:
+            column: description
+            type: text
+            nullable: false
+        enabled:
+            column: enabled
+            type: boolean
+            nullable: false
+
+    manyToMany:
+        subnodes:
+            targetEntity: Elcodi\Component\Menu\Entity\Menu\Interfaces\NodeInterface
+            cascade: [ "persist", "remove", "detach" ]
+            fetch: EAGER
+            joinTable:
+                name: menu_node_hierarchy
+                joinColumns:
+                    menu_node_id:
+                        referencedColumnName: id
+                        onDelete: cascade
+                inverseJoinColumns:
+                    menu_subnode_id:
+                        referencedColumnName: id
+                        onDelete: cascade

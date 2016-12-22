@@ -1,0 +1,13 @@
+services:
+
+    #
+    # Factories
+    #
+
+    #
+    # Factory for entity language
+    #
+    elcodi.factory.language:
+        class: Elcodi\Component\Language\Factory\LanguageFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.language.class%"]]

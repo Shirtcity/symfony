@@ -1,0 +1,21 @@
+services:
+
+    #
+    # Repositories
+    #
+
+    #
+    # Repository for Attribute entities
+    #
+    elcodi.repository.attribute:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.attribute.class%
+
+    #
+    # Repository for Attribute Value entities
+    #
+    elcodi.repository.attribute_value:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.attribute_value.class%

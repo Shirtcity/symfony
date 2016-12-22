@@ -1,0 +1,13 @@
+services:
+
+    #
+    # Factories
+    #
+
+    #
+    # Factory for entity tax
+    #
+    elcodi.factory.tax:
+        class: Elcodi\Component\Tax\Factory\TaxFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.tax.class%"]]

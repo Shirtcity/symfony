@@ -1,0 +1,21 @@
+services:
+
+    #
+    # Repositories
+    #
+
+    #
+    # Repository for entity banner
+    #
+    elcodi.repository.banner:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.banner.class%
+
+    #
+    # Repository for entity banner_zone
+    #
+    elcodi.repository.banner_zone:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.banner_zone.class%

@@ -1,0 +1,14 @@
+services:
+
+    #
+    # Factories
+    #
+
+    #
+    # Factory for entity page
+    #
+    elcodi.factory.page:
+        class: Elcodi\Component\Page\Factory\PageFactory
+        calls:
+            - [setEntityNamespace, [%elcodi.entity.page.class%]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]

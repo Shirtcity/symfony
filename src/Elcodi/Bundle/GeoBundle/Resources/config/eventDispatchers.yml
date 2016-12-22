@@ -1,0 +1,8 @@
+services:
+
+    #
+    # EventDispatchers
+    #
+    elcodi.event_dispatcher.address:
+        class: Elcodi\Component\Geo\EventDispatcher\AddressEventDispatcher
+        parent: elcodi.event_dispatcher.abstract

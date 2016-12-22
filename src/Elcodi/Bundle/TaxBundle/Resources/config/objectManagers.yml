@@ -1,0 +1,9 @@
+services:
+
+    #
+    # Object Managers
+    #
+    elcodi.object_manager.tax:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.tax.class%

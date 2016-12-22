@@ -1,0 +1,18 @@
+services:
+
+    #
+    # Services
+    #
+    elcodi.metric_manager:
+        class: Elcodi\Component\Metric\Core\Services\MetricManager
+        arguments:
+            - '@elcodi.metrics_bucket'
+            - '@elcodi.factory.metric_entry'
+            - '@elcodi.object_manager.entry'
+
+    elcodi.metric_loader:
+        class: Elcodi\Component\Metric\Core\Services\MetricLoader
+        lazy: true
+        arguments:
+            - '@elcodi.metrics_bucket'
+            - '@elcodi.repository.metric_entry'

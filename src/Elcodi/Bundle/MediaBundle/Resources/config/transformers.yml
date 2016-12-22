@@ -1,0 +1,10 @@
+services:
+
+    #
+    # Transformers
+    #
+    elcodi.transformer.media_image_etag:
+        class: Elcodi\Component\Media\Transformer\ImageEtagTransformer
+
+    elcodi.transformer.media_file_identifier:
+        class: Elcodi\Component\Media\Transformer\FileIdentifierTransformer

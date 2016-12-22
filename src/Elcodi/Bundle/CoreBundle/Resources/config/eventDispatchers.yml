@@ -1,0 +1,9 @@
+services:
+
+    #
+    # EventDispatchers
+    #
+    elcodi.event_dispatcher.abstract:
+        abstract: true
+        arguments:
+            - '@event_dispatcher'

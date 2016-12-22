@@ -1,0 +1,21 @@
+services:
+
+    #
+    # Repositories
+    #
+
+    #
+    # Repository for entity address
+    #
+    elcodi.repository.address:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.address.class%
+
+    #
+    # Repository for entity location
+    #
+    elcodi.repository.location:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.location.class%

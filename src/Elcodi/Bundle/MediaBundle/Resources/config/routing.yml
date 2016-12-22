@@ -1,0 +1,24 @@
+#
+# Routing
+#
+
+elcodi.route.image_resize:
+    path: /images/{id}/resize/{height}/{width}/{type}.{_format}
+    methods: GET
+    defaults:
+        _controller: elcodi.controller.image_resize:resizeAction
+
+elcodi.route.image_view:
+    path: /images/{id}/render.{_format}
+    methods: GET
+    defaults:
+        _controller: elcodi.controller.image_resize:resizeAction
+        height: 0
+        width: 0
+        type: 0
+
+elcodi.route.image_upload:
+    path: /images/upload
+    methods: POST
+    defaults:
+        _controller: elcodi.controller.image_upload:uploadAction

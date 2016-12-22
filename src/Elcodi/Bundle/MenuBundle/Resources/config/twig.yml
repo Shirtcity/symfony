@@ -1,0 +1,12 @@
+services:
+
+    #
+    # Twig extensions
+    #
+    elcodi.twig_extension.menu_print_route:
+        class: Elcodi\Component\Menu\Twig\PrintRouteExtension
+        public: false
+        arguments:
+            - '@router'
+        tags:
+            - { name: twig.extension }

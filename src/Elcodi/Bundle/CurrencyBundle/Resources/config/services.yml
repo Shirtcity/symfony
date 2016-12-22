@@ -1,0 +1,45 @@
+services:
+
+    #
+    # Services
+    #
+    elcodi.manager.currency:
+        class: Elcodi\Component\Currency\Services\CurrencyManager
+        arguments:
+            - '@elcodi.repository.currency'
+            - '@elcodi.repository.currency_exchange_rate'
+            - %elcodi.default_currency%
+
+    elcodi.manager.currency_session:
+        class: Elcodi\Component\Currency\Services\CurrencySessionManager
+        arguments:
+            - '@session'
+            - %elcodi.currency_session_field_name%
+
+    elcodi.converter.currency:
+        class: Elcodi\Component\Currency\Services\CurrencyConverter
+        arguments:
+            - '@elcodi.calculator.exchange_rate'
+
+    elcodi.money_printer:
+        class: Elcodi\Component\Currency\Services\MoneyPrinter
+        arguments:
+            - '@elcodi.converter.currency'
+            - '@elcodi.wrapper.currency'
+            - '@elcodi.locale'
+
+    elcodi.populator.currency_exchange_rate:
+        class: Elcodi\Component\Currency\Populator\CurrencyExchangeRatesPopulator
+        lazy: true
+        arguments:
+            - '@elcodi.adapter.currency_exchange_rate'
+            - '@elcodi.director.currency_exchange_rate'
+            - '@elcodi.repository.currency'
+            - %elcodi.default_currency%
+
+    elcodi.calculator.exchange_rate:
+        class: Elcodi\Component\Currency\Services\ExchangeRateCalculator
+        lazy: true
+        arguments:
+            - '@elcodi.manager.currency'
+            - %elcodi.default_currency%

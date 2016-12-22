@@ -1,0 +1,10 @@
+services:
+
+    #
+    # Controllers
+    #
+    elcodi.controller.location_api:
+        class: Elcodi\Component\Geo\Controller\LocationApiController
+        arguments:
+            - '@request_stack'
+            - '@elcodi.location_provider_adapter.service'

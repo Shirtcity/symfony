@@ -1,0 +1,7 @@
+services:
+
+    #
+    # Factories
+    #
+    elcodi.factory.metric_entry:
+        class: Elcodi\Component\Metric\Core\Factory\EntryFactory

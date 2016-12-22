@@ -1,0 +1,27 @@
+services:
+
+    #
+    # Factories
+    #
+
+    #
+    # Factory for entity address
+    #
+    elcodi.factory.address:
+        class: Elcodi\Component\Geo\Factory\AddressFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.address.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+
+    elcodi.factory.location:
+        class: Elcodi\Component\Geo\Factory\LocationFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.location.class%"]]
+
+    elcodi.factory.location_data:
+        class: Elcodi\Component\Geo\Factory\LocationDataFactory
+
+    elcodi.factory.address_view:
+        class: Elcodi\Component\Geo\Factory\AddressViewFactory
+        arguments:
+            - '@elcodi.location_provider'

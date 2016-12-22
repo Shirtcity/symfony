@@ -1,0 +1,20 @@
+services:
+
+    #
+    # EventDispatchers
+    #
+    elcodi.event_dispatcher.cart:
+        class: Elcodi\Component\Cart\EventDispatcher\CartEventDispatcher
+        parent: elcodi.event_dispatcher.abstract
+
+    elcodi.event_dispatcher.cart_line:
+        class: Elcodi\Component\Cart\EventDispatcher\CartLineEventDispatcher
+        parent: elcodi.event_dispatcher.abstract
+
+    elcodi.event_dispatcher.order:
+        class: Elcodi\Component\Cart\EventDispatcher\OrderEventDispatcher
+        parent: elcodi.event_dispatcher.abstract
+
+    elcodi.event_dispatcher.order_line:
+        class: Elcodi\Component\Cart\EventDispatcher\OrderLineEventDispatcher
+        parent: elcodi.event_dispatcher.abstract

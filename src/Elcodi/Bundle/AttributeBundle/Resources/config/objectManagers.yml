@@ -1,0 +1,14 @@
+services:
+
+    #
+    # Object Managers
+    #
+    elcodi.object_manager.attribute:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.attribute.class%
+
+    elcodi.object_manager.attribute_value:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.attribute_value.class%

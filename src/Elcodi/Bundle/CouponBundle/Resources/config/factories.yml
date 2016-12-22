@@ -1,0 +1,15 @@
+services:
+
+    #
+    # Factories
+    #
+
+    #
+    # Factory for entity coupon
+    #
+    elcodi.factory.coupon:
+        class: Elcodi\Component\Coupon\Factory\CouponFactory
+        parent: elcodi.factory.abstract.purchasable
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.coupon.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]

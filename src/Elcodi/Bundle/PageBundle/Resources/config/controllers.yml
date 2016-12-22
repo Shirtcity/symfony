@@ -1,0 +1,10 @@
+services:
+
+    #
+    # Controllers
+    #
+    elcodi.controller.page:
+        class: Elcodi\Component\Page\Controller\PageController
+        arguments:
+            - '@elcodi.repository.page'
+            - '@elcodi.transformer.page_response'

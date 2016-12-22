@@ -1,0 +1,13 @@
+services:
+
+    #
+    # Repositories
+    #
+
+    #
+    # Repository for entity language
+    #
+    elcodi.repository.language:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.language.class%

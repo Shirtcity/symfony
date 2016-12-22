@@ -1,0 +1,13 @@
+services:
+
+    #
+    # Repositories
+    #
+
+    #
+    # Repository for entity rule
+    #
+    elcodi.repository.rule:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.rule.class%

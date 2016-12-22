@@ -1,0 +1,13 @@
+services:
+
+    #
+    # Factories
+    #
+
+    #
+    # Factory for entity rule
+    #
+    elcodi.factory.rule:
+        class: Elcodi\Component\Rule\Factory\RuleFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.rule.class%"]]

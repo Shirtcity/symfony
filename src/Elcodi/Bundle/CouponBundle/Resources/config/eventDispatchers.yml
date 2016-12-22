@@ -1,0 +1,8 @@
+services:
+
+    #
+    # Event Dispatchers
+    #
+    elcodi.event_dispatcher.coupon:
+        class: Elcodi\Component\Coupon\EventDispatcher\CouponEventDispatcher
+        parent: elcodi.event_dispatcher.abstract

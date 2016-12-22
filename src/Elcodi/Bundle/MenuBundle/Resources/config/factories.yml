@@ -1,0 +1,21 @@
+services:
+
+    #
+    # Factories
+    #
+
+    #
+    # Factory for entity node
+    #
+    elcodi.factory.menu_node:
+        class: Elcodi\Component\Menu\Factory\NodeFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.menu_node.class%"]]
+
+    #
+    # Factory for entity menu
+    #
+    elcodi.factory.menu:
+        class: Elcodi\Component\Menu\Factory\MenuFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.menu.class%"]]

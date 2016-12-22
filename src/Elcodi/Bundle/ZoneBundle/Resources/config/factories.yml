@@ -1,0 +1,14 @@
+services:
+
+    #
+    # Factories
+    #
+
+    #
+    # Factory for Zone entities
+    #
+    elcodi.factory.zone:
+        class: Elcodi\Component\Zone\Factory\ZoneFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.zone.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]

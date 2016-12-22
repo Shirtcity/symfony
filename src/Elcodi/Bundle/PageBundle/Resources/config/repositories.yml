@@ -1,0 +1,14 @@
+services:
+
+    #
+    # Repositories
+    #
+
+    #
+    # Repository for entity page
+    #
+    elcodi.repository.page:
+        parent: elcodi.abstract_repository
+        class: Doctrine\Common\Persistence\ObjectRepository
+        arguments:
+            - %elcodi.entity.page.class%

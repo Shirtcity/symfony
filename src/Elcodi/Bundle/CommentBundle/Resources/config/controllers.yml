@@ -1,0 +1,11 @@
+services:
+
+    #
+    # Controllers
+    #
+    elcodi.controller.comment:
+        class: Elcodi\Component\Comment\Controller\CommentController
+        arguments:
+            - '@elcodi.manager.comment'
+            - '@elcodi.comment_cache'
+            - '@elcodi.repository.comment'

@@ -1,0 +1,21 @@
+services:
+
+    #
+    # Repositories
+    #
+
+    #
+    # Repository for entity customer
+    #
+    elcodi.repository.customer:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.customer.class%
+
+    #
+    # Repository for entity admin
+    #
+    elcodi.repository.admin_user:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.admin_user.class%

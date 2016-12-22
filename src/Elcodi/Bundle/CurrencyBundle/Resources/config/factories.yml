@@ -1,0 +1,31 @@
+services:
+
+    #
+    # Factories
+    #
+
+    #
+    # Abstract purchasable factory
+    #
+    elcodi.factory.abstract.purchasable:
+        class: Elcodi\Component\Currency\Factory\Abstracts\AbstractPurchasableFactory
+        abstract: true
+        arguments:
+            - '@elcodi.wrapper.empty_money'
+
+    #
+    # Factory for Currency entities
+    #
+    elcodi.factory.currency:
+        class: Elcodi\Component\Currency\Factory\CurrencyFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.currency.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+
+    #
+    # Factory for CurrencyExchangeRate entitites
+    #
+    elcodi.factory.currency_exchange_rate:
+        class: Elcodi\Component\Currency\Factory\CurrencyExchangeRateFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.currency_exchange_rate.class%"]]

@@ -1,0 +1,9 @@
+services:
+
+    #
+    # Formatters
+    #
+    elcodi.formatter.address:
+        class: Elcodi\Component\Geo\Formatter\AddressFormatter
+        arguments:
+            - '@elcodi.location_provider'

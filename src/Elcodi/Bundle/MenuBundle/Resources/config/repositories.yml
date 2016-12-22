@@ -1,0 +1,19 @@
+services:
+
+    #
+    # Repositories
+    #
+    # Repository for entity node
+    #
+    elcodi.repository.menu_node:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.menu_node.class%
+
+    #
+    # Repository for entity menu
+    #
+    elcodi.repository.menu:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.menu.class%
