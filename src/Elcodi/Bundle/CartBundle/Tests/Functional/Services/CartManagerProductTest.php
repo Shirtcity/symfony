@@ -22,9 +22,9 @@ use Elcodi\Bundle\CartBundle\Tests\Functional\Services\Abstracts\AbstractCartMan
 /**
  * Tests CartManager class.
  *
- * This will test CartManager common methods using a Product with no variants
+ * This will test CartManager common methods using a Article with no variants
  */
-class CartManagerProductTest extends AbstractCartManagerTest
+class CartManagerArticleTest extends AbstractCartManagerTest
 {
     /**
      * Load fixtures of these bundles.
@@ -34,7 +34,7 @@ class CartManagerProductTest extends AbstractCartManagerTest
     protected static function loadFixturesBundles()
     {
         return [
-            'ElcodiProductBundle',
+            'ElcodiArticleBundle',
         ];
     }
 
@@ -45,7 +45,7 @@ class CartManagerProductTest extends AbstractCartManagerTest
      */
     protected function createPurchasable()
     {
-        return $this->find('product', 1);
+        return $this->find('article', 1);
     }
 
     /**

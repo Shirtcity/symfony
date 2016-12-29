@@ -63,7 +63,7 @@ template:
                 units: Unidades
             nav:
                 amount: Total
-                items: Productos
+                items: Articleos
             view:
                 checkout: 'Tramitar pedido'
                 checkout_title: 'Comprueba tu pedido y/o aplica cupones'
@@ -149,21 +149,21 @@ template:
             month: Mes
             security_code: 'Código de seguridad'
             year: Año
-        product:
+        article:
             also_like: 'Tambien te puede interesar...'
             item:
                 offer: Oferta
             list:
-                no_products_in_category: 'Lo sentimos pero no tenemos ningún producto para esta categoría'
+                no_articles_in_category: 'Lo sentimos pero no tenemos ningún articleo para esta categoría'
             view_item:
                 add_to_cart: Añadir
                 delivery: Envío
                 description: Descripción
-                in_stock: 'Este producto está en stock, listo para ser enviado.'
+                in_stock: 'Este articleo está en stock, listo para ser enviado.'
                 no_stock: 'Sin stock'
-                not_available: 'No hay stock para este producto'
+                not_available: 'No hay stock para este articleo'
                 offer: Oferta
-                product: Producto
+                article: Articleo
                 stock: Existencias
                 usually_dispatched_24_hours: 'Envío en 24/48 horas'
         shipping:

@@ -21,7 +21,7 @@ services:
             - [setTemplating, ["@twig"]]
             - [setPlugin, ["@elcodi_plugin.twitter"]]
         tags:
-            - { name: kernel.event_listener, event: store.product_pin_top, method: renderShareProduct }
+            - { name: kernel.event_listener, event: store.article_pin_top, method: renderShareArticle }
             - { name: kernel.event_listener, event: store.order_thanks, method: renderShareOrder }
 
     elcodi_plugin.twitter.follow_renderer:

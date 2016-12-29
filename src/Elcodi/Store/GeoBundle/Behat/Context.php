@@ -27,7 +27,7 @@ class Context extends AbstractElcodiContext
     /**
      * @When /^I remove address "(?P<addressId>\d+)" from my account$/
      */
-    public function iFromProductInCart($addressId)
+    public function iFromArticleInCart($addressId)
     {
         $this->visitPath('/my-address/' . $addressId . '/remove');
     }

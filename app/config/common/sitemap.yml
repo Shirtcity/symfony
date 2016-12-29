@@ -1,8 +1,8 @@
 elcodi_sitemap:
     blocks:
-        enabled_products:
-            transformer: elcodi_store.sitemap_transformer.product
-            repository_service: elcodi.repository.product
+        enabled_articles:
+            transformer: elcodi_store.sitemap_transformer.article
+            repository_service: elcodi.repository.article
             method: findBy
             arguments:
                 enabled: true
@@ -24,7 +24,7 @@ elcodi_sitemap:
             path: %kernel.root_dir%/../web/sitemap/sitemap_{_locale}.xml
             renderer: elcodi.sitemap_renderer.xml
             blocks:
-                - enabled_products
+                - enabled_articles
                 - enabled_categories
             statics:
                 - store_homepage

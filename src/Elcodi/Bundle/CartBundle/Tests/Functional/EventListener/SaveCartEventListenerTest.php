@@ -38,7 +38,7 @@ class SaveCartEventListenerTest extends AbstractCartEventListenerTest
             ->get('elcodi.manager.cart')
             ->addPurchasable(
                 $cart,
-                $this->find('product', 1),
+                $this->find('article', 1),
                 1
             );
 

@@ -35,7 +35,7 @@ class WizardRoutes
      * The wizard routes by step
      */
     protected $wizardRoutesByStep = [
-        1 => 'admin_product_new',
+        1 => 'admin_article_new',
         2 => 'admin_address_edit',
         3 => 'admin_payment_configuration_list',
         4 => 'admin_shipping_range_new',

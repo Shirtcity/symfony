@@ -155,12 +155,12 @@ template:
             month: Month
             security_code: 'Security Code'
             year: Year
-        product:
+        article:
             also_like: 'You might also like...'
             item:
                 offer: Offer
             list:
-                no_products_in_category: 'Sorry, we don''t have products for this category'
+                no_articles_in_category: 'Sorry, we don''t have articles for this category'
             view_item:
                 add_to_cart: 'Add to cart'
                 delivery: Delivery
@@ -169,7 +169,7 @@ template:
                 no_stock: 'No stock'
                 not_available: 'This item is currently not available'
                 offer: Offer
-                product: Product
+                article: Article
                 stock: Stock
                 usually_dispatched_24_hours: 'Usually dispatched within 24 hours'
         purchasable_pack:

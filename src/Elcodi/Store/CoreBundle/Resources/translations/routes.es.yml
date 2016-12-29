@@ -5,7 +5,7 @@ store_address_list: /mis-direcciones
 store_address_new: '/mi-direccion/nueva/{source}'
 store_blog_post_view: '/blog/{id}/{slug}'
 store_blog_view: '/blog/{page}'
-store_cart_add_purchasable: '/mi-carrito/producto/{id}/añadir'
+store_cart_add_purchasable: '/mi-carrito/articleo/{id}/añadir'
 store_cart_coupon_form_type_coupon_apply: /mi-carrito/cupones
 store_cart_empty: /mi-carrito/vaciar
 store_cart_nav: /mi-carrito/nav
@@ -30,7 +30,7 @@ store_order_view_thanks: '/pedido/{id}/gracias'
 store_password_recover: /contrasena/recuperar
 store_password_recover_sent: /contrasena/enviado
 store_password_remember: /contrasena/recordar
-store_product_view: '/producto/{slug}/{id}'
+store_article_view: '/articleo/{slug}/{id}'
 store_register: /registar-se
 store_user: /usuario
 store_user_edit: /usuario/editar

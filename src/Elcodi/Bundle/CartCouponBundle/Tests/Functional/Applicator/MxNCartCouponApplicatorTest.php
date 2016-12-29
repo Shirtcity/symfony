@@ -34,7 +34,7 @@ class MxNCartCouponApplicatorTest extends WebTestCase
         return [
             'ElcodiCartBundle',
             'ElcodiCouponBundle',
-            'ElcodiProductBundle',
+            'ElcodiArticleBundle',
             'ElcodiCurrencyBundle',
         ];
     }

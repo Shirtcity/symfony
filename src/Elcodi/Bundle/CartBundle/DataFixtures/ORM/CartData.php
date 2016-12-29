@@ -25,7 +25,7 @@ use Elcodi\Component\Cart\Entity\Interfaces\CartInterface;
 use Elcodi\Component\Cart\Entity\Interfaces\CartLineInterface;
 use Elcodi\Component\Core\Services\ObjectDirector;
 use Elcodi\Component\Geo\Entity\Interfaces\AddressInterface;
-use Elcodi\Component\Product\Entity\Interfaces\ProductInterface;
+use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Component\User\Entity\Interfaces\CustomerInterface;
 
 /**
@@ -47,8 +47,8 @@ class CartData extends AbstractFixture implements DependentFixtureInterface
          * @var CartInterface     $fullCart
          * @var CustomerInterface $customer1
          * @var CustomerInterface $customer2
-         * @var ProductInterface  $product
-         * @var ProductInterface  $productReduced
+         * @var ArticleInterface  $article
+         * @var ArticleInterface  $articleReduced
          * @var CartLineInterface $cartLine1
          * @var CartLineInterface $cartLine2
          * @var ObjectDirector    $cartDirector
@@ -61,8 +61,8 @@ class CartData extends AbstractFixture implements DependentFixtureInterface
 
         $customer1 = $this->getReference('customer-1');
         $customer2 = $this->getReference('customer-2');
-        $product = $this->getReference('product');
-        $productReduced = $this->getReference('product-reduced');
+        $article = $this->getReference('article');
+        $articleReduced = $this->getReference('article-reduced');
 
         $address1 = $this->getReference('address-sant-celoni');
         $address2 = $this->getReference('address-viladecavalls');
@@ -86,17 +86,17 @@ class CartData extends AbstractFixture implements DependentFixtureInterface
 
         $cartLine1 = $cartLineDirector
             ->create()
-            ->setPurchasable($product)
-            ->setPurchasableAmount($product->getPrice())
-            ->setAmount($product->getPrice())
+            ->setPurchasable($article)
+            ->setPurchasableAmount($article->getPrice())
+            ->setAmount($article->getPrice())
             ->setQuantity(2)
             ->setCart($fullCart);
 
         $cartLine2 = $cartLineDirector
             ->create()
-            ->setPurchasable($productReduced)
-            ->setPurchasableAmount($productReduced->getPrice())
-            ->setAmount($productReduced->getPrice())
+            ->setPurchasable($articleReduced)
+            ->setPurchasableAmount($articleReduced->getPrice())
+            ->setAmount($articleReduced->getPrice())
             ->setQuantity(2)
             ->setCart($fullCart);
 
@@ -120,7 +120,7 @@ class CartData extends AbstractFixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductData',
+            'Elcodi\Bundle\ArticleBundle\DataFixtures\ORM\ArticleData',
             'Elcodi\Bundle\UserBundle\DataFixtures\ORM\CustomerData',
             'Elcodi\Bundle\GeoBundle\DataFixtures\ORM\AddressData',
             'Elcodi\Bundle\CurrencyBundle\DataFixtures\ORM\CurrencyData',

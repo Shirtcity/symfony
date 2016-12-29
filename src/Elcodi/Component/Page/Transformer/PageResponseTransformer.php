@@ -117,7 +117,7 @@ class PageResponseTransformer
         }
 
         /**
-         * We must check that the product slug is right. Otherwise we must
+         * We must check that the article slug is right. Otherwise we must
          * return a Redirection 301 to the right url.
          */
         if (

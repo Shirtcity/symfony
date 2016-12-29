@@ -18,7 +18,7 @@
 namespace Elcodi\Bundle\CartBundle\Tests\Functional\Services;
 
 use Elcodi\Bundle\CartBundle\Tests\Functional\Services\Abstracts\AbstractCartManagerTest;
-use Elcodi\Component\Product\Entity\Interfaces\PurchasableInterface;
+use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 
 /**
  * Class CartManagerVariantTest.
@@ -36,7 +36,7 @@ class CartManagerPackWithInheritanceStockTest extends AbstractCartManagerTest
     {
         return [
             'ElcodiCartBundle',
-            'ElcodiProductBundle',
+            'ElcodiArticleBundle',
         ];
     }
 

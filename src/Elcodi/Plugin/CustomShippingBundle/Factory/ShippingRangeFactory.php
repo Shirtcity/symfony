@@ -47,7 +47,7 @@ class ShippingRangeFactory extends AbstractFactory
 
     /**
      * Returns a zero-initialized Money object
-     * to be assigned to product prices
+     * to be assigned to article prices
      *
      * @return MoneyInterface
      */

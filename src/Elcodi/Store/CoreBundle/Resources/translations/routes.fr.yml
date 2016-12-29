@@ -5,8 +5,8 @@ store_address_list: /mes-adresses
 store_address_new: '/mes-adresses/neuf/{source}'
 store_blog_post_view: '/blog/{id}/{slug}'
 store_blog_view: '/blog/{page}'
-store_cart_add_product: '/panier/produit/{id}/ajouter'
-store_cart_add_product_variant: '/panier/produit/variante/{id}/ajouter'
+store_cart_add_article: '/panier/produit/{id}/ajouter'
+store_cart_add_article_variant: '/panier/produit/variante/{id}/ajouter'
 store_cart_coupon_form_type_coupon_apply: /panier/reductions
 store_cart_empty: /panier/vider
 store_cart_nav: /panier/nav
@@ -14,7 +14,7 @@ store_cart_update: /panier/reactualiser
 store_cart_view: /panier
 store_cartline_remove: '/panier/ligne/{id}/retirer'
 store_categories_nav: /categories/nav
-store_category_products_list: '/categorie/{slug}/{id}'
+store_category_articles_list: '/categorie/{slug}/{id}'
 store_checkout_address: /panier/adresse
 store_checkout_address_save: /panier/adresse/enregistrer
 store_checkout_payment: /panier/paiement
@@ -31,7 +31,7 @@ store_order_view_thanks: '/commande/{id}/merci'
 store_password_recover: /mot-de-passe/recuperer
 store_password_recover_sent: /mot-de-passe/envoye
 store_password_remember: /mot-de-passe/rappeler
-store_product_view: '/produit/{slug}/{id}'
+store_article_view: '/produit/{slug}/{id}'
 store_register: /registre
 store_user: /usager
 store_user_edit: /usager/modif

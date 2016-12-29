@@ -27,7 +27,7 @@ use Elcodi\Component\Cart\Repository\OrderRepository;
 use Elcodi\Component\Cart\Wrapper\CartWrapper;
 use Elcodi\Component\Currency\Entity\Money;
 use Elcodi\Component\Currency\Services\CurrencyConverter;
-use Elcodi\Component\Product\NameResolver\Interfaces\PurchasableNameResolverInterface;
+use Elcodi\Component\Article\NameResolver\Interfaces\PurchasableNameResolverInterface;
 
 /**
  * Class PaymentBridge

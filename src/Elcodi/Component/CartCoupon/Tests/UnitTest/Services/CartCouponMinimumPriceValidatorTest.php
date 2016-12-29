@@ -37,8 +37,8 @@ class CartCouponMinimumPriceValidatorTest extends PHPUnit_Framework_TestCase
     public function testValidateCartCouponMinimumPrice(
         $minimumPurchaseAmount,
         $minimumPurchaseCurrencyCode,
-        $productMoneyAmount,
-        $productMoneyCurrencyCode,
+        $articleMoneyAmount,
+        $articleMoneyCurrencyCode,
         $moneyIsConverted,
         $isLess,
         $throwException
@@ -60,22 +60,22 @@ class CartCouponMinimumPriceValidatorTest extends PHPUnit_Framework_TestCase
             ->getCurrency()
             ->willReturn($minimumPurchaseCurrency);
 
-        $productMoneyCurrency = $minimumPurchaseCurrencyCode === $productMoneyCurrencyCode
+        $articleMoneyCurrency = $minimumPurchaseCurrencyCode === $articleMoneyCurrencyCode
             ? $minimumPurchaseCurrency
             : $this
                 ->prophesize('Elcodi\Component\Currency\Entity\Interfaces\CurrencyInterface')
                 ->reveal();
 
-        $productMoney = $this->prophesize('Elcodi\Component\Currency\Entity\Interfaces\MoneyInterface');
-        $productMoney
+        $articleMoney = $this->prophesize('Elcodi\Component\Currency\Entity\Interfaces\MoneyInterface');
+        $articleMoney
             ->getAmount()
-            ->willReturn($productMoneyAmount);
+            ->willReturn($articleMoneyAmount);
 
-        $productMoney
+        $articleMoney
             ->getCurrency()
-            ->willReturn($productMoneyCurrency);
+            ->willReturn($articleMoneyCurrency);
 
-        $productMoney
+        $articleMoney
             ->isLessThan(Argument::any())
             ->willReturn($isLess);
 
@@ -98,7 +98,7 @@ class CartCouponMinimumPriceValidatorTest extends PHPUnit_Framework_TestCase
 
         $cart
             ->getPurchasableAmount()
-            ->willReturn($productMoney->reveal());
+            ->willReturn($articleMoney->reveal());
 
         try {
             $cartCouponMinimumPriceValidator = new CartCouponMinimumPriceValidator(

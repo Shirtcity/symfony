@@ -19,13 +19,13 @@ namespace Elcodi\Bundle\CartBundle\Tests\Functional\Services;
 
 use Elcodi\Bundle\CartBundle\Tests\Functional\Services\Abstracts\AbstractCartManagerTest;
 use Elcodi\Component\Attribute\Entity\Interfaces\ValueInterface;
-use Elcodi\Component\Product\Entity\Interfaces\PurchasableInterface;
-use Elcodi\Component\Product\Entity\Interfaces\VariantInterface;
+use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
+use Elcodi\Component\Article\Entity\Interfaces\VariantInterface;
 
 /**
  * Class CartManagerVariantTest.
  *
- * This will test CartManager common methods using a Product with variants
+ * This will test CartManager common methods using a Article with variants
  */
 class CartManagerVariantTest extends AbstractCartManagerTest
 {
@@ -37,7 +37,7 @@ class CartManagerVariantTest extends AbstractCartManagerTest
     protected static function loadFixturesBundles()
     {
         return [
-            'ElcodiProductBundle',
+            'ElcodiArticleBundle',
         ];
     }
 
@@ -150,7 +150,7 @@ class CartManagerVariantTest extends AbstractCartManagerTest
     }
 
     /**
-     * Adding an Option to a Variant if a parent Product is not set must throw
+     * Adding an Option to a Variant if a parent Article is not set must throw
      * a LogicException.
      *
      * @expectedException \LogicException
@@ -165,7 +165,7 @@ class CartManagerVariantTest extends AbstractCartManagerTest
          * @var VariantInterface $variant
          */
         $this
-            ->getFactory('product_variant')
+            ->getFactory('article_variant')
             ->create()
             ->addOption($variantOption);
     }

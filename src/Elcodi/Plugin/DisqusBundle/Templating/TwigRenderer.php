@@ -93,17 +93,17 @@ class TwigRenderer
     }
 
     /**
-     * Renders disqus block on product page
+     * Renders disqus block on article page
      *
      * @param EventInterface $event Event
      */
-    public function renderDisqusProductBlock(EventInterface $event)
+    public function renderDisqusArticleBlock(EventInterface $event)
     {
         if ($this
             ->plugin
             ->isUsable([
                 'disqus_identifier',
-                'disqus_enabled_product',
+                'disqus_enabled_article',
             ])
         ) {
             $this->appendTemplate(

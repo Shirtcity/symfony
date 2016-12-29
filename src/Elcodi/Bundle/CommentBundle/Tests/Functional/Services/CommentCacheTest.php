@@ -41,7 +41,7 @@ class CommentCacheTest extends WebTestCase
     {
         $commentCache = $this->get('elcodi.comment_cache');
         $commentManager = $this->get('elcodi.manager.comment');
-        $source = 'product-1';
+        $source = 'article-1';
         $comment1 = $commentManager->addComment(
             $source,
             'admin',

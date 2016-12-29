@@ -78,7 +78,7 @@ class AppKernel extends Kernel
             'Elcodi\Bundle\CurrencyBundle\ElcodiCurrencyBundle',
             'Elcodi\Bundle\UserBundle\ElcodiUserBundle',
             'Elcodi\Bundle\GeoBundle\ElcodiGeoBundle',
-            'Elcodi\Bundle\ProductBundle\ElcodiProductBundle',
+            'Elcodi\Bundle\ArticleBundle\ElcodiArticleBundle',
             'Elcodi\Bundle\AttributeBundle\ElcodiAttributeBundle',
             'Elcodi\Bundle\MediaBundle\ElcodiMediaBundle',
             'Elcodi\Bundle\RuleBundle\ElcodiRuleBundle',
@@ -102,7 +102,7 @@ class AppKernel extends Kernel
              * Elcodi store bundle
              */
             'Elcodi\Store\CoreBundle\StoreCoreBundle',
-            'Elcodi\Store\ProductBundle\StoreProductBundle',
+            'Elcodi\Store\ArticleBundle\StoreArticleBundle',
             'Elcodi\Store\UserBundle\StoreUserBundle',
             'Elcodi\Store\GeoBundle\StoreGeoBundle',
             'Elcodi\Store\CartBundle\StoreCartBundle',
@@ -128,7 +128,7 @@ class AppKernel extends Kernel
             'Elcodi\Admin\LanguageBundle\AdminLanguageBundle',
             'Elcodi\Admin\MediaBundle\AdminMediaBundle',
             'Elcodi\Admin\NewsletterBundle\AdminNewsletterBundle',
-            'Elcodi\Admin\ProductBundle\AdminProductBundle',
+            'Elcodi\Admin\ArticleBundle\AdminArticleBundle',
             'Elcodi\Admin\PageBundle\AdminPageBundle',
             'Elcodi\Admin\TemplateBundle\AdminTemplateBundle',
             'Elcodi\Admin\MetricBundle\AdminMetricBundle',
@@ -149,7 +149,7 @@ class AppKernel extends Kernel
              */
             'Elcodi\Plugin\GoogleAnalyticsBundle\ElcodiGoogleAnalyticsBundle',
             'Elcodi\Plugin\PinterestBundle\ElcodiPinterestBundle',
-            'Elcodi\Plugin\ProductCsvBundle\ElcodiProductCsvBundle',
+            'Elcodi\Plugin\ArticleCsvBundle\ElcodiArticleCsvBundle',
             'Elcodi\Plugin\StoreSetupWizardBundle\ElcodiStoreSetupWizardBundle',
             'Elcodi\Plugin\DisqusBundle\ElcodiDisqusBundle',
             'Elcodi\Plugin\TwitterBundle\ElcodiTwitterBundle',

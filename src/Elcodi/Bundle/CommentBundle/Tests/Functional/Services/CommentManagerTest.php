@@ -40,7 +40,7 @@ class CommentManagerTest extends WebTestCase
     public function testAddComment()
     {
         $commentManager = $this->get('elcodi.manager.comment');
-        $source = 'http://page.com/product1';
+        $source = 'http://page.com/article1';
         $commentManager->addComment(
             $source,
             'admin',
@@ -52,7 +52,7 @@ class CommentManagerTest extends WebTestCase
         );
 
         $storedComment = $this->find('comment', 1);
-        $this->assertEquals('http://page.com/product1', $storedComment->getSource());
+        $this->assertEquals('http://page.com/article1', $storedComment->getSource());
         $this->assertEquals('This is my comment #1', $storedComment->getContent());
         $this->assertSame('Efervescencio', $storedComment->getAuthorName());
         $this->assertSame('uhsi@noseque.com', $storedComment->getAuthorEmail());

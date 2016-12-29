@@ -6,7 +6,7 @@ services:
     elcodi_plugin.store_setup_wizard.wizard_status:
         class: Elcodi\Plugin\StoreSetupWizardBundle\Services\WizardStatus
         arguments:
-            - "@elcodi.repository.product"
+            - "@elcodi.repository.article"
             - "@elcodi.store"
             - "@elcodi.enabled_payment_plugins"
             - "@elcodi.enabled_shipping_plugins"

@@ -23,8 +23,8 @@ use Symfony\Component\Translation\TranslatorInterface;
 use Elcodi\Component\Plugin\Entity\Plugin;
 use Elcodi\Component\Plugin\EventDispatcher\Interfaces\EventInterface;
 use Elcodi\Component\Plugin\Templating\Traits\TemplatingTrait;
-use Elcodi\Component\Product\Entity\Interfaces\CategoryInterface;
-use Elcodi\Component\Product\Entity\Product;
+use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
+use Elcodi\Component\Article\Entity\Article;
 
 /**
  * Class ShareTweetRenderer
@@ -83,11 +83,11 @@ class ShareTweetRenderer
     }
 
     /**
-     * Renders the share product button.
+     * Renders the share article button.
      *
      * @param EventInterface $event The event
      */
-    public function renderShareProduct(EventInterface $event)
+    public function renderShareArticle(EventInterface $event)
     {
         if ($this
             ->plugin
@@ -96,23 +96,23 @@ class ShareTweetRenderer
             $pluginConfiguration = $this->plugin->getConfiguration();
 
             /**
-             * @var Product $product
+             * @var Article $article
              */
-            $product = $event->get('product');
+            $article = $event->get('article');
 
             $shareUrl = $this
                 ->urlGenerator
                 ->generate(
-                    'store_product_view',
+                    'store_article_view',
                     [
-                        'id'   => $product->getId(),
-                        'slug' => $product->getSlug(),
+                        'id'   => $article->getId(),
+                        'slug' => $article->getSlug(),
                     ],
                     true
                 );
 
-            $text = $product->getName();
-            $category = $product->getPrincipalCategory();
+            $text = $article->getName();
+            $category = $article->getPrincipalCategory();
             if ($category instanceof CategoryInterface) {
                 $text = $category->getName() . ' - ' . $text;
             }
@@ -131,7 +131,7 @@ class ShareTweetRenderer
     }
 
     /**
-     * Renders the share product button.
+     * Renders the share article button.
      *
      * @param EventInterface $event The event
      */

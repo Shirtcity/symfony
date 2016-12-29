@@ -30,7 +30,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Elcodi\Component\Cart\Entity\Interfaces\CartInterface;
 use Elcodi\Component\Cart\Entity\Interfaces\CartLineInterface;
-use Elcodi\Component\Product\Entity\Interfaces\PurchasableInterface;
+use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 use Elcodi\Store\CoreBundle\Controller\Traits\TemplateRenderTrait;
 
 /**
@@ -91,7 +91,7 @@ class CartController extends Controller
     }
 
     /**
-     * Adds product into cart
+     * Adds article into cart
      *
      * @param Request       $request Request object
      * @param CartInterface $cart    Cart

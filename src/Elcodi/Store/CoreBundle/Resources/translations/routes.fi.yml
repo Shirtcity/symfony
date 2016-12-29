@@ -5,7 +5,7 @@ store_address_list: /my-addresses
 store_address_new: '/my-address/new/{source}'
 store_blog_post_view: '/blog/{id}/{slug}'
 store_blog_view: '/blog/{page}'
-store_cart_add_purchasable: '/cart/product/{id}/add'
+store_cart_add_purchasable: '/cart/article/{id}/add'
 store_cart_coupon_form_type_coupon_apply: /cart/coupons
 store_cart_empty: /cart/empty
 store_cart_nav: /cart/nav
@@ -30,7 +30,7 @@ store_order_view_thanks: '/order/{id}/thanks'
 store_password_recover: /password/recover
 store_password_recover_sent: /password/sent
 store_password_remember: /password/remember
-store_product_view: '/product/{slug}/{id}'
+store_article_view: '/article/{slug}/{id}'
 store_register: /register
 store_user: /user
 store_user_edit: /user/edit

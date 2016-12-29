@@ -30,7 +30,7 @@ store_order_view_thanks: '/pedido/{id}/grazas'
 store_password_recover: /contrasinal/recuperar
 store_password_recover_sent: /contrasinal/enviado
 store_password_remember: /contrasinal/lembrar
-store_product_view: '/produto/{slug}/{id}'
+store_article_view: '/produto/{slug}/{id}'
 store_register: /rexistro
 store_user: /usuario
 store_user_edit: /usuario/editar

@@ -19,7 +19,7 @@ namespace Elcodi\Component\CartCoupon\Applicator\ExpressionLanguage;
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
-use Elcodi\Component\Product\Entity\Interfaces\ManufacturerInterface;
+use Elcodi\Component\Article\Entity\Interfaces\ManufacturerInterface;
 
 /**
  * Class ManufacturerFunction.

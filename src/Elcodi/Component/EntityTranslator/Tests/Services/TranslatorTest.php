@@ -20,7 +20,7 @@ namespace Elcodi\Component\EntityTranslator\Tests\Services;
 use PHPUnit_Framework_TestCase;
 
 use Elcodi\Component\EntityTranslator\Services\EntityTranslator;
-use Elcodi\Component\EntityTranslator\Tests\Fixtures\TranslatableProduct;
+use Elcodi\Component\EntityTranslator\Tests\Fixtures\TranslatableArticle;
 
 /**
  * Class TranslatorTest.
@@ -37,16 +37,16 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('getTranslation')
             ->with(
-                $this->equalTo('product'),
+                $this->equalTo('article'),
                 $this->equalTo('1'),
                 $this->equalTo('name'),
                 $this->equalTo('en')
             )
-            ->will($this->returnValue('translatedProductName'));
+            ->will($this->returnValue('translatedArticleName'));
 
         $configuration = [
-            'Elcodi\Component\EntityTranslator\Tests\Fixtures\TranslatableProduct' => [
-                'alias' => 'product',
+            'Elcodi\Component\EntityTranslator\Tests\Fixtures\TranslatableArticle' => [
+                'alias' => 'article',
                 'idGetter' => 'getId',
                 'fields' => [
                     'name' => [
@@ -63,14 +63,14 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
             true
         );
 
-        $product = new TranslatableProduct();
-        $product
+        $article = new TranslatableArticle();
+        $article
             ->setId(1)
-            ->setName('productName');
+            ->setName('articleName');
 
-        $translatedProduct = $translator->translate($product, 'en');
-        $this->assertSame($product, $translatedProduct);
-        $this->assertEquals('translatedProductName', $translatedProduct->getName());
+        $translatedArticle = $translator->translate($article, 'en');
+        $this->assertSame($article, $translatedArticle);
+        $this->assertEquals('translatedArticleName', $translatedArticle->getName());
     }
 
     /**
@@ -83,25 +83,25 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
             ->expects($this->exactly(4))
             ->method('setTranslation')
             ->withConsecutive([
-                $this->equalTo('product'),
+                $this->equalTo('article'),
                 $this->equalTo('1'),
                 $this->equalTo('name'),
                 $this->equalTo('el nombre'),
                 $this->equalTo('es'),
             ], [
-                $this->equalTo('product'),
+                $this->equalTo('article'),
                 $this->equalTo('1'),
                 $this->equalTo('description'),
                 $this->equalTo('la descripción'),
                 $this->equalTo('es'),
             ], [
-                $this->equalTo('product'),
+                $this->equalTo('article'),
                 $this->equalTo('1'),
                 $this->equalTo('name'),
                 $this->equalTo('the name'),
                 $this->equalTo('en'),
             ], [
-                $this->equalTo('product'),
+                $this->equalTo('article'),
                 $this->equalTo('1'),
                 $this->equalTo('description'),
                 $this->equalTo('the description'),
@@ -113,8 +113,8 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
             ->method('flushTranslations');
 
         $configuration = [
-            'Elcodi\Component\EntityTranslator\Tests\Fixtures\TranslatableProduct' => [
-                'alias' => 'product',
+            'Elcodi\Component\EntityTranslator\Tests\Fixtures\TranslatableArticle' => [
+                'alias' => 'article',
                 'idGetter' => 'getId',
                 'fields' => [
                     'name' => [
@@ -135,13 +135,13 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
             true
         );
 
-        $product = new TranslatableProduct();
-        $product
+        $article = new TranslatableArticle();
+        $article
             ->setId(1)
             ->setName('wrong name')
             ->setDescription('wrong description');
 
-        $translator->save($product, [
+        $translator->save($article, [
             'es' => [
                 'name' => 'el nombre',
                 'description' => 'la descripción',

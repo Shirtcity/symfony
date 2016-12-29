@@ -57,8 +57,8 @@ services:
         tags:
             - { name: elcodi.cart_coupon_applicator_function }
 
-    elcodi.cart_coupon_applicator_function.product:
-        class: Elcodi\Component\CartCoupon\Applicator\ExpressionLanguage\ProductFunction
+    elcodi.cart_coupon_applicator_function.article:
+        class: Elcodi\Component\CartCoupon\Applicator\ExpressionLanguage\ArticleFunction
         public: false
         tags:
             - { name: elcodi.cart_coupon_applicator_function }

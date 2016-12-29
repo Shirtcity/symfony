@@ -23,7 +23,7 @@ use Elcodi\Component\Cart\EventDispatcher\CartEventDispatcher;
 use Elcodi\Component\Cart\EventDispatcher\CartLineEventDispatcher;
 use Elcodi\Component\Cart\Factory\CartFactory;
 use Elcodi\Component\Cart\Factory\CartLineFactory;
-use Elcodi\Component\Product\Entity\Interfaces\PurchasableInterface;
+use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 
 /**
  * Cart manager service.
@@ -106,8 +106,8 @@ class CartManager
      * This method dispatches all Cart Check and Load events
      * It should NOT be used to add a Purchasable to a Cart,
      * by manually passing a newly crafted CartLine, since
-     * no product duplication check is performed: in that
-     * case CartManager::addProduct should be used
+     * no article duplication check is performed: in that
+     * case CartManager::addArticle should be used
      *
      * @param CartInterface     $cart     Cart
      * @param CartLineInterface $cartLine Cart line
@@ -366,7 +366,7 @@ class CartManager
      * item quantity by $quantity
      *
      * @param CartInterface        $cart        Cart
-     * @param PurchasableInterface $purchasable Product or Variant to add
+     * @param PurchasableInterface $purchasable Article or Variant to add
      * @param int                  $quantity    Number of units to set or increase
      *
      * @return $this Self object
@@ -377,7 +377,7 @@ class CartManager
         $quantity
     ) {
         /**
-         * If quantity is not a number or is 0 or less, product is not added
+         * If quantity is not a number or is 0 or less, article is not added
          * into cart.
          */
         if (!is_int($quantity) || $quantity <= 0) {
@@ -395,7 +395,7 @@ class CartManager
             ) {
 
                 /**
-                 * Product already in the Cart, increase quantity.
+                 * Article already in the Cart, increase quantity.
                  */
 
                 return $this->increaseCartLineQuantity($cartLine, $quantity);
@@ -421,7 +421,7 @@ class CartManager
      * item quantity by $quantity
      *
      * @param CartInterface        $cart        Cart
-     * @param PurchasableInterface $purchasable Product or Variant to add
+     * @param PurchasableInterface $purchasable Article or Variant to add
      * @param int                  $quantity    Number of units to set or increase
      *
      * @return $this Self object
@@ -432,7 +432,7 @@ class CartManager
         $quantity
     ) {
         /**
-         * If quantity is not a number or is 0 or less, product is not removed
+         * If quantity is not a number or is 0 or less, article is not removed
          * from cart.
          */
         if (!is_int($quantity) || $quantity <= 0) {
@@ -448,7 +448,7 @@ class CartManager
                 ($cartLine->getPurchasable()->getId() == $purchasable->getId())
             ) {
                 /**
-                 * Product already in the Cart, decrease quantity.
+                 * Article already in the Cart, decrease quantity.
                  */
 
                 return $this->decreaseCartLineQuantity($cartLine, $quantity);

@@ -155,12 +155,12 @@ template:
             month: Mes
             security_code: 'Código de seguridade'
             year: Ano
-        product:
+        article:
             also_like: 'Tamén pode gustarche...'
             item:
                 offer: Oferta
             list:
-                no_products_in_category: 'Sentímolo, non temos produtos para esta categoría'
+                no_articles_in_category: 'Sentímolo, non temos produtos para esta categoría'
             view_item:
                 add_to_cart: 'Engadir á cesta'
                 delivery: Entrega
@@ -169,7 +169,7 @@ template:
                 no_stock: 'Sen stock'
                 not_available: 'Este produto non está dispoñible actualmente'
                 offer: Oferta
-                product: Produto
+                article: Produto
                 stock: Stock
                 usually_dispatched_24_hours: 'Despachado normalmente en 24 horas'
         shipping:

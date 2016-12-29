@@ -23,7 +23,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 use Elcodi\Component\Plugin\Entity\Plugin;
 use Elcodi\Component\Plugin\EventDispatcher\Interfaces\EventInterface;
 use Elcodi\Component\Plugin\Templating\Traits\TemplatingTrait;
-use Elcodi\Component\Product\Entity\Product;
+use Elcodi\Component\Article\Entity\Article;
 
 /**
  * Class SharePostRenderer
@@ -82,28 +82,28 @@ class SharePostRenderer
     }
 
     /**
-     * Renders the share product button.
+     * Renders the share article button.
      *
      * @param EventInterface $event The event
      */
-    public function renderShareProduct(EventInterface $event)
+    public function renderShareArticle(EventInterface $event)
     {
         if ($this
             ->plugin
             ->isUsable()
         ) {
             /**
-             * @var Product $product
+             * @var Article $article
              */
-            $product = $event->get('product');
+            $article = $event->get('article');
 
             $shareUrl = $this
                 ->urlGenerator
                 ->generate(
-                    'store_product_view',
+                    'store_article_view',
                     [
-                        'id'   => $product->getId(),
-                        'slug' => $product->getSlug(),
+                        'id'   => $article->getId(),
+                        'slug' => $article->getSlug(),
                     ],
                     true
                 );
@@ -120,7 +120,7 @@ class SharePostRenderer
     }
 
     /**
-     * Renders the share product button.
+     * Renders the share article button.
      *
      * @param EventInterface $event The event
      */

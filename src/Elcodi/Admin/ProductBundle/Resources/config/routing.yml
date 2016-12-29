@@ -1,3 +1,0 @@
-AdminProductBundle:
-    resource: "@AdminProductBundle/Controller/"
-    type:     annotation

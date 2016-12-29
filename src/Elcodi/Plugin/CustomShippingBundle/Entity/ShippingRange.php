@@ -69,14 +69,14 @@ class ShippingRange implements ShippingRangeInterface
     /**
      * @var integer
      *
-     * Product price amount
+     * Article price amount
      */
     protected $priceAmount;
 
     /**
      * @var CurrencyInterface
      *
-     * Product price currency
+     * Article price currency
      */
     protected $priceCurrency;
 

@@ -19,8 +19,8 @@ namespace Elcodi\Plugin\StoreSetupWizardBundle\Services;
 
 use Elcodi\Component\Geo\Entity\Interfaces\AddressInterface;
 use Elcodi\Component\Plugin\Entity\Plugin;
-use Elcodi\Component\Product\Entity\Interfaces\ProductInterface;
-use Elcodi\Component\Product\Repository\ProductRepository;
+use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
+use Elcodi\Component\Article\Repository\ArticleRepository;
 use Elcodi\Component\Store\Entity\Interfaces\StoreInterface;
 
 /**
@@ -29,11 +29,11 @@ use Elcodi\Component\Store\Entity\Interfaces\StoreInterface;
 class WizardStatus
 {
     /**
-     * @var ProductRepository
+     * @var ArticleRepository
      *
-     * Product repository
+     * Article repository
      */
-    protected $productRepository;
+    protected $articleRepository;
 
     /**
      * @var StoreInterface
@@ -59,18 +59,18 @@ class WizardStatus
     /**
      * Builds a new WizardStepChecker
      *
-     * @param ProductRepository $productRepository      Product repository
+     * @param ArticleRepository $articleRepository      Article repository
      * @param StoreInterface    $store                  Store
      * @param array             $enabledPaymentPlugins  The enabled payment methods
      * @param array             $enabledShippingPlugins The enabled shipping methods
      */
     public function __construct(
-        ProductRepository $productRepository,
+        ArticleRepository $articleRepository,
         StoreInterface $store,
         array $enabledPaymentPlugins,
         array $enabledShippingPlugins
     ) {
-        $this->productRepository = $productRepository;
+        $this->articleRepository = $articleRepository;
         $this->store = $store;
         $this->enabledPaymentPlugins = $enabledPaymentPlugins;
         $this->enabledShippingPlugins = $enabledShippingPlugins;
@@ -115,7 +115,7 @@ class WizardStatus
     {
         switch ($stepNumber) {
             case 1:
-                return $this->isThereAnyProduct();
+                return $this->isThereAnyArticle();
             case 2:
                 return $this->isAddressFulfilled();
             case 3:
@@ -162,19 +162,19 @@ class WizardStatus
     }
 
     /**
-     * Checks if there is any product on the store.
+     * Checks if there is any article on the store.
      *
      * @return boolean
      */
-    protected function isThereAnyProduct()
+    protected function isThereAnyArticle()
     {
-        $enabledProduct = $this
-            ->productRepository
+        $enabledArticle = $this
+            ->articleRepository
             ->findOneBy([
                 'enabled' => true,
             ]);
 
-        return ($enabledProduct instanceof ProductInterface);
+        return ($enabledArticle instanceof ArticleInterface);
     }
 
     /**

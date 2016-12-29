@@ -33,8 +33,8 @@ class EntityTranslatorBuilder
      * Configuration
      *
      * array(
-     *      '\My\Namespace\Product' => array(
-     *          'alias' => 'product',
+     *      '\My\Namespace\Article' => array(
+     *          'alias' => 'article',
      *          'idGetter' => 'getId',
      *          'fields' => array(
      *              'name' => array(

@@ -103,7 +103,7 @@ class TwigRenderer
             ->isUsable()
         ) {
             $this->appendTemplate(
-                '@ElcodiPinterest/product_pin.html.twig',
+                '@ElcodiPinterest/article_pin.html.twig',
                 $event,
                 $this->plugin
             );

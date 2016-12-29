@@ -1,9 +1,0 @@
-services:
-
-    #
-    # Related Purchasables Provider Adapters
-    #
-    elcodi.related_purchasables_provider.same_category:
-        class: Elcodi\Component\Product\Adapter\SimilarPurchasablesProvider\SameCategoryRelatedPurchasableProvider
-        arguments:
-            - '@elcodi.repository.purchasable'

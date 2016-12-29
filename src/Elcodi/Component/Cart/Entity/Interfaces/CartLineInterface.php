@@ -18,7 +18,7 @@
 namespace Elcodi\Component\Cart\Entity\Interfaces;
 
 use Elcodi\Component\Core\Entity\Interfaces\IdentifiableInterface;
-use Elcodi\Component\Product\Entity\Interfaces\DimensionableInterface;
+use Elcodi\Component\Article\Entity\Interfaces\DimensionableInterface;
 
 /**
  * Interface CartLineInterface.

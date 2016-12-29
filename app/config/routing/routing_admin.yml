@@ -22,8 +22,8 @@ admin_currency:
 admin_attribute:
     resource: "@AdminAttributeBundle/Resources/config/routing.yml"
 
-admin_product:
-    resource: "@AdminProductBundle/Resources/config/routing.yml"
+admin_article:
+    resource: "@AdminArticleBundle/Resources/config/routing.yml"
 
 admin_media:
     resource: "@AdminMediaBundle/Resources/config/routing.yml"

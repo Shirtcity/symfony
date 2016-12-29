@@ -11,4 +11,4 @@ services:
         tags:
             - { name: kernel.event_listener, event: store.head_bottom, method: renderJavascript }
             - { name: kernel.event_listener, event: store.blog_post_view_bottom, method: renderDisqusBlogPostBlock }
-            - { name: kernel.event_listener, event: store.product_view_bottom, method: renderDisqusProductBlock }
+            - { name: kernel.event_listener, event: store.article_view_bottom, method: renderDisqusArticleBlock }

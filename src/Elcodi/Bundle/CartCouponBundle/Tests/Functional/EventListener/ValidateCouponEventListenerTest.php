@@ -29,7 +29,7 @@ class ValidateCouponEventListenerTest extends AbstractCartCouponEventListenerTes
      *
      * @expectedException \Elcodi\Component\Coupon\Exception\CouponIncompatibleException
      */
-    public function testDuplicatedCouponWithoutProducts()
+    public function testDuplicatedCouponWithoutArticles()
     {
         $cart = $this->getLoadedCart(1);
         $coupon = $this->getEnabledCoupon(3);

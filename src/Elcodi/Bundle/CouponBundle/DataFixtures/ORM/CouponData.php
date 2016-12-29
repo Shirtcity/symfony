@@ -145,7 +145,7 @@ class CouponData extends AbstractFixture implements DependentFixtureInterface
         $this->addReference('stackable-coupon-amount', $stackableCouponAmount);
 
         /**
-         * Coupon MxN. Valid for products with category 1.
+         * Coupon MxN. Valid for articles with category 1.
          *
          * Valid from now without expire time
          *
@@ -161,7 +161,7 @@ class CouponData extends AbstractFixture implements DependentFixtureInterface
             ->create()
             ->setCode('2x1category1')
             ->setEnabled(true)
-            ->setName('2x1 in products from category1')
+            ->setName('2x1 in articles from category1')
             ->setType(AbstractMxNCartCouponApplicator::id())
             ->setValue('2x1:cat(1):P')
             ->setCount(20)

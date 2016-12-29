@@ -20,7 +20,7 @@ namespace Elcodi\Component\Cart\Services;
 use Elcodi\Component\Cart\Entity\Interfaces\CartInterface;
 use Elcodi\Component\Cart\Entity\Interfaces\CartLineInterface;
 use Elcodi\Component\Cart\EventDispatcher\CartEventDispatcher;
-use Elcodi\Component\Product\StockValidator\Interfaces\PurchasableStockValidatorInterface;
+use Elcodi\Component\Article\StockValidator\Interfaces\PurchasableStockValidatorInterface;
 
 /**
  * Class CartIntegrityValidator.

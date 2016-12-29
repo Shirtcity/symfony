@@ -18,7 +18,7 @@
 namespace Elcodi\Component\Cart\Services;
 
 use Elcodi\Component\Cart\Entity\Interfaces\CartLineInterface;
-use Elcodi\Component\Product\StockUpdater\Interfaces\PurchasableStockUpdaterInterface;
+use Elcodi\Component\Article\StockUpdater\Interfaces\PurchasableStockUpdaterInterface;
 
 /**
  * Class CartLineStockUpdater.

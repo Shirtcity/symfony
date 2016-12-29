@@ -53,7 +53,7 @@ Nuestra más humilde bienvenida a nuestro blog.
 
 En este blog encontrarás las últimas novedades, así como todas las noticias relacionadas con nuestra tienda.
 
-No dudéis en dejar vuestros comentarios e impresiones, así como sugerencias y opiniones. Éstos nos serán de extrema ayuda para mejorar nuestro producto y poder seguir trabajando para darle un mejor servicio cada dia.
+No dudéis en dejar vuestros comentarios e impresiones, así como sugerencias y opiniones. Éstos nos serán de extrema ayuda para mejorar nuestro articleo y poder seguir trabajando para darle un mejor servicio cada dia.
 
 Salutaciones y esperamos verle de nuevo.
 OEF;
@@ -234,7 +234,7 @@ OEF;
 Bienvenido {{ customer.fullname }},<br/><br/>
 
 Tu cuenta se ha creado correctamente.<br/>
-Deseamos que en nuestra tienda encuentres productos de tu agrado y que el proceso de compra te resulte lo más cómodo posible.<br/><br/>
+Deseamos que en nuestra tienda encuentres articleos de tu agrado y que el proceso de compra te resulte lo más cómodo posible.<br/><br/>
 
 Atentamente,
 CONTENT;
@@ -243,7 +243,7 @@ CONTENT;
 Welcome {{ customer.fullname }},<br/><br/>
 
 Your account has been successful created.<br/>
-We hope you like our products and the buying process be flawless.<br/><br/>
+We hope you like our articles and the buying process be flawless.<br/><br/>
 
 Sincerely,
 CONTENT;

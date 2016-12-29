@@ -68,18 +68,18 @@ class CartCouponMinimumPriceValidator
             return;
         }
 
-        $productMoney = $cart->getPurchasableAmount();
+        $articleMoney = $cart->getPurchasableAmount();
 
-        if ($couponMinimumPrice->getCurrency() != $productMoney->getCurrency()) {
+        if ($couponMinimumPrice->getCurrency() != $articleMoney->getCurrency()) {
             $couponMinimumPrice = $this
                 ->currencyConverter
                 ->convertMoney(
                     $couponMinimumPrice,
-                    $productMoney->getCurrency()
+                    $articleMoney->getCurrency()
                 );
         }
 
-        if ($productMoney->isLessThan($couponMinimumPrice)) {
+        if ($articleMoney->isLessThan($couponMinimumPrice)) {
             throw new CouponBelowMinimumPurchaseException();
         }
     }

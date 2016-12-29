@@ -44,17 +44,17 @@ class RuleData extends AbstractFixture
 
         $ruleDirector->save($cartOver1000Euros);
 
-        $cartUnder10Products = $ruleDirector
+        $cartUnder10Articles = $ruleDirector
             ->create()
-            ->setName('cart_under_10products')
+            ->setName('cart_under_10articles')
             ->setExpression('cart.getTotalItemNumber() < 10');
 
-        $ruleDirector->save($cartUnder10Products);
+        $ruleDirector->save($cartUnder10Articles);
 
         $cartValuableItems = $ruleDirector
             ->create()
             ->setName('cart_valuable_items')
-            ->setExpression('rule("cart_over_1000euros") and rule("cart_under_10products")');
+            ->setExpression('rule("cart_over_1000euros") and rule("cart_under_10articles")');
 
         $ruleDirector->save($cartValuableItems);
     }

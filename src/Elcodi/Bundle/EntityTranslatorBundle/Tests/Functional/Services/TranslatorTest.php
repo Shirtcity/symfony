@@ -18,7 +18,7 @@
 namespace Elcodi\Bundle\EntityTranslatorBundle\Tests\Functional\Services;
 
 use Elcodi\Bundle\TestCommonBundle\Functional\WebTestCase;
-use Elcodi\Component\EntityTranslator\Tests\Fixtures\TranslatableProduct;
+use Elcodi\Component\EntityTranslator\Tests\Fixtures\TranslatableArticle;
 
 /**
  * Class TranslatorTest.
@@ -43,11 +43,11 @@ class TranslatorTest extends WebTestCase
         $translation = $this
             ->getFactory('entity_translation')
             ->create()
-            ->setEntityType('translatable_product')
+            ->setEntityType('translatable_article')
             ->setEntityId(1)
             ->setEntityField('name')
             ->setLocale('es')
-            ->setTranslation('nombre del producto');
+            ->setTranslation('nombre del articleo');
 
         $this->flush($translation);
 
@@ -55,16 +55,16 @@ class TranslatorTest extends WebTestCase
             ->get('elcodi.event_dispatcher.entity_translator')
             ->dispatchTranslatorWarmUp();
 
-        $translatableProduct = new TranslatableProduct();
-        $translatableProduct
+        $translatableArticle = new TranslatableArticle();
+        $translatableArticle
             ->setId(1)
             ->setName('my default name');
 
-        $translatableProduct = $this
+        $translatableArticle = $this
             ->get('elcodi.entity_translator')
-            ->translate($translatableProduct, 'es');
+            ->translate($translatableArticle, 'es');
 
-        $this->assertEquals('nombre del producto', $translatableProduct->getName());
+        $this->assertEquals('nombre del articleo', $translatableArticle->getName());
     }
 
     /**
@@ -77,11 +77,11 @@ class TranslatorTest extends WebTestCase
         $translation = $this
             ->getFactory('entity_translation')
             ->create()
-            ->setEntityType('translatable_product')
+            ->setEntityType('translatable_article')
             ->setEntityId(1)
             ->setEntityField('name')
             ->setLocale('es')
-            ->setTranslation('nombre del producto');
+            ->setTranslation('nombre del articleo');
 
         $this->flush($translation);
 
@@ -89,15 +89,15 @@ class TranslatorTest extends WebTestCase
             ->get('elcodi.event_dispatcher.entity_translator')
             ->dispatchTranslatorWarmUp();
 
-        $translatableProduct = new TranslatableProduct();
-        $translatableProduct
+        $translatableArticle = new TranslatableArticle();
+        $translatableArticle
             ->setId(1)
             ->setName('my default name')
             ->setDescription('my default description');
 
         $this
             ->get('elcodi.entity_translator')
-            ->save($translatableProduct, [
+            ->save($translatableArticle, [
                 'es' => [
                     'name' => 'el nombre',
                 ],
@@ -114,8 +114,8 @@ class TranslatorTest extends WebTestCase
         );
 
         $cache = $this->get('doctrine_cache.providers.elcodi_translations');
-        $this->assertEquals('el nombre', $cache->fetch('translation_translatable_product_1_name_es'));
-        $this->assertEquals('the name', $cache->fetch('translation_translatable_product_1_name_en'));
-        $this->assertEquals('le nom', $cache->fetch('translation_translatable_product_1_name_fr'));
+        $this->assertEquals('el nombre', $cache->fetch('translation_translatable_article_1_name_es'));
+        $this->assertEquals('the name', $cache->fetch('translation_translatable_article_1_name_en'));
+        $this->assertEquals('le nom', $cache->fetch('translation_translatable_article_1_name_fr'));
     }
 }

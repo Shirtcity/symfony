@@ -35,7 +35,7 @@ class CartOrderTransformerTest extends WebTestCase
     {
         return [
             'ElcodiCartBundle',
-            'ElcodiProductBundle',
+            'ElcodiArticleBundle',
         ];
     }
 
@@ -80,13 +80,13 @@ class CartOrderTransformerTest extends WebTestCase
         $cartManager = $this->get('elcodi.manager.cart');
         $cartManager->addPurchasable(
             $cart,
-            $this->find('product', 1),
+            $this->find('article', 1),
             1
         );
 
         $cartManager->addPurchasable(
             $cart,
-            $this->find('product_variant', 7),
+            $this->find('article_variant', 7),
             1
         );
 

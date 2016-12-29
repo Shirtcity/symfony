@@ -1,4 +1,0 @@
-elcodi_plugin_productcsv_export:
-    path: /products/export
-    defaults: { _controller: ElcodiProductCsvBundle:Csv:export }
-    methods: ['GET']

@@ -62,7 +62,7 @@ Elcodi\Component\Cart\Entity\OrderLine:
                  referencedColumnName: iso
                  nullable: false
         purchasable:
-            targetEntity: Elcodi\Component\Product\Entity\Interfaces\PurchasableInterface
+            targetEntity: Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface
             joinColumn:
                 name: purchasable_id
                 referencedColumnName: id

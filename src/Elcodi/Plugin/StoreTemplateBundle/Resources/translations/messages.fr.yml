@@ -149,12 +149,12 @@ template:
             month: Mois
             security_code: 'Code de sécurité'
             year: Année
-        product:
+        article:
             also_like: 'Vous aimerez peut-être aussi...'
             item:
                 offer: 'Offre spéciale'
             list:
-                no_products_in_category: 'Désolé, cette catégorie ne contient pas d''articles'
+                no_articles_in_category: 'Désolé, cette catégorie ne contient pas d''articles'
             view_item:
                 add_to_cart: 'Ajouter au panier'
                 delivery: Livraison
@@ -163,7 +163,7 @@ template:
                 no_stock: 'Plus en stock'
                 not_available: 'Cet article n''est actuellement plus disponible'
                 offer: 'Offre spéciale'
-                product: Produit
+                article: Produit
                 stock: Stock
                 usually_dispatched_24_hours: 'Livré dans les 24h'
         shipping:

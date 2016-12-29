@@ -60,7 +60,7 @@ class ElcodiCartBundle extends AbstractElcodiBundle implements DependentBundleIn
     {
         return [
             'Elcodi\Bundle\UserBundle\ElcodiUserBundle',
-            'Elcodi\Bundle\ProductBundle\ElcodiProductBundle',
+            'Elcodi\Bundle\ArticleBundle\ElcodiArticleBundle',
             'Elcodi\Bundle\CurrencyBundle\ElcodiCurrencyBundle',
             'Elcodi\Bundle\StateTransitionMachineBundle\ElcodiStateTransitionMachineBundle',
             'Elcodi\Bundle\ShippingBundle\ElcodiShippingBundle',

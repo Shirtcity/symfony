@@ -17,7 +17,7 @@
 
 namespace Elcodi\Component\Cart\Entity\Interfaces;
 
-use Elcodi\Component\Product\Entity\Interfaces\PurchasableInterface;
+use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 
 /**
  * Interface PurchasableWrapperInterface.

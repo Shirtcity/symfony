@@ -30,7 +30,7 @@ store_order_view_thanks: '/bestellung/{id}/danke'
 store_password_recover: /passwort/widerherstellen
 store_password_recover_sent: /passwort/gesendet
 store_password_remember: /passwort/erinnern
-store_product_view: '/produkt/{slug}/{id}'
+store_article_view: '/produkt/{slug}/{id}'
 store_register: /registrieren
 store_user: /benutzer
 store_user_edit: /benutzer/bearbeiten

@@ -149,12 +149,12 @@ template:
             month: Monat
             security_code: Sicherheitscode
             year: Jahr
-        product:
+        article:
             also_like: 'Sie konnten auch mögen ...'
             item:
                 offer: anbieten
             list:
-                no_products_in_category: 'Sorry, wir haben keine Produkte in dieser Kategorie'
+                no_articles_in_category: 'Sorry, wir haben keine Produkte in dieser Kategorie'
             view_item:
                 add_to_cart: 'In den Einkaufswagen hinzufügen'
                 delivery: Auslieferung
@@ -163,7 +163,7 @@ template:
                 no_stock: 'Kein Bestand'
                 not_available: 'Dieser Artikel ist zur Zeit nicht lieferbar'
                 offer: anbieten
-                product: Erzeugnis
+                article: Erzeugnis
                 stock: Lager
                 usually_dispatched_24_hours: 'Gewöhnlich versandfertig in 24 Stunden'
         shipping:

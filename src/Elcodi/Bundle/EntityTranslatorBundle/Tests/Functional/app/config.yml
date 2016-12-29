@@ -4,8 +4,8 @@ imports:
 
 elcodi_entity_translator:
     configuration:
-        Elcodi\Component\EntityTranslator\Tests\Fixtures\TranslatableProduct:
-            alias: translatable_product
+        Elcodi\Component\EntityTranslator\Tests\Fixtures\TranslatableArticle:
+            alias: translatable_article
             idGetter: getId
             fields:
                 name:

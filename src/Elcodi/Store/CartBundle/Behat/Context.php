@@ -34,11 +34,11 @@ class Context extends AbstractElcodiContext
     }
 
     /**
-     * @When /^I add product "(?P<productId>\d+)" in my cart$/
+     * @When /^I add article "(?P<articleId>\d+)" in my cart$/
      */
-    public function iAddProductInCart($productId)
+    public function iAddArticleInCart($articleId)
     {
-        $this->visitPath('/cart/product/' . $productId . '/add');
+        $this->visitPath('/cart/article/' . $articleId . '/add');
     }
 
     /**

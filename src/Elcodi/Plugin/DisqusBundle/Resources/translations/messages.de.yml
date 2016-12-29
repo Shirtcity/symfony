@@ -4,7 +4,7 @@ elcodi_plugin:
         field:
             disqus_enabled_blog_post:
                 label: 'Aktivieren Disqus auf Blog-Beiträge'
-            disqus_enabled_product:
+            disqus_enabled_article:
                 label: 'Aktivieren Disqus auf Produktseiten'
             disqus_identifier:
                 label: Identifier

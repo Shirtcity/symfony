@@ -5,7 +5,7 @@ store_address_list: /les-meves-direccions
 store_address_new: '/les-meves-direccions/nova/{source}'
 store_blog_post_view: '/blog/{id}/{slug}'
 store_blog_view: '/blog/{page}'
-store_cart_add_purchasable: '/cistella/producte/{id}/afegir'
+store_cart_add_purchasable: '/cistella/articlee/{id}/afegir'
 store_cart_coupon_form_type_coupon_apply: /cistella/cupons
 store_cart_empty: /cistella/buidar
 store_cart_nav: /cistella/nav
@@ -30,7 +30,7 @@ store_order_view_thanks: '/comanda/{id}/gracies'
 store_password_recover: /contrasenya/recuperar
 store_password_recover_sent: /contrasenya/enviat
 store_password_remember: /contrasenya/recordar
-store_product_view: '/producte/{slug}/{id}'
+store_article_view: '/articlee/{slug}/{id}'
 store_register: /registrar-se
 store_user: /usuari
 store_user_edit: /usuari/editar

@@ -1,6 +1,6 @@
 elcodi_plugin:
     store_wizard:
-        description: "Un assistente para configurar tu tienda por primera vez.\nEn el primer paso configura datos sobre la dirección física de la tienda y de su administrador.\nLuego, ofrece el añadir la primera categoría, marca y producto, y finalmente pide información\nsobre métodos de pago y de envío.\n"
+        description: "Un assistente para configurar tu tienda por primera vez.\nEn el primer paso configura datos sobre la dirección física de la tienda y de su administrador.\nLuego, ofrece el añadir la primera categoría, marca y articleo, y finalmente pide información\nsobre métodos de pago y de envío.\n"
         disable_under_construction: 'Desactiva el modo <strong>Tienda en construcción</strong> para empezar a vender'
         done: Hecho!
         estimated_time: 'Tiempo estimado %1 min'
@@ -11,9 +11,9 @@ elcodi_plugin:
         name: 'Assistente de tienda'
         ready_launch: 'Todo a punto!'
         step1:
-            action: 'Añadir un producto'
+            action: 'Añadir un articleo'
             description: 'Lo más importante de tu tienda... después de los clientes, claro.'
-            title: 'Añade un producto'
+            title: 'Añade un articleo'
         step2:
             action: 'Añadir dirección'
             description: 'Introduce la dirección de tu tienda (o tu dirección si no tienes tienda física) para poder vender.'

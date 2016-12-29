@@ -4,8 +4,8 @@ elcodi_plugin:
         field:
             disqus_enabled_blog_post:
                 label: 'Activar Disqus a les entrades del blog'
-            disqus_enabled_product:
-                label: 'Activar Disqus a la pàgina de producte'
+            disqus_enabled_article:
+                label: 'Activar Disqus a la pàgina de articlee'
             disqus_identifier:
                 label: Identificador
                 placeholder: 123456789

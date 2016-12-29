@@ -86,7 +86,7 @@ class CartLineTest extends AbstractEntityTest
      */
     public function testGetSpaceDimensions($method)
     {
-        $purchasable = $this->getMock('Elcodi\Component\Product\Entity\Interfaces\PurchasableInterface');
+        $purchasable = $this->getMock('Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface');
         $purchasable
             ->method($method)
             ->will($this->returnValue(5));
@@ -98,7 +98,7 @@ class CartLineTest extends AbstractEntityTest
             $cartLine->$method()
         );
 
-        $variant = $this->getMock('Elcodi\Component\Product\Entity\Interfaces\VariantInterface');
+        $variant = $this->getMock('Elcodi\Component\Article\Entity\Interfaces\VariantInterface');
         $variant
             ->method('getPurchasable')
             ->will($this->returnValue($purchasable));
@@ -131,7 +131,7 @@ class CartLineTest extends AbstractEntityTest
      */
     public function testGetWeight()
     {
-        $purchasable = $this->getMock('Elcodi\Component\Product\Entity\Interfaces\PurchasableInterface');
+        $purchasable = $this->getMock('Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface');
         $purchasable
             ->method('getWeight')
             ->will($this->returnValue(5));
@@ -144,7 +144,7 @@ class CartLineTest extends AbstractEntityTest
             $cartLine->getWeight()
         );
 
-        $variant = $this->getMock('Elcodi\Component\Product\Entity\Interfaces\VariantInterface');
+        $variant = $this->getMock('Elcodi\Component\Article\Entity\Interfaces\VariantInterface');
         $variant
             ->method('getPurchasable')
             ->will($this->returnValue($purchasable));

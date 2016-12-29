@@ -113,8 +113,8 @@ class EntityTranslator implements EntityTranslatorInterface
      *
      * $translations = array(
      *      'es' => array(
-     *          'name' => 'Nombre del producto',
-     *          'description' => 'Descripción del producto',
+     *          'name' => 'Nombre del articleo',
+     *          'description' => 'Descripción del articleo',
      *      ),
      *      'fr' => array(
      *          'name' => 'Nom du produit',

@@ -18,9 +18,9 @@
 namespace Elcodi\Component\EntityTranslator\Tests\Fixtures;
 
 /**
- * Class TranslatableProduct.
+ * Class TranslatableArticle.
  */
-class TranslatableProduct
+class TranslatableArticle
 {
     /**
      * @var string

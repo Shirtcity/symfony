@@ -17,7 +17,7 @@
 
 namespace Elcodi\Component\Cart\Entity\Traits;
 
-use Elcodi\Component\Product\Entity\Interfaces\PurchasableInterface;
+use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 
 /**
  * Trait PurchasableWrapperTrait.

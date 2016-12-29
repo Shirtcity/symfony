@@ -1,6 +1,6 @@
 elcodi_plugin:
     store_wizard:
-        description: "Un assistent per a configurar la teva botiga per primera vegada.\nAl primer pas configura dades sobre la direcció física de la botiga i del seu administrador.\nDesprés d'això, ofereix afegir la primera categoria, marca i producte, i finalment demana\ninformació sobre mètodes de pagament i de enviament.\n"
+        description: "Un assistent per a configurar la teva botiga per primera vegada.\nAl primer pas configura dades sobre la direcció física de la botiga i del seu administrador.\nDesprés d'això, ofereix afegir la primera categoria, marca i articlee, i finalment demana\ninformació sobre mètodes de pagament i de enviament.\n"
         disable_under_construction: 'Desactiva el mode <strong>Tienda en construcció</strong> per a començar a vendre'
         done: Fet!
         estimated_time: 'Temps estimat %1 min'
@@ -11,9 +11,9 @@ elcodi_plugin:
         name: 'Assistent de botiga'
         ready_launch: 'Tot llest!'
         step1:
-            action: 'Afegir un producte'
+            action: 'Afegir un articlee'
             description: 'El més important de la teva botiga... a part dels clients, clar.'
-            title: 'Afegeix un producte'
+            title: 'Afegeix un articlee'
         step2:
             action: 'Afegir dades'
             description: 'Introduceix la direcció de la teva botiga (o la teva direcció si no tens botiga física) per a poder vendre.'

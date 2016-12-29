@@ -21,8 +21,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 use Elcodi\Bundle\CoreBundle\DataFixtures\ORM\Abstracts\AbstractFixture;
 use Elcodi\Component\EntityTranslator\Services\Interfaces\EntityTranslatorInterface;
-use Elcodi\Component\Product\Entity\Interfaces\ManufacturerInterface;
-use Elcodi\Component\Product\Factory\ManufacturerFactory;
+use Elcodi\Component\Article\Entity\Interfaces\ManufacturerInterface;
+use Elcodi\Component\Article\Factory\ManufacturerFactory;
 
 /**
  * Class ManufacturerData

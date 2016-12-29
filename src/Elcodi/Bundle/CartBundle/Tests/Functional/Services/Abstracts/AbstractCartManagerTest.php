@@ -22,7 +22,7 @@ use Doctrine\ORM\UnitOfWork;
 use Elcodi\Bundle\TestCommonBundle\Functional\WebTestCase;
 use Elcodi\Component\Cart\Entity\Interfaces\CartInterface;
 use Elcodi\Component\Cart\Entity\Interfaces\CartLineInterface;
-use Elcodi\Component\Product\Entity\Interfaces\PurchasableInterface;
+use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 
 /**
  * Class AbstractCartManagerTest.
@@ -317,7 +317,7 @@ abstract class AbstractCartManagerTest extends WebTestCase
     }
 
     /**
-     * Test add product.
+     * Test add article.
      *
      * @param mixed $quantitySet the quantity to set
      * @param mixed $quantityEnd the quantity to check against

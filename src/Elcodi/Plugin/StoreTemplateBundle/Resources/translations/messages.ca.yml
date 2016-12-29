@@ -63,7 +63,7 @@ template:
                 units: Unitats
             nav:
                 amount: Total
-                items: Productes
+                items: Articlees
             view:
                 checkout: 'Tramitar comanda'
                 checkout_title: 'Comprova la comanda i/o aplica descomptes'
@@ -149,21 +149,21 @@ template:
             month: Mes
             security_code: 'Codi de seguritat'
             year: Any
-        product:
+        article:
             also_like: 'També et pot interessar...'
             item:
                 offer: Oferta
             list:
-                no_products_in_category: 'Ho sentim però no tenim cap producte dins aquesta categoria'
+                no_articles_in_category: 'Ho sentim però no tenim cap articlee dins aquesta categoria'
             view_item:
                 add_to_cart: Afegir
                 delivery: Enviament
                 description: Descripció
-                in_stock: 'Aquest producte està en stock, llest per a ser enviat.'
+                in_stock: 'Aquest articlee està en stock, llest per a ser enviat.'
                 no_stock: 'Sense stock'
-                not_available: 'No hi ha stock per aquest producte'
+                not_available: 'No hi ha stock per aquest articlee'
                 offer: Oferta
-                product: Producte
+                article: Articlee
                 stock: Existències
                 usually_dispatched_24_hours: 'Envía en 24/48 horas'
         shipping:

@@ -112,9 +112,9 @@ class ValidateCouponRulesEventListenerTest extends AbstractCartCouponEventListen
             [['cart.getId() == 3', 'cart.getId() != coupon.getId()', 'rule(0) and rule(1)'], 0],
             [
                 [
-                    'few_products' => 'cart.getTotalItemNumber() < 5',
+                    'few_articles' => 'cart.getTotalItemNumber() < 5',
                     'low_cost' => 'cart.getAmount().getAmount() > 2000',
-                    'rule("few_products") and rule("low_cost")',
+                    'rule("few_articles") and rule("low_cost")',
                 ],
                 1,
             ],

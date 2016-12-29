@@ -25,10 +25,10 @@ use Elcodi\Component\CartCoupon\Applicator\Interfaces\CartCouponApplicatorInterf
 use Elcodi\Component\Coupon\Entity\Interfaces\CouponInterface;
 use Elcodi\Component\Currency\Services\CurrencyConverter;
 use Elcodi\Component\Currency\Wrapper\CurrencyWrapper;
-use Elcodi\Component\Product\Entity\Interfaces\PackInterface;
-use Elcodi\Component\Product\Entity\Interfaces\ProductInterface;
-use Elcodi\Component\Product\Entity\Interfaces\PurchasableInterface;
-use Elcodi\Component\Product\Entity\Interfaces\VariantInterface;
+use Elcodi\Component\Article\Entity\Interfaces\PackInterface;
+use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
+use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
+use Elcodi\Component\Article\Entity\Interfaces\VariantInterface;
 
 /**
  * Class AbstractMxNCartCouponApplicator.
@@ -143,7 +143,7 @@ abstract class AbstractMxNCartCouponApplicator implements CartCouponApplicatorIn
         }
 
         if (
-            $purchasable instanceof ProductInterface &&
+            $purchasable instanceof ArticleInterface &&
             false !== strpos($modifiers, 'P')
         ) {
             return true;
