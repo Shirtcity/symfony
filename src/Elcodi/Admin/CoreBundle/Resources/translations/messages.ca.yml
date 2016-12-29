@@ -186,7 +186,7 @@ admin:
         edit: 'Editar "%name%"'
         field:
             contains:
-                title: 'Conté %count% productes'
+                title: 'Conté %count% articlees'
             enabled:
                 options:
                     active: Habilitada
@@ -216,7 +216,7 @@ admin:
         saved: 'Categoría guardada'
         section:
             basic:
-                description: 'Proporciona un nom tant curt com sigui possible per a ajudar als teus clients a trobar el productes d''aquesta categoria.'
+                description: 'Proporciona un nom tant curt com sigui possible per a ajudar als teus clients a trobar el articlees d''aquesta categoria.'
                 title: 'Dades bàsiques'
             categorization:
                 description: 'Configura la categoria com a principal si no te cap pare o serà pare d''altres categories.'
@@ -502,7 +502,7 @@ admin:
                 title: 'Nom del fabricant'
             name_slug:
                 title: 'Detalls del fabricant'
-            product_count:
+            article_count:
                 title: Productes
             slug:
                 customize: 'Personalitzar ruta'
@@ -514,10 +514,10 @@ admin:
         saved: 'Fabricant guardat'
         section:
             basic:
-                description: 'Proporciona un nom tant curt com sigui possible per a ajudar als teus clients a trobar el producte d''aquest fabricant. També pots afegir una descripció que es mostrarà a la pàgina del fabricant.'
+                description: 'Proporciona un nom tant curt com sigui possible per a ajudar als teus clients a trobar el articlee d''aquest fabricant. També pots afegir una descripció que es mostrarà a la pàgina del fabricant.'
                 title: 'Dades bàsiques'
             logo:
-                description: 'Puja una imatge del logo del fabricant/marca del producte. Es Recomana Que el logo no contingui cap texte adicional, només la marca, i que sigui a la major resolució possible.'
+                description: 'Puja una imatge del logo del fabricant/marca del articlee. Es Recomana Que el logo no contingui cap texte adicional, només la marca, i que sigui a la major resolució possible.'
                 title: 'Logotip del fabricant'
             visibility:
                 description: 'Configura el fabricant com a visible i actiu.'
@@ -643,17 +643,17 @@ admin:
         section:
             settings: Configuració
         single: Complement
-    product:
+    article:
         edit: 'Editar "%name%"'
         error:
-            no_category: '¡Atenció! Aquest producte no està associat a cap categoria'
-            no_manufacturer: '¡Atenció! Aquest producte no està associat a cap fabricant'
+            no_category: '¡Atenció! Aquest articlee no està associat a cap categoria'
+            no_manufacturer: '¡Atenció! Aquest articlee no està associat a cap fabricant'
             price_negative: 'Atenció! El preu no pot ser negatiu!'
         field:
             depth:
                 title: 'Profunditat (en cm)'
             description:
-                placeholder: 'p.e. Aquest producte es exactament el que esperaves trobar.'
+                placeholder: 'p.e. Aquest articlee es exactament el que esperaves trobar.'
                 title: Descripció
             enabled:
                 options:
@@ -673,16 +673,16 @@ admin:
                 placeholder: 'p.e. Apple, Disney...'
                 title: Fabricant
             metadescription:
-                placeholder: 'p.e. Aquest producte es exactament el que esperaves trobar.'
+                placeholder: 'p.e. Aquest articlee es exactament el que esperaves trobar.'
             metakeywords:
-                placeholder: 'p.e. producte,genial'
+                placeholder: 'p.e. articlee,genial'
             metatitle:
-                placeholder: 'p.e. El meu producte genial'
+                placeholder: 'p.e. El meu articlee genial'
             name:
-                placeholder: 'p.e. El meu producte genial'
+                placeholder: 'p.e. El meu articlee genial'
                 title: Títol
             name_details:
-                title: 'Detalls del producte'
+                title: 'Detalls del articlee'
             price:
                 title: Preu
             reduced_price:
@@ -692,7 +692,7 @@ admin:
                 title: SKU
             slug:
                 customize: 'Personalitzar la ruta'
-                placeholder: 'p.e. meu/producte/genial'
+                placeholder: 'p.e. meu/articlee/genial'
                 title: Slug
             stock:
                 title: Unitats
@@ -702,36 +702,36 @@ admin:
                 title: 'Amplada (en cm)'
         in_store: 'Veure a la tenda'
         info:
-            variants_before_saving: 'Podràs afegir variants un cop hagis guardat el producte'
-        list: 'Llista de productes'
-        new: 'Nou producte'
+            variants_before_saving: 'Podràs afegir variants un cop hagis guardat el articlee'
+        list: 'Llista de articlees'
+        new: 'Nou articlee'
         note: Notes
         plural: Productes
         saved: 'Producte guardat'
         section:
             basic:
-                description: 'Proporciona un títol molt específic que ajudi a explicar i vendre el teu producte i proporcioni la informació necessaria als teus clients.'
+                description: 'Proporciona un títol molt específic que ajudi a explicar i vendre el teu articlee i proporcioni la informació necessaria als teus clients.'
                 title: 'Detalls bàsics'
             categorization:
-                description: 'El producta s''ha de classificar en una categoria i fabricant. Aquests seràn visibles a la tenda i ajudaràn al client a navegar-hi a través.'
+                description: 'El articlea s''ha de classificar en una categoria i fabricant. Aquests seràn visibles a la tenda i ajudaràn al client a navegar-hi a través.'
                 title: Categorizació
             dimensions:
-                description: 'Configura les dimensions i el pes del teu producte. Aquesta informació serà molt útil per a calcular les despeses d''enviament.'
+                description: 'Configura les dimensions i el pes del teu articlee. Aquesta informació serà molt útil per a calcular les despeses d''enviament.'
                 title: Dimensions
             pricing:
-                description: 'Configura el preu per al teu producte, no incloguis tases ni despeses d''enviament. També pots configurar el preu d''oferta.'
+                description: 'Configura el preu per al teu articlee, no incloguis tases ni despeses d''enviament. També pots configurar el preu d''oferta.'
                 title: Preu
             sku:
-                description: 'El Número de referencia (SKU) es un identificador unic que permeteix identificar els productes. Cada SKU va relacionat a un producte.'
+                description: 'El Número de referencia (SKU) es un identificador unic que permeteix identificar els articlees. Cada SKU va relacionat a un articlee.'
                 title: 'Número de referencia'
             stock:
-                description: 'Configura les existencies d''aquest producte. Cada compra farà disminuir les existencies.'
+                description: 'Configura les existencies d''aquest articlee. Cada compra farà disminuir les existencies.'
                 title: Stock
             variants:
-                description: 'Les variants son diferents versions del mateix producte (Color, talla...) que poden tenir un preu o atributs diferents.'
+                description: 'Les variants son diferents versions del mateix articlee (Color, talla...) que poden tenir un preu o atributs diferents.'
                 title: Variants
             visibility:
-                description: 'Configura aquest producte com a visible o ocult, també pots fer-lo visible a la pàgina principal.'
+                description: 'Configura aquest articlee com a visible o ocult, també pots fer-lo visible a la pàgina principal.'
                 title: Visibilitat
         show_metrics: 'Veure métriques'
         single: Producte
@@ -762,7 +762,7 @@ admin:
     settings:
         field:
             currency: 'Configuració de moneda'
-            product_stock:
+            article_stock:
                 description: 'Activa aquesta opció per a habilitar el control d''existencies'
                 title: Stock
             store_email: 'Correo electrónic de la tenda'
@@ -780,9 +780,9 @@ admin:
                 title: 'Imatge corporativa'
             payment:
                 title: 'Métodes de pagament'
-            products:
-                description: 'Configura les dades del producte.'
-                title: 'Configuració del producte'
+            articles:
+                description: 'Configura les dades del articlee.'
+                title: 'Configuració del articlee'
             profile:
                 title: 'Imatge corporativa'
             store:
@@ -853,7 +853,7 @@ admin:
                 description: 'Controla si la botiga esta oberta o tancada al públic.'
                 title: 'Estat de la botiga'
             stock:
-                description: 'Activa aquesta opció per gestionar l''stock dels teus productes.'
+                description: 'Activa aquesta opció per gestionar l''stock dels teus articlees.'
                 title: Stock
         settings: Configuracions
     template:

@@ -502,7 +502,7 @@ admin:
                 title: 'Naziv proizvođača'
             name_slug:
                 title: 'Ime & podložak'
-            product_count:
+            article_count:
                 title: Artikli
             slug:
                 customize: 'Podesi podložak'
@@ -643,7 +643,7 @@ admin:
         section:
             settings: Podešavanja
         single: Aplikacija
-    product:
+    article:
         edit: 'Izmeni "%name%"'
         error:
             no_category: 'Upozorenje! Ovaj artikal nema dodeljenu kategoriju'
@@ -762,7 +762,7 @@ admin:
     settings:
         field:
             currency: 'Konfiguracija valute'
-            product_stock:
+            article_stock:
                 description: 'Uključite ovu opciju da bi ste aktivirali kontrolu lagera'
                 title: Lager
             store_email: 'E-mail prodavnice'
@@ -780,7 +780,7 @@ admin:
                 title: 'Korporativna slika'
             payment:
                 title: 'Načini plaćanja'
-            products:
+            articles:
                 description: 'Ubaci podatke o artiklu.'
                 title: 'Podešavanje Artikala'
             profile:

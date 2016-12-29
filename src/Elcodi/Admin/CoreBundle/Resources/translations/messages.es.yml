@@ -186,7 +186,7 @@ admin:
         edit: 'Editar "%name%"'
         field:
             contains:
-                title: 'Contiene %count% productos'
+                title: 'Contiene %count% articleos'
             enabled:
                 options:
                     active: Habilitada
@@ -216,7 +216,7 @@ admin:
         saved: 'Categoría guardada'
         section:
             basic:
-                description: 'Proporciona un nombre tan corto como sea posible para ayudar a tus clientes a encontrar el producto de esta categoria.'
+                description: 'Proporciona un nombre tan corto como sea posible para ayudar a tus clientes a encontrar el articleo de esta categoria.'
                 title: 'Detalles básicos'
             categorization:
                 description: 'Configura la categoria como principal si no tiene ningún padre o va a ser padre de otras categorías.'
@@ -502,7 +502,7 @@ admin:
                 title: 'Nombre del fabricante'
             name_slug:
                 title: 'Detalles del fabricante'
-            product_count:
+            article_count:
                 title: Productos
             slug:
                 customize: 'Personalizar enlace'
@@ -514,10 +514,10 @@ admin:
         saved: 'Fabricante guardado'
         section:
             basic:
-                description: 'Proporciona un nombre tan corto como sea posible para ayudar a tus clientes a encontrar el producto de este fabricante. También puedes añadir una descripción que se mostrará en la página del Fabricante.'
+                description: 'Proporciona un nombre tan corto como sea posible para ayudar a tus clientes a encontrar el articleo de este fabricante. También puedes añadir una descripción que se mostrará en la página del Fabricante.'
                 title: 'Detalles básicos'
             logo:
-                description: 'Sube una imagen del logo del fabricante/marca del producto. Se recomienda que el logo no contenga textos adicionales, sólo la marca, y que sea de la mayor resolución posible.'
+                description: 'Sube una imagen del logo del fabricante/marca del articleo. Se recomienda que el logo no contenga textos adicionales, sólo la marca, y que sea de la mayor resolución posible.'
                 title: 'Logotipo del fabricante'
             visibility:
                 description: 'Configura el fabricante como visible y activo.'
@@ -643,17 +643,17 @@ admin:
         section:
             settings: Configuración
         single: Complemento
-    product:
+    article:
         edit: 'Editar "%name%"'
         error:
-            no_category: '¡Atención! Este producto no está asociado a ninguna categoría'
-            no_manufacturer: '¡Atención! Este producto no está asociado a ningún fabricante'
+            no_category: '¡Atención! Este articleo no está asociado a ninguna categoría'
+            no_manufacturer: '¡Atención! Este articleo no está asociado a ningún fabricante'
             price_negative: 'Atención! El precio no puede ser negativo'
         field:
             depth:
                 title: 'Profundidad (en cm)'
             description:
-                placeholder: 'ej. Este genial producto es exactamente lo que buscabas.'
+                placeholder: 'ej. Este genial articleo es exactamente lo que buscabas.'
                 title: Descripción
             enabled:
                 options:
@@ -673,16 +673,16 @@ admin:
                 placeholder: 'ej. Apple, Disney...'
                 title: Fabricante
             metadescription:
-                placeholder: 'ej. Este genial producto es exactamente lo que buscabas.'
+                placeholder: 'ej. Este genial articleo es exactamente lo que buscabas.'
             metakeywords:
-                placeholder: 'ej. product,genial'
+                placeholder: 'ej. article,genial'
             metatitle:
-                placeholder: 'ej. Mi genial producto'
+                placeholder: 'ej. Mi genial articleo'
             name:
-                placeholder: 'ej. Mi genial producto'
+                placeholder: 'ej. Mi genial articleo'
                 title: Título
             name_details:
-                title: 'Detalles del producto'
+                title: 'Detalles del articleo'
             price:
                 title: Precio
             reduced_price:
@@ -692,7 +692,7 @@ admin:
                 title: 'Número de referencia'
             slug:
                 customize: 'Personalizar enlace'
-                placeholder: 'ej. my/genial/producto'
+                placeholder: 'ej. my/genial/articleo'
                 title: Slug
             stock:
                 title: Unidades
@@ -702,36 +702,36 @@ admin:
                 title: 'Ancho (en cm)'
         in_store: Visualizar
         info:
-            variants_before_saving: 'Podrás añadir variantes una vez hayas guardo el producto'
-        list: 'Listado de productos'
-        new: 'Nuevo producto'
+            variants_before_saving: 'Podrás añadir variantes una vez hayas guardo el articleo'
+        list: 'Listado de articleos'
+        new: 'Nuevo articleo'
         note: Notas
         plural: Productos
         saved: 'Producto guardado'
         section:
             basic:
-                description: 'Proporciona un título muy específico que ayude a explicar y vender tu producto y propocione toda la información necesaria para tus clientes.'
+                description: 'Proporciona un título muy específico que ayude a explicar y vender tu articleo y propocione toda la información necesaria para tus clientes.'
                 title: 'Detalles básicos'
             categorization:
-                description: 'El producto debe ser clasificado en una categoría y un fabricante. Estos serán visibles en la tienda y ayudarán a los clientes a navegar por ella.'
+                description: 'El articleo debe ser clasificado en una categoría y un fabricante. Estos serán visibles en la tienda y ayudarán a los clientes a navegar por ella.'
                 title: Categorización
             dimensions:
-                description: 'Configura las dimensiones y peso de tu producto. Esta información será realmente útil para calcular los costes de envio.'
+                description: 'Configura las dimensiones y peso de tu articleo. Esta información será realmente útil para calcular los costes de envio.'
                 title: Dimensiones
             pricing:
-                description: 'Configura el precio para tu producto, no incluyas tasas ni costes de envio. También puedes configurar un precio de oferta.'
+                description: 'Configura el precio para tu articleo, no incluyas tasas ni costes de envio. También puedes configurar un precio de oferta.'
                 title: Precio
             sku:
-                description: 'El Número de referencia (SKU) es un identificador único que permite identificar los productos. Cada SKU se asocia con un sólo producto.'
+                description: 'El Número de referencia (SKU) es un identificador único que permite identificar los articleos. Cada SKU se asocia con un sólo articleo.'
                 title: 'Número de referencia'
             stock:
-                description: 'Configura las existencias de este producto. Cada compra disminuirá tus existencias.'
+                description: 'Configura las existencias de este articleo. Cada compra disminuirá tus existencias.'
                 title: Stock
             variants:
-                description: 'Las variantes son versiones diferentes del mismo producto (Color, talla...). Las variantes pueden tener diferente precio o atributos.'
+                description: 'Las variantes son versiones diferentes del mismo articleo (Color, talla...). Las variantes pueden tener diferente precio o atributos.'
                 title: Variantes
             visibility:
-                description: 'Configura este producto como visible u oculto, también puedes hacerlo visible en la página principal.'
+                description: 'Configura este articleo como visible u oculto, también puedes hacerlo visible en la página principal.'
                 title: Visibilidad
         show_metrics: Estadísticas
         single: Producto
@@ -762,7 +762,7 @@ admin:
     settings:
         field:
             currency: 'Configuración de moneda'
-            product_stock:
+            article_stock:
                 description: 'Activa esta opción para habilitar el control de existencias'
                 title: Stock
             store_email: 'Correo electrónico de la tienda'
@@ -780,9 +780,9 @@ admin:
                 title: 'Imagen corporativa'
             payment:
                 title: 'Métodos de pago'
-            products:
-                description: 'Configura los datos del producto.'
-                title: 'Configuración del producto'
+            articles:
+                description: 'Configura los datos del articleo.'
+                title: 'Configuración del articleo'
             profile:
                 title: 'Imagen corporativa'
             store:
@@ -853,7 +853,7 @@ admin:
                 description: 'Controla si la tienda esta abierta o cerrada al público.'
                 title: 'Estado de la tienda'
             stock:
-                description: 'Activa esta opción para gestionar el stock de tus productos.'
+                description: 'Activa esta opción para gestionar el stock de tus articleos.'
                 title: Stock
         settings: Configuraciones
     template:

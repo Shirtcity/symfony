@@ -502,7 +502,7 @@ admin:
                 title: 'Nome do fabricante'
             name_slug:
                 title: 'Nome e slug'
-            product_count:
+            article_count:
                 title: Produtos
             slug:
                 customize: 'Configura o slug'
@@ -643,7 +643,7 @@ admin:
         section:
             settings: Configuración
         single: App
-    product:
+    article:
         edit: 'Editar "%name%"'
         error:
             no_category: 'Atención! Este produto non ten categoría asociada'
@@ -762,7 +762,7 @@ admin:
     settings:
         field:
             currency: 'Configuración de moedas'
-            product_stock:
+            article_stock:
                 description: 'Habilita esta opción para activar o control de stock'
                 title: Stock
             store_email: 'Correo da tenda'
@@ -780,7 +780,7 @@ admin:
                 title: 'Imaxe corporativa'
             payment:
                 title: 'Métodos de pago'
-            products:
+            articles:
                 description: 'Configura os datos do produto.'
                 title: 'Configuración de produtos'
             profile:

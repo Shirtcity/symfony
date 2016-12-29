@@ -502,7 +502,7 @@ admin:
                 title: Herstellername
             name_slug:
                 title: 'Name & Slug'
-            product_count:
+            article_count:
                 title: Produkte
             slug:
                 customize: 'Slug anpassen'
@@ -643,7 +643,7 @@ admin:
         section:
             settings: Einstellungen
         single: App
-    product:
+    article:
         edit: '%name% bearbeiten'
         error:
             no_category: 'Achtung! Dieses Produkt ist keiner Kategorie zugeordnet'
@@ -762,7 +762,7 @@ admin:
     settings:
         field:
             currency: Währungseinstellung
-            product_stock:
+            article_stock:
                 description: 'Aktiviere diese Option um die Bestandskontrole zu aktivieren'
                 title: Vorrat
             store_email: 'Store e-mail'
@@ -780,7 +780,7 @@ admin:
                 title: 'Corporate Image'
             payment:
                 title: Zahlungsmethoden
-            products:
+            articles:
                 description: 'Lege die Produktdaten fest.'
                 title: 'Produkte Setup'
             profile:

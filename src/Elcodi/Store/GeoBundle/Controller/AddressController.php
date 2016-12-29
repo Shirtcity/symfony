@@ -154,8 +154,7 @@ class AddressController extends Controller
             );
         } else {
             $this
-                ->get('elcodi.object_manager.address')
-                ->clear($address);
+                ->get('elcodi.object_manager.address');
         }
 
         return $this->renderTemplate(

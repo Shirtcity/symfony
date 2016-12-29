@@ -189,7 +189,7 @@ admin:
         edit: 'Edit "%name%"'
         field:
             contains:
-                title: '%count% products inside'
+                title: '%count% articles inside'
             enabled:
                 options:
                     active: Active
@@ -219,7 +219,7 @@ admin:
         saved: 'Category saved'
         section:
             basic:
-                description: 'Provide a very specific name as short as you can that helps your consumers to find the products of this category.'
+                description: 'Provide a very specific name as short as you can that helps your consumers to find the articles of this category.'
                 title: 'Basic Details'
             categorization:
                 description: 'Set your category as root if doesn''t have any parent or it''s going to be parent of others.'
@@ -400,7 +400,7 @@ admin:
     identity:
         field:
             leitmotiv:
-                placeholder: 'e.g: Awesome products for awesome people'
+                placeholder: 'e.g: Awesome articles for awesome people'
                 title: Leitmotiv
             name:
                 placeholder: 'e.g: My Awesome Store'
@@ -506,7 +506,7 @@ admin:
                 title: 'Manufacturer name'
             name_slug:
                 title: 'Name & slug'
-            product_count:
+            article_count:
                 title: Products
             slug:
                 customize: 'Customize slug'
@@ -518,7 +518,7 @@ admin:
         saved: 'Manufacturer saved'
         section:
             basic:
-                description: 'Provide a very specific name as short as you can that helps your consumers to find the products of this manufacturer. Also you can add a description that will be shown in the manufacturer page in your store.'
+                description: 'Provide a very specific name as short as you can that helps your consumers to find the articles of this manufacturer. Also you can add a description that will be shown in the manufacturer page in your store.'
                 title: 'Basic Details'
             logo:
                 description: 'Upload a logo image of the Manufacturer as bigger as possible. If it doesn''t contain additional texts the better.'
@@ -649,17 +649,17 @@ admin:
         section:
             settings: Settings
         single: App
-    product:
+    article:
         edit: 'Edit "%name%"'
         error:
-            no_category: 'Warning! This product has no associated category'
-            no_manufacturer: 'Warning! This product has no associated manufacturer'
+            no_category: 'Warning! This article has no associated category'
+            no_manufacturer: 'Warning! This article has no associated manufacturer'
             price_negative: 'Warning! The price can not be negative'
         field:
             depth:
                 title: 'Depth (in cm)'
             description:
-                placeholder: 'e.g. This awesome product is exactly what you are lookin for.'
+                placeholder: 'e.g. This awesome article is exactly what you are lookin for.'
                 title: Description
             enabled:
                 options:
@@ -679,9 +679,9 @@ admin:
                 placeholder: 'e.g. Apple, Disney...'
                 title: Manufacturer
             metadescription:
-                placeholder: 'e.g. This awesome product is exactly what you are lookin for.'
+                placeholder: 'e.g. This awesome article is exactly what you are lookin for.'
             metakeywords:
-                placeholder: 'e.g. product,awesome'
+                placeholder: 'e.g. article,awesome'
             metatitle:
                 placeholder: 'e.g. My Awesome Product'
             name:
@@ -698,7 +698,7 @@ admin:
                 title: SKU
             slug:
                 customize: 'Customize slug'
-                placeholder: 'e.g. my/awesome/product'
+                placeholder: 'e.g. my/awesome/article'
                 title: Slug
             stock:
                 title: Stock
@@ -708,7 +708,7 @@ admin:
                 title: 'Width (in cm)'
         in_store: View
         info:
-            variants_before_saving: 'You will be able to add variants after saving the product'
+            variants_before_saving: 'You will be able to add variants after saving the article'
         list: 'Product list'
         new: 'New Product'
         note: Notes
@@ -716,28 +716,28 @@ admin:
         saved: 'Product saved'
         section:
             basic:
-                description: 'Provide a very specific title for your product that explains and help sell your product and description that provides all the information required for your consumers.'
+                description: 'Provide a very specific title for your article that explains and help sell your article and description that provides all the information required for your consumers.'
                 title: 'Basic Details'
             categorization:
-                description: 'The product must be clasified under one category and one manufacturer. They will be visible in your store and must help your customers to navigate in your store.'
+                description: 'The article must be clasified under one category and one manufacturer. They will be visible in your store and must help your customers to navigate in your store.'
                 title: Categorization
             dimensions:
-                description: 'Set the dimensions and weight for your product. This information will be useful to calculate shipping costs.'
+                description: 'Set the dimensions and weight for your article. This information will be useful to calculate shipping costs.'
                 title: Dimensions
             pricing:
-                description: 'Set the price for your product, without including taxes nor shipping. Also you can set an offer price.'
+                description: 'Set the price for your article, without including taxes nor shipping. Also you can set an offer price.'
                 title: Pricing
             sku:
-                description: 'SKU is an identifier that allows to identify the products. Each SKU it''s related to just one product.'
+                description: 'SKU is an identifier that allows to identify the articles. Each SKU it''s related to just one article.'
                 title: SKU
             stock:
-                description: 'Configure the stock for your product. Each order will reduce this number.'
+                description: 'Configure the stock for your article. Each order will reduce this number.'
                 title: Stock
             variants:
-                description: 'Variants are diferent versions of this product (color, size... ). Variants can have different prices or other attributes.'
+                description: 'Variants are diferent versions of this article (color, size... ). Variants can have different prices or other attributes.'
                 title: Variants
             visibility:
-                description: 'Set this product as visible or hidden, and make it visible in your home.'
+                description: 'Set this article as visible or hidden, and make it visible in your home.'
                 title: Visibility
         show_metrics: 'Show metrics'
         single: Product
@@ -868,7 +868,7 @@ admin:
     settings:
         field:
             currency: 'Currency configuration'
-            product_stock:
+            article_stock:
                 description: 'Enable this option to activate stock control'
                 title: Stock
             store_email: 'Store e-mail'
@@ -886,8 +886,8 @@ admin:
                 title: 'Corporate image'
             payment:
                 title: 'Payment methods'
-            products:
-                description: 'Set the product data.'
+            articles:
+                description: 'Set the article data.'
                 title: 'Products Setup'
             profile:
                 title: 'Corporate Image'
@@ -959,7 +959,7 @@ admin:
                 description: 'Controls if the store is opened or closed.'
                 title: Status
             stock:
-                description: 'If you activate this option you will be able to setup the stock in your products.'
+                description: 'If you activate this option you will be able to setup the stock in your articles.'
                 title: Stock
         settings: Settings
     template:

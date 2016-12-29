@@ -420,7 +420,7 @@ admin:
                 title: 'Nom du fabricant'
             name_slug:
                 title: 'Nom & slug'
-            product_count:
+            article_count:
                 title: Produits
             slug:
                 customize: 'Customiser slug'
@@ -547,7 +547,7 @@ admin:
         section:
             settings: Paramètres
         single: Application
-    product:
+    article:
         edit: 'Mettre à jour "%name%"'
         error:
             no_category: 'Attention! Ce produit n''est associé à aucune catégorie'
@@ -664,7 +664,7 @@ admin:
     settings:
         field:
             currency: 'Configuration de la monnaie'
-            product_stock:
+            article_stock:
                 description: 'Activez cette option pour activer le contrôle du stock'
                 title: Stock
             store_email: 'E-mail de la boutique'
@@ -678,7 +678,7 @@ admin:
         section:
             payment:
                 title: 'Méthodes de paiement'
-            products:
+            articles:
                 description: 'Définissez les données des produits.'
                 title: 'Configuration des produits'
             store:

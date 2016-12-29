@@ -501,7 +501,7 @@ admin:
                 title: 'Valmistajan nimi'
             name_slug:
                 title: 'Nimi ja polku'
-            product_count:
+            article_count:
                 title: Tuotetta
             slug:
                 customize: 'Moukkaa polkua'
@@ -640,7 +640,7 @@ admin:
         section:
             settings: Asetukset
         single: Laajennus
-    product:
+    article:
         edit: 'Muokkaa "%name%"'
         error:
             no_category: 'Varoitus! Tälle tuotteelle ei ole valittu tuoteryhmää'
@@ -759,7 +759,7 @@ admin:
     settings:
         field:
             currency: Valuutta-asetukset
-            product_stock:
+            article_stock:
                 description: 'Kytke tämä päälle varastosaldojen seurantaa varten'
                 title: Varastosaldo
             store_email: 'Kaupan sähköpostiosoite'
@@ -777,7 +777,7 @@ admin:
                 title: 'Verkkokaupan yritysilme'
             payment:
                 title: Maksutavat
-            products:
+            articles:
                 description: 'Syötä tuotetiedot'
                 title: 'Tuotteiden asetukset'
             profile:
