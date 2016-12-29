@@ -1,0 +1,4 @@
+elcodi_plugin_articlecsv_export:
+    path: /articles/export
+    defaults: { _controller: ElcodiArticleCsvBundle:Csv:export }
+    methods: ['GET']

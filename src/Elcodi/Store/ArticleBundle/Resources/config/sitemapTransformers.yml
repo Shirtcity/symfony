@@ -1,0 +1,16 @@
+services:
+
+    #
+    # Transformers for sitemap
+    #
+    elcodi_store.sitemap_transformer.article:
+        class: Elcodi\Store\ArticleBundle\Transformer\ArticleTransformer
+        arguments:
+            - "@elcodi.entity_translator"
+            - "@router"
+
+    elcodi_store.sitemap_transformer.category:
+        class: Elcodi\Store\ArticleBundle\Transformer\CategoryTransformer
+        arguments:
+            - "@elcodi.entity_translator"
+            - "@router"

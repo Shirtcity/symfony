@@ -1,0 +1,51 @@
+{#
+ # View for a Product detail page with variants.
+ #}
+{% extends '@StoreTemplate/Pages/article-view-item.html.twig' %}
+
+{#
+ # The article_info_details should now display a form
+ # to select the article variant
+ #}
+{% block article_info_add_basket %}
+<div class= "article-to-basket-group">
+{% for variant in article.variants %}
+    <div class= "article-to-basket">
+        {% set variant_price = variant.inOffer ? variant.reducedPrice : variant.price %}
+            {% if variant.images|length > 0  %}
+            <img hspace="10" src="{{ variant.images.first|resize({
+                'width': 300,
+                'height': 100,
+                'type': 5
+            }) }}" alt="{{ variant.name }}" />
+            {% else %}
+                <img src="{{ article.principalImage ? article.principalImage|resize({
+                    'width': 300,
+                    'height': 100,
+                    'type': 5
+                }) : '//placehold.it/60x47' }}" alt="{{ article.name }}" />
+            {% endif %}
+
+        <h5 class="article-title">{{ variant|purchasable_name }}</h5>
+        <p class="article-actions">
+            {% if article.inOffer %}
+                <span class="article-pricing article-pricing-before">{{ variant.price|print_convert_money() }}</span>
+                <span class="article-pricing article-pricing-now">{{ variant.reducedPrice|print_convert_money() }}</span>
+            {% else %}
+                <span class="article-pricing">{{ variant.price|print_convert_money() }}</span>
+            {% endif %}
+            {% if not useStock or variant.stock > 0 %}
+            <a title="{{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }}"
+               class="fa fa-shopping-cart button button-secondary"
+               href="{{ url('store_cart_add_purchasable', { id: variant.id }) }}"> {{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }}</a>
+            {% else %}
+                <a title="{{ 'template.store_template_bundle.article.view_item.no_stock'|trans }}"
+                   class="fa fa-times button button"
+                   href="#"> {{ 'template.store_template_bundle.article.view_item.no_stock'|trans }}</a>
+            {% endif %}
+        </p>
+    </div>
+
+{% endfor %}
+</div>
+{% endblock %}

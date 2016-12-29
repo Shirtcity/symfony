@@ -1,0 +1,5 @@
+elcodi_plugin:
+    article_csv:
+        action: Export
+        description: 'Export your articles in format CSV'
+        name: 'Article export'

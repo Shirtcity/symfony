@@ -1,0 +1,5 @@
+elcodi_plugin:
+    article_csv:
+        action: Exportar
+        description: 'Exporta tus articleos en formato CSV'
+        name: 'Exportación de articleos'

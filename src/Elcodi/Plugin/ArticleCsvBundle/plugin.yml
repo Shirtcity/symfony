@@ -1,0 +1,5 @@
+plugin:
+    type: plugin
+    category: app
+    name: elcodi_plugin.article_csv.name
+    description: elcodi_plugin.article_csv.description

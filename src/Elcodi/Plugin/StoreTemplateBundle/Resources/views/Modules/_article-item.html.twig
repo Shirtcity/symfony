@@ -1,0 +1,57 @@
+{#
+ # Base display block for a Product with no variants in listing page.
+ #}
+<div class="article-item">
+    {% set articleRoute = url('store_article_view', { 'slug': article.slug, 'id': article.id }) %}
+    {% set articleName = article|purchasable_name %}
+
+    {% block pin_title %}
+    <h4 class="article-title">
+        <a href="{{ articleRoute }}">{{ articleName }}</a>
+    </h4>
+    {% endblock %}
+
+    {% block pin_image %}
+        <a href="{{ articleRoute }}" class="article-thumbnail">
+            {% if article.inOffer %}<span class="article-badge">{{ 'template.store_template_bundle.article.item.offer'|trans }}</span> {% endif %}
+            {% set validImage = article|valid_image %}
+            <img class="image" src="{{ validImage ? validImage|resize({
+                'width': 372,
+                'height': 291,
+                'type': 5
+            }) : '//placehold.it/372x291'  }}" alt="{{ articleName }}" />
+        </a>
+    {% endblock %}
+
+    <p class="article-actions">
+        {% block pin_button_view %}
+            <a class="fa fa-eye button button"
+               title="View details for {{ articleName }}"
+               href="{{ articleRoute }}"></a>
+        {% endblock %}
+        {% if article.inOffer %}
+            <span class="article-pricing article-pricing-before">{{ article.price|print_convert_money() }}</span>
+            <span class="article-pricing article-pricing-now">{{ article.reducedPrice|print_convert_money() }}</span>
+        {% else %}
+            <span class="article-pricing">{{ article.price|print_convert_money() }}</span>
+        {% endif %}
+        {% if article.hasVariants() %}
+            <a class="fa fa-list button button-secondary"
+               title="Choose a model of {{ articleName }}"
+               href="{{ url('store_article_view', {
+                   'slug': article.slug,
+                   'id': article.id
+               }) }}#variant-add-to-cart"></a>
+        {% else %}
+            <a class="fa fa-shopping-cart button button-secondary"
+               data-test="add-article-{{ article.id }}-to-cart"
+               href="{{ url('store_cart_add_purchasable', { id: article.id }) }}"
+               title="{{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }} {{ articleName }}"></a>
+        {% endif %}
+
+    </p>
+
+    {{ elcodi_hook("store.article_pin_bottom", {
+        'article': purchasable
+    }) }}
+</div>

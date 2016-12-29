@@ -1,0 +1,25 @@
+services:
+
+    #
+    # Validators
+    #
+    elcodi.stock_validator.article:
+        class: Elcodi\Component\Article\StockValidator\ArticleStockValidator
+        tags:
+            - { name: elcodi.purchasable_stock_validator }
+
+    elcodi.stock_validator.article_variant:
+        class: Elcodi\Component\Article\StockValidator\VariantStockValidator
+        tags:
+            - { name: elcodi.purchasable_stock_validator }
+
+    elcodi.stock_validator.purchasable_pack:
+        class: Elcodi\Component\Article\StockValidator\PackStockValidator
+        calls:
+            - [ addPurchasableStockValidator, ['@elcodi.stock_validator.article'] ]
+            - [ addPurchasableStockValidator, ['@elcodi.stock_validator.article_variant'] ]
+        tags:
+            - { name: elcodi.purchasable_stock_validator }
+
+    elcodi.stock_validator.purchasable:
+        class: Elcodi\Component\Article\StockValidator\PurchasableStockValidator

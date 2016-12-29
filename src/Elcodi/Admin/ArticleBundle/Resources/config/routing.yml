@@ -1,0 +1,3 @@
+AdminArticleBundle:
+    resource: "@AdminArticleBundle/Controller/"
+    type:     annotation

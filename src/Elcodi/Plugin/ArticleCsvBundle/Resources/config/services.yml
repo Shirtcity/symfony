@@ -1,0 +1,28 @@
+services:
+
+    #
+    # Services
+    #
+    elcodi_plugin.article_csv.exporter:
+        class: Elcodi\Plugin\ArticleCsvBundle\Services\ArticleExporter
+        arguments:
+            - "@elcodi_plugin.article_csv.csv_exporter"
+
+    elcodi_plugin.article_csv.csv_exporter:
+        class: Goodby\CSV\Export\Standard\Exporter
+        arguments:
+            - "@elcodi_plugin.article_csv.csv_exporter_config"
+
+    elcodi_plugin.article_csv.csv_exporter_config:
+        class: Goodby\CSV\Export\Standard\ExporterConfig
+        calls:
+            - [setDelimiter, [',']]
+            - [setNewline, ["\n"]]
+
+    #
+    # Plugin
+    #
+    elcodi_plugin.article_csv:
+        parent: elcodi.abstract_plugin
+        arguments:
+            - "Elcodi\\Plugin\\ArticleCsvBundle\\ElcodiArticleCsvBundle"

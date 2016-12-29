@@ -1,0 +1,31 @@
+services:
+
+    #
+    # Stock updaters
+    #
+    elcodi.stock_updater.article:
+        class: Elcodi\Component\Article\StockUpdater\ArticleStockUpdater
+        arguments:
+            - '@elcodi.object_manager.article'
+        tags:
+            - { name: elcodi.purchasable_stock_updater }
+
+    elcodi.stock_updater.article_variant:
+        class: Elcodi\Component\Article\StockUpdater\VariantStockUpdater
+        arguments:
+            - '@elcodi.object_manager.article_variant'
+        tags:
+            - { name: elcodi.purchasable_stock_updater }
+
+    elcodi.stock_updater.purchasable_pack:
+        class: Elcodi\Component\Article\StockUpdater\PackStockUpdater
+        arguments:
+            - '@elcodi.object_manager.purchasable_pack'
+        calls:
+            - [ addPurchasableStockUpdater, ['@elcodi.stock_updater.article'] ]
+            - [ addPurchasableStockUpdater, ['@elcodi.stock_updater.article_variant'] ]
+        tags:
+            - { name: elcodi.purchasable_stock_updater }
+
+    elcodi.stock_updater.purchasable:
+        class: Elcodi\Component\Article\StockUpdater\PurchasableStockUpdater

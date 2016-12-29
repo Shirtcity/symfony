@@ -1,0 +1,99 @@
+{#
+ # Base view for a Product detail page with no variants.
+ #}
+{% extends '@StoreTemplate/Layout/_layout.html.twig' %}
+
+
+{% block title %}Bamboo - {{ 'template.store_template_bundle.article.view_item.article'|trans }} {{ article.name }}{% endblock title %}
+
+{% block meta_tags %}
+    {% if article.metaTitle is not empty %}
+        <meta name="title" content="{{ article.metaTitle }}">
+    {% endif %}
+{% if article.metaDescription is not empty %}
+    <meta name="description" content="{{ article.metaDescription }}">
+{% endif %}
+{% if article.metaKeywords is not empty %}
+    <meta name="keywords" content="{{ article.metaKeywords }}">
+{% endif %}
+{% endblock meta_tags %}
+
+{% block breadcrumb %}
+    <li>
+        <a href="{{ url('store_category_purchasables_list', { slug: article.principalCategory.slug, id: article.principalCategory.id }) }}">{{ article.principalCategory }}</a> <i class="fa fa-angle-right"></i>
+    </li>
+    <li>
+        <a href="{{ url('store_article_view', { 'slug': article.slug, 'id': article.id }) }}"><strong>{{ article.name }}</strong></a>
+    </li>
+{% endblock breadcrumb %}
+
+{% block content %}
+    {% set articleName = article|purchasable_name %}
+    {% set validImage = article|valid_image %}
+
+    <div class="article-view">
+       <h1 class="article-title">{{ article.name }}</h1>
+       <div class="grid">
+           <div class="col-1-2">
+            {% block article_image %}
+               <a href="{{ article.images|length > 0 ? article.images.first|resize({
+                   'width': 1024,
+                   'height': 1024,
+                   'type': 5
+               }) : '//placehold.it/772x604' }}" alt="{{ article.name }}" class="article-thumbnail">
+                {% if article.inOffer %}<span class="article-badge">{{ 'template.store_template_bundle.article.view_item.offer'|trans }}</span> {% endif %}
+                   <img src="{{ article.images|length > 0 ? article.images.first|resize({
+                       'width': 772,
+                       'height': 604,
+                       'type': 5
+                   }) : '//placehold.it/772x604' }}" alt="{{ article.name }}"/>
+               </a>
+            {% endblock %}
+           </div>
+           <div class="col-1-2">
+               {% block article_info %}
+                   {% block article_info_add_basket %}
+                       <div class= "article-to-basket">
+                           <h5 class="article-title desktop">{{ article.name }}</h5>
+                           <p class="article-actions">
+                               {% if article.inOffer %}
+                                   <span class="article-pricing article-pricing-before">{{ article.price|print_convert_money() }}</span>
+                                   <span class="article-pricing article-pricing-now">{{ article.reducedPrice|print_convert_money() }}</span>
+                               {% else %}
+                                   <span class="article-pricing">{{ article.price|print_convert_money() }}</span>
+                               {% endif %}
+                               {% if not useStock or article.stock > 0 %}
+                               <a title="{{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }}"
+                                  class="fa fa-shopping-cart button button-secondary"
+                                  data-test="add-article-{{ article.id }}-to-cart"
+                                  href="{{ url('store_cart_add_purchasable', { id: article.id }) }}"> {{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }}</a>
+                               {% else %}
+                               <a title="{{ 'template.store_template_bundle.article.view_item.no_stock'|trans }}"
+                                  class="fa fa-times button"
+                                  href="#"> {{ 'template.store_template_bundle.article.view_item.no_stock'|trans }}</a>
+                               {% endif %}
+                           </p>
+                       </div>
+                   {% endblock %}
+
+                   {% block article_info_details %}
+                       <p>{{ article.description }}</p>
+                   {% endblock %}
+               {% endblock %}
+           </div>
+       </div>
+    </div>
+    <div class="grid">
+        <div class="col-1-1">
+            {{ elcodi_hook("store.article_view_bottom", {
+                'article': article,
+            }) }}
+        </div>
+    </div>
+{% endblock content %}
+
+{% block prefooter %}
+    {{ render(url('store_purchasable_related', {
+        'id': article.id
+    })) }}
+{% endblock prefooter %}

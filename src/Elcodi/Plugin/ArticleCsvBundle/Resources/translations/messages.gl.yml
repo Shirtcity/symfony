@@ -1,0 +1,5 @@
+elcodi_plugin:
+    article_csv:
+        action: Exportar
+        description: 'Exporta os teus produtos en formato CSV'
+        name: 'Exportar produtos'
