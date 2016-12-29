@@ -3,8 +3,8 @@
  * at this point, if it is an array, we can collect all data inserted previously
  * and perform given track actions once the object is created
  *
- * _etc.push(['3267462837', 'product_add'])
- * _etc.push(['3267462837', 'product_add', {'user'= '12267'}])
+ * _etc.push(['3267462837', 'article_add'])
+ * _etc.push(['3267462837', 'article_add', {'user'= '12267'}])
  */
 var _etc = (function (ts) {
 

@@ -26,7 +26,7 @@
 
                 <p>{{ 'elcodi_plugin.store_wizard.step1.description'|trans }}</p>
             {% endif %}
-            <p class="mb-n"><a href="{{ url('admin_product_new') }}" class="button button-primary">{{ 'elcodi_plugin.store_wizard.step1.action'|trans }}</a></p>
+            <p class="mb-n"><a href="{{ url('admin_article_new') }}" class="button button-primary">{{ 'elcodi_plugin.store_wizard.step1.action'|trans }}</a></p>
             {% if not isMiniWizard %}
             <p class="fz-s">{% trans with {'%1': minutesStepOne } %}elcodi_plugin.store_wizard.estimated_time{% endtrans %}</p>
             {% endif %}

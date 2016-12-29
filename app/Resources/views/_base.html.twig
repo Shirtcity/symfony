@@ -105,10 +105,10 @@
             _etc.push(["{{ store_tracker }}", 'pv_{{ current_route_name }}', '{{ current_user_session_sha1 }}', '3']);
 
             /**
-             * Specific product view beacon
+             * Specific article view beacon
              */
-            {% if current_route_name == 'store_product_view' %}
-                _etc.push(["{{ store_tracker }}", 'pv_store_product_view_{{ product.id }}', '{{ current_user_session_sha1 }}', '3']);
+            {% if current_route_name == 'store_article_view' %}
+                _etc.push(["{{ store_tracker }}", 'pv_store_article_view_{{ article.id }}', '{{ current_user_session_sha1 }}', '3']);
             {% endif %}
 
             /**

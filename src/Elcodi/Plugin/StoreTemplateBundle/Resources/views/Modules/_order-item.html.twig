@@ -1,23 +1,23 @@
 {% set purchasable = line.purchasable %}
-{% set purchasable = purchasable.product ?: purchasable %}
-{% set purchasableRouteName = purchasable.products ? 'store_purchasable_pack_view' : 'store_product_view' %}
+{% set purchasable = purchasable.article ?: purchasable %}
+{% set purchasableRouteName = purchasable.articles ? 'store_purchasable_pack_view' : 'store_article_view' %}
 {% set purchasableRoute = url(purchasableRouteName, { slug: purchasable.slug, id: purchasable.id }) %}
-{% set productName = purchasable|purchasable_name %}
+{% set articleName = purchasable|purchasable_name %}
 {% set validImage = purchasable|valid_image %}
 
 <dl class="{{ class|default('cart-item') }}">
     <dt class="cart-item-image">{{ 'template.store_template_bundle.order.item.image'|trans }}</dt>
     <dd class="cart-item-image">
-        <a href="{{ productRoute }}">
+        <a href="{{ articleRoute }}">
             <img src="{{ validImage ? validImage|resize({
                 width: 150,
                 height: 150,
                 type: 5 }) : '//placehold.it/150x150'
-            }}" alt="{{ product.name }}" class="product-thumbnail" />
+            }}" alt="{{ article.name }}" class="article-thumbnail" />
         </a>
     </dd>
     <dt class="cart-item-name">{{ 'template.store_template_bundle.order.item.item'|trans }}</dt>
-    <dd class="cart-item-name"><a href="{{ purchasableRoute }}" class="product-title">{{ productName }}</a></dd>
+    <dd class="cart-item-name"><a href="{{ purchasableRoute }}" class="article-title">{{ articleName }}</a></dd>
     <dt class="cart-item-units">{{ 'template.store_template_bundle.order.item.units'|trans }}</dt>
     <dd class="cart-item-units">{{ line.quantity }}</dd>
     <dt class="cart-item-price">{{ 'template.store_template_bundle.order.item.price'|trans }}</dt>

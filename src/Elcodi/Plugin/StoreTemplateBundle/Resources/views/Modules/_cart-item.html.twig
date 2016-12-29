@@ -1,7 +1,7 @@
 {% set lineObject = line.vars.data %}
 {% set purchasable = lineObject.purchasable %}
-{% set masterPurchasable = purchasable.product ?: purchasable %}
-{% set purchasableRouteName = masterPurchasable.products ? 'store_purchasable_pack_view' : 'store_product_view' %}
+{% set masterPurchasable = purchasable.article ?: purchasable %}
+{% set purchasableRouteName = masterPurchasable.articles ? 'store_purchasable_pack_view' : 'store_article_view' %}
 {% set purchasableRoute = url(purchasableRouteName, { slug: masterPurchasable.slug, id: masterPurchasable.id }) %}
 {% set purchasableName = purchasable|purchasable_name %}
 {% set validImage = purchasable|valid_image %}
@@ -15,7 +15,7 @@
                 width: 150,
                 height: 150,
                 type: 5 }) : '//placehold.it/150x150'
-            }}" alt="{{ purchasableName }}" class="product-thumbnail" />
+            }}" alt="{{ purchasableName }}" class="article-thumbnail" />
         </a>
     </dd>
     <dt class="cart-item-name">{{ 'template.store_template_bundle.cart.item.item'|trans }}</dt>

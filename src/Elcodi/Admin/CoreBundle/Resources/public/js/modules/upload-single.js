@@ -24,7 +24,7 @@ FrontendCore.define('upload-single', [ oGlobalSettings.sPathJs + '../components/
 				});
 
 				if (nId !== undefined ) {
-					$('input[id=elcodi_admin_product_form_type_manufacturer_'+ nId +']', oContainer).click();
+					$('input[id=elcodi_admin_article_form_type_manufacturer_'+ nId +']', oContainer).click();
 
 				}
 			}
@@ -37,16 +37,16 @@ FrontendCore.define('upload-single', [ oGlobalSettings.sPathJs + '../components/
 
 			if (oContainer.nodeName === 'SELECT') {
 				oOption = document.createElement('option');
-				oOption.id = 'elcodi_admin_product_form_type_manufacturer_' + nId;
+				oOption.id = 'elcodi_admin_article_form_type_manufacturer_' + nId;
 				oOption.value = nId;
 				oOption.innerHTML = nId;
 
-			} else if ($('#elcodi_admin_product_form_type_manufacturer_images_' + nId , oContainer).length === 0) {
+			} else if ($('#elcodi_admin_article_form_type_manufacturer_images_' + nId , oContainer).length === 0) {
 
 				oOption = document.createElement('input');
 				oOption.type = 'checkbox';
-				oOption.name = 'elcodi_admin_product_form_type_manufacturer[images][]';
-				oOption.id = 'elcodi_admin_product_form_type_manufacturer_' + nId;
+				oOption.name = 'elcodi_admin_article_form_type_manufacturer[images][]';
+				oOption.id = 'elcodi_admin_article_form_type_manufacturer_' + nId;
 
 			}
 

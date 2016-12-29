@@ -33,12 +33,12 @@ module.exports = function(grunt, fixtures) {
 
 
 	var oLanguages = getFixtures(['messages.en']),
-		oFullFixtures = getFixtures(['store','paginator','currencies','categoryTree','product','products','form','related_products','cart-empty','addresses','order','orders','currencyCategoryId-null']),
-		oCategoryFullFixtures = getFixtures(['store','paginator','currencies','categoryTree','product','products','related_products','cart-empty','currencyCategoryId-1']),
-		oCategoryEmptyFixtures = getFixtures(['store','paginator','currencies','categoryTree','product','related_products','cart-empty','currencyCategoryId-1']),
-		oCartFullFixtures = getFixtures(['store','paginator','currencies','categoryTree','product','related_products','addresses','order','orders','cart-full','currencyCategoryId-1']),
-		oUserForm = getFixtures(['store','paginator','currencies','categoryTree','product','related_products','order','orders','cart-full','form']),
-		oOrderEmtpyFixtures = getFixtures(['store','paginator','currencies','categoryTree','product','related_products','cart-full','currencyCategoryId-1']);
+		oFullFixtures = getFixtures(['store','paginator','currencies','categoryTree','article','articles','form','related_articles','cart-empty','addresses','order','orders','currencyCategoryId-null']),
+		oCategoryFullFixtures = getFixtures(['store','paginator','currencies','categoryTree','article','articles','related_articles','cart-empty','currencyCategoryId-1']),
+		oCategoryEmptyFixtures = getFixtures(['store','paginator','currencies','categoryTree','article','related_articles','cart-empty','currencyCategoryId-1']),
+		oCartFullFixtures = getFixtures(['store','paginator','currencies','categoryTree','article','related_articles','addresses','order','orders','cart-full','currencyCategoryId-1']),
+		oUserForm = getFixtures(['store','paginator','currencies','categoryTree','article','related_articles','order','orders','cart-full','form']),
+		oOrderEmtpyFixtures = getFixtures(['store','paginator','currencies','categoryTree','article','related_articles','cart-full','currencyCategoryId-1']);
 
 	return {
 		options: {
@@ -127,7 +127,7 @@ module.exports = function(grunt, fixtures) {
 						return ;
 					});
 
-					Twig.exports.extendFunction("available_options", function (product, attribute) {
+					Twig.exports.extendFunction("available_options", function (article, attribute) {
 
 						var oOptions = {
 							"1" : {
@@ -136,7 +136,7 @@ module.exports = function(grunt, fixtures) {
 							}
 						}
 
-						return product.attributes[attribute.id].available_options;
+						return article.attributes[attribute.id].available_options;
 					});
 
 					Twig.exports.extendFunction("form_start", function (value) {
@@ -239,7 +239,7 @@ module.exports = function(grunt, fixtures) {
 						return sHtml;
 					});
 
-					Twig.exports.extendFunction("form_end", function (product, attribute) {
+					Twig.exports.extendFunction("form_end", function (article, attribute) {
 
 						return '</form>';
 					});
@@ -281,7 +281,7 @@ module.exports = function(grunt, fixtures) {
 					data: oFullFixtures,
 					expand: true,
 					cwd: './temp/',
-					src: ['*.html.twig','!_*.html.twig','!cart*.html.twig','!recover-password.html.twig','!fields.html.twig','!user*.html.twig','!category*.html.twig','!coupon*.html.twig','!product*.html.twig','index.html.twig'],
+					src: ['*.html.twig','!_*.html.twig','!cart*.html.twig','!recover-password.html.twig','!fields.html.twig','!user*.html.twig','!category*.html.twig','!coupon*.html.twig','!article*.html.twig','index.html.twig'],
 					dest: 'Resources/public/preview/',
 					ext: '.html'
 				}
@@ -293,7 +293,7 @@ module.exports = function(grunt, fixtures) {
 					data: oCategoryFullFixtures,
 					expand: true,
 					cwd: './temp/',
-					src: ['category*.html.twig','product*.html.twig'],
+					src: ['category*.html.twig','article*.html.twig'],
 					dest: 'Resources/public/preview/',
 					ext: '.html'
 				}
@@ -305,7 +305,7 @@ module.exports = function(grunt, fixtures) {
 					data: oCategoryEmptyFixtures,
 					expand: true,
 					cwd: './temp/',
-					src: ['home*.html.twig','category*.html.twig','product*.html.twig'],
+					src: ['home*.html.twig','category*.html.twig','article*.html.twig'],
 					dest: 'Resources/public/preview/',
 					ext: '-empty.html'
 				}
