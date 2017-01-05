@@ -643,6 +643,103 @@ admin:
         section:
             settings: Einstellungen
         single: App
+    product:
+        edit: '%name% bearbeiten'
+        error:
+            no_category: 'Achtung! Dieses Produkt ist keiner Kategorie zugeordnet'
+            no_manufacturer: 'Achtung! Dieses Produkt ist keinem Hersteller zugeordnet'
+            price_negative: 'Achtung! Der Preis darf nicht negativ sein'
+        field:
+            depth:
+                title: 'Tiefe (in cm)'
+            description:
+                placeholder: 'z.B. Dieses Produkt ist genau das wonach du suchst.'
+                title: Beschreibung
+            enabled:
+                options:
+                    active: Aktiv
+                    inactive: Inaktiv
+                title: Sichtbarkeit
+            height:
+                title: 'Höhe (in cm)'
+            image:
+                title: Bild
+            in_home:
+                title: 'Auf der Startseite zeigen'
+            main_category:
+                placeholder: 'z.B. Computer, Handtaschen, ...'
+                title: Kategorie
+            manufacturer:
+                placeholder: 'z.B. Apple, Disney...'
+                title: Hersteller
+            metadescription:
+                placeholder: 'z.B. Dieses Produkt ist genau das wonach du suchst.'
+            metakeywords:
+                placeholder: 'z.B. produkt,toll'
+            metatitle:
+                placeholder: 'z.B. mein tolles Produkt'
+            name:
+                placeholder: 'z.B. mein tolles Produkt'
+                title: Titel
+            name_details:
+                title: 'Name & Details'
+            price:
+                title: Preis
+            reduced_price:
+                title: Reduziert
+            sku:
+                placeholder: 'ej . SAU102'
+                title: SKU
+            slug:
+                customize: 'Slug anpassen'
+                placeholder: 'z.B. mein/tolles/produkt'
+                title: Slug
+            stock:
+                title: 'auf Lager'
+            weight:
+                title: 'Gewicht (in g)'
+            width:
+                title: 'Breite (in cm)'
+        in_store: 'Im Store zeigen'
+        info:
+            variants_before_saving: 'Varianten können nach dem Speichern hinzugefügt werden'
+        list: Produktliste
+        new: 'Neues Produkt'
+        note: Hinweise
+        plural: Produkte
+        saved: 'Produkt gespeichert'
+        section:
+            basic:
+                description: 'Gib einen sehr genauen Titel für dein Produkt an, welcher dein Produkt besser verkauft und beschreibt und alle Erklärungen für deine Kunden bereithält.'
+                title: Basisinformationen
+            categorization:
+                description: 'Das Produkt muss unter einer Kategorie und einem Hersteller eingeordnet werden. Diese werden im Store sichtbar sein und deinen Kunden helfen sich zurecht tu finden.'
+                title: Kategorisierung
+            dimensions:
+                description: 'Gib die Abmessungen und das Gewicht deines Produkts an. Diese Informationen kann bei der Berechnung der Versandkosten hilfreich sein.'
+                title: Abmessungen
+            pricing:
+                description: 'Gib den Preis für dein Produkt ohne Steurn, Gebühren und Versandkosten an. Es kann auch ein Angebotspreis eingesetzt werden.'
+                title: Preisbildung
+            sku:
+                description: 'SKU ist eine Kennung , die zur Identifikation der Produkte ermöglicht . Jedes SKU es auf nur ein Produkt.'
+                title: SKU
+            stock:
+                description: 'Konfiguriere den Lagervorrat deines Produkts. Jede Bestellung wird diese Zahl reduzieren.'
+                title: Vorrat
+            variants:
+                description: 'Varianten sind verschiedene Ausführungen eines Produkts, z.B. Farbe und Größe. Varianten können andere Preise oder andere Attribute haben.'
+                title: Varianten
+            visibility:
+                description: 'Setze das Produkt auf sichtbar oder unsichtbar und mache es auf der Startseite verfügbar.'
+                title: Sichtbarkeit
+        show_metrics: 'Metriken anzeigen'
+        single: Produkt
+        tag:
+            has_variants: 'Hat Varianten'
+            in_home: Startseite
+            no_category: 'Keine Kategorie'
+            no_manufacturer: 'Kein Hersteller'
     article:
         edit: '%name% bearbeiten'
         error:

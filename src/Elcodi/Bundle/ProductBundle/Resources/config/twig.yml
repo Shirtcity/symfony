@@ -1,0 +1,12 @@
+services:
+
+    #
+    # Twig extensions
+    #
+    elcodi.twig_extension.product_image_resolver:
+        class: Elcodi\Bundle\ProductBundle\Twig\ProductImageResolverExtension
+        public: false
+        arguments:
+            - '@elcodi.image_resolver.product'
+        tags:
+            - { name: twig.extension }

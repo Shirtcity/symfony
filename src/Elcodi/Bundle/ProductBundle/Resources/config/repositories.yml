@@ -1,0 +1,10 @@
+services:
+
+    #
+    # Repository for entity product
+    #
+    elcodi.repository.product:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.product.class%
+            

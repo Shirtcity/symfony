@@ -649,7 +649,7 @@ admin:
         section:
             settings: Settings
         single: App
-    article:
+    product:
         edit: 'Edit "%name%"'
         error:
             no_category: 'Warning! This article has no associated category'
@@ -713,6 +713,103 @@ admin:
         new: 'New Product'
         note: Notes
         plural: Products
+        saved: 'Product saved'
+        section:
+            basic:
+                description: 'Provide a very specific title for your article that explains and help sell your article and description that provides all the information required for your consumers.'
+                title: 'Basic Details'
+            categorization:
+                description: 'The article must be clasified under one category and one manufacturer. They will be visible in your store and must help your customers to navigate in your store.'
+                title: Categorization
+            dimensions:
+                description: 'Set the dimensions and weight for your article. This information will be useful to calculate shipping costs.'
+                title: Dimensions
+            pricing:
+                description: 'Set the price for your article, without including taxes nor shipping. Also you can set an offer price.'
+                title: Pricing
+            sku:
+                description: 'SKU is an identifier that allows to identify the articles. Each SKU it''s related to just one article.'
+                title: SKU
+            stock:
+                description: 'Configure the stock for your article. Each order will reduce this number.'
+                title: Stock
+            variants:
+                description: 'Variants are diferent versions of this article (color, size... ). Variants can have different prices or other attributes.'
+                title: Variants
+            visibility:
+                description: 'Set this article as visible or hidden, and make it visible in your home.'
+                title: Visibility
+        show_metrics: 'Show metrics'
+        single: Product
+        tag:
+            has_variants: 'Has variants'
+            in_home: Home
+            no_category: 'No category'
+            no_manufacturer: 'No manufacturer'
+    article:
+        edit: 'Edit "%name%"'
+        error:
+            no_category: 'Warning! This article has no associated category'
+            no_manufacturer: 'Warning! This article has no associated manufacturer'
+            price_negative: 'Warning! The price can not be negative'
+        field:
+            depth:
+                title: 'Depth (in cm)'
+            description:
+                placeholder: 'e.g. This awesome article is exactly what you are lookin for.'
+                title: Description
+            enabled:
+                options:
+                    active: Active
+                    inactive: Inactive
+                title: Visibility
+            height:
+                title: 'Height (in cm)'
+            image:
+                title: Image
+            in_home:
+                title: 'Show in home'
+            main_category:
+                placeholder: 'e.g. Computers, handbags...'
+                title: Category
+            manufacturer:
+                placeholder: 'e.g. Apple, Disney...'
+                title: Manufacturer
+            metadescription:
+                placeholder: 'e.g. This awesome article is exactly what you are lookin for.'
+            metakeywords:
+                placeholder: 'e.g. article,awesome'
+            metatitle:
+                placeholder: 'e.g. My Awesome Product'
+            name:
+                placeholder: 'e.g. My Awesome Product'
+                title: Title
+            name_details:
+                title: 'Name & Details'
+            price:
+                title: Price
+            reduced_price:
+                title: 'Reduced price'
+            sku:
+                placeholder: 'ej. SAU102'
+                title: SKU
+            slug:
+                customize: 'Customize slug'
+                placeholder: 'e.g. my/awesome/article'
+                title: Slug
+            stock:
+                title: Stock
+            weight:
+                title: 'Weight (in g)'
+            width:
+                title: 'Width (in cm)'
+        in_store: View
+        info:
+            variants_before_saving: 'You will be able to add variants after saving the article'
+        list: 'Articles list'
+        new: 'New Product'
+        note: Notes
+        plural: Articles
         saved: 'Product saved'
         section:
             basic:

@@ -71,7 +71,8 @@
         "mmoreram/symfony-bundle-dependencies": "^1.1.1",
 
         "elcodi/elcodi": "^2.0.2",
-        "paymentsuite/paymentsuite": "^2.0.3"
+        "paymentsuite/paymentsuite": "^2.0.3",
+        "sensio/generator-bundle": "^2.3"
     },
     "replace": {
         "elcodi-templates/template": "dev-master",

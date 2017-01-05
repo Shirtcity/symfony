@@ -1,0 +1,97 @@
+Elcodi\Bundle\ProductBundle\Entity\Product:
+    type: entity    
+    repositoryClass: Elcodi\Bundle\ProductBundle\Repository\ProductRepository
+    table: product
+    inheritanceType: joined
+    discriminatorColumn:
+        name: product_type
+        type: string
+    
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:        
+        name:
+            column: name
+            type: string
+            length: 255
+            nullable: true
+        slug:
+            type: string
+            length: 255
+        description:
+            column: description
+            type: text
+            nullable: true        
+        height:
+            column: height
+            type: integer
+            nullable: true
+        width:
+            column: width
+            type: integer
+            nullable: true
+        depth:
+            column: depth
+            type: integer
+            nullable: true
+        weight:
+            column: weight
+            type: integer
+            nullable: true
+        imagesSort:
+            column: images_sort
+            type: string
+            length: 2048
+            nullable: true
+        createdAt:
+            column: created_at
+            type: datetime
+            nullable: false
+        updatedAt:
+            column: updated_at
+            type: datetime
+            nullable: false
+        enabled:
+            type: boolean
+        deleted:
+            type: boolean
+            nullable: true
+            
+    oneToMany:
+        variants:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\ProductVariant
+            mappedBy: product
+            cascade: [ "all" ]
+            orphanRemoval: true
+            
+    manyToOne:
+        principalImage:
+            targetEntity: Elcodi\Component\Media\Entity\Interfaces\ImageInterface
+            joinColumn:
+                name: principal_image_id
+                referencedColumnName: id
+                nullable: true
+                onDelete: SET NULL
+
+    manyToMany:
+        images:
+            targetEntity: Elcodi\Component\Media\Entity\Interfaces\ImageInterface
+            joinTable:
+                name: product_image
+                joinColumns:
+                    product_id:
+                        referencedColumnName: id
+                        onDelete: "CASCADE"
+                inverseJoinColumns:
+                    image_id:
+                        referencedColumnName: id
+                        onDelete: "CASCADE"
+                        
+            
+    lifecycleCallbacks:
+        preUpdate: [loadUpdateAt]
+        prePersist: [loadUpdateAt]

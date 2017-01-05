@@ -1,0 +1,17 @@
+services:
+
+    #
+    # Name resolvers
+    #
+    elcodi.image_resolver.abstract_product:
+        class: Elcodi\Bundle\ProductBundle\ImageResolver\Abstracts\AbstractImageResolver
+        arguments:
+            - '@elcodi.resolver.image'
+
+    elcodi.image_resolver.product:
+        class: Elcodi\Bundle\ProductBundle\ImageResolver\ProductImageResolver
+        parent: elcodi.image_resolver.abstract_product
+        tags:
+            - { name: elcodi.product_image_resolver }
+            
+    

@@ -1,0 +1,95 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'product',
+} %}
+
+{% block body_down %}
+    {% if product.id > 0 %}
+    {% set author_token = app.user.token %}
+    {% set context = "admin" %}
+    {% set source = "product-#{product.id}" %}
+    <div id="box-populi" class="boxpopuli-container hidden">
+        <div class="boxpopuli-overflow" data-fc-modules="boxpopuli"
+             data-token="{{ author_token }}"
+             data-author-name="{{ app.user.fullname }}"
+             data-author-email="{{ app.user.email }}"
+             data-context="{{ context }}"
+             data-source="{{ source }}"
+             data-route-list="{{ url('elcodi_comments_list', { source: source, context: context }) }}"
+             data-route-add="{{ url('elcodi_comments_add', { source: source, context: context, authorToken: author_token }) }}"
+                ></div>
+    </div>
+    {% endif %}
+{% endblock body_down %}
+
+{% block header_actions %}
+
+    {% if product.id > 0 %}
+        <a data-fc-modules="modal" href="#metrics-panel" class="button">
+            <i class="icon-bar-chart-o"></i>
+            <span>{{ 'admin.product.show_metrics'|trans }}</span>
+        </a>
+        <a data-fc-modules="side-panel" data-fc-position="right" data-fc-width="60%"  href="#box-populi" class="button ph-m">
+            <i class="icon-pencil"></i>
+            <span>{{ 'admin.product.note'|trans }}</span>
+        </a>
+    {% endif %}
+
+{% endblock header_actions %}
+
+
+{% block breadcrumb %}
+
+    {% set title = 'admin.product.plural'|trans %}
+    {%
+        set header = product.id
+            ? 'admin.product.edit'|trans({ '%name%': product.name })
+            : 'admin.product.new'|trans
+    %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: title, url: url('admin_product_list'), },
+            { name: header, active: true, },
+        ]
+    } %}
+
+{% endblock breadcrumb %}
+
+
+{% block content %}
+
+    {% if product.id %}
+
+        {% if product.principalCategory is null %}
+            <p class="msg-warning">{{ 'admin.product.error.no_category'|trans }}</p>
+        {% endif %}
+
+        {% if product.manufacturer is null %}
+            <p class="msg-warning">{{ 'admin.product.error.no_manufacturer'|trans }}</p>
+        {% endif %}
+
+        {% if product.price.amount < 0 %}
+            <p class="msg-warning">{{ 'admin.product.error.price_negative'|trans }}</p>
+        {% endif %}
+
+        {{ render(url('admin_product_edit_component', { id: product.id })) }}
+    {% else %}
+        {{ render(url('admin_product_new_component')) }}
+    {% endif %}
+
+    {% if product.id %}
+        <div class="hidden-placeholder">
+            <div id="metrics-panel" class="box-background">
+                <h2>{{ 'admin.metrics.info.visitors'|trans }}</h2>
+                {% include 'AdminMetricBundle:Metric:metricLine.html.twig' with {
+                    tracker: store.tracker,
+                    event: "pv_store_product_view_#{product.id}",
+                    intervalContainer: metric_create_interval_container(3),
+                } %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}

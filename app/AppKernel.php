@@ -56,6 +56,7 @@ class AppKernel extends Kernel
             'Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle',
             'Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle',
             'Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle',
+			'Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle',
 
             'Knp\Bundle\GaufretteBundle\KnpGaufretteBundle',
             'Ornicar\GravatarBundle\OrnicarGravatarBundle',
@@ -160,6 +161,8 @@ class AppKernel extends Kernel
             'Elcodi\Plugin\StripeBundle\ElcodiStripeBundle',
             'Elcodi\Plugin\CustomShippingBundle\ElcodiCustomShippingBundle',
             'Elcodi\Plugin\BankwireBundle\ElcodiBankwireBundle',
+            new Elcodi\Bundle\ProductBundle\ProductBundle(),
+            new Elcodi\Admin\ProductBundle\AdminProductBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {
