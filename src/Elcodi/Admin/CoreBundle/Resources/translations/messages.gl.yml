@@ -925,6 +925,8 @@ admin:
                 description: 'Configura esta variable coma visible ou agochada.'
                 title: Visibilidade
         single: Variante
+    printable:
+        single: 'Printable'
 plugin:
     paymill:
         register:

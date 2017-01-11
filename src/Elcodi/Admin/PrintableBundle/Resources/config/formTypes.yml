@@ -1,0 +1,21 @@
+services:
+
+   #
+   # Form Types
+   #
+    elcodi_admin.form_type.foilcolor:
+            class: Elcodi\Admin\PrintableBundle\Form\Type\FoilColorType
+            calls:
+                - [setFactory, ["@elcodi.factory.foilcolor"]]
+                - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
+            tags:
+                - { name: form.type, alias: elcodi_admin_printable_form_type_foilcolor }
+
+    elcodi_admin.form_type.font:
+        class: Elcodi\Admin\PrintableBundle\Form\Type\FontType
+        calls:
+            - [setFactory, ["@elcodi.factory.font"]]
+            - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_printable_form_type_font }
+

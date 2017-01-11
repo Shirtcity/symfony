@@ -1,0 +1,81 @@
+{% extends 'AdminCoreBundle::Common/listComponent.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'foilcolor'
+} %}
+
+
+{% block title 'admin.foilcolor.list'|trans %}
+
+
+{% block no_items
+    lists.no_items(
+        'admin.foilcolor.single'|trans,
+        'admin.foilcolor.plural'|trans,
+        url('admin_foilcolor_new')
+    )
+%}
+
+
+{% block table_head %}
+
+
+    {% set stockClass = 'ta-r' %}
+    {% if not store.useStock %}
+        {% set stockClass = 'd-n ta-r' %}
+    {% endif %}
+
+    {% include '@AdminCore/Tables/head.html.twig' with {
+        rows: [
+            { name: 'admin.foilcolor.field.name'|trans },
+            { name: 'admin.foilcolor.field.code'|trans },
+            { name: 'admin.foilcolor.field.enabled'|trans },
+        ],
+        class: 'foilcolor',
+    } %}
+
+{% endblock table_head %}
+
+
+{% block table_body_row %}
+    <td data-test="foilcolor-{{ entity.id }}">
+        <a href="{{ url('admin_foilcolor_edit', { id: entity.id }) }}">
+            <strong>{{ entity.name }}</strong>
+        </a>
+    </td>
+    <td>
+        <div
+                style="
+                        width: 1.4rem;
+                        height: 1.4rem;
+                        background-color: {{ entity.code }};
+                        display: inline-block;
+                        border: 1px solid black;"
+        ></div>
+        <a href="{{ url('admin_foilcolor_edit', { id: entity.id }) }}">
+            <strong>{{ entity.code }}</strong>
+        </a>
+
+    </td>
+    <td>
+        {% if entity.enabled %}
+            <span class="label-ok fz-xs">{{ 'admin.foilcolor.field.enabled.options.active'|trans }}</span>
+        {% else %}
+            <span class="label fz-xs">{{ 'admin.foilcolor.field.enabled.options.inactive'|trans }}</span>
+        {% endif %}
+    </td>
+    {% include '@AdminCore/Tables/actions.html.twig' with {
+        entity: entity,
+        class: 'foilcolor',
+    } %}
+
+{% endblock table_body_row %}
+
+
+{% block table_paginator_links %}
+
+    {% set url = 'admin_foilcolor_list' %}
+    {{ parent() }}
+
+{% endblock table_paginator_links %}

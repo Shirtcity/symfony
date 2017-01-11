@@ -1,0 +1,5 @@
+services:
+    elcodi.printable.form.type.colorpicker:
+        class: Elcodi\Admin\PrintableBundle\Form\Type\ColorPickerType
+        tags:
+            - { name: form.type, alias: colorpicker }

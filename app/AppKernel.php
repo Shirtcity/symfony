@@ -161,8 +161,15 @@ class AppKernel extends Kernel
             'Elcodi\Plugin\StripeBundle\ElcodiStripeBundle',
             'Elcodi\Plugin\CustomShippingBundle\ElcodiCustomShippingBundle',
             'Elcodi\Plugin\BankwireBundle\ElcodiBankwireBundle',
-            new Elcodi\Bundle\ProductBundle\ProductBundle(),
-            new Elcodi\Admin\ProductBundle\AdminProductBundle(),
+
+
+
+            /* Shirtcity Bundles */
+            'Elcodi\Bundle\ProductBundle\ProductBundle',
+            'Elcodi\Admin\ProductBundle\AdminProductBundle',
+
+            'Elcodi\Bundle\PrintableBundle\PrintableBundle',
+            'Elcodi\Admin\PrintableBundle\AdminPrintableBundle',
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

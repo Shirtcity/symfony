@@ -41,9 +41,11 @@ class ProductImageResolver extends AbstractImageResolverWithImageResolver
      *
      * @param Product $product Product
      *
+     * @todo typecast to product failed. It gets an article instead.
+     *
      * @return ImageInterface|false Image resolved
      */
-    public function getValidImage(Product $product)
+    public function getValidImage($product)
     {
         $namespace = $this->getProductNamespace();
         if (!$product instanceof $namespace) {

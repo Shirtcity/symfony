@@ -922,6 +922,8 @@ admin:
                 description: 'Aseta tuotevariaation näkyvyys'
                 title: Näkyvyys
         single: Tuotevariaatio
+    printable:
+        single: 'Printable'
 plugin:
     paymill:
         register:

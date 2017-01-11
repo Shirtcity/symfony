@@ -1,0 +1,31 @@
+services:
+    elcodi.repository.design:
+            parent: elcodi.abstract_repository
+            class: Elcodi\Bundle\PrintableBundle\Repository\DesignRepository
+            arguments:
+                - %elcodi.entity.design.class%
+
+    elcodi.repository.foilcolor:
+            parent: elcodi.abstract_repository
+            class: Elcodi\Bundle\PrintableBundle\Repository\FoilColorRepository
+            arguments:
+                - %elcodi.entity.foilcolor.class%
+
+    elcodi.repository.font:
+            parent: elcodi.abstract_repository
+            class: Elcodi\Bundle\PrintableBundle\Repository\FontRepository
+            arguments:
+                - %elcodi.entity.font.class%
+
+    elcodi.repository.photo:
+            parent: elcodi.abstract_repository
+            class: Elcodi\Bundle\PrintableBundle\Repository\PhotoRepository
+            arguments:
+                - %elcodi.entity.photo.class%
+
+    elcodi.repository.text:
+            parent: elcodi.abstract_repository
+            class: Elcodi\Bundle\PrintableBundle\Repository\TextRepository
+            arguments:
+                - %elcodi.entity.text.class%
+            

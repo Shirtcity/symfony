@@ -48,7 +48,8 @@ framework:
 twig:
     debug: "%kernel.debug%"
     strict_variables: false
-
+    form_themes:
+        - "colorPickerType.html.twig"
     globals:
         elcodi_context: []
         currency_wrapper: "@elcodi.wrapper.currency"

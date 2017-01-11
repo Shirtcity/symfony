@@ -1133,6 +1133,8 @@ admin:
                 description: 'Set this variant as visible or hidden.'
                 title: Visibility
         single: Variant
+    printable:
+        single: 'Printable'
 plugin:
     paymill:
         register:

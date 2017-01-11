@@ -796,6 +796,8 @@ admin:
                 description: 'Mettez la variante visible ou non dans la boutique.'
                 title: Visibilité
         single: Déclinaison
+    printable:
+        single: 'Printable'
 plugin:
     paymill:
         register:

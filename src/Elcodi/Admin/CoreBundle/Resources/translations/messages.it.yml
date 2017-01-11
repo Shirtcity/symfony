@@ -931,6 +931,8 @@ admin:
                 description: 'Set this variant as visible or hidden.'
                 title: Visibilità
         single: Variante
+    printable:
+        single: 'Printable'
 plugin:
     paymill:
         register:

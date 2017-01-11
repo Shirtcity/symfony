@@ -1,0 +1,78 @@
+{% extends 'AdminCoreBundle::Common/listComponent.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'font'
+} %}
+
+
+{% block title 'admin.font.list'|trans %}
+
+
+{% block no_items
+    lists.no_items(
+        'admin.font.single'|trans,
+        'admin.font.plural'|trans,
+        url('admin_font_new')
+    )
+%}
+
+
+{% block table_head %}
+
+
+    {% set stockClass = 'ta-r' %}
+    {% if not store.useStock %}
+        {% set stockClass = 'd-n ta-r' %}
+    {% endif %}
+
+    {% include '@AdminCore/Tables/head.html.twig' with {
+        rows: [
+            { name: 'admin.font.field.name'|trans },
+            { name: 'admin.font.field.filename'|trans },
+            { name: 'admin.font.field.minsize'|trans },
+            { name: 'admin.font.field.enabled'|trans },
+        ],
+        class: 'font',
+    } %}
+
+{% endblock table_head %}
+
+
+{% block table_body_row %}
+    <td data-test="font-{{ entity.id }}">
+        <a href="{{ url('admin_font_edit', { id: entity.id }) }}">
+            <strong>{{ entity.name }}</strong>
+        </a>
+    </td>
+    <td data-test="font-{{ entity.id }}">
+        <a href="{{ url('admin_font_edit', { id: entity.id }) }}">
+            <strong>{{ entity.filename }}</strong>
+        </a>
+    </td>
+    <td data-test="font-{{ entity.id }}">
+        <a href="{{ url('admin_font_edit', { id: entity.id }) }}">
+            <strong>{{ entity.minsize }}</strong>
+        </a>
+    </td>
+    <td>
+        {% if entity.enabled %}
+            <span class="label-ok fz-xs">{{ 'admin.font.field.enabled.options.active'|trans }}</span>
+        {% else %}
+            <span class="label fz-xs">{{ 'admin.font.field.enabled.options.inactive'|trans }}</span>
+        {% endif %}
+    </td>
+    {% include '@AdminCore/Tables/actions.html.twig' with {
+        entity: entity,
+        class: 'font',
+    } %}
+
+{% endblock table_body_row %}
+
+
+{% block table_paginator_links %}
+
+    {% set url = 'admin_font_list' %}
+    {{ parent() }}
+
+{% endblock table_paginator_links %}

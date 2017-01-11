@@ -1,0 +1,54 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'foilcolor',
+} %}
+
+{% block body_down %}
+    {% if foilcolor.id > 0 %}
+    {% set author_token = app.user.token %}
+    {% set context = "admin" %}
+    {% set source = "foilcolor-#{foilcolor.id}" %}
+    {% endif %}
+{% endblock body_down %}
+
+{% block breadcrumb %}
+
+    {% set title = 'admin.foilcolor.plural'|trans %}
+    {%
+        set header = foilcolor.id
+            ? 'admin.foilcolor.edit'|trans({ '%name%': foilcolor.name })
+            : 'admin.foilcolor.new'|trans
+    %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: title, url: url('admin_foilcolor_list'), },
+            { name: header, active: true, },
+        ]
+    } %}
+
+{% endblock breadcrumb %}
+
+
+{% block content %}
+    {% if foilcolor.id %}
+        {{ render(url('admin_foilcolor_edit_component', { id: foilcolor.id })) }}
+    {% else %}
+        {{ render(url('admin_foilcolor_new_component')) }}
+    {% endif %}
+
+    {% if foilcolor.id %}
+        <div class="hidden-placeholder">
+            <div id="metrics-panel" class="box-background">
+                <h2>{{ 'admin.metrics.info.visitors'|trans }}</h2>
+                {% include 'AdminMetricBundle:Metric:metricLine.html.twig' with {
+                    tracker: store.tracker,
+                    event: "pv_store_foilcolor_view_#{foilcolor.id}",
+                    intervalContainer: metric_create_interval_container(3),
+                } %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}

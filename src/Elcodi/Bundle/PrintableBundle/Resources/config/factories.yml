@@ -1,0 +1,14 @@
+services:
+
+    #Factory for FoilColor entities
+
+    elcodi.factory.foilcolor:
+            class: Elcodi\Bundle\PrintableBundle\Factory\FoilColorFactory
+            calls:
+                - [setEntityNamespace, ["%elcodi.entity.foilcolor.class%"]]
+
+    elcodi.factory.font:
+            class: Elcodi\Bundle\PrintableBundle\Factory\FontFactory
+            calls:
+                - [setEntityNamespace, ["%elcodi.entity.font.class%"]]
+    

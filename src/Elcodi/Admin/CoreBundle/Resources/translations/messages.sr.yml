@@ -925,6 +925,8 @@ admin:
                 description: 'Podesite ovu varijantu kao vidljivu ili sakrivenu.'
                 title: Vidljivost
         single: Varijanta
+    printable:
+        single: 'Printable'
 plugin:
     paymill:
         register:

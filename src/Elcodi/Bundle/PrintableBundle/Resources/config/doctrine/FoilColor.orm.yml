@@ -1,0 +1,20 @@
+Elcodi\Bundle\PrintableBundle\Entity\FoilColor:
+    type: entity
+    table: foilColor
+    repositoryClass: Elcodi\Bundle\PrintableBundle\Repository\FoilColorRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        code:
+            type: string
+            length: '7'
+        name:
+            type: string
+            length: 255
+        enabled:
+            type: boolean
+    lifecycleCallbacks: {  }

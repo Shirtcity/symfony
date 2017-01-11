@@ -1,0 +1,22 @@
+Elcodi\Bundle\PrintableBundle\Entity\Font:
+    type: entity
+    table: font
+    repositoryClass: Elcodi\Bundle\PrintableBundle\Repository\FontRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        filename:
+            type: string
+            length: 255
+        minSize:
+            type: integer
+        enabled:
+            type: boolean
+    lifecycleCallbacks: {  }

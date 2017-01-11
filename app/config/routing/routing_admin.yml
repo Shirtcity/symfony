@@ -55,6 +55,9 @@ admin_languages:
 admin_store:
     resource: "@AdminStoreBundle/Resources/config/routing.yml"
 
+admin_printable:
+    resource: "@AdminPrintableBundle/Resources/config/routing.yml"
+
 admin_login_check:
     path:  /login_check
 

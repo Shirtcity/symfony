@@ -1,0 +1,3 @@
+elcodi_printable_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ElcodiPrintableBundle:Default:index }

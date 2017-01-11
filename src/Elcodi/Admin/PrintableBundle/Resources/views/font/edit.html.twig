@@ -1,0 +1,54 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'font',
+} %}
+
+{% block body_down %}
+    {% if font.id > 0 %}
+    {% set author_token = app.user.token %}
+    {% set context = "admin" %}
+    {% set source = "font-#{font.id}" %}
+    {% endif %}
+{% endblock body_down %}
+
+{% block breadcrumb %}
+
+    {% set title = 'admin.font.plural'|trans %}
+    {%
+        set header = font.id
+            ? 'admin.font.edit'|trans({ '%name%': font.name })
+            : 'admin.font.new'|trans
+    %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: title, url: url('admin_font_list'), },
+            { name: header, active: true, },
+        ]
+    } %}
+
+{% endblock breadcrumb %}
+
+
+{% block content %}
+    {% if font.id %}
+        {{ render(url('admin_font_edit_component', { id: font.id })) }}
+    {% else %}
+        {{ render(url('admin_font_new_component')) }}
+    {% endif %}
+
+    {% if font.id %}
+        <div class="hidden-placeholder">
+            <div id="metrics-panel" class="box-background">
+                <h2>{{ 'admin.metrics.info.visitors'|trans }}</h2>
+                {% include 'AdminMetricBundle:Metric:metricLine.html.twig' with {
+                    tracker: store.tracker,
+                    event: "pv_store_font_view_#{font.id}",
+                    intervalContainer: metric_create_interval_container(3),
+                } %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}
