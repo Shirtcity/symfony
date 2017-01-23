@@ -1,14 +1,29 @@
 services:
-
-    #Factory for FoilColor entities
-
     elcodi.factory.foilcolor:
-            class: Elcodi\Bundle\PrintableBundle\Factory\FoilColorFactory
-            calls:
-                - [setEntityNamespace, ["%elcodi.entity.foilcolor.class%"]]
+        class: Elcodi\Bundle\PrintableBundle\Factory\FoilColorFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.foilcolor.class%"]]
 
     elcodi.factory.font:
-            class: Elcodi\Bundle\PrintableBundle\Factory\FontFactory
-            calls:
-                - [setEntityNamespace, ["%elcodi.entity.font.class%"]]
+        class: Elcodi\Bundle\PrintableBundle\Factory\FontFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.font.class%"]]
+
+    elcodi.factory.text:
+        class: Elcodi\Bundle\PrintableBundle\Factory\TextFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.text.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+
+    elcodi.factory.design:
+        class: Elcodi\Bundle\PrintableBundle\Factory\DesignFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.design.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+
+    elcodi.factory.photo:
+                class: Elcodi\Bundle\PrintableBundle\Factory\PhotoFactory
+                calls:
+                    - [setEntityNamespace, ["%elcodi.entity.photo.class%"]]
+                    - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
     

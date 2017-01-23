@@ -29,7 +29,7 @@
     {% include '@AdminCore/Tables/head.html.twig' with {
         rows: [
             { name: 'admin.font.field.name'|trans },
-            { name: 'admin.font.field.filename'|trans },
+            { name: 'admin.font.field.font'|trans },
             { name: 'admin.font.field.minsize'|trans },
             { name: 'admin.font.field.enabled'|trans },
         ],
@@ -47,7 +47,7 @@
     </td>
     <td data-test="font-{{ entity.id }}">
         <a href="{{ url('admin_font_edit', { id: entity.id }) }}">
-            <strong>{{ entity.filename }}</strong>
+            <strong>{{ entity.font }}</strong>
         </a>
     </td>
     <td data-test="font-{{ entity.id }}">

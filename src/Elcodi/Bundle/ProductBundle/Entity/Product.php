@@ -186,5 +186,46 @@ class Product
 
         return $this;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->variants = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Product
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Remove variant
+     *
+     * @param \Elcodi\Bundle\ProductBundle\Entity\ProductVariant $variant
+     */
+    public function removeVariant(\Elcodi\Bundle\ProductBundle\Entity\ProductVariant $variant)
+    {
+        $this->variants->removeElement($variant);
+    }
+}

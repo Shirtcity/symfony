@@ -13,16 +13,16 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Elcodi\Admin\CoreBundle\Controller\Abstracts\AbstractAdminController;
 use Elcodi\Component\Core\Entity\Interfaces\EnabledInterface;
-use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\FontInterface;
+use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\TextInterface;
 
 /**
- * Class Controller for Font
+ * Class Controller for Text
  *
  * @Route(
- *      path = "/font",
+ *      path = "/text",
  * )
  */
-class FontController extends AbstractAdminController
+class TextController extends AbstractAdminController
 {
     /**
      * List elements of certain entity type.
@@ -39,7 +39,7 @@ class FontController extends AbstractAdminController
      *
      * @Route(
      *      path = "s/{page}/{limit}/{orderByField}/{orderByDirection}",
-     *      name = "admin_font_list",
+     *      name = "admin_text_list",
      *      requirements = {
      *          "page" = "\d*",
      *          "limit" = "\d*",
@@ -51,7 +51,7 @@ class FontController extends AbstractAdminController
      *          "orderByDirection" = "DESC",
      *      },
      * )
-     * @Template("AdminPrintableBundle:font:list.html.twig")
+     * @Template("AdminPrintableBundle:text:list.html.twig")
      * @Method({"GET"})
      */
     public function listAction(
@@ -72,14 +72,14 @@ class FontController extends AbstractAdminController
      * Edit and Saves page
      *
      * @param FormInterface   $form    Form
-     * @param FontInterface $font  Font
+     * @param TextInterface $text  Text
      * @param boolean         $isValid Request handle is valid
      *
      * @return RedirectResponse Redirect response
      *
      * @Route(
      *      path = "/{id}",
-     *      name = "admin_font_edit",
+     *      name = "admin_text_edit",
      *      requirements = {
      *          "id" = "\d+",
      *      },
@@ -87,7 +87,7 @@ class FontController extends AbstractAdminController
      * )
      * @Route(
      *      path = "/{id}/update",
-     *      name = "admin_font_update",
+     *      name = "admin_text_update",
      *      requirements = {
      *          "id" = "\d+",
      *      },
@@ -96,59 +96,57 @@ class FontController extends AbstractAdminController
      *
      * @Route(
      *      path = "/new",
-     *      name = "admin_font_new",
+     *      name = "admin_text_new",
      *      methods = {"GET"}
      * )
      * @Route(
      *      path = "/new/update",
-     *      name = "admin_font_save",
+     *      name = "admin_text_save",
      *      methods = {"POST"}
      * )
      *
      * @EntityAnnotation(
      *      class = {
-     *          "factory" = "elcodi.factory.font",
+     *          "factory" = "elcodi.factory.text",
      *      },
      *      mapping = {
      *          "id" = "~id~"
      *      },
      *      mappingFallback = true,
-     *      name = "font",
+     *      name = "text",
      *      persist = true
      * )
      * @FormAnnotation(
-     *      class = "elcodi_admin_printable_form_type_font",
+     *      class = "elcodi_admin_printable_form_type_text",
      *      name  = "form",
-     *      entity = "font",
+     *      entity = "text",
      *      handleRequest = true,
      *      validate = "isValid"
      * )
      *
-     * @Template("AdminPrintableBundle:font:edit.html.twig")
+     * @Template("AdminPrintableBundle:text:edit.html.twig")
      */
     public function editAction(
         FormInterface $form,
-        FontInterface $font,
+        TextInterface $text,
         $isValid
     ) {
 
         if ($isValid) {
-            var_dump( $font );
-            die();
-            $this->flush($font);
+            $this->flush($text);
 
             $this->addFlash(
                 'success',
                 $this
                     ->get('translator')
-                    ->trans('admin.font.saved')
+                    ->trans('admin.text.saved')
             );
 
-            return $this->redirectToRoute('admin_font_list');
+            return $this->redirectToRoute('admin_text_list');
         }
 
         return [
-            'font' => $font,
+            'text' => $text,
             'form'    => $form->createView()
         ];
     }
@@ -163,12 +161,12 @@ class FontController extends AbstractAdminController
      *
      * @Route(
      *      path = "/{id}/enable",
-     *      name = "admin_font_enable"
+     *      name = "admin_text_enable"
      * )
      * @Method({"GET", "POST"})
      *
      * @EntityAnnotation(
-     *      class = "elcodi.entity.font.class",
+     *      class = "elcodi.entity.text.class",
      *      mapping = {
      *          "id" = "~id~"
      *      }
@@ -194,12 +192,12 @@ class FontController extends AbstractAdminController
      *
      * @Route(
      *      path = "/{id}/disable",
-     *      name = "admin_font_disable"
+     *      name = "admin_text_disable"
      * )
      * @Method({"GET", "POST"})
      *
      * @EntityAnnotation(
-     *      class = "elcodi.entity.font.class",
+     *      class = "elcodi.entity.text.class",
      *      mapping = {
      *          "id" = "~id~"
      *      }
@@ -226,12 +224,12 @@ class FontController extends AbstractAdminController
      *
      * @Route(
      *      path = "/{id}/delete",
-     *      name = "admin_font_delete"
+     *      name = "admin_text_delete"
      * )
      * @Method({"GET", "POST"})
      *
      * @EntityAnnotation(
-     *      class = "elcodi.entity.font.class",
+     *      class = "elcodi.entity.text.class",
      *      mapping = {
      *          "id" = "~id~"
      *      }
@@ -245,7 +243,7 @@ class FontController extends AbstractAdminController
         return parent::deleteAction(
             $request,
             $entity,
-            $this->generateUrl('admin_font_list')
+            $this->generateUrl('admin_text_list')
         );
     }
 }

@@ -1,0 +1,4 @@
+Elcodi\Bundle\PrintableBundle\Entity\Font:
+    font:
+        mapping: font_mapping
+        filename_property: file_name

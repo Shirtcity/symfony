@@ -1,5 +1,5 @@
 <?php
-namespace Elcodi\Admin\PrintableBundle\Form\Type;
+namespace Elcodi\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

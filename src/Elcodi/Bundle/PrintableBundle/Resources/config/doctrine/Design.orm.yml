@@ -28,6 +28,23 @@ Elcodi\Bundle\PrintableBundle\Entity\Design:
             nullable: false
         enabled:
             type: boolean
+    manyToOne:
+        customer:
+            targetEntity: Elcodi\Component\User\Entity\Customer
+            joinColumn:
+                name: customer_id
+                referencedColumnName: id
+    manyToMany:
+        foilcolor:
+            targetEntity: Elcodi\Bundle\PrintableBundle\Entity\FoilColor
+            joinTable:
+                name: designs_foilcolors
+                joinColumns:
+                  design_id:
+                    referencedColumnName: id
+                inverseJoinColumns:
+                  foil_color_id:
+                    referencedColumnName: id
     lifecycleCallbacks:
         preUpdate: [loadUpdateAt]
         prePersist: [loadUpdateAt]

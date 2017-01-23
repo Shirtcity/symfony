@@ -85,5 +85,14 @@ class FoilColor implements FoilColorInterface
     {
         return $this->name;
     }
-}
 
+    /**
+     * Get enabled
+     *
+     * @return boolean
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+}

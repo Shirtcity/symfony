@@ -165,6 +165,8 @@ class AppKernel extends Kernel
 
 
             /* Shirtcity Bundles */
+            'Vich\UploaderBundle\VichUploaderBundle',
+
             'Elcodi\Bundle\ProductBundle\ProductBundle',
             'Elcodi\Admin\ProductBundle\AdminProductBundle',
 

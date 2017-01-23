@@ -25,6 +25,17 @@ Elcodi\Bundle\PrintableBundle\Entity\Text:
             nullable: false
         enabled:
             type: boolean
+    manyToOne:
+        font:
+            targetEntity: Elcodi\Bundle\PrintableBundle\Entity\Font
+            joinColumn:
+                name: font_id
+                referencedColumnName: id
+        foilcolor:
+            targetEntity: Elcodi\Bundle\PrintableBundle\Entity\FoilColor
+            joinColumn:
+                name: foil_color_id
+                referencedColumnName: id
     lifecycleCallbacks:
         preUpdate: [loadUpdateAt]
         prePersist: [loadUpdateAt]

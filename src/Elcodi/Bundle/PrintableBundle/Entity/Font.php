@@ -4,6 +4,7 @@ namespace Elcodi\Bundle\PrintableBundle\Entity;
 
 use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\FontInterface;
 use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Font
@@ -31,6 +32,22 @@ class Font implements FontInterface
      * @var integer
      */
     private $minSize;
+
+    /**
+     * @var File $font
+     */
+    protected $font;
+
+
+    public function __toString()
+    {
+        return $this->name ? $this->name : '';
+    }
+
+    /**
+     * @var string
+     */
+    private $file_name;
 
 
     /**
@@ -68,27 +85,27 @@ class Font implements FontInterface
     }
 
     /**
-     * Set filename
+     * Set fileName
      *
-     * @param string $filename
+     * @param string $fileName
      *
      * @return Font
      */
-    public function setFilename($filename)
+    public function setFileName($fileName)
     {
-        $this->filename = $filename;
+        $this->file_name = $fileName;
 
         return $this;
     }
 
     /**
-     * Get filename
+     * Get fileName
      *
      * @return string
      */
-    public function getFilename()
+    public function getFileName()
     {
-        return $this->filename;
+        return $this->file_name;
     }
 
     /**
@@ -114,5 +131,28 @@ class Font implements FontInterface
     {
         return $this->minSize;
     }
-}
 
+    /**
+     * Get enabled
+     *
+     * @return boolean
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+
+    public function setFont(File $font)
+    {
+        $this->font = $font;
+
+        return $this;
+    }
+
+    public function getFont()
+    {
+        return $this->font;
+    }
+
+}

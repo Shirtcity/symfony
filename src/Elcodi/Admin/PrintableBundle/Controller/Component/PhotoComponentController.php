@@ -12,16 +12,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\FormView;
 
 use Elcodi\Admin\CoreBundle\Controller\Abstracts\AbstractAdminController;
-use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\FontInterface;
+use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\PhotoInterface;
 
 /**
- * Class FontComponentController
+ * Class PhotoComponentController
  *
  * @Route(
- *      path = "/font"
+ *      path = "/photo"
  * )
  */
-class FontComponentController extends AbstractAdminController
+class PhotoComponentController extends AbstractAdminController
 {
     /**
      * Component for entity list.
@@ -40,7 +40,7 @@ class FontComponentController extends AbstractAdminController
      *
      * @Route(
      *      path = "s/component/{page}/{limit}/{orderByField}/{orderByDirection}",
-     *      name = "admin_font_list_component",
+     *      name = "admin_photo_list_component",
      *      requirements = {
      *          "page" = "\d*",
      *          "limit" = "\d*",
@@ -54,11 +54,11 @@ class FontComponentController extends AbstractAdminController
      *      methods = {"GET"}
      * )
      *
-     * @Template("AdminPrintableBundle:font:listComponent.html.twig")
+     * @Template("AdminPrintableBundle:photo:listComponent.html.twig")
      *
      * @PaginatorAnnotation(
      *      attributes = "paginatorAttributes",
-     *      class = "elcodi.entity.font.class",
+     *      class = "elcodi.entity.photo.class",
      *      page = "~page~",
      *      limit = "~limit~",
      *      orderBy = {
@@ -91,14 +91,14 @@ class FontComponentController extends AbstractAdminController
      * As a component, this action should not return all the html macro, but
      * only the specific component
      *
-     * @param FontInterface $font   Entity
+     * @param PhotoInterface $photo   Entity
      * @param FormView        $formView Form view
      *
      * @return array Result
      *
      * @Route(
      *      path = "/{id}/edit/component",
-     *      name = "admin_font_edit_component",
+     *      name = "admin_photo_edit_component",
      *       requirements = {
      *          "page" = "\d*",
      *          "limit" = "\d*",
@@ -107,35 +107,35 @@ class FontComponentController extends AbstractAdminController
      * )
      * @Route(
      *      path = "/new/component",
-     *      name = "admin_font_new_component",
+     *      name = "admin_photo_new_component",
      *      methods = {"GET"}
      * )
      *
-     * @Template("AdminPrintableBundle:font:editComponent.html.twig")
+     * @Template("AdminPrintableBundle:photo:editComponent.html.twig")
      *
      * @EntityAnnotation(
      *      class = {
-     *          "factory" = "elcodi.factory.font",
+     *          "factory" = "elcodi.factory.photo",
      *      },
-     *      name = "font",
+     *      name = "photo",
      *      mapping = {
      *          "id": "~id~",
      *      },
      *      mappingFallback = true,
      * )
      * @FormAnnotation(
-     *      class = "elcodi_admin_printable_form_type_font",
+     *      class = "elcodi_admin_printable_form_type_photo",
      *      name  = "formView",
-     *      entity = "font"
+     *      entity = "photo"
      * )
      */
     public function editComponentAction(
-        FontInterface $font,
+        PhotoInterface $photo,
         FormView $formView
     ) {
 
         return [
-            'font' => $font,
+            'photo' => $photo,
             'form'   => $formView,
         ];
     }

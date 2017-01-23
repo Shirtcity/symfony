@@ -18,8 +18,8 @@
 namespace Elcodi\Admin\PrintableBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
@@ -27,11 +27,12 @@ use Symfony\Component\Validator\Constraints;
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
 /**
- * Class FontType
+ * Class PhotoType
  */
-class FontType extends AbstractType
+class PhotoType extends AbstractType
 {
     use EntityTranslatableFormTrait, FactoryTrait;
+
 
     /**
      * @var string
@@ -46,7 +47,6 @@ class FontType extends AbstractType
      * @param string $manufacturerNamespace Manufacturer namespace
      */
     public function __construct() {
-
     }
 
     /**
@@ -78,29 +78,11 @@ class FontType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'required'    => true,
-                'constraints' => [
-                    new Constraints\Length(
-                        [
-                            'max' => 65,
-                        ]
-                    ),
-                ],
+                'required'    => true
             ])
-            ->add('font', VichFileType::class, [
-                'required'    => true,
-                'allow_delete' => true,
-                'download_link' => true,
-            ])
-            ->add('minsize', TextType::class, [
-                'required'    => true,
-                'constraints' => [
-                    new Constraints\Length(
-                        [
-                            'max' => 65,
-                        ]
-                    ),
-                ],
+            ->add('customer', EntityType::class, [
+                'class' => 'Elcodi\Component\User\Entity\Customer',
+                'choice_label' => 'email'
             ])
             ->add('enabled', 'checkbox', [
                 'required' => false,
@@ -119,7 +101,7 @@ class FontType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'elcodi_admin_printable_form_type_font';
+        return 'elcodi_admin_printable_form_type_photo';
     }
 
     /**

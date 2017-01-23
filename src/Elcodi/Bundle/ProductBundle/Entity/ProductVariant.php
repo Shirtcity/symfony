@@ -120,5 +120,28 @@ class ProductVariant
     {
         return $this->active;
     }
-}
 
+    /**
+     * Set product
+     *
+     * @param \Elcodi\Bundle\ProductBundle\Entity\Product $product
+     *
+     * @return ProductVariant
+     */
+    public function setProduct(\Elcodi\Bundle\ProductBundle\Entity\Product $product)
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    /**
+     * Get product
+     *
+     * @return \Elcodi\Bundle\ProductBundle\Entity\Product
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+}

@@ -1,0 +1,78 @@
+{% extends 'AdminCoreBundle::Common/listComponent.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'text'
+} %}
+
+
+{% block title 'admin.text.list'|trans %}
+
+
+{% block no_items
+    lists.no_items(
+        'admin.text.single'|trans,
+        'admin.text.plural'|trans,
+        url('admin_text_new')
+    )
+%}
+
+
+{% block table_head %}
+
+
+    {% set stockClass = 'ta-r' %}
+    {% if not store.useStock %}
+        {% set stockClass = 'd-n ta-r' %}
+    {% endif %}
+
+    {% include '@AdminCore/Tables/head.html.twig' with {
+        rows: [
+            { name: 'admin.text.field.content'|trans },
+            { name: 'admin.text.field.font'|trans },
+            { name: 'admin.text.field.foilcolor'|trans },
+            { name: 'admin.text.field.enabled'|trans },
+        ],
+        class: 'text',
+    } %}
+
+{% endblock table_head %}
+
+
+{% block table_body_row %}
+    <td data-test="text-{{ entity.id }}">
+        <a href="{{ url('admin_text_edit', { id: entity.id }) }}">
+            <strong>{{ entity.content | truncate(50)}}</strong>
+        </a>
+    </td>
+    <td data-test="text-{{ entity.id }}">
+        <a href="{{ url('admin_text_edit', { id: entity.id }) }}">
+            <strong>{{ entity.font.name }}</strong>
+        </a>
+    </td>
+    <td data-test="text-{{ entity.id }}">
+        <a href="{{ url('admin_text_edit', { id: entity.id }) }}">
+            <strong>{{ entity.foilcolor.name }}</strong>
+        </a>
+    </td>
+    <td>
+        {% if entity.enabled %}
+            <span class="label-ok fz-xs">{{ 'admin.text.field.enabled.options.active'|trans }}</span>
+        {% else %}
+            <span class="label fz-xs">{{ 'admin.text.field.enabled.options.inactive'|trans }}</span>
+        {% endif %}
+    </td>
+    {% include '@AdminCore/Tables/actions.html.twig' with {
+        entity: entity,
+        class: 'text',
+    } %}
+
+{% endblock table_body_row %}
+
+
+{% block table_paginator_links %}
+
+    {% set url = 'admin_text_list' %}
+    {{ parent() }}
+
+{% endblock table_paginator_links %}

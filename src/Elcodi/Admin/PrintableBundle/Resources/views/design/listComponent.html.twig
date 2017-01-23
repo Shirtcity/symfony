@@ -1,0 +1,82 @@
+{% extends 'AdminCoreBundle::Common/listComponent.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'design'
+} %}
+
+
+{% block title 'admin.design.list'|trans %}
+
+
+{% block no_items
+    lists.no_items(
+        'admin.design.single'|trans,
+        'admin.design.plural'|trans,
+        url('admin_design_new')
+    )
+%}
+
+
+{% block table_head %}
+
+
+    {% set stockClass = 'ta-r' %}
+    {% if not store.useStock %}
+        {% set stockClass = 'd-n ta-r' %}
+    {% endif %}
+
+    {% include '@AdminCore/Tables/head.html.twig' with {
+        rows: [
+            { name: 'admin.design.field.name'|trans },
+            { name: 'admin.design.foilcolor'|trans },
+            { name: 'admin.design.customer.email'|trans },
+            { name: 'admin.design.field.enabled'|trans },
+        ],
+        class: 'design',
+    } %}
+
+{% endblock table_head %}
+
+
+{% block table_body_row %}
+    <td data-test="design-{{ entity.id }}">
+        <a href="{{ url('admin_design_edit', { id: entity.id }) }}">
+            <strong>{{ entity.name | truncate(50)}}</strong>
+        </a>
+    </td>
+    <td data-test="design-{{ entity.id }}">
+        <a href="{{ url('admin_design_edit', { id: entity.id }) }}">
+            {% set colornames = [] %}
+            {% for color in entity.foilcolor %}
+                {% set colornames = colornames | merge([color.name]) %}
+            {% endfor %}
+            {{ colornames | join(', ')  }}
+        </a>
+    </td>
+    <td data-test="design-{{ entity.id }}">
+        <a href="{{ url('admin_design_edit', { id: entity.id }) }}">
+            <strong>{{ entity.customer.email }}</strong>
+        </a>
+    </td>
+    <td>
+        {% if entity.enabled %}
+            <span class="label-ok fz-xs">{{ 'admin.design.field.enabled.options.active'|trans }}</span>
+        {% else %}
+            <span class="label fz-xs">{{ 'admin.design.field.enabled.options.inactive'|trans }}</span>
+        {% endif %}
+    </td>
+    {% include '@AdminCore/Tables/actions.html.twig' with {
+        entity: entity,
+        class: 'design',
+    } %}
+
+{% endblock table_body_row %}
+
+
+{% block table_paginator_links %}
+
+    {% set url = 'admin_design_list' %}
+    {{ parent() }}
+
+{% endblock table_paginator_links %}

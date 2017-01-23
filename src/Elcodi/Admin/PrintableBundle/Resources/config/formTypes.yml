@@ -12,10 +12,34 @@ services:
                 - { name: form.type, alias: elcodi_admin_printable_form_type_foilcolor }
 
     elcodi_admin.form_type.font:
-        class: Elcodi\Admin\PrintableBundle\Form\Type\FontType
-        calls:
-            - [setFactory, ["@elcodi.factory.font"]]
-            - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
-        tags:
-            - { name: form.type, alias: elcodi_admin_printable_form_type_font }
+            class: Elcodi\Admin\PrintableBundle\Form\Type\FontType
+            calls:
+                - [setFactory, ["@elcodi.factory.font"]]
+                - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
+            tags:
+                - { name: form.type, alias: elcodi_admin_printable_form_type_font }
+
+    elcodi_admin.form_type.text:
+            class: Elcodi\Admin\PrintableBundle\Form\Type\TextType
+            calls:
+                - [setFactory, ["@elcodi.factory.text"]]
+                - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
+            tags:
+                - { name: form.type, alias: elcodi_admin_printable_form_type_text }
+
+    elcodi_admin.form_type.design:
+            class: Elcodi\Admin\PrintableBundle\Form\Type\DesignType
+            calls:
+                - [setFactory, ["@elcodi.factory.design"]]
+                - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
+            tags:
+                - { name: form.type, alias: elcodi_admin_printable_form_type_design }
+
+    elcodi_admin.form_type.photo:
+            class: Elcodi\Admin\PrintableBundle\Form\Type\PhotoType
+            calls:
+                - [setFactory, ["@elcodi.factory.photo"]]
+                - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
+            tags:
+                - { name: form.type, alias: elcodi_admin_printable_form_type_photo }
 

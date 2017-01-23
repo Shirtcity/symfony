@@ -1,0 +1,54 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'text',
+} %}
+
+{% block body_down %}
+    {% if text.id > 0 %}
+    {% set author_token = app.user.token %}
+    {% set context = "admin" %}
+    {% set source = "text-#{text.id}" %}
+    {% endif %}
+{% endblock body_down %}
+
+{% block breadcrumb %}
+
+    {% set title = 'admin.text.plural'|trans %}
+    {%
+        set header = text.id
+            ? 'admin.text.edit'|trans({ '%name%': text.name })
+            : 'admin.text.new'|trans
+    %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: title, url: url('admin_text_list'), },
+            { name: header, active: true, },
+        ]
+    } %}
+
+{% endblock breadcrumb %}
+
+
+{% block content %}
+    {% if text.id %}
+        {{ render(url('admin_text_edit_component', { id: text.id })) }}
+    {% else %}
+        {{ render(url('admin_text_new_component')) }}
+    {% endif %}
+
+    {% if text.id %}
+        <div class="hidden-placeholder">
+            <div id="metrics-panel" class="box-background">
+                <h2>{{ 'admin.metrics.info.visitors'|trans }}</h2>
+                {% include 'AdminMetricBundle:Metric:metricLine.html.twig' with {
+                    tracker: store.tracker,
+                    event: "pv_store_text_view_#{text.id}",
+                    intervalContainer: metric_create_interval_container(3),
+                } %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,54 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'photo',
+} %}
+
+{% block body_down %}
+    {% if photo.id > 0 %}
+    {% set author_token = app.user.token %}
+    {% set context = "admin" %}
+    {% set source = "photo-#{photo.id}" %}
+    {% endif %}
+{% endblock body_down %}
+
+{% block breadcrumb %}
+
+    {% set title = 'admin.photo.plural'|trans %}
+    {%
+        set header = photo.id
+            ? 'admin.photo.edit'|trans({ '%name%': photo.name })
+            : 'admin.photo.new'|trans
+    %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: title, url: url('admin_photo_list'), },
+            { name: header, active: true, },
+        ]
+    } %}
+
+{% endblock breadcrumb %}
+
+
+{% block content %}
+    {% if photo.id %}
+        {{ render(url('admin_photo_edit_component', { id: photo.id })) }}
+    {% else %}
+        {{ render(url('admin_photo_new_component')) }}
+    {% endif %}
+
+    {% if photo.id %}
+        <div class="hidden-placeholder">
+            <div id="metrics-panel" class="box-background">
+                <h2>{{ 'admin.metrics.info.visitors'|trans }}</h2>
+                {% include 'AdminMetricBundle:Metric:metricLine.html.twig' with {
+                    tracker: store.tracker,
+                    event: "pv_store_photo_view_#{photo.id}",
+                    intervalContainer: metric_create_interval_container(3),
+                } %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}

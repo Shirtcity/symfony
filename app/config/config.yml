@@ -10,6 +10,7 @@ imports:
     - { resource: common/twig.yml }
     - { resource: common/metrics.yml }
     - { resource: common/sitemap.yml }
+    - { resource: common/vich_uploader.yml }
 
     # Specific service overrides
     - { resource: common/services.yml }
@@ -49,7 +50,7 @@ twig:
     debug: "%kernel.debug%"
     strict_variables: false
     form_themes:
-        - "colorPickerType.html.twig"
+        - "Form/colorPickerType.html.twig"
     globals:
         elcodi_context: []
         currency_wrapper: "@elcodi.wrapper.currency"

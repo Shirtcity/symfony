@@ -1,0 +1,41 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'text'
+} %}
+
+
+{% block breadcrumb %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: 'admin.text.plural'|trans, active: true },
+        ],
+    } %}
+
+{% endblock breadcrumb %}
+
+
+{% block header_actions %}
+
+    <a href="{{ url('admin_text_new') }}" type="button" class="button-primary" data-test="new-text">
+        <i class="icon-plus"></i>
+        <span>{{ 'admin.text.new'|trans }}</span>
+    </a>
+
+{% endblock header_actions %}
+
+
+{% block content %}
+
+    {{
+        render(url('admin_text_list_component', {
+            page: page,
+            limit: limit,
+            orderByField: orderByField,
+            orderByDirection: orderByDirection
+        }))
+    }}
+
+{% endblock content %}

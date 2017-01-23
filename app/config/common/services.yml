@@ -36,3 +36,11 @@ services:
         arguments:
             - "@elcodi.repository.currency"
             - "@elcodi.store_default_currency_iso"
+
+    #
+    # Additional HTML5 Colorpicker
+    #
+    elcodi.form.type.colorpicker:
+        class: Elcodi\Form\Type\ColorPickerType
+        tags:
+            - { name: form.type, alias: colorpicker }

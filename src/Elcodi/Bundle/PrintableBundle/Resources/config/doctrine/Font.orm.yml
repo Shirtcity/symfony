@@ -12,9 +12,8 @@ Elcodi\Bundle\PrintableBundle\Entity\Font:
         name:
             type: string
             length: 255
-        filename:
+        file_name:
             type: string
-            length: 255
         minSize:
             type: integer
         enabled:

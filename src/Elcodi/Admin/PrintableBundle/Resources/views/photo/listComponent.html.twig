@@ -1,0 +1,72 @@
+{% extends 'AdminCoreBundle::Common/listComponent.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'photo'
+} %}
+
+
+{% block title 'admin.photo.list'|trans %}
+
+
+{% block no_items
+    lists.no_items(
+        'admin.photo.single'|trans,
+        'admin.photo.plural'|trans,
+        url('admin_photo_new')
+    )
+%}
+
+
+{% block table_head %}
+
+
+    {% set stockClass = 'ta-r' %}
+    {% if not store.useStock %}
+        {% set stockClass = 'd-n ta-r' %}
+    {% endif %}
+
+    {% include '@AdminCore/Tables/head.html.twig' with {
+        rows: [
+            { name: 'admin.photo.field.name'|trans },
+            { name: 'admin.photo.customer.email'|trans },
+            { name: 'admin.photo.field.enabled'|trans },
+        ],
+        class: 'photo',
+    } %}
+
+{% endblock table_head %}
+
+
+{% block table_body_row %}
+    <td data-test="photo-{{ entity.id }}">
+        <a href="{{ url('admin_photo_edit', { id: entity.id }) }}">
+            <strong>{{ entity.name | truncate(50)}}</strong>
+        </a>
+    </td>
+    <td data-test="photo-{{ entity.id }}">
+        <a href="{{ url('admin_photo_edit', { id: entity.id }) }}">
+            <strong>{{ entity.customer.email }}</strong>
+        </a>
+    </td>
+    <td>
+        {% if entity.enabled %}
+            <span class="label-ok fz-xs">{{ 'admin.photo.field.enabled.options.active'|trans }}</span>
+        {% else %}
+            <span class="label fz-xs">{{ 'admin.photo.field.enabled.options.inactive'|trans }}</span>
+        {% endif %}
+    </td>
+    {% include '@AdminCore/Tables/actions.html.twig' with {
+        entity: entity,
+        class: 'photo',
+    } %}
+
+{% endblock table_body_row %}
+
+
+{% block table_paginator_links %}
+
+    {% set url = 'admin_photo_list' %}
+    {{ parent() }}
+
+{% endblock table_paginator_links %}

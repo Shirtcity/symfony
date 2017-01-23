@@ -69,5 +69,43 @@ class Photo extends AbstractPrintable implements PhotoInterface
         return 'Photo';
     }
 
-}
 
+    /**
+     * Get enabled
+     *
+     * @return boolean
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+    /**
+     * @var \Elcodi\Component\User\Entity\Customer
+     */
+    private $customer;
+
+
+    /**
+     * Set customer
+     *
+     * @param \Elcodi\Component\User\Entity\Customer $customer
+     *
+     * @return Photo
+     */
+    public function setCustomer(\Elcodi\Component\User\Entity\Customer $customer = null)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get customer
+     *
+     * @return \Elcodi\Component\User\Entity\Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+}
