@@ -15,15 +15,33 @@ services:
             - [setEntityNamespace, ["%elcodi.entity.text.class%"]]
             - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
 
-    elcodi.factory.design:
-        class: Elcodi\Bundle\PrintableBundle\Factory\DesignFactory
+    elcodi.factory.text_variant:
+        class: Elcodi\Bundle\PrintableBundle\Factory\TextVariantFactory
         calls:
-            - [setEntityNamespace, ["%elcodi.entity.design.class%"]]
+            - [setEntityNamespace, ["%elcodi.entity.text_variant.class%"]]
             - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
 
+    elcodi.factory.design:
+            class: Elcodi\Bundle\PrintableBundle\Factory\DesignFactory
+            calls:
+                - [setEntityNamespace, ["%elcodi.entity.design.class%"]]
+                - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+
+    elcodi.factory.design_variant:
+            class: Elcodi\Bundle\PrintableBundle\Factory\DesignVariantFactory
+            calls:
+                - [setEntityNamespace, ["%elcodi.entity.design_variant.class%"]]
+                - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+
     elcodi.factory.photo:
-                class: Elcodi\Bundle\PrintableBundle\Factory\PhotoFactory
-                calls:
-                    - [setEntityNamespace, ["%elcodi.entity.photo.class%"]]
-                    - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+                    class: Elcodi\Bundle\PrintableBundle\Factory\PhotoFactory
+                    calls:
+                        - [setEntityNamespace, ["%elcodi.entity.photo.class%"]]
+                        - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+
+    elcodi.factory.photo_variant:
+                    class: Elcodi\Bundle\PrintableBundle\Factory\PhotoVariantFactory
+                    calls:
+                        - [setEntityNamespace, ["%elcodi.entity.photo_variant.class%"]]
+                        - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
     

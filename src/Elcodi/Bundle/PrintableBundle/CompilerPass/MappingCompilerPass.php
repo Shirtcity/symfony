@@ -24,10 +24,13 @@ class MappingCompilerPass extends AbstractElcodiMappingCompilerPass
                 $container,
                 [
                     'design',
+                    //'design_variant',
                     'foilcolor',
                     'font',
                     'photo',
-                    'text'
+                    //'photo_variant',
+                    'text',
+                    //'text_variant'
                 ]
             );
     }

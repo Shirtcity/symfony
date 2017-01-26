@@ -5,6 +5,12 @@ services:
             arguments:
                 - %elcodi.entity.design.class%
 
+    elcodi.repository.design_variant:
+                parent: elcodi.abstract_repository
+                class: Elcodi\Bundle\PrintableBundle\Repository\DesignVariantRepository
+                arguments:
+                    - %elcodi.entity.design_variant.class
+
     elcodi.repository.foilcolor:
             parent: elcodi.abstract_repository
             class: Elcodi\Bundle\PrintableBundle\Repository\FoilColorRepository
@@ -18,14 +24,26 @@ services:
                 - %elcodi.entity.font.class%
 
     elcodi.repository.photo:
-            parent: elcodi.abstract_repository
-            class: Elcodi\Bundle\PrintableBundle\Repository\PhotoRepository
-            arguments:
-                - %elcodi.entity.photo.class%
+                parent: elcodi.abstract_repository
+                class: Elcodi\Bundle\PrintableBundle\Repository\PhotoRepository
+                arguments:
+                    - %elcodi.entity.photo.class%
+
+    elcodi.repository.photo_variant:
+                parent: elcodi.abstract_repository
+                class: Elcodi\Bundle\PrintableBundle\Repository\PhotoVariantRepository
+                arguments:
+                    - %elcodi.entity.photo_variant.class%
 
     elcodi.repository.text:
-            parent: elcodi.abstract_repository
-            class: Elcodi\Bundle\PrintableBundle\Repository\TextRepository
-            arguments:
-                - %elcodi.entity.text.class%
+                parent: elcodi.abstract_repository
+                class: Elcodi\Bundle\PrintableBundle\Repository\TextRepository
+                arguments:
+                    - %elcodi.entity.text.class%
+
+    elcodi.repository.text_variant:
+                parent: elcodi.abstract_repository
+                class: Elcodi\Bundle\PrintableBundle\Repository\TextVariantRepository
+                arguments:
+                    - %elcodi.entity.text_variant.class%
             

@@ -57,6 +57,29 @@ class Configuration extends AbstractConfiguration
                             'default',
                             true
                         ))
+
+                        ->append($this->addMappingNode(
+                            'photo_variant',
+                            'Elcodi\Bundle\PrintableBundle\Entity\PhotoVariant',
+                            '@PrintableBundle/Resources/config/doctrine/PhotoVariant.orm.yml',
+                            'default',
+                            true
+                        ))
+                        ->append($this->addMappingNode(
+                            'text_variant',
+                            'Elcodi\Bundle\PrintableBundle\Entity\TextVariant',
+                            '@PrintableBundle/Resources/config/doctrine/TextVariant.orm.yml',
+                            'default',
+                            true
+                        ))
+                        ->append($this->addMappingNode(
+                            'design_variant',
+                            'Elcodi\Bundle\PrintableBundle\Entity\DesignVariant',
+                            '@PrintableBundle/Resources/config/doctrine/DesignVariant.orm.yml',
+                            'default',
+                            true
+                        ))
+
                     ->end()
                 ->end()
             ->end();

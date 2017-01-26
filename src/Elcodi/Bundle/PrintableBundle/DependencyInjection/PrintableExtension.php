@@ -93,15 +93,30 @@ class PrintableExtension extends AbstractExtension implements EntitiesOverridabl
             'elcodi.entity.design.manager' => $config['mapping']['design']['manager'],
             'elcodi.entity.design.enabled' => $config['mapping']['design']['enabled'],
 
+            'elcodi.entity.design_variant.class' => $config['mapping']['design_variant']['class'],
+            'elcodi.entity.design_variant.mapping_file' => $config['mapping']['design_variant']['mapping_file'],
+            'elcodi.entity.design_variant.manager' => $config['mapping']['design_variant']['manager'],
+            'elcodi.entity.design_variant.enabled' => $config['mapping']['design_variant']['enabled'],
+
             'elcodi.entity.text.class' => $config['mapping']['text']['class'],
             'elcodi.entity.text.mapping_file' => $config['mapping']['text']['mapping_file'],
             'elcodi.entity.text.manager' => $config['mapping']['text']['manager'],
             'elcodi.entity.text.enabled' => $config['mapping']['text']['enabled'],
 
+            'elcodi.entity.text_variant.class' => $config['mapping']['text_variant']['class'],
+            'elcodi.entity.text_variant.mapping_file' => $config['mapping']['text']['mapping_file'],
+            'elcodi.entity.text_variant.manager' => $config['mapping']['text_variant']['manager'],
+            'elcodi.entity.text_variant.enabled' => $config['mapping']['text_variant']['enabled'],
+
             'elcodi.entity.photo.class' => $config['mapping']['photo']['class'],
             'elcodi.entity.photo.mapping_file' => $config['mapping']['photo']['mapping_file'],
             'elcodi.entity.photo.manager' => $config['mapping']['photo']['manager'],
             'elcodi.entity.photo.enabled' => $config['mapping']['photo']['enabled'],
+
+            'elcodi.entity.photo_variant.class' => $config['mapping']['photo_variant']['class'],
+            'elcodi.entity.photo_variant.mapping_file' => $config['mapping']['photo_variant']['mapping_file'],
+            'elcodi.entity.photo_variant.manager' => $config['mapping']['photo_variant']['manager'],
+            'elcodi.entity.photo_variant.enabled' => $config['mapping']['photo_variant']['enabled'],
         ];
     }
 
@@ -145,10 +160,17 @@ class PrintableExtension extends AbstractExtension implements EntitiesOverridabl
     {
         return [
             'Elcodi\Bundle\PrintableBundle\Entity\Interfaces\FoilColorInterface' => 'elcodi.entity.foilcolor.class',
+
             'Elcodi\Bundle\PrintableBundle\Entity\Interfaces\FontInterface' => 'elcodi.entity.font.class',
+
             'Elcodi\Bundle\PrintableBundle\Entity\Interfaces\DesignInterface' => 'elcodi.entity.design.class',
+            'Elcodi\Bundle\PrintableBundle\Entity\Interfaces\DesignVariantInterface' => 'elcodi.entity.design_variant.class',
+
             'Elcodi\Bundle\PrintableBundle\Entity\Interfaces\PhotoInterface' => 'elcodi.entity.photo.class',
+            'Elcodi\Bundle\PrintableBundle\Entity\Interfaces\PhotoVariantInterface' => 'elcodi.entity.photo_variant.class',
+
             'Elcodi\Bundle\PrintableBundle\Entity\Interfaces\TextInterface' => 'elcodi.entity.text.class',
+            'Elcodi\Bundle\PrintableBundle\Entity\Interfaces\TextVariantInterface' => 'elcodi.entity.text_variant.class',
         ];
     }
 
