@@ -1,0 +1,26 @@
+Elcodi\Bundle\PrintableBundle\Entity\PhotoVariant:
+    type: entity
+    table: photo_variant
+    repositoryClass: Elcodi\Bundle\PrintableBundle\Repository\PhotoVariantRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        posX:
+            type: integer
+        posY:
+            type: integer
+
+    manyToOne:
+        customer:
+            targetEntity: Elcodi\Bundle\PrintableBundle\Entity\Photo
+            joinColumn:
+                name: photo_id
+                referencedColumnName: id
+
+    lifecycleCallbacks:
+        preUpdate: [loadUpdateAt]
+        prePersist: [loadUpdateAt]

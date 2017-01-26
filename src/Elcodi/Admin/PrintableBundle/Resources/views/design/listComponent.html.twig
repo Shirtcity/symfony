@@ -47,11 +47,7 @@
     </td>
     <td data-test="design-{{ entity.id }}">
         <a href="{{ url('admin_design_edit', { id: entity.id }) }}">
-            {% set colornames = [] %}
-            {% for color in entity.foilcolor %}
-                {% set colornames = colornames | merge([color.name]) %}
-            {% endfor %}
-            {{ colornames | join(', ')  }}
+            {{ entity.foilcolor | join(', ') }}
         </a>
     </td>
     <td data-test="design-{{ entity.id }}">

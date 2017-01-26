@@ -9,15 +9,9 @@ Elcodi\Bundle\PrintableBundle\Entity\Design:
             generator:
                 strategy: AUTO
     fields:
-        enabled:
-            type: boolean
         name:
             type: string
             length: 255
-        posX:
-            type: integer
-        posY:
-            type: integer
         createdAt:
             column: created_at
             type: datetime

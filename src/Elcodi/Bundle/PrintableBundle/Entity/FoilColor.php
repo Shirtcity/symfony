@@ -95,4 +95,12 @@ class FoilColor implements FoilColorInterface
     {
         return $this->enabled;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }
