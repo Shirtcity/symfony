@@ -13,11 +13,3 @@ services:
             - [setEntityNamespace, ["%elcodi.entity.product.class%"]]
             - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
     
-    #
-    # Factory for Product Variant entities
-    #
-    elcodi.factory.product_variant:
-        class: Elcodi\Bundle\ProductBundle\Factory\ProductVariantFactory
-        calls:
-            - [setEntityNamespace, ["%elcodi.entity.product_variant.class%"]]
-            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]

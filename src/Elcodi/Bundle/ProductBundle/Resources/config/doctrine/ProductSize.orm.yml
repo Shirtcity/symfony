@@ -1,0 +1,21 @@
+Elcodi\Bundle\ProductBundle\Entity\ProductSize:
+    type: entity
+    table: product_size
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        orderAsc:
+            type: string
+            length: 255
+            column: order_asc
+        enabled:
+            type: boolean
+            
+    lifecycleCallbacks: {  }

@@ -38,18 +38,21 @@ class ProductType extends AbstractType
      * Image namespace
      */
     protected $imageNamespace;
+	
+	protected $sizesNamespace;
 
     /**
      * Construct
      *
-     * @param string $manufacturerNamespace Manufacturer namespace
-     * @param string $categoryNamespace     Category namespace
-     * @param string $imageNamespace        Image namespace
+     * @param string $sizesNamespace     ProductSizes namespace
+     * @param string $imageNamespace	 Image namespace
      */
     public function __construct(
-        $imageNamespace
+        $imageNamespace,
+		$sizesNamespace
     ) {
         $this->imageNamespace = $imageNamespace;
+		$this->sizesNamespace = $sizesNamespace;
     }
 
     /**
@@ -187,6 +190,14 @@ class ProductType extends AbstractType
                 'property' => 'id',
                 'multiple' => true,
                 'expanded' => true,
+            ])
+			->add('sizes', 'entity', [
+                'class'    => $this->sizesNamespace,
+                'required' => false,
+                'multiple' => true,
+				'property' => 'id',
+				'choice_label' => 'size.name',
+				'expanded' => true,
             ]);
 		
         $builder->addEventSubscriber($this->getEntityTranslatorFormEventListener());

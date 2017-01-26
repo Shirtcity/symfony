@@ -7,18 +7,9 @@ services:
         class: Elcodi\Admin\ProductBundle\Form\Type\ProductType
         arguments:
             - %elcodi.entity.image.class%
+            - %elcodi.entity.product_sizes.class%
         calls:
             - [setFactory, ["@elcodi.factory.product"]]
             - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
         tags:
             - { name: form.type, alias: elcodi_admin_product_form_type_product }
-
-    elcodi_admin.form_type.product_variant:
-        class: Elcodi\Admin\ProductBundle\Form\Type\VariantType
-        arguments:
-            - %elcodi.entity.attribute_value.class%
-            - %elcodi.entity.image.class%
-        calls:
-            - [setFactory, ["@elcodi.factory.product_variant"]]
-        tags:
-            - { name: form.type, alias: elcodi_admin_product_form_type_product_variant }    

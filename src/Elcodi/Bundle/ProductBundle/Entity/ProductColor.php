@@ -1,17 +1,16 @@
 <?php
 
-namespace Elcodi\Bundle\PrintableBundle\Entity;
+namespace Elcodi\Bundle\ProductBundle\Entity;
 
-use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\FoilColorInterface;
 use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
 
 /**
- * FoilColor
+ * Color
  */
-class FoilColor implements FoilColorInterface
+class ProductColor
 {
-    use EnabledTrait;
-
+	use EnabledTrait;
+	
     /**
      * @var integer
      */
@@ -20,12 +19,12 @@ class FoilColor implements FoilColorInterface
     /**
      * @var string
      */
-    private $code;
+    private $name;
 
     /**
      * @var string
      */
-    private $name;
+    private $code;
 
 
     /**
@@ -39,35 +38,11 @@ class FoilColor implements FoilColorInterface
     }
 
     /**
-     * Set code
-     *
-     * @param string $code
-     *
-     * @return FoilColor
-     */
-    public function setCode($code)
-    {
-        $this->code = $code;
-
-        return $this;
-    }
-
-    /**
-     * Get code
-     *
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    /**
      * Set name
      *
      * @param string $name
      *
-     * @return FoilColor
+     * @return Color
      */
     public function setName($name)
     {
@@ -84,6 +59,30 @@ class FoilColor implements FoilColorInterface
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set code
+     *
+     * @param string $code
+     *
+     * @return Color
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 
     /**

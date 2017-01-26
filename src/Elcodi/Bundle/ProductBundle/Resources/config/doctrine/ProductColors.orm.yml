@@ -1,0 +1,33 @@
+Elcodi\Bundle\ProductBundle\Entity\ProductColors:
+    type: entity
+    table: product_colors
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+                
+    manyToOne:
+        product:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Product
+            inversedBy: colors
+            joinColumn:
+                name: product_id
+                referencedColumnName: id
+                nullable: false
+                onDelete: "CASCADE"
+        color:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\ProductColor
+            joinColumn:
+                name: color_id
+                referencedColumnName: id
+                nullable: false
+                onDelete: "CASCADE"
+                
+    manyToMany:
+        sizes:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\ProductSizes
+            mappedBy: colors                        
+                
+    lifecycleCallbacks: {  }
