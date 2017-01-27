@@ -249,7 +249,7 @@ class AbstractAdminController extends Controller
         $objectManager = $this->getManagerForClass($entity);
 
         $objectManager->persist($entity);
-        $objectManager->flush($entity);
+        $objectManager->flush();
 
         return $this;
     }

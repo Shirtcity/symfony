@@ -73,7 +73,8 @@
         "elcodi/elcodi": "^2.0.2",
         "paymentsuite/paymentsuite": "^2.0.3",
         "sensio/generator-bundle": "^2.3",
-        "vich/uploader-bundle": "^1.4"
+        "vich/uploader-bundle": "^1.4",
+        "yokai/many-to-many-matrix-bundle": "^1.1"
     },
     "replace": {
         "elcodi-templates/template": "dev-master",

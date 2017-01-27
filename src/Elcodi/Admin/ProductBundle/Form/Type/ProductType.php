@@ -25,6 +25,8 @@ use Symfony\Component\Validator\Constraints;
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
 
+use Yokai\ManyToManyMatrixBundle\Form\Type\ManyToManyMatrixType;
+
 /**
  * Class ProductType
  */
@@ -191,13 +193,16 @@ class ProductType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
-			->add('sizes', 'entity', [
-                'class'    => $this->sizesNamespace,
+			->add('sizes', 'Yokai\ManyToManyMatrixBundle\Form\Type\ManyToManyMatrixType', [
+                'class'    => 'Elcodi\Bundle\ProductBundle\Entity\ProductSizes',
                 'required' => false,
-                'multiple' => true,
-				'property' => 'id',
-				'choice_label' => 'size.name',
-				'expanded' => true,
+				'association' => 'colors',
+				'by_reference' => false,
+				//'label' => false,
+                //'multiple' => true,
+				//'property' => 'id',
+				//'choice_label' => 'size.name',
+				//'expanded' => true,
             ]);
 		
         $builder->addEventSubscriber($this->getEntityTranslatorFormEventListener());
