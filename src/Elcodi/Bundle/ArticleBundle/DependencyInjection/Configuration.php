@@ -51,13 +51,6 @@ class Configuration extends AbstractConfiguration
                             true
                         ))
                         ->append($this->addMappingNode(
-                            'article_variant',
-                            'Elcodi\Component\Article\Entity\Variant',
-                            '@ElcodiArticleBundle/Resources/config/doctrine/Variant.orm.yml',
-                            'default',
-                            true
-                        ))
-                        ->append($this->addMappingNode(
                             'category',
                             'Elcodi\Component\Article\Entity\Category',
                             '@ElcodiArticleBundle/Resources/config/doctrine/Category.orm.yml',

@@ -41,7 +41,6 @@ class MappingCompilerPass extends AbstractElcodiMappingCompilerPass
                 [
                     'purchasable',
                     'article',
-                    'article_variant',
                     'category',
                     'manufacturer',
                 ]

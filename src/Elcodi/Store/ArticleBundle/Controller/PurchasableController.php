@@ -147,9 +147,7 @@ class PurchasableController extends Controller
     private function resolveTemplateName(PurchasableInterface $purchasable)
     {
         if ($purchasable instanceof ArticleInterface) {
-            return $purchasable->hasVariants()
-                ? 'Pages:article-view-variant.html.twig'
-                : 'Pages:article-view-item.html.twig';
+            return 'Pages:article-view-item.html.twig';
         }
 
         return '';

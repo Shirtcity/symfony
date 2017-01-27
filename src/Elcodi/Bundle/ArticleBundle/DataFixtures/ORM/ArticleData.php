@@ -104,33 +104,7 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
 
         $articleDirector->save($articleReduced);
         $this->addReference('article-reduced', $articleReduced);
-
-        /**
-         * Article with variants.
-         *
-         * @var ArticleInterface $articleWithVariants
-         */
-        $articleWithVariants = $articleDirector
-            ->create()
-            ->setName('Article with variants')
-            ->setSku('article-sku-code-variant-1')
-            ->setSlug('article-with-variants')
-            ->setDescription('my article with variants description')
-            ->setShortDescription('my article with variants short description')
-            ->addCategory($category)
-            ->setPrincipalCategory($category)
-            ->setManufacturer($manufacturer)
-            ->setStock(10)
-            ->setPrice(Money::create(1000, $currency))
-            ->setHeight(40)
-            ->setWidth(45)
-            ->setDepth(50)
-            ->setWeight(500)
-            ->setEnabled(true);
-
-        $articleDirector->save($articleWithVariants);
-        $this->addReference('article-with-variants', $articleWithVariants);
-
+        
         /**
          * Root category article.
          *

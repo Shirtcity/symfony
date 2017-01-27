@@ -14,13 +14,5 @@ services:
         tags:
             - { name: elcodi.purchasable_image_resolver }
 
-    elcodi.image_resolver.article_variant:
-        class: Elcodi\Component\Article\ImageResolver\VariantImageResolver
-        parent: elcodi.image_resolver.abstract_article
-        calls:
-            - [ addPurchasableImageResolver, ['@elcodi.image_resolver.article'] ]
-        tags:
-            - { name: elcodi.purchasable_image_resolver }
-
     elcodi.image_resolver.purchasable:
         class: Elcodi\Component\Article\ImageResolver\PurchasableImageResolver

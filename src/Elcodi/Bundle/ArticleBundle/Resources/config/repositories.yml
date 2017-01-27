@@ -18,15 +18,7 @@ services:
     elcodi.repository.article:
         parent: elcodi.abstract_repository
         arguments:
-            - %elcodi.entity.article.class%
-
-    #
-    # Repository for Variant entities
-    #
-    elcodi.repository.article_variant:
-        parent: elcodi.abstract_repository
-        arguments:
-            - %elcodi.entity.article_variant.class%
+            - %elcodi.entity.article.class%    
 
     #
     # Repository for entity category

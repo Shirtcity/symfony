@@ -79,7 +79,6 @@ class ArticleFactory extends AbstractPurchasableFactory
             ->setPrice($zeroPrice)
             ->setReducedPrice($zeroPrice)
             ->setAttributes(new ArrayCollection())
-            ->setVariants(new ArrayCollection())
             ->setCategories(new ArrayCollection())
             ->setImages(new ArrayCollection())
             ->setWidth(0)

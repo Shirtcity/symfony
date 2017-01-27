@@ -88,11 +88,6 @@ class ElcodiArticleExtension extends AbstractExtension implements EntitiesOverri
             'elcodi.entity.article.manager' => $config['mapping']['article']['manager'],
             'elcodi.entity.article.enabled' => $config['mapping']['article']['enabled'],
 
-            'elcodi.entity.article_variant.class' => $config['mapping']['article_variant']['class'],
-            'elcodi.entity.article_variant.mapping_file' => $config['mapping']['article_variant']['mapping_file'],
-            'elcodi.entity.article_variant.manager' => $config['mapping']['article_variant']['manager'],
-            'elcodi.entity.article_variant.enabled' => $config['mapping']['article_variant']['enabled'],
-
             'elcodi.entity.category.class' => $config['mapping']['category']['class'],
             'elcodi.entity.category.mapping_file' => $config['mapping']['category']['mapping_file'],
             'elcodi.entity.category.manager' => $config['mapping']['category']['manager'],
@@ -148,7 +143,6 @@ class ElcodiArticleExtension extends AbstractExtension implements EntitiesOverri
         return [
             'Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface' => 'elcodi.entity.purchasable.class',
             'Elcodi\Component\Article\Entity\Interfaces\ArticleInterface' => 'elcodi.entity.article.class',
-            'Elcodi\Component\Article\Entity\Interfaces\VariantInterface' => 'elcodi.entity.article_variant.class',
             'Elcodi\Component\Article\Entity\Interfaces\ManufacturerInterface' => 'elcodi.entity.manufacturer.class',
             'Elcodi\Component\Article\Entity\Interfaces\CategoryInterface' => 'elcodi.entity.category.class',
         ];

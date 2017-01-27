@@ -23,7 +23,6 @@ use Elcodi\Component\Attribute\Entity\Interfaces\AttributeInterface;
 use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ManufacturerInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
-use Elcodi\Component\Article\Entity\Interfaces\VariantInterface;
 
 /**
  * Class Article entity.
@@ -43,20 +42,6 @@ class Article extends Purchasable implements ArticleInterface
      * Attributes associated with this article
      */
     protected $attributes;
-
-    /**
-     * @var Collection
-     *
-     * Variants for this article
-     */
-    protected $variants;
-
-    /**
-     * @var VariantInterface
-     *
-     * Principal variant for this article
-     */
-    protected $principalVariant;
 
     /**
      * Set categories.
@@ -219,86 +204,6 @@ class Article extends Purchasable implements ArticleInterface
         $this->attributes = $attributes;
 
         return $this;
-    }
-
-    /**
-     * Gets article variants.
-     *
-     * @return Collection Variants
-     */
-    public function getVariants()
-    {
-        return $this->variants;
-    }
-
-    /**
-     * Adds a Variant for this Article.
-     *
-     * @param VariantInterface $variant
-     *
-     * @return $this Self object
-     */
-    public function addVariant(VariantInterface $variant)
-    {
-        if (!$this
-            ->variants
-            ->contains($variant)) {
-            $this
-                ->variants
-                ->add($variant);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Sets article variants.
-     *
-     * @param Collection $variants Variants
-     *
-     * @return $this Self object
-     */
-    public function setVariants(Collection $variants)
-    {
-        $this->variants = $variants;
-
-        return $this;
-    }
-
-    /**
-     * Returns article principal variant.
-     *
-     * @return VariantInterface
-     */
-    public function getPrincipalVariant()
-    {
-        return $this->principalVariant;
-    }
-
-    /**
-     * Sets article principal variant.
-     *
-     * @param VariantInterface $principalVariant
-     *
-     * @return $this Self object
-     */
-    public function setPrincipalVariant(VariantInterface $principalVariant)
-    {
-        $this->principalVariant = $principalVariant;
-
-        return $this;
-    }
-
-    /**
-     * Tells if this article has variants.
-     *
-     * @return bool Article has variants
-     */
-    public function hasVariants()
-    {
-        return !$this
-            ->variants
-            ->isEmpty();
     }
 
     /**

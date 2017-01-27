@@ -86,7 +86,7 @@ class CartOrderTransformerTest extends WebTestCase
 
         $cartManager->addPurchasable(
             $cart,
-            $this->find('article_variant', 7),
+            $this->find('article', 7),
             1
         );
 

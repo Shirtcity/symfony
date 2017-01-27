@@ -34,30 +34,11 @@ class ArticleOptionsResolverTest extends PHPUnit_Framework_TestCase
     public function testAvailableOptions()
     {
         $article = $this->getMock('Elcodi\Component\Article\Entity\Article', [], [], '', false);
-        $variant = $this->getMock('Elcodi\Component\Article\Entity\Variant', [], [], '', false);
         $attribute = $this->getMock('Elcodi\Component\Attribute\Entity\Attribute', [], [], '', false);
 
         $option = new Value();
         $option->setId(111);
         $option->setAttribute($attribute);
-
-        $article
-            ->expects($this->once())
-            ->method('getVariants')
-            ->willReturn(new ArrayCollection([$variant]));
-
-        $variant
-            ->expects($this->once())
-            ->method('getStock')
-            ->willReturn(100);
-        $variant
-            ->expects($this->once())
-            ->method('IsEnabled')
-            ->willReturn(true);
-        $variant
-            ->expects($this->once())
-            ->method('getOptions')
-            ->willReturn(new ArrayCollection([$option]));
 
         $articleOptionsResolver = new ArticleOptionsResolver();
         $this->assertEquals(

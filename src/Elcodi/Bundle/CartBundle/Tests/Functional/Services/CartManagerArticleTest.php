@@ -18,16 +18,13 @@
 namespace Elcodi\Bundle\CartBundle\Tests\Functional\Services;
 
 use Elcodi\Bundle\CartBundle\Tests\Functional\Services\Abstracts\AbstractCartManagerTest;
-use Elcodi\Component\Attribute\Entity\Interfaces\ValueInterface;
-use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
-use Elcodi\Component\Article\Entity\Interfaces\VariantInterface;
 
 /**
- * Class CartManagerVariantTest.
+ * Tests CartManager class.
  *
- * This will test CartManager common methods using a Article with variants
+ * This will test CartManager common methods using a Article
  */
-class CartManagerVariantTest extends AbstractCartManagerTest
+class CartManagerArticleTest extends AbstractCartManagerTest
 {
     /**
      * Load fixtures of these bundles.
@@ -44,29 +41,11 @@ class CartManagerVariantTest extends AbstractCartManagerTest
     /**
      * Creates, flushes and returns a Purchasable.
      *
-     * @return PurchasableInterface
+     * @return mixed
      */
     protected function createPurchasable()
     {
-        return $this->find('purchasable', 6);
-    }
-
-    /**
-     * Testing that the same purchasable does not generate
-     * two different CartLine.
-     */
-    public function testAddSameVariantTwice()
-    {
-        $this
-            ->get('elcodi.manager.cart')
-            ->addPurchasable($this->cart, $this->purchasable, 1);
-
-        $this
-            ->get('elcodi.manager.cart')
-            ->addPurchasable($this->cart, $this->purchasable, 2);
-
-        $this->assertEquals(1, $this->cart->getCartLines()->count());
-        $this->assertResults(3);
+        return $this->find('article', 1);
     }
 
     /**
@@ -80,7 +59,7 @@ class CartManagerVariantTest extends AbstractCartManagerTest
             [0, 0, 0],
             [1, -1, 0],
             [1, -2, 0],
-            [1, 100, 100],
+            [1, 10, 10],
             [1, false, 1],
             [1, null, 1],
             [1, true, 1],
@@ -100,7 +79,7 @@ class CartManagerVariantTest extends AbstractCartManagerTest
             [1, 0, 1],
             [1, 2, 0],
             [1, -1, 2],
-            [1, -100, 100],
+            [1, -10, 10],
             [1, false, 1],
             [1, null, 1],
             [1, true, 1],
@@ -121,7 +100,7 @@ class CartManagerVariantTest extends AbstractCartManagerTest
             [1, 2, 2],
             [1, -1, 0],
             [1, 10, 10],
-            [1, 101, 100],
+            [1, 11, 10],
             [1, false, 1],
             [1, null, 1],
             [1, true, 1],
@@ -139,7 +118,7 @@ class CartManagerVariantTest extends AbstractCartManagerTest
         return [
             [1, 1],
             [0, 0],
-            [101, 100],
+            [11, 10],
             [false, 0],
             [null, 0],
             [true, 0],
@@ -147,26 +126,5 @@ class CartManagerVariantTest extends AbstractCartManagerTest
             ['', 0],
             [[], 0],
         ];
-    }
-
-    /**
-     * Adding an Option to a Variant if a parent Article is not set must throw
-     * a LogicException.
-     *
-     * @expectedException \LogicException
-     */
-    public function testAddOptionToOrphanVariantThrowsLogicException()
-    {
-        /**
-         * @var ValueInterface $variantOption
-         */
-        $variantOption = $this->find('attribute_value', 1);
-        /**
-         * @var VariantInterface $variant
-         */
-        $this
-            ->getFactory('article_variant')
-            ->create()
-            ->addOption($variantOption);
     }
 }

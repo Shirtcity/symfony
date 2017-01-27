@@ -96,22 +96,7 @@ class CartLineTest extends AbstractEntityTest
         $this->assertEquals(
             5,
             $cartLine->$method()
-        );
-
-        $variant = $this->getMock('Elcodi\Component\Article\Entity\Interfaces\VariantInterface');
-        $variant
-            ->method('getPurchasable')
-            ->will($this->returnValue($purchasable));
-        $variant
-            ->method($method)
-            ->will($this->returnValue(10));
-
-        $cartLine = new CartLine();
-        $cartLine->setPurchasable($variant);
-        $this->assertEquals(
-            10,
-            $cartLine->$method()
-        );
+        );        
     }
 
     /**
@@ -142,22 +127,6 @@ class CartLineTest extends AbstractEntityTest
         $this->assertEquals(
             10,
             $cartLine->getWeight()
-        );
-
-        $variant = $this->getMock('Elcodi\Component\Article\Entity\Interfaces\VariantInterface');
-        $variant
-            ->method('getPurchasable')
-            ->will($this->returnValue($purchasable));
-        $variant
-            ->method('getWeight')
-            ->will($this->returnValue(10));
-
-        $cartLine = new CartLine();
-        $cartLine->setPurchasable($variant);
-        $cartLine->setQuantity(3);
-        $this->assertEquals(
-            30,
-            $cartLine->getWeight()
-        );
+        );        
     }
 }

@@ -33,23 +33,7 @@ interface ArticleInterface extends PurchasableInterface, CategorizableInterface
      *
      * @return $this Self object
      */
-    public function setManufacturer(ManufacturerInterface $manufacturer = null);
-
-    /**
-     * Returns article principal variant.
-     *
-     * @return VariantInterface
-     */
-    public function getPrincipalVariant();
-
-    /**
-     * Sets article principal variant.
-     *
-     * @param VariantInterface $principalVariant
-     *
-     * @return $this Self object
-     */
-    public function setPrincipalVariant(VariantInterface $principalVariant);
+    public function setManufacturer(ManufacturerInterface $manufacturer = null);    
 
     /**
      * Adds an attribute if not already in the collection.
@@ -83,39 +67,7 @@ interface ArticleInterface extends PurchasableInterface, CategorizableInterface
      *
      * @return $this Self object
      */
-    public function setAttributes(Collection $attributes);
-
-    /**
-     * Gets article variants.
-     *
-     * @return Collection Variants
-     */
-    public function getVariants();
-
-    /**
-     * Adds a Variant for this Article.
-     *
-     * @param VariantInterface $variant Variant
-     *
-     * @return $this Self object
-     */
-    public function addVariant(VariantInterface $variant);
-
-    /**
-     * Sets article variants.
-     *
-     * @param Collection $variants Variants
-     *
-     * @return $this Self object
-     */
-    public function setVariants(Collection $variants);
-
-    /**
-     * Tells if this article has variants.
-     *
-     * @return bool Article has variants
-     */
-    public function hasVariants();
+    public function setAttributes(Collection $attributes);    
 
     /**
      * Sets Type.

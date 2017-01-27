@@ -49,7 +49,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
          * @var EntityTranslatorInterface $entityTranslator
          */
         $articleFactory = $this->getFactory('article');
-        $variantFactory = $this->getFactory('article_variant');
         $menCategory = $this->getReference('category-men');
         $womenCategory = $this->getReference('category-women');
         $currencyUsd = $this->getReference('currency-USD');
@@ -79,53 +78,11 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setPrice(Money::create(799, $currencyUsd))
             ->setEnabled(true);
 
-        $variantWhiteSmall = $variantFactory->create();
-        $variantWhiteSmall
-            ->setArticle($article)
-            ->setStock(10000)
-            ->setPrice(Money::create(1099, $currencyUsd))
-            ->addOption($this->getReference('value-size-small'))
-            ->addOption($this->getReference('value-color-white'))
-            ->setEnabled(true);
-
-        $variantBlackSmall = $variantFactory->create();
-        $variantBlackSmall
-            ->setArticle($article)
-            ->setStock(10000)
-            ->setPrice(Money::create(1199, $currencyUsd))
-            ->addOption($this->getReference('value-size-small'))
-            ->addOption($this->getReference('value-color-black'))
-            ->setEnabled(true);
-
-        $variantWhiteMedium = $variantFactory->create();
-        $variantWhiteMedium
-            ->setArticle($article)
-            ->setStock(10000)
-            ->setPrice(Money::create(1299, $currencyUsd))
-            ->addOption($this->getReference('value-size-medium'))
-            ->addOption($this->getReference('value-color-white'))
-            ->setEnabled(true);
-
-        $variantBlackMedium = $variantFactory->create();
-        $variantBlackMedium
-            ->setArticle($article)
-            ->setStock(10000)
-            ->setPrice(Money::create(1399, $currencyUsd))
-            ->addOption($this->getReference('value-size-medium'))
-            ->addOption($this->getReference('value-color-black'))
-            ->setEnabled(true);
+       
 
         $articleObjectManager->persist($article);
-        $articleObjectManager->persist($variantWhiteSmall);
-        $articleObjectManager->persist($variantWhiteMedium);
-        $articleObjectManager->persist($variantBlackSmall);
-        $articleObjectManager->persist($variantBlackMedium);
 
         $this->addReference('article-ibiza-lips', $article);
-        $this->addReference('variant-ibiza-lips-white-small', $variantWhiteSmall);
-        $this->addReference('variant-ibiza-lips-black-small', $variantBlackSmall);
-        $this->addReference('variant-ibiza-lips-white-medium', $variantWhiteMedium);
-        $this->addReference('variant-ibiza-lips-black-medium', $variantBlackMedium);
         $articleObjectManager->flush($article);
 
         $entityTranslator->save($article, [

@@ -27,7 +27,6 @@ use Elcodi\Component\Currency\Services\CurrencyConverter;
 use Elcodi\Component\Currency\Wrapper\CurrencyWrapper;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
-use Elcodi\Component\Article\Entity\Interfaces\VariantInterface;
 
 /**
  * Class AbstractMxNCartCouponApplicator.
@@ -146,14 +145,7 @@ abstract class AbstractMxNCartCouponApplicator implements CartCouponApplicatorIn
             false !== strpos($modifiers, 'P')
         ) {
             return true;
-        }
-
-        if (
-            $purchasable instanceof VariantInterface &&
-            false !== strpos($modifiers, 'V')
-        ) {
-            return true;
-        }        
+        }     
 
         return false;
     }

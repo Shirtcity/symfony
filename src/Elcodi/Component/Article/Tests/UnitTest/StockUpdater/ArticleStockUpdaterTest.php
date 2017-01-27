@@ -45,16 +45,6 @@ class ArticleStockUpdaterTest extends PHPUnit_Framework_TestCase
                 false
             )
         );
-
-        $this->assertFalse(
-            $articleStockUpdater->updateStock(
-                $this
-                    ->prophesize('Elcodi\Component\Article\Entity\Interfaces\VariantInterface')
-                    ->reveal(),
-                0,
-                false
-            )
-        );
     }
 
     /**

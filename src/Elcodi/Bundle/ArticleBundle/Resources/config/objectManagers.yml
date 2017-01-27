@@ -12,11 +12,6 @@ services:
         parent: elcodi.abstract_manager
         arguments:
             - %elcodi.entity.article.class%
-
-    elcodi.object_manager.article_variant:
-        parent: elcodi.abstract_manager
-        arguments:
-            - %elcodi.entity.article_variant.class%
    
     elcodi.object_manager.category:
         parent: elcodi.abstract_manager
