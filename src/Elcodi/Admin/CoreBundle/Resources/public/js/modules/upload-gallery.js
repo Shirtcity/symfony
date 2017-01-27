@@ -84,7 +84,6 @@ FrontendCore.define('upload-gallery', [ oGlobalSettings.sPathJs + '../components
 
 				$('input[id=elcodi_admin_article_form_type_article_images_'+ nId +']', oContainer).click();
 				$('input[id=elcodi_admin_article_form_type_article_variant_images_'+ nId +']', oContainer).click();
-				$('input[id=elcodi_admin_article_form_type_purchasable_pack_images_'+ nId +']', oContainer).click();
                 
                 $('input[id=elcodi_admin_product_form_type_product_images_'+ nId +']', oContainer).click();
 
@@ -118,16 +117,7 @@ FrontendCore.define('upload-gallery', [ oGlobalSettings.sPathJs + '../components
 					oOption.id = 'elcodi_admin_article_form_type_article_variant_images_' + nId;
 					oOption.value = nId;
 					$(oContainer).append(oOption);
-				}
-
-				if ($('#elcodi_admin_article_form_type_purchasable_pack_images_' + nId , oContainer).length === 0) {
-					oOption = document.createElement('input');
-					oOption.type = 'checkbox';
-					oOption.name = 'elcodi_admin_article_form_type_purchasable_pack[images][]';
-					oOption.id = 'elcodi_admin_article_form_type_purchasable_pack_images_' + nId;
-					oOption.value = nId;
-					$(oContainer).append(oOption);
-				}
+				}				
                 
                 if ($('#elcodi_admin_product_form_type_product_images_' + nId , oContainer).length === 0) {
 					oOption = document.createElement('input');

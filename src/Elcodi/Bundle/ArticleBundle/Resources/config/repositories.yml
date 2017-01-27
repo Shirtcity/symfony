@@ -29,14 +29,6 @@ services:
             - %elcodi.entity.article_variant.class%
 
     #
-    # Repository for Pack entities
-    #
-    elcodi.repository.purchasable_pack:
-        parent: elcodi.abstract_repository
-        arguments:
-            - %elcodi.entity.purchasable_pack.class%
-
-    #
     # Repository for entity category
     #
     elcodi.repository.category:

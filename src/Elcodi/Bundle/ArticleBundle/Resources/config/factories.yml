@@ -24,17 +24,7 @@ services:
         calls:
             - [setEntityNamespace, ["%elcodi.entity.article_variant.class%"]]
             - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
-
-    #
-    # Factory for Pack entities
-    #
-    elcodi.factory.purchasable_pack:
-        class: Elcodi\Component\Article\Factory\PackFactory
-        parent: elcodi.factory.abstract.purchasable
-        calls:
-            - [setEntityNamespace, ["%elcodi.entity.purchasable_pack.class%"]]
-            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
-
+    
     #
     # Factory for Manufacturer entities
     #

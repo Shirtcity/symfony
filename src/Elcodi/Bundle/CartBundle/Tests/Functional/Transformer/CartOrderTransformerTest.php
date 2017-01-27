@@ -90,12 +90,6 @@ class CartOrderTransformerTest extends WebTestCase
             1
         );
 
-        $cartManager->addPurchasable(
-            $cart,
-            $this->find('purchasable_pack', 9),
-            1
-        );
-
         /**
          * @var $order OrderInterface
          */

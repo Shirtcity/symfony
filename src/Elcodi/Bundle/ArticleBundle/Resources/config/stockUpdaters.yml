@@ -17,15 +17,5 @@ services:
         tags:
             - { name: elcodi.purchasable_stock_updater }
 
-    elcodi.stock_updater.purchasable_pack:
-        class: Elcodi\Component\Article\StockUpdater\PackStockUpdater
-        arguments:
-            - '@elcodi.object_manager.purchasable_pack'
-        calls:
-            - [ addPurchasableStockUpdater, ['@elcodi.stock_updater.article'] ]
-            - [ addPurchasableStockUpdater, ['@elcodi.stock_updater.article_variant'] ]
-        tags:
-            - { name: elcodi.purchasable_stock_updater }
-
     elcodi.stock_updater.purchasable:
         class: Elcodi\Component\Article\StockUpdater\PurchasableStockUpdater

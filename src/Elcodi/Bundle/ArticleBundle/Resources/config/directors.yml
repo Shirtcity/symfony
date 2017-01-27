@@ -19,14 +19,6 @@ services:
             - '@elcodi.repository.article_variant'
             - '@elcodi.factory.article_variant'
 
-    elcodi.director.purchasable_pack:
-        class: Elcodi\Component\Core\Services\ObjectDirector
-        lazy: true
-        arguments:
-            - '@elcodi.object_manager.purchasable_pack'
-            - '@elcodi.repository.purchasable_pack'
-            - '@elcodi.factory.purchasable_pack'
-
     elcodi.director.category:
         class: Elcodi\Component\Core\Services\ObjectDirector
         lazy: true

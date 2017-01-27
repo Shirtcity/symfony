@@ -58,13 +58,6 @@ class Configuration extends AbstractConfiguration
                             true
                         ))
                         ->append($this->addMappingNode(
-                            'purchasable_pack',
-                            'Elcodi\Component\Article\Entity\Pack',
-                            '@ElcodiArticleBundle/Resources/config/doctrine/Pack.orm.yml',
-                            'default',
-                            true
-                        ))
-                        ->append($this->addMappingNode(
                             'category',
                             'Elcodi\Component\Article\Entity\Category',
                             '@ElcodiArticleBundle/Resources/config/doctrine/Category.orm.yml',

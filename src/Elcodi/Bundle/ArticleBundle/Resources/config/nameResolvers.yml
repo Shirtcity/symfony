@@ -13,10 +13,5 @@ services:
         tags:
             - { name: elcodi.purchasable_name_resolver }
 
-    elcodi.name_resolver.purchasable_pack:
-        class: Elcodi\Component\Article\NameResolver\PackNameResolver
-        tags:
-            - { name: elcodi.purchasable_name_resolver }
-
     elcodi.name_resolver.purchasable:
         class: Elcodi\Component\Article\NameResolver\PurchasableNameResolver

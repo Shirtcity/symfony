@@ -17,12 +17,7 @@ services:
         parent: elcodi.abstract_manager
         arguments:
             - %elcodi.entity.article_variant.class%
-
-    elcodi.object_manager.purchasable_pack:
-        parent: elcodi.abstract_manager
-        arguments:
-            - %elcodi.entity.purchasable_pack.class%
-
+   
     elcodi.object_manager.category:
         parent: elcodi.abstract_manager
         arguments:

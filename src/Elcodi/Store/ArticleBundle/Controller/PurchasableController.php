@@ -21,7 +21,6 @@ use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Elcodi\Component\Article\Entity\Interfaces\PackInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 use Elcodi\Store\CoreBundle\Controller\Traits\TemplateRenderTrait;
@@ -153,10 +152,6 @@ class PurchasableController extends Controller
                 : 'Pages:article-view-item.html.twig';
         }
 
-        if ($purchasable instanceof PackInterface) {
-            return 'Pages:purchasable-pack-view.html.twig';
-        }
-
         return '';
     }
 
@@ -171,10 +166,6 @@ class PurchasableController extends Controller
     {
         if ($purchasable instanceof ArticleInterface) {
             return 'article';
-        }
-
-        if ($purchasable instanceof PackInterface) {
-            return 'pack';
         }
 
         return '';
