@@ -2,24 +2,43 @@
 
 namespace Elcodi\Bundle\PrintableBundle\Entity;
 
-use Elcodi\Bundle\PrintableBundle\Entity\Abstracts\AbstractPrintable;
+use Elcodi\Bundle\PrintableBundle\Entity\PrintableVariant;
 use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\TextVariantInterface;
-use Elcodi\Component\Core\Entity\Traits\DateTimeTrait;
-use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
-use Elcodi\Bundle\PrintableBundle\Entity\FoilColor;
-use Elcodi\Component\User\Entity\Customer;
+use Elcodi\Bundle\PrintableBundle\Entity\Text;
 
 /**
- * DesignVariant
+ *TextVariant
  */
-class TextVariant extends AbstractPrintable implements TextVariantInterface
+class TextVariant extends PrintableVariant implements TextVariantInterface
 {
+
     /**
-     * Get the Type
-     *
-     * @return string
+     * @var Text
      */
-    public function getType(){
-        return 'TextVariant';
+    private $text;
+
+
+    /**
+     * Set text
+     *
+     * @param Text $text
+     *
+     * @return TextVariant
+     */
+    public function setText(Text $text = null)
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    /**
+     * Get text
+     *
+     * @return Text
+     */
+    public function getText()
+    {
+        return $this->text;
     }
 }

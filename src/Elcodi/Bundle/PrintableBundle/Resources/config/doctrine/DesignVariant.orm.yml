@@ -2,25 +2,10 @@ Elcodi\Bundle\PrintableBundle\Entity\DesignVariant:
     type: entity
     table: design_variant
     repositoryClass: Elcodi\Bundle\PrintableBundle\Repository\DesignVariantRepository
-    id:
-        id:
-            type: integer
-            id: true
-            generator:
-                strategy: AUTO
-    fields:
-        posX:
-            type: integer
-        posY:
-            type: integer
 
     manyToOne:
-        customer:
+        design:
             targetEntity: Elcodi\Bundle\PrintableBundle\Entity\Design
             joinColumn:
                 name: design_id
                 referencedColumnName: id
-
-    lifecycleCallbacks:
-        preUpdate: [loadUpdateAt]
-        prePersist: [loadUpdateAt]
