@@ -62,12 +62,19 @@ Elcodi\Bundle\ProductBundle\Entity\Product:
             nullable: true
             
     oneToMany:
-        variants:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\ProductVariant
+            
+        colors:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\ProductColors
             mappedBy: product
             cascade: [ "all" ]
             orphanRemoval: true
             
+        sizes:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\ProductSizes
+            mappedBy: product
+            cascade: [ "all" ]
+            orphanRemoval: true
+                        
     manyToOne:
         principalImage:
             targetEntity: Elcodi\Component\Media\Entity\Interfaces\ImageInterface
@@ -90,7 +97,6 @@ Elcodi\Bundle\ProductBundle\Entity\Product:
                     image_id:
                         referencedColumnName: id
                         onDelete: "CASCADE"
-                        
             
     lifecycleCallbacks:
         preUpdate: [loadUpdateAt]

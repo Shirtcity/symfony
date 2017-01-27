@@ -54,13 +54,23 @@ class Product
     protected $description;
 	
 	/**
-     * @var Collection
-     *
-     * Variants for this aroduct
+     * @var \Doctrine\Common\Collections\Collection
      */
-    protected $variants;
+    private $colors;
 
-
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $sizes;
+	
+	/**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+	
     /**
      * Get id
      *
@@ -142,58 +152,6 @@ class Product
     {
         return $this->slug;
     }
-	
-	/**
-     * Gets aroduct variants.
-     *
-     * @return Collection Variants
-     */
-    public function getVariants()
-    {
-        return $this->variants;
-    }
-
-    /**
-     * Adds a Variant for this Product.
-     *
-     * @param VariantInterface $variant
-     *
-     * @return $this Self object
-     */
-    public function addVariant(ProductVariant $variant)
-    {
-        if (!$this
-            ->variants
-            ->contains($variant)) {
-            $this
-                ->variants
-                ->add($variant);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Sets aroduct variants.
-     *
-     * @param Collection $variants Variants
-     *
-     * @return $this Self object
-     */
-    public function setVariants(Collection $variants)
-    {
-        $this->variants = $variants;
-
-        return $this;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->variants = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Set description
@@ -220,12 +178,93 @@ class Product
     }
 
     /**
-     * Remove variant
+     * Get enabled
      *
-     * @param \Elcodi\Bundle\ProductBundle\Entity\ProductVariant $variant
+     * @return boolean
      */
-    public function removeVariant(\Elcodi\Bundle\ProductBundle\Entity\ProductVariant $variant)
+    public function getEnabled()
     {
-        $this->variants->removeElement($variant);
+        return $this->enabled;
+    }
+	
+	public function getVariantsArray()
+	{
+		$variants = array();
+		
+		foreach ($this->sizes as $size) {
+			foreach ($size->getColors() as $color) {
+				$variants[$size->getSize()->getId()][$color->getColor()->getId()] = true;
+			}
+		}
+		
+		return $variants;
+	}
+
+    /**
+     * Add color
+     *
+     * @param \Elcodi\Bundle\ProductBundle\Entity\ProductColors $color
+     *
+     * @return Product
+     */
+    public function addColor(\Elcodi\Bundle\ProductBundle\Entity\ProductColors $color)
+    {
+        $this->colors[] = $color;
+
+        return $this;
+    }
+
+    /**
+     * Remove color
+     *
+     * @param \Elcodi\Bundle\ProductBundle\Entity\ProductColors $color
+     */
+    public function removeColor(\Elcodi\Bundle\ProductBundle\Entity\ProductColors $color)
+    {
+        $this->colors->removeElement($color);
+    }
+
+    /**
+     * Get colors
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getColors()
+    {
+        return $this->colors;
+    }
+
+    /**
+     * Add size
+     *
+     * @param \Elcodi\Bundle\ProductBundle\Entity\ProductSizes $size
+     *
+     * @return Product
+     */
+    public function addSize(\Elcodi\Bundle\ProductBundle\Entity\ProductSizes $size)
+    {
+        $this->sizes[] = $size;
+
+        return $this;
+    }
+
+    /**
+     * Remove size
+     *
+     * @param \Elcodi\Bundle\ProductBundle\Entity\ProductSizes $size
+     */
+    public function removeSize(\Elcodi\Bundle\ProductBundle\Entity\ProductSizes $size)
+    {
+        $this->sizes->removeElement($size);
+    }
+
+    /**
+     * Get sizes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSizes()
+    {
+        return $this->sizes;
     }
 }

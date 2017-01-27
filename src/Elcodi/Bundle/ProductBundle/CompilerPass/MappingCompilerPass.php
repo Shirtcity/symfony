@@ -40,7 +40,10 @@ class MappingCompilerPass extends AbstractElcodiMappingCompilerPass
                 $container,
                 [
                     'product',
-					'product_variant'
+					'product_color',
+					'product_colors',
+					'product_size',
+					'product_sizes',
                 ]
             );
     }

@@ -23,7 +23,6 @@ class ProductFactory extends AbstractFactory
         $product = new $classNamespace();
 
         $product
-            ->setVariants(new ArrayCollection())  
 			->setImages(new ArrayCollection())
 			->setWidth(0)
             ->setHeight(0)

@@ -31,9 +31,30 @@ class Configuration extends AbstractConfiguration
                             true
                         ))
 						->append($this->addMappingNode(
-                            'product_variant',
-                            'Elcodi\Bundle\ProductBundle\Entity\ProductVariant',
-                            '@ProductBundle/Resources/config/doctrine/ProductVariant.orm.yml',
+                            'product_color',
+                            'Elcodi\Bundle\ProductBundle\Entity\ProductColor',
+                            '@ProductBundle/Resources/config/doctrine/ProductColor.orm.yml',
+                            'default',
+                            true
+                        ))
+						->append($this->addMappingNode(
+                            'product_colors',
+                            'Elcodi\Bundle\ProductBundle\Entity\ProductColors',
+                            '@ProductBundle/Resources/config/doctrine/ProductColors.orm.yml',
+                            'default',
+                            true
+                        ))
+						->append($this->addMappingNode(
+                            'product_size',
+                            'Elcodi\Bundle\ProductBundle\Entity\ProductSize',
+                            '@ProductBundle/Resources/config/doctrine/ProductSize.orm.yml',
+                            'default',
+                            true
+                        ))
+						->append($this->addMappingNode(
+                            'product_sizes',
+                            'Elcodi\Bundle\ProductBundle\Entity\ProductSizes',
+                            '@ProductBundle/Resources/config/doctrine/ProductSizes.orm.yml',
                             'default',
                             true
                         ))

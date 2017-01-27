@@ -1,0 +1,20 @@
+Elcodi\Bundle\ProductBundle\Entity\ProductColor:
+    type: entity
+    table: product_color
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        code:
+            type: string
+            length: 255
+        enabled:
+            type: boolean
+            
+    lifecycleCallbacks: {  }
