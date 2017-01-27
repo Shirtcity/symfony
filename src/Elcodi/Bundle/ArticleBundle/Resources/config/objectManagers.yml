@@ -18,7 +18,3 @@ services:
         arguments:
             - %elcodi.entity.category.class%
 
-    elcodi.object_manager.manufacturer:
-        parent: elcodi.abstract_manager
-        arguments:
-            - %elcodi.entity.manufacturer.class%

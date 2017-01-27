@@ -19,10 +19,3 @@ services:
             - '@elcodi.repository.category'
             - '@elcodi.factory.category'
 
-    elcodi.director.manufacturer:
-        class: Elcodi\Component\Core\Services\ObjectDirector
-        lazy: true
-        arguments:
-            - '@elcodi.object_manager.manufacturer'
-            - '@elcodi.repository.manufacturer'
-            - '@elcodi.factory.manufacturer'

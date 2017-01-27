@@ -27,7 +27,6 @@ use Elcodi\Component\Media\Entity\Traits\ImagesContainerTrait;
 use Elcodi\Component\Media\Entity\Traits\PrincipalImageTrait;
 use Elcodi\Component\MetaData\Entity\Traits\MetaDataTrait;
 use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
-use Elcodi\Component\Article\Entity\Interfaces\ManufacturerInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 use Elcodi\Component\Article\Entity\Traits\DimensionsTrait;
 use Elcodi\Component\Article\Entity\Traits\PurchasablePriceTrait;
@@ -102,14 +101,7 @@ abstract class Purchasable implements PurchasableInterface
      *
      * Article dimensions
      */
-    protected $dimensions;
-
-    /**
-     * @var ManufacturerInterface
-     *
-     * Manufacturer
-     */
-    protected $manufacturer;
+    protected $dimensions;    
 
     /**
      * @var Collection
@@ -332,17 +324,7 @@ abstract class Purchasable implements PurchasableInterface
     public function getCategories()
     {
         return $this->categories;
-    }
-
-    /**
-     * Article manufacturer.
-     *
-     * @return ManufacturerInterface Manufacturer
-     */
-    public function getManufacturer()
-    {
-        return $this->manufacturer;
-    }
+    }    
 
     /**
      * Get the principalCategory.

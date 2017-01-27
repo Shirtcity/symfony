@@ -13,17 +13,8 @@ services:
         calls:
             - [setEntityNamespace, ["%elcodi.entity.article.class%"]]
             - [setUseStock, ["@elcodi.store_uses_stock"]]
-            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]    
     
-    #
-    # Factory for Manufacturer entities
-    #
-    elcodi.factory.manufacturer:
-        class: Elcodi\Component\Article\Factory\ManufacturerFactory
-        calls:
-            - [setEntityNamespace, ["%elcodi.entity.manufacturer.class%"]]
-            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
-
     #
     # Factory for Category entities
     #

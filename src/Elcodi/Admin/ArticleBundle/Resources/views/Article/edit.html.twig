@@ -71,10 +71,6 @@
             <p class="msg-warning">{{ 'admin.article.error.no_category'|trans }}</p>
         {% endif %}
 
-        {% if article.manufacturer is null %}
-            <p class="msg-warning">{{ 'admin.article.error.no_manufacturer'|trans }}</p>
-        {% endif %}
-
         {% if article.price.amount < 0 %}
             <p class="msg-warning">{{ 'admin.article.error.price_negative'|trans }}</p>
         {% endif %}

@@ -26,7 +26,6 @@ use Elcodi\Component\Core\Services\ObjectDirector;
 use Elcodi\Component\Currency\Entity\Interfaces\CurrencyInterface;
 use Elcodi\Component\Currency\Entity\Money;
 use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
-use Elcodi\Component\Article\Entity\Interfaces\ManufacturerInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 
 /**
@@ -47,13 +46,11 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
          * Article.
          *
          * @var CategoryInterface     $category
-         * @var ManufacturerInterface $manufacturer
          * @var CurrencyInterface     $currency
          * @var ObjectDirector        $articleDirector
          */
         $category = $this->getReference('category');
         $rootCategory = $this->getReference('rootCategory');
-        $manufacturer = $this->getReference('manufacturer');
         $currency = $this->getReference('currency-dollar');
         $articleDirector = $this->getDirector('article');
 
@@ -65,7 +62,6 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setShortDescription('my article short description')
             ->addCategory($category)
             ->setPrincipalCategory($category)
-            ->setManufacturer($manufacturer)
             ->setStock(10)
             ->setPrice(Money::create(1000, $currency))
             ->setSku('article-sku-code-1')
@@ -118,7 +114,6 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setShortDescription('my article short description')
             ->addCategory($rootCategory)
             ->setPrincipalCategory($rootCategory)
-            ->setManufacturer($manufacturer)
             ->setStock(10)
             ->setPrice(Money::create(500, $currency))
             ->setSku('article-sku-code-3')
@@ -143,7 +138,6 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
         return [
             'Elcodi\Bundle\CurrencyBundle\DataFixtures\ORM\CurrencyData',
             'Elcodi\Bundle\ArticleBundle\DataFixtures\ORM\CategoryData',
-            'Elcodi\Bundle\ArticleBundle\DataFixtures\ORM\ManufacturerData',
             'Elcodi\Bundle\StoreBundle\DataFixtures\ORM\StoreData',
         ];
     }

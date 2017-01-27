@@ -133,15 +133,7 @@ Elcodi\Component\Article\Entity\Purchasable:
             joinColumn:
                  name: reduced_price_currency_iso
                  referencedColumnName: iso
-                 nullable: true
-        manufacturer:
-            targetEntity: Elcodi\Component\Article\Entity\Interfaces\ManufacturerInterface
-            inversedBy: purchasables
-            joinColumn:
-                name: manufacturer_id
-                referencedColumnName: id
-                nullable: true
-                onDelete: "SET NULL"
+                 nullable: true        
 
     manyToMany:
         images:

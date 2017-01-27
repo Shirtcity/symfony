@@ -21,7 +21,6 @@ use Doctrine\Common\Collections\Collection;
 
 use Elcodi\Component\Attribute\Entity\Interfaces\AttributeInterface;
 use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
-use Elcodi\Component\Article\Entity\Interfaces\ManufacturerInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 
 /**
@@ -106,21 +105,7 @@ class Article extends Purchasable implements ArticleInterface
         $this->principalCategory = $principalCategory;
 
         return $this;
-    }
-
-    /**
-     * Set article manufacturer.
-     *
-     * @param ManufacturerInterface $manufacturer Manufacturer
-     *
-     * @return $this Self object
-     */
-    public function setManufacturer(ManufacturerInterface $manufacturer = null)
-    {
-        $this->manufacturer = $manufacturer;
-
-        return $this;
-    }
+    }    
 
     /**
      * Sets Type.

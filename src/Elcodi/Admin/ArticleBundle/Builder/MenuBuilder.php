@@ -71,17 +71,6 @@ class MenuBuilder extends AbstractMenuBuilder implements MenuBuilderInterface
                         $this
                             ->menuNodeFactory
                             ->create()
-                            ->setName('admin.manufacturer.plural')
-                            ->setUrl('admin_manufacturer_list')
-                            ->setActiveUrls([
-                                'admin_manufacturer_edit',
-                                'admin_manufacturer_new',
-                            ])
-                    )
-                    ->addSubnode(
-                        $this
-                            ->menuNodeFactory
-                            ->create()
                             ->setName('admin.category.plural')
                             ->setUrl('admin_category_list')
                             ->setActiveUrls([

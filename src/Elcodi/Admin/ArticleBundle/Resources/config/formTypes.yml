@@ -6,7 +6,6 @@ services:
     elcodi_admin.form_type.article:
         class: Elcodi\Admin\ArticleBundle\Form\Type\ArticleType
         arguments:
-            - %elcodi.entity.manufacturer.class%
             - %elcodi.entity.category.class%
             - %elcodi.entity.image.class%
         calls:
@@ -21,14 +20,4 @@ services:
             - [setFactory, ["@elcodi.factory.category"]]
             - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
         tags:
-            - { name: form.type, alias: elcodi_admin_article_form_type_category }
-
-    elcodi_admin.form_type.manufacturer:
-        class: Elcodi\Admin\ArticleBundle\Form\Type\ManufacturerType
-        arguments:
-            - %elcodi.entity.image.class%
-        calls:
-            - [setFactory, ["@elcodi.factory.manufacturer"]]
-            - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
-        tags:
-            - { name: form.type, alias: elcodi_admin_article_form_type_manufacturer }
+            - { name: form.type, alias: elcodi_admin_article_form_type_category }   

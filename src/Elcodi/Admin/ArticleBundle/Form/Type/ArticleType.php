@@ -32,14 +32,7 @@ use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFor
 class ArticleType extends AbstractType
 {
     use EntityTranslatableFormTrait, FactoryTrait;
-
-    /**
-     * @var string
-     *
-     * Manufacturer namespace
-     */
-    protected $manufacturerNamespace;
-
+    
     /**
      * @var string
      *
@@ -57,16 +50,13 @@ class ArticleType extends AbstractType
     /**
      * Construct
      *
-     * @param string $manufacturerNamespace Manufacturer namespace
      * @param string $categoryNamespace     Category namespace
      * @param string $imageNamespace        Image namespace
      */
     public function __construct(
-        $manufacturerNamespace,
         $categoryNamespace,
         $imageNamespace
     ) {
-        $this->manufacturerNamespace = $manufacturerNamespace;
         $this->categoryNamespace = $categoryNamespace;
         $this->imageNamespace = $imageNamespace;
     }
@@ -183,11 +173,6 @@ class ArticleType extends AbstractType
             ])
             ->add('stock', 'number', [
                 'required' => false,
-            ])
-            ->add('manufacturer', 'entity', [
-                'class'    => $this->manufacturerNamespace,
-                'required' => false,
-                'multiple' => false,
             ])
             ->add('principalCategory', 'entity', [
                 'class'    => $this->categoryNamespace,

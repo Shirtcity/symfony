@@ -27,15 +27,6 @@ use Elcodi\Component\Attribute\Entity\Interfaces\AttributeInterface;
 interface ArticleInterface extends PurchasableInterface, CategorizableInterface
 {
     /**
-     * Set article manufacturer.
-     *
-     * @param ManufacturerInterface $manufacturer Manufacturer
-     *
-     * @return $this Self object
-     */
-    public function setManufacturer(ManufacturerInterface $manufacturer = null);    
-
-    /**
      * Adds an attribute if not already in the collection.
      *
      * @param AttributeInterface $attribute Attribute

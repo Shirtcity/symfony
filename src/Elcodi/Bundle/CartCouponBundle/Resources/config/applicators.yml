@@ -49,13 +49,7 @@ services:
         class: Elcodi\Component\CartCoupon\Applicator\ExpressionLanguage\CategoryFunction
         public: false
         tags:
-            - { name: elcodi.cart_coupon_applicator_function }
-
-    elcodi.cart_coupon_applicator_function.manufacturer:
-        class: Elcodi\Component\CartCoupon\Applicator\ExpressionLanguage\ManufacturerFunction
-        public: false
-        tags:
-            - { name: elcodi.cart_coupon_applicator_function }
+            - { name: elcodi.cart_coupon_applicator_function }    
 
     elcodi.cart_coupon_applicator_function.article:
         class: Elcodi\Component\CartCoupon\Applicator\ExpressionLanguage\ArticleFunction

@@ -26,16 +26,7 @@ elcodi_entity_translator:
                 slug: ~
                 metaTitle: ~
                 metaDescription: ~
-                metaKeywords: ~
-        Elcodi\Component\Article\Entity\Interfaces\ManufacturerInterface:
-            alias: manufacturer
-            fields:
-                name: ~
-                slug: ~
-                description: ~
-                metaTitle: ~
-                metaDescription: ~
-                metaKeywords: ~
+                metaKeywords: ~        
         Elcodi\Component\Page\Entity\Interfaces\PageInterface:
             alias: page
             fields:

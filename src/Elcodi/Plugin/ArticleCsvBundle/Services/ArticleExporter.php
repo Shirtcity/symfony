@@ -78,7 +78,6 @@ class ArticleExporter
                 'currency' => $article->getPrice()->getCurrency()->getSymbol(),
                 'reducedPrice' => $article->getReducedPrice()->getAmount(),
                 'reducedPriceCurrency' => $article->getReducedPrice()->getCurrency()->getSymbol(),
-                'manufacturer' => $article->getManufacturer() ? $article->getManufacturer()->getName() : '',
                 'principalCategory' => $article->getPrincipalCategory()->getName(),
                 'showInHome' => $article->getShowInHome() ? 'yes' : 'no',
                 'weight' => $article->getWeight(),
