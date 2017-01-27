@@ -23,14 +23,21 @@ class MappingCompilerPass extends AbstractElcodiMappingCompilerPass
             ->addEntityMappings(
                 $container,
                 [
+                    'printable_variant',
+
                     'design',
-                    //'design_variant',
+                    'design_variant',
+
                     'foilcolor',
                     'font',
+
                     'photo',
-                    //'photo_variant',
+                    'photo_variant',
+
                     'text',
-                    //'text_variant'
+                    'text_variant',
+
+
                 ]
             );
     }

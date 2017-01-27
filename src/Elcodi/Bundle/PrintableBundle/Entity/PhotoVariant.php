@@ -2,24 +2,43 @@
 
 namespace Elcodi\Bundle\PrintableBundle\Entity;
 
-use Elcodi\Bundle\PrintableBundle\Entity\Abstracts\AbstractPrintable;
+use Elcodi\Bundle\PrintableBundle\Entity\PrintableVariant;
 use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\PhotoVariantInterface;
-use Elcodi\Component\Core\Entity\Traits\DateTimeTrait;
-use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
-use Elcodi\Bundle\PrintableBundle\Entity\FoilColor;
-use Elcodi\Component\User\Entity\Customer;
+use Elcodi\Bundle\PrintableBundle\Entity\Photo;
 
 /**
- * DesignVariant
+ * PhotoVariant
  */
-class PhotoVariant extends AbstractPrintable implements PhotoVariantInterface
+class PhotoVariant extends PrintableVariant implements PhotoVariantInterface
 {
+
     /**
-     * Get the Type
-     *
-     * @return string
+     * @var Photo
      */
-    public function getType(){
-        return 'PhotoVariant';
+    private $photo;
+
+
+    /**
+     * Set photo
+     *
+     * @param Photo $photo
+     *
+     * @return PhotoVariant
+     */
+    public function setPhoto(Photo $photo = null)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return Photo
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
     }
 }

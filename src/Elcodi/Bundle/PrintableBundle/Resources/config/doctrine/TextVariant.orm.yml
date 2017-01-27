@@ -2,23 +2,13 @@ Elcodi\Bundle\PrintableBundle\Entity\TextVariant:
     type: entity
     table: text_variant
     repositoryClass: Elcodi\Bundle\PrintableBundle\Repository\TextVariantRepository
-    id:
-        id:
-            type: integer
-            id: true
-            generator:
-                strategy: AUTO
-    fields:
-        posX:
-            type: integer
-        posY:
-            type: integer
+
     manyToOne:
         text:
             targetEntity: Elcodi\Bundle\PrintableBundle\Entity\Text
             joinColumn:
                 name: text_id
                 referencedColumnName: id
-    lifecycleCallbacks:
-        preUpdate: [loadUpdateAt]
-        prePersist: [loadUpdateAt]
+            cascade:
+                - persist
+

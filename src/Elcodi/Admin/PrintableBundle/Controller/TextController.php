@@ -15,6 +15,17 @@ use Elcodi\Admin\CoreBundle\Controller\Abstracts\AbstractAdminController;
 use Elcodi\Component\Core\Entity\Interfaces\EnabledInterface;
 use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\TextInterface;
 
+use Elcodi\Bundle\PrintableBundle\Entity\Text;
+use Elcodi\Bundle\PrintableBundle\Entity\TextVariant;
+
+use Elcodi\Bundle\PrintableBundle\Entity\Photo;
+use Elcodi\Bundle\PrintableBundle\Entity\PhotoVariant;
+
+
+use Elcodi\Bundle\PrintableBundle\Entity\Design;
+use Elcodi\Bundle\PrintableBundle\Entity\DesignVariant;
+
+use Elcodi\Bundle\PrintableBundle\Entity\PrintableVariant;
 /**
  * Class Controller for Text
  *
@@ -60,6 +71,38 @@ class TextController extends AbstractAdminController
         $orderByField,
         $orderByDirection
     ) {
+
+        $em = $this->getDoctrine()->getManager();
+
+       // $variant = $em->find('Elcodi\Bundle\PrintableBundle\Entity\PrintableVariant', 7);
+        //var_dump($variant);
+
+/*
+
+        $myText = $em ->find('Elcodi\Bundle\PrintableBundle\Entity\Text', 9);
+        $myDesign = $em ->find('Elcodi\Bundle\PrintableBundle\Entity\Design', 1);
+        $myPhoto = $em ->find('Elcodi\Bundle\PrintableBundle\Entity\Photo', 1);
+
+        $textvariant = new TextVariant();
+        $textvariant->setPosX(1)->setPosY(2)->setText( $myText);
+        $em->persist($textvariant);
+        $em->flush();
+
+        $designvariant = new DesignVariant();
+        $designvariant->setPosX(3)->setPosY(4)->setDesign( $myDesign);
+        $em->persist($designvariant);
+        $em->flush();
+
+        $photovariant = new PhotoVariant();
+        $photovariant->setPosX(5)->setPosY(6)->setPhoto( $myPhoto);
+        $em->persist($photovariant);
+        $em->flush();
+
+
+*/
+
+
+
         return [
             'page'             => $page,
             'limit'            => $limit,
