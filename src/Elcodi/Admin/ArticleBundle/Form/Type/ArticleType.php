@@ -46,19 +46,31 @@ class ArticleType extends AbstractType
      * Image namespace
      */
     protected $imageNamespace;
+	
+	/**
+     * @var string
+     *
+     * ArticleProductInterface namespace
+     */
+    protected $articleProductNamespace;
+	
+	protected $articleProductType;
 
     /**
      * Construct
      *
      * @param string $categoryNamespace     Category namespace
      * @param string $imageNamespace        Image namespace
+	 * @param ArticleProductType $articleProductType	Article product form type
      */
     public function __construct(
         $categoryNamespace,
-        $imageNamespace
+        $imageNamespace,
+		$articleProductType
     ) {
         $this->categoryNamespace = $categoryNamespace;
         $this->imageNamespace = $imageNamespace;
+		$this->articleProductType = $articleProductType;
     }
 
     /**
@@ -77,6 +89,7 @@ class ArticleType extends AbstractType
             'data_class' => $this
                 ->factory
                 ->getEntityNamespace(),
+			'cascade_validation' => true,
         ]);
     }
 
@@ -179,6 +192,9 @@ class ArticleType extends AbstractType
                 'required' => true,
                 'multiple' => false,
             ])
+			->add('articleProduct', $this->articleProductType, [
+				'required' => true,
+			])				
             ->add('images', 'entity', [
                 'class'    => $this->imageNamespace,
                 'required' => false,

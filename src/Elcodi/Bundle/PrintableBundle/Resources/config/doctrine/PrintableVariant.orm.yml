@@ -1,0 +1,25 @@
+Elcodi\Bundle\PrintableBundle\Entity\PrintableVariant:
+    type: entity
+    table: printable_variant
+    inheritanceType: JOINED
+    discriminatorColumn:
+       name: 'printable_type'
+       type: string
+    DiscriminatorMap:
+        textvariant: Elcodi\Bundle\PrintableBundle\Entity\TextVariant
+        designvariant: Elcodi\Bundle\PrintableBundle\Entity\DesignVariant
+        photovariant: Elcodi\Bundle\PrintableBundle\Entity\PhotoVariant
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+
+    fields:
+        posX:
+            type: integer
+        posY:
+            type: integer
+
+

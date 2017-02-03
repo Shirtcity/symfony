@@ -16,4 +16,13 @@ Elcodi\Component\Article\Entity\Article:
                     attribute_id:
                         referencedColumnName: id
                         onDelete: "CASCADE"
+    
+    oneToOne:
+        articleProduct:
+            targetEntity: Elcodi\Component\Article\Entity\ArticleProduct
+            joinColumn:
+                name: article_product_id
+                referencedColumnName: id
+            cascade:
+                - persist
 

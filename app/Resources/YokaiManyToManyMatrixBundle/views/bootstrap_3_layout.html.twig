@@ -1,0 +1,35 @@
+{% block many_to_many_matrix_widget %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                {% for choice in form %}
+                    <th>{{ choice.vars.label|trans }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in matrix %}
+            <tr>
+                <th>
+                    <div
+                        style="
+                            width: 1.4rem;
+                            height: 1.4rem;
+                            background-color: {{ row.label }};
+                            display: inline-block;
+                            border: 1px solid black;
+                        "
+                    >
+                    </div>
+                </th>
+                {% for checkbox in row.checkboxes %}
+                    <td>
+                        {{ form_row(checkbox, { 'label': false }) }}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock many_to_many_matrix_widget %}

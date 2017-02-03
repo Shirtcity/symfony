@@ -2,8 +2,8 @@ services:
 
     #
     # Factories
-    #
-
+    #    
+            
     #
     # Factory for Article entities
     #
@@ -13,7 +13,7 @@ services:
         calls:
             - [setEntityNamespace, ["%elcodi.entity.article.class%"]]
             - [setUseStock, ["@elcodi.store_uses_stock"]]
-            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]    
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
     
     #
     # Factory for Category entities
@@ -23,3 +23,13 @@ services:
         calls:
             - [setEntityNamespace, ["%elcodi.entity.category.class%"]]
             - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+            
+    #
+    # Factory for ArticleProduct entities
+    #
+    elcodi.factory.article_product:
+        class: Elcodi\Component\Article\Factory\ArticleProductFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.article_product.class%"]]
+            
+    

@@ -79,6 +79,13 @@ class Configuration extends AbstractConfiguration
                             'default',
                             true
                         ))
+                        ->append($this->addMappingNode(
+                            'printable_variant',
+                            'Elcodi\Bundle\PrintableBundle\Entity\PrintableVariant',
+                            '@PrintableBundle/Resources/config/doctrine/PrintableVariant.orm.yml',
+                            'default',
+                            true
+                        ))
 
                     ->end()
                 ->end()

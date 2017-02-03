@@ -2,6 +2,10 @@
 
 namespace Elcodi\Bundle\ProductBundle\Entity;
 
+use \Elcodi\Bundle\ProductBundle\Entity\Product;
+use \Elcodi\Bundle\ProductBundle\Entity\ProductSizes;
+use \Elcodi\Bundle\ProductBundle\Entity\ProductColor;
+
 /**
  * ProductColors
  */
@@ -12,16 +16,16 @@ class ProductColors
      */
     private $id;
 
+    /**
+     * @var Product
+     */
+    private $product;
 
     /**
-     * Get id
-     *
-     * @return integer
+     * @var ProductColor
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $color;
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -36,14 +40,73 @@ class ProductColors
     }
 
     /**
-     * Add size
+     * Get id
      *
-     * @param \Elcodi\Bundle\ProductBundle\Entity\ProductSizes $size
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set product
+     *
+     * @param Product $product
      *
      * @return ProductColors
      */
-    public function addSize(\Elcodi\Bundle\ProductBundle\Entity\ProductSizes $size)
+    public function setProduct(Product $product)
     {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    /**
+     * Get product
+     *
+     * @return Product
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * Set color
+     *
+     * @param ProductColor $color
+     *
+     * @return ProductColors
+     */
+    public function setColor(ProductColor $color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return ProductColor
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * Add size
+     *
+     * @param ProductSizes $size
+     *
+     * @return ProductColors
+     */
+    public function addSize(ProductSizes $size)
+    {
+		$size->addColor($this);
         $this->sizes[] = $size;
 
         return $this;
@@ -52,9 +115,9 @@ class ProductColors
     /**
      * Remove size
      *
-     * @param \Elcodi\Bundle\ProductBundle\Entity\ProductSizes $size
+     * @param ProductSizes $size
      */
-    public function removeSize(\Elcodi\Bundle\ProductBundle\Entity\ProductSizes $size)
+    public function removeSize(ProductSizes $size)
     {
         $this->sizes->removeElement($size);
     }
@@ -68,102 +131,8 @@ class ProductColors
     {
         return $this->sizes;
     }
-    /**
-     * @var \Elcodi\Bundle\ProductBundle\Entity\Product
-     */
-    private $product;
-
-    /**
-     * @var \Elcodi\Bundle\ProductBundle\Entity\ProductColor
-     */
-    private $color;
-
-
-    /**
-     * Set product
-     *
-     * @param \Elcodi\Bundle\ProductBundle\Entity\Product $product
-     *
-     * @return ProductColors
-     */
-    public function setProduct(\Elcodi\Bundle\ProductBundle\Entity\Product $product)
-    {
-        $this->product = $product;
-
-        return $this;
-    }
-
-    /**
-     * Get product
-     *
-     * @return \Elcodi\Bundle\ProductBundle\Entity\Product
-     */
-    public function getProduct()
-    {
-        return $this->product;
-    }
-
-    /**
-     * Set color
-     *
-     * @param \Elcodi\Bundle\ProductBundle\Entity\ProductColor $color
-     *
-     * @return ProductColors
-     */
-    public function setColor(\Elcodi\Bundle\ProductBundle\Entity\ProductColor $color)
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    /**
-     * Get color
-     *
-     * @return \Elcodi\Bundle\ProductBundle\Entity\ProductColor
-     */
-    public function getColor()
-    {
-        return $this->color;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $colors;
-
-
-    /**
-     * Add color
-     *
-     * @param \Elcodi\Bundle\ProductBundle\Entity\ProductSizes $color
-     *
-     * @return ProductColors
-     */
-    public function addColor(\Elcodi\Bundle\ProductBundle\Entity\ProductSizes $color)
-    {
-        $this->colors[] = $color;
-
-        return $this;
-    }
-
-    /**
-     * Remove color
-     *
-     * @param \Elcodi\Bundle\ProductBundle\Entity\ProductSizes $color
-     */
-    public function removeColor(\Elcodi\Bundle\ProductBundle\Entity\ProductSizes $color)
-    {
-        $this->colors->removeElement($color);
-    }
-
-    /**
-     * Get colors
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getColors()
-    {
-        return $this->colors;
-    }
 	
+	public function __toString() {
+		return $this->getColor()->getCode();
+	}
 }

@@ -94,4 +94,14 @@ class ProductColor
     {
         return $this->enabled;
     }
+	
+	/**
+     * To string method.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
 }

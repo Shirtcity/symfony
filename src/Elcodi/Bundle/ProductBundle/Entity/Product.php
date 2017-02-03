@@ -13,6 +13,9 @@ use Elcodi\Component\Media\Entity\Traits\PrincipalImageTrait;
 use Elcodi\Component\MetaData\Entity\Traits\MetaDataTrait;
 use Elcodi\Component\Article\Entity\Traits\DimensionsTrait;
 
+use \Elcodi\Bundle\ProductBundle\Entity\ProductColors;
+use \Elcodi\Bundle\ProductBundle\Entity\ProductSizes;
+
 /**
  * Product
  */
@@ -203,11 +206,11 @@ class Product
     /**
      * Add color
      *
-     * @param \Elcodi\Bundle\ProductBundle\Entity\ProductColors $color
+     * @param ProductColors $color
      *
      * @return Product
      */
-    public function addColor(\Elcodi\Bundle\ProductBundle\Entity\ProductColors $color)
+    public function addColor(ProductColors $color)
     {
         $this->colors[] = $color;
 
@@ -217,9 +220,9 @@ class Product
     /**
      * Remove color
      *
-     * @param \Elcodi\Bundle\ProductBundle\Entity\ProductColors $color
+     * @param ProductColors $color
      */
-    public function removeColor(\Elcodi\Bundle\ProductBundle\Entity\ProductColors $color)
+    public function removeColor(ProductColors $color)
     {
         $this->colors->removeElement($color);
     }
@@ -237,11 +240,11 @@ class Product
     /**
      * Add size
      *
-     * @param \Elcodi\Bundle\ProductBundle\Entity\ProductSizes $size
+     * @param ProductSizes $size
      *
      * @return Product
      */
-    public function addSize(\Elcodi\Bundle\ProductBundle\Entity\ProductSizes $size)
+    public function addSize(ProductSizes $size)
     {
         $this->sizes[] = $size;
 
@@ -251,9 +254,9 @@ class Product
     /**
      * Remove size
      *
-     * @param \Elcodi\Bundle\ProductBundle\Entity\ProductSizes $size
+     * @param ProductSizes $size
      */
-    public function removeSize(\Elcodi\Bundle\ProductBundle\Entity\ProductSizes $size)
+    public function removeSize(ProductSizes $size)
     {
         $this->sizes->removeElement($size);
     }
@@ -266,5 +269,15 @@ class Product
     public function getSizes()
     {
         return $this->sizes;
+    }
+	
+	/**
+     * To string method.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getName();
     }
 }

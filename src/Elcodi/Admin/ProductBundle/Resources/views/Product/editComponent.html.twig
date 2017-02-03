@@ -143,6 +143,11 @@
                                     </tr>
                                 {% endfor %}
                             </table>
+                            {{
+                                form_row(form.sizes, {
+                                    label: 'admin.product.sizes',
+                                })
+                            }}
                         </div>
                     </div>
                 </div>

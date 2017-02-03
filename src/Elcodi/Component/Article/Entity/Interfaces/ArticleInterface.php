@@ -75,4 +75,20 @@ interface ArticleInterface extends PurchasableInterface, CategorizableInterface
      * @return int Type
      */
     public function getType();
+	
+	/**
+     * Sets ArticleProduct
+     *
+     * @param ArticleProductInterface $articleProduct
+     *
+     * @return $this Self object
+     */
+    public function setArticleProduct(ArticleProductInterface $articleProduct);
+
+    /**
+     * Get ArticleProduct
+     *
+     * @return ArticleProductInterface
+     */
+    public function getArticleProduct();
 }

@@ -1,0 +1,22 @@
+Elcodi\Component\Article\Entity\ArticleProduct:
+    type: entity
+    repositoryClass: Elcodi\Component\Article\Repository\ArticleProductRepository
+    table: article_product    
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+                
+    manyToOne:
+        product:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Product
+            joinColumn:
+                name: product_id
+                referencedColumnName: id
+        productColor:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\ProductColor
+            joinColumn:
+                name: color_id
+                referencedColumnName: id

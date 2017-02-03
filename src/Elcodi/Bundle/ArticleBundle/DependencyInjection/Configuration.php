@@ -57,6 +57,13 @@ class Configuration extends AbstractConfiguration
                             'default',
                             true
                         ))
+						->append($this->addMappingNode(
+                            'article_product',
+                            'Elcodi\Component\Article\Entity\ArticleProduct',
+                            '@ElcodiArticleBundle/Resources/config/doctrine/ArticleProduct.orm.yml',
+                            'default',
+                            true
+                        ))
                     ->end()
                 ->end()
                 ->arrayNode('articles')

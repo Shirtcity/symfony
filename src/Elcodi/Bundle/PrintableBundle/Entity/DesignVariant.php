@@ -2,24 +2,44 @@
 
 namespace Elcodi\Bundle\PrintableBundle\Entity;
 
-use Elcodi\Bundle\PrintableBundle\Entity\Abstracts\AbstractPrintable;
+use Elcodi\Bundle\PrintableBundle\Entity\PrintableVariant;
 use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\DesignVariantInterface;
-use Elcodi\Component\Core\Entity\Traits\DateTimeTrait;
-use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
-use Elcodi\Bundle\PrintableBundle\Entity\FoilColor;
-use Elcodi\Component\User\Entity\Customer;
+use Elcodi\Bundle\PrintableBundle\Entity\Design;
 
 /**
  * DesignVariant
  */
-class DesignVariant extends AbstractPrintable implements DesignVariantInterface
+class DesignVariant extends PrintableVariant implements DesignVariantInterface
 {
+
+
     /**
-     * Get the Type
-     *
-     * @return string
+     * @var Design
      */
-    public function getType(){
-        return 'DesignVariant';
+    private $design;
+
+
+    /**
+     * Set design
+     *
+     * @param Design $design
+     *
+     * @return DesignVariant
+     */
+    public function setDesign(Design $design = null)
+    {
+        $this->design = $design;
+
+        return $this;
+    }
+
+    /**
+     * Get design
+     *
+     * @return Design
+     */
+    public function getDesign()
+    {
+        return $this->design;
     }
 }

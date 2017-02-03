@@ -22,6 +22,7 @@ use Doctrine\Common\Collections\Collection;
 use Elcodi\Component\Attribute\Entity\Interfaces\AttributeInterface;
 use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
+use Elcodi\Component\Article\Entity\Interfaces\ArticleProductInterface;
 
 /**
  * Class Article entity.
@@ -41,6 +42,13 @@ class Article extends Purchasable implements ArticleInterface
      * Attributes associated with this article
      */
     protected $attributes;
+	
+	/**
+     * @var ArticleProductInterface
+	 * 
+	 * Article products
+     */
+    protected $articleProduct;
 
     /**
      * Set categories.
@@ -199,5 +207,39 @@ class Article extends Purchasable implements ArticleInterface
     public function getPurchasableType()
     {
         return 'article';
+    }    
+
+	/**
+     * Set article product
+     *
+     * @param ArticleProductInterface $articleProduct
+     *
+     * @return Article
+     */
+    public function setArticleProduct(ArticleProductInterface $articleProduct)
+    {
+        $this->articleProduct = $articleProduct;
+
+        return $this;
     }
+
+    /**
+     * Get article product
+     *
+     * @return ArticleProductInterface
+     */
+    public function getArticleProduct()
+    {
+        return $this->articleProduct;
+    }
+	
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->attributes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    
 }

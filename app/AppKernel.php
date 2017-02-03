@@ -66,6 +66,8 @@ class AppKernel extends Kernel
             'Mmoreram\ControllerExtraBundle\ControllerExtraBundle',
             'Mmoreram\CacheFlushBundle\CacheFlushBundle',
             'Mmoreram\HttpHeadersBundle\HttpHeadersBundle',
+			
+			'Yokai\ManyToManyMatrixBundle\YokaiManyToManyMatrixBundle',
 
             /**
              * Elcodi core bundles

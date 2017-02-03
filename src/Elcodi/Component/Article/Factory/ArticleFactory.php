@@ -23,6 +23,8 @@ use Elcodi\Component\Currency\Factory\Abstracts\AbstractPurchasableFactory;
 use Elcodi\Component\Article\ElcodiArticleStock;
 use Elcodi\Component\Article\ElcodiArticleTypes;
 use Elcodi\Component\Article\Entity\Article;
+use Elcodi\Component\Currency\Wrapper\EmptyMoneyWrapper;
+use Elcodi\Component\Article\Factory\ArticleProductFactory;
 
 /**
  * Factory for Article entities.
@@ -35,7 +37,7 @@ class ArticleFactory extends AbstractPurchasableFactory
      * Use use stock
      */
     public $useStock = false;
-
+	
     /**
      * Set use stock.
      *
