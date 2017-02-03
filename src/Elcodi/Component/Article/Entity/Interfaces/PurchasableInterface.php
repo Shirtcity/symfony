@@ -226,14 +226,7 @@ interface PurchasableInterface
      *
      * @return CategoryInterface Principal category
      */
-    public function getPrincipalCategory();
-
-    /**
-     * Article manufacturer.
-     *
-     * @return ManufacturerInterface Manufacturer
-     */
-    public function getManufacturer();
+    public function getPrincipalCategory();    
 
     /**
      * Get purchasable type.

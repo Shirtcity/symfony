@@ -11,22 +11,6 @@ services:
             - '@elcodi.repository.article'
             - '@elcodi.factory.article'
 
-    elcodi.director.article_variant:
-        class: Elcodi\Component\Core\Services\ObjectDirector
-        lazy: true
-        arguments:
-            - '@elcodi.object_manager.article_variant'
-            - '@elcodi.repository.article_variant'
-            - '@elcodi.factory.article_variant'
-
-    elcodi.director.purchasable_pack:
-        class: Elcodi\Component\Core\Services\ObjectDirector
-        lazy: true
-        arguments:
-            - '@elcodi.object_manager.purchasable_pack'
-            - '@elcodi.repository.purchasable_pack'
-            - '@elcodi.factory.purchasable_pack'
-
     elcodi.director.category:
         class: Elcodi\Component\Core\Services\ObjectDirector
         lazy: true
@@ -35,10 +19,3 @@ services:
             - '@elcodi.repository.category'
             - '@elcodi.factory.category'
 
-    elcodi.director.manufacturer:
-        class: Elcodi\Component\Core\Services\ObjectDirector
-        lazy: true
-        arguments:
-            - '@elcodi.object_manager.manufacturer'
-            - '@elcodi.repository.manufacturer'
-            - '@elcodi.factory.manufacturer'

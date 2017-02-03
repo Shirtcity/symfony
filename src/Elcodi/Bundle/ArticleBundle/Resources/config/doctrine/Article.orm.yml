@@ -3,22 +3,6 @@ Elcodi\Component\Article\Entity\Article:
     repositoryClass: Elcodi\Component\Article\Repository\ArticleRepository
     table: article
 
-    manyToOne:
-        principalVariant:
-            targetEntity: Elcodi\Component\Article\Entity\Interfaces\VariantInterface
-            joinColumn:
-                name: principal_variant_id
-                referencedColumnName: id
-                nullable: true
-                onDelete: "SET NULL"
-
-    oneToMany:
-        variants:
-            targetEntity: Elcodi\Component\Article\Entity\Interfaces\VariantInterface
-            mappedBy: article
-            cascade: [ "all" ]
-            orphanRemoval: true
-
     manyToMany:
         attributes:
             targetEntity: Elcodi\Component\Attribute\Entity\Interfaces\AttributeInterface
@@ -32,4 +16,13 @@ Elcodi\Component\Article\Entity\Article:
                     attribute_id:
                         referencedColumnName: id
                         onDelete: "CASCADE"
+    
+    oneToOne:
+        articleProduct:
+            targetEntity: Elcodi\Component\Article\Entity\ArticleProduct
+            joinColumn:
+                name: article_product_id
+                referencedColumnName: id
+            cascade:
+                - persist
 

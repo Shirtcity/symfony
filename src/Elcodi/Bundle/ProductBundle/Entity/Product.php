@@ -317,4 +317,14 @@ class Product implements ProductInterface
 		
 		return $variants;
 	}
+	
+	/**
+     * To string method.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
 }

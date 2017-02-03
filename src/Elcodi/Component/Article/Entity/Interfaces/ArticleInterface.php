@@ -27,31 +27,6 @@ use Elcodi\Component\Attribute\Entity\Interfaces\AttributeInterface;
 interface ArticleInterface extends PurchasableInterface, CategorizableInterface
 {
     /**
-     * Set article manufacturer.
-     *
-     * @param ManufacturerInterface $manufacturer Manufacturer
-     *
-     * @return $this Self object
-     */
-    public function setManufacturer(ManufacturerInterface $manufacturer = null);
-
-    /**
-     * Returns article principal variant.
-     *
-     * @return VariantInterface
-     */
-    public function getPrincipalVariant();
-
-    /**
-     * Sets article principal variant.
-     *
-     * @param VariantInterface $principalVariant
-     *
-     * @return $this Self object
-     */
-    public function setPrincipalVariant(VariantInterface $principalVariant);
-
-    /**
      * Adds an attribute if not already in the collection.
      *
      * @param AttributeInterface $attribute Attribute
@@ -83,39 +58,7 @@ interface ArticleInterface extends PurchasableInterface, CategorizableInterface
      *
      * @return $this Self object
      */
-    public function setAttributes(Collection $attributes);
-
-    /**
-     * Gets article variants.
-     *
-     * @return Collection Variants
-     */
-    public function getVariants();
-
-    /**
-     * Adds a Variant for this Article.
-     *
-     * @param VariantInterface $variant Variant
-     *
-     * @return $this Self object
-     */
-    public function addVariant(VariantInterface $variant);
-
-    /**
-     * Sets article variants.
-     *
-     * @param Collection $variants Variants
-     *
-     * @return $this Self object
-     */
-    public function setVariants(Collection $variants);
-
-    /**
-     * Tells if this article has variants.
-     *
-     * @return bool Article has variants
-     */
-    public function hasVariants();
+    public function setAttributes(Collection $attributes);    
 
     /**
      * Sets Type.
@@ -132,4 +75,20 @@ interface ArticleInterface extends PurchasableInterface, CategorizableInterface
      * @return int Type
      */
     public function getType();
+	
+	/**
+     * Sets ArticleProduct
+     *
+     * @param ArticleProductInterface $articleProduct
+     *
+     * @return $this Self object
+     */
+    public function setArticleProduct(ArticleProductInterface $articleProduct);
+
+    /**
+     * Get ArticleProduct
+     *
+     * @return ArticleProductInterface
+     */
+    public function getArticleProduct();
 }

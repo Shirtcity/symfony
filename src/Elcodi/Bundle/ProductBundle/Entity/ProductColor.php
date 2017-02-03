@@ -95,4 +95,14 @@ class ProductColor implements ProductColorInterface
     {
         return $this->enabled;
     }
+	
+	/**
+     * To string method.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
 }

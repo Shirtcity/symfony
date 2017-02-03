@@ -32,14 +32,7 @@ use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFor
 class ArticleType extends AbstractType
 {
     use EntityTranslatableFormTrait, FactoryTrait;
-
-    /**
-     * @var string
-     *
-     * Manufacturer namespace
-     */
-    protected $manufacturerNamespace;
-
+    
     /**
      * @var string
      *
@@ -53,22 +46,31 @@ class ArticleType extends AbstractType
      * Image namespace
      */
     protected $imageNamespace;
+	
+	/**
+     * @var string
+     *
+     * ArticleProductInterface namespace
+     */
+    protected $articleProductNamespace;
+	
+	protected $articleProductType;
 
     /**
      * Construct
      *
-     * @param string $manufacturerNamespace Manufacturer namespace
      * @param string $categoryNamespace     Category namespace
      * @param string $imageNamespace        Image namespace
+	 * @param ArticleProductType $articleProductType	Article product form type
      */
     public function __construct(
-        $manufacturerNamespace,
         $categoryNamespace,
-        $imageNamespace
+        $imageNamespace,
+		$articleProductType
     ) {
-        $this->manufacturerNamespace = $manufacturerNamespace;
         $this->categoryNamespace = $categoryNamespace;
         $this->imageNamespace = $imageNamespace;
+		$this->articleProductType = $articleProductType;
     }
 
     /**
@@ -87,6 +89,7 @@ class ArticleType extends AbstractType
             'data_class' => $this
                 ->factory
                 ->getEntityNamespace(),
+			'cascade_validation' => true,
         ]);
     }
 
@@ -184,16 +187,14 @@ class ArticleType extends AbstractType
             ->add('stock', 'number', [
                 'required' => false,
             ])
-            ->add('manufacturer', 'entity', [
-                'class'    => $this->manufacturerNamespace,
-                'required' => false,
-                'multiple' => false,
-            ])
             ->add('principalCategory', 'entity', [
                 'class'    => $this->categoryNamespace,
                 'required' => true,
                 'multiple' => false,
             ])
+			->add('articleProduct', $this->articleProductType, [
+				'required' => true,
+			])				
             ->add('images', 'entity', [
                 'class'    => $this->imageNamespace,
                 'required' => false,

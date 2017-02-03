@@ -650,7 +650,7 @@ admin:
             settings: Settings
         single: App
     product:
-        edit: 'Edit "%name%"'
+        edit: 'Edit111 "%name%"'
         error:
             no_category: 'Warning! This article has no associated category'
             no_manufacturer: 'Warning! This article has no associated manufacturer'

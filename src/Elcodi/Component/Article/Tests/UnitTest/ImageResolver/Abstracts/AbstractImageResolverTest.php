@@ -22,7 +22,6 @@ use Prophecy\Argument;
 
 use Elcodi\Component\Media\Entity\Interfaces\ImageInterface;
 use Elcodi\Component\Article\ImageResolver\ArticleImageResolver;
-use Elcodi\Component\Article\ImageResolver\VariantImageResolver;
 
 /**
  * Class AbstractImageResolverTest.
@@ -48,26 +47,5 @@ abstract class AbstractImageResolverTest extends PHPUnit_Framework_TestCase
             ->willReturn('Elcodi\Component\Article\Entity\Interfaces\ArticleInterface');
 
         return $articleImageResolver->reveal();
-    }
-
-    /**
-     * Get variant image resolver mock.
-     *
-     * @param ImageInterface|false $image Image
-     *
-     * @return VariantImageResolver
-     */
-    protected function getVariantImageMock($image)
-    {
-        $variantImageResolver = $this->prophesize('Elcodi\Component\Article\ImageResolver\VariantImageResolver');
-        $variantImageResolver
-            ->getValidImage(Argument::any())
-            ->willReturn($image);
-
-        $variantImageResolver
-            ->getPurchasableNamespace()
-            ->willReturn('Elcodi\Component\Article\Entity\Interfaces\VariantInterface');
-
-        return $variantImageResolver->reveal();
-    }
+    }    
 }

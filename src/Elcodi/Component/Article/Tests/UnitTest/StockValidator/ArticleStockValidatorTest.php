@@ -42,16 +42,6 @@ class ArticleStockValidatorTest extends PHPUnit_Framework_TestCase
                 false
             )
         );
-
-        $this->assertFalse(
-            $articleValidator->isStockAvailable(
-                $this
-                    ->prophesize('Elcodi\Component\Article\Entity\Interfaces\VariantInterface')
-                    ->reveal(),
-                0,
-                false
-            )
-        );
     }
 
     /**

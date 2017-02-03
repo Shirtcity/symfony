@@ -22,7 +22,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Elcodi\Component\Attribute\Entity\Interfaces\AttributeInterface;
 use Elcodi\Component\Attribute\Entity\Interfaces\ValueInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
-use Elcodi\Component\Article\Entity\Interfaces\VariantInterface;
 
 /**
  * Class ArticleOptionsResolver.
@@ -44,28 +43,6 @@ class ArticleOptionsResolver
         AttributeInterface $attribute
     ) {
         $availableOptions = new ArrayCollection();
-
-        foreach ($article->getVariants() as $variant) {
-
-            /**
-             * @var VariantInterface $variant
-             */
-            if (!$variant->isEnabled() || $variant->getStock() <= 0) {
-                continue;
-            }
-
-            foreach ($variant->getOptions() as $option) {
-                /**
-                 * @var ValueInterface $option
-                 */
-                if ($option->getAttribute() == $attribute &&
-                    !$availableOptions->contains($option)
-                ) {
-                    $availableOptions->add($option);
-                }
-            }
-        }
-
         return $availableOptions;
     }
 }

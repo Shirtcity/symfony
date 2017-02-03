@@ -52,20 +52,6 @@ class MenuBuilder extends AbstractMenuBuilder implements MenuBuilderInterface
                 $this
                     ->menuNodeFactory
                     ->create()
-                    ->setName('admin.purchasable_pack.plural')
-                    ->setCode('archive')
-                    ->setUrl('admin_purchasable_pack_list')
-                    ->setTag('catalog')
-                    ->setPriority(33)
-                    ->setActiveUrls([
-                        'admin_purchasable_pack_edit',
-                        'admin_purchasable_pack_new',
-                    ])
-            )
-            ->addSubnode(
-                $this
-                    ->menuNodeFactory
-                    ->create()
                     ->setName('admin.categorization.single')
                     ->setCode('tag')
                     ->setTag('catalog')
@@ -79,17 +65,6 @@ class MenuBuilder extends AbstractMenuBuilder implements MenuBuilderInterface
                             ->setActiveUrls([
                                 'admin_attribute_edit',
                                 'admin_attribute_new',
-                            ])
-                    )
-                    ->addSubnode(
-                        $this
-                            ->menuNodeFactory
-                            ->create()
-                            ->setName('admin.manufacturer.plural')
-                            ->setUrl('admin_manufacturer_list')
-                            ->setActiveUrls([
-                                'admin_manufacturer_edit',
-                                'admin_manufacturer_new',
                             ])
                     )
                     ->addSubnode(
