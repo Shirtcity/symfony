@@ -4,22 +4,26 @@ namespace Elcodi\Bundle\ProductBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
 
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductInterface;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorsInterface;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductSizesInterface;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductManufacturerInterface;
+
 use Elcodi\Component\Core\Entity\Traits\DateTimeTrait;
 use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
 use Elcodi\Component\Core\Entity\Traits\ETaggableTrait;
-use Elcodi\Component\Core\Entity\Traits\IdentifiableTrait;
+use Elcodi\Component\Core\Entity\Traits\PriceTrait;
 use Elcodi\Component\Media\Entity\Traits\ImagesContainerTrait;
 use Elcodi\Component\Media\Entity\Traits\PrincipalImageTrait;
 use Elcodi\Component\MetaData\Entity\Traits\MetaDataTrait;
-use Elcodi\Component\Article\Entity\Traits\DimensionsTrait;
 
-use \Elcodi\Bundle\ProductBundle\Entity\ProductColors;
-use \Elcodi\Bundle\ProductBundle\Entity\ProductSizes;
+use Elcodi\Bundle\ProductBundle\Entity\Traits\DimensionsTrait;
+
 
 /**
  * Product
  */
-class Product
+class Product implements ProductInterface
 {
 	use DateTimeTrait,
         ETaggableTrait,
@@ -27,7 +31,8 @@ class Product
         ImagesContainerTrait,
         PrincipalImageTrait,
         EnabledTrait,
-        DimensionsTrait;
+        DimensionsTrait,
+		PriceTrait;
 	
     /**
      * @var integer
@@ -57,23 +62,22 @@ class Product
     protected $description;
 	
 	/**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $colors;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $sizes;
 	
 	/**
-     * Constructor
+     * @var ProductManufacturerInterface
+     *
+     * ProductManufacturer
      */
-    public function __construct()
-    {
-        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-	
+    protected $product_manufacturer;
+		
     /**
      * Get id
      *
@@ -189,7 +193,118 @@ class Product
     {
         return $this->enabled;
     }
+
+    /**
+     * Add color
+     *
+     * @param ProductColorsInterface $color
+     *
+     * @return Product
+     */
+    public function addColor(ProductColorsInterface $color)
+    {
+        $this->colors[] = $color;
+
+        return $this;
+    }
+
+    /**
+     * Remove color
+     *
+     * @param ProductColorsInterface $color
+     */
+    public function removeColor(ProductColorsInterface $color)
+    {
+        $this->colors->removeElement($color);
+    }
+
+    /**
+     * Get colors
+     *
+     * @return Collection
+     */
+    public function getColors()
+    {
+        return $this->colors;
+    }
+
+    /**
+     * Add size
+     *
+     * @param ProductSizesInterface $size
+     *
+     * @return Product
+     */
+    public function addSize(ProductSizesInterface $size)
+    {
+        $this->sizes[] = $size;
+
+        return $this;
+    }
+
+    /**
+     * Remove size
+     *
+     * @param ProductSizesInterface $size
+     */
+    public function removeSize(ProductSizesInterface $size)
+    {
+        $this->sizes->removeElement($size);
+    }
+
+    /**
+     * Get sizes
+     *
+     * @return Collection
+     */
+    public function getSizes()
+    {
+        return $this->sizes;
+    }
 	
+	public function setSizes(\Doctrine\Common\Collections\ArrayCollection $sizes)
+	{
+		$this->sizes = $sizes;
+
+        return $this;
+	}
+	
+	public function setColors(\Doctrine\Common\Collections\ArrayCollection $colors)
+	{
+		$this->colors = $colors;
+
+        return $this;
+	}
+	
+	/**
+     * Product product_manufacturer.
+     *
+     * @return ProductManufacturerInterface ProductManufacturer
+     */
+    public function getProductManufacturer()
+    {
+        return $this->product_manufacturer;
+    }
+	
+	/**
+     * Set product product_manufacturer.
+     *
+     * @param ProductManufacturerInterface $product_manufacturer ProductManufacturer
+     *
+     * @return $this Self object
+     */
+    public function setProductManufacturer(ProductManufacturerInterface $product_manufacturer = null)
+    {
+        $this->product_manufacturer = $product_manufacturer;
+
+        return $this;
+    }
+	
+	/**
+	 * Return array of Products and Colors variants.
+	 * 
+	 * @return array
+	 */
 	public function getVariantsArray()
 	{
 		$variants = array();
@@ -202,72 +317,4 @@ class Product
 		
 		return $variants;
 	}
-
-    /**
-     * Add color
-     *
-     * @param ProductColors $color
-     *
-     * @return Product
-     */
-    public function addColor(ProductColors $color)
-    {
-        $this->colors[] = $color;
-
-        return $this;
-    }
-
-    /**
-     * Remove color
-     *
-     * @param ProductColors $color
-     */
-    public function removeColor(ProductColors $color)
-    {
-        $this->colors->removeElement($color);
-    }
-
-    /**
-     * Get colors
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getColors()
-    {
-        return $this->colors;
-    }
-
-    /**
-     * Add size
-     *
-     * @param ProductSizes $size
-     *
-     * @return Product
-     */
-    public function addSize(ProductSizes $size)
-    {
-        $this->sizes[] = $size;
-
-        return $this;
-    }
-
-    /**
-     * Remove size
-     *
-     * @param ProductSizes $size
-     */
-    public function removeSize(ProductSizes $size)
-    {
-        $this->sizes->removeElement($size);
-    }
-
-    /**
-     * Get sizes
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSizes()
-    {
-        return $this->sizes;
-    }
 }

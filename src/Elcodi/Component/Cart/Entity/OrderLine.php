@@ -19,7 +19,7 @@ namespace Elcodi\Component\Cart\Entity;
 
 use Elcodi\Component\Cart\Entity\Interfaces\OrderInterface;
 use Elcodi\Component\Cart\Entity\Interfaces\OrderLineInterface;
-use Elcodi\Component\Cart\Entity\Traits\PriceTrait;
+use Elcodi\Component\Cart\Entity\Traits\CartPriceTrait;
 use Elcodi\Component\Cart\Entity\Traits\PurchasableWrapperTrait;
 use Elcodi\Component\Core\Entity\Traits\IdentifiableTrait;
 use Elcodi\Component\Article\Entity\Traits\DimensionsTrait;
@@ -34,7 +34,7 @@ class OrderLine implements OrderLineInterface
 {
     use IdentifiableTrait,
         PurchasableWrapperTrait,
-        PriceTrait,
+        CartPriceTrait,
         DimensionsTrait;
 
     /**

@@ -31,7 +31,7 @@ default:
                 - Elcodi\Bridge\BehatBridgeBundle\DoctrineContext
                 - Elcodi\Bridge\BehatBridgeBundle\Context
                 - Elcodi\Store\CoreBundle\Behat\Context
-                - Elcodi\Store\ProductBundle\Behat\Context
+                - Elcodi\Store\ArticleBundle\Behat\Context
                 - Elcodi\Store\CartBundle\Behat\Context
                 - Elcodi\Store\GeoBundle\Behat\Context
 
@@ -52,7 +52,7 @@ default:
                 - Elcodi\Bridge\BehatBridgeBundle\DoctrineContext
                 - Elcodi\Bridge\BehatBridgeBundle\Context
                 - Elcodi\Store\CoreBundle\Behat\Context
-                - Elcodi\Store\ProductBundle\Behat\Context
+                - Elcodi\Store\ArticleBundle\Behat\Context
                 - Elcodi\Store\CartBundle\Behat\Context
                 - Elcodi\Store\GeoBundle\Behat\Context
                 - Elcodi\Admin\CoreBundle\Behat\Context

@@ -2,14 +2,15 @@
 
 namespace Elcodi\Bundle\ProductBundle\Entity;
 
-use \Elcodi\Bundle\ProductBundle\Entity\Product;
-use \Elcodi\Bundle\ProductBundle\Entity\ProductSizes;
-use \Elcodi\Bundle\ProductBundle\Entity\ProductColor;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductInterface;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorInterface;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorsInterface;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductSizesInterface;
 
 /**
  * ProductColors
  */
-class ProductColors
+class ProductColors implements ProductColorsInterface
 {
     /**
      * @var integer
@@ -52,11 +53,11 @@ class ProductColors
     /**
      * Set product
      *
-     * @param Product $product
+     * @param ProductInterface $product
      *
      * @return ProductColors
      */
-    public function setProduct(Product $product)
+    public function setProduct(ProductInterface $product)
     {
         $this->product = $product;
 
@@ -76,11 +77,11 @@ class ProductColors
     /**
      * Set color
      *
-     * @param ProductColor $color
+     * @param ProductColorInterface $color
      *
      * @return ProductColors
      */
-    public function setColor(ProductColor $color)
+    public function setColor(ProductColorInterface $color)
     {
         $this->color = $color;
 
@@ -100,11 +101,11 @@ class ProductColors
     /**
      * Add size
      *
-     * @param ProductSizes $size
+     * @param ProductSizesInterface $size
      *
      * @return ProductColors
      */
-    public function addSize(ProductSizes $size)
+    public function addSize(ProductSizesInterface $size)
     {
 		$size->addColor($this);
         $this->sizes[] = $size;
@@ -115,9 +116,9 @@ class ProductColors
     /**
      * Remove size
      *
-     * @param ProductSizes $size
+     * @param ProductSizesInterface $size
      */
-    public function removeSize(ProductSizes $size)
+    public function removeSize(ProductSizesInterface $size)
     {
         $this->sizes->removeElement($size);
     }

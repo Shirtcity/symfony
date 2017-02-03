@@ -1,0 +1,22 @@
+Elcodi\Component\Article\Entity\Pack:
+    type: entity
+    repositoryClass: Elcodi\Component\Article\Repository\PackRepository
+    table: pack
+
+    fields:
+        stockType:
+            column: stock_type
+            type: integer
+            nullable: false
+
+    manyToMany:
+        purchasables:
+            targetEntity: Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface
+            joinTable:
+                name: pack_purchasable
+                joinColumns:
+                    pack_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    purchasable_id:
+                        referencedColumnName: id

@@ -58,6 +58,13 @@ class Configuration extends AbstractConfiguration
                             'default',
                             true
                         ))
+						->append($this->addMappingNode(
+                            'product_manufacturer',
+                            'Elcodi\Bundle\ProductBundle\Entity\ProductManufacturer',
+                            '@ProductBundle/Resources/config/doctrine/ProductManufacturer.orm.yml',
+                            'default',
+                            true
+                        ))
                     ->end()
                 ->end()
             ->end();

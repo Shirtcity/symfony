@@ -1,0 +1,28 @@
+services:
+
+    #
+    # Twig extensions
+    #
+    elcodi.twig_extension.article:
+        class: Elcodi\Component\Article\Twig\ArticleOptionsResolverExtension
+        public: false
+        arguments:
+            - '@elcodi.resolver.article_options'
+        tags:
+            - { name: twig.extension }
+
+    elcodi.twig_extension.purchasable_name_resolver:
+        class: Elcodi\Component\Article\Twig\PurchasableNameResolverExtension
+        public: false
+        arguments:
+            - '@elcodi.name_resolver.purchasable'
+        tags:
+            - { name: twig.extension }
+
+    elcodi.twig_extension.purchasable_image_resolver:
+        class: Elcodi\Component\Article\Twig\PurchasableImageResolverExtension
+        public: false
+        arguments:
+            - '@elcodi.image_resolver.purchasable'
+        tags:
+            - { name: twig.extension }

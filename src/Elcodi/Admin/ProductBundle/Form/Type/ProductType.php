@@ -25,6 +25,8 @@ use Symfony\Component\Validator\Constraints;
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
 
+use Elcodi\Admin\ArticleBundle\Validation\MinimumMoney;
+
 use Yokai\ManyToManyMatrixBundle\Form\Type\ManyToManyMatrixType;
 
 /**
@@ -41,20 +43,45 @@ class ProductType extends AbstractType
      */
     protected $imageNamespace;
 	
+	/**
+     * @var string
+     *
+     * ProductSizes namespace
+     */
 	protected $sizesNamespace;
+	
+	/**
+     * @var string
+     *
+     * Manufacturer namespace
+     */
+	protected $manufacturerNamespace;
+	
+	/**
+     * @var string
+     *
+     * Category namespace
+     */
+	protected $categoryNamespace;
 
-    /**
+	/**
      * Construct
      *
-     * @param string $sizesNamespace     ProductSizes namespace
-     * @param string $imageNamespace	 Image namespace
+     * @param string $sizesNamespace			ProductSizes namespace
+     * @param string $imageNamespace			Image namespace
+	 * @param string $manufacturerNamespace		Manufacturer namespace
+	 * @param string $categoryNamespace			Category namespace
      */
     public function __construct(
         $imageNamespace,
-		$sizesNamespace
+		$sizesNamespace,
+		$manufacturerNamespace,
+		$categoryNamespace
     ) {
         $this->imageNamespace = $imageNamespace;
 		$this->sizesNamespace = $sizesNamespace;
+		$this->manufacturerNamespace = $manufacturerNamespace;
+		$this->categoryNamespace = $categoryNamespace;
     }
 
     /**
@@ -105,18 +132,8 @@ class ProductType extends AbstractType
                     ),
                 ],
             ])
-			/*
             ->add('description', 'textarea', [
                 'required' => true,
-            ])
-            ->add('showInHome', 'checkbox', [
-                'required' => false,
-            ])
-            ->add('stock', 'hidden', [
-                'required' => true,
-            ])
-            ->add('sku', 'text', [
-                'required' => false,
             ])
             ->add('price', 'money_object', [
                 'required' => true,
@@ -126,59 +143,27 @@ class ProductType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('reducedPrice', 'money_object', [
-                'required' => false,
-                'constraints' => [
-                    new MinimumMoney([
-                        'value' => 0,
-                    ]),
-                ],
-            ])
-			 * 
-			 */
             ->add('imagesSort', 'text', [
                 'required' => false,
             ])			
             ->add('enabled', 'checkbox', [
                 'required' => false,
             ])
-			/*
             ->add('height', 'number', [
                 'required' => false,
             ])
             ->add('width', 'number', [
                 'required' => false,
             ])
-            ->add('depth', 'number', [
-                'required' => false,
-            ])
             ->add('weight', 'number', [
                 'required' => false,
             ])
-            ->add('metaTitle', 'text', [
-                'required' => false,
-            ])
-            ->add('metaDescription', 'text', [
-                'required' => false,
-                'constraints' => [
-                    new Constraints\Length(
-                        [
-                            'max' => 159,
-                        ]
-                    ),
-                ],
-            ])
-            ->add('metaKeywords', 'text', [
-                'required' => false,
-            ])
-            ->add('stock', 'number', [
-                'required' => false,
-            ])
-            ->add('manufacturer', 'entity', [
+            ->add('product_manufacturer', 'entity', [
                 'class'    => $this->manufacturerNamespace,
                 'required' => false,
                 'multiple' => false,
             ])
+			/*
             ->add('principalCategory', 'entity', [
                 'class'    => $this->categoryNamespace,
                 'required' => true,
@@ -194,7 +179,7 @@ class ProductType extends AbstractType
                 'expanded' => true,
             ])
 			->add('sizes', 'Yokai\ManyToManyMatrixBundle\Form\Type\ManyToManyMatrixType', [
-                'class'    => 'Elcodi\Bundle\ProductBundle\Entity\ProductSizes',
+                'class'    => $this->sizesNamespace,
                 'required' => false,
 				'association' => 'colors',
 				'by_reference' => false,

@@ -1,0 +1,34 @@
+services:
+
+    #
+    # Object Managers
+    #
+    elcodi.object_manager.purchasable:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.purchasable.class%
+
+    elcodi.object_manager.article:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.article.class%
+
+    elcodi.object_manager.article_variant:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.article_variant.class%
+
+    elcodi.object_manager.purchasable_pack:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.purchasable_pack.class%
+
+    elcodi.object_manager.category:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.category.class%
+
+    elcodi.object_manager.manufacturer:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.manufacturer.class%

@@ -2,12 +2,13 @@
 
 namespace Elcodi\Bundle\ProductBundle\Entity;
 
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductSizeInterface;
 use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
 
 /**
  * ProductSize
  */
-class ProductSize
+class ProductSize implements ProductSizeInterface
 {
 	use EnabledTrait;
 	

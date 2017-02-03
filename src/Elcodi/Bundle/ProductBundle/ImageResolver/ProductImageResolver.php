@@ -41,7 +41,7 @@ class ProductImageResolver extends AbstractImageResolverWithImageResolver
      *
      * @param Product $product Product
      *
-     * @todo typecast to product failed. It gets an article instead.
+     * @todo typecast to product failed. It gets an product instead.
      *
      * @return ImageInterface|false Image resolved
      */

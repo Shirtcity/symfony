@@ -1,0 +1,35 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'category'
+} %}
+
+
+{% block breadcrumb %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: 'admin.categorization.single'|trans, active: false },
+            { name: 'admin.category.plural'|trans, active: true },
+        ],
+    } %}
+
+{% endblock breadcrumb %}
+
+
+{% block header_actions %}
+
+    <a href="{{ url('admin_category_new') }}" class="button-primary" data-test="new-category">
+        <i class="icon-plus"></i>
+        <span>{{ 'admin.category.new'|trans }}</span>
+    </a>
+
+{% endblock header_actions %}
+
+
+{% block content %}
+
+    {{ render(url('admin_category_list_component'))}}
+
+{% endblock content %}

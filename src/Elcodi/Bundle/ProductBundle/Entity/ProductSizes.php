@@ -2,14 +2,15 @@
 
 namespace Elcodi\Bundle\ProductBundle\Entity;
 
-use \Elcodi\Bundle\ProductBundle\Entity\Product;
-use \Elcodi\Bundle\ProductBundle\Entity\ProductSize;
-use \Elcodi\Bundle\ProductBundle\Entity\ProductColors;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductInterface;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductSizeInterface;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductSizesInterface;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorsInterface;
 
 /**
  * ProductSizes
  */
-class ProductSizes
+class ProductSizes implements ProductSizesInterface
 {
     /**
      * @var integer
@@ -52,11 +53,11 @@ class ProductSizes
     /**
      * Set product
      *
-     * @param Product $product
+     * @param ProductInterface $product
      *
      * @return ProductSizes
      */
-    public function setProduct(Product $product)
+    public function setProduct(ProductInterface $product)
     {
         $this->product = $product;
 
@@ -76,11 +77,11 @@ class ProductSizes
     /**
      * Set size
      *
-     * @param ProductSize $size
+     * @param ProductSizeInterface $size
      *
      * @return ProductSizes
      */
-    public function setSize(ProductSize $size)
+    public function setSize(ProductSizeInterface $size)
     {
         $this->size = $size;
 
@@ -100,11 +101,11 @@ class ProductSizes
     /**
      * Add color
      *
-     * @param ProductColors $color
+     * @param ProductColorsInterface $color
      *
      * @return ProductSizes
      */
-    public function addColor(ProductColors $color)
+    public function addColor(ProductColorsInterface $color)
     {
         $this->colors[] = $color;
 
@@ -114,9 +115,9 @@ class ProductSizes
     /**
      * Remove color
      *
-     * @param ProductColors $color
+     * @param ProductColorsInterface $color
      */
-    public function removeColor(ProductColors $color)
+    public function removeColor(ProductColorsInterface $color)
     {
         $this->colors->removeElement($color);
     }

@@ -1,0 +1,99 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'article',
+} %}
+
+{% block body_down %}
+    {% if article.id > 0 %}
+    {% set author_token = app.user.token %}
+    {% set context = "admin" %}
+    {% set source = "article-#{article.id}" %}
+    <div id="box-populi" class="boxpopuli-container hidden">
+        <div class="boxpopuli-overflow" data-fc-modules="boxpopuli"
+             data-token="{{ author_token }}"
+             data-author-name="{{ app.user.fullname }}"
+             data-author-email="{{ app.user.email }}"
+             data-context="{{ context }}"
+             data-source="{{ source }}"
+             data-route-list="{{ url('elcodi_comments_list', { source: source, context: context }) }}"
+             data-route-add="{{ url('elcodi_comments_add', { source: source, context: context, authorToken: author_token }) }}"
+                ></div>
+    </div>
+    {% endif %}
+{% endblock body_down %}
+
+{% block header_actions %}
+
+    {% if article.id > 0 %}
+        <a target="_blank" href="{{ url('store_article_view', { id: article.id, slug: article.slug }) }}" data-fc-modules="modal" class="button">
+            <i class="icon-eye"></i>
+            <span>{{ 'admin.article.in_store'|trans }}</span>
+        </a>
+        <a data-fc-modules="modal" href="#metrics-panel" class="button">
+            <i class="icon-bar-chart-o"></i>
+            <span>{{ 'admin.article.show_metrics'|trans }}</span>
+        </a>
+        <a data-fc-modules="side-panel" data-fc-position="right" data-fc-width="60%"  href="#box-populi" class="button ph-m">
+            <i class="icon-pencil"></i>
+            <span>{{ 'admin.article.note'|trans }}</span>
+        </a>
+    {% endif %}
+
+{% endblock header_actions %}
+
+
+{% block breadcrumb %}
+
+    {% set title = 'admin.article.plural'|trans %}
+    {%
+        set header = article.id
+            ? 'admin.article.edit'|trans({ '%name%': article.name })
+            : 'admin.article.new'|trans
+    %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: title, url: url('admin_article_list'), },
+            { name: header, active: true, },
+        ]
+    } %}
+
+{% endblock breadcrumb %}
+
+
+{% block content %}
+
+    {% if article.id %}
+
+        {% if article.principalCategory is null %}
+            <p class="msg-warning">{{ 'admin.article.error.no_category'|trans }}</p>
+        {% endif %}
+
+        {% if article.manufacturer is null %}
+            <p class="msg-warning">{{ 'admin.article.error.no_manufacturer'|trans }}</p>
+        {% endif %}
+
+        {% if article.price.amount < 0 %}
+            <p class="msg-warning">{{ 'admin.article.error.price_negative'|trans }}</p>
+        {% endif %}
+
+        {{ render(url('admin_article_edit_component', { id: article.id })) }}
+    {% else %}
+        {{ render(url('admin_article_new_component')) }}
+    {% endif %}
+
+    {% if article.id %}
+        <div class="hidden-placeholder">
+            <div id="metrics-panel" class="box-background">
+                <h2>{{ 'admin.metrics.info.visitors'|trans }}</h2>
+                {% include 'AdminMetricBundle:Metric:metricLine.html.twig' with {
+                    tracker: store.tracker,
+                    event: "pv_store_article_view_#{article.id}",
+                    intervalContainer: metric_create_interval_container(3),
+                } %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}

@@ -46,6 +46,11 @@ class ProductBundle extends AbstractElcodiBundle implements DependentBundleInter
         return [
             'Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle',
 			'Elcodi\Bundle\LanguageBundle\ElcodiLanguageBundle',
+            'Elcodi\Bundle\MediaBundle\ElcodiMediaBundle',
+            'Elcodi\Bundle\CurrencyBundle\ElcodiCurrencyBundle',
+            'Elcodi\Bundle\AttributeBundle\ElcodiAttributeBundle',
+            'Elcodi\Bundle\StoreBundle\ElcodiStoreBundle',
+            'Elcodi\Bundle\CoreBundle\ElcodiCoreBundle',
         ];
     }
 }

@@ -25,6 +25,10 @@ Elcodi\Bundle\ProductBundle\Entity\Product:
         description:
             column: description
             type: text
+            nullable: true      
+        price:
+            column: price
+            type: integer
             nullable: true        
         height:
             column: height
@@ -76,6 +80,13 @@ Elcodi\Bundle\ProductBundle\Entity\Product:
             orphanRemoval: true
                         
     manyToOne:
+        priceCurrency:
+            targetEntity: Elcodi\Component\Currency\Entity\Interfaces\CurrencyInterface
+            joinColumn:
+                 name: price_currency_iso
+                 referencedColumnName: iso
+                 nullable: true
+                 
         principalImage:
             targetEntity: Elcodi\Component\Media\Entity\Interfaces\ImageInterface
             joinColumn:
@@ -83,8 +94,9 @@ Elcodi\Bundle\ProductBundle\Entity\Product:
                 referencedColumnName: id
                 nullable: true
                 onDelete: SET NULL
+       
 
-    manyToMany:
+    manyToMany:        
         images:
             targetEntity: Elcodi\Component\Media\Entity\Interfaces\ImageInterface
             joinTable:

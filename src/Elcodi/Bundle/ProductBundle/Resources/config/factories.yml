@@ -9,7 +9,16 @@ services:
     #
     elcodi.factory.product:
         class: Elcodi\Bundle\ProductBundle\Factory\ProductFactory
+        parent: elcodi.factory.abstract.purchasable
         calls:
             - [setEntityNamespace, ["%elcodi.entity.product.class%"]]
             - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
     
+    #
+    # Factory for ProductManufacturer entities
+    #
+    elcodi.factory.product_manufacturer:
+        class: Elcodi\Bundle\ProductBundle\Factory\ProductManufacturerFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.product_manufacturer.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]

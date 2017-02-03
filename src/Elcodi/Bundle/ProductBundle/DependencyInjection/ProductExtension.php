@@ -88,6 +88,11 @@ class ProductExtension extends AbstractExtension implements EntitiesOverridableE
             'elcodi.entity.product_sizes.mapping_file' => $config['mapping']['product_sizes']['mapping_file'],
             'elcodi.entity.product_sizes.manager' => $config['mapping']['product_sizes']['manager'],
             'elcodi.entity.product_sizes.enabled' => $config['mapping']['product_sizes']['enabled'],
+			
+			'elcodi.entity.product_manufacturer.class' => $config['mapping']['product_manufacturer']['class'],
+            'elcodi.entity.product_manufacturer.mapping_file' => $config['mapping']['product_manufacturer']['mapping_file'],
+            'elcodi.entity.product_manufacturer.manager' => $config['mapping']['product_manufacturer']['manager'],
+            'elcodi.entity.product_manufacturer.enabled' => $config['mapping']['product_manufacturer']['enabled'],
         ];
     }
 
@@ -142,7 +147,8 @@ class ProductExtension extends AbstractExtension implements EntitiesOverridableE
     public function getEntitiesOverrides()
     {
         return [
-            'Elcodi\Bundle\Product\Entity\Interfaces\ProductInterface' => 'elcodi.entity.product.class',
+            'Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductInterface' => 'elcodi.entity.product.class',
+			'Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductManufacturerInterface' => 'elcodi.entity.product_manufacturer.class',
         ];
     }
 }

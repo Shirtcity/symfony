@@ -44,6 +44,7 @@ class MappingCompilerPass extends AbstractElcodiMappingCompilerPass
 					'product_colors',
 					'product_size',
 					'product_sizes',
+					'product_manufacturer',
                 ]
             );
     }

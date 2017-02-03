@@ -150,12 +150,6 @@ class ProductController extends AbstractAdminController
             if ($firstImage instanceof ImageInterface) {
                 $product->setPrincipalImage($firstImage);
             }
-			/*
-			$em = $this->getDoctrine()->getManager();
-
-			$em->persist($product);
-			$em->flush();
-			*/
 			
             $this->flush($product);
 

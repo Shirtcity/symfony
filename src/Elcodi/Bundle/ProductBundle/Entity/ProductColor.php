@@ -2,12 +2,13 @@
 
 namespace Elcodi\Bundle\ProductBundle\Entity;
 
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorInterface;
 use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
 
 /**
- * Color
+ * ProductColor
  */
-class ProductColor
+class ProductColor implements ProductColorInterface
 {
 	use EnabledTrait;
 	
