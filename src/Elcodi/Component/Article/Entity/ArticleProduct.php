@@ -86,4 +86,14 @@ class ArticleProduct implements ArticleProductInterface
     {
         return $this->id;
     }
+	
+	/**
+     * To string method.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
 }

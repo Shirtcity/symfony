@@ -78,7 +78,8 @@
 
                    {% block article_info_details %}
                        <p>{{ article.description }}</p>
-					   <p>{{ article.articleProduct }}</p>
+					   <p>{{ article.articleProduct.product }}</p>
+					   <p>{{ article.articleProduct.productColor }}</p>
                    {% endblock %}				   
                {% endblock %}
            </div>
