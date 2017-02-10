@@ -76,6 +76,18 @@ class ArticleProduct implements ArticleProductInterface
 		
 		return $this;
 	}
+	
+/*	public function getProductColors()
+	{		
+		$productColors = new \Doctrine\Common\Collections\ArrayCollection;
+		
+		$colors = $this->product->getColors();
+		foreach($colors as $color){
+			$productColors[$color->getId()] = $color->getColor();
+		}
+		
+		return $productColors;
+	}*/
 
     /**
      * Get id

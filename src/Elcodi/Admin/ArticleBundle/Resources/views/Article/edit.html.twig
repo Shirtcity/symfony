@@ -92,4 +92,13 @@
             </div>
         </div>
     {% endif %}
+	
+	{% javascripts 
+		'@AdminArticleBundle/Resources/public/js/product-colors-select.js' 
+
+		filter='?uglifyjs2'
+	%}
+	<script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+	
 {% endblock content %}

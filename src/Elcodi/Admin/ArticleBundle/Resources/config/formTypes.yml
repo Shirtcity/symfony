@@ -3,11 +3,12 @@ services:
     #
     # Form Types
     #
+    
     elcodi_admin.form_type.article_product:
         class: Elcodi\Admin\ArticleBundle\Form\Type\ArticleProductType
         arguments:
             - %elcodi.entity.product.class%           
-            - %elcodi.entity.product_color.class%
+            - %elcodi.entity.product_color.class%      
         calls:
             - [setFactory, ["@elcodi.factory.article_product"]]
             - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]

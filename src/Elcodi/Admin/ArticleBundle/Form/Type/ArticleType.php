@@ -192,9 +192,7 @@ class ArticleType extends AbstractType
                 'required' => true,
                 'multiple' => false,
             ])
-			->add('articleProduct', $this->articleProductType, [
-				'required' => true,
-			])				
+			->add('articleProduct', $this->articleProductType)				
             ->add('images', 'entity', [
                 'class'    => $this->imageNamespace,
                 'required' => false,

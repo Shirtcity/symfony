@@ -227,6 +227,18 @@ class Product implements ProductInterface
     {
         return $this->colors;
     }
+	
+	public function getProductColors()
+	{		
+		$productColors = new \Doctrine\Common\Collections\ArrayCollection;
+		
+		$colors = $this->getColors();
+		foreach($colors as $color){
+			$productColors[$color->getId()] = $color->getColor();
+		}
+		
+		return $productColors;
+	}
 
     /**
      * Add size

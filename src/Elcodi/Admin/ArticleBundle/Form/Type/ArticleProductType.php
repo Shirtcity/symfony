@@ -6,8 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormInterface;
-
-use Elcodi\Component\Article\Entity\ArticleProduct;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
@@ -33,7 +33,6 @@ class ArticleProductType extends AbstractType
      */
     protected $productColorNamespace;
 	
-
     /**
      * Construct
      *
@@ -45,9 +44,9 @@ class ArticleProductType extends AbstractType
 		$productColorNamespace
     ) {
         $this->productNamespace = $productNamespace;
-		$this->productColorNamespace = $productColorNamespace;
+		$this->productColorNamespace = $productColorNamespace;		
     }
-
+	
     /**
      * Configures the options for this type.
      *
@@ -69,8 +68,7 @@ class ArticleProductType extends AbstractType
                 ->factory
                 ->getEntityNamespace(),
 			'cascade_validation' => true,
-        ]);
-			
+        ]);			
     }
 
     /**
@@ -80,18 +78,41 @@ class ArticleProductType extends AbstractType
      * @param array                $options the options for this form
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    {		
         $builder
 			->add('product', 'entity', [
                 'class'    => $this->productNamespace,
                 'required' => true,
                 'multiple' => false
-            ])
-			->add('productColor', 'entity', [
-                'class'    => $this->productColorNamespace,
-                'required' => true,
-                'multiple' => false
             ]);
+		
+		$formModifier = function (FormInterface $form, $articleProduct = null) {
+            $colors = null === $articleProduct ? array() : $articleProduct->getProductColors();
+
+            $form->add('productColor', 'entity', [
+                'class'     => $this->productColorNamespace,
+                'required'	=> true,
+                'choices'   => $colors,
+            ]);
+        };
+		
+		$builder->addEventListener(
+			FormEvents::PRE_SET_DATA, 
+			function (FormEvent $event) use ($formModifier) {
+                $data = $event->getData();
+				
+                $formModifier($event->getForm(), $data->getProduct());
+            }
+        );
+
+        $builder->get('product')->addEventListener(
+			FormEvents::POST_SUBMIT, 
+			function (FormEvent $event) use ($formModifier) {
+                $articleProduct = $event->getForm()->getData();
+				
+                $formModifier($event->getForm()->getParent(), $articleProduct);
+            }
+        );			
 		
         $builder->addEventSubscriber($this->getEntityTranslatorFormEventListener());
     }

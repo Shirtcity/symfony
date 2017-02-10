@@ -50,6 +50,14 @@ class Article extends Purchasable implements ArticleInterface
      */
     protected $articleProduct;
 
+	/**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->attributes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+	
     /**
      * Set categories.
      *
@@ -231,15 +239,7 @@ class Article extends Purchasable implements ArticleInterface
     public function getArticleProduct()
     {
         return $this->articleProduct;
-    }
-	
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->attributes = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    }   
 
     
 }
