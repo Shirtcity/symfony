@@ -102,6 +102,13 @@ abstract class Purchasable implements PurchasableInterface
     protected $principalCategory;
 
     /**
+     * @var string
+     *
+     * Purchasable type
+     */
+    protected $purchasableType;
+
+    /**
      * Get Slug.
      *
      * @return string Slug
@@ -264,4 +271,14 @@ abstract class Purchasable implements PurchasableInterface
     {
         return $this->principalCategory;
     }
+
+    /**
+     * Get purchasable type.
+     *
+     * @return string Purchasable type
+     */
+    public function getPurchasableType()
+    {
+        return 'purchasable';
+}
 }

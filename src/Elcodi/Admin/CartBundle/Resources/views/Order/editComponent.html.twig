@@ -26,7 +26,11 @@
                 {% set purchasableName = purchasable|purchasable_name %}
                 <tr>
                     <td>
+                        {% if purchasable.purchasableType == 'article' %}
                         <a href="{{ url('admin_article_edit', { id: purchasable.id}) }}" class="fw-b">{{ purchasableName }}</a>
+                        {% else %}
+                            <a href="#" class="fw-b">{{ purchasableName }}</a>
+                        {% endif %}
                         <p class="fz-s">ID: {{ purchasable.id }}</p>
                     </td>
                     <td class="ta-r">{{ line.quantity }}</td>

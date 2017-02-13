@@ -156,4 +156,11 @@ interface PurchasableInterface
      * @return CategoryInterface Principal category
      */
     public function getPrincipalCategory();
+
+    /**
+     * Get purchasable type.
+     *
+     * @return string Purchasable type
+     */
+    public function getPurchasableType();
 }

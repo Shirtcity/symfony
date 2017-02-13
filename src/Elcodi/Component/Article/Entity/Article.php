@@ -208,6 +208,16 @@ class Article extends Purchasable implements ArticleInterface
     }    
 
 	/**
+     * Get purchasable type.
+     *
+     * @return string Purchasable type
+     */
+    public function getPurchasableType()
+    {
+        return 'article';
+    }    
+
+	/**
      * Set article product
      *
      * @param ArticleProductInterface $articleProduct

@@ -2,7 +2,10 @@ Elcodi\Component\Article\Entity\Purchasable:
     type: entity
     repositoryClass: Elcodi\Component\Article\Repository\PurchasableRepository
     table: purchasable
-    
+    inheritanceType: joined
+    discriminatorColumn:
+        name: purchasable_type
+        type: string
     id:
         id:
             type: integer
