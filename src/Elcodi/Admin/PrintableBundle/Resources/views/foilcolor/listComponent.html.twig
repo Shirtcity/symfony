@@ -20,12 +20,6 @@
 
 {% block table_head %}
 
-
-    {% set stockClass = 'ta-r' %}
-    {% if not store.useStock %}
-        {% set stockClass = 'd-n ta-r' %}
-    {% endif %}
-
     {% include '@AdminCore/Tables/head.html.twig' with {
         rows: [
             { name: 'admin.foilcolor.field.name'|trans },

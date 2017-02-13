@@ -2,10 +2,7 @@ Elcodi\Component\Article\Entity\Purchasable:
     type: entity
     repositoryClass: Elcodi\Component\Article\Repository\PurchasableRepository
     table: purchasable
-    inheritanceType: joined
-    discriminatorColumn:
-        name: purchasable_type
-        type: string
+    
     id:
         id:
             type: integer
@@ -40,11 +37,7 @@ Elcodi\Component\Article\Entity\Purchasable:
         showInHome:
             column: show_in_home
             type: boolean
-            nullable: true        
-        stock:
-            column: stock
-            type: integer
-            nullable: true
+            nullable: true 
         price:
             column: price
             type: integer

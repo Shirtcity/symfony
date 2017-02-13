@@ -1,14 +1,8 @@
 <div class="article-list">
 {% for purchasable in purchasables %}
-    {% if "article" == purchasable.purchasableType %}
-        {% include '@StoreTemplate/Modules/_article-item.html.twig' with {
-            'article' : purchasable
-        } %}
-    {% elseif "purchasable_pack" == purchasable.purchasableType %}
-        {% include '@StoreTemplate/Modules/_article-pack-item.html.twig' with {
-            'pack' : purchasable
-        } %}
-    {% endif %}
+	{% include '@StoreTemplate/Modules/_article-item.html.twig' with {
+		'article' : purchasable
+	} %}
 {% else %}
     <div class="article-empty">
         <i class="fa fa-frown-o fa-3x"></i>

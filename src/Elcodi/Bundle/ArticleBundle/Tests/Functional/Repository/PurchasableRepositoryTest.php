@@ -142,21 +142,18 @@ class PurchasableRepositoryTest extends WebTestCase
      *
      * @dataProvider dataGetHomePurchasables
      */
-    public function testGetHomePurchasables($count, $numberExpected, $useStock)
+    public function testGetHomePurchasables($count, $numberExpected)
     {
         $purchasable = $this->find('purchasable', 2);
-        $oldStock = $purchasable->getStock();
-        $purchasable->setStock(0);
         $this->flush($purchasable);
 
         $purchasables = $this
             ->purchasableRepository
-            ->getHomePurchasables($count, $useStock);
+            ->getHomePurchasables($count);
 
         $this->assertTrue(is_array($purchasables));
         $this->assertCount($numberExpected, $purchasables);
 
-        $purchasable->setStock($oldStock);
         $this->flush($purchasable);
     }
 
@@ -183,21 +180,18 @@ class PurchasableRepositoryTest extends WebTestCase
      *
      * @dataProvider dataGetOfferPurchasables
      */
-    public function testGetOfferPurchasables($count, $numberExpected, $useStock)
+    public function testGetOfferPurchasables($count, $numberExpected)
     {
         $purchasable = $this->find('purchasable', 2);
-        $oldStock = $purchasable->getStock();
-        $purchasable->setStock(0);
         $this->flush($purchasable);
 
         $purchasables = $this
             ->purchasableRepository
-            ->getOfferPurchasables($count, $useStock);
+            ->getOfferPurchasables($count);
 
         $this->assertTrue(is_array($purchasables));
         $this->assertCount($numberExpected, $purchasables);
 
-        $purchasable->setStock($oldStock);
         $this->flush($purchasable);
     }
 

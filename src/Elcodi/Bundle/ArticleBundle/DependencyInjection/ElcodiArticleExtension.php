@@ -98,7 +98,6 @@ class ElcodiArticleExtension extends AbstractExtension implements EntitiesOverri
             'elcodi.entity.article_product.manager' => $config['mapping']['article_product']['manager'],
             'elcodi.entity.article_product.enabled' => $config['mapping']['article_product']['enabled'],
 
-            'elcodi.core.article.use_stock' => $config['articles']['use_stock'],
             'elcodi.core.article.load_only_categories_with_articles' => $config['categories']['load_only_categories_with_articles'],
             'elcodi.core.article.cache_key' => $config['categories']['cache_key'],
         ];
@@ -123,8 +122,8 @@ class ElcodiArticleExtension extends AbstractExtension implements EntitiesOverri
             'eventListeners',
             'adapters',
             'nameResolvers',
-            'stockUpdaters',
-            'stockValidators',
+           // 'stockUpdaters',
+           // 'stockValidators',
             'imageResolvers',
         ];
     }

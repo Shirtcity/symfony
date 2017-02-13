@@ -31,8 +31,6 @@ use Elcodi\Component\MetaData\Entity\Interfaces\MetaDataInterface;
  *
  * a Purchasable is an object that:
  *
- * * Has a SKU (Stock Keeping Unit) code
- * * Has stock attribute, reporting the purchasable availability.
  * * Implements ArticlePriceInterface, so that prices can be read and written
  *
  * Using this consistent interface, services and classes that operate on
@@ -80,23 +78,7 @@ interface PurchasableInterface
      * @return $this Self object
      */
     public function setSlug($slug);
-
-    /**
-     * Gets the variant stock.
-     *
-     * @return int stock
-     */
-    public function getStock();
-
-    /**
-     * Sets the variant stock.
-     *
-     * @param int $stock
-     *
-     * @return $this Self object
-     */
-    public function setStock($stock);
-
+    
     /**
      * Get Name.
      *
@@ -173,12 +155,5 @@ interface PurchasableInterface
      *
      * @return CategoryInterface Principal category
      */
-    public function getPrincipalCategory();    
-
-    /**
-     * Get purchasable type.
-     *
-     * @return string Purchasable type
-     */
-    public function getPurchasableType();
+    public function getPrincipalCategory();
 }

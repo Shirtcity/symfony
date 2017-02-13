@@ -56,7 +56,7 @@ class CartEventDispatcher extends AbstractEventDispatcher
      * have not been calculated and completed.
      *
      * This event should have all needed entity change, for example,
-     * remove a cartLine if cannot be used in cart ( Article out of stock )
+     * remove a cartLine if cannot be used in cart
      *
      * @param CartInterface $cart Cart
      *

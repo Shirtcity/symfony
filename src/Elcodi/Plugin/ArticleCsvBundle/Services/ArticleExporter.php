@@ -73,7 +73,6 @@ class ArticleExporter
                 'name' => $article->getName(),
                 'slug' => $article->getSlug(),
                 'description' => $article->getDescription(),
-                'stock' => $article->getStock(),
                 'price' => $article->getPrice()->getAmount(),
                 'currency' => $article->getPrice()->getCurrency()->getSymbol(),
                 'reducedPrice' => $article->getReducedPrice()->getAmount(),

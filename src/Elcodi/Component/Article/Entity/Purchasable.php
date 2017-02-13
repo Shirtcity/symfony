@@ -56,14 +56,7 @@ abstract class Purchasable implements PurchasableInterface
      *
      * Article SKU
      */
-    protected $sku;
-
-    /**
-     * @var int
-     *
-     * Stock
-     */
-    protected $stock;
+    protected $sku;  
 
     /**
      * @var string
@@ -107,13 +100,6 @@ abstract class Purchasable implements PurchasableInterface
      * Principal category
      */
     protected $principalCategory;
-
-    /**
-     * @var string
-     *
-     * Purchasable type
-     */
-    protected $purchasableType;
 
     /**
      * Get Slug.
@@ -161,31 +147,7 @@ abstract class Purchasable implements PurchasableInterface
         $this->sku = $sku;
 
         return $this;
-    }
-
-    /**
-     * Get Stock.
-     *
-     * @return int Stock
-     */
-    public function getStock()
-    {
-        return $this->stock;
-    }
-
-    /**
-     * Sets Stock.
-     *
-     * @param int $stock Stock
-     *
-     * @return $this Self object
-     */
-    public function setStock($stock)
-    {
-        $this->stock = $stock;
-
-        return $this;
-    }
+    }    
 
     /**
      * Get Name.
@@ -301,15 +263,5 @@ abstract class Purchasable implements PurchasableInterface
     public function getPrincipalCategory()
     {
         return $this->principalCategory;
-    }
-
-    /**
-     * Get purchasable type.
-     *
-     * @return string Purchasable type
-     */
-    public function getPurchasableType()
-    {
-        return 'purchasable';
     }
 }

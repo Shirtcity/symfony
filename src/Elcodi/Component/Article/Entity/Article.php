@@ -205,16 +205,6 @@ class Article extends Purchasable implements ArticleInterface
         $this->attributes = $attributes;
 
         return $this;
-    }
-
-    /**
-     * Get purchasable type.
-     *
-     * @return string Purchasable type
-     */
-    public function getPurchasableType()
-    {
-        return 'article';
     }    
 
 	/**

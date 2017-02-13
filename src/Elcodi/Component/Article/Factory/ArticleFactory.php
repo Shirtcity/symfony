@@ -20,7 +20,6 @@ namespace Elcodi\Component\Article\Factory;
 use Doctrine\Common\Collections\ArrayCollection;
 
 use Elcodi\Component\Currency\Factory\Abstracts\AbstractPurchasableFactory;
-use Elcodi\Component\Article\ElcodiArticleStock;
 use Elcodi\Component\Article\ElcodiArticleTypes;
 use Elcodi\Component\Article\Entity\Article;
 use Elcodi\Component\Currency\Wrapper\EmptyMoneyWrapper;
@@ -30,28 +29,8 @@ use Elcodi\Component\Article\Factory\ArticleProductFactory;
  * Factory for Article entities.
  */
 class ArticleFactory extends AbstractPurchasableFactory
-{
-    /**
-     * @var bool
-     *
-     * Use use stock
-     */
-    public $useStock = false;
-	
-    /**
-     * Set use stock.
-     *
-     * @param bool $useStock Infinite stock
-     *
-     * @return $this Self object
-     */
-    public function setUseStock($useStock = false)
-    {
-        $this->useStock = $useStock;
-
-        return $this;
-    }
-
+{    
+    
     /**
      * Creates and returns a pristine Article instance.
      *
@@ -70,12 +49,7 @@ class ArticleFactory extends AbstractPurchasableFactory
         $classNamespace = $this->getEntityNamespace();
         $article = new $classNamespace();
 
-        $stock = $this->useStock
-            ? 0
-            : ElcodiArticleStock::INFINITE_STOCK;
-
         $article
-            ->setStock($stock)
             ->setType(ElcodiArticleTypes::TYPE_PRODUCT_PHYSICAL)
             ->setShowInHome(true)
             ->setPrice($zeroPrice)

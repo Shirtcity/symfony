@@ -50,7 +50,6 @@ class StoreData extends AbstractFixture implements DependentFixtureInterface
             ->setEmail('email@email.com')
             ->setTracker('123456')
             ->setTemplate('fhsjkhfjklsa')
-            ->setUseStock(true)
             ->setAddress($address)
             ->setDefaultLanguage($language)
             ->setDefaultCurrency($currency);

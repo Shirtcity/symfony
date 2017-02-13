@@ -20,7 +20,6 @@ namespace Elcodi\Component\Article\Repository;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
-use Elcodi\Component\Article\ElcodiArticleStock;
 use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
 
 /**
@@ -54,21 +53,15 @@ class PurchasableRepository extends EntityRepository
      * Get purchasables that can be shown in Home.
      *
      * @param int  $limit    Purchasable limit. By default, this value is 0
-     * @param bool $useStock Use stock
      *
      * @return array Set of Purchasables, result of the query
      */
     public function getHomePurchasables(
-        $limit = 0,
-        $useStock = true
+        $limit = 0
     ) {
         $queryBuilder = $this->createQueryBuilder('p');
 
         $this->addPerformanceJoinsToQueryBuilder($queryBuilder);
-        $this->addStockPropertiesToQueryBuilder(
-            $queryBuilder,
-            $useStock
-        );
 
         $query = $queryBuilder
             ->andWhere('p.enabled = :enabled')
@@ -91,21 +84,15 @@ class PurchasableRepository extends EntityRepository
      * All purchasables returned are activated and none deleted.
      *
      * @param int  $limit    Purchasable limit. By default, this value is 0
-     * @param bool $useStock Use stock
      *
      * @return array Set of Purchasables, result of the query
      */
     public function getOfferPurchasables(
-        $limit = 0,
-        $useStock = true
+        $limit = 0
     ) {
         $queryBuilder = $this->createQueryBuilder('p');
 
         $this->addPerformanceJoinsToQueryBuilder($queryBuilder);
-        $this->addStockPropertiesToQueryBuilder(
-            $queryBuilder,
-            $useStock
-        );
 
         $query = $queryBuilder
             ->andWhere('p.enabled = :enabled')
@@ -121,34 +108,7 @@ class PurchasableRepository extends EntityRepository
         return $query
             ->getQuery()
             ->getResult();
-    }
-
-    /**
-     * Add stock properties to query builder.
-     *
-     * @param QueryBuilder $queryBuilder QueryBuilder
-     * @param bool         $useStock     Use stock
-     */
-    private function addStockPropertiesToQueryBuilder(
-        QueryBuilder $queryBuilder,
-        $useStock
-    ) {
-        if ($useStock) {
-            $queryBuilder
-                ->andWhere($queryBuilder->expr()->orX(
-                    $queryBuilder->expr()->gt('p.stock', ':stockZero'),
-                    $queryBuilder->expr()->eq('p.stock', ':infiniteStock')
-                ))
-                ->setParameter(
-                    'stockZero',
-                    0
-                )
-                ->setParameter(
-                    'infiniteStock',
-                    ElcodiArticleStock::INFINITE_STOCK
-                );
-        }
-    }
+    }    
 
     /**
      * Add performance joins.

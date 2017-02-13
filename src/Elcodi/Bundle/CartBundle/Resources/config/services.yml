@@ -33,17 +33,17 @@ services:
         class: Elcodi\Component\Cart\Services\CartIntegrityValidator
         arguments:
             - '@elcodi.event_dispatcher.cart'
-            - '@elcodi.stock_validator.purchasable'
+            #- '@elcodi.stock_validator.purchasable'
             - '@elcodi.manager.cart'
-            - '@?elcodi.store_uses_stock'
+            #- '@?elcodi.store_uses_stock'
 
     elcodi.validator.cart_amount:
         class: Elcodi\Component\Cart\Services\CartAmountValidator
 
-    elcodi.updater.cart_line_stock:
-        class: Elcodi\Component\Cart\Services\CartLineStockUpdater
-        arguments:
-            - '@elcodi.stock_updater.purchasable'
+    #elcodi.updater.cart_line_stock:
+    #    class: Elcodi\Component\Cart\Services\CartLineStockUpdater
+    #    arguments:
+    #        - '@elcodi.stock_updater.purchasable'
 
     elcodi.validator.cart_shipping_method:
         class: Elcodi\Component\Cart\Services\CartShippingAmountValidator

@@ -10,12 +10,6 @@ services:
             - '@elcodi.wrapper.store'
             - get
 
-    elcodi.store_uses_stock:
-        class: StdClass
-        factory:
-            - '@elcodi.store'
-            - getUseStock
-
     elcodi.store_tracker:
         class: StdClass
         factory:

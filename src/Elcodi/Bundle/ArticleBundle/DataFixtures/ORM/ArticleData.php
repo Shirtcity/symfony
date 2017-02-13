@@ -62,7 +62,6 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setShortDescription('my article short description')
             ->addCategory($category)
             ->setPrincipalCategory($category)
-            ->setStock(10)
             ->setPrice(Money::create(1000, $currency))
             ->setSku('article-sku-code-1')
             ->setEnabled(true);
@@ -80,7 +79,6 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setDescription('my article-reduced description')
             ->setShortDescription('my article-reduced short description')
             ->setShowInHome(true)
-            ->setStock(5)
             ->setPrice(Money::create(1000, $currency))
             ->setReducedPrice(Money::create(500, $currency))
             ->setEnabled(true);
@@ -106,7 +104,6 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setShortDescription('my article short description')
             ->addCategory($rootCategory)
             ->setPrincipalCategory($rootCategory)
-            ->setStock(10)
             ->setPrice(Money::create(500, $currency))
             ->setSku('article-sku-code-3')
             ->setEnabled(true);

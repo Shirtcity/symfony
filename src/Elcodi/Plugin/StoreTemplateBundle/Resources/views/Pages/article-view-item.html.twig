@@ -62,16 +62,12 @@
                                {% else %}
                                    <span class="article-pricing">{{ article.price|print_convert_money() }}</span>
                                {% endif %}
-                               {% if not useStock or article.stock > 0 %}
+                               
                                <a title="{{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }}"
                                   class="fa fa-shopping-cart button button-secondary"
                                   data-test="add-article-{{ article.id }}-to-cart"
                                   href="{{ url('store_cart_add_purchasable', { id: article.id }) }}"> {{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }}</a>
-                               {% else %}
-                               <a title="{{ 'template.store_template_bundle.article.view_item.no_stock'|trans }}"
-                                  class="fa fa-times button"
-                                  href="#"> {{ 'template.store_template_bundle.article.view_item.no_stock'|trans }}</a>
-                               {% endif %}
+                               
                            </p>
                        </div>
                    {% endblock %}

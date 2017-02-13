@@ -148,15 +148,10 @@ class ArticleComponentController extends AbstractAdminController
     public function editComponentAction(
         FormView $formView,
         ArticleInterface $article
-    ) {
-        $useStock = $this
-            ->get('elcodi.store')
-            ->getUseStock();
-
+    ) {       
         return [
             'article'  => $article,
-            'form'     => $formView,
-            'useStock' => $useStock,
+            'form'     => $formView
         ];
     }
 }

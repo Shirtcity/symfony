@@ -29,12 +29,12 @@ services:
         tags:
             - { name: kernel.event_listener, event: cart.onload, method: validateAmount, priority: 1 }
 
-    elcodi.event_listener.update_stock_by_cart_line:
-        class: Elcodi\Component\Cart\EventListener\UpdateStockByCartLineEventListener
-        arguments:
-            - '@elcodi.updater.cart_line_stock'
-        tags:
-            - { name: kernel.event_listener, event: order_line.oncreated, method: updatePurchasableStockByCartLine, priority: 0 }
+    #elcodi.event_listener.update_stock_by_cart_line:
+    #    class: Elcodi\Component\Cart\EventListener\UpdateStockByCartLineEventListener
+    #    arguments:
+    #        - '@elcodi.updater.cart_line_stock'
+    #    tags:
+    #        - { name: kernel.event_listener, event: order_line.oncreated, method: updatePurchasableStockByCartLine, priority: 0 }
 
     elcodi.event_listener.validate_empty_shipping_amount:
         class: Elcodi\Component\Cart\EventListener\ValidateEmptyShippingAmountEventListener

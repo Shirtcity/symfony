@@ -122,18 +122,13 @@ class PurchasableController extends Controller
                 'id'   => $purchasable->getId(),
                 'slug' => $purchasable->getSlug(),
             ], 301);
-        }
-
-        $useStock = $this
-            ->get('elcodi.store')
-            ->getUseStock();
+        }        
 
         $template = $this->resolveTemplateName($purchasable);
         $variableName = $this->resolveVariableName($purchasable);
 
         return $this->renderTemplate($template, [
-            $variableName => $purchasable,
-            'useStock'    => $useStock,
+            $variableName => $purchasable
         ]);
     }
 

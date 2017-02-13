@@ -85,13 +85,6 @@ class Store implements StoreInterface
     protected $template;
 
     /**
-     * @var bool
-     *
-     * Use stock
-     */
-    protected $useStock;
-
-    /**
      * @var AddressInterface
      *
      * Address
@@ -320,31 +313,7 @@ class Store implements StoreInterface
         $this->template = $template;
 
         return $this;
-    }
-
-    /**
-     * Get UseStock.
-     *
-     * @return bool UseStock
-     */
-    public function getUseStock()
-    {
-        return $this->useStock;
-    }
-
-    /**
-     * Sets UseStock.
-     *
-     * @param bool $useStock UseStock
-     *
-     * @return $this Self object
-     */
-    public function setUseStock($useStock)
-    {
-        $this->useStock = $useStock;
-
-        return $this;
-    }
+    }    
 
     /**
      * Get Address.

@@ -128,9 +128,6 @@ class ArticleType extends AbstractType
             ->add('showInHome', 'checkbox', [
                 'required' => false,
             ])
-            ->add('stock', 'hidden', [
-                'required' => true,
-            ])
             ->add('sku', 'text', [
                 'required' => false,
             ])
@@ -170,9 +167,6 @@ class ArticleType extends AbstractType
                 ],
             ])
             ->add('metaKeywords', 'text', [
-                'required' => false,
-            ])
-            ->add('stock', 'number', [
                 'required' => false,
             ])
             ->add('principalCategory', 'entity', [
