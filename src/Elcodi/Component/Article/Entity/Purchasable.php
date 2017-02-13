@@ -28,7 +28,6 @@ use Elcodi\Component\Media\Entity\Traits\PrincipalImageTrait;
 use Elcodi\Component\MetaData\Entity\Traits\MetaDataTrait;
 use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
-use Elcodi\Component\Article\Entity\Traits\DimensionsTrait;
 use Elcodi\Component\Article\Entity\Traits\PurchasablePriceTrait;
 
 /**
@@ -43,7 +42,6 @@ abstract class Purchasable implements PurchasableInterface
         ImagesContainerTrait,
         PrincipalImageTrait,
         EnabledTrait,
-        DimensionsTrait,
         PurchasablePriceTrait;
 
     /**
@@ -95,13 +93,6 @@ abstract class Purchasable implements PurchasableInterface
      * Article must show in home
      */
     protected $showInHome;
-
-    /**
-     * @var string
-     *
-     * Article dimensions
-     */
-    protected $dimensions;    
 
     /**
      * @var Collection
@@ -288,30 +279,6 @@ abstract class Purchasable implements PurchasableInterface
     public function setShowInHome($showInHome)
     {
         $this->showInHome = $showInHome;
-
-        return $this;
-    }
-
-    /**
-     * Get Dimensions.
-     *
-     * @return string Dimensions
-     */
-    public function getDimensions()
-    {
-        return $this->dimensions;
-    }
-
-    /**
-     * Sets Dimensions.
-     *
-     * @param string $dimensions Dimensions
-     *
-     * @return $this Self object
-     */
-    public function setDimensions($dimensions)
-    {
-        $this->dimensions = $dimensions;
 
         return $this;
     }

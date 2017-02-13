@@ -40,12 +40,7 @@ Elcodi\Component\Article\Entity\Purchasable:
         showInHome:
             column: show_in_home
             type: boolean
-            nullable: true
-        dimensions:
-            column: dimensions
-            type: string
-            length: 255
-            nullable: true
+            nullable: true        
         stock:
             column: stock
             type: integer
@@ -57,23 +52,7 @@ Elcodi\Component\Article\Entity\Purchasable:
         reducedPrice:
             column: reduced_price
             type: integer
-            nullable: true
-        height:
-            column: height
-            type: integer
-            nullable: true
-        width:
-            column: width
-            type: integer
-            nullable: true
-        depth:
-            column: depth
-            type: integer
-            nullable: true
-        weight:
-            column: weight
-            type: integer
-            nullable: true
+            nullable: true        
         imagesSort:
             column: images_sort
             type: string

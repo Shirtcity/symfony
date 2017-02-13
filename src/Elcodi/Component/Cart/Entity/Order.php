@@ -30,11 +30,12 @@ use Elcodi\Component\Currency\Entity\Interfaces\MoneyInterface;
 use Elcodi\Component\Currency\Entity\Money;
 use Elcodi\Component\Geo\Entity\Interfaces\AddressInterface;
 use Elcodi\Component\Payment\Entity\PaymentMethod;
-use Elcodi\Component\Article\Entity\Traits\DimensionsTrait;
 use Elcodi\Component\Shipping\Entity\ShippingMethod;
 use Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateLineInterface;
 use Elcodi\Component\StateTransitionMachine\Entity\StateLineStack;
 use Elcodi\Component\User\Entity\Interfaces\CustomerInterface;
+
+use Elcodi\Bundle\ProductBundle\Entity\Traits\DimensionsTrait;
 
 /**
  * Order.

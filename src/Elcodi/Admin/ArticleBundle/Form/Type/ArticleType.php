@@ -156,18 +156,6 @@ class ArticleType extends AbstractType
             ->add('enabled', 'checkbox', [
                 'required' => false,
             ])
-            ->add('height', 'number', [
-                'required' => false,
-            ])
-            ->add('width', 'number', [
-                'required' => false,
-            ])
-            ->add('depth', 'number', [
-                'required' => false,
-            ])
-            ->add('weight', 'number', [
-                'required' => false,
-            ])
             ->add('metaTitle', 'text', [
                 'required' => false,
             ])

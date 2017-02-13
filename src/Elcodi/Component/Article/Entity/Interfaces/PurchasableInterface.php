@@ -47,8 +47,7 @@ interface PurchasableInterface
     MetaDataInterface,
     ImagesContainerWithPrincipalImageInterface,
     EnabledInterface,
-    PurchasablePriceInterface,
-    DimensionableInterface
+    PurchasablePriceInterface
 {
     /**
      * Gets the variant SKU.
@@ -160,59 +159,7 @@ interface PurchasableInterface
      *
      * @return $this Self object
      */
-    public function setShowInHome($showInHome);
-
-    /**
-     * Get Dimensions.
-     *
-     * @return string Dimensions
-     */
-    public function getDimensions();
-
-    /**
-     * Sets Dimensions.
-     *
-     * @param string $dimensions Dimensions
-     *
-     * @return $this Self object
-     */
-    public function setDimensions($dimensions);
-
-    /**
-     * Set the height.
-     *
-     * @param int $height Height
-     *
-     * @return $this Self object
-     */
-    public function setHeight($height);
-
-    /**
-     * Set the width.
-     *
-     * @param int $width Width
-     *
-     * @return $this Self object
-     */
-    public function setWidth($width);
-
-    /**
-     * Set the depth.
-     *
-     * @param int $depth Depth
-     *
-     * @return $this Self object
-     */
-    public function setDepth($depth);
-
-    /**
-     * Set the weight.
-     *
-     * @param int $weight Weight
-     *
-     * @return $this Self object
-     */
-    public function setWeight($weight);
+    public function setShowInHome($showInHome);      
 
     /**
      * Get categories.

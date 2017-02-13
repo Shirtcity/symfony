@@ -65,10 +65,6 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setStock(10)
             ->setPrice(Money::create(1000, $currency))
             ->setSku('article-sku-code-1')
-            ->setHeight(10)
-            ->setWidth(15)
-            ->setDepth(20)
-            ->setWeight(100)
             ->setEnabled(true);
 
         $articleDirector->save($article);
@@ -87,10 +83,6 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setStock(5)
             ->setPrice(Money::create(1000, $currency))
             ->setReducedPrice(Money::create(500, $currency))
-            ->setHeight(25)
-            ->setWidth(30)
-            ->setDepth(35)
-            ->setWeight(200)
             ->setEnabled(true);
 
         $this->storeArticleImage(
@@ -117,10 +109,6 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setStock(10)
             ->setPrice(Money::create(500, $currency))
             ->setSku('article-sku-code-3')
-            ->setHeight(10)
-            ->setWidth(15)
-            ->setDepth(20)
-            ->setWeight(100)
             ->setEnabled(true);
 
         $articleDirector->save($rootCategoryArticle);
