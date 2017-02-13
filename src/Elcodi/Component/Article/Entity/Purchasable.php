@@ -28,7 +28,7 @@ use Elcodi\Component\Media\Entity\Traits\PrincipalImageTrait;
 use Elcodi\Component\MetaData\Entity\Traits\MetaDataTrait;
 use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
-use Elcodi\Component\Article\Entity\Traits\PurchasablePriceTrait;
+use Elcodi\Component\Core\Entity\Traits\PriceTrait;
 
 /**
  * Class Purchasable.
@@ -42,7 +42,7 @@ abstract class Purchasable implements PurchasableInterface
         ImagesContainerTrait,
         PrincipalImageTrait,
         EnabledTrait,
-        PurchasablePriceTrait;
+        PriceTrait;
 
     /**
      * @var string

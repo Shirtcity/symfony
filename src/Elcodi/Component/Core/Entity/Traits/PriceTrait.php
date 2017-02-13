@@ -23,6 +23,19 @@ trait PriceTrait
      */
     protected $priceCurrency;
 
+	/**
+     * @var int
+     *
+     * Reduced price
+     */
+    protected $reducedPrice;
+
+    /**
+     * @var \Elcodi\Component\Currency\Entity\Interfaces\CurrencyInterface
+     *
+     * Reduced price currency
+     */
+    protected $reducedPriceCurrency;
 
     /**
      * Set price.
@@ -49,6 +62,34 @@ trait PriceTrait
         return \Elcodi\Component\Currency\Entity\Money::create(
             $this->price,
             $this->priceCurrency
+        );
+    }
+	
+	/**
+     * Set price.
+     *
+     * @param \Elcodi\Component\Currency\Entity\Interfaces\MoneyInterface $amount Reduced Price
+     *
+     * @return $this Self object
+     */
+    public function setReducedPrice(\Elcodi\Component\Currency\Entity\Interfaces\MoneyInterface $amount)
+    {
+        $this->reducedPrice = $amount->getAmount();
+        $this->reducedPriceCurrency = $amount->getCurrency();
+
+        return $this;
+    }
+
+    /**
+     * Get price.
+     *
+     * @return \Elcodi\Component\Currency\Entity\Interfaces\MoneyInterface Reduced Price
+     */
+    public function getReducedPrice()
+    {
+        return \Elcodi\Component\Currency\Entity\Money::create(
+            $this->reducedPrice,
+            $this->reducedPriceCurrency
         );
     }
 
