@@ -15,7 +15,7 @@
  * @author Elcodi Team <tech@elcodi.com>
  */
 
-namespace Elcodi\Admin\ArticleBundle\Controller\Component;
+namespace Elcodi\Admin\ArticleBundleBak\Controller\Component;
 
 use Mmoreram\ControllerExtraBundle\Annotation\Entity as EntityAnnotation;
 use Mmoreram\ControllerExtraBundle\Annotation\Form as FormAnnotation;
@@ -50,7 +50,7 @@ class CategoryComponentController extends AbstractAdminController
      *      path = "/categories/component",
      *      name = "admin_category_list_component"
      * )
-     * @Template("AdminArticleBundle:Category:listComponent.html.twig")
+     * @Template("AdminArticleBundleBak:Category:listComponent.html.twig")
      * @Method({"GET"})
      */
     public function listComponentAction()
@@ -84,7 +84,7 @@ class CategoryComponentController extends AbstractAdminController
      *      name = "admin_category_new_component",
      *      methods = {"GET"}
      * )
-     * @Template("AdminArticleBundle:Category:editComponent.html.twig")
+     * @Template("AdminArticleBundleBak:Category:editComponent.html.twig")
      * @Method({"GET"})
      *
      * @EntityAnnotation(

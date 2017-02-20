@@ -9,10 +9,11 @@ services:
     #
     elcodi.factory.product:
         class: Elcodi\Bundle\ProductBundle\Factory\ProductFactory
-        parent: elcodi.factory.abstract.purchasable
         calls:
             - [setEntityNamespace, ["%elcodi.entity.product.class%"]]
             - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+        arguments:
+            - '@elcodi.wrapper.default_prices'
     
     #
     # Factory for ProductManufacturer entities
@@ -22,3 +23,11 @@ services:
         calls:
             - [setEntityNamespace, ["%elcodi.entity.product_manufacturer.class%"]]
             - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+            
+    #
+    # Factory for ProductColors entities
+    #
+    elcodi.factory.product_colors:
+        class: Elcodi\Bundle\ProductBundle\Factory\ProductColorsFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.product_colors.class%"]]

@@ -15,7 +15,7 @@
  * @author Elcodi Team <tech@elcodi.com>
  */
 
-namespace Elcodi\Admin\ArticleBundle\Controller\Component;
+namespace Elcodi\Admin\ArticleBundleBak\Controller\Component;
 
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Mmoreram\ControllerExtraBundle\Annotation\Entity as EntityAnnotation;
@@ -68,7 +68,7 @@ class ArticleComponentController extends AbstractAdminController
      *      },
      *      methods = {"GET"}
      * )
-     * @Template("AdminArticleBundle:Article:listComponent.html.twig")
+     * @Template("AdminArticleBundleBak:Article:listComponent.html.twig")
      *
      * @PaginatorAnnotation(
      *      attributes = "paginatorAttributes",
@@ -123,7 +123,7 @@ class ArticleComponentController extends AbstractAdminController
      *      name = "admin_article_new_component",
      *      methods = {"GET"}
      * )
-     * @Template("AdminArticleBundle:Article:editComponent.html.twig")
+     * @Template("AdminArticleBundleBak:Article:editComponent.html.twig")
      *
      * @EntityAnnotation(
      *      class = {

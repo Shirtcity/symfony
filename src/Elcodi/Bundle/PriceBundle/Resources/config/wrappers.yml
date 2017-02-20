@@ -1,0 +1,9 @@
+services:
+
+    #
+    # Wrappers
+    #
+    elcodi.wrapper.default_prices:
+        class: Elcodi\Bundle\PriceBundle\Wrapper\DefaultPricesWrapper
+        arguments:
+            - '@elcodi.repository.currency'

@@ -15,17 +15,17 @@
  * @author Elcodi Team <tech@elcodi.com>
  */
 
-namespace Elcodi\Admin\ArticleBundle;
+namespace Elcodi\Admin\ArticleBundleBak;
 
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
-use Elcodi\Admin\ArticleBundle\DependencyInjection\AdminArticleExtension;
+use Elcodi\Admin\ArticleBundleBak\DependencyInjection\AdminArticleExtension;
 use Elcodi\Bundle\CoreBundle\Abstracts\AbstractElcodiBundle;
 
 /**
- * Class AdminArticleBundle
+ * Class AdminArticleBundleBak
  */
-class AdminArticleBundle extends AbstractElcodiBundle
+class AdminArticleBundleBak extends AbstractElcodiBundle
 {
     /**
      * Returns the bundle's container extension.

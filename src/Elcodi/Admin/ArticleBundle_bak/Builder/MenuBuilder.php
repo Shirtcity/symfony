@@ -15,7 +15,7 @@
  * @author Elcodi Team <tech@elcodi.com>
  */
 
-namespace Elcodi\Admin\ArticleBundle\Builder;
+namespace Elcodi\Admin\ArticleBundleBak\Builder;
 
 use Elcodi\Component\Menu\Builder\Abstracts\AbstractMenuBuilder;
 use Elcodi\Component\Menu\Builder\Interfaces\MenuBuilderInterface;

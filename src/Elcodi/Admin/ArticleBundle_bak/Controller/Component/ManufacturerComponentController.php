@@ -15,7 +15,7 @@
  * @author Elcodi Team <tech@elcodi.com>
  */
 
-namespace Elcodi\Admin\ArticleBundle\Controller\Component;
+namespace Elcodi\Admin\ArticleBundleBak\Controller\Component;
 
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Mmoreram\ControllerExtraBundle\Annotation\Entity as EntityAnnotation;
@@ -68,7 +68,7 @@ class ManufacturerComponentController extends AbstractAdminController
      *          "orderByDirection" = "DESC",
      *      },
      * )
-     * @Template("AdminArticleBundle:Manufacturer:listComponent.html.twig")
+     * @Template("AdminArticleBundleBak:Manufacturer:listComponent.html.twig")
      * @Method({"GET"})
      *
      * @PaginatorAnnotation(
@@ -123,7 +123,7 @@ class ManufacturerComponentController extends AbstractAdminController
      *      name = "admin_manufacturer_new_component",
      *      methods = {"GET"}
      * )
-     * @Template("AdminArticleBundle:Manufacturer:editComponent.html.twig")
+     * @Template("AdminArticleBundleBak:Manufacturer:editComponent.html.twig")
      * @Method({"GET"})
      *
      * @EntityAnnotation(

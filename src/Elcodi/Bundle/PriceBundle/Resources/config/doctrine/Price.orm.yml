@@ -1,0 +1,23 @@
+Elcodi\Bundle\PriceBundle\Entity\Price:
+    type: entity
+    table: price
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+                
+    fields:
+        price:
+            type: integer
+            
+    manyToOne:
+        priceCurrency:
+            targetEntity: Elcodi\Component\Currency\Entity\Interfaces\CurrencyInterface
+            joinColumn:
+                 name: price_currency_iso
+                 referencedColumnName: iso
+                 nullable: true
+            
+    lifecycleCallbacks: {  }

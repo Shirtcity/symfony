@@ -2,11 +2,14 @@
 
 namespace Elcodi\Bundle\ProductBundle\Entity\Interfaces;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Elcodi\Component\Core\Entity\Interfaces\DateTimeInterface;
 use Elcodi\Component\Core\Entity\Interfaces\EnabledInterface;
 use Elcodi\Component\Core\Entity\Interfaces\ETaggableInterface;
 use Elcodi\Component\Media\Entity\Interfaces\ImagesContainerWithPrincipalImageInterface;
 use Elcodi\Component\MetaData\Entity\Interfaces\MetaDataInterface;
+use Elcodi\Bundle\PriceBundle\Entity\Interfaces\PriceInterface;
 
 /**
  * Interface ProductInterface.
@@ -18,9 +21,9 @@ interface ProductInterface
     MetaDataInterface,
     ImagesContainerWithPrincipalImageInterface,
     EnabledInterface,
-    DimensionableInterface
-{
-	
+    DimensionableInterface,
+	PriceInterface
+{	
     /**
      * Get id
      *
@@ -116,11 +119,32 @@ interface ProductInterface
     public function removeColor(ProductColorsInterface $color);
 
     /**
-     * Get colors
+     * Get Colors
      *
      * @return Collection
      */
     public function getColors();
+	
+	/**
+	 * Set Colors
+	 * @param ArrayCollection $colors
+	 * @return $this
+	 */
+	public function setColors(ArrayCollection $colors);
+	
+	/**
+	 * Return ArrayCollections of Product Colors
+	 * 
+	 * @return ArrayCollectionPriceBundle
+	 */
+    public function getProductColors();
+    
+	/**
+	 * Set ProductColors
+	 * 
+	 * @param type ArrayCollection 
+	 */
+    public function setProductColors(ArrayCollection $productColors);
 
     /**
      * Add size
@@ -146,18 +170,33 @@ interface ProductInterface
     public function getSizes();
 	
 	/**
-	 * Return array of Products and Colors variants.
+	 * Set sizes
 	 * 
-	 * @return array
+	 * @param ArrayCollection $sizes
+	 * @return $this
 	 */
-	public function getVariantsArray();
+	public function setSizes(ArrayCollection $sizes);
+	
+	/**
+	 * Return ArrayCollections of ProductSizes
+	 * 
+	 * @return ArrayCollection
+	 */
+    public function getProductSizes();
+	
+	/**
+	 * Set ProductSizes
+	 * 
+	 * @param type ArrayCollection 
+	 */
+    public function setProductSizes(ArrayCollection $productSizes);
 	
 	/**
      * Product product_manufacturer.
      *
      * @return ProductManufacturerInterface ProductManufacturer
      */
-	public function getProductManufacturer();
+    public function getProductManufacturer();
 	
 	/**
      * Set product product_manufacturer.
@@ -167,4 +206,46 @@ interface ProductInterface
      * @return $this Self object
      */
     public function setProductManufacturer(ProductManufacturerInterface $product_manufacturer = null);
+	
+	/**
+     * Add productSide
+     *
+     * @param PrintSideInterface $productSide
+     *
+     * @return Product
+     */
+    public function addPrintSide(PrintSideInterface $productSide);
+
+    /**
+     * Remove productSide
+     *
+     * @param PrintSideInterface $productSide
+     */
+    public function removePrintSide(PrintSideInterface $productSide);
+
+    /**
+     * Get productSides
+     *
+     * @return Collection
+     */
+    public function getPrintSides();
+	
+	/**
+	 * Return Product Sizes and Colors variants.
+	 * 
+	 * @return array
+	 */
+	public function getVariants();
+	
+	/**
+	 * Set Product Sizes and Colors variants.
+	 */
+	public function setVariants();
+	
+	/**
+     * To string method.
+     *
+     * @return string
+     */
+    public function __toString();
 }

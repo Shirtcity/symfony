@@ -132,7 +132,8 @@ class ProductSizes implements ProductSizesInterface
         return $this->colors;
     }
 	
-	public function __toString() {
+	public function __toString() 
+	{
 		return $this->getSize()->getName();
 	}
 }

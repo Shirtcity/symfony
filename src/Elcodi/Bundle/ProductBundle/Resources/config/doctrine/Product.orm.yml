@@ -25,11 +25,7 @@ Elcodi\Bundle\ProductBundle\Entity\Product:
         description:
             column: description
             type: text
-            nullable: true      
-        price:
-            column: price
-            type: integer
-            nullable: true        
+            nullable: true     
         height:
             column: height
             type: integer
@@ -78,14 +74,14 @@ Elcodi\Bundle\ProductBundle\Entity\Product:
             mappedBy: product
             cascade: [ "all" ]
             orphanRemoval: true
+                    
+        printSides:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\PrintSide
+            mappedBy: product
+            cascade: [ "all" ]
+            orphanRemoval: true
                         
     manyToOne:
-        priceCurrency:
-            targetEntity: Elcodi\Component\Currency\Entity\Interfaces\CurrencyInterface
-            joinColumn:
-                 name: price_currency_iso
-                 referencedColumnName: iso
-                 nullable: true
                  
         principalImage:
             targetEntity: Elcodi\Component\Media\Entity\Interfaces\ImageInterface
@@ -94,6 +90,14 @@ Elcodi\Bundle\ProductBundle\Entity\Product:
                 referencedColumnName: id
                 nullable: true
                 onDelete: SET NULL
+        product_manufacturer:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductManufacturerInterface
+            inversedBy: products
+            joinColumn:
+                name: manufacturer_id
+                referencedColumnName: id
+                nullable: true
+                onDelete: "SET NULL"
        
 
     manyToMany:        
@@ -109,6 +113,21 @@ Elcodi\Bundle\ProductBundle\Entity\Product:
                     image_id:
                         referencedColumnName: id
                         onDelete: "CASCADE"
+                        
+        prices:
+            targetEntity: Elcodi\Bundle\PriceBundle\Entity\Interfaces\PriceInterface
+            cascade: ["persist"]
+            joinTable:
+                name: product_prices
+                joinColumns:
+                    product_id:
+                        referencedColumnName: id
+                        onDelete: "CASCADE"
+                inverseJoinColumns:
+                    price_id:
+                        referencedColumnName: id
+                        onDelete: "CASCADE"  
+                        unique: true
             
     lifecycleCallbacks:
         preUpdate: [loadUpdateAt]

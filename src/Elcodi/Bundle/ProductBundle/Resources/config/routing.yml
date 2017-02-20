@@ -1,3 +1,0 @@
-product_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: ProductBundle:Default:index }

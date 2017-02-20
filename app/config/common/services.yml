@@ -44,3 +44,11 @@ services:
         class: Elcodi\Form\Type\ColorPickerType
         tags:
             - { name: form.type, alias: colorpicker }
+            
+    #
+    # It's like the Entity type. But with colorful labels. You will like them! They are going to be great.
+    #
+    elcodi.form.type.entity_color:
+        class: Elcodi\Form\Type\EntityColorType
+        tags:
+            - { name: form.type, alias: entity_color }

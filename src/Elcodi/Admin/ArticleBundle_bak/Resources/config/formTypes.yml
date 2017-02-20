@@ -4,7 +4,7 @@ services:
     # Form Types
     #
     elcodi_admin.form_type.article:
-        class: Elcodi\Admin\ArticleBundle\Form\Type\ArticleType
+        class: Elcodi\Admin\ArticleBundleBak\Form\Type\ArticleType
         arguments:
             - %elcodi.entity.manufacturer.class%
             - %elcodi.entity.category.class%
@@ -16,7 +16,7 @@ services:
             - { name: form.type, alias: elcodi_admin_article_form_type_article }
 
     elcodi_admin.form_type.article_variant:
-        class: Elcodi\Admin\ArticleBundle\Form\Type\VariantType
+        class: Elcodi\Admin\ArticleBundleBak\Form\Type\VariantType
         arguments:
             - %elcodi.entity.attribute_value.class%
             - %elcodi.entity.image.class%
@@ -26,7 +26,7 @@ services:
             - { name: form.type, alias: elcodi_admin_article_form_type_article_variant }
 
     elcodi_admin.form_type.purchasable_pack:
-        class: Elcodi\Admin\ArticleBundle\Form\Type\PackType
+        class: Elcodi\Admin\ArticleBundleBak\Form\Type\PackType
         arguments:
             - "@elcodi.name_resolver.purchasable"
             - %elcodi.entity.purchasable.class%
@@ -40,7 +40,7 @@ services:
             - { name: form.type, alias: elcodi_admin_article_form_type_purchasable_pack }
 
     elcodi_admin.form_type.category:
-        class: Elcodi\Admin\ArticleBundle\Form\Type\CategoryType
+        class: Elcodi\Admin\ArticleBundleBak\Form\Type\CategoryType
         calls:
             - [setFactory, ["@elcodi.factory.category"]]
             - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
@@ -48,7 +48,7 @@ services:
             - { name: form.type, alias: elcodi_admin_article_form_type_category }
 
     elcodi_admin.form_type.manufacturer:
-        class: Elcodi\Admin\ArticleBundle\Form\Type\ManufacturerType
+        class: Elcodi\Admin\ArticleBundleBak\Form\Type\ManufacturerType
         arguments:
             - %elcodi.entity.image.class%
         calls:

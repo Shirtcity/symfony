@@ -3,20 +3,22 @@
 namespace Elcodi\Bundle\ProductBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorsInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductSizesInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductManufacturerInterface;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideInterface;
 
 use Elcodi\Component\Core\Entity\Traits\DateTimeTrait;
 use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
 use Elcodi\Component\Core\Entity\Traits\ETaggableTrait;
-use Elcodi\Component\Core\Entity\Traits\PriceTrait;
 use Elcodi\Component\Media\Entity\Traits\ImagesContainerTrait;
 use Elcodi\Component\Media\Entity\Traits\PrincipalImageTrait;
 use Elcodi\Component\MetaData\Entity\Traits\MetaDataTrait;
 
+use Elcodi\Bundle\PriceBundle\Entity\Traits\PriceTrait;
 use Elcodi\Bundle\ProductBundle\Entity\Traits\DimensionsTrait;
 
 
@@ -77,6 +79,11 @@ class Product implements ProductInterface
      * ProductManufacturer
      */
     protected $product_manufacturer;
+	
+	/**
+     * @var Collection
+     */
+    private $printSides;
 		
     /**
      * Get id
@@ -219,13 +226,62 @@ class Product implements ProductInterface
     }
 
     /**
-     * Get colors
+     * Get Colors
      *
      * @return Collection
      */
     public function getColors()
     {
         return $this->colors;
+    }
+	
+	/**
+	 * Set Colors
+	 * @param ArrayCollection $colors
+	 * @return $this
+	 */
+	public function setColors(ArrayCollection $colors)
+	{
+		$this->colors = $colors;
+
+        return $this;
+	}
+	
+	/**
+	 * Return ArrayCollections of Product Colors
+	 * 
+	 * @return ArrayCollectionPriceBundle
+	 */
+    public function getProductColors()
+    {
+        $productColors = new ArrayCollection();
+        
+        foreach($this->colors as $color) {
+            $productColors[] = $color->getColor();
+        }
+
+        return $productColors;
+    }
+    
+	/**
+	 * Set ProductColors
+	 * 
+	 * @param type ArrayCollection 
+	 */
+    public function setProductColors(ArrayCollection $productColors)
+    {
+		foreach ($this->getColors() as $color) {
+			$this->removeColor($color);
+		}
+		
+        foreach($productColors as $color) {
+            $productColor = new ProductColors();
+
+            $productColor->setProduct($this);
+            $productColor->setColor($color);
+
+            $this->addColor($productColor);
+        }
     }
 
     /**
@@ -262,19 +318,55 @@ class Product implements ProductInterface
         return $this->sizes;
     }
 	
-	public function setSizes(\Doctrine\Common\Collections\ArrayCollection $sizes)
+	/**
+	 * Set sizes
+	 * 
+	 * @param ArrayCollection $sizes
+	 * @return $this
+	 */
+	public function setSizes(ArrayCollection $sizes)
 	{
 		$this->sizes = $sizes;
 
         return $this;
 	}
 	
-	public function setColors(\Doctrine\Common\Collections\ArrayCollection $colors)
-	{
-		$this->colors = $colors;
+	/**
+	 * Return ArrayCollections of ProductSizes
+	 * 
+	 * @return ArrayCollection
+	 */
+    public function getProductSizes()
+    {
+        $productSizes = new ArrayCollection();
+        
+        foreach($this->sizes as $size) {
+            $productSizes[] = $size->getSize();
+        }
 
-        return $this;
-	}
+        return $productSizes;
+    }
+    
+	/**
+	 * Set ProductSizes
+	 * 
+	 * @param type ArrayCollection 
+	 */
+    public function setProductSizes(ArrayCollection $productSizes)
+    {
+		foreach ($this->getSizes() as $size) {
+			$this->removeSize($size);
+		}
+		
+        foreach($productSizes as $size) {
+            $productSize = new ProductSizes();
+
+            $productSize->setProduct($this);
+            $productSize->setSize($size);
+
+            $this->addSize($productSize);
+        }
+    }
 	
 	/**
      * Product product_manufacturer.
@@ -301,11 +393,45 @@ class Product implements ProductInterface
     }
 	
 	/**
-	 * Return array of Products and Colors variants.
+     * Add productSide
+     *
+     * @param PrintSideInterface $productSide
+     *
+     * @return Product
+     */
+    public function addPrintSide(PrintSideInterface $productSide)
+    {
+        $this->printSides[] = $productSide;
+
+        return $this;
+    }
+
+    /**
+     * Remove productSide
+     *
+     * @param PrintSideInterface $productSide
+     */
+    public function removePrintSide(PrintSideInterface $productSide)
+    {
+        $this->printSides->removeElement($productSide);
+    }
+
+    /**
+     * Get productSides
+     *
+     * @return Collection
+     */
+    public function getPrintSides()
+    {
+        return $this->printSides;
+    }
+	
+	/**
+	 * Return Product Sizes and Colors variants.
 	 * 
 	 * @return array
 	 */
-	public function getVariantsArray()
+	public function getVariants()
 	{
 		$variants = array();
 		
@@ -316,6 +442,22 @@ class Product implements ProductInterface
 		}
 		
 		return $variants;
+	}
+	
+	/**
+	 * Set Product Sizes and Colors variants.
+	 * 
+	 * @return $this
+	 */
+	public function setVariants()
+	{		
+		foreach ($this->getSizes() as $size) {
+			foreach ($this->getColors() as $color) {
+				$size->addColor($color);
+			}
+		}
+		
+		return $this;
 	}
 	
 	/**

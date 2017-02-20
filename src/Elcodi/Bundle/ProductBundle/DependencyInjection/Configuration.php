@@ -65,6 +65,13 @@ class Configuration extends AbstractConfiguration
                             'default',
                             true
                         ))
+						->append($this->addMappingNode(
+                            'print_side',
+                            'Elcodi\Bundle\ProductBundle\Entity\PrintSide',
+                            '@ProductBundle/Resources/config/doctrine/PrintSide.orm.yml',
+                            'default',
+                            true
+                        ))
                     ->end()
                 ->end()
             ->end();
