@@ -41,7 +41,8 @@ class CategoryRepositoryTest extends WebTestCase
     protected static function loadFixturesBundles()
     {
         return [
-            'ElcodiArticleBundle',
+			'ProductBundle',
+            'ElcodiArticleBundle',			
         ];
     }
 

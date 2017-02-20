@@ -1,7 +1,7 @@
 parameters:
-
+    
     locale: en
 
-    database_driver: pdo_mysql
+    database_driver: pdo_sqlite
     database_name: shirtcity.dev2
-    database_path: %kernel.cache_dir%/bamboo.test
+    database_path: /srv/www/shirtcity.dev2/shirtcity.dev2

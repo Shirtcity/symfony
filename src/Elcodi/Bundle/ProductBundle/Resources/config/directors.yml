@@ -1,0 +1,29 @@
+services:
+
+    #
+    # Directors
+    #
+    elcodi.director.product:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.product'
+            - '@elcodi.repository.product'
+            - '@elcodi.factory.product'
+
+    elcodi.director.product-color:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.product-color'
+            - '@elcodi.repository.product-color'
+            - '@elcodi.factory.product-color'
+            
+    elcodi.director.product-size:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.product-size'
+            - '@elcodi.repository.product-size'
+            - '@elcodi.factory.product-size'
+

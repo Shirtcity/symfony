@@ -23,7 +23,7 @@ use Elcodi\Component\Currency\Factory\Abstracts\AbstractPurchasableFactory;
 use Elcodi\Component\Article\ElcodiArticleTypes;
 use Elcodi\Component\Article\Entity\Article;
 use Elcodi\Component\Currency\Wrapper\EmptyMoneyWrapper;
-use Elcodi\Component\Article\Factory\ArticleProductFactory;
+use Elcodi\Component\Article\Entity\ArticleProduct;
 
 /**
  * Factory for Article entities.
@@ -42,11 +42,16 @@ class ArticleFactory extends AbstractPurchasableFactory
     public function create()
     {
         $zeroPrice = $this->createZeroAmountMoney();
-
+		$articleProduct = new ArticleProduct();
+		$articleProduct
+            ->setProduct()
+            ->setProductColor();
+		
         /**
          * @var Article $article
          */
         $classNamespace = $this->getEntityNamespace();
+		
         $article = new $classNamespace();
 
         $article
@@ -59,6 +64,7 @@ class ArticleFactory extends AbstractPurchasableFactory
             ->setImages(new ArrayCollection())
             ->setImagesSort('')
             ->setEnabled(true)
+			->setArticleProduct($articleProduct)
             ->setCreatedAt($this->now());
 
         return $article;

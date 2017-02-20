@@ -49,7 +49,8 @@ class PurchasableRepositoryTest extends WebTestCase
     protected static function loadFixturesBundles()
     {
         return [
-            'ElcodiArticleBundle',
+			'ProductBundle',
+            'ElcodiArticleBundle',			
         ];
     }
 
@@ -145,16 +146,13 @@ class PurchasableRepositoryTest extends WebTestCase
     public function testGetHomePurchasables($count, $numberExpected)
     {
         $purchasable = $this->find('purchasable', 2);
-        $this->flush($purchasable);
-
+		
         $purchasables = $this
             ->purchasableRepository
             ->getHomePurchasables($count);
 
         $this->assertTrue(is_array($purchasables));
         $this->assertCount($numberExpected, $purchasables);
-
-        $this->flush($purchasable);
     }
 
     /**
@@ -163,15 +161,15 @@ class PurchasableRepositoryTest extends WebTestCase
     public function dataGetHomePurchasables()
     {
         return [
-            [0, 6, false],
-            [1, 1, false],
-            [2, 2, false],
-            [3, 3, false],
-            [6, 6, false],
-            [7, 6, false],
-            [0, 4, true],
-            [4, 4, true],
-            [5, 4, true],
+            [0, 6],
+            [1, 1],
+            [2, 2],
+            [3, 3],
+            [6, 6],
+            [7, 6],
+            [0, 4],
+            [4, 4],
+            [5, 4],
         ];
     }
 
@@ -183,7 +181,6 @@ class PurchasableRepositoryTest extends WebTestCase
     public function testGetOfferPurchasables($count, $numberExpected)
     {
         $purchasable = $this->find('purchasable', 2);
-        $this->flush($purchasable);
 
         $purchasables = $this
             ->purchasableRepository
@@ -191,8 +188,6 @@ class PurchasableRepositoryTest extends WebTestCase
 
         $this->assertTrue(is_array($purchasables));
         $this->assertCount($numberExpected, $purchasables);
-
-        $this->flush($purchasable);
     }
 
     /**
@@ -201,12 +196,12 @@ class PurchasableRepositoryTest extends WebTestCase
     public function dataGetOfferPurchasables()
     {
         return [
-            [0, 1, false],
-            [1, 1, false],
-            [2, 1, false],
-            [0, 0, true],
-            [1, 0, true],
-            [2, 0, true],
+            [0, 1],
+            [1, 1],
+            [2, 1],
+            [0, 0],
+            [1, 0],
+            [2, 0],
         ];
     }
 }

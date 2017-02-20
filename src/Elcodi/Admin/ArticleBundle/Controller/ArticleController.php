@@ -153,18 +153,16 @@ class ArticleController extends AbstractAdminController
      *      class = "elcodi_admin_article_form_type_article",
      *      name  = "form",
      *      entity = "article",
-     *      handleRequest = true,
-     *      validate = "isValid"
+     *      handleRequest = true
      * )
      *
      * @Template
      */
     public function editAction(
         FormInterface $form,
-        ArticleInterface $article,
-        $isValid
+        ArticleInterface $article
     ) {		
-		if ($isValid && !$this->getRequest()->isXmlHttpRequest()) {
+		if ($form->isValid() && !$this->getRequest()->isXmlHttpRequest()) {
             $firstImage = $article
                 ->getSortedImages()
                 ->first();
