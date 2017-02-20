@@ -25,7 +25,7 @@ use Symfony\Component\Validator\Constraints;
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
 
-use Elcodi\Admin\ArticleBundle\Validation\MinimumMoney;
+use Elcodi\Form\Type\EntityColorType;
 
 use Yokai\ManyToManyMatrixBundle\Form\Type\ManyToManyMatrixType;
 
@@ -42,6 +42,20 @@ class ProductType extends AbstractType
      * Image namespace
      */
     protected $imageNamespace;
+	
+	/**
+     * @var string
+     *
+     * ProductSize namespace
+     */
+	protected $sizeNamespace;
+	
+	/**
+     * @var string
+     *
+     * ProductColor namespace
+     */
+	protected $colorNamespace;
 	
 	/**
      * @var string
@@ -63,25 +77,61 @@ class ProductType extends AbstractType
      * Category namespace
      */
 	protected $categoryNamespace;
+	
+	/**
+     * @var string
+     *
+     * PrintSide namespace
+     */
+	protected $printSideNamespace;
+	
+	/**
+     * @var string
+     *
+     * Price namespace
+     */
+	protected $priceNamespace;
+	
+	/**
+     * @var string
+     *
+     * ProductColorsType namespace
+     */
+	protected $productColorsType;
 
 	/**
      * Construct
      *
+	 * @param string $sizeNamespace				ProductSize namespace
+	 * @param string $colorNamespace			ProductColor namespace
      * @param string $sizesNamespace			ProductSizes namespace
      * @param string $imageNamespace			Image namespace
 	 * @param string $manufacturerNamespace		Manufacturer namespace
 	 * @param string $categoryNamespace			Category namespace
+	 * @param string $printSideNamespace		PrintSide namespace
+	 * @param string $priceNamespace			Price namespace
+	 * @param string $productColorsType			ProductColorsType namespace
      */
     public function __construct(
         $imageNamespace,
+		$sizeNamespace,
+		$colorNamespace,
 		$sizesNamespace,
 		$manufacturerNamespace,
-		$categoryNamespace
+		$categoryNamespace,
+		$printSideNamespace,
+		$priceNamespace,
+		$productColorsType
     ) {
         $this->imageNamespace = $imageNamespace;
+		$this->sizeNamespace = $sizeNamespace;
+		$this->colorNamespace = $colorNamespace;
 		$this->sizesNamespace = $sizesNamespace;
 		$this->manufacturerNamespace = $manufacturerNamespace;
 		$this->categoryNamespace = $categoryNamespace;
+		$this->printSideNamespace = $printSideNamespace;
+		$this->priceNamespace = $priceNamespace;
+		$this->productColorsType = $productColorsType;
     }
 
     /**
@@ -135,13 +185,9 @@ class ProductType extends AbstractType
             ->add('description', 'textarea', [
                 'required' => true,
             ])
-            ->add('price', 'money_object', [
-                'required' => true,
-                'constraints' => [
-                    new MinimumMoney([
-                        'value' => 0,
-                    ]),
-                ],
+			->add('prices', 'Symfony\Component\Form\Extension\Core\Type\CollectionType', [
+				'entry_type' => 'money_object',				
+                'required' => true,		
             ])
             ->add('imagesSort', 'text', [
                 'required' => false,
@@ -178,16 +224,40 @@ class ProductType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
+			->add('productSizes', 'entity', [
+                'class'    => $this->sizeNamespace,
+                'required' => false,
+                'property' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+            ])
+			->add('productColors', 'entity_color', [
+                'class'    => $this->colorNamespace,
+                'required' => false,
+                'property' => 'code',
+                'multiple' => true,
+                'expanded' => true,
+            ])				
+			/**
 			->add('sizes', 'Yokai\ManyToManyMatrixBundle\Form\Type\ManyToManyMatrixType', [
                 'class'    => $this->sizesNamespace,
                 'required' => false,
 				'association' => 'colors',
-				'by_reference' => false,
+				//'by_reference' => false,
 				//'label' => false,
                 //'multiple' => true,
 				//'property' => 'id',
 				//'choice_label' => 'size.name',
 				//'expanded' => true,
+            ])
+			 * 
+			 */
+			->add('print_sides', 'entity', [
+                'class'    => $this->printSideNamespace,
+                'required' => false,
+                'property' => 'position',
+                'multiple' => true,
+                'expanded' => true,
             ]);
 		
         $builder->addEventSubscriber($this->getEntityTranslatorFormEventListener());

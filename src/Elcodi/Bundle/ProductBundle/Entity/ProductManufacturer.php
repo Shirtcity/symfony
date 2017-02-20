@@ -141,4 +141,46 @@ class ProductManufacturer implements ProductManufacturerInterface
     {
         return (string) $this->name;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return boolean
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * Add product
+     *
+     * @param \Elcodi\Bundle\ProductBundle\Entity\Product $product
+     *
+     * @return ProductManufacturer
+     */
+    public function addProduct(\Elcodi\Bundle\ProductBundle\Entity\Product $product)
+    {
+        $this->products[] = $product;
+
+        return $this;
+    }
+
+    /**
+     * Remove product
+     *
+     * @param \Elcodi\Bundle\ProductBundle\Entity\Product $product
+     */
+    public function removeProduct(\Elcodi\Bundle\ProductBundle\Entity\Product $product)
+    {
+        $this->products->removeElement($product);
+    }
 }

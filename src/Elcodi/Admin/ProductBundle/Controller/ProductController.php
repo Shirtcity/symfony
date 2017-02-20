@@ -151,6 +151,8 @@ class ProductController extends AbstractAdminController
                 $product->setPrincipalImage($firstImage);
             }
 			
+			$product->setVariants();
+			
             $this->flush($product);
 
             $this->addFlash(
@@ -160,7 +162,7 @@ class ProductController extends AbstractAdminController
                     ->trans('admin.product.saved')
             );
 
-            return $this->redirectToRoute('admin_product_list');
+            return $this->redirectToRoute('admin_product_edit', ['id' => $product->getId()]);
         }
 
         return [

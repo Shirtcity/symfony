@@ -15,7 +15,7 @@
  * @author Elcodi Team <tech@elcodi.com>
  */
 
-namespace Elcodi\Admin\ArticleBundle\Controller\Component;
+namespace Elcodi\Admin\ArticleBundleBak\Controller\Component;
 
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Mmoreram\ControllerExtraBundle\Annotation\Entity as EntityAnnotation;
@@ -57,7 +57,7 @@ class VariantComponentController extends AbstractAdminController
      *      path = "s/component",
      *      name = "admin_article_variant_list_component"
      * )
-     * @Template("AdminArticleBundle:Variant:listComponent.html.twig")
+     * @Template("AdminArticleBundleBak:Variant:listComponent.html.twig")
      * @Method({"GET"})
      *
      * @PaginatorAnnotation(
@@ -104,7 +104,7 @@ class VariantComponentController extends AbstractAdminController
      *      name = "admin_article_variant_new_component",
      *      methods = {"GET"}
      * )
-     * @Template("AdminArticleBundle:Variant:editComponent.html.twig")
+     * @Template("AdminArticleBundleBak:Variant:editComponent.html.twig")
      * @Method({"GET"})
      *
      * @EntityAnnotation(

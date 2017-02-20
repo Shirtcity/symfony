@@ -1,0 +1,10 @@
+services:
+
+    #
+    # Repository for entity price
+    #
+    elcodi.repository.price:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.price.class%
+            

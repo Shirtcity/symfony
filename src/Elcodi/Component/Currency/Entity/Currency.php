@@ -121,4 +121,8 @@ class Currency implements CurrencyInterface
     {
         return $this->symbol;
     }
+	
+	public function __toString() {
+		return $this->iso;
+	}
 }

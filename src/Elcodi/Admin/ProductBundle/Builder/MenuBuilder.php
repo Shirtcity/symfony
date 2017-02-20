@@ -43,10 +43,28 @@ class MenuBuilder extends AbstractMenuBuilder implements MenuBuilderInterface
                     ->setUrl('admin_product_list')
                     ->setTag('catalog')
                     ->setPriority(36)
-                    ->setActiveUrls([
-                        'admin_product_edit',
-                        'admin_product_new',
-                    ])
+					
+					->addSubnode(
+                        $this
+                            ->menuNodeFactory
+                            ->create()
+                            ->setName('admin.product.plural')
+                            ->setUrl('admin_product_list')
+                            ->setActiveUrls([
+                                'admin_product_edit',
+								'admin_product_new',
+                            ])
+                    )->addSubnode(
+                        $this
+                            ->menuNodeFactory
+                            ->create()
+                            ->setName('admin.manufacturer.plural')
+                            ->setUrl('admin_manufacturer_list')
+                            ->setActiveUrls([
+                                'admin_manufacturer_edit',
+                                'admin_manufacturer_new',
+                            ])
+                    )
             );
     }
 }

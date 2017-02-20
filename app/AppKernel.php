@@ -174,6 +174,8 @@ class AppKernel extends Kernel
 
             'Elcodi\Bundle\PrintableBundle\PrintableBundle',
             'Elcodi\Admin\PrintableBundle\AdminPrintableBundle',
+			
+			'Elcodi\Bundle\PriceBundle\PriceBundle',
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

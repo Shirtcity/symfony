@@ -4,31 +4,49 @@ namespace Elcodi\Bundle\ProductBundle\Factory;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
+use Elcodi\Component\Core\Factory\Abstracts\AbstractFactory;
+
+use Elcodi\Bundle\PriceBundle\Wrapper\DefaultPricesWrapper;
 use Elcodi\Bundle\ProductBundle\Entity\Product;
-use Elcodi\Component\Currency\Factory\Abstracts\AbstractPurchasableFactory;
 
 
 /**
  * Class ProductFactory.
  */
-class ProductFactory extends AbstractPurchasableFactory
+class ProductFactory extends AbstractFactory
 {
-	public function create()
+	/**
+     * @var DefaultPricesWrapper
+     *
+     * Default prices wrapper
+     */
+    protected $defaultPricesWrapper;
+	
+	/**
+     * Factory constructor.
+     *
+     * @param DefaultPricesWrapper $defaultPricesWrapper Default prices wrapper
+     */
+    public function __construct(DefaultPricesWrapper $defaultPricesWrapper)
     {
-		$zeroPrice = $this->createZeroAmountMoney();
-		
+        $this->defaultPricesWrapper = $defaultPricesWrapper;
+    }
+	
+	public function create()
+    {		
         /**
          * @var Product $product
          */
         $classNamespace = $this->getEntityNamespace();
 		
+		$prices = $this->createDefaultPrices();
         $product = new $classNamespace();
 
         $product
 			->setImages(new ArrayCollection())
 			->setSizes(new ArrayCollection())
 			->setColors(new ArrayCollection())
-			->setPrice($zeroPrice)
+			->setPrices($prices)
 			->setWidth(0)
             ->setHeight(0)
 			->setImagesSort('')
@@ -37,4 +55,16 @@ class ProductFactory extends AbstractPurchasableFactory
 
         return $product;
     }	
+	
+	/**
+     * Returns a default prices Collection
+     *
+     * @return ArrayCollection
+     */
+    protected function createDefaultPrices()
+    {
+        return $this
+            ->defaultPricesWrapper
+            ->get();
+    }
 }

@@ -1,0 +1,27 @@
+Elcodi\Bundle\ProductBundle\Entity\PrintSide:
+    type: entity
+    table: print_side
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        position:
+            type: string
+            length: '20'
+        enabled:
+            type: boolean    
+            
+    manyToOne:
+        product:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Product
+            inversedBy: printSides
+            joinColumn:
+                name: product_id
+                referencedColumnName: id
+                nullable: false
+                onDelete: "CASCADE"
+            
+    lifecycleCallbacks: {  }

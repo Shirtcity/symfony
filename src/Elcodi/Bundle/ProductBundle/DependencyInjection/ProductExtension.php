@@ -93,6 +93,11 @@ class ProductExtension extends AbstractExtension implements EntitiesOverridableE
             'elcodi.entity.product_manufacturer.mapping_file' => $config['mapping']['product_manufacturer']['mapping_file'],
             'elcodi.entity.product_manufacturer.manager' => $config['mapping']['product_manufacturer']['manager'],
             'elcodi.entity.product_manufacturer.enabled' => $config['mapping']['product_manufacturer']['enabled'],
+			
+			'elcodi.entity.print_side.class' => $config['mapping']['print_side']['class'],
+            'elcodi.entity.print_side.mapping_file' => $config['mapping']['print_side']['mapping_file'],
+            'elcodi.entity.print_side.manager' => $config['mapping']['print_side']['manager'],
+            'elcodi.entity.print_side.enabled' => $config['mapping']['print_side']['enabled'],
         ];
     }
 

@@ -15,13 +15,13 @@
  * @author Elcodi Team <tech@elcodi.com>
  */
 
-namespace Elcodi\Admin\ArticleBundle\Form\Type;
+namespace Elcodi\Admin\ArticleBundleBak\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-use Elcodi\Admin\ArticleBundle\Validation\MinimumMoney;
+use Elcodi\Admin\ArticleBundleBak\Validation\MinimumMoney;
 use Elcodi\Component\Attribute\Repository\ValueRepository;
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 

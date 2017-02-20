@@ -4,6 +4,6 @@ services:
     # Constraints
     #
     elcodi_admin.validator.minimum_money:
-        class: Elcodi\Admin\ArticleBundle\Validation\MinimumMoneyValidator
+        class: Elcodi\Admin\ArticleBundleBak\Validation\MinimumMoneyValidator
         tags:
             - { name: validator.constraint_validator, alias: minimum_money }

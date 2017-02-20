@@ -63,22 +63,24 @@ class MoneyType extends AbstractType
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    {	
         $builder
             ->add('amount', 'number', [
                 'scale'  => 2,
-            ])
-            ->add('currency', 'entity', [
-                'class'         => $this->currencyNamespace,
+            ])				
+			->add('currency', 'entity', [
+                'class'     => $this->currencyNamespace,
                 'query_builder' => function (EntityRepository $repository) {
+				
                     return $repository
                         ->createQueryBuilder('c')
                         ->where('c.enabled = :enabled')
                         ->setParameter('enabled', true);
                 },
-                'required'      => true,
-                'multiple'      => false,
-                'property'      => 'symbol',
+				'expanded' => true,
+				'attr' => [
+					'class' => 'hidden'
+				],
             ])
             ->setDataMapper(new MoneyDataMapper());
     }

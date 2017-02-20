@@ -15,7 +15,7 @@
  * @author Elcodi Team <tech@elcodi.com>
  */
 
-namespace Elcodi\Admin\ArticleBundle\EventListener;
+namespace Elcodi\Admin\ArticleBundleBak\EventListener;
 
 use Doctrine\ORM\Event\PreFlushEventArgs;
 

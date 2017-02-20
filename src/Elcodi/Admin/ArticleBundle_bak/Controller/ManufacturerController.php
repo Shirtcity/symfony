@@ -15,7 +15,7 @@
  * @author Elcodi Team <tech@elcodi.com>
  */
 
-namespace Elcodi\Admin\ArticleBundle\Controller;
+namespace Elcodi\Admin\ArticleBundleBak\Controller;
 
 use Mmoreram\ControllerExtraBundle\Annotation\Entity as EntityAnnotation;
 use Mmoreram\ControllerExtraBundle\Annotation\Form as FormAnnotation;
@@ -161,7 +161,7 @@ class ManufacturerController extends AbstractAdminController
             if ($firstImage instanceof ImageInterface) {
                 $manufacturer->setPrincipalImage($firstImage);
             }
-
+			
             $this->flush($manufacturer);
 
             $this->addFlash('success', 'admin.manufacturer.saved');

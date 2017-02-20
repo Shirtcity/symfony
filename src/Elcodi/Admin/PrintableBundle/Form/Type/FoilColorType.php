@@ -24,7 +24,7 @@ use Symfony\Component\Validator\Constraints;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
-use Application\Form\Type\ColorPickerType;
+use Elcodi\Form\Type\ColorPickerType;
 
 /**
  * Class FoilColorType
