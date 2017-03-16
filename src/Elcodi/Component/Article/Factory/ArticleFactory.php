@@ -57,8 +57,6 @@ class ArticleFactory extends AbstractPurchasableFactory
         $article
             ->setType(ElcodiArticleTypes::TYPE_PRODUCT_PHYSICAL)
             ->setShowInHome(true)
-            ->setPrice($zeroPrice)
-            ->setReducedPrice($zeroPrice)
             ->setAttributes(new ArrayCollection())
             ->setCategories(new ArrayCollection())
             ->setImages(new ArrayCollection())

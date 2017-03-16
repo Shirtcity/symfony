@@ -35,7 +35,7 @@ class ProductSizeData extends AbstractFixture implements DependentFixtureInterfa
      */
     public function load(ObjectManager $manager)
     {
-        $productSizeDirector = $this->getDirector('productSize');
+        $productSizeDirector = $this->getDirector('product_size');
 
         $productSize = $productSizeDirector
             ->create()
@@ -44,7 +44,7 @@ class ProductSizeData extends AbstractFixture implements DependentFixtureInterfa
             ->setEnabled(true);
 
         $productSizeDirector->save($productSize);
-        $this->addReference('product-size', $productSize);
+        $this->addReference('productSize', $productSize);
 
     }
 

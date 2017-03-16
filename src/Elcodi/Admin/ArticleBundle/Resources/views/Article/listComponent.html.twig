@@ -24,8 +24,7 @@
         rows: [
             { name: 'admin.article.field.image.title'|trans, width: 10 },
             { name: 'admin.article.field.name_details.title'|trans },
-            { name: 'admin.article.field.main_category.title'|trans, width: 15 },
-            { name: 'admin.article.field.price.title'|trans, width: 10, class: 'ta-r' }
+            { name: 'admin.article.field.main_category.title'|trans, width: 15 }
         ],
         class: 'article',
     } %}
@@ -79,9 +78,7 @@
             </a>
         {% endif %}
     </td>
-    <td class="ta-r">
-        {{ entity.price|print_money }}
-    </td>    
+      
     {% include '@AdminCore/Tables/actions.html.twig' with {
         entity: entity,
         class: 'article',

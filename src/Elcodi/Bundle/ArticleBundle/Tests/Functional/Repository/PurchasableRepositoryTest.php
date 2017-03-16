@@ -133,7 +133,7 @@ class PurchasableRepositoryTest extends WebTestCase
             );
 
         $this->assertCount(
-            5,
+            2,
             $purchasables
         );
     }
@@ -161,47 +161,12 @@ class PurchasableRepositoryTest extends WebTestCase
     public function dataGetHomePurchasables()
     {
         return [
-            [0, 6],
+            [0, 3],
             [1, 1],
             [2, 2],
-            [3, 3],
-            [6, 6],
-            [7, 6],
-            [0, 4],
-            [4, 4],
-            [5, 4],
+			[3, 3],
+            [7, 3],
         ];
     }
 
-    /**
-     * Test get home purchasables.
-     *
-     * @dataProvider dataGetOfferPurchasables
-     */
-    public function testGetOfferPurchasables($count, $numberExpected)
-    {
-        $purchasable = $this->find('purchasable', 2);
-
-        $purchasables = $this
-            ->purchasableRepository
-            ->getOfferPurchasables($count);
-
-        $this->assertTrue(is_array($purchasables));
-        $this->assertCount($numberExpected, $purchasables);
-    }
-
-    /**
-     * Count values for testGetOfferPurchasables.
-     */
-    public function dataGetOfferPurchasables()
-    {
-        return [
-            [0, 1],
-            [1, 1],
-            [2, 1],
-            [0, 0],
-            [1, 0],
-            [2, 0],
-        ];
-    }
 }

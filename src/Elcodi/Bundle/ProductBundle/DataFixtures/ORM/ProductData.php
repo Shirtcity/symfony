@@ -19,6 +19,7 @@ namespace Elcodi\Bundle\ProductBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Elcodi\Bundle\CoreBundle\DataFixtures\ORM\Abstracts\AbstractFixture;
 use Elcodi\Component\Core\Services\ObjectDirector;
@@ -45,52 +46,30 @@ class ProductData extends AbstractFixture implements DependentFixtureInterface
          * @var ObjectDirector        $prodcutDirector
          */
         $currency = $this->getReference('currency-dollar');
-        $productDirector = $this->getDirector('product');
-		$productColor = $this->getReference('product-color');
-		$productSize = $this->getReference('product-size');
+        $productReference = $this->getDirector('product');
 		
-		/*
-		$product = new Product();		
-		$productColor = new ProductColor();
+		$productColor = $this->getReference('productColor');		
+		$productColors = new ArrayCollection();
+		$productColors[] = $productColor;
 		
-		$productColor
-			->setName('white')
-			->setCode('fff')
-			->setEnabled(true);
+		$productSize = $this->getReference('productSize');
+		$productSizes = new ArrayCollection();
+		$productSizes[] = $productSize;
 		
-		$product
-			->setName('T-Shirt')
-			->setSlug('t-shirt')
-			->setDescription('My perfect T-Shirt')
-			->setHeight(10)
-			->setWidth(10)
-			->setdepth(10)
-			->setWeight(10)
-			->setEnabled(true)
-			->setPrice(Money::create(1000, $currency));*/
-		
-		/*$articleProduct = new ArticleProduct();
-		$articleProduct
-            ->setProduct()
-            ->setProductColor();*/
-
-        $product = $productDirector
+        $product = $productReference
             ->create()
             ->setName('T-Shirt')
             ->setSlug('t-shirt')
             ->setDescription('my T-Shirt description')
-            ->setShortDescription('my T-Shirt short description')
             ->setHeight(10)
 			->setWidth(10)
 			->setdepth(10)
 			->setWeight(10)
-            ->setPrice(Money::create(1000, $currency))
-            ->setSku('product-sku-code-1')
             ->setEnabled(true)
-			->setProductColor($productColor)
-			->setSize($productSize);
+			->setProductColors($productColors)
+			->setProductSizes($productSizes);
 
-        $productDirector->save($product);
+        $productReference->save($product);
         $this->addReference('product', $product);
 
     }
@@ -106,8 +85,8 @@ class ProductData extends AbstractFixture implements DependentFixtureInterface
         return [
             'Elcodi\Bundle\CurrencyBundle\DataFixtures\ORM\CurrencyData',
             'Elcodi\Bundle\StoreBundle\DataFixtures\ORM\StoreData',
-		//	'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductColorData',
-		//	'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductSizeData',
+			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductColorData',
+			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductSizeData',
         ];
     }
 }

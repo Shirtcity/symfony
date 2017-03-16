@@ -131,22 +131,6 @@ class ArticleType extends AbstractType
             ->add('sku', 'text', [
                 'required' => false,
             ])
-            ->add('price', 'money_object', [
-                'required' => true,
-                'constraints' => [
-                    new MinimumMoney([
-                        'value' => 0,
-                    ]),
-                ],
-            ])
-            ->add('reducedPrice', 'money_object', [
-                'required' => false,
-                'constraints' => [
-                    new MinimumMoney([
-                        'value' => 0,
-                    ]),
-                ],
-            ])
             ->add('imagesSort', 'text', [
                 'required' => false,
             ])

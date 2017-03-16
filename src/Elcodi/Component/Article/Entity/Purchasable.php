@@ -28,7 +28,7 @@ use Elcodi\Component\Media\Entity\Traits\PrincipalImageTrait;
 use Elcodi\Component\MetaData\Entity\Traits\MetaDataTrait;
 use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
-use Elcodi\Component\Core\Entity\Traits\PriceTrait;
+use Elcodi\Bundle\PriceBundle\Entity\Traits\PriceTrait;
 
 /**
  * Class Purchasable.

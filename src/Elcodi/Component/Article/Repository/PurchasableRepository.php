@@ -121,10 +121,8 @@ class PurchasableRepository extends EntityRepository
     private function addPerformanceJoinsToQueryBuilder(QueryBuilder $queryBuilder)
     {
         $queryBuilder
-            ->select(['p', 'pa', 'pc', 'rpc', 'i'])
+            ->select(['p', 'pa', 'i'])
             ->leftJoin('p.principalImage', 'pa')
-            ->leftJoin('p.priceCurrency', 'pc')
-            ->leftJoin('p.reducedPriceCurrency', 'rpc')
             ->leftJoin('p.images', 'i')
             ->groupBy('p.id');
     }

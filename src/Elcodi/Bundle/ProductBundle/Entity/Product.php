@@ -280,6 +280,8 @@ class Product implements ProductInterface
 
             $this->addColor($productColor);
         }
+		
+		return $this;
     }
 
 
@@ -365,6 +367,8 @@ class Product implements ProductInterface
 
             $this->addSize($productSize);
         }
+		
+		return $this;
     }
 	
 	/**

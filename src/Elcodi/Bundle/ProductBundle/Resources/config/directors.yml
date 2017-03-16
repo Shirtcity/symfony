@@ -11,19 +11,19 @@ services:
             - '@elcodi.repository.product'
             - '@elcodi.factory.product'
 
-    elcodi.director.product-color:
+    elcodi.director.product_color:
         class: Elcodi\Component\Core\Services\ObjectDirector
         lazy: true
         arguments:
-            - '@elcodi.object_manager.product-color'
-            - '@elcodi.repository.product-color'
-            - '@elcodi.factory.product-color'
+            - '@elcodi.object_manager.product_color'
+            - '@elcodi.repository.product_color'
+            - '@elcodi.factory.product_color'
             
-    elcodi.director.product-size:
+    elcodi.director.product_size:
         class: Elcodi\Component\Core\Services\ObjectDirector
         lazy: true
         arguments:
-            - '@elcodi.object_manager.product-size'
-            - '@elcodi.repository.product-size'
-            - '@elcodi.factory.product-size'
+            - '@elcodi.object_manager.product_size'
+            - '@elcodi.repository.product_size'
+            - '@elcodi.factory.product_size'
 

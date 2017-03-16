@@ -35,7 +35,7 @@ class ProductColorData extends AbstractFixture implements DependentFixtureInterf
      */
     public function load(ObjectManager $manager)
     {
-        $productColorDirector = $this->getDirector('productColor');
+        $productColorDirector = $this->getDirector('product_color');
 
         $productColor = $productColorDirector
             ->create()
@@ -44,7 +44,7 @@ class ProductColorData extends AbstractFixture implements DependentFixtureInterf
 			->setEnabled(true);
 
         $productColorDirector->save($productColor);
-        $this->addReference('product-color', $productColor);
+        $this->addReference('productColor', $productColor);
 
     }
 

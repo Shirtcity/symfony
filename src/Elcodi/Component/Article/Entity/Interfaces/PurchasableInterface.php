@@ -44,8 +44,7 @@ interface PurchasableInterface
     ETaggableInterface,
     MetaDataInterface,
     ImagesContainerWithPrincipalImageInterface,
-    EnabledInterface,
-    PurchasablePriceInterface
+    EnabledInterface
 {
     /**
      * Gets the variant SKU.

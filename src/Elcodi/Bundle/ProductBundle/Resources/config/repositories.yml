@@ -8,13 +8,13 @@ services:
         arguments:
             - %elcodi.entity.product.class%
             
-    elcodi.repository.product-color:
+    elcodi.repository.product_color:
         parent: elcodi.abstract_repository
         arguments:
-            - %elcodi.entity.product-color.class%
+            - %elcodi.entity.product_color.class%
             
-    elcodi.repository.product-size:
+    elcodi.repository.product_size:
         parent: elcodi.abstract_repository
         arguments:
-            - %elcodi.entity.product-size.class%
+            - %elcodi.entity.product_size.class%
             
