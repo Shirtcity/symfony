@@ -1,0 +1,12 @@
+services:
+
+    #
+    # Price resolvers
+    #
+    price_resolver.article:
+        class: Elcodi\Component\Article\PriceResolver\ArticlePriceResolver
+        calls:
+          - [ setContainer,[ "@service_container" ] ]
+        tags:
+            - { name: article_price_resolver }
+

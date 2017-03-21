@@ -62,13 +62,17 @@ abstract class AbstractCartManagerTest extends WebTestCase
             ->create();
 
         $this->purchasable = $this->createPurchasable();
-
+			
+		$price = $this
+			->get('price_resolver.article')
+			->getPrice($this->purchasable);
+				
         $this->cartLine = $this
             ->get('elcodi.factory.cart_line')
             ->create()
             ->setPurchasable($this->purchasable)
-            ->setPurchasableAmount($this->purchasable->getPrice())
-            ->setAmount($this->purchasable->getPrice())
+            ->setPurchasableAmount($price)
+            ->setAmount($price)
             ->setQuantity(1);
 
         $this
@@ -93,10 +97,14 @@ abstract class AbstractCartManagerTest extends WebTestCase
             $this->cart->getAmount(),
             $this->cart->getCartLines()->first()->getAmount()
         );
-
+		
+		$price = $this
+			->get('price_resolver.article')
+			->getPrice($this->cart->getCartLines()->first()->getPurchasable());
+		
         $this->assertEquals(
             $this->cart->getAmount(),
-            $this->cart->getCartLines()->first()->getPurchasable()->getPrice()
+            $price
         );
 
         $this->assertNotNull($this->cart->getId());
@@ -191,19 +199,22 @@ abstract class AbstractCartManagerTest extends WebTestCase
             $this->cart->getAmount(),
             $this->cart->getCartLines()->first()->getAmount()
         );
-
+		
+		$purchasable = $this
+			->cart
+			->getCartLines()
+			->first()
+			->getPurchasable();
+		
+		$price = $this
+			->get('price_resolver.article')
+			->getPrice($purchasable);
+				
         $this->assertTrue(
             $this
                 ->cart
                 ->getAmount()
-                ->equals($this
-                        ->cart
-                        ->getCartLines()
-                        ->first()
-                        ->getPurchasable()
-                        ->getPrice()
-                        ->multiply(2)
-                )
+                ->equals($price->multiply(2))
         );
     }
 
@@ -350,10 +361,13 @@ abstract class AbstractCartManagerTest extends WebTestCase
                 $cartLine->getAmount()
             );
             $purchasable = $cartLine->getPurchasable();
-
+			$price = $this
+				->get('price_resolver.article')
+				->getPrice($purchasable);
+			
             $this->assertEquals(
                 $this->cart->getAmount()->getAmount(),
-                $purchasable->getPrice()->getAmount() * $quantity
+                $price->getAmount() * $quantity
             );
 
             $this->assertNotNull($cartLine->getId());

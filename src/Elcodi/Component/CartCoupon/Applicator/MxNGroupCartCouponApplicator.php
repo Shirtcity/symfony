@@ -88,9 +88,18 @@ class MxNGroupCartCouponApplicator extends AbstractMxNCartCouponApplicator
                 $totalElements += $partialElements;
                 for ($i = 0; $i < $partialElements; ++$i) {
                     $partialPurchasable = $cartLine->getPurchasable();
+					
+					$price = $this
+						->get('price_resolver.article')
+						->getReducedPrice($partialPurchasable);
+					
+					$reducedPrice = $this
+						->get('price_resolver.article')
+						->getReducedPrice($partialPurchasable);
+					
                     $moneys[] = $partialPurchasable->getReducedPrice()->getAmount() > 0
-                        ? $partialPurchasable->getReducedPrice()
-                        : $partialPurchasable->getPrice();
+                        ? $reducedPrice
+                        : $price;
                 }
             }
         }

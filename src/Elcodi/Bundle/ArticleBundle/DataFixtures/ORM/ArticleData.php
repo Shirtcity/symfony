@@ -99,6 +99,7 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setSlug('article-reduced')
             ->setDescription('my article-reduced description')
             ->setShortDescription('my article-reduced short description')
+			->addCategory($category)
             ->setShowInHome(true)
             ->setEnabled(true)
 			->setArticleProduct($articleProduct1);

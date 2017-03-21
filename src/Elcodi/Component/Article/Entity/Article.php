@@ -23,6 +23,7 @@ use Elcodi\Component\Attribute\Entity\Interfaces\AttributeInterface;
 use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleProductInterface;
+use Elcodi\Component\Article\PriceResolver\ArticlePriceResolver;
 
 /**
  * Class Article entity.
@@ -239,7 +240,5 @@ class Article extends Purchasable implements ArticleInterface
     public function getArticleProduct()
     {
         return $this->articleProduct;
-    }   
-
-    
+    }	
 }

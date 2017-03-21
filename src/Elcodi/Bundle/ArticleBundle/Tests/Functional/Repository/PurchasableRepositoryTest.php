@@ -133,7 +133,7 @@ class PurchasableRepositoryTest extends WebTestCase
             );
 
         $this->assertCount(
-            2,
+            3,
             $purchasables
         );
     }

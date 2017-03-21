@@ -56,6 +56,9 @@ class ProductData extends AbstractFixture implements DependentFixtureInterface
 		$productSizes = new ArrayCollection();
 		$productSizes[] = $productSize;
 		
+		$productPrices = new ArrayCollection();
+		$productPrices[] = Money::create(10, $currency);
+		
         $product = $productReference
             ->create()
             ->setName('T-Shirt')
@@ -67,7 +70,8 @@ class ProductData extends AbstractFixture implements DependentFixtureInterface
 			->setWeight(10)
             ->setEnabled(true)
 			->setProductColors($productColors)
-			->setProductSizes($productSizes);
+			->setProductSizes($productSizes)
+			->setPrices($productPrices);
 
         $productReference->save($product);
         $this->addReference('product', $product);

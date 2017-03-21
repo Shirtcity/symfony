@@ -161,14 +161,21 @@ class CartPricesLoader
      */
     private function loadCartLinePrices(CartLineInterface $cartLine)
     {
-        $purchasable = $cartLine->getPurchasable();
-        $purchasablePrice = $purchasable->getPrice();
+        $purchasable = $cartLine->getPurchasable();		
+		
+        $purchasablePrice = $this
+			->get('price_resolver.article')
+			->getPrice($purchasable);
 
         /**
          * If present, reducedPrice will be used as purchasable price in current CartLine.
          */
-        if ($purchasable->getReducedPrice()->getAmount() > 0) {
-            $purchasablePrice = $purchasable->getReducedPrice();
+		$reducedPrice = $this
+			->get('price_resolver.article')
+			->getReducedPrice($purchasable);
+		
+        if ($reducedPrice->getAmount() > 0) {
+            $purchasablePrice = $reducedPrice;
         }
 
         /**

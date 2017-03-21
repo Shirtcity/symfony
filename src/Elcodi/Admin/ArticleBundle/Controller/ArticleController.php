@@ -162,6 +162,7 @@ class ArticleController extends AbstractAdminController
         FormInterface $form,
         ArticleInterface $article
     ) {		
+		
 		if ($form->isValid() && !$this->getRequest()->isXmlHttpRequest()) {
             $firstImage = $article
                 ->getSortedImages()

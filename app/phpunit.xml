@@ -14,7 +14,8 @@
 
     <testsuites>
         <testsuite name="Bamboo Test Suite">          
-			<directory>../src/Elcodi/Bundle/ArticleBundle/Tests/Functional/Repository</directory> 			
+			<directory>../src/Elcodi/*/*Bundle/Resources</directory>
+			<directory>../src/Elcodi/*/CartBundle/Tests</directory> 			
         </testsuite>
     </testsuites>
 
@@ -26,6 +27,11 @@
                 <directory>../src/Elcodi/*/*Bundle/Tests</directory>
             </exclude>
         </whitelist>
+		<exclude>
+			<directory>../src/Elcodi/Bundle/ArticleBundle_bak</directory>
+			<directory>../src/Elcodi/Bundle/ArticleBundle</directory>
+			<directory>../src/Elcodi/Bundle/CartBundle</directory>
+		</exclude>
     </filter>
 
 </phpunit>

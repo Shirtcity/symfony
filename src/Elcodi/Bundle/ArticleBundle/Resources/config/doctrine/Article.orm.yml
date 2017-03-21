@@ -25,4 +25,5 @@ Elcodi\Component\Article\Entity\Article:
                 referencedColumnName: id
             cascade:
                 - persist
+   
 

@@ -3,7 +3,7 @@ FrontendCore.define('window-content', ['devicePackage','modal' ], function () {
 		oModal:  TinyCore.Module.instantiate( 'modal' ),
 		mediator : FrontendMediator,
 		onStart: function () {
-
+			console.log('sdfgsdf');
 			var aTargets = FrontendTools.getDataModules('window-content'),
 				self = this;
 

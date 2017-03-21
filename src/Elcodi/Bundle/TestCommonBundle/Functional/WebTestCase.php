@@ -89,7 +89,7 @@ abstract class WebTestCase extends PHPUnit_Framework_TestCase
      * @throws Exception When doRun returns Exception
      */
     public static function tearDownAfterClass()
-    {
+    {/*
         if (static::$application) {
             static::$application->run(new ArrayInput([
                 'command' => 'doctrine:database:drop',
@@ -97,7 +97,7 @@ abstract class WebTestCase extends PHPUnit_Framework_TestCase
                 '--force' => true,
                 '--quiet' => true,
             ]));
-        }
+        }*/
     }
 
     /**
@@ -197,9 +197,10 @@ abstract class WebTestCase extends PHPUnit_Framework_TestCase
             }, $fixturesBundles);
 
 			// remove temp database backups to load fresh data only
-			$fullPath = sys_get_temp_dir();
-			array_map('unlink', glob( "$fullPath/*.backup.database"));
-			print_r('load fixtures');
+			$tempPath = sys_get_temp_dir();
+			array_map('unlink', glob( "$tempPath/*.backup.database"));
+			
+			//print_r('load fixtures');
             static::$application->run(new ArrayInput([
                 'command' => 'doctrine:fixtures:load',
                 '--no-interaction' => true,
@@ -207,7 +208,7 @@ abstract class WebTestCase extends PHPUnit_Framework_TestCase
                 '--quiet' => true,
             ]));
         }
-		print_r(' done ');
+		//print_r(' done ');
         return;
     }
 

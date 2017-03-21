@@ -122,6 +122,7 @@ class ElcodiArticleExtension extends AbstractExtension implements EntitiesOverri
             'eventListeners',
             'adapters',
             'nameResolvers',
+			'priceResolvers',
            // 'stockUpdaters',
            // 'stockValidators',
             'imageResolvers',
