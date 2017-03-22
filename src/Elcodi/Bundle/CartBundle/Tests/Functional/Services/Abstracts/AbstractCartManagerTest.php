@@ -228,9 +228,9 @@ abstract class AbstractCartManagerTest extends WebTestCase
      * @dataProvider dataSetCartLineQuantity
      */
     public function testSetCartLineQuantity(
-        $quantityStart,
-        $quantitySetted,
-        $quantityEnd
+        $quantityStart, //1,
+        $quantitySetted, //11,
+        $quantityEnd //10
     ) {
         $this->cartLine->setQuantity($quantityStart);
 
@@ -360,14 +360,16 @@ abstract class AbstractCartManagerTest extends WebTestCase
                 $this->cart->getAmount(),
                 $cartLine->getAmount()
             );
+			
             $purchasable = $cartLine->getPurchasable();
 			$price = $this
 				->get('price_resolver.article')
-				->getPrice($purchasable);
+				->getPrice($purchasable)
+				->getAmount();
 			
             $this->assertEquals(
                 $this->cart->getAmount()->getAmount(),
-                $price->getAmount() * $quantity
+                $price * $quantity
             );
 
             $this->assertNotNull($cartLine->getId());

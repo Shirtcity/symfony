@@ -30,14 +30,14 @@ class LoadCartPricesEventListenerTest extends AbstractCartEventListenerTest
     public function testLoadCartAmounts()
     {
         $cart = $this->getLoadedCart(2);
-       /* $this->assertEquals(3000, $cart
+        $this->assertEquals(40, $cart
             ->getPurchasableAmount()
             ->getAmount()
-        );*/
-/*
-        $this->assertEquals(3000, $cart
+        );
+
+        $this->assertEquals(40, $cart
             ->getAmount()
             ->getAmount()
-        );*/
+        );
     }
 }

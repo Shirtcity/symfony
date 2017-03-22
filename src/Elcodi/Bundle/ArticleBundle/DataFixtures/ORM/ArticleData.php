@@ -81,6 +81,10 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setEnabled(true)
 			->setArticleProduct($articleProduct);
 
+		$articlePrice = $this
+			->get('price_resolver.article')
+			->getPrice($article, $currency);
+		
         $articleDirector->save($article);
         $this->addReference('article', $article);
 

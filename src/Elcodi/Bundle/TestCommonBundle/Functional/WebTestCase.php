@@ -201,6 +201,7 @@ abstract class WebTestCase extends PHPUnit_Framework_TestCase
 			array_map('unlink', glob( "$tempPath/*.backup.database"));
 			
 			//print_r('load fixtures');
+			//print_r($formattedBundles);
             static::$application->run(new ArrayInput([
                 'command' => 'doctrine:fixtures:load',
                 '--no-interaction' => true,

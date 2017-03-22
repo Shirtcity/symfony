@@ -23,6 +23,7 @@ services:
         arguments:
             - '@elcodi.wrapper.currency'
             - '@elcodi.converter.currency'
+            - '@price_resolver.article'
 
     elcodi.cart_saver:
         class: Elcodi\Component\Cart\Services\CartSaver

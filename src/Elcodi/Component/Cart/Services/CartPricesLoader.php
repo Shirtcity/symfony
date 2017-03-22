@@ -23,6 +23,7 @@ use Elcodi\Component\Core\Wrapper\Interfaces\WrapperInterface;
 use Elcodi\Component\Currency\Entity\Interfaces\MoneyInterface;
 use Elcodi\Component\Currency\Entity\Money;
 use Elcodi\Component\Currency\Services\CurrencyConverter;
+use Elcodi\Component\Article\PriceResolver\Interfaces\ArticlePriceResolverInterface;
 
 /**
  * Class CartPricesLoader.
@@ -49,6 +50,13 @@ class CartPricesLoader
      * Currency Converter
      */
     private $currencyConverter;
+	
+	/** 
+	 * @var ArticlePriceResolver 
+	 * 
+	 * Resolves a price for an article
+	 */
+	private $articlePriceResolver;
 
     /**
      * Built method.
@@ -58,10 +66,12 @@ class CartPricesLoader
      */
     public function __construct(
         WrapperInterface $currencyWrapper,
-        CurrencyConverter $currencyConverter
+        CurrencyConverter $currencyConverter,
+		ArticlePriceResolverInterface $articlePriceResolver
     ) {
         $this->currencyWrapper = $currencyWrapper;
         $this->currencyConverter = $currencyConverter;
+		$this->articlePriceResolver = $articlePriceResolver;
     }
 
     /**
@@ -163,18 +173,14 @@ class CartPricesLoader
     {
         $purchasable = $cartLine->getPurchasable();		
 		
-        $purchasablePrice = $this
-			->get('price_resolver.article')
-			->getPrice($purchasable);
-
+        $purchasablePrice = $this->articlePriceResolver->getPrice($purchasable);
+				
         /**
          * If present, reducedPrice will be used as purchasable price in current CartLine.
          */
-		$reducedPrice = $this
-			->get('price_resolver.article')
-			->getReducedPrice($purchasable);
+		$reducedPrice = $this->articlePriceResolver->getReducedPrice($purchasable);
 		
-        if ($reducedPrice->getAmount() > 0) {
+        if (!is_null($reducedPrice) && ($reducedPrice->getAmount() > 0)) {
             $purchasablePrice = $reducedPrice;
         }
 
