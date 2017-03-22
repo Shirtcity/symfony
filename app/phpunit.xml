@@ -15,7 +15,7 @@
     <testsuites>
         <testsuite name="Bamboo Test Suite">          
 			<directory>../src/Elcodi/*/*Bundle/Resources</directory>
-			<directory>../src/Elcodi/*/CartBundle/Tests</directory> 			
+			<directory>../src/Elcodi/*/CartCouponBundle/Tests</directory> 			
         </testsuite>
     </testsuites>
 

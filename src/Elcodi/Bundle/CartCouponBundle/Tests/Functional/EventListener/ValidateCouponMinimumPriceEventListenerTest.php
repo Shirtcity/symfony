@@ -87,10 +87,8 @@ class ValidateCouponMinimumPriceEventListenerTest extends AbstractCartCouponEven
     public function dataValidateCartCouponMinimumPrice()
     {
         return [
-            [3000, 'USD', false],
+            [30, 'USD', false],
             [2999, 'USD', true],
-            [2210, 'EUR', false],
-            [2200, 'EUR', true],
         ];
     }
 }
