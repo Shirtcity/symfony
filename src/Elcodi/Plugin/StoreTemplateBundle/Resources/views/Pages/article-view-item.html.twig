@@ -57,10 +57,10 @@
                            <h5 class="article-title desktop">{{ article.name }}</h5>
                            <p class="article-actions">
                                {% if article.inOffer %}
-                                   <span class="article-pricing article-pricing-before">{{ article.price|print_convert_money() }}</span>
-                                   <span class="article-pricing article-pricing-now">{{ article.reducedPrice|print_convert_money() }}</span>
+                                   <span class="article-pricing article-pricing-before">{{ article|article_price|print_convert_money() }}</span>
+                                   <span class="article-pricing article-pricing-now">{{ article|article_reduced_price|print_convert_money() }}</span>
                                {% else %}
-                                   <span class="article-pricing">{{ article.price|print_convert_money() }}</span>
+                                   <span class="article-pricing">{{ article|article_price|print_convert_money() }}</span>
                                {% endif %}
                                
                                <a title="{{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }}"
