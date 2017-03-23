@@ -31,9 +31,25 @@ class TranslatorBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testCompileOk()
     {
-        $entityTranslationProvider = $this->getMock('Elcodi\Component\EntityTranslator\Services\EntityTranslationProvider', [], [], '', false);
-        $translatorFactory = $this->getMock('Elcodi\Component\EntityTranslator\Factory\EntityTranslatorFactory', [], [], '', false);
-        $translator = $this->getMock('Elcodi\Component\EntityTranslator\Services\EntityTranslator', [], [], '', false);
+        $entityTranslationProvider = $this
+			->getMockBuilder('Elcodi\Component\EntityTranslator\Services\EntityTranslationProvider')
+			->setMethods([])
+			->setMockClassName('')
+			->disableOriginalConstructor(true)
+			->getMock();
+				
+        $translatorFactory = $this
+			->getMockBuilder('Elcodi\Component\EntityTranslator\Factory\EntityTranslatorFactory')
+			->setMethods([])
+			->setMockClassName('')
+			->disableOriginalConstructor(true)
+			->getMock();
+        $translator = $this
+			->getMockBuilder('Elcodi\Component\EntityTranslator\Services\EntityTranslator')
+			->setMethods([])
+			->setMockClassName('')
+			->disableOriginalConstructor(true)
+			->getMock();
 
         $translatorFactory
             ->expects($this->once())
@@ -72,8 +88,19 @@ class TranslatorBuilderTest extends PHPUnit_Framework_TestCase
      */
     public function testCompileException($configuration)
     {
-        $entityTranslationProvider = $this->getMock('Elcodi\Component\EntityTranslator\Services\EntityTranslationProvider', [], [], '', false);
-        $translatorFactory = $this->getMock('Elcodi\Component\EntityTranslator\Factory\EntityTranslatorFactory', [], [], '', false);
+        $entityTranslationProvider = $this
+			->getMockBuilder('Elcodi\Component\EntityTranslator\Services\EntityTranslationProvider')
+			->setMethods([])
+			->setMockClassName('')
+			->disableOriginalConstructor(true)
+			->getMock();
+				
+        $translatorFactory = $this
+			->getMockBuilder('Elcodi\Component\EntityTranslator\Factory\EntityTranslatorFactory')
+			->setMethods([])
+			->setMockClassName('')
+			->disableOriginalConstructor(true)
+			->getMock();			
 
         $translatorBuilder = new EntityTranslatorBuilder(
             $entityTranslationProvider,

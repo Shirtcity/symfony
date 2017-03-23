@@ -59,9 +59,23 @@ class CommentCacheTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->commentRepository = $this->getMock('Elcodi\Component\Comment\Repository\CommentRepository', [], [], '', false);
-        $this->voteManager = $this->getMock('Elcodi\Component\Comment\Services\VoteManager', [], [], '', false);
-        $commentVotes = $this->getMock('Elcodi\Component\Comment\Entity\VotePackage', [], [], '', false);
+        $this->commentRepository = $this->getMockBuilder('Elcodi\Component\Comment\Repository\CommentRepository')
+			->setMethods([])
+			->setMockClassName('')
+			->disableOriginalConstructor(true)
+			->getMock();
+				
+        $this->voteManager = $this->getMockBuilder('Elcodi\Component\Comment\Services\VoteManager')
+			->setMethods([])
+			->setMockClassName('')
+			->disableOriginalConstructor(true)
+			->getMock();
+				
+        $commentVotes = $this->getMockBuilder('Elcodi\Component\Comment\Entity\VotePackage')
+			->setMethods([])
+			->setMockClassName('')
+			->disableOriginalConstructor(true)
+			->getMock();
 
         $commentVotes
             ->expects($this->any())
@@ -84,12 +98,6 @@ class CommentCacheTest extends PHPUnit_Framework_TestCase
             ->method('getCommentVotes')
             ->will($this->returnValue($commentVotes));
 
-        $this
-            ->voteManager
-            ->expects($this->any())
-            ->method('create')
-            ->will($this->returnValue(new Vote()));
-
         $this->commentCache = new CommentCache(
             $this->commentRepository,
             $this->voteManager,
@@ -99,7 +107,7 @@ class CommentCacheTest extends PHPUnit_Framework_TestCase
         $this
             ->commentCache
             ->setCache($this->getMockForAbstractClass('Doctrine\Common\Cache\CacheProvider'))
-            ->setEncoder($this->getMock('Elcodi\Component\Core\Encoder\Interfaces\EncoderInterface'));
+            ->setEncoder($this->createMock('Elcodi\Component\Core\Encoder\Interfaces\EncoderInterface'));
     }
 
     /**

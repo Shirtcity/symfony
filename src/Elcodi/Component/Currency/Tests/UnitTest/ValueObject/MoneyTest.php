@@ -46,11 +46,13 @@ class MoneyTest extends \PHPUnit_Framework_TestCase
      */
     public function setup()
     {
-        $this->currencyMockUSD = $this->getMock(
-            'Elcodi\Component\Currency\Entity\Currency',
-            ['getIso']
-        );
-
+        $this->currencyMockUSD = $this
+			->getMockBuilder('Elcodi\Component\Currency\Entity\Currency')
+			->setMethods(['getIso'])
+			->setMockClassName('')
+			->disableOriginalConstructor(true)
+			->getMock();
+				
         $this
             ->currencyMockUSD
             ->expects($this->any())
@@ -190,10 +192,13 @@ class MoneyTest extends \PHPUnit_Framework_TestCase
      */
     public function testCurrencyMismatchException()
     {
-        $currencyMockEUR = $this->getMock(
-            'Elcodi\Component\Currency\Entity\Currency',
-            ['getIso']
-        );
+        $currencyMockEUR = $this
+			->getMockBuilder('Elcodi\Component\Currency\Entity\Currency')
+			->setMethods(['getIso'])
+			->setMockClassName('')
+			->disableOriginalConstructor(true)
+			->getMock();
+				
 
         $currencyMockEUR
             ->expects($this->any())

@@ -32,13 +32,13 @@ class ImageEtagTransformerTest extends PHPUnit_Framework_TestCase
     public function testGetEtag()
     {
         $imageEtagGenerator = new ImageEtagTransformer();
-        $dateTime = $this->getMock('DateTime');
+        $dateTime = $this->createMock('DateTime');
         $dateTime
             ->expects($this->any())
             ->method('getTimestamp')
             ->will($this->returnValue('123456'));
 
-        $image = $this->getMock('Elcodi\Component\Media\Entity\Interfaces\ImageInterface');
+        $image = $this->createMock('Elcodi\Component\Media\Entity\Interfaces\ImageInterface');
         $image
             ->expects($this->any())
             ->method('getId')

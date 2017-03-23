@@ -41,7 +41,7 @@ class SameCategoryRelatedPurchasablesProviderTest extends WebTestCase
      * Test method getRelatedArticles.
      */
     public function testGetRelatedPurchasables()
-    {
+    {		
         /**
          * @var SameCategoryRelatedPurchasableProvider $relatedPurchasablesProvider
          */

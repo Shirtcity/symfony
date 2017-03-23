@@ -133,13 +133,18 @@ abstract class AbstractEntityTest extends PHPUnit_Framework_TestCase
     private function checkGetterSetter(array $field)
     {
         $classNamespace = $this->getEntityNamespace();
-        $class = $this->getMock($classNamespace, null, [], '', false);
+		
+		$class = $this->getMockBuilder($classNamespace)
+				->setMethods(null)
+				->setMockClassName('')
+				->disableOriginalConstructor(true)
+				->getMock();
 
         $setter = $field['setter'];
         $getter = $field['getter'];
-        $value = $this->getFieldValue($field);
-
-        $this->assertSame(
+        $value = $this->getFieldValue($field);		
+        
+		$this->assertSame(
             $class,
             $class->$setter($value)
         );
@@ -161,11 +166,12 @@ abstract class AbstractEntityTest extends PHPUnit_Framework_TestCase
      * @param array $field Field
      */
     private function checkAdderRemover(array $field)
-    {
-        $class = $this->getMock(
-            $this->getEntityNamespace(),
-            null, [], '', false
-        );
+    {     
+		$class = $this->getMockBuilder($this->getEntityNamespace())
+				->setMethods(null)
+				->setMockClassName('')
+				->disableOriginalConstructor(true)
+				->getMock();
 
         $setter = $field['setter'];
         $getter = $field['getter'];
@@ -216,8 +222,12 @@ abstract class AbstractEntityTest extends PHPUnit_Framework_TestCase
     private function getFieldValue($field)
     {
         $value = $field['value'];
-        if (is_string($value) && (class_exists($value) || interface_exists($value))) {
-            $value = $this->getMock($value, [], [], '', false);
+        if (is_string($value) && (class_exists($value) || interface_exists($value))) {            
+			$value = $this->getMockBuilder($value)
+				->setMethods([])
+				->setMockClassName('')
+				->disableOriginalConstructor(true)
+				->getMock();
         }
 
         return $value;

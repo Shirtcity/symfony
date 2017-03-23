@@ -542,7 +542,7 @@ class LocationServiceProviderAdapterTest extends PHPUnit_Framework_TestCase
         ArrayCollection $parents = null,
         ArrayCollection $children = null
     ) {
-        $mock = $this->getMock(
+        $mock = $this->createMock(
             'Elcodi\Component\Geo\Entity\Location'
         );
         $mock

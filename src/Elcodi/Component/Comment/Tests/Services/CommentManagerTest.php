@@ -48,7 +48,7 @@ class CommentManagerTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->commentObjectDirector = $this->getMock('Elcodi\Component\Core\Services\ObjectDirector', [], [], '', false);
+        $this->commentObjectDirector = $this->createMock('Elcodi\Component\Core\Services\ObjectDirector', [], [], '', false);
 
         $this
             ->commentObjectDirector
@@ -57,7 +57,7 @@ class CommentManagerTest extends PHPUnit_Framework_TestCase
             ->will($this->returnValue(new Comment()));
 
         $this->commentManager = new CommentManager(
-            $this->getMock('Elcodi\Component\Comment\EventDispatcher\CommentEventDispatcher', [], [], '', false),
+            $this->createMock('Elcodi\Component\Comment\EventDispatcher\CommentEventDispatcher', [], [], '', false),
             $this->commentObjectDirector
         );
     }

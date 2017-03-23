@@ -46,10 +46,12 @@ abstract class AbstractFactoryTest extends PHPUnit_Framework_TestCase
     {
         $factoryNamespace = $this->getFactoryNamespace();
 
-        return $this->getMock($factoryNamespace, [
-            'now',
-            'getEntityNamespace',
-        ], [], '', false);
+		return $this->getMockBuilder($factoryNamespace)
+				->setMethods(['now','getEntityNamespace'])
+				->setMockClassName('')
+				->disableOriginalConstructor(true)
+				->getMock();	
+       
     }
 
     /**

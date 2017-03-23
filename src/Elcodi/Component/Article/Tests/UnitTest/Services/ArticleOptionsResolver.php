@@ -33,8 +33,8 @@ class ArticleOptionsResolverTest extends PHPUnit_Framework_TestCase
      */
     public function testAvailableOptions()
     {
-        $article = $this->getMock('Elcodi\Component\Article\Entity\Article', [], [], '', false);
-        $attribute = $this->getMock('Elcodi\Component\Attribute\Entity\Attribute', [], [], '', false);
+        $article = $this->createMock('Elcodi\Component\Article\Entity\Article', [], [], '', false);
+        $attribute = $this->createMock('Elcodi\Component\Attribute\Entity\Attribute', [], [], '', false);
 
         $option = new Value();
         $option->setId(111);

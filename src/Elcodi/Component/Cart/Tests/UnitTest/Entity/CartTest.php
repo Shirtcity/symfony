@@ -163,7 +163,7 @@ class CartTest extends AbstractEntityTest
         $cartLines = new ArrayCollection([]);
         foreach ($quantities as $quantity) {
             if ($quantity > 0) {
-                $cartLine = $this->getMock('Elcodi\Component\Cart\Entity\Interfaces\CartLineInterface');
+                $cartLine = $this->createMock('Elcodi\Component\Cart\Entity\Interfaces\CartLineInterface');
                 $cartLine
                     ->method('getQuantity')
                     ->will($this->returnValue($quantity));
@@ -200,7 +200,7 @@ class CartTest extends AbstractEntityTest
     {
         $cartLines = new ArrayCollection([]);
         foreach ($dimensions as $dimension) {
-            $cartLine = $this->getMock('Elcodi\Component\Cart\Entity\Interfaces\CartLineInterface');
+            $cartLine = $this->createMock('Elcodi\Component\Cart\Entity\Interfaces\CartLineInterface');
             $cartLine
                 ->method('getHeight')
                 ->will($this->returnValue($dimension));
@@ -251,7 +251,7 @@ class CartTest extends AbstractEntityTest
     {
         $cartLines = new ArrayCollection([]);
         foreach ($weights as $weight) {
-            $cartLine = $this->getMock('Elcodi\Component\Cart\Entity\Interfaces\CartLineInterface');
+            $cartLine = $this->createMock('Elcodi\Component\Cart\Entity\Interfaces\CartLineInterface');
             $cartLine
                 ->method('getWeight')
                 ->will($this->returnValue($weight));

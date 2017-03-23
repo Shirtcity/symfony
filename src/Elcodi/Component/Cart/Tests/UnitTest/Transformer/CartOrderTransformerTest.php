@@ -70,19 +70,19 @@ class CartOrderTransformerTest extends PHPUnit_Framework_TestCase
          * @var OrderFactory                 $orderFactory
          */
         $orderEventDispatcher = $this
-            ->getMock(
+            ->createMock(
                 'Elcodi\Component\Cart\EventDispatcher\OrderEventDispatcher',
                 [], [], '', false
             );
 
-        $orderFactory = $this->getMock('Elcodi\Component\Cart\Factory\OrderFactory', [], [], '', false);
+        $orderFactory = $this->createMock('Elcodi\Component\Cart\Factory\OrderFactory', [], [], '', false);
         $order = new Order();
         $orderFactory
             ->expects($this->any())
             ->method('create')
             ->will($this->returnValue($order));
 
-        $cartLineOrderLineTransformer = $this->getMock(
+        $cartLineOrderLineTransformer = $this->createMock(
             'Elcodi\Component\Cart\Transformer\CartLineOrderLineTransformer',
             [], [], '', false
         );
@@ -109,8 +109,10 @@ class CartOrderTransformerTest extends PHPUnit_Framework_TestCase
          * @var OrderInterface    $order
          * @var CurrencyInterface $currency
          */
-        $order = $this->getMock('Elcodi\Component\Cart\Entity\Order', null);
-        $currency = $this->getMock('Elcodi\Component\Currency\Entity\Currency', null);
+        $order = $this->createMock('Elcodi\Component\Cart\Entity\Order', null);
+        $currency = $this->getMockBuilder('Elcodi\Component\Currency\Entity\Currency')
+				->setMethods(null)
+				->getMock();
         $currency->setIso('EUR');
 
         $this
@@ -132,7 +134,7 @@ class CartOrderTransformerTest extends PHPUnit_Framework_TestCase
             ->setPurchasableAmount(Money::create(20, $currency))
             ->setCouponAmount(Money::create(0, $currency))
             ->setAmount(Money::create(20, $currency))
-            ->setShippingAmount($this->getMock('Elcodi\Component\Currency\Entity\Interfaces\MoneyInterface'))
+            ->setShippingAmount($this->createMock('Elcodi\Component\Currency\Entity\Interfaces\MoneyInterface'))
             ->setCartLines(new ArrayCollection());
 
         $this
@@ -151,8 +153,12 @@ class CartOrderTransformerTest extends PHPUnit_Framework_TestCase
          * @var OrderInterface    $order
          * @var CurrencyInterface $currency
          */
-        $order = $this->getMock('Elcodi\Component\Cart\Entity\Order', null);
-        $currency = $this->getMock('Elcodi\Component\Currency\Entity\Currency', null);
+		$order = $this->getMockBuilder('Elcodi\Component\Cart\Entity\Order')
+			->setMethods(null)
+			->getMock();
+        $currency = $this->getMockBuilder('Elcodi\Component\Currency\Entity\Currency')
+			->setMethods(null)
+			->getMock();
         $currency->setIso('EUR');
 
         $this
@@ -174,7 +180,7 @@ class CartOrderTransformerTest extends PHPUnit_Framework_TestCase
             ->setPurchasableAmount(Money::create(20, $currency))
             ->setCouponAmount(Money::create(0, $currency))
             ->setOrder($order)
-            ->setShippingAmount($this->getMock('Elcodi\Component\Currency\Entity\Interfaces\MoneyInterface'))
+            ->setShippingAmount($this->createMock('Elcodi\Component\Currency\Entity\Interfaces\MoneyInterface'))
             ->setAmount(Money::create(20, $currency))
             ->setCartLines(new ArrayCollection());
 
@@ -194,8 +200,12 @@ class CartOrderTransformerTest extends PHPUnit_Framework_TestCase
          * @var OrderInterface    $order
          * @var CurrencyInterface $currency
          */
-        $order = $this->getMock('Elcodi\Component\Cart\Entity\Order', null);
-        $currency = $this->getMock('Elcodi\Component\Currency\Entity\Currency', null);
+        $order = $this->getMockBuilder('Elcodi\Component\Cart\Entity\Order')
+			->setMethods(null)
+			->getMock();
+        $currency = $this->getMockBuilder('Elcodi\Component\Currency\Entity\Currency')
+			->setMethods(null)
+			->getMock();
         $currency->setIso('EUR');
 
         $this
@@ -210,7 +220,7 @@ class CartOrderTransformerTest extends PHPUnit_Framework_TestCase
             ->method('createOrderLinesByCartLines')
             ->will($this->returnValue(new ArrayCollection()));
 
-        $cart = $this->getMock('Elcodi\Component\Cart\Entity\Cart');
+        $cart = $this->createMock('Elcodi\Component\Cart\Entity\Cart');
 
         $cart
             ->expects($this->any())
@@ -219,7 +229,7 @@ class CartOrderTransformerTest extends PHPUnit_Framework_TestCase
         $cart
             ->expects($this->any())
             ->method('getShippingAmount')
-            ->will($this->returnValue($this->getMock('Elcodi\Component\Currency\Entity\Interfaces\MoneyInterface')));
+            ->will($this->returnValue($this->createMock('Elcodi\Component\Currency\Entity\Interfaces\MoneyInterface')));
 
         $cart
             ->expects($this->any())

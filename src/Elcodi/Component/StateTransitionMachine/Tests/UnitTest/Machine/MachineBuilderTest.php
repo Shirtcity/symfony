@@ -43,7 +43,7 @@ class MachineBuilderTest extends AbstractStateTransitionTest
      */
     public function testCompileOk($configuration)
     {
-        $machineFactory = $this->getMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
+        $machineFactory = $this->createMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
         $machineBuilder = new MachineBuilder(
             $machineFactory,
             'id',
@@ -88,7 +88,7 @@ class MachineBuilderTest extends AbstractStateTransitionTest
      */
     public function testTransitionNonValid($transition)
     {
-        $machineFactory = $this->getMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
+        $machineFactory = $this->createMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
         $machineBuilder = new MachineBuilder(
             $machineFactory,
             'id',
@@ -139,7 +139,7 @@ class MachineBuilderTest extends AbstractStateTransitionTest
      */
     public function testInvalidPointOfEntry($configuration, $pointOfEntry)
     {
-        $machineFactory = $this->getMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
+        $machineFactory = $this->createMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
         $machineBuilder = new MachineBuilder(
             $machineFactory,
             'id',
@@ -200,7 +200,7 @@ class MachineBuilderTest extends AbstractStateTransitionTest
      */
     public function testCyclesNotAllowed($configuration)
     {
-        $machineFactory = $this->getMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
+        $machineFactory = $this->createMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
         $machineBuilder = new MachineBuilder(
             $machineFactory,
             'id',
@@ -237,7 +237,7 @@ class MachineBuilderTest extends AbstractStateTransitionTest
      */
     public function testInconsistentTransitions($configuration)
     {
-        $machineFactory = $this->getMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
+        $machineFactory = $this->createMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
         $machineBuilder = new MachineBuilder(
             $machineFactory,
             'id',
@@ -274,7 +274,7 @@ class MachineBuilderTest extends AbstractStateTransitionTest
      */
     public function testInvalidStates($configuration)
     {
-        $machineFactory = $this->getMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
+        $machineFactory = $this->createMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
         $machineBuilder = new MachineBuilder(
             $machineFactory,
             'id',
