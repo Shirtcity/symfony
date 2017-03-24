@@ -13,9 +13,27 @@
     syntaxCheck                 = "false" >
 	
     <testsuites>
-        <testsuite name="Bamboo Test Suite">          
+		<testsuite name="current">          
 			<directory>../src/Elcodi/*/*Bundle/Resources</directory>
-			<directory>../src/Elcodi/*/*/Tests</directory> 			
+			<directory>../src/Elcodi/Bundle/ArticleBundle/Tests/Functional/Entity</directory> 			
+        </testsuite>
+		
+        <testsuite name="bundles">          
+			<directory>../src/Elcodi/*/*Bundle/Resources</directory>
+			<directory>../src/Elcodi/Bundle/*Bundle/Tests</directory> 			
+        </testsuite>
+		
+		<testsuite name="components">          
+			<directory>../src/Elcodi/*/*Bundle/Resources</directory>
+			<directory>../src/Elcodi/Component/*/Tests</directory> 			
+        </testsuite>
+		
+		<testsuite name="articleBundle">     
+			<directory>../src/Elcodi/Bundle/ArticleBundle/Tests</directory>		
+        </testsuite>
+		
+		<testsuite name="articleComponent"> 
+			<directory>../src/Elcodi/Component/Article/Tests</directory> 			
         </testsuite>
     </testsuites>
 
