@@ -84,6 +84,7 @@ class PriceExtension extends AbstractExtension implements EntitiesOverridableExt
         return [			
             'repositories',
 			'wrappers',
+			'eventListeners',
         ];
     }
 

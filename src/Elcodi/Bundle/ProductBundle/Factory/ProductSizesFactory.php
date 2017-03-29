@@ -6,9 +6,9 @@ use Elcodi\Component\Core\Factory\Abstracts\AbstractFactory;
 
 
 /**
- * Class ProductColorsFactory.
+ * Class ProductSizesFactory.
  */
-class ProductColorsFactory extends AbstractFactory
+class ProductSizesFactory extends AbstractFactory
 {
 	public function create()
     {
@@ -17,8 +17,8 @@ class ProductColorsFactory extends AbstractFactory
          */
         $classNamespace = $this->getEntityNamespace();
 		
-        $productColors = new $classNamespace();
+        $productSizes = new $classNamespace();
 
-        return $productColors;
+        return $productSizes;
     }	
 }

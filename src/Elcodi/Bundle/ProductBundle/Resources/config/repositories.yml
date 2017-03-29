@@ -8,3 +8,26 @@ services:
         arguments:
             - %elcodi.entity.product.class%
             
+    #
+    # Repository for entity print side type
+    #
+    elcodi.repository.print_side_type:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.print_side_type.class%
+            
+    #
+    # Repository for entity product color
+    #
+    elcodi.repository.product_color:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.product_color.class%
+            
+    #
+    # Repository for entity product size
+    #
+    elcodi.repository.product_size:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.product_size.class%

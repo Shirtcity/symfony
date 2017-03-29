@@ -17,25 +17,18 @@ interface PrintSideInterface extends EnabledInterface
     public function getId();
 
     /**
-     * Set position
+     * Set type
      *
-     * @param string $position
+     * @param PrintSideTypeInterface $type
      *
      * @return PrintSide
      */
-    public function setPosition($position);
+    public function setType(PrintSideTypeInterface $type = null);
 
     /**
-     * Get position
+     * Get type
      *
-     * @return string
+     * @return PrintSideType
      */
-    public function getPosition();
-
-    /**
-     * Get enabled
-     *
-     * @return boolean
-     */
-    public function getEnabled();
+    public function getType();
 }

@@ -12,12 +12,11 @@ use Symfony\Component\Form\FormEvents;
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
 
-use Elcodi\Form\Type\ColorCheckboxType;
 
 /**
- * Class ProductColorsType
+ * Class ProductSizesType
  */
-class ProductColorsType extends AbstractType
+class ProductSizesType extends AbstractType
 {
     use EntityTranslatableFormTrait, FactoryTrait;
     
@@ -42,7 +41,7 @@ class ProductColorsType extends AbstractType
      * @param array                $options the options for this form
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    {		
 		$builder
             ->addEventListener(
                 FormEvents::POST_SET_DATA,
@@ -50,10 +49,10 @@ class ProductColorsType extends AbstractType
                     $entity = $event->getData();
                     $form = $event->getForm();
 					
-					$label = $entity ? $entity->getColor()->getCode() : false;
+					$label = $entity ? $entity->getSize()->getName() : false;
 					
 					$form
-						->add('exists', 'color_checkbox', [
+						->add('exists', 'checkbox', [
 							'required' => false,
 							'label'    => $label,
 						]);
@@ -72,7 +71,7 @@ class ProductColorsType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'elcodi_admin_product_form_type_product_colors';
+        return 'elcodi_admin_product_form_type_product_sizes';
     }
 
     /**

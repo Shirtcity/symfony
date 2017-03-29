@@ -46,6 +46,7 @@ class ProductFactory extends AbstractFactory
 			->setImages(new ArrayCollection())
 			->setSizes(new ArrayCollection())
 			->setColors(new ArrayCollection())
+			->setPrintSides(new ArrayCollection())
 			->setPrices($prices)
 			->setWidth(0)
             ->setHeight(0)

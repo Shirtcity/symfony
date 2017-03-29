@@ -1,31 +1,26 @@
 <?php
 
-/*
- * This file is part of the Elcodi package.
- *
- * Copyright (c) 2014-2016 Elcodi.com
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * Feel free to edit as you please, and have fun.
- *
- * @author Marc Morera <yuhu@mmoreram.com>
- * @author Aldo Chiecchia <zimage@tiscali.it>
- * @author Elcodi Team <tech@elcodi.com>
- */
-
 namespace Elcodi\Admin\ProductBundle\Form\Type;
+
+use Doctrine\ORM\EntityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
 
+use Elcodi\Bundle\PriceBundle\EventListener\PriceFormEventListener;
 use Elcodi\Form\Type\EntityColorType;
+
+use Elcodi\Admin\ProductBundle\Form\Type\ProductColorsType;
+use Elcodi\Admin\ProductBundle\Form\Type\ProductSizesType;
 
 use Yokai\ManyToManyMatrixBundle\Form\Type\ManyToManyMatrixType;
 
@@ -42,96 +37,66 @@ class ProductType extends AbstractType
      * Image namespace
      */
     protected $imageNamespace;
-	
-	/**
-     * @var string
-     *
-     * ProductSize namespace
-     */
-	protected $sizeNamespace;
-	
-	/**
-     * @var string
-     *
-     * ProductColor namespace
-     */
-	protected $colorNamespace;
-	
-	/**
-     * @var string
-     *
-     * ProductSizes namespace
-     */
-	protected $sizesNamespace;
-	
+		
 	/**
      * @var string
      *
      * Manufacturer namespace
      */
 	protected $manufacturerNamespace;
+		
+	/**
+     * @var string
+     *
+     * PriceFormEventListener
+     */
+	protected $priceFormEventListener;
 	
 	/**
      * @var string
      *
-     * Category namespace
+     * ProductColorsFormEventListener
      */
-	protected $categoryNamespace;
+	protected $productColorsFormEventListener;
 	
 	/**
      * @var string
      *
-     * PrintSide namespace
+     * ProductSizesFormEventListener
      */
-	protected $printSideNamespace;
+	protected $productSizesFormEventListener;
 	
 	/**
      * @var string
      *
-     * Price namespace
+     * ProductPrintSidesFormEventListener
      */
-	protected $priceNamespace;
-	
-	/**
-     * @var string
-     *
-     * ProductColorsType namespace
-     */
-	protected $productColorsType;
+	protected $productPrintSidesFormEventListener;
 
 	/**
      * Construct
-     *
-	 * @param string $sizeNamespace				ProductSize namespace
-	 * @param string $colorNamespace			ProductColor namespace
-     * @param string $sizesNamespace			ProductSizes namespace
-     * @param string $imageNamespace			Image namespace
-	 * @param string $manufacturerNamespace		Manufacturer namespace
-	 * @param string $categoryNamespace			Category namespace
-	 * @param string $printSideNamespace		PrintSide namespace
-	 * @param string $priceNamespace			Price namespace
-	 * @param string $productColorsType			ProductColorsType namespace
+     * 
+	 * @param string $imageNamespace							Image namespace 
+	 * @param string $manufacturerNamespace						Manufacturer namespace
+	 * @param string $priceFormEventListener					PriceFormEventListener
+	 * @param string $productColorsFormEventListener			ProductColorsFormEventListener
+	 * @param string $productSizesFormEventListener				ProductSizesFormEventListener
+	 * @param string $productPrintSidesFormEventListener	    ProductPrintSidesFormEventListener
      */
     public function __construct(
         $imageNamespace,
-		$sizeNamespace,
-		$colorNamespace,
-		$sizesNamespace,
 		$manufacturerNamespace,
-		$categoryNamespace,
-		$printSideNamespace,
-		$priceNamespace,
-		$productColorsType
+		$priceFormEventListener,
+		$productColorsFormEventListener,
+		$productSizesFormEventListener,
+		$productPrintSidesFormEventListener
     ) {
         $this->imageNamespace = $imageNamespace;
-		$this->sizeNamespace = $sizeNamespace;
-		$this->colorNamespace = $colorNamespace;
-		$this->sizesNamespace = $sizesNamespace;
 		$this->manufacturerNamespace = $manufacturerNamespace;
-		$this->categoryNamespace = $categoryNamespace;
-		$this->printSideNamespace = $printSideNamespace;
-		$this->priceNamespace = $priceNamespace;
-		$this->productColorsType = $productColorsType;
+		$this->priceFormEventListener = $priceFormEventListener;	
+		$this->productColorsFormEventListener = $productColorsFormEventListener;
+		$this->productSizesFormEventListener = $productSizesFormEventListener;
+		$this->productPrintSidesFormEventListener = $productPrintSidesFormEventListener;
     }
 
     /**
@@ -184,11 +149,7 @@ class ProductType extends AbstractType
             ])
             ->add('description', 'textarea', [
                 'required' => true,
-            ])
-			->add('prices', 'Symfony\Component\Form\Extension\Core\Type\CollectionType', [
-				'entry_type' => 'money_object',				
-                'required' => true,		
-            ])
+            ])			
             ->add('imagesSort', 'text', [
                 'required' => false,
             ])			
@@ -209,14 +170,6 @@ class ProductType extends AbstractType
                 'required' => false,
                 'multiple' => false,
             ])
-			/*
-            ->add('principalCategory', 'entity', [
-                'class'    => $this->categoryNamespace,
-                'required' => true,
-                'multiple' => false,
-            ])
-			 * 
-			 */
             ->add('images', 'entity', [
                 'class'    => $this->imageNamespace,
                 'required' => false,
@@ -224,42 +177,35 @@ class ProductType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
-			->add('productSizes', 'entity', [
-                'class'    => $this->sizeNamespace,
-                'required' => false,
-                'property' => 'name',
-                'multiple' => true,
-                'expanded' => true,
+			->add('sizes', CollectionType::class, [
+                'entry_type'    => ProductSizesType::class,
+				'allow_add'     => true,
+                'allow_delete'  => true,
             ])
-			->add('productColors', 'entity_color', [
-                'class'    => $this->colorNamespace,
-                'required' => false,
-                'property' => 'code',
-                'multiple' => true,
-                'expanded' => true,
-            ])				
-			/**
+			->add('colors', CollectionType::class, [
+                'entry_type'    => ProductColorsType::class,
+				'allow_add'     => true,
+                'allow_delete'  => true,
+            ])
+			->add('printSides', CollectionType::class, [
+                'entry_type'    => ProductPrintSidesType::class,
+				'allow_add'     => true,
+                'allow_delete'  => true,
+            ])
+			/*
 			->add('sizes', 'Yokai\ManyToManyMatrixBundle\Form\Type\ManyToManyMatrixType', [
-                'class'    => $this->sizesNamespace,
+                'class'    => \Elcodi\Bundle\ProductBundle\Entity\ProductSizes::class,
                 'required' => false,
 				'association' => 'colors',
-				//'by_reference' => false,
-				//'label' => false,
-                //'multiple' => true,
-				//'property' => 'id',
-				//'choice_label' => 'size.name',
-				//'expanded' => true,
             ])
 			 * 
 			 */
-			->add('print_sides', 'entity', [
-                'class'    => $this->printSideNamespace,
-                'required' => false,
-                'property' => 'position',
-                'multiple' => true,
-                'expanded' => true,
-            ]);
+			;
 		
+		$builder->addEventSubscriber($this->priceFormEventListener);
+		$builder->addEventSubscriber($this->productColorsFormEventListener);
+		$builder->addEventSubscriber($this->productSizesFormEventListener);
+		$builder->addEventSubscriber($this->productPrintSidesFormEventListener);
         $builder->addEventSubscriber($this->getEntityTranslatorFormEventListener());
     }
 

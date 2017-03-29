@@ -31,3 +31,19 @@ services:
         class: Elcodi\Bundle\ProductBundle\Factory\ProductColorsFactory
         calls:
             - [setEntityNamespace, ["%elcodi.entity.product_colors.class%"]]
+            
+    #
+    # Factory for ProductSizes entities
+    #
+    elcodi.factory.product_sizes:
+        class: Elcodi\Bundle\ProductBundle\Factory\ProductSizesFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.product_sizes.class%"]]
+            
+    #
+    # Factory for PrintSide entities
+    #
+    elcodi.factory.print_side:
+        class: Elcodi\Bundle\ProductBundle\Factory\PrintSideFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.print_side.class%"]]

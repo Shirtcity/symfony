@@ -24,7 +24,7 @@ interface ProductInterface
     DimensionableInterface,
 	PriceInterface
 {	
-    /**
+	/**
      * Get id
      *
      * @return integer
@@ -132,20 +132,6 @@ interface ProductInterface
 	 */
 	public function setColors(ArrayCollection $colors);
 	
-	/**
-	 * Return ArrayCollections of Product Colors
-	 * 
-	 * @return ArrayCollectionPriceBundle
-	 */
-    public function getProductColors();
-    
-	/**
-	 * Set ProductColors
-	 * 
-	 * @param type ArrayCollection 
-	 */
-    public function setProductColors(ArrayCollection $productColors);
-
     /**
      * Add size
      *
@@ -176,20 +162,6 @@ interface ProductInterface
 	 * @return $this
 	 */
 	public function setSizes(ArrayCollection $sizes);
-	
-	/**
-	 * Return ArrayCollections of ProductSizes
-	 * 
-	 * @return ArrayCollection
-	 */
-    public function getProductSizes();
-	
-	/**
-	 * Set ProductSizes
-	 * 
-	 * @param type ArrayCollection 
-	 */
-    public function setProductSizes(ArrayCollection $productSizes);
 	
 	/**
      * Product product_manufacturer.
@@ -231,18 +203,15 @@ interface ProductInterface
     public function getPrintSides();
 	
 	/**
-	 * Return Product Sizes and Colors variants.
+	 * Set print sides
 	 * 
-	 * @return array
+	 * @param ArrayCollection $printSides
+	 * @return $this
 	 */
-	public function getVariants();
 	
-	/**
-	 * Set Product Sizes and Colors variants.
-	 */
-	public function setVariants();
+	public function setPrintSides(ArrayCollection $printSides);
 	
-	/**
+    /**
      * To string method.
      *
      * @return string

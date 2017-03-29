@@ -74,7 +74,8 @@
         "paymentsuite/paymentsuite": "^2.0.3",
         "sensio/generator-bundle": "^2.3",
         "vich/uploader-bundle": "^1.4",
-        "yokai/many-to-many-matrix-bundle": "^1.1"
+        "yokai/many-to-many-matrix-bundle": "^1.1",
+        "stof/doctrine-extensions-bundle": "^1.2"
     },
     "replace": {
         "elcodi-templates/template": "dev-master",

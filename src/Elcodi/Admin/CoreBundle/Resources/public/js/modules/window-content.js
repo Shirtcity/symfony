@@ -37,7 +37,7 @@ FrontendCore.define('window-content', ['devicePackage','modal' ], function () {
 		},
 		updateManufacturer: function( oResponse ) {
 
-			this.updateSelect( 'elcodi_admin_article_form_type_article_manufacturer', oResponse.data.id, oResponse.data.name );
+			this.updateSelect( 'elcodi_admin_product_form_type_product_product_manufacturer', oResponse.data.id, oResponse.data.name );
 
 		},
 		autobind: function( oTarget ){
