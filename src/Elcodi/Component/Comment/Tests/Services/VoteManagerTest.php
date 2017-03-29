@@ -70,10 +70,10 @@ class VoteManagerTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->commentEventDispatcher = $this->getMock('Elcodi\Component\Comment\EventDispatcher\CommentEventDispatcher', [], [], '', false);
-        $this->voteDirector = $this->getMock('Elcodi\Component\Core\Services\ObjectDirector', [], [], '', false);
+        $this->commentEventDispatcher = $this->createMock('Elcodi\Component\Comment\EventDispatcher\CommentEventDispatcher', [], [], '', false);
+        $this->voteDirector = $this->createMock('Elcodi\Component\Core\Services\ObjectDirector', [], [], '', false);
         $this->authorToken = '12345';
-        $this->comment = $this->getMock('Elcodi\Component\Comment\Entity\Interfaces\CommentInterface');
+        $this->comment = $this->createMock('Elcodi\Component\Comment\Entity\Interfaces\CommentInterface');
 
         $this->voteManager = new VoteManager(
             $this->commentEventDispatcher,

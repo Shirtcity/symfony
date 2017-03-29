@@ -359,9 +359,12 @@ class PluginTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginExists()
     {
-        $plugin = $this->getMock('Elcodi\Component\Plugin\Entity\Plugin', [
-            'getNamespace',
-        ], [], '', false);
+        $plugin = $this
+			->getMockBuilder('Elcodi\Component\Plugin\Entity\Plugin')
+			->setMethods(['getNamespace'])
+			->setMockClassName('')
+			->disableOriginalConstructor(true)
+			->getMock();				
 
         $plugin
             ->method('getNamespace')
@@ -377,9 +380,12 @@ class PluginTest extends PHPUnit_Framework_TestCase
      */
     public function testPluginNotExists()
     {
-        $plugin = $this->getMock('Elcodi\Component\Plugin\Entity\Plugin', [
-            'getNamespace',
-        ], [], '', false);
+        $plugin = $this
+			->getMockBuilder('Elcodi\Component\Plugin\Entity\Plugin')
+			->setMethods(['getNamespace'])
+			->setMockClassName('')
+			->disableOriginalConstructor(true)
+			->getMock();				
 
         $plugin
             ->method('getNamespace')

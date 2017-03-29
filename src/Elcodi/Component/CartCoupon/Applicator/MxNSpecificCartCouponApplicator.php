@@ -60,6 +60,7 @@ class MxNSpecificCartCouponApplicator extends AbstractMxNCartCouponApplicator
         );
 
         $value = $coupon->getValue();
+		
         preg_match($this->regexp(), $value, $match);
         $m = (int) $match[1];
         $n = (int) $match[2];
@@ -86,9 +87,13 @@ class MxNSpecificCartCouponApplicator extends AbstractMxNCartCouponApplicator
                 $partialElements = $cartLine->getQuantity();
                 for ($i = 0; $i < $partialElements; ++$i) {
                     $partialPurchasable = $cartLine->getPurchasable();
-                    $moneys[] = $partialPurchasable->getReducedPrice()->getAmount() > 0
-                        ? $partialPurchasable->getReducedPrice()
-                        : $partialPurchasable->getPrice();
+					
+					$reducedPrice = $this->articlePriceResolver->getReducedPrice($partialPurchasable);
+					$price = $this->articlePriceResolver->getPrice($partialPurchasable);
+                    
+					$moneys[] = (!is_null($reducedPrice) && $reducedPrice->getAmount() > 0)
+                        ? $reducedPrice
+                        : $price;
                 }
 
                 $groups = $partialElements / $m;

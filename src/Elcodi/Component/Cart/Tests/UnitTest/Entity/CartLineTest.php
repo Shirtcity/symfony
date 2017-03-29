@@ -77,56 +77,6 @@ class CartLineTest extends AbstractEntityTest
                 'nullable' => false,
             ]],
         ];
-    }
+    }   
 
-    /**
-     * Test space dimensions (width, height, depth).
-     *
-     * @dataProvider dataGetSpaceDimensions
-     */
-    public function testGetSpaceDimensions($method)
-    {
-        $purchasable = $this->getMock('Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface');
-        $purchasable
-            ->method($method)
-            ->will($this->returnValue(5));
-
-        $cartLine = new CartLine();
-        $cartLine->setPurchasable($purchasable);
-        $this->assertEquals(
-            5,
-            $cartLine->$method()
-        );        
-    }
-
-    /**
-     * Data for testGetSpaceDimensions.
-     */
-    public function dataGetSpaceDimensions()
-    {
-        return [
-            ['getWidth'],
-            ['getHeight'],
-            ['getDepth'],
-        ];
-    }
-
-    /**
-     * Test get weight.
-     */
-    public function testGetWeight()
-    {
-        $purchasable = $this->getMock('Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface');
-        $purchasable
-            ->method('getWeight')
-            ->will($this->returnValue(5));
-
-        $cartLine = new CartLine();
-        $cartLine->setPurchasable($purchasable);
-        $cartLine->setQuantity(2);
-        $this->assertEquals(
-            10,
-            $cartLine->getWeight()
-        );        
-    }
 }

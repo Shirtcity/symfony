@@ -80,7 +80,7 @@ class BannerZoneTest extends AbstractEntityTest
                 'type' => $this::GETTER_SETTER,
                 'getter' => 'getLanguage',
                 'setter' => 'setLanguage',
-                'value' => $this->getMock('Elcodi\Component\Language\Entity\Interfaces\LanguageInterface'),
+                'value' => $this->createMock('Elcodi\Component\Language\Entity\Interfaces\LanguageInterface'),
                 'nullable' => false,
             ]],
             [[

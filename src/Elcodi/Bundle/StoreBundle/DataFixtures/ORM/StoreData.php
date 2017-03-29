@@ -40,8 +40,8 @@ class StoreData extends AbstractFixture implements DependentFixtureInterface
          */
         $storeDirector = $this->getDirector('store');
         $address = $this->getReference('address-sant-celoni');
-        $language = $this->getReference('language-es');
-        $currency = $this->getReference('currency-euro');
+        $language = $this->getReference('language-en');
+        $currency = $this->getReference('currency-dollar');
 
         $store = $storeDirector
             ->create()
@@ -50,7 +50,6 @@ class StoreData extends AbstractFixture implements DependentFixtureInterface
             ->setEmail('email@email.com')
             ->setTracker('123456')
             ->setTemplate('fhsjkhfjklsa')
-            ->setUseStock(true)
             ->setAddress($address)
             ->setDefaultLanguage($language)
             ->setDefaultCurrency($currency);

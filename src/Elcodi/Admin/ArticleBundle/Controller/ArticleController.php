@@ -25,11 +25,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
 use Elcodi\Admin\CoreBundle\Controller\Abstracts\AbstractAdminController;
 use Elcodi\Component\Core\Entity\Interfaces\EnabledInterface;
 use Elcodi\Component\Media\Entity\Interfaces\ImageInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
+use Elcodi\Component\Article\Entity\ArticleProduct;
 
 /**
  * Class Controller for Article
@@ -146,22 +153,21 @@ class ArticleController extends AbstractAdminController
      *      class = "elcodi_admin_article_form_type_article",
      *      name  = "form",
      *      entity = "article",
-     *      handleRequest = true,
-     *      validate = "isValid"
+     *      handleRequest = true
      * )
      *
      * @Template
      */
     public function editAction(
         FormInterface $form,
-        ArticleInterface $article,
-        $isValid
-    ) {//die(var_dump($article));
-		if ($isValid) {
+        ArticleInterface $article
+    ) {		
+		
+		if ($form->isValid() && !$this->getRequest()->isXmlHttpRequest()) {
             $firstImage = $article
                 ->getSortedImages()
                 ->first();
-//die(var_dump($article));
+
             if ($firstImage instanceof ImageInterface) {
                 $article->setPrincipalImage($firstImage);
             }
@@ -174,8 +180,8 @@ class ArticleController extends AbstractAdminController
                     ->get('translator')
                     ->trans('admin.article.saved')
             );
-
-            return $this->redirectToRoute('admin_article_list');
+			
+			return $this->redirectToRoute('admin_article_list');
         }
 
         return [
@@ -278,5 +284,5 @@ class ArticleController extends AbstractAdminController
             $entity,
             $this->generateUrl('admin_article_list')
         );
-    }
+    }	
 }

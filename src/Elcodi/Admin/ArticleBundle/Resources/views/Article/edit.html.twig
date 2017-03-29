@@ -69,11 +69,7 @@
 
         {% if article.principalCategory is null %}
             <p class="msg-warning">{{ 'admin.article.error.no_category'|trans }}</p>
-        {% endif %}
-
-        {% if article.price.amount < 0 %}
-            <p class="msg-warning">{{ 'admin.article.error.price_negative'|trans }}</p>
-        {% endif %}
+        {% endif %}        
 
         {{ render(url('admin_article_edit_component', { id: article.id })) }}
     {% else %}
@@ -92,4 +88,13 @@
             </div>
         </div>
     {% endif %}
+	
+	{% javascripts 
+		'@AdminArticleBundle/Resources/public/js/product-colors-select.js' 
+
+		filter='?uglifyjs2'
+	%}
+	<script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+	
 {% endblock content %}

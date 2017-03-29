@@ -33,7 +33,7 @@ class FileIdentifierTransformerTest extends PHPUnit_Framework_TestCase
     {
         $imageEtagGenerator = new FileIdentifierTransformer();
 
-        $file = $this->getMock('Elcodi\Component\Media\Entity\Interfaces\FileInterface');
+        $file = $this->createMock('Elcodi\Component\Media\Entity\Interfaces\FileInterface');
         $file
             ->expects($this->any())
             ->method('getId')

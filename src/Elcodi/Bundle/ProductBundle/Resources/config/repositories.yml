@@ -7,7 +7,7 @@ services:
         parent: elcodi.abstract_repository
         arguments:
             - %elcodi.entity.product.class%
-            
+    
     #
     # Repository for entity print side type
     #

@@ -50,7 +50,7 @@ class RemoveCartCouponEventListenerTest extends AbstractCartCouponEventListenerT
             ->findCouponsByCart($cart)
         );
 
-        $this->assertEquals(3000, $cart
+        $this->assertEquals(40, $cart
             ->getAmount()
             ->getAmount()
         );

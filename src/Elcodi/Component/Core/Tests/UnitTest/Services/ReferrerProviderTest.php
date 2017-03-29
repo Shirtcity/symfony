@@ -46,7 +46,7 @@ class ReferrerProviderTest extends PHPUnit_Framework_TestCase
      */
     public function setup()
     {
-        $this->session = $this->getMock('Symfony\Component\HttpFoundation\Session\SessionInterface');
+        $this->session = $this->createMock('Symfony\Component\HttpFoundation\Session\SessionInterface');
         $this->referrerProvider = new ReferrerProvider($this->session);
     }
 

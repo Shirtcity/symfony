@@ -76,6 +76,7 @@ class ArticleProduct implements ArticleProductInterface
 		
 		return $this;
 	}
+	
 
     /**
      * Get id

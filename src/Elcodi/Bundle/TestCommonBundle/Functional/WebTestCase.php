@@ -89,7 +89,7 @@ abstract class WebTestCase extends PHPUnit_Framework_TestCase
      * @throws Exception When doRun returns Exception
      */
     public static function tearDownAfterClass()
-    {
+    {/*
         if (static::$application) {
             static::$application->run(new ArrayInput([
                 'command' => 'doctrine:database:drop',
@@ -97,7 +97,7 @@ abstract class WebTestCase extends PHPUnit_Framework_TestCase
                 '--force' => true,
                 '--quiet' => true,
             ]));
-        }
+        }*/
     }
 
     /**
@@ -149,14 +149,14 @@ abstract class WebTestCase extends PHPUnit_Framework_TestCase
         if (!static::loadSchema()) {
             return;
         }
-
+	
         static::$application->run(new ArrayInput([
             'command' => 'doctrine:database:drop',
             '--no-interaction' => true,
             '--force' => true,
             '--quiet' => true,
         ]));
-
+	
         static::$application->run(new ArrayInput([
             'command' => 'doctrine:database:create',
             '--no-interaction' => true,
@@ -196,6 +196,12 @@ abstract class WebTestCase extends PHPUnit_Framework_TestCase
                 return $bundles[$bundle]->getPath() . '/DataFixtures/ORM/';
             }, $fixturesBundles);
 
+			// remove temp database backups to load fresh data only
+			$tempPath = sys_get_temp_dir();
+			array_map('unlink', glob( "$tempPath/*.backup.database"));
+			
+			//print_r('load fixtures');
+			//print_r($formattedBundles);
             static::$application->run(new ArrayInput([
                 'command' => 'doctrine:fixtures:load',
                 '--no-interaction' => true,
@@ -203,7 +209,7 @@ abstract class WebTestCase extends PHPUnit_Framework_TestCase
                 '--quiet' => true,
             ]));
         }
-
+		//print_r(' done ');
         return;
     }
 

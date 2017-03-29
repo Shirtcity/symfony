@@ -62,7 +62,7 @@ class ManagerProviderTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->objectManager = $this
-            ->getMock('Doctrine\Common\Persistence\ObjectManager');
+            ->createMock('Doctrine\Common\Persistence\ObjectManager');
 
         $parametersBag = new ParameterBag([
             $this->entityParameter => $this->entityNamespace,

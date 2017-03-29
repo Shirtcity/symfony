@@ -18,6 +18,7 @@ services:
             - '@elcodi.wrapper.currency'
             - '@elcodi.converter.currency'
             - '@elcodi.cart_coupon_applicator_function_collector'
+            - '@price_resolver.article'
 
     elcodi.cart_coupon_applicator.mxn_group:
         class: Elcodi\Component\CartCoupon\Applicator\MxNGroupCartCouponApplicator

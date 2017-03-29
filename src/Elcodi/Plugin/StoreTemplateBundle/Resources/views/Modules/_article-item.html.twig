@@ -30,10 +30,10 @@
                href="{{ articleRoute }}"></a>
         {% endblock %}
         {% if article.inOffer %}
-            <span class="article-pricing article-pricing-before">{{ article.price|print_convert_money() }}</span>
-            <span class="article-pricing article-pricing-now">{{ article.reducedPrice|print_convert_money() }}</span>
+            <span class="article-pricing article-pricing-before">{{ article|article_price|print_convert_money() }}</span>
+            <span class="article-pricing article-pricing-now">{{ article|article_reduced_price|print_convert_money() }}</span>
         {% else %}
-            <span class="article-pricing">{{ article.price|print_convert_money() }}</span>
+            <span class="article-pricing">{{ article|article_price|print_convert_money() }}</span>
         {% endif %}
         {% if article.hasVariants() %}
             <a class="fa fa-list button button-secondary"

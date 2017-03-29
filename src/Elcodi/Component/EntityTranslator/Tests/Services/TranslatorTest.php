@@ -32,7 +32,13 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
      */
     public function testTranslate()
     {
-        $entityTranslationProvider = $this->getMock('Elcodi\Component\EntityTranslator\Services\EntityTranslationProvider', [], [], '', false);
+        $entityTranslationProvider = $this
+			->getMockBuilder('Elcodi\Component\EntityTranslator\Services\EntityTranslationProvider')
+			->setMethods([])
+			->setMockClassName('')
+			->disableOriginalConstructor(true)
+			->getMock();	
+				
         $entityTranslationProvider
             ->expects($this->once())
             ->method('getTranslation')
@@ -78,7 +84,13 @@ class TranslatorTest extends PHPUnit_Framework_TestCase
      */
     public function testSave()
     {
-        $entityTranslationProvider = $this->getMock('Elcodi\Component\EntityTranslator\Services\EntityTranslationProvider', [], [], '', false);
+        $entityTranslationProvider = $this
+			->getMockBuilder('Elcodi\Component\EntityTranslator\Services\EntityTranslationProvider')
+			->setMethods([])
+			->setMockClassName('')
+			->disableOriginalConstructor(true)
+			->getMock();
+				
         $entityTranslationProvider
             ->expects($this->exactly(4))
             ->method('setTranslation')

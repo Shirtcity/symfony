@@ -20,38 +20,17 @@ namespace Elcodi\Component\Article\Factory;
 use Doctrine\Common\Collections\ArrayCollection;
 
 use Elcodi\Component\Currency\Factory\Abstracts\AbstractPurchasableFactory;
-use Elcodi\Component\Article\ElcodiArticleStock;
 use Elcodi\Component\Article\ElcodiArticleTypes;
 use Elcodi\Component\Article\Entity\Article;
 use Elcodi\Component\Currency\Wrapper\EmptyMoneyWrapper;
-use Elcodi\Component\Article\Factory\ArticleProductFactory;
+use Elcodi\Component\Article\Entity\ArticleProduct;
 
 /**
  * Factory for Article entities.
  */
 class ArticleFactory extends AbstractPurchasableFactory
-{
-    /**
-     * @var bool
-     *
-     * Use use stock
-     */
-    public $useStock = false;
-	
-    /**
-     * Set use stock.
-     *
-     * @param bool $useStock Infinite stock
-     *
-     * @return $this Self object
-     */
-    public function setUseStock($useStock = false)
-    {
-        $this->useStock = $useStock;
-
-        return $this;
-    }
-
+{    
+    
     /**
      * Creates and returns a pristine Article instance.
      *
@@ -63,33 +42,27 @@ class ArticleFactory extends AbstractPurchasableFactory
     public function create()
     {
         $zeroPrice = $this->createZeroAmountMoney();
-
+		$articleProduct = new ArticleProduct();
+		$articleProduct
+            ->setProduct()
+            ->setProductColor();
+		
         /**
          * @var Article $article
          */
         $classNamespace = $this->getEntityNamespace();
+		
         $article = new $classNamespace();
 
-        $stock = $this->useStock
-            ? 0
-            : ElcodiArticleStock::INFINITE_STOCK;
-
         $article
-            ->setStock($stock)
             ->setType(ElcodiArticleTypes::TYPE_PRODUCT_PHYSICAL)
             ->setShowInHome(true)
-            ->setPrice($zeroPrice)
-            ->setReducedPrice($zeroPrice)
             ->setAttributes(new ArrayCollection())
             ->setCategories(new ArrayCollection())
             ->setImages(new ArrayCollection())
-            ->setWidth(0)
-            ->setHeight(0)
-            ->setDepth(0)
-            ->setWidth(0)
-            ->setWeight(0)
             ->setImagesSort('')
             ->setEnabled(true)
+			->setArticleProduct($articleProduct)
             ->setCreatedAt($this->now());
 
         return $article;

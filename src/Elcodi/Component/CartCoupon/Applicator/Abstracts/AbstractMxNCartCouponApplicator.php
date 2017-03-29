@@ -27,6 +27,7 @@ use Elcodi\Component\Currency\Services\CurrencyConverter;
 use Elcodi\Component\Currency\Wrapper\CurrencyWrapper;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
+use Elcodi\Component\Article\PriceResolver\ArticlePriceResolver;
 
 /**
  * Class AbstractMxNCartCouponApplicator.
@@ -53,6 +54,13 @@ abstract class AbstractMxNCartCouponApplicator implements CartCouponApplicatorIn
      * ExpressionLanguageFunction collector
      */
     protected $expressionLanguageFunctionCollector;
+	
+	/**
+	 * @var ArticlePriceResolver
+	 * 
+	 * ArticlePriceResolver resolver
+	 */
+	protected $articlePriceResolver;
 
     /**
      * Construct method.
@@ -60,15 +68,18 @@ abstract class AbstractMxNCartCouponApplicator implements CartCouponApplicatorIn
      * @param CurrencyWrapper                     $currencyWrapper                     Currency wrapper
      * @param CurrencyConverter                   $currencyConverter                   Currency converter
      * @param ExpressionLanguageFunctionCollector $expressionLanguageFunctionCollector ExpressionLanguageFunction collector
+	 * @param ArticlePriceResolver				  $articlePriceResolver				   ArticlePriceResolver resolver
      */
     public function __construct(
         CurrencyWrapper $currencyWrapper,
         CurrencyConverter $currencyConverter,
-        ExpressionLanguageFunctionCollector $expressionLanguageFunctionCollector
+        ExpressionLanguageFunctionCollector $expressionLanguageFunctionCollector,
+		ArticlePriceResolver $articlePriceResolver
     ) {
         $this->currencyWrapper = $currencyWrapper;
         $this->currencyConverter = $currencyConverter;
         $this->expressionLanguageFunctionCollector = $expressionLanguageFunctionCollector;
+		$this->articlePriceResolver = $articlePriceResolver;
     }
 
     /**

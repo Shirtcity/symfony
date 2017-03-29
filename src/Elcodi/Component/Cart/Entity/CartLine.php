@@ -24,6 +24,8 @@ use Elcodi\Component\Cart\Entity\Traits\CartPriceTrait;
 use Elcodi\Component\Cart\Entity\Traits\PurchasableWrapperTrait;
 use Elcodi\Component\Core\Entity\Traits\IdentifiableTrait;
 
+use Elcodi\Bundle\ProductBundle\Entity\Product;
+
 /**
  * Cart line.
  */
@@ -104,6 +106,8 @@ class CartLine implements CartLineInterface
     {
         return $this
             ->getPurchasable()
+			->getArticleProduct()
+			->getProduct()
             ->getDepth();
     }
 
@@ -116,6 +120,8 @@ class CartLine implements CartLineInterface
     {
         return $this
             ->getPurchasable()
+			->getArticleProduct()
+			->getProduct()
             ->getHeight();
     }
 
@@ -128,6 +134,8 @@ class CartLine implements CartLineInterface
     {
         return $this
             ->getPurchasable()
+			->getArticleProduct()
+			->getProduct()
             ->getWidth();
     }
 
@@ -140,6 +148,8 @@ class CartLine implements CartLineInterface
     {
         return $this->quantity * $this
             ->getPurchasable()
+			->getArticleProduct()
+			->getProduct()
             ->getWeight();
     }
 }

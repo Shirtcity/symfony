@@ -59,11 +59,22 @@ class CartData extends AbstractFixture implements DependentFixtureInterface
         $cartDirector = $this->getDirector('cart');
         $cartLineDirector = $this->getDirector('cart_line');
 
+		$currency = $this->getReference('currency-dollar');
+		
         $customer1 = $this->getReference('customer-1');
         $customer2 = $this->getReference('customer-2');
+		
         $article = $this->getReference('article');
         $articleReduced = $this->getReference('article-reduced');
-
+		
+		$articlePrice = $this
+			->get('price_resolver.article')
+			->getPrice($article, $currency);
+		
+		$articleReducedPrice = $this
+                ->get('price_resolver.article')
+                ->getPrice($articleReduced, $currency);
+		
         $address1 = $this->getReference('address-sant-celoni');
         $address2 = $this->getReference('address-viladecavalls');
 
@@ -75,7 +86,8 @@ class CartData extends AbstractFixture implements DependentFixtureInterface
             ->setCustomer($customer1);
 
         $cartDirector->save($emptyCart);
-        $this->addReference('empty-cart', $emptyCart);
+        $this->addReference('empty-cart', $emptyCart);	
+		
 
         /**
          * Full cart.
@@ -87,16 +99,16 @@ class CartData extends AbstractFixture implements DependentFixtureInterface
         $cartLine1 = $cartLineDirector
             ->create()
             ->setPurchasable($article)
-            ->setPurchasableAmount($article->getPrice())
-            ->setAmount($article->getPrice())
+            ->setPurchasableAmount($articlePrice)
+            ->setAmount($articlePrice)
             ->setQuantity(2)
             ->setCart($fullCart);
 
         $cartLine2 = $cartLineDirector
             ->create()
             ->setPurchasable($articleReduced)
-            ->setPurchasableAmount($articleReduced->getPrice())
-            ->setAmount($articleReduced->getPrice())
+            ->setPurchasableAmount($articleReducedPrice)
+            ->setAmount($articleReducedPrice)
             ->setQuantity(2)
             ->setCart($fullCart);
 

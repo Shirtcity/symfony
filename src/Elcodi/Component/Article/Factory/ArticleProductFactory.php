@@ -17,6 +17,7 @@ class ArticleProductFactory extends AbstractFactory
     public function create()
     {
         $classNamespace = $this->getEntityNamespace();
+	
         $articleProduct = new $classNamespace();       
 
         $articleProduct

@@ -23,6 +23,7 @@ use Elcodi\Component\Attribute\Entity\Interfaces\AttributeInterface;
 use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleProductInterface;
+use Elcodi\Component\Article\PriceResolver\ArticlePriceResolver;
 
 /**
  * Class Article entity.
@@ -50,6 +51,14 @@ class Article extends Purchasable implements ArticleInterface
      */
     protected $articleProduct;
 
+	/**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->attributes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+	
     /**
      * Set categories.
      *
@@ -197,9 +206,9 @@ class Article extends Purchasable implements ArticleInterface
         $this->attributes = $attributes;
 
         return $this;
-    }
+    }    
 
-    /**
+	/**
      * Get purchasable type.
      *
      * @return string Purchasable type
@@ -231,15 +240,5 @@ class Article extends Purchasable implements ArticleInterface
     public function getArticleProduct()
     {
         return $this->articleProduct;
-    }
-	
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->attributes = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    
+    }	
 }

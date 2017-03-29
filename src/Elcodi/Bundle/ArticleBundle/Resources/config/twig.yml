@@ -26,3 +26,11 @@ services:
             - '@elcodi.image_resolver.purchasable'
         tags:
             - { name: twig.extension }
+            
+    elcodi.twig_extension.article_price_resolver_extension:
+        class: Elcodi\Component\Article\Twig\ArticlePriceResolverExtension
+        public: false
+        arguments:
+            - '@price_resolver.article'
+        tags:
+            - { name: twig.extension }

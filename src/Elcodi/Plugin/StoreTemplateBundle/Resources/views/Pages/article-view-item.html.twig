@@ -57,21 +57,17 @@
                            <h5 class="article-title desktop">{{ article.name }}</h5>
                            <p class="article-actions">
                                {% if article.inOffer %}
-                                   <span class="article-pricing article-pricing-before">{{ article.price|print_convert_money() }}</span>
-                                   <span class="article-pricing article-pricing-now">{{ article.reducedPrice|print_convert_money() }}</span>
+                                   <span class="article-pricing article-pricing-before">{{ article|article_price|print_convert_money() }}</span>
+                                   <span class="article-pricing article-pricing-now">{{ article|article_reduced_price|print_convert_money() }}</span>
                                {% else %}
-                                   <span class="article-pricing">{{ article.price|print_convert_money() }}</span>
+                                   <span class="article-pricing">{{ article|article_price|print_convert_money() }}</span>
                                {% endif %}
-                               {% if not useStock or article.stock > 0 %}
+                               
                                <a title="{{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }}"
                                   class="fa fa-shopping-cart button button-secondary"
                                   data-test="add-article-{{ article.id }}-to-cart"
                                   href="{{ url('store_cart_add_purchasable', { id: article.id }) }}"> {{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }}</a>
-                               {% else %}
-                               <a title="{{ 'template.store_template_bundle.article.view_item.no_stock'|trans }}"
-                                  class="fa fa-times button"
-                                  href="#"> {{ 'template.store_template_bundle.article.view_item.no_stock'|trans }}</a>
-                               {% endif %}
+                               
                            </p>
                        </div>
                    {% endblock %}

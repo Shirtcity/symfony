@@ -141,7 +141,7 @@ class ProductController extends AbstractAdminController
         FormInterface $form,
         Product $product,
         $isValid
-    ) {
+    ) {		
         if ($isValid) {
             $firstImage = $product
                 ->getSortedImages()

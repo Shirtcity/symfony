@@ -144,7 +144,7 @@ class CategoryTreeTest extends PHPUnit_Framework_TestCase
         /**
          * All this params are set to avoid original constructor to be called.
          */
-        $categoryRepositoryMock = $this->getMock(
+        $categoryRepositoryMock = $this->createMock(
             'Elcodi\Component\Article\Repository\CategoryRepository',
             [],
             [],

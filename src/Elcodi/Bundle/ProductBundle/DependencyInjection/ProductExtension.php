@@ -115,17 +115,16 @@ class ProductExtension extends AbstractExtension implements EntitiesOverridableE
      */
     public function getConfigFiles(array $config)
     {
-        return [
-			
+        return [			
             'services',
             'factories',			
             'repositories',
 			'imageResolvers',
 			'twig',
 			'eventListeners',
+			'directors',
+			'objectManagers',
 			/*
-            'objectManagers',            
-            'directors',            
             'adapters',
             'nameResolvers',
             'stockUpdaters',

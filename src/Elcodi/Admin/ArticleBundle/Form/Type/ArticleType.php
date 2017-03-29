@@ -128,44 +128,13 @@ class ArticleType extends AbstractType
             ->add('showInHome', 'checkbox', [
                 'required' => false,
             ])
-            ->add('stock', 'hidden', [
-                'required' => true,
-            ])
             ->add('sku', 'text', [
                 'required' => false,
-            ])
-            ->add('price', 'money_object', [
-                'required' => true,
-                'constraints' => [
-                    new MinimumMoney([
-                        'value' => 0,
-                    ]),
-                ],
-            ])
-            ->add('reducedPrice', 'money_object', [
-                'required' => false,
-                'constraints' => [
-                    new MinimumMoney([
-                        'value' => 0,
-                    ]),
-                ],
             ])
             ->add('imagesSort', 'text', [
                 'required' => false,
             ])
             ->add('enabled', 'checkbox', [
-                'required' => false,
-            ])
-            ->add('height', 'number', [
-                'required' => false,
-            ])
-            ->add('width', 'number', [
-                'required' => false,
-            ])
-            ->add('depth', 'number', [
-                'required' => false,
-            ])
-            ->add('weight', 'number', [
                 'required' => false,
             ])
             ->add('metaTitle', 'text', [
@@ -184,17 +153,12 @@ class ArticleType extends AbstractType
             ->add('metaKeywords', 'text', [
                 'required' => false,
             ])
-            ->add('stock', 'number', [
-                'required' => false,
-            ])
             ->add('principalCategory', 'entity', [
                 'class'    => $this->categoryNamespace,
                 'required' => true,
                 'multiple' => false,
             ])
-			->add('articleProduct', $this->articleProductType, [
-				'required' => true,
-			])				
+			->add('articleProduct', $this->articleProductType)				
             ->add('images', 'entity', [
                 'class'    => $this->imageNamespace,
                 'required' => false,

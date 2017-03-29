@@ -3,10 +3,10 @@ parameters:
     database_driver: pdo_sqlite
     database_host: 127.0.0.1
     database_port: null
-    database_name: elcodi_test
+    database_name: shirtcity.dev2
     database_user: root
     database_password: root
-    database_path: %kernel.cache_dir%/elcodi.test
+    database_path: /srv/www/shirtcity.dev2/shirtcity.dev2
     database_memory: false
     locale: en
     secret: keepcalmandengonga

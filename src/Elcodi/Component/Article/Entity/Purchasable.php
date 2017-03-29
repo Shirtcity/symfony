@@ -28,8 +28,7 @@ use Elcodi\Component\Media\Entity\Traits\PrincipalImageTrait;
 use Elcodi\Component\MetaData\Entity\Traits\MetaDataTrait;
 use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
-use Elcodi\Component\Article\Entity\Traits\DimensionsTrait;
-use Elcodi\Component\Article\Entity\Traits\PurchasablePriceTrait;
+use Elcodi\Bundle\PriceBundle\Entity\Traits\PriceTrait;
 
 /**
  * Class Purchasable.
@@ -43,8 +42,7 @@ abstract class Purchasable implements PurchasableInterface
         ImagesContainerTrait,
         PrincipalImageTrait,
         EnabledTrait,
-        DimensionsTrait,
-        PurchasablePriceTrait;
+        PriceTrait;
 
     /**
      * @var string
@@ -58,14 +56,7 @@ abstract class Purchasable implements PurchasableInterface
      *
      * Article SKU
      */
-    protected $sku;
-
-    /**
-     * @var int
-     *
-     * Stock
-     */
-    protected $stock;
+    protected $sku;  
 
     /**
      * @var string
@@ -95,13 +86,6 @@ abstract class Purchasable implements PurchasableInterface
      * Article must show in home
      */
     protected $showInHome;
-
-    /**
-     * @var string
-     *
-     * Article dimensions
-     */
-    protected $dimensions;    
 
     /**
      * @var Collection
@@ -170,31 +154,7 @@ abstract class Purchasable implements PurchasableInterface
         $this->sku = $sku;
 
         return $this;
-    }
-
-    /**
-     * Get Stock.
-     *
-     * @return int Stock
-     */
-    public function getStock()
-    {
-        return $this->stock;
-    }
-
-    /**
-     * Sets Stock.
-     *
-     * @param int $stock Stock
-     *
-     * @return $this Self object
-     */
-    public function setStock($stock)
-    {
-        $this->stock = $stock;
-
-        return $this;
-    }
+    }    
 
     /**
      * Get Name.
@@ -293,30 +253,6 @@ abstract class Purchasable implements PurchasableInterface
     }
 
     /**
-     * Get Dimensions.
-     *
-     * @return string Dimensions
-     */
-    public function getDimensions()
-    {
-        return $this->dimensions;
-    }
-
-    /**
-     * Sets Dimensions.
-     *
-     * @param string $dimensions Dimensions
-     *
-     * @return $this Self object
-     */
-    public function setDimensions($dimensions)
-    {
-        $this->dimensions = $dimensions;
-
-        return $this;
-    }
-
-    /**
      * Get categories.
      *
      * @return Collection Categories
@@ -344,5 +280,5 @@ abstract class Purchasable implements PurchasableInterface
     public function getPurchasableType()
     {
         return 'purchasable';
-    }
+}
 }
