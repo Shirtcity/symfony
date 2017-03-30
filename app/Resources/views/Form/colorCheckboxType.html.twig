@@ -1,11 +1,24 @@
 {% form_theme form _self %}
 
-{% block entity_color_widget %}
-    {% spaceless %}
+{% block color_checkbox_widget %}
+    {% spaceless %}        
+        <label class="checkbox" for="{{ form.vars.id }}">
+            <div
+                style="
+                    width: 1.4rem;
+                    height: 1.4rem;
+                    background-color: {{ form.vars.label }};
+                    display: inline-block;
+                    border: 1px solid black;
+                "
+            >
+            </div>
+            {{ form_widget(form, { 'label': false }) }}
+        </label>
+        {#
         {% if expanded %}
             <ul {{ block('widget_container_attributes') }} class="list-horizontal">
                 {% for child in form %}
-                    <li>
                         <label class="checkbox" for="{{ child.vars.id }}">
                             <div
                                 style="
@@ -25,5 +38,6 @@
         {% else %}
             {{ block('choice_widget_collapsed') }}
         {% endif %}
+        #}
     {% endspaceless %}
 {% endblock %}

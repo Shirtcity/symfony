@@ -17,6 +17,13 @@ services:
             - %kernel.cache_dir%
             - %jms_i18n_routing.catalogue%
             - "@elcodi.store_default_language_iso"
+            
+    gedmo.listener.softdeleteable:
+        class: Gedmo\SoftDeleteable\SoftDeleteableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ @annotation_reader ] ]
 
     #
     # Page renderer
@@ -48,7 +55,7 @@ services:
     #
     # It's like the Entity type. But with colorful labels. You will like them! They are going to be great.
     #
-    elcodi.form.type.entity_color:
-        class: Elcodi\Form\Type\EntityColorType
+    elcodi.form.type.color_checkbox:
+        class: Elcodi\Form\Type\ColorCheckboxType
         tags:
-            - { name: form.type, alias: entity_color }
+            - { name: form.type, alias: color_checkbox }

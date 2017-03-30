@@ -7,11 +7,15 @@ use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorsInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductSizesInterface;
 
+use Elcodi\Component\Core\Entity\Traits\ExistsTrait;
+
 /**
  * ProductColors
  */
 class ProductColors implements ProductColorsInterface
 {
+	use ExistsTrait;
+	
     /**
      * @var integer
      */
@@ -28,17 +32,9 @@ class ProductColors implements ProductColorsInterface
     private $color;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $sizes;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->sizes = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id
@@ -87,6 +83,7 @@ class ProductColors implements ProductColorsInterface
 
         return $this;
     }
+	
 
     /**
      * Get color
@@ -132,8 +129,4 @@ class ProductColors implements ProductColorsInterface
     {
         return $this->sizes;
     }
-	
-	public function __toString() {
-		return $this->getColor()->getCode();
-	}
 }

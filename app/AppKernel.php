@@ -69,6 +69,7 @@ class AppKernel extends Kernel
 			
 			'Yokai\ManyToManyMatrixBundle\YokaiManyToManyMatrixBundle',
 			'abdielcs\ExpandedCollectionBundle\ExpandedCollectionBundle',
+			'Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle',
 
             /**
              * Elcodi core bundles

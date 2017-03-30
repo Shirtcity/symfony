@@ -2,37 +2,35 @@
 
 namespace Elcodi\Admin\ProductBundle\Form\Type;
 
+use Doctrine\ORM\EntityRepository;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Validator\Constraints;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
-use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
-
-use Elcodi\Form\Type\ColorCheckboxType;
 
 /**
- * Class ProductColorsType
+ * Class PrintSideType
  */
-class ProductColorsType extends AbstractType
+class PrintSideType extends AbstractType
 {
-    use EntityTranslatableFormTrait, FactoryTrait;
-    
+    use FactoryTrait;    
+
     /**
      * Configures the options for this type.
      *
      * @param OptionsResolver $resolver The resolver for the options.
      */
     public function configureOptions(OptionsResolver $resolver)
-    {		
+    {
         $resolver->setDefaults([
-			'data_class' => $this
+            'data_class' => $this
                 ->factory
                 ->getEntityNamespace(),
-        ]);			
+        ]);
     }
 
     /**
@@ -43,23 +41,10 @@ class ProductColorsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-		$builder
-            ->addEventListener(
-                FormEvents::POST_SET_DATA,
-                function (FormEvent $event) use ($options) {
-                    $entity = $event->getData();
-                    $form = $event->getForm();
-					
-					$label = $entity ? $entity->getColor()->getCode() : false;
-					
-					$form
-						->add('exists', 'color_checkbox', [
-							'required' => false,
-							'label'    => $label,
-						]);
-                }
-            )
-        ;
+        $builder
+            ->add('enabled', CheckboxType::class, [
+				'required' => false,
+			]);		
     }
 
     /**
@@ -72,7 +57,7 @@ class ProductColorsType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'elcodi_admin_product_form_type_product_colors';
+        return 'elcodi_admin_print_side_form_type_product';
     }
 
     /**
@@ -85,15 +70,5 @@ class ProductColorsType extends AbstractType
     public function getName()
     {
         return $this->getBlockPrefix();
-    }
-	
-	/**
-     * To string method.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return (string) $this->getName();
     }
 }

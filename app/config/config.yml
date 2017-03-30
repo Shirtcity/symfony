@@ -51,7 +51,7 @@ twig:
     strict_variables: false
     form_themes:
         - "Form/colorPickerType.html.twig"
-        - "Form/entityColorType.html.twig"
+        - "Form/colorCheckboxType.html.twig"
     globals:
         elcodi_context: []
         currency_wrapper: "@elcodi.wrapper.currency"
@@ -83,6 +83,10 @@ doctrine:
                 metadata_cache_driver: array
                 query_cache_driver: array
                 result_cache_driver: array
+                filters:
+                    softdeleteable:
+                        class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+                        enabled: true
 
 #
 # Assetic Configuration

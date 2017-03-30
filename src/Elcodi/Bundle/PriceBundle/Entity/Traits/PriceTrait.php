@@ -56,14 +56,19 @@ trait PriceTrait
 		$this->prices = new ArrayCollection();
 		
 		foreach($prices as $amount) {
-			$price = new Price();
-			$price->setPrice($amount->getAmount());
-			$price->setPriceCurrency($amount->getCurrency());			
-			$this->prices[] = $price;
+			$this->setPrice($amount);
 		}
 		
 		return $this;
     }
+	
+	public function setPrice($amount)
+	{
+		$price = new Price();
+		$price->setPrice($amount->getAmount());
+		$price->setPriceCurrency($amount->getCurrency());			
+		$this->prices[] = $price;
+	}
 	
 	/**
      * Remove price

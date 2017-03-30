@@ -165,7 +165,7 @@ class ManufacturerController extends AbstractAdminController
             $this->flush($manufacturer);
 
             $this->addFlash('success', 'admin.manufacturer.saved');
-
+			
             if ($request->query->get('modal', false)) {
                 $redirection = $this
                     ->redirectToRoute(

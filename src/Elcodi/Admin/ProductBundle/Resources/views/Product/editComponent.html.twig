@@ -167,9 +167,9 @@
                     </div>
                 </div>
                 <div class="col-2-3">
-                    <div class="box">
-                        {{
-                            form_row(form.productSizes, {
+                    <div class="box">                        
+                        {{                            
+                            form_row(form.sizes, {
                                 label: 'admin.product.sizes',
                             })
                         }}
@@ -184,14 +184,30 @@
                 </div>
                 <div class="col-2-3">
                     <div class="box">
-                        {{
-                            form_row(form.productColors, {
+                        {{ 
+                            form_row(form.colors, {
                                 label: 'admin.product.colors',
-                            })
+                            }) 
                         }}
                     </div>
                 </div>
-            </div>    
+            </div> 
+            <div class="grid">
+                <div class="col-1-3">
+                    <div class="box-none">
+                        <h3 class="fw-n">{{ 'admin.product.print_sides'|trans }}</h3>
+                    </div>
+                </div>
+                <div class="col-2-3">
+                    <div class="box">
+                        {{ 
+                            form_row(form.printSides, {
+                                label: 'admin.product.print_sides',
+                            }) 
+                        }}
+                    </div>
+                </div>
+            </div>
             <div class="ph-n pt-m mb-n">
                 <div class="box-background pv-s mb-n">
                     <a data-fc-modules="toggle" href="#variants-edit"><i class="icon-plus-circle"></i> {{ 'admin.product.section.variants.title'|trans }}</a>
@@ -228,8 +244,15 @@
                                         </tr>
                                     {% endfor %}
                                 </table>
+                                {#
+                                {{
+                                    form_row(form.sizes, {
+                                        label: 'admin.product.section.variants.title',
+                                    })
+                                }}
+                                #}
                             </div>
-                        </div>
+                        </div>                        
                     {% endif %}
                 </div>
             </div>

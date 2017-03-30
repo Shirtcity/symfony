@@ -1,0 +1,9 @@
+services:
+
+    #
+    # Event Listeners
+    #
+    elcodi.event_listener.price_form:
+        class: Elcodi\Bundle\PriceBundle\EventListener\PriceFormEventListener
+        arguments:
+            - '@elcodi.repository.currency'

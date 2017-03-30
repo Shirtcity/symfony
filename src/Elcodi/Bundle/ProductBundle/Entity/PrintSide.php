@@ -2,31 +2,39 @@
 
 namespace Elcodi\Bundle\ProductBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+
 use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Elcodi\Component\Core\Entity\Traits\ExistsTrait;
 
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideInterface;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideTypeInterface;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductInterface;
 
 /**
  * PrintSide
  */
 class PrintSide implements PrintSideInterface
 {
-	use EnabledTrait;
+	use EnabledTrait,
+		SoftDeleteableEntity,
+		ExistsTrait;
 	
     /**
      * @var integer
      */
     private $id;
-
-    /**
-     * @var string
-     */
-    private $position;
 	
 	/**
      * @var Product
      */
     private $product;
+	
+	/**
+     * @var PrintSideType
+     */
+    private $type;
 
 
     /**
@@ -40,36 +48,39 @@ class PrintSide implements PrintSideInterface
     }
 
     /**
-     * Set position
+     * Set type
      *
-     * @param string $position
+     * @param PrintSideTypeInterface $type
      *
      * @return PrintSide
      */
-    public function setPosition($position)
+    public function setType(PrintSideTypeInterface $type = null)
     {
-        $this->position = $position;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Get position
+     * Get type
      *
-     * @return string
+     * @return PrintSideType
      */
-    public function getPosition()
+    public function getType()
     {
-        return $this->position;
-    }    
+        return $this->type;
+    }
+	
+	/**
+	 * Set Product
+	 * 
+	 * @param ProductInterface $product
+	 * @return $this
+	 */
+	public function setProduct(ProductInterface $product = null)
+    {
+        $this->product = $product;
 
-    /**
-     * Get enabled
-     *
-     * @return boolean
-     */
-    public function getEnabled()
-    {
-        return $this->enabled;
+        return $this;
     }
 }
