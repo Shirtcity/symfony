@@ -52,8 +52,8 @@ class Configuration extends AbstractConfiguration
                         ))
                         ->append($this->addMappingNode(
                             'category',
-                            'Elcodi\Component\Article\Entity\Category',
-                            '@ElcodiArticleBundle/Resources/config/doctrine/Category.orm.yml',
+                            'Elcodi\Bundle\CategoryBundle\Entity\Category',
+                            '@CategoryBundle/Resources/config/doctrine/Category.orm.yml',
                             'default',
                             true
                         ))

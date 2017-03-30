@@ -58,7 +58,7 @@ class ArticleFactory extends AbstractPurchasableFactory
             ->setType(ElcodiArticleTypes::TYPE_PRODUCT_PHYSICAL)
             ->setShowInHome(true)
             ->setAttributes(new ArrayCollection())
-            ->setCategories(new ArrayCollection())
+            ->setSectionCategories(new ArrayCollection())
             ->setImages(new ArrayCollection())
             ->setImagesSort('')
             ->setEnabled(true)

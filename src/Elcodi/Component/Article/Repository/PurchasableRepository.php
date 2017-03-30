@@ -20,35 +20,11 @@ namespace Elcodi\Component\Article\Repository;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
-use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
-
 /**
  * Class PurchasableRepository.
  */
 class PurchasableRepository extends EntityRepository
 {
-    /**
-     * Get all the the Purchasables from the received categories.
-     *
-     * @param CategoryInterface[] $categories
-     *
-     * @return array All Purchasables by a set of category ids
-     */
-    public function getAllFromCategories(array $categories)
-    {
-        $queryBuilder = $this->createQueryBuilder('p');
-        $this->addPerformanceJoinsToQueryBuilder($queryBuilder);
-
-        return $queryBuilder
-            ->innerJoin('p.categories', 'c')
-            ->where('c.id IN (:categories)')
-            ->setParameters([
-                'categories' => $categories,
-            ])
-            ->getQuery()
-            ->getResult();
-    }
-
     /**
      * Get purchasables that can be shown in Home.
      *

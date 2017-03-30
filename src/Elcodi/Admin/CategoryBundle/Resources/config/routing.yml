@@ -1,0 +1,3 @@
+AdminCategoryBundle:
+    resource: "@AdminCategoryBundle/Controller/"
+    type:     annotation

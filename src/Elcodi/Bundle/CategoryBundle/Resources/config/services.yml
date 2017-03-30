@@ -1,0 +1,20 @@
+services:
+    #
+    # Services
+    #  
+    
+    #
+    # Category tree service
+    #
+    elcodi.provider.category_tree:
+        class: Elcodi\Bundle\CategoryBundle\Services\CategoryTree
+        arguments:
+            - '@elcodi.repository.category'
+            
+    #
+    # Section category tree service
+    #
+    elcodi.provider.section_category_tree:
+        class: Elcodi\Bundle\CategoryBundle\Services\CategoryTree
+        arguments:
+            - '@elcodi.repository.section_category'

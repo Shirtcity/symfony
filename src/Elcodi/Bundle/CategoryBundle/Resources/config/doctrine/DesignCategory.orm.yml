@@ -1,0 +1,10 @@
+Elcodi\Bundle\CategoryBundle\Entity\DesignCategory:
+    type: entity
+    table: design_category
+
+    #manyToOne:
+    #    category:
+    #        targetEntity: Elcodi\Bundle\CategoryBundle\Entity\Category
+    #        joinColumn:
+    #            name: design_category_id
+    #            referencedColumnName: id

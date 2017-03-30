@@ -1,0 +1,65 @@
+{% extends 'AdminCoreBundle::Common/listComponent.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'category'
+} %}
+
+
+{% block title 'admin.category.list'|trans %}
+
+	
+{% block no_items
+    lists.no_items(
+        'admin.category.single'|trans,
+        'admin.category.plural'|trans,
+        url('admin_product_category_new')
+    )
+%}
+
+
+
+{% block table_head %}
+
+    {% include '@AdminCore/Tables/head.html.twig' with {
+        rows: [
+            { name: 'admin.category.field.name.title'|trans },
+            { name: 'admin.category.field.slug.title'|trans },
+            { name: 'admin.category.field.enabled.title'|trans },
+        ],
+        class: 'product_category',
+    } %}
+
+{% endblock table_head %}
+
+{% for entity in paginator %}
+	{% block table_body_row %}
+		<td data-test="design-{{ entity.id }}">
+			<a href="{{ url('admin_product_category_edit', { id: entity.id }) }}">
+				<strong>{{ entity.name | truncate(50)}}</strong>
+			</a>
+		</td>    
+		<td data-test="design-{{ entity.id }}">
+			{{ entity.slug }}
+		</td>
+		<td>
+			{% if entity.enabled %}
+				<span class="label-ok fz-xs">{{ 'admin.category.field.enabled.options.active'|trans }}</span>
+			{% else %}
+				<span class="label fz-xs">{{ 'admin.category.field.enabled.options.inactive'|trans }}</span>
+			{% endif %}
+			<a class="icon-trash-o c-ko td-n fz-l ml-l"
+               title="{{ 'ui.forms.delete'|trans }}"
+               href="{{ url('admin_product_category_delete', { id: entity.id }) }}"
+               data-fc-modules="confirm"
+               data-fc-name="{{ category.name }}"
+               data-fc-text="{{ 'ui.confirm.delete'|trans }}">
+            </a>
+		</td>
+		
+
+	{% endblock table_body_row %}
+{% endfor %}
+
+
+{% block table_pagination '' %}

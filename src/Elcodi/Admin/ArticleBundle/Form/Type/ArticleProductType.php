@@ -13,7 +13,7 @@ use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
 
 /**
- * Class ArticleType
+ * Class ArticleProductType
  */
 class ArticleProductType extends AbstractType
 {
@@ -22,14 +22,14 @@ class ArticleProductType extends AbstractType
     /**
      * @var string
      *
-     * Category namespace
+     * Product namespace
      */
     protected $productNamespace;
 
     /**
      * @var string
      *
-     * Image namespace
+     * Product Color namespace
      */
     protected $productColorNamespace;
 	
@@ -67,7 +67,6 @@ class ArticleProductType extends AbstractType
             'data_class' => $this
                 ->factory
                 ->getEntityNamespace(),
-			'cascade_validation' => true,
         ]);			
     }
 
@@ -79,15 +78,14 @@ class ArticleProductType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {		
-        $builder
-			->add('product', 'entity', [
-                'class'    => $this->productNamespace,
-                'required' => true,
-                'multiple' => false
-            ]);
+        $builder->add('product', 'entity', [
+			'class'    => $this->productNamespace,
+			'required' => true,
+			'multiple' => false
+		]);
 		
 		$formModifier = function (FormInterface $form, $articleProduct = null) {
-            $colors = null === $articleProduct ? array() : $articleProduct->getProductColors();
+            $colors = (is_null($articleProduct)) ? [] : $articleProduct->getProductColors();
 
             $form->add('productColor', 'entity', [
                 'class'     => $this->productColorNamespace,

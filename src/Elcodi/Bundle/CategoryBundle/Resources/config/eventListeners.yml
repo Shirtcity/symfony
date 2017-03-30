@@ -1,0 +1,11 @@
+services:
+
+    #
+    # Event Listeners
+    #
+
+    elcodi.event_listener.root_category:
+        class: Elcodi\Bundle\CategoryBundle\EventListener\RootCategoryEventListener
+        tags:
+            - { name: doctrine.event_listener, event: preFlush, method: preFlush }
+            - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }

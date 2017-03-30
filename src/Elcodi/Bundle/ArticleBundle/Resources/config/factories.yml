@@ -14,15 +14,7 @@ services:
             - [setEntityNamespace, ["%elcodi.entity.article.class%"]]
             - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
     
-    #
-    # Factory for Category entities
-    #
-    elcodi.factory.category:
-        class: Elcodi\Component\Article\Factory\CategoryFactory
-        calls:
-            - [setEntityNamespace, ["%elcodi.entity.category.class%"]]
-            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
-            
+    
     #
     # Factory for ArticleProduct entities
     #

@@ -21,10 +21,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use Elcodi\Admin\ArticleBundle\Validation\MinimumMoney;
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
+
+use Elcodi\Bundle\CategoryBundle\Entity\SectionCategory;
 
 /**
  * Class ArticleType
@@ -89,7 +93,6 @@ class ArticleType extends AbstractType
             'data_class' => $this
                 ->factory
                 ->getEntityNamespace(),
-			'cascade_validation' => true,
         ]);
     }
 
@@ -113,7 +116,7 @@ class ArticleType extends AbstractType
                 ],
             ])
             ->add('slug', 'text', [
-                'required' => true,
+                'required'    => true,
                 'constraints' => [
                     new Constraints\Length(
                         [
@@ -141,7 +144,7 @@ class ArticleType extends AbstractType
                 'required' => false,
             ])
             ->add('metaDescription', 'text', [
-                'required' => false,
+                'required'    => false,
                 'constraints' => [
                     new Constraints\Length(
                         [
@@ -153,11 +156,10 @@ class ArticleType extends AbstractType
             ->add('metaKeywords', 'text', [
                 'required' => false,
             ])
-            ->add('principalCategory', 'entity', [
-                'class'    => $this->categoryNamespace,
-                'required' => true,
-                'multiple' => false,
-            ])
+			->add('sectionCategories', 'expanded_otm',[
+                'class'  => $this->categoryNamespace,
+                'fields' => ['name',],				
+			])
 			->add('articleProduct', $this->articleProductType)				
             ->add('images', 'entity', [
                 'class'    => $this->imageNamespace,

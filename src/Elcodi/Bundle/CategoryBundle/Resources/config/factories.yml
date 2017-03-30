@@ -1,0 +1,47 @@
+services:
+
+    #
+    # Factories
+    #    
+    
+    #
+    # Factory for Category entities
+    #
+    elcodi.factory.category:
+        class: Elcodi\Bundle\CategoryBundle\Factory\CategoryFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.category.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+            
+    #
+    # Factory for Section Category entities
+    #
+    elcodi.factory.section_category:
+        class: Elcodi\Bundle\CategoryBundle\Factory\CategoryFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.section_category.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+            
+    #
+    # Factory for Design Category entities
+    #
+    elcodi.factory.design_category:
+        class: Elcodi\Bundle\CategoryBundle\Factory\CategoryFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.design_category.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+            
+    #
+    # Factory for Product Category entities
+    #
+    elcodi.factory.product_category:
+        class: Elcodi\Bundle\CategoryBundle\Factory\CategoryFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.product_category.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+            
+    
+            
+    
+            
+    
