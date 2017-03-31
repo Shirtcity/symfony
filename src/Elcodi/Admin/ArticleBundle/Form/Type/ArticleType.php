@@ -116,9 +116,6 @@ class ArticleType extends AbstractType
             ->add('showInHome', 'checkbox', [
                 'required' => false,
             ])
-            ->add('sku', 'text', [
-                'required' => false,
-            ])
             ->add('imagesSort', 'text', [
                 'required' => false,
             ])

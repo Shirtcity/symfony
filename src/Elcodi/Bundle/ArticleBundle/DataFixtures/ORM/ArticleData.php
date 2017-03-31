@@ -77,7 +77,6 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setShortDescription('my article short description')
             ->addCategory($category)
             ->setPrincipalCategory($category)
-            ->setSku('article-sku-code-1')
             ->setEnabled(true)
 			->setArticleProduct($articleProduct);
 
@@ -135,7 +134,6 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setShortDescription('my article short description')
             ->addCategory($rootCategory)
             ->setPrincipalCategory($rootCategory)
-            ->setSku('article-sku-code-3')
             ->setEnabled(true)
 			->setArticleProduct($articleProduct2);
 

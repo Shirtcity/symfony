@@ -54,17 +54,9 @@ abstract class Purchasable implements PurchasableInterface
     /**
      * @var string
      *
-     * Article SKU
-     */
-    protected $sku;  
-
-    /**
-     * @var string
-     *
      * Name
      */
-    protected $name;
-	
+    protected $name;	
 
     /**
      * @var string
@@ -117,31 +109,7 @@ abstract class Purchasable implements PurchasableInterface
 
         return $this;
     }
-
-    /**
-     * Get Sku.
-     *
-     * @return string Sku
-     */
-    public function getSku()
-    {
-        return $this->sku;
-    }
-
-    /**
-     * Sets Sku.
-     *
-     * @param string $sku Sku
-     *
-     * @return $this Self object
-     */
-    public function setSku($sku)
-    {
-        $this->sku = $sku;
-
-        return $this;
-    }    
-
+    
     /**
      * Get Name.
      *

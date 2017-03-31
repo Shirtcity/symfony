@@ -18,11 +18,6 @@ Elcodi\Component\Article\Entity\Purchasable:
             type: string
             length: 255
             nullable: true
-        sku:
-            column: sku
-            type: string
-            length: 255
-            nullable: true
         slug:
             column: slug
             type: string

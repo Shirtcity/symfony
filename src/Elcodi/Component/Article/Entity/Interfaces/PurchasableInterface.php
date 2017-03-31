@@ -47,22 +47,6 @@ interface PurchasableInterface
     EnabledInterface
 {
     /**
-     * Gets the variant SKU.
-     *
-     * @return string
-     */
-    public function getSku();
-
-    /**
-     * Sets the variant SKU.
-     *
-     * @param string $sku
-     *
-     * @return $this Self object
-     */
-    public function setSku($sku);
-
-    /**
      * Get Slug.
      *
      * @return string Slug
