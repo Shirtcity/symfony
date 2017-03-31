@@ -69,6 +69,7 @@ class AppKernel extends Kernel
 			
 			'Yokai\ManyToManyMatrixBundle\YokaiManyToManyMatrixBundle',
 			'abdielcs\ExpandedCollectionBundle\ExpandedCollectionBundle',
+			'FOS\JsRoutingBundle\FOSJsRoutingBundle',
 			'Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle',
 
             /**

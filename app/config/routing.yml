@@ -6,3 +6,4 @@ elcodi_printable:
     resource: "@PrintableBundle/Resources/config/routing.yml"
     prefix:   /
 
+

@@ -23,9 +23,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
+use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
-use Elcodi\Bundle\CategoryBundle\Repository\CategoryRepository;
+use Elcodi\Component\Article\Repository\CategoryRepository;
 use Elcodi\Component\Article\Repository\PurchasableRepository;
 use Elcodi\Store\CoreBundle\Controller\Traits\TemplateRenderTrait;
 
@@ -62,7 +62,7 @@ class CategoryController extends Controller
         $categoryTree = $this
             ->get('elcodi_store.store_category_tree')
             ->load();
-	
+
         return $this->renderTemplate(
             'Subpages:category-nav.html.twig',
             [
@@ -90,7 +90,7 @@ class CategoryController extends Controller
      * )
      *
      * @AnnotationEntity(
-     *      class = "elcodi.entity.section_category.class",
+     *      class = "elcodi.entity.category.class",
      *      name = "category",
      *      mapping = {
      *          "id" = "~id~",
@@ -113,17 +113,17 @@ class CategoryController extends Controller
 
         /**
          * @var CategoryRepository $categoryRepository
-         * @var PurchasableRepository $articleRepository
-         */		
+         * @var PurchasableRepository $purchasableRepository
+         */
         $categoryRepository = $this->get('elcodi.repository.category');
-        $articleRepository = $this->get('elcodi.repository.article');
+        $purchasableRepository = $this->get('elcodi.repository.purchasable');
 
         $categories = array_merge(
             [$category],
             $categoryRepository->getChildrenCategories($category)
         );
 
-        $purchasables = $articleRepository->getAllFromCategories($categories);
+        $purchasables = $purchasableRepository->getAllFromCategories($categories);
 
         return $this->renderTemplate(
             'Pages:category-view.html.twig',

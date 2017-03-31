@@ -36,10 +36,6 @@ use Elcodi\Admin\CoreBundle\Controller\Abstracts\AbstractAdminController;
 use Elcodi\Component\Core\Entity\Interfaces\EnabledInterface;
 use Elcodi\Component\Media\Entity\Interfaces\ImageInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
-use Elcodi\Component\Article\Entity\ArticleProduct;
-
-use Doctrine\Common\Collections\ArrayCollection;
-use Elcodi\Bundle\CategoryBundle\Entity\SectionCategory;
 
 /**
  * Class Controller for Article
@@ -165,8 +161,7 @@ class ArticleController extends AbstractAdminController
         FormInterface $form,
         ArticleInterface $article
     ) {		
-				
-		if ($form->isValid() && !$this->getRequest()->isXmlHttpRequest()) {
+		if ($form->isValid()) {				
             $firstImage = $article
                 ->getSortedImages()
                 ->first();
@@ -186,7 +181,7 @@ class ArticleController extends AbstractAdminController
 			
 			return $this->redirectToRoute('admin_article_list');
         }
-
+		
         return [
             'article' => $article,
             'form'    => $form->createView(),

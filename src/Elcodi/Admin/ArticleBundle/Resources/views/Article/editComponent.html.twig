@@ -9,7 +9,7 @@
 {% form_theme form 'AdminCoreBundle::Forms/fields.html.twig' %}
 
 {% block content %}
-
+	
     {% set formAction =
         article.id
             ? url('admin_article_update', { id: article.id })

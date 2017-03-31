@@ -1,34 +1,14 @@
 <?php
 
-/*
- * This file is part of the Elcodi package.
- *
- * Copyright (c) 2014-2016 Elcodi.com
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * Feel free to edit as you please, and have fun.
- *
- * @author Marc Morera <yuhu@mmoreram.com>
- * @author Aldo Chiecchia <zimage@tiscali.it>
- * @author Elcodi Team <tech@elcodi.com>
- */
-
 namespace Elcodi\Admin\ArticleBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-use Elcodi\Admin\ArticleBundle\Validation\MinimumMoney;
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
-
-use Elcodi\Bundle\CategoryBundle\Entity\SectionCategory;
 
 /**
  * Class ArticleType
@@ -58,6 +38,11 @@ class ArticleType extends AbstractType
      */
     protected $articleProductNamespace;
 	
+	/**
+	 * @var $articleProductType 
+	 * 
+	 * ArticleProductType FormType
+	 */
 	protected $articleProductType;
 
     /**

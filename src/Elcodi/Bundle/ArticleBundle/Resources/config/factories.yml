@@ -9,7 +9,8 @@ services:
     #
     elcodi.factory.article:
         class: Elcodi\Component\Article\Factory\ArticleFactory
-        parent: elcodi.factory.abstract.purchasable
+        arguments:
+            - "@elcodi.repository.product"
         calls:
             - [setEntityNamespace, ["%elcodi.entity.article.class%"]]
             - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
