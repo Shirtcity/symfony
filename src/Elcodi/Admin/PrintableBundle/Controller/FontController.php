@@ -133,8 +133,11 @@ class FontController extends AbstractAdminController
     ) {
 
         if ($isValid) {
-            var_dump( $font );
-            die();
+            //Create the entity
+            $this->flush($font);
+
+            //Save the file in the entity
+            $font->setUpdatedAt( new \DateTime('now') );
             $this->flush($font);
 
             $this->addFlash(
@@ -144,7 +147,7 @@ class FontController extends AbstractAdminController
                     ->trans('admin.font.saved')
             );
 
-            return $this->redirectToRoute('admin_font_list');
+           // return $this->redirectToRoute('admin_font_list');
         }
 
         return [
@@ -247,5 +250,33 @@ class FontController extends AbstractAdminController
             $entity,
             $this->generateUrl('admin_font_list')
         );
+    }
+
+    /**
+     * Download font
+     *
+     * @param FontInterface $font  Font
+     *
+     * @return RedirectResponse Redirect response
+     *
+     * @Route(
+     *      path = "/download/{file_name}",
+     *      name = "admin_font_download"
+     * )
+     * @Method({"GET"})
+     *
+     * @EntityAnnotation(
+     *      class = "elcodi.entity.font.class",
+     *      mapping = {
+     *          "file_name" = "~file_name~"
+     *      }
+     * )
+     */
+    public function downloadFontAction(
+        Request $request,
+        $entity
+    ) {
+        $downloadHandler = $this->get('vich_uploader.download_handler');
+        return $downloadHandler->downloadObject($entity, $fileField = 'font');
     }
 }

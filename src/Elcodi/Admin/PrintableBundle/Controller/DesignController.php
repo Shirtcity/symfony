@@ -131,8 +131,11 @@ class DesignController extends AbstractAdminController
         DesignInterface $design,
         $isValid
     ) {
-
         if ($isValid) {
+            $this->flush($design);
+
+            //Save the file in the entity
+            $design->setUpdatedAt( new \DateTime('now') );
             $this->flush($design);
 
             $this->addFlash(
@@ -144,6 +147,7 @@ class DesignController extends AbstractAdminController
 
             return $this->redirectToRoute('admin_design_list');
         }
+
 
         return [
             'design' => $design,
@@ -245,5 +249,71 @@ class DesignController extends AbstractAdminController
             $entity,
             $this->generateUrl('admin_design_list')
         );
+    }
+
+    /**
+     * Download design preview
+     *
+     * @param DesignInterface $design  Design
+     *
+     * @return RedirectResponse Redirect response
+     *
+     * @Route(
+     *      path = "/download/preview/{level_1}/{level_2}/{level_3}/{previewFileName}",
+     *      name = "admin_design_download_preview",
+     *      requirements = {
+     *          "level_1" = "\d+",
+     *          "level_2" = "\d+",
+     *          "level_3" = "\d+",
+     *      },
+     * )
+     * @Method({"GET"})
+     *
+     * @EntityAnnotation(
+     *      class = "elcodi.entity.design.class",
+     *      mapping = {
+     *          "previewFileName" = "~previewFileName~"
+     *      }
+     * )
+     */
+    public function downloadPreviewAction(
+        Request $request,
+        $entity
+    ) {
+        $downloadHandler = $this->get('vich_uploader.download_handler');
+        return $downloadHandler->downloadObject($entity, $fileField = 'previewFile');
+    }
+
+    /**
+     * Download design vector
+     *
+     * @param DesignInterface $desgn  Design
+     *
+     * @return RedirectResponse Redirect response
+     *
+     * @Route(
+     *      path = "/download/vector/{level_1}/{level_2}/{level_3}/{vectorFileName}",
+     *      name = "admin_design_download_vector",
+     *      requirements = {
+     *          "level_1" = "\d+",
+     *          "level_2" = "\d+",
+     *          "level_3" = "\d+",
+     *      },
+     * )
+     * @Method({"GET"})
+     *
+     * @EntityAnnotation(
+     *      class = "elcodi.entity.design.class",
+     *      mapping = {
+     *          "vectorFileName" = "~vectorFileName~"
+     *      }
+     * )
+     */
+    public function downloadVectorAction(
+        Request $request,
+        $entity
+    ) {
+        $downloadHandler = $this->get('vich_uploader.download_handler');
+        return $downloadHandler->downloadObject($entity, $fileField = 'vectorFile');
     }
 }

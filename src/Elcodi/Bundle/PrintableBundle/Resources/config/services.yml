@@ -1,4 +1,7 @@
 services:
-#    elcodi_printable.example:
-#        class: Elcodi\Bundle\PrintableBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    printable.vichuploader.namer.font_namer:
+            class: Elcodi\Bundle\PrintableBundle\VichUploader\Naming\FontNamer
+    printable.vichuploader.namer.design_namer:
+            class: Elcodi\Bundle\PrintableBundle\VichUploader\Naming\DesignNamer
+    printable.vichuploader.namer.design_directory_namer:
+            class: Elcodi\Bundle\PrintableBundle\VichUploader\Naming\DesignDirectoryNamer

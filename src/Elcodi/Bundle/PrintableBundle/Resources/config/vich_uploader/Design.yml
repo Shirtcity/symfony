@@ -1,0 +1,7 @@
+Elcodi\Bundle\PrintableBundle\Entity\Design:
+    vectorFile:
+        mapping: design_vector_mapping
+        filename_property: vectorFileName
+    previewFile:
+        mapping: design_preview_mapping
+        filename_property: previewFileName

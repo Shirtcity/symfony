@@ -12,10 +12,14 @@ Elcodi\Bundle\PrintableBundle\Entity\Font:
         name:
             type: string
             length: 255
-        file_name:
+        fontFileName:
             type: string
+            nullable: true
         minSize:
             type: integer
         enabled:
             type: boolean
+        updatedAt:
+            type: datetime
+            nullable: true
     lifecycleCallbacks: {  }

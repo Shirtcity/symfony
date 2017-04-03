@@ -52,6 +52,7 @@ twig:
     form_themes:
         - "Form/colorPickerType.html.twig"
         - "Form/entityColorType.html.twig"
+        - "VichUploaderBundle:Form:fields.html.twig"
     globals:
         elcodi_context: []
         currency_wrapper: "@elcodi.wrapper.currency"

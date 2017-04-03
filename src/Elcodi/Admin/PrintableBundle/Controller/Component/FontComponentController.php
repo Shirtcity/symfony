@@ -133,10 +133,9 @@ class FontComponentController extends AbstractAdminController
         FontInterface $font,
         FormView $formView
     ) {
-
         return [
             'font' => $font,
-            'form'   => $formView,
+            'form'   => $formView
         ];
     }
 }

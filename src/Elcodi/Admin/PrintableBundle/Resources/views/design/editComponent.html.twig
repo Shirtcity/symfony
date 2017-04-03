@@ -76,6 +76,27 @@
 
                 <div class="col-1-3">
                     <div class="box-none">
+                        <h3 class="fw-n">Vectordatei (.ai, .png)</h3>
+                    </div>
+                </div>
+                <div class="col-2-3">{{ design.getVectorFileName() }}<br>{{ form_widget(form.vectorFile) }}</div>
+
+            </div>
+            <div class="grid">
+                <div class="clear"></div>
+
+                <div class="col-1-3">
+                    <div class="box-none">
+                        <h3 class="fw-n">Vorschau (.png)</h3>
+                    </div>
+                </div>
+                <div class="col-2-3">{{ design.getPreviewFileName() }}<br>{{ form_widget(form.previewFile) }}</div>
+            </div>
+            <div class="grid">
+                <div class="clear"></div>
+
+                <div class="col-1-3">
+                    <div class="box-none">
                         <h3 class="fw-n">Aktiv</h3>
                     </div>
                 </div>
