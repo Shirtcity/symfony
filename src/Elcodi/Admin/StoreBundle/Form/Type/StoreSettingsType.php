@@ -88,9 +88,6 @@ class StoreSettingsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('useStock', 'checkbox', [
-                'required' => false,
-            ])
             ->add('routingStrategy', 'choice', [
                 'choice_list' => new ArrayChoiceList([
                     'admin.store.field.routingStrategy.prefix_except_default' => StoreRoutingStrategy::STRATEGY_PREFIX_EXCEPT_DEFAULT,

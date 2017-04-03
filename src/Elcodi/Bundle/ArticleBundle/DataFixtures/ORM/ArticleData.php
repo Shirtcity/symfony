@@ -25,8 +25,14 @@ use Elcodi\Bundle\ArticleBundle\DataFixtures\ORM\Traits\ArticleWithImagesTrait;
 use Elcodi\Component\Core\Services\ObjectDirector;
 use Elcodi\Component\Currency\Entity\Interfaces\CurrencyInterface;
 use Elcodi\Component\Currency\Entity\Money;
-use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
+use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
+use Elcodi\Component\Article\Entity\ArticleProduct;
+
+use Elcodi\Bundle\ProductBundle\Entity\Product;
+use Elcodi\Bundle\ProductBundle\Entity\ProductColor;
+use Elcodi\Bundle\ProductBundle\Entity\ProductSize;
+use Elcodi\Bundle\ProductBundle\Entity\PrintSide;
 
 /**
  * Class ArticleData.
@@ -35,7 +41,7 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
 {
     use ArticleWithImagesTrait;
 
-    /**
+	/**
      * Load data fixtures with the passed EntityManager.
      *
      * @param ObjectManager $manager
@@ -51,8 +57,17 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
          */
         $category = $this->getReference('category');
         $rootCategory = $this->getReference('rootCategory');
+		
+		$product = $this->getReference('product');
+		$productColor = $this->getReference('productColor');
+		
         $currency = $this->getReference('currency-dollar');
         $articleDirector = $this->getDirector('article');
+				
+		$articleProduct = new ArticleProduct();
+		$articleProduct
+            ->setProduct($product)
+            ->setProductColor($productColor);
 
         $article = $articleDirector
             ->create()
@@ -62,36 +77,35 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setShortDescription('my article short description')
             ->addCategory($category)
             ->setPrincipalCategory($category)
-            ->setStock(10)
-            ->setPrice(Money::create(1000, $currency))
-            ->setSku('article-sku-code-1')
-            ->setHeight(10)
-            ->setWidth(15)
-            ->setDepth(20)
-            ->setWeight(100)
-            ->setEnabled(true);
+            ->setEnabled(true)
+			->setArticleProduct($articleProduct);
 
+		$articlePrice = $this
+			->get('price_resolver.article')
+			->getPrice($article, $currency);
+		
         $articleDirector->save($article);
         $this->addReference('article', $article);
 
         /**
          * Reduced Article.
          */
+		
+		$articleProduct1 = new ArticleProduct();
+		$articleProduct1
+            ->setProduct($product)
+            ->setProductColor($productColor);
+		
         $articleReduced = $articleDirector
             ->create()
             ->setName('article-reduced')
             ->setSlug('article-reduced')
             ->setDescription('my article-reduced description')
             ->setShortDescription('my article-reduced short description')
+			->addCategory($category)
             ->setShowInHome(true)
-            ->setStock(5)
-            ->setPrice(Money::create(1000, $currency))
-            ->setReducedPrice(Money::create(500, $currency))
-            ->setHeight(25)
-            ->setWidth(30)
-            ->setDepth(35)
-            ->setWeight(200)
-            ->setEnabled(true);
+            ->setEnabled(true)
+			->setArticleProduct($articleProduct1);
 
         $this->storeArticleImage(
             $articleReduced,
@@ -106,22 +120,22 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
          *
          * @var ArticleInterface $rootCategoryArticle
          */
+		
+		$articleProduct2 = new ArticleProduct();
+		$articleProduct2
+            ->setProduct($product)
+            ->setProductColor($productColor);
+		
         $rootCategoryArticle = $articleDirector
             ->create()
             ->setName('Root category article')
-            ->setSlug('root-category-article')
+            ->setSlug('root-category')
             ->setDescription('my article description')
             ->setShortDescription('my article short description')
             ->addCategory($rootCategory)
             ->setPrincipalCategory($rootCategory)
-            ->setStock(10)
-            ->setPrice(Money::create(500, $currency))
-            ->setSku('article-sku-code-3')
-            ->setHeight(10)
-            ->setWidth(15)
-            ->setDepth(20)
-            ->setWeight(100)
-            ->setEnabled(true);
+            ->setEnabled(true)
+			->setArticleProduct($articleProduct2);
 
         $articleDirector->save($rootCategoryArticle);
         $this->addReference('rootCategoryArticle', $rootCategoryArticle);
@@ -139,6 +153,7 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             'Elcodi\Bundle\CurrencyBundle\DataFixtures\ORM\CurrencyData',
             'Elcodi\Bundle\ArticleBundle\DataFixtures\ORM\CategoryData',
             'Elcodi\Bundle\StoreBundle\DataFixtures\ORM\StoreData',
+			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductData',
         ];
     }
 }

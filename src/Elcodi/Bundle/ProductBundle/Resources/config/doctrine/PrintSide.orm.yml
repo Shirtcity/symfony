@@ -1,6 +1,10 @@
 Elcodi\Bundle\ProductBundle\Entity\PrintSide:
     type: entity
     table: print_side
+    gedmo:
+        soft_deleteable:
+          field_name: deletedAt
+          time_aware: false
     id:
         id:
             type: integer
@@ -8,11 +12,11 @@ Elcodi\Bundle\ProductBundle\Entity\PrintSide:
             generator:
                 strategy: AUTO
     fields:
-        position:
-            type: string
-            length: '20'
         enabled:
-            type: boolean    
+            type: boolean
+        deletedAt:
+            type: date
+            nullable: true
             
     manyToOne:
         product:
@@ -23,5 +27,13 @@ Elcodi\Bundle\ProductBundle\Entity\PrintSide:
                 referencedColumnName: id
                 nullable: false
                 onDelete: "CASCADE"
+                
+        type:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\PrintSideType
+            joinColumn:
+                name: print_side_type_id
+                referencedColumnName: id
+                nullable: true
+                onDelete: "SET NULL"
             
     lifecycleCallbacks: {  }

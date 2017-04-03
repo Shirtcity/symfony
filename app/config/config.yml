@@ -53,6 +53,7 @@ twig:
         - "Form/colorPickerType.html.twig"
         - "Form/entityColorType.html.twig"
         - "VichUploaderBundle:Form:fields.html.twig"
+        - "Form/colorCheckboxType.html.twig"
     globals:
         elcodi_context: []
         currency_wrapper: "@elcodi.wrapper.currency"
@@ -84,6 +85,10 @@ doctrine:
                 metadata_cache_driver: array
                 query_cache_driver: array
                 result_cache_driver: array
+                filters:
+                    softdeleteable:
+                        class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+                        enabled: true
 
 #
 # Assetic Configuration
@@ -95,6 +100,7 @@ assetic:
         - StoreTemplateBundle
         - AdminGeoBundle
         - AdminStoreBundle
+        - AdminArticleBundle
     debug:          "%kernel.debug%"
     use_controller: false
     filters:

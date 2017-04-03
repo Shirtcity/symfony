@@ -58,8 +58,14 @@ admin_store:
 admin_printable:
     resource: "@AdminPrintableBundle/Resources/config/routing.yml"
 
+admin_category:
+    resource: "@AdminCategoryBundle/Resources/config/routing.yml"
+
 admin_login_check:
     path:  /login_check
 
 admin_logout:
     path: /logout
+    
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

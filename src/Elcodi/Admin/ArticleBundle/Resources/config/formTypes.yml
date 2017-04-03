@@ -3,11 +3,12 @@ services:
     #
     # Form Types
     #
+    
     elcodi_admin.form_type.article_product:
         class: Elcodi\Admin\ArticleBundle\Form\Type\ArticleProductType
         arguments:
             - %elcodi.entity.product.class%           
-            - %elcodi.entity.product_color.class%
+            - %elcodi.entity.product_color.class%      
         calls:
             - [setFactory, ["@elcodi.factory.article_product"]]
             - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
@@ -17,7 +18,7 @@ services:
     elcodi_admin.form_type.article:
         class: Elcodi\Admin\ArticleBundle\Form\Type\ArticleType
         arguments:
-            - %elcodi.entity.category.class%
+            - %elcodi.entity.section_category.class%
             - %elcodi.entity.image.class%
             - '@elcodi_admin.form_type.article_product'
         calls:
@@ -26,10 +27,4 @@ services:
         tags:
             - { name: form.type, alias: elcodi_admin_article_form_type_article }  
     
-    elcodi_admin.form_type.category:
-        class: Elcodi\Admin\ArticleBundle\Form\Type\CategoryType
-        calls:
-            - [setFactory, ["@elcodi.factory.category"]]
-            - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
-        tags:
-            - { name: form.type, alias: elcodi_admin_article_form_type_category }   
+    

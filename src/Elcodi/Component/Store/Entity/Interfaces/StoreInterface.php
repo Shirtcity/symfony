@@ -144,23 +144,7 @@ interface StoreInterface
      *
      * @return $this Self object
      */
-    public function setTemplate($template);
-
-    /**
-     * Get UseStock.
-     *
-     * @return bool UseStock
-     */
-    public function getUseStock();
-
-    /**
-     * Sets UseStock.
-     *
-     * @param bool $useStock UseStock
-     *
-     * @return $this Self object
-     */
-    public function setUseStock($useStock);
+    public function setTemplate($template);    
 
     /**
      * Get Address.

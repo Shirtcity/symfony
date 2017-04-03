@@ -247,43 +247,6 @@ class Product implements ProductInterface
         return $this;
 	}
 	
-	/**
-	 * Return ArrayCollections of Product Colors
-	 * 
-	 * @return ArrayCollectionPriceBundle
-	 */
-    public function getProductColors()
-    {
-        $productColors = new ArrayCollection();
-        
-        foreach($this->colors as $color) {
-            $productColors[] = $color->getColor();
-        }
-
-        return $productColors;
-    }
-    
-	/**
-	 * Set ProductColors
-	 * 
-	 * @param type ArrayCollection 
-	 */
-    public function setProductColors(ArrayCollection $productColors)
-    {
-		foreach ($this->getColors() as $color) {
-			$this->removeColor($color);
-		}
-		
-        foreach($productColors as $color) {
-            $productColor = new ProductColors();
-
-            $productColor->setProduct($this);
-            $productColor->setColor($color);
-
-            $this->addColor($productColor);
-        }
-    }
-
     /**
      * Add size
      *
@@ -330,43 +293,6 @@ class Product implements ProductInterface
 
         return $this;
 	}
-	
-	/**
-	 * Return ArrayCollections of ProductSizes
-	 * 
-	 * @return ArrayCollection
-	 */
-    public function getProductSizes()
-    {
-        $productSizes = new ArrayCollection();
-        
-        foreach($this->sizes as $size) {
-            $productSizes[] = $size->getSize();
-        }
-
-        return $productSizes;
-    }
-    
-	/**
-	 * Set ProductSizes
-	 * 
-	 * @param type ArrayCollection 
-	 */
-    public function setProductSizes(ArrayCollection $productSizes)
-    {
-		foreach ($this->getSizes() as $size) {
-			$this->removeSize($size);
-		}
-		
-        foreach($productSizes as $size) {
-            $productSize = new ProductSizes();
-
-            $productSize->setProduct($this);
-            $productSize->setSize($size);
-
-            $this->addSize($productSize);
-        }
-    }
 	
 	/**
      * Product product_manufacturer.
@@ -427,6 +353,19 @@ class Product implements ProductInterface
     }
 	
 	/**
+	 * Set print sides
+	 * 
+	 * @param ArrayCollection $printSides
+	 * @return $this
+	 */	
+	public function setPrintSides(ArrayCollection $printSides)
+	{
+		$this->printSides = $printSides;
+		
+		return $this;
+	}
+	
+	/**
 	 * Return Product Sizes and Colors variants.
 	 * 
 	 * @return array
@@ -436,8 +375,10 @@ class Product implements ProductInterface
 		$variants = array();
 		
 		foreach ($this->sizes as $size) {
-			foreach ($size->getColors() as $color) {
-				$variants[$size->getSize()->getId()][$color->getColor()->getId()] = true;
+			foreach ($size->getColors() as $color) {				
+				$sizeId = $size->getSize()->getId();
+				$colorId = $color->getColor()->getId();				
+				$variants[$sizeId][$colorId] = true;
 			}
 		}
 		
@@ -450,13 +391,21 @@ class Product implements ProductInterface
 	 * @return $this
 	 */
 	public function setVariants()
-	{		
+	{
 		foreach ($this->getSizes() as $size) {
-			foreach ($this->getColors() as $color) {
-				$size->addColor($color);
+			foreach ($this->getColors() as $color) {				
+				
+				$colorExists = $size->getColors()->exists(
+					function($key, $entry) use ($color) {
+					   return $color->getId() === $entry->getId();
+					}
+				);
+				
+				if(!$colorExists) {
+					$size->addColor($color);
+				}
 			}
 		}
-		
 		return $this;
 	}
 	

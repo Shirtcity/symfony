@@ -48,7 +48,7 @@ class TryAutomaticCouponsApplicationEventListenerTest extends AbstractCartCoupon
 
         $cart = $this->getLoadedCart(2);
 
-        $this->assertEquals(1500, $cart
+        $this->assertEquals(20, $cart
             ->getAmount()
             ->getAmount()
         );

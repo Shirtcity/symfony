@@ -1,0 +1,25 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'product',
+} %}
+
+{% block breadcrumb %}
+
+    {% set title = 'admin.product.plural'|trans %}
+    {% set header = 'admin.product.edit'|trans({ '%name%': product.name }) %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: title, url: url('admin_product_list'), },
+            { name: header, active: true, },
+        ]
+    } %}
+
+{% endblock breadcrumb %}
+
+
+{% block content %}
+    {{ render(url('admin_product_print_side_edit_component', { id: product.id })) }}    
+{% endblock content %}

@@ -88,8 +88,13 @@ abstract class AbstractStateTransitionTest extends PHPUnit_Framework_TestCase
         /**
          * @var EventDispatcherInterface $eventDispatcher
          */
-        $eventDispatcher = $this->getMock('Elcodi\Component\StateTransitionMachine\EventDispatcher\MachineEventDispatcher', [], [], '', false);
-
+        $eventDispatcher = $this
+			->getMockBuilder('Elcodi\Component\StateTransitionMachine\EventDispatcher\MachineEventDispatcher')
+			->setMethods([])
+			->setMockClassName('')
+			->disableOriginalConstructor(true)
+			->getMock();
+		
         $machineManager = new MachineManager(
             $machine,
             $eventDispatcher,

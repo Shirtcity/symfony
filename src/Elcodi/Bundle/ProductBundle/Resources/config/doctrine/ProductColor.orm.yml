@@ -1,6 +1,7 @@
 Elcodi\Bundle\ProductBundle\Entity\ProductColor:
     type: entity
     table: product_color
+    repositoryClass: Elcodi\Bundle\ProductBundle\Repository\ProductColorRepository
     id:
         id:
             type: integer

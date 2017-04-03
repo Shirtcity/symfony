@@ -67,15 +67,18 @@ class ArticleExporter
     {
         $result = [];
         foreach ($articles as $article) {
+			$price = $this
+				->get('price_resolver.article')
+				->getReducedPrice($article);
+			
             $result[] = [
                 'id' => $article->getId(),
                 'sku' => $article->getSku(),
                 'name' => $article->getName(),
                 'slug' => $article->getSlug(),
                 'description' => $article->getDescription(),
-                'stock' => $article->getStock(),
-                'price' => $article->getPrice()->getAmount(),
-                'currency' => $article->getPrice()->getCurrency()->getSymbol(),
+                'price' => $price->getAmount(),
+                'currency' => $price->getCurrency()->getSymbol(),
                 'reducedPrice' => $article->getReducedPrice()->getAmount(),
                 'reducedPriceCurrency' => $article->getReducedPrice()->getCurrency()->getSymbol(),
                 'principalCategory' => $article->getPrincipalCategory()->getName(),

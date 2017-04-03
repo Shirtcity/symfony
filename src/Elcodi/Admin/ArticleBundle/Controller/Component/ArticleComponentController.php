@@ -123,6 +123,11 @@ class ArticleComponentController extends AbstractAdminController
      *      name = "admin_article_new_component",
      *      methods = {"GET"}
      * )
+	 * @Route(
+     *      path = "/new/component",
+     *      name = "admin_article_new_component_update",
+     *      methods = {"POST"}
+     * )
      * @Template("AdminArticleBundle:Article:editComponent.html.twig")
      *
      * @EntityAnnotation(
@@ -148,15 +153,10 @@ class ArticleComponentController extends AbstractAdminController
     public function editComponentAction(
         FormView $formView,
         ArticleInterface $article
-    ) {
-        $useStock = $this
-            ->get('elcodi.store')
-            ->getUseStock();
-
+    ) {   
         return [
             'article'  => $article,
-            'form'     => $formView,
-            'useStock' => $useStock,
+            'form'     => $formView
         ];
     }
 }

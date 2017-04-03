@@ -8,17 +8,15 @@
 
 {% form_theme form 'AdminCoreBundle::Forms/fields.html.twig' %}
 
-
 {% block content %}
-
+	
     {% set formAction =
         article.id
             ? url('admin_article_update', { id: article.id })
             : url('admin_article_save')
      %}
-
-
-    {{ form_start(form, { action: formAction }) }}
+	 
+    {{ form_start(form, { action: formAction }) }}		
         <fieldset>
             {{ elcodi_hook("admin.article_top", {
                 'article': article
@@ -86,60 +84,8 @@
                         {% endfor %}
                         </div>
                 </div>
-            </div>            
-            <div class="grid">
-                <div class="col-1-3">
-                    <div class="box-none">
-                        <h3 class="fw-n">{{ 'admin.article.section.pricing.title'|trans }}</h3>
-                        <p>{{ 'admin.article.section.pricing.description'|trans }}</p>
-                    </div>
-                </div>
-                <div class="col-2-3">
-                    <div class="box pb-n">
-                        <ol class="grid">
-                            <li class="col-1-2">
-                                {{
-                                    form_row(form.price, {
-                                        label: 'admin.article.field.price.title',
-                                    })
-                                }}
-                            </li>
-                            <li class="col-1-2">
-                                {{
-                                    form_row(form.reducedPrice, {
-                                        label: 'admin.article.field.reduced_price.title',
-                                    })
-                                }}
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-            <div class="grid{% if not useStock %} d-n{% endif %}">
-                <div class="col-1-3">
-                    <div class="box-none">
-                        <h3 class="fw-n">{{ 'admin.article.section.stock.title'|trans }}</h3>
-                        <p>{{ 'admin.article.section.stock.description'|trans }}</p>
-                    </div>
-                </div>
-                <div class="col-2-3">
-                    <div class="box pb-n">
-                        <ol>
-                            <li>
-                                {{
-                                    form_row(form.stock, {
-                                        label: 'admin.article.field.stock.title',
-                                        attr: {
-                                        class: 'w-10'
-                                    }
-                                    })
-                                }}
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-
+            </div>           
+                        
             {% include '@AdminMedia/Module/_images-form-field.html.twig' with {
                 images: article.getSortedImages,
                 redirect_path: article.id
@@ -159,11 +105,12 @@
                             <li class="col-1-2 pb-n">
                                 <div class="pr-l">
                                     {{
-                                    form_row(form.principalCategory, {
+                                    form_row(form.sectionCategories, {
                                         label: 'admin.article.field.main_category.title',
                                         label_help: 'admin.article.field.main_category.placeholder'|trans,
                                     })
                                     }}
+									
                                     <p class="pt-s fz-default mb-n ta-r">
                                         <a href="{{ url('admin_category_new') }}" data-fc-modules="window-content">
                                             <i class="icon-plus"></i>
@@ -181,103 +128,40 @@
 			<div class="grid">
                 <div class="col-1-3">
                     <div class="box-none">
-                        <h3 class="fw-n">{{ 'admin.article.section.article_product.title'|trans }}</h3>
-                        <p>{{ 'admin.article.section.article_product.description'|trans }}</p>
+                        <h3 class="fw-n">{{ 'admin.article.article_product.title'|trans }}</h3>
+                        <p>{{ 'admin.article.article_product.description'|trans }}</p>
                     </div>
                 </div>
                 <div class="col-2-3">
                     <div class="box">
                         <ol class="grid">
-                            <li class="col-1-2 pb-n">
+                            <li class="col-1-2 pb-n" id="article-product">
                                 <div class="pr-l">
                                     {{
-                                    form_row(form.articleProduct, {
+                                    form_row(form.articleProduct.product, {
                                         label: 'admin.article.field.article_product.title',
                                         label_help: 'admin.article.field.article_product.placeholder'|trans,
                                     })
                                     }}
+									{{ form_errors(form.articleProduct.product) }}
                                 </div>
-                            </li>                            
-                        </ol>
+                            </li>
+							<li class="col-1-2 pb-n" id="article-product-color">
+                                <div class="pr-l">
+                                    {{
+                                    form_row(form.articleProduct.productColor, {
+                                        label: 'admin.article.field.article_productColor.title',
+                                        label_help: 'admin.article.field.article_productColor.placeholder'|trans,
+                                    })
+                                    }}
+                                </div>
+                            </li> 
+                        </ol>						
                     </div>
-                </div>
+                </div>						
+				
             </div> 
 								
-								
-            <div class="ph-n pt-m mb-n">
-                <div class="box-background pv-s mb-n">
-                    <a data-fc-modules="toggle" href="#dimensions-edit"><i class="icon-plus-circle"></i> {{ 'admin.article.section.dimensions.title'|trans }}  / {{ 'admin.article.section.sku.title'|trans }}</a>
-                </div>
-                <div id="dimensions-edit" class="hidden">
-                    <div class="grid pt-s">
-                        <div class="col-1-3">
-                            <div class="box-none">
-                                <h3 class="fw-n">{{ 'admin.article.section.dimensions.title'|trans }}</h3>
-                                <p>{{ 'admin.article.section.dimensions.description'|trans }}</p>
-                            </div>
-                        </div>
-                        <div class="col-2-3">
-                            <div class="box pb-n">
-                                <ol class="grid">
-                                    <li class="col-1-3">
-                                        <div class="pr-l">
-                                            {{
-                                            form_row(form.width, {
-                                                label: 'admin.article.field.width.title',
-                                            })
-                                        }}
-                                        </div>
-                                    </li>
-                                    <li class="col-1-3">
-                                        <div class="pr-l">
-                                        {{
-                                            form_row(form.height, {
-                                                label: 'admin.article.field.height.title',
-                                            })
-                                        }}
-                                        </div>
-                                    </li>
-                                    <li class="col-1-3">
-                                        <div class="pr-l">
-                                        {{
-                                            form_row(form.depth, {
-                                                label: 'admin.article.field.depth.title',
-                                            })
-                                        }}
-                                        </div>
-                                    </li>
-                                </ol>
-                                <ol>
-                                    <li class="col-1-3">
-                                        {{
-                                        form_row(form.weight, {
-                                            label: 'admin.article.field.weight.title',
-                                        })
-                                        }}
-                                    </li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid">
-                        <div class="col-1-3">
-                            <div class="box-none">
-                                <h3 class="fw-n">{{ 'admin.article.section.sku.title'|trans }}</h3>
-                                <p>{{ 'admin.article.section.sku.description'|trans }}</p>
-                            </div>
-                        </div>
-                        <div class="col-2-3">
-                            <div class="box">
-                                {{
-                                form_row(form.sku, {
-                                    label: 'admin.article.field.sku.title',
-                                })
-                                }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="ph-n pt-m mb-l">
                 <div class="box-background pv-s mb-n">
                     <a data-fc-modules="toggle" href="#metadata-info"><i class="icon-plus-circle"></i> {{ 'admin.metadata.customize'|trans }}</a>

@@ -32,6 +32,7 @@ class MappingCompilerPass extends AbstractElcodiMappingCompilerPass
 					'product_sizes',
 					'product_manufacturer',
 					'print_side',
+					'print_side_type',
                 ]
             );
     }

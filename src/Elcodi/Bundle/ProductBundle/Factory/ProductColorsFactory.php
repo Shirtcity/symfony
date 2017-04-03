@@ -19,10 +19,6 @@ class ProductColorsFactory extends AbstractFactory
 		
         $productColors = new $classNamespace();
 
-        $productColors
-			->setProduct()
-            ->setProductColor();
-
         return $productColors;
     }	
 }

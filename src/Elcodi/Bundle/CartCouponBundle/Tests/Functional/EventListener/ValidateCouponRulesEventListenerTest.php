@@ -116,7 +116,7 @@ class ValidateCouponRulesEventListenerTest extends AbstractCartCouponEventListen
                     'low_cost' => 'cart.getAmount().getAmount() > 2000',
                     'rule("few_articles") and rule("low_cost")',
                 ],
-                1,
+                0,
             ],
         ];
     }

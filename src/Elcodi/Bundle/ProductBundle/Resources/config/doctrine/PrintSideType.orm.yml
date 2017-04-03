@@ -1,0 +1,16 @@
+Elcodi\Bundle\ProductBundle\Entity\PrintSideType:
+    type: entity
+    table: print_side_type
+    repositoryClass: Elcodi\Bundle\ProductBundle\Repository\PrintSideTypeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+            
+    lifecycleCallbacks: {  }

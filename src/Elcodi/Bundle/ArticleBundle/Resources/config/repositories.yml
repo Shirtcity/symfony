@@ -20,11 +20,4 @@ services:
         arguments:
             - %elcodi.entity.article.class%    
 
-    #
-    # Repository for entity category
-    #
-    elcodi.repository.category:
-        parent: elcodi.abstract_repository
-        arguments:
-            - %elcodi.entity.category.class%
     

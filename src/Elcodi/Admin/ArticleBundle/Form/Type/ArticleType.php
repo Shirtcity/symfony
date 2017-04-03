@@ -1,20 +1,5 @@
 <?php
 
-/*
- * This file is part of the Elcodi package.
- *
- * Copyright (c) 2014-2016 Elcodi.com
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * Feel free to edit as you please, and have fun.
- *
- * @author Marc Morera <yuhu@mmoreram.com>
- * @author Aldo Chiecchia <zimage@tiscali.it>
- * @author Elcodi Team <tech@elcodi.com>
- */
-
 namespace Elcodi\Admin\ArticleBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -22,7 +7,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
 
-use Elcodi\Admin\ArticleBundle\Validation\MinimumMoney;
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
 
@@ -54,6 +38,11 @@ class ArticleType extends AbstractType
      */
     protected $articleProductNamespace;
 	
+	/**
+	 * @var $articleProductType 
+	 * 
+	 * ArticleProductType FormType
+	 */
 	protected $articleProductType;
 
     /**
@@ -89,7 +78,6 @@ class ArticleType extends AbstractType
             'data_class' => $this
                 ->factory
                 ->getEntityNamespace(),
-			'cascade_validation' => true,
         ]);
     }
 
@@ -113,7 +101,7 @@ class ArticleType extends AbstractType
                 ],
             ])
             ->add('slug', 'text', [
-                'required' => true,
+                'required'    => true,
                 'constraints' => [
                     new Constraints\Length(
                         [
@@ -128,51 +116,17 @@ class ArticleType extends AbstractType
             ->add('showInHome', 'checkbox', [
                 'required' => false,
             ])
-            ->add('stock', 'hidden', [
-                'required' => true,
-            ])
-            ->add('sku', 'text', [
-                'required' => false,
-            ])
-            ->add('price', 'money_object', [
-                'required' => true,
-                'constraints' => [
-                    new MinimumMoney([
-                        'value' => 0,
-                    ]),
-                ],
-            ])
-            ->add('reducedPrice', 'money_object', [
-                'required' => false,
-                'constraints' => [
-                    new MinimumMoney([
-                        'value' => 0,
-                    ]),
-                ],
-            ])
             ->add('imagesSort', 'text', [
                 'required' => false,
             ])
             ->add('enabled', 'checkbox', [
                 'required' => false,
             ])
-            ->add('height', 'number', [
-                'required' => false,
-            ])
-            ->add('width', 'number', [
-                'required' => false,
-            ])
-            ->add('depth', 'number', [
-                'required' => false,
-            ])
-            ->add('weight', 'number', [
-                'required' => false,
-            ])
             ->add('metaTitle', 'text', [
                 'required' => false,
             ])
             ->add('metaDescription', 'text', [
-                'required' => false,
+                'required'    => false,
                 'constraints' => [
                     new Constraints\Length(
                         [
@@ -184,17 +138,11 @@ class ArticleType extends AbstractType
             ->add('metaKeywords', 'text', [
                 'required' => false,
             ])
-            ->add('stock', 'number', [
-                'required' => false,
-            ])
-            ->add('principalCategory', 'entity', [
-                'class'    => $this->categoryNamespace,
-                'required' => true,
-                'multiple' => false,
-            ])
-			->add('articleProduct', $this->articleProductType, [
-				'required' => true,
-			])				
+			->add('sectionCategories', 'expanded_otm',[
+                'class'  => $this->categoryNamespace,
+                'fields' => ['name',],				
+			])
+			->add('articleProduct', $this->articleProductType)				
             ->add('images', 'entity', [
                 'class'    => $this->imageNamespace,
                 'required' => false,

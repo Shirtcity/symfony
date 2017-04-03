@@ -23,7 +23,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Elcodi\Component\Currency\Entity\Interfaces\CurrencyInterface;
 use Elcodi\Component\Currency\Entity\Money;
 use Elcodi\Component\EntityTranslator\Services\Interfaces\EntityTranslatorInterface;
-use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
+use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Fixtures\DataFixtures\ORM\Article\Abstracts\AbstractPurchasableData;
 
@@ -74,7 +74,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->addCategory($womenCategory)
             ->setPrincipalCategory($womenCategory)
             ->setShowInHome(true)
-            ->setStock(10000)
             ->setPrice(Money::create(799, $currencyUsd))
             ->setEnabled(true);
 
@@ -151,7 +150,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($womenCategory)
             ->setPrincipalCategory($womenCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(399, $currencyEur))
             ->setEnabled(true);
 
@@ -226,7 +224,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($womenCategory)
             ->setPrincipalCategory($womenCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(2105, $currencyUsd))
             ->setEnabled(true);
 
@@ -301,7 +298,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($womenCategory)
             ->setPrincipalCategory($womenCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(1290, $currencyUsd))
             ->setEnabled(true);
 
@@ -376,7 +372,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($womenCategory)
             ->setPrincipalCategory($womenCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(1190, $currencyUsd))
             ->setEnabled(true);
 
@@ -451,7 +446,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($womenCategory)
             ->setPrincipalCategory($womenCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(1390, $currencyUsd))
             ->setEnabled(true);
 
@@ -526,7 +520,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($womenCategory)
             ->setPrincipalCategory($womenCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(1090, $currencyUsd))
             ->setEnabled(true);
 
@@ -601,7 +594,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($womenCategory)
             ->setPrincipalCategory($womenCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(1290, $currencyUsd))
             ->setEnabled(true);
 
@@ -676,7 +668,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($womenCategory)
             ->setPrincipalCategory($womenCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(1190, $currencyUsd))
             ->setEnabled(true);
 
@@ -751,7 +742,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($menCategory)
             ->setPrincipalCategory($menCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(1190, $currencyUsd))
             ->setEnabled(true);
 
@@ -826,7 +816,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($menCategory)
             ->setPrincipalCategory($menCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(1800, $currencyUsd))
             ->setEnabled(true);
 
@@ -901,7 +890,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($menCategory)
             ->setPrincipalCategory($menCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(1650, $currencyUsd))
             ->setEnabled(true);
 
@@ -976,7 +964,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($menCategory)
             ->setPrincipalCategory($menCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(1550, $currencyUsd))
             ->setEnabled(true);
 
@@ -1051,7 +1038,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($menCategory)
             ->setPrincipalCategory($menCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(1710, $currencyUsd))
             ->setEnabled(true);
 
@@ -1127,7 +1113,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($menCategory)
             ->setPrincipalCategory($menCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(18000, $currencyUsd))
             ->setEnabled(true);
 
@@ -1203,7 +1188,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($menCategory)
             ->setPrincipalCategory($menCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(2000, $currencyUsd))
             ->setEnabled(true);
 
@@ -1279,7 +1263,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($menCategory)
             ->setPrincipalCategory($menCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(1145, $currencyUsd))
             ->setEnabled(true);
 
@@ -1354,7 +1337,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ->setShowInHome(true)
             ->addCategory($menCategory)
             ->setPrincipalCategory($menCategory)
-            ->setStock(10000)
             ->setPrice(Money::create(1020, $currencyUsd))
             ->setEnabled(true);
 

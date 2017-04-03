@@ -246,8 +246,6 @@ class CartManager
     /**
      * Adds quantity to cartLine.
      *
-     * If quantity is higher than item stock, throw exception
-     *
      * This method dispatches all Cart Check and Load events
      *
      * @param CartLineInterface $cartLine Cart line
@@ -299,8 +297,6 @@ class CartManager
 
     /**
      * Sets quantity to cartLine.
-     *
-     * If quantity is higher than item stock, throw exception
      *
      * This method dispatches all Cart Check and Load events
      *

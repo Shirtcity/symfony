@@ -31,8 +31,6 @@ use Elcodi\Component\MetaData\Entity\Interfaces\MetaDataInterface;
  *
  * a Purchasable is an object that:
  *
- * * Has a SKU (Stock Keeping Unit) code
- * * Has stock attribute, reporting the purchasable availability.
  * * Implements ArticlePriceInterface, so that prices can be read and written
  *
  * Using this consistent interface, services and classes that operate on
@@ -46,26 +44,8 @@ interface PurchasableInterface
     ETaggableInterface,
     MetaDataInterface,
     ImagesContainerWithPrincipalImageInterface,
-    EnabledInterface,
-    PurchasablePriceInterface,
-    DimensionableInterface
+    EnabledInterface
 {
-    /**
-     * Gets the variant SKU.
-     *
-     * @return string
-     */
-    public function getSku();
-
-    /**
-     * Sets the variant SKU.
-     *
-     * @param string $sku
-     *
-     * @return $this Self object
-     */
-    public function setSku($sku);
-
     /**
      * Get Slug.
      *
@@ -81,23 +61,7 @@ interface PurchasableInterface
      * @return $this Self object
      */
     public function setSlug($slug);
-
-    /**
-     * Gets the variant stock.
-     *
-     * @return int stock
-     */
-    public function getStock();
-
-    /**
-     * Sets the variant stock.
-     *
-     * @param int $stock
-     *
-     * @return $this Self object
-     */
-    public function setStock($stock);
-
+    
     /**
      * Get Name.
      *
@@ -161,72 +125,6 @@ interface PurchasableInterface
      * @return $this Self object
      */
     public function setShowInHome($showInHome);
-
-    /**
-     * Get Dimensions.
-     *
-     * @return string Dimensions
-     */
-    public function getDimensions();
-
-    /**
-     * Sets Dimensions.
-     *
-     * @param string $dimensions Dimensions
-     *
-     * @return $this Self object
-     */
-    public function setDimensions($dimensions);
-
-    /**
-     * Set the height.
-     *
-     * @param int $height Height
-     *
-     * @return $this Self object
-     */
-    public function setHeight($height);
-
-    /**
-     * Set the width.
-     *
-     * @param int $width Width
-     *
-     * @return $this Self object
-     */
-    public function setWidth($width);
-
-    /**
-     * Set the depth.
-     *
-     * @param int $depth Depth
-     *
-     * @return $this Self object
-     */
-    public function setDepth($depth);
-
-    /**
-     * Set the weight.
-     *
-     * @param int $weight Weight
-     *
-     * @return $this Self object
-     */
-    public function setWeight($weight);
-
-    /**
-     * Get categories.
-     *
-     * @return Collection Categories
-     */
-    public function getCategories();
-
-    /**
-     * Get the principalCategory.
-     *
-     * @return CategoryInterface Principal category
-     */
-    public function getPrincipalCategory();    
 
     /**
      * Get purchasable type.

@@ -6,9 +6,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
+
+use Elcodi\Form\Type\ColorCheckboxType;
 
 /**
  * Class ProductColorsType
@@ -18,35 +22,6 @@ class ProductColorsType extends AbstractType
     use EntityTranslatableFormTrait, FactoryTrait;
     
     /**
-     * @var string
-     *
-     * Category namespace
-     */
-    protected $productNamespace;
-
-    /**
-     * @var string
-     *
-     * Image namespace
-     */
-    protected $productColorNamespace;
-	
-
-    /**
-     * Construct
-     *
-	 * @param string $productNamespace		Product namespace
-	 * @param string $productColorNamespace	ProductColor namespace
-     */
-    public function __construct(
-		$productNamespace,
-		$productColorNamespace
-    ) {
-        $this->productNamespace = $productNamespace;
-		$this->productColorNamespace = $productColorNamespace;
-    }
-
-    /**
      * Configures the options for this type.
      *
      * @param OptionsResolver $resolver The resolver for the options.
@@ -54,17 +29,9 @@ class ProductColorsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {		
         $resolver->setDefaults([
-			'empty_data' => function(FormInterface $form) {
-				$productColors = $this
-					->factory
-					->create();
-				
-				return $productColors
-					->setProduct($form->get('product')->getData())
-					->setProductColor($form->get('productColor')->getData());				
-			},
-            'data_class' => null,
-			'cascade_validation' => true,
+			'data_class' => $this
+                ->factory
+                ->getEntityNamespace(),
         ]);			
     }
 
@@ -76,15 +43,23 @@ class ProductColorsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-			->add('productColor', 'entity', [
-                'class'    => $this->productColorNamespace,
-                'required' => false,
-                'multiple' => true,
-				'expanded' => true,
-            ]);
-		
-        $builder->addEventSubscriber($this->getEntityTranslatorFormEventListener());
+		$builder
+            ->addEventListener(
+                FormEvents::POST_SET_DATA,
+                function (FormEvent $event) use ($options) {
+                    $entity = $event->getData();
+                    $form = $event->getForm();
+					
+					$label = $entity ? $entity->getColor()->getCode() : false;
+					
+					$form
+						->add('exists', 'color_checkbox', [
+							'required' => false,
+							'label'    => $label,
+						]);
+                }
+            )
+        ;
     }
 
     /**

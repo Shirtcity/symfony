@@ -86,7 +86,7 @@ class CartOrderTransformerTest extends WebTestCase
 
         $cartManager->addPurchasable(
             $cart,
-            $this->find('article', 7),
+            $this->find('article', 3),
             1
         );
 
@@ -97,12 +97,12 @@ class CartOrderTransformerTest extends WebTestCase
             ->get('elcodi.transformer.cart_order')
             ->createOrderFromCart($cart);
 
-        $this->assertEquals(3, $order
+        $this->assertEquals(2, $order
             ->getOrderLines()
             ->count()
         );
 
-        $this->assertEquals(7500, $order
+        $this->assertEquals(20, $order
             ->getAmount()
             ->getAmount()
         );

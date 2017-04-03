@@ -20,9 +20,10 @@ namespace Elcodi\Component\Article\Entity;
 use Doctrine\Common\Collections\Collection;
 
 use Elcodi\Component\Attribute\Entity\Interfaces\AttributeInterface;
-use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
+use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleProductInterface;
+use Elcodi\Component\Article\PriceResolver\ArticlePriceResolver;
 
 /**
  * Class Article entity.
@@ -49,71 +50,82 @@ class Article extends Purchasable implements ArticleInterface
 	 * Article products
      */
     protected $articleProduct;
-
-    /**
-     * Set categories.
+	
+	/**
+     * @var Collection
      *
-     * @param Collection $categories Categories
+     * Many-to-Many association between articles and section categories.
+     */
+    protected $sectionCategories;  
+
+	/**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->attributes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+	
+    /**
+     * Set section categories.
+     *
+     * @param Collection $sectionCategories SectionCategories
      *
      * @return $this Self object
      */
-    public function setCategories(Collection $categories)
+    public function setSectionCategories(Collection $sectionCategories)
     {
-        $this->categories = $categories;
+        $this->sectionCategories = $sectionCategories;
 
         return $this;
     }
 
     /**
-     * Add category.
+     * Add section category.
      *
-     * @param CategoryInterface $category Category
+     * @param CategoryInterface $sectionCategory SectionCategory
      *
      * @return $this Self object
      */
-    public function addCategory(CategoryInterface $category)
+    public function addSectionCategory(CategoryInterface $sectionCategory)
     {
         if (!$this
-            ->categories
-            ->contains($category)
+            ->sectionCategories
+            ->contains($sectionCategory)
         ) {
             $this
-                ->categories
-                ->add($category);
+                ->sectionCategories
+                ->add($sectionCategory);
         }
 
         return $this;
     }
+	
+	/**
+     * Get section categories.
+     *
+     * @return Collection SectionCategories
+     */
+    public function getSectionCategories()
+	{
+		return $this->sectionCategories;
+	}
 
     /**
-     * Remove category.
+     * Remove section category.
      *
-     * @param CategoryInterface $category Category
+     * @param CategoryInterface $sectionCategory SectionCategory
      *
      * @return $this Self object
      */
-    public function removeCategory(CategoryInterface $category)
+    public function removeSectionCategory(CategoryInterface $sectionCategory)
     {
         $this
-            ->categories
-            ->removeElement($category);
+            ->sectionCategories
+            ->removeElement($sectionCategory);
 
         return $this;
-    }
-
-    /**
-     * Set the principalCategory.
-     *
-     * @param CategoryInterface $principalCategory Principal category
-     *
-     * @return $this Self object
-     */
-    public function setPrincipalCategory(CategoryInterface $principalCategory = null)
-    {
-        $this->principalCategory = $principalCategory;
-
-        return $this;
-    }    
+    }       
 
     /**
      * Sets Type.
@@ -197,9 +209,9 @@ class Article extends Purchasable implements ArticleInterface
         $this->attributes = $attributes;
 
         return $this;
-    }
+    }    
 
-    /**
+	/**
      * Get purchasable type.
      *
      * @return string Purchasable type
@@ -231,15 +243,5 @@ class Article extends Purchasable implements ArticleInterface
     public function getArticleProduct()
     {
         return $this->articleProduct;
-    }
-	
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->attributes = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    
+    }	
 }

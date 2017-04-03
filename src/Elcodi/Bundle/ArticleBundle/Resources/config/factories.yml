@@ -9,21 +9,13 @@ services:
     #
     elcodi.factory.article:
         class: Elcodi\Component\Article\Factory\ArticleFactory
-        parent: elcodi.factory.abstract.purchasable
+        arguments:
+            - "@elcodi.repository.product"
         calls:
             - [setEntityNamespace, ["%elcodi.entity.article.class%"]]
-            - [setUseStock, ["@elcodi.store_uses_stock"]]
             - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
     
-    #
-    # Factory for Category entities
-    #
-    elcodi.factory.category:
-        class: Elcodi\Component\Article\Factory\CategoryFactory
-        calls:
-            - [setEntityNamespace, ["%elcodi.entity.category.class%"]]
-            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
-            
+    
     #
     # Factory for ArticleProduct entities
     #

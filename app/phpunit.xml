@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- http://phpunit.de/manual/current/en/appendixes.configuration.html -->
+<phpunit
+    backupGlobals               = "false"
+    backupStaticAttributes      = "false"
+    colors                      = "true"
+    convertErrorsToExceptions   = "true"
+    convertNoticesToExceptions  = "true"
+    convertWarningsToExceptions = "true"
+    processIsolation            = "false"
+    stopOnFailure               = "true"
+    syntaxCheck                 = "false" >
+	
+    <testsuites>
+		<testsuite name="current">          
+			<directory>../src/Elcodi/*/*Bundle/Resources</directory>
+			<directory>../src/Elcodi/Bundle/ArticleBundle/Tests/Functional/Entity</directory> 			
+        </testsuite>
+		
+        <testsuite name="bundles">          
+			<directory>../src/Elcodi/*/*Bundle/Resources</directory>
+			<directory>../src/Elcodi/Bundle/*Bundle/Tests</directory> 			
+        </testsuite>
+		
+		<testsuite name="components">          
+			<directory>../src/Elcodi/*/*Bundle/Resources</directory>
+			<directory>../src/Elcodi/Component/*/Tests</directory> 			
+        </testsuite>
+		
+		<testsuite name="articleBundle">     
+			<directory>../src/Elcodi/Bundle/ArticleBundle/Tests</directory>		
+        </testsuite>
+		
+		<testsuite name="articleComponent"> 
+			<directory>../src/Elcodi/Component/Article/Tests</directory> 			
+        </testsuite>
+    </testsuites>
+
+	<filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory>../src</directory>
+			<exclude>
+				<directory>../src/Elcodi/Component/*/Tests</directory>
+				<directory>../src/Elcodi/Bundle/*Bundle/Tests</directory>
+			</exclude>
+        </whitelist>
+		<exclude>
+			<directory>../src/Elcodi/Component/Article_bak</directory>
+			<directory>../src/Elcodi/Bundle/*Bundle/ArticleBundle_bak</directory>
+		</exclude>
+    </filter>
+	
+</phpunit>

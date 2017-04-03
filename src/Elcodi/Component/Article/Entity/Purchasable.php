@@ -26,10 +26,9 @@ use Elcodi\Component\Core\Entity\Traits\IdentifiableTrait;
 use Elcodi\Component\Media\Entity\Traits\ImagesContainerTrait;
 use Elcodi\Component\Media\Entity\Traits\PrincipalImageTrait;
 use Elcodi\Component\MetaData\Entity\Traits\MetaDataTrait;
-use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
+use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
-use Elcodi\Component\Article\Entity\Traits\DimensionsTrait;
-use Elcodi\Component\Article\Entity\Traits\PurchasablePriceTrait;
+use Elcodi\Bundle\PriceBundle\Entity\Traits\PriceTrait;
 
 /**
  * Class Purchasable.
@@ -43,8 +42,7 @@ abstract class Purchasable implements PurchasableInterface
         ImagesContainerTrait,
         PrincipalImageTrait,
         EnabledTrait,
-        DimensionsTrait,
-        PurchasablePriceTrait;
+        PriceTrait;
 
     /**
      * @var string
@@ -56,24 +54,9 @@ abstract class Purchasable implements PurchasableInterface
     /**
      * @var string
      *
-     * Article SKU
-     */
-    protected $sku;
-
-    /**
-     * @var int
-     *
-     * Stock
-     */
-    protected $stock;
-
-    /**
-     * @var string
-     *
      * Name
      */
-    protected $name;
-	
+    protected $name;	
 
     /**
      * @var string
@@ -94,28 +77,7 @@ abstract class Purchasable implements PurchasableInterface
      *
      * Article must show in home
      */
-    protected $showInHome;
-
-    /**
-     * @var string
-     *
-     * Article dimensions
-     */
-    protected $dimensions;    
-
-    /**
-     * @var Collection
-     *
-     * Many-to-Many association between articles and categories.
-     */
-    protected $categories;
-
-    /**
-     * @var CategoryInterface
-     *
-     * Principal category
-     */
-    protected $principalCategory;
+    protected $showInHome;        
 
     /**
      * @var string
@@ -147,55 +109,7 @@ abstract class Purchasable implements PurchasableInterface
 
         return $this;
     }
-
-    /**
-     * Get Sku.
-     *
-     * @return string Sku
-     */
-    public function getSku()
-    {
-        return $this->sku;
-    }
-
-    /**
-     * Sets Sku.
-     *
-     * @param string $sku Sku
-     *
-     * @return $this Self object
-     */
-    public function setSku($sku)
-    {
-        $this->sku = $sku;
-
-        return $this;
-    }
-
-    /**
-     * Get Stock.
-     *
-     * @return int Stock
-     */
-    public function getStock()
-    {
-        return $this->stock;
-    }
-
-    /**
-     * Sets Stock.
-     *
-     * @param int $stock Stock
-     *
-     * @return $this Self object
-     */
-    public function setStock($stock)
-    {
-        $this->stock = $stock;
-
-        return $this;
-    }
-
+    
     /**
      * Get Name.
      *
@@ -290,51 +204,7 @@ abstract class Purchasable implements PurchasableInterface
         $this->showInHome = $showInHome;
 
         return $this;
-    }
-
-    /**
-     * Get Dimensions.
-     *
-     * @return string Dimensions
-     */
-    public function getDimensions()
-    {
-        return $this->dimensions;
-    }
-
-    /**
-     * Sets Dimensions.
-     *
-     * @param string $dimensions Dimensions
-     *
-     * @return $this Self object
-     */
-    public function setDimensions($dimensions)
-    {
-        $this->dimensions = $dimensions;
-
-        return $this;
-    }
-
-    /**
-     * Get categories.
-     *
-     * @return Collection Categories
-     */
-    public function getCategories()
-    {
-        return $this->categories;
-    }    
-
-    /**
-     * Get the principalCategory.
-     *
-     * @return CategoryInterface Principal category
-     */
-    public function getPrincipalCategory()
-    {
-        return $this->principalCategory;
-    }
+    }	
 
     /**
      * Get purchasable type.
@@ -344,5 +214,5 @@ abstract class Purchasable implements PurchasableInterface
     public function getPurchasableType()
     {
         return 'purchasable';
-    }
+}
 }

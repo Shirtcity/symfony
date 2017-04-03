@@ -51,7 +51,7 @@ class ImageManagerTest extends PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $mockResizeAdapter = $this->getMock(
+        $mockResizeAdapter = $this->createMock(
             'Elcodi\Component\Media\Adapter\Resizer\Interfaces\ResizeAdapterInterface'
         );
 

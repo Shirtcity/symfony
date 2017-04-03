@@ -59,7 +59,6 @@ class StoreData extends AbstractFixture implements DependentFixtureInterface
             ->setCif('B-12345678')
             ->setTracker('123456')
             ->setTemplate('2f1614601b2241b90c05cb67bc08f1ab7ba52af0')
-            ->setUseStock(true)
             ->setAddress($address)
             ->setDefaultLanguage($language)
             ->setDefaultCurrency($currency);

@@ -26,8 +26,8 @@ use Elcodi\Bundle\CoreBundle\Abstracts\AbstractElcodiBundle;
 use Elcodi\Bundle\ArticleBundle\CompilerPass\MappingCompilerPass;
 use Elcodi\Bundle\ArticleBundle\CompilerPass\PurchasableImageResolverCompilerPass;
 use Elcodi\Bundle\ArticleBundle\CompilerPass\PurchasableNameResolverCompilerPass;
-use Elcodi\Bundle\ArticleBundle\CompilerPass\PurchasableStockUpdaterCompilerPass;
-use Elcodi\Bundle\ArticleBundle\CompilerPass\PurchasableStockValidatorCompilerPass;
+//use Elcodi\Bundle\ArticleBundle\CompilerPass\PurchasableStockUpdaterCompilerPass;
+//use Elcodi\Bundle\ArticleBundle\CompilerPass\PurchasableStockValidatorCompilerPass;
 use Elcodi\Bundle\ArticleBundle\DependencyInjection\ElcodiArticleExtension;
 
 /**
@@ -44,8 +44,8 @@ class ElcodiArticleBundle extends AbstractElcodiBundle implements DependentBundl
 
         $container->addCompilerPass(new MappingCompilerPass());
         $container->addCompilerPass(new PurchasableNameResolverCompilerPass());
-        $container->addCompilerPass(new PurchasableStockValidatorCompilerPass());
-        $container->addCompilerPass(new PurchasableStockUpdaterCompilerPass());
+       // $container->addCompilerPass(new PurchasableStockValidatorCompilerPass());
+       // $container->addCompilerPass(new PurchasableStockUpdaterCompilerPass());
         $container->addCompilerPass(new PurchasableImageResolverCompilerPass());
     }
 

@@ -21,8 +21,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 use Elcodi\Bundle\CoreBundle\DataFixtures\ORM\Abstracts\AbstractFixture;
 use Elcodi\Component\EntityTranslator\Services\Interfaces\EntityTranslatorInterface;
-use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
-use Elcodi\Component\Article\Factory\CategoryFactory;
+use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
+use Elcodi\Bundle\CategoryBundle\Factory\CategoryFactory;
 
 /**
  * Class CategoryData

@@ -39,13 +39,13 @@ class CartLineTest extends WebTestCase
     /**
      * Test cart dimensions.
      */
-    public function testDimensions()
+    public function testPurchasableAmounts()
     {
         $cart = $this->find('cart_line', 1);
 
-        $this->assertEquals(10, $cart->getHeight());
-        $this->assertEquals(15, $cart->getWidth());
-        $this->assertEquals(20, $cart->getDepth());
-        $this->assertEquals(200, $cart->getWeight());
+        $this->assertEquals(10, $cart->getPurchasableAmount()->getAmount());
+		$this->assertEquals('USD', $cart->getPurchasableAmount()->getCurrency());
+        $this->assertEquals(10, $cart->getAmount()->getAmount());
+        $this->assertEquals('USD', $cart->getAmount()->getCurrency());
     }
 }

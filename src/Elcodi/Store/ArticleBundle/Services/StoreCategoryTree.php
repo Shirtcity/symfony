@@ -19,8 +19,8 @@ namespace Elcodi\Store\ArticleBundle\Services;
 
 use Elcodi\Component\Core\Wrapper\Abstracts\AbstractCacheWrapper;
 use Elcodi\Component\Language\Entity\Interfaces\LocaleInterface;
-use Elcodi\Component\Article\Entity\Category;
-use Elcodi\Component\Article\Services\CategoryTree;
+use Elcodi\Bundle\CategoryBundle\Entity\Category;
+use Elcodi\Bundle\CategoryBundle\Services\CategoryTree;
 
 /**
  * Class StoreCategoryTree

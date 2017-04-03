@@ -1,0 +1,20 @@
+services:
+
+    #
+    # Object Managers
+    #
+    elcodi.object_manager.product:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.product.class%
+
+    elcodi.object_manager.product_color:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.product_color.class%
+   
+    elcodi.object_manager.product_size:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.product_size.class%
+

@@ -91,4 +91,11 @@ interface ArticleInterface extends PurchasableInterface, CategorizableInterface
      * @return ArticleProductInterface
      */
     public function getArticleProduct();
+	
+	/**
+     * Get section categories.
+     *
+     * @return Collection SectionCategories
+     */
+    public function getSectionCategories();
 }

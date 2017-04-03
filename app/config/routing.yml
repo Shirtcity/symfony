@@ -1,4 +1,9 @@
+category:
+    resource: "@CategoryBundle/Resources/config/routing.yml"
+    prefix:   /
+
 elcodi_printable:
     resource: "@PrintableBundle/Resources/config/routing.yml"
     prefix:   /
+
 

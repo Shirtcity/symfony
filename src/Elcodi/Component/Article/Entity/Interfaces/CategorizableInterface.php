@@ -18,6 +18,7 @@
 namespace Elcodi\Component\Article\Entity\Interfaces;
 
 use Doctrine\Common\Collections\Collection;
+use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 
 /**
  * Interface CategorizableInterface.
@@ -29,7 +30,7 @@ interface CategorizableInterface
      *
      * @return Collection Categories
      */
-    public function getCategories();
+    public function getSectionCategories();
 
     /**
      * Set categories.
@@ -38,7 +39,7 @@ interface CategorizableInterface
      *
      * @return $this Self object
      */
-    public function setCategories(Collection $categories);
+    public function setSectionCategories(Collection $categories);
 
     /**
      * Add category.
@@ -47,7 +48,7 @@ interface CategorizableInterface
      *
      * @return $this Self object
      */
-    public function addCategory(CategoryInterface $category);
+    public function addSectionCategory(CategoryInterface $category);
 
     /**
      * Remove category.
@@ -56,21 +57,6 @@ interface CategorizableInterface
      *
      * @return $this Self object
      */
-    public function removeCategory(CategoryInterface $category);
+    public function removeSectionCategory(CategoryInterface $category);
 
-    /**
-     * Get the principalCategory.
-     *
-     * @return CategoryInterface Principal category
-     */
-    public function getPrincipalCategory();
-
-    /**
-     * Set the principalCategory.
-     *
-     * @param CategoryInterface $principalCategory Principal category
-     *
-     * @return $this Self object
-     */
-    public function setPrincipalCategory(CategoryInterface $principalCategory = null);
 }

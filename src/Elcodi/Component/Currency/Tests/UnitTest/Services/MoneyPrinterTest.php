@@ -48,8 +48,16 @@ class MoneyPrinterTest extends PHPUnit_Framework_TestCase
         $currencyFactory->setDateTimeFactory(new DateTimeFactory());
 
         $priceExtension = new MoneyPrinter(
-            $this->getMock('Elcodi\Component\Currency\Services\CurrencyConverter', [], [], '', false),
-            $this->getMock('Elcodi\Component\Currency\Wrapper\CurrencyWrapper', [], [], '', false),
+			$this->getMockBuilder('Elcodi\Component\Currency\Services\CurrencyConverter')
+				->setMethods([])
+				->setMockClassName('')
+				->disableOriginalConstructor(true)
+				->getMock(),
+			$this->getMockBuilder('Elcodi\Component\Currency\Wrapper\CurrencyWrapper')
+				->setMethods([])
+				->setMockClassName('')
+				->disableOriginalConstructor(true)
+				->getMock(),
             Locale::create($locale)
         );
 
@@ -91,14 +99,22 @@ class MoneyPrinterTest extends PHPUnit_Framework_TestCase
      */
     public function testCurrencyRateNotFoundThrowsException()
     {
-        $locale = $this->getMock('Elcodi\Component\Language\Entity\Interfaces\LocaleInterface');
+        $locale = $this->createMock('Elcodi\Component\Language\Entity\Interfaces\LocaleInterface');
         $locale
             ->expects($this->any())
             ->method('getIso')
             ->willReturn('es_ES');
         $priceExtension = new MoneyPrinter(
-            $this->getMock('Elcodi\Component\Currency\Services\CurrencyConverter', [], [], '', false),
-            $this->getMock('Elcodi\Component\Currency\Wrapper\CurrencyWrapper', [], [], '', false),
+			$this->getMockBuilder('Elcodi\Component\Currency\Services\CurrencyConverter')
+				->setMethods([])
+				->setMockClassName('')
+				->disableOriginalConstructor(true)
+				->getMock(),
+			$this->getMockBuilder('Elcodi\Component\Currency\Wrapper\CurrencyWrapper')
+				->setMethods([])
+				->setMockClassName('')
+				->disableOriginalConstructor(true)
+				->getMock(),
             Locale::create($locale)
         );
         $currencyFactory = new CurrencyFactory();

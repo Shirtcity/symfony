@@ -39,13 +39,10 @@ class CartTest extends WebTestCase
     /**
      * Test cart dimensions.
      */
-    public function testDimensions()
+    public function testCartNotOrdered()
     {
         $cart = $this->find('cart', 2);
 
-        $this->assertEquals(25, $cart->getHeight());
-        $this->assertEquals(30, $cart->getWidth());
-        $this->assertEquals(35, $cart->getDepth());
-        $this->assertEquals(600, $cart->getWeight());
+        $this->assertEquals(false, $cart->isOrdered());
     }
 }

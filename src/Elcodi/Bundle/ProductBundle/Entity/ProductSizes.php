@@ -7,11 +7,15 @@ use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductSizeInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductSizesInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorsInterface;
 
+use Elcodi\Component\Core\Entity\Traits\ExistsTrait;
+
 /**
  * ProductSizes
  */
 class ProductSizes implements ProductSizesInterface
 {
+	use ExistsTrait;
+	
     /**
      * @var integer
      */
@@ -131,9 +135,4 @@ class ProductSizes implements ProductSizesInterface
     {
         return $this->colors;
     }
-	
-	public function __toString() 
-	{
-		return $this->getSize()->getName();
-	}
 }

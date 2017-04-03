@@ -1,0 +1,45 @@
+services:
+
+    #
+    # Form Types
+    #
+    
+    #
+    # Section Category
+    #
+    elcodi_admin.form_type.section_category:
+        class: Elcodi\Admin\CategoryBundle\Form\Type\CategoryType
+        arguments:
+            - 'elcodi_admin_article_form_type_section_category'
+        calls:
+            - [setFactory, ["@elcodi.factory.section_category"]]
+            - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_article_form_type_section_category }
+    
+    #
+    # Product Category
+    #
+    elcodi_admin.form_type.product_category:
+        class: Elcodi\Admin\CategoryBundle\Form\Type\CategoryType
+        arguments:
+            - 'elcodi_admin_article_form_type_product_category'
+        calls:
+            - [setFactory, ["@elcodi.factory.product_category"]]
+            - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_article_form_type_product_category }
+    
+    #
+    # Design Category
+    #
+    elcodi_admin.form_type.design_category:
+        class: Elcodi\Admin\CategoryBundle\Form\Type\CategoryType
+        arguments:
+            - 'elcodi_admin_article_form_type_design_category'
+        calls:
+            - [setFactory, ["@elcodi.factory.design_category"]]
+            - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_article_form_type_design_category }
+            

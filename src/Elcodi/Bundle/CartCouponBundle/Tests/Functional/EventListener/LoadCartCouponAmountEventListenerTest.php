@@ -38,7 +38,7 @@ class LoadCartCouponAmountEventListenerTest extends AbstractCartCouponEventListe
                 $coupon
             );
 
-        $this->assertEquals(360, $coupon
+        $this->assertEquals(5, $coupon
             ->getAbsolutePrice()
             ->getAmount()
         );
@@ -49,7 +49,7 @@ class LoadCartCouponAmountEventListenerTest extends AbstractCartCouponEventListe
             ->getSymbol()
         );
 
-        $this->assertEquals(360, $cart
+        $this->assertEquals(5, $cart
             ->getCouponAmount()
             ->getAmount()
         );
@@ -60,7 +60,7 @@ class LoadCartCouponAmountEventListenerTest extends AbstractCartCouponEventListe
             ->getSymbol()
         );
 
-        $this->assertEquals(2640, $cart
+        $this->assertEquals(35, $cart
             ->getAmount()
             ->getAmount()
         );

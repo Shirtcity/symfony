@@ -98,6 +98,11 @@ class ProductExtension extends AbstractExtension implements EntitiesOverridableE
             'elcodi.entity.print_side.mapping_file' => $config['mapping']['print_side']['mapping_file'],
             'elcodi.entity.print_side.manager' => $config['mapping']['print_side']['manager'],
             'elcodi.entity.print_side.enabled' => $config['mapping']['print_side']['enabled'],
+			
+			'elcodi.entity.print_side_type.class' => $config['mapping']['print_side_type']['class'],
+            'elcodi.entity.print_side_type.mapping_file' => $config['mapping']['print_side_type']['mapping_file'],
+            'elcodi.entity.print_side_type.manager' => $config['mapping']['print_side_type']['manager'],
+            'elcodi.entity.print_side_type.enabled' => $config['mapping']['print_side_type']['enabled'],
         ];
     }
 
@@ -110,17 +115,16 @@ class ProductExtension extends AbstractExtension implements EntitiesOverridableE
      */
     public function getConfigFiles(array $config)
     {
-        return [
-			
+        return [			
             'services',
             'factories',			
             'repositories',
 			'imageResolvers',
 			'twig',
+			'eventListeners',
+			'directors',
+			'objectManagers',
 			/*
-            'objectManagers',            
-            'directors',
-            'eventListeners',
             'adapters',
             'nameResolvers',
             'stockUpdaters',

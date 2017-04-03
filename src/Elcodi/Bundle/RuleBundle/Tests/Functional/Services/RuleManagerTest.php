@@ -63,7 +63,7 @@ class RuleManagerTest extends WebTestCase
         $rule = new Rule();
         $rule->setExpression('cart.getTotalItemNumber() < 10');
 
-        $cart = $this->getMock('Elcodi\Component\Cart\Entity\Interfaces\CartInterface');
+        $cart = $this->createMock('Elcodi\Component\Cart\Entity\Interfaces\CartInterface');
         $cart->expects($this->any())->method('getTotalItemNumber')->willReturn(5);
 
         $context = [
@@ -87,7 +87,7 @@ class RuleManagerTest extends WebTestCase
         $rule = new Rule();
         $rule->setExpression('rule("cart_valuable_items")');
 
-        $cart = $this->getMock('Elcodi\Component\Cart\Entity\Interfaces\CartInterface');
+        $cart = $this->createMock('Elcodi\Component\Cart\Entity\Interfaces\CartInterface');
         $cart->expects($this->any())->method('getAmount')->willReturn($amount);
         $cart->expects($this->any())->method('getTotalItemNumber')->willReturn($quantity);
 
