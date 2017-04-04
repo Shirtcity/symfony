@@ -47,6 +47,18 @@ Elcodi\Bundle\PrintableBundle\Entity\Design:
                 inverseJoinColumns:
                   foil_color_id:
                     referencedColumnName: id
+        country:
+            targetEntity: Elcodi\Component\Geo\Entity\Location
+            joinTable:
+                name: designs_countries
+                joinColumns:
+                  design_id:
+                    referencedColumnName: id
+                inverseJoinColumns:
+                  location_id:
+                    referencedColumnName: id
+            cascade:
+                - persist
     lifecycleCallbacks:
         preUpdate: [loadUpdateAt]
         prePersist: [loadUpdateAt]
