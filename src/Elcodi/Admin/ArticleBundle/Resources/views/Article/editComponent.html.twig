@@ -5,8 +5,7 @@
     entity_type: 'article',
 } %}
 
-
-{% form_theme form 'AdminCoreBundle::Forms/fields.html.twig' %}
+{% form_theme form 'AdminCoreBundle::Forms/fields.html.twig'%}
 
 {% block content %}
 	
@@ -104,6 +103,7 @@
                         <ol class="grid">
                             <li class="col-1-2 pb-n">
                                 <div class="pr-l">
+									
                                     {{
                                     form_row(form.sectionCategories, {
                                         label: 'admin.article.field.main_category.title',

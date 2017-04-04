@@ -22,7 +22,7 @@ use Doctrine\ORM\EntityNotFoundException;
 use Exception;
 
 use Elcodi\Bridge\BehatBridgeBundle\Abstracts\AbstractElcodiContext;
-use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
+use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 
