@@ -88,7 +88,7 @@ trait ImagesContainerTrait
         $imagesCollection = $this
             ->getImages()
             ->toArray();
-
+	
         usort(
             $imagesCollection,
             function (

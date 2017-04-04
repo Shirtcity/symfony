@@ -56,21 +56,7 @@ abstract class Purchasable implements PurchasableInterface
      *
      * Name
      */
-    protected $name;	
-
-    /**
-     * @var string
-     *
-     * Short description
-     */
-    protected $shortDescription;
-
-    /**
-     * @var string
-     *
-     * Description
-     */
-    protected $description;
+    protected $name;	    
 
     /**
      * @var bool
@@ -132,55 +118,7 @@ abstract class Purchasable implements PurchasableInterface
         $this->name = $name;
 
         return $this;
-    }
-
-    /**
-     * Get ShortDescription.
-     *
-     * @return string ShortDescription
-     */
-    public function getShortDescription()
-    {
-        return $this->shortDescription;
-    }
-
-    /**
-     * Sets ShortDescription.
-     *
-     * @param string $shortDescription ShortDescription
-     *
-     * @return $this Self object
-     */
-    public function setShortDescription($shortDescription)
-    {
-        $this->shortDescription = $shortDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get Description.
-     *
-     * @return string Description
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Sets Description.
-     *
-     * @param string $description Description
-     *
-     * @return $this Self object
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
+    }    
 
     /**
      * Get ShowInHome.

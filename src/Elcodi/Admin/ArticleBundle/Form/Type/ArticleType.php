@@ -110,13 +110,7 @@ class ArticleType extends AbstractType
                     ),
                 ],
             ])
-            ->add('description', 'textarea', [
-                'required' => true,
-            ])
             ->add('showInHome', 'checkbox', [
-                'required' => false,
-            ])
-            ->add('imagesSort', 'text', [
                 'required' => false,
             ])
             ->add('enabled', 'checkbox', [
@@ -145,14 +139,7 @@ class ArticleType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
-			->add('articleProduct', $this->articleProductType)				
-            ->add('images', 'entity', [
-                'class'    => $this->imageNamespace,
-                'required' => false,
-                'property' => 'id',
-                'multiple' => true,
-                'expanded' => true,
-            ]);
+			->add('articleProduct', $this->articleProductType);
 
         $builder->addEventSubscriber($this->getEntityTranslatorFormEventListener());
     }

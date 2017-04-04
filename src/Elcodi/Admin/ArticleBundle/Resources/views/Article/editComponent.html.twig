@@ -61,22 +61,7 @@
                                             }}
                                             </div>
                                         </div>
-                                    </li>
-                                    <li>
-                                        {{
-                                            form_row(form.description["#{language}_description"], {
-                                                label: 'admin.article.field.description.title',
-                                                attr: {
-                                                    placeholder: 'admin.article.field.description.placeholder',
-                                                    'data-fc-modules': 'wysiwyg',
-                                                    'data-fc-fullscreen': 'false',
-                                                    'data-fc-text-html': 'admin.UI.show_code'|trans,
-                                                    'data-fc-text-visual': 'admin.UI.show_visual'|trans,
-                                                    'data-fc-text-help': 'ui.editor.help'|trans,
-                                                }
-                                            })
-                                        }}
-                                    </li>
+                                    </li>                                    
                                 </ol>
                             </div>
                         </section>
@@ -84,13 +69,31 @@
                         </div>
                 </div>
             </div>           
-                        
-            {% include '@AdminMedia/Module/_images-form-field.html.twig' with {
-                images: article.getSortedImages,
-                redirect_path: article.id
-                    ? path('admin_article_edit', { id: article.id })
-                    : path('admin_article_new')
-            } %}
+            
+			<div class="grid">
+                <div class="col-1-3">
+                    <div class="box-none">
+                        <h3 class="fw-n">{{ 'admin.image.single'|trans }}</h3>
+                    </div>
+                </div>
+                <div class="col-2-3">
+                    <div class="box">
+                        <ol class="grid">
+                            <li class="col-1-2 pb-n">
+                                <div class="pr-l">
+								{% if article.images|length > 0 %}
+									<span class="thumbnail">										
+										<img src="{#{ article.getSortedImages.first|resize({ height: 100, width: 100, type: 5 }) }#}" />
+										{{article|preview_image}}
+									</span>
+								{% endif %}
+								</div>
+                            </li>                            
+                        </ol>
+                    </div>
+                </div>
+            </div>
+			
             <div class="grid">
                 <div class="col-1-3">
                     <div class="box-none">
@@ -102,21 +105,13 @@
                     <div class="box">
                         <ol class="grid">
                             <li class="col-1-2 pb-n">
-                                <div class="pr-l">
-									
+                                <div class="pr-l">									
                                     {{
                                     form_row(form.sectionCategories, {
                                         label: 'admin.article.field.main_category.title',
                                         label_help: 'admin.article.field.main_category.placeholder'|trans,
                                     })
-                                    }}
-									
-                                    <p class="pt-s fz-default mb-n ta-r">
-                                        <a href="{{ url('admin_category_new') }}" data-fc-modules="window-content">
-                                            <i class="icon-plus"></i>
-                                            {{ 'admin.category.new'|trans }}
-                                        </a>
-                                    </p>
+                                    }}									
                                 </div>
                             </li>                            
                         </ol>

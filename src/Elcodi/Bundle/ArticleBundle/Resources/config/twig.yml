@@ -27,6 +27,14 @@ services:
         tags:
             - { name: twig.extension }
             
+    elcodi.twig_extension.article_image_resolver:
+        class: Elcodi\Component\Article\Twig\ArticleImageResolverExtension
+        public: false
+        arguments:
+            - '@elcodi.image_resolver.article'
+        tags:
+            - { name: twig.extension }
+            
     elcodi.twig_extension.article_price_resolver_extension:
         class: Elcodi\Component\Article\Twig\ArticlePriceResolverExtension
         public: false

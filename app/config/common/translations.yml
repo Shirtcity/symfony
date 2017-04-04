@@ -9,8 +9,6 @@ elcodi_entity_translator:
             fields:
                 name: ~
                 slug: ~
-                description: ~
-                shortDescription: ~
                 metaTitle: ~
                 metaDescription: ~
                 metaKeywords: ~

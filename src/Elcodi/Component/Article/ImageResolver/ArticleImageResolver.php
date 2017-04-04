@@ -21,12 +21,12 @@ use Elcodi\Component\Media\Entity\Interfaces\ImageInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 use Elcodi\Component\Article\ImageResolver\Abstracts\AbstractImageResolverWithImageResolver;
-use Elcodi\Component\Article\ImageResolver\Interfaces\PurchasableImageResolverInterface;
+use Elcodi\Component\Article\ImageResolver\Interfaces\ArticleImageResolverInterface;
 
 /**
  * Class ArticleImageResolver.
  */
-class ArticleImageResolver extends AbstractImageResolverWithImageResolver implements PurchasableImageResolverInterface
+class ArticleImageResolver extends AbstractImageResolverWithImageResolver implements ArticleImageResolverInterface
 {
     /**
      * Get the entity interface.
@@ -51,7 +51,7 @@ class ArticleImageResolver extends AbstractImageResolverWithImageResolver implem
         if (!$purchasable instanceof $namespace) {
             return false;
         }
-
+		
         /**
          * @var ArticleInterface $purchasable
          */
@@ -59,4 +59,13 @@ class ArticleImageResolver extends AbstractImageResolverWithImageResolver implem
             ->imageResolver
             ->resolveImage($purchasable);
     }
+	
+	/**
+	 * Get article preview
+	 * 
+	 * @param ArticleInterface $article
+	 */
+	public function getPreviewImage(ArticleInterface $article) {
+		return '123';
+	}
 }

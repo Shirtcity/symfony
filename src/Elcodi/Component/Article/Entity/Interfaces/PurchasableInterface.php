@@ -76,39 +76,7 @@ interface PurchasableInterface
      *
      * @return $this Self object
      */
-    public function setName($name);
-
-    /**
-     * Get ShortDescription.
-     *
-     * @return string ShortDescription
-     */
-    public function getShortDescription();
-
-    /**
-     * Sets ShortDescription.
-     *
-     * @param string $shortDescription ShortDescription
-     *
-     * @return $this Self object
-     */
-    public function setShortDescription($shortDescription);
-
-    /**
-     * Get Description.
-     *
-     * @return string Description
-     */
-    public function getDescription();
-
-    /**
-     * Sets Description.
-     *
-     * @param string $description Description
-     *
-     * @return $this Self object
-     */
-    public function setDescription($description);
+    public function setName($name);    
 
     /**
      * Get ShowInHome.
