@@ -47,22 +47,6 @@ interface PurchasableInterface
     EnabledInterface
 {
     /**
-     * Gets the variant SKU.
-     *
-     * @return string
-     */
-    public function getSku();
-
-    /**
-     * Sets the variant SKU.
-     *
-     * @param string $sku
-     *
-     * @return $this Self object
-     */
-    public function setSku($sku);
-
-    /**
      * Get Slug.
      *
      * @return string Slug
@@ -140,21 +124,7 @@ interface PurchasableInterface
      *
      * @return $this Self object
      */
-    public function setShowInHome($showInHome);      
-
-    /**
-     * Get categories.
-     *
-     * @return Collection Categories
-     */
-    public function getCategories();
-
-    /**
-     * Get the principalCategory.
-     *
-     * @return CategoryInterface Principal category
-     */
-    public function getPrincipalCategory();
+    public function setShowInHome($showInHome);
 
     /**
      * Get purchasable type.

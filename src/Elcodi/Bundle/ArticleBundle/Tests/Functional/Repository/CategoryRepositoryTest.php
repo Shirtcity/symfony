@@ -18,8 +18,8 @@
 namespace Elcodi\Bundle\ArticleBundle\Tests\Functional\Repository;
 
 use Elcodi\Bundle\TestCommonBundle\Functional\WebTestCase;
-use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
-use Elcodi\Component\Article\Repository\CategoryRepository;
+use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
+use Elcodi\Bundle\CategoryBundle\Repository\CategoryRepository;
 
 /**
  * Class CategoryRepositoryTest.

@@ -68,6 +68,8 @@ class AppKernel extends Kernel
             'Mmoreram\HttpHeadersBundle\HttpHeadersBundle',
 			
 			'Yokai\ManyToManyMatrixBundle\YokaiManyToManyMatrixBundle',
+			'abdielcs\ExpandedCollectionBundle\ExpandedCollectionBundle',
+			'FOS\JsRoutingBundle\FOSJsRoutingBundle',
 			'Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle',
 
             /**
@@ -177,6 +179,9 @@ class AppKernel extends Kernel
             'Elcodi\Admin\PrintableBundle\AdminPrintableBundle',
 			
 			'Elcodi\Bundle\PriceBundle\PriceBundle',
+			
+			'Elcodi\Bundle\CategoryBundle\CategoryBundle',
+			'Elcodi\Admin\CategoryBundle\AdminCategoryBundle',
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'])) {

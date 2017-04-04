@@ -3,7 +3,7 @@ services:
     elcodi_store.store_category_tree:
         class: Elcodi\Store\ArticleBundle\Services\StoreCategoryTree
         arguments:
-            - "@elcodi.provider.category_tree"
+            - "@elcodi.provider.section_category_tree"
             - %elcodi.core.article.load_only_categories_with_articles%
             - %elcodi.core.article.cache_key%
             - "@elcodi.locale"

@@ -26,7 +26,7 @@ use Elcodi\Component\Core\Entity\Traits\IdentifiableTrait;
 use Elcodi\Component\Media\Entity\Traits\ImagesContainerTrait;
 use Elcodi\Component\Media\Entity\Traits\PrincipalImageTrait;
 use Elcodi\Component\MetaData\Entity\Traits\MetaDataTrait;
-use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
+use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 use Elcodi\Bundle\PriceBundle\Entity\Traits\PriceTrait;
 
@@ -54,17 +54,9 @@ abstract class Purchasable implements PurchasableInterface
     /**
      * @var string
      *
-     * Article SKU
-     */
-    protected $sku;  
-
-    /**
-     * @var string
-     *
      * Name
      */
-    protected $name;
-	
+    protected $name;	
 
     /**
      * @var string
@@ -85,21 +77,7 @@ abstract class Purchasable implements PurchasableInterface
      *
      * Article must show in home
      */
-    protected $showInHome;
-
-    /**
-     * @var Collection
-     *
-     * Many-to-Many association between articles and categories.
-     */
-    protected $categories;
-
-    /**
-     * @var CategoryInterface
-     *
-     * Principal category
-     */
-    protected $principalCategory;
+    protected $showInHome;        
 
     /**
      * @var string
@@ -131,31 +109,7 @@ abstract class Purchasable implements PurchasableInterface
 
         return $this;
     }
-
-    /**
-     * Get Sku.
-     *
-     * @return string Sku
-     */
-    public function getSku()
-    {
-        return $this->sku;
-    }
-
-    /**
-     * Sets Sku.
-     *
-     * @param string $sku Sku
-     *
-     * @return $this Self object
-     */
-    public function setSku($sku)
-    {
-        $this->sku = $sku;
-
-        return $this;
-    }    
-
+    
     /**
      * Get Name.
      *
@@ -250,27 +204,7 @@ abstract class Purchasable implements PurchasableInterface
         $this->showInHome = $showInHome;
 
         return $this;
-    }
-
-    /**
-     * Get categories.
-     *
-     * @return Collection Categories
-     */
-    public function getCategories()
-    {
-        return $this->categories;
-    }    
-
-    /**
-     * Get the principalCategory.
-     *
-     * @return CategoryInterface Principal category
-     */
-    public function getPrincipalCategory()
-    {
-        return $this->principalCategory;
-    }
+    }	
 
     /**
      * Get purchasable type.

@@ -5,6 +5,7 @@ store_routes:
     resource: "routing_store.yml"
     options:
         i18n: true
+        expose: true
 
 #
 # Static pages
@@ -23,6 +24,7 @@ admin_routes:
     prefix: /%bamboo_admin_prefix%
     options:
         i18n: false
+        expose: true
 
 #
 # API routes
@@ -56,3 +58,10 @@ elcodi_custom_routes:
     resource: "routing_local.yml"
     options:
         i18n: false
+        
+#
+# FOSJsRoutingBundle Routing
+# Generates URLs in java script files
+#
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

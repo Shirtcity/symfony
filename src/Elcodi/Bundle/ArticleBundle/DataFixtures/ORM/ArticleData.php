@@ -25,7 +25,7 @@ use Elcodi\Bundle\ArticleBundle\DataFixtures\ORM\Traits\ArticleWithImagesTrait;
 use Elcodi\Component\Core\Services\ObjectDirector;
 use Elcodi\Component\Currency\Entity\Interfaces\CurrencyInterface;
 use Elcodi\Component\Currency\Entity\Money;
-use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
+use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Component\Article\Entity\ArticleProduct;
 
@@ -77,7 +77,6 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setShortDescription('my article short description')
             ->addCategory($category)
             ->setPrincipalCategory($category)
-            ->setSku('article-sku-code-1')
             ->setEnabled(true)
 			->setArticleProduct($articleProduct);
 
@@ -135,7 +134,6 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setShortDescription('my article short description')
             ->addCategory($rootCategory)
             ->setPrincipalCategory($rootCategory)
-            ->setSku('article-sku-code-3')
             ->setEnabled(true)
 			->setArticleProduct($articleProduct2);
 

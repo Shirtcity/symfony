@@ -1,0 +1,39 @@
+services:
+
+    #
+    # Repositories
+    #     
+
+    #
+    # Repository for entity category
+    #
+    elcodi.repository.category:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.category.class%
+            
+    #
+    # Repository for entity section category
+    #
+    elcodi.repository.section_category:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.section_category.class%
+    
+    #
+    # Repository for entity product category
+    #
+    elcodi.repository.product_category:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.product_category.class%
+            
+    #
+    # Repository for entity design category
+    #
+    elcodi.repository.design_category:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.design_category.class%        
+   
+    

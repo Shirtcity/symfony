@@ -19,13 +19,21 @@ namespace Elcodi\Admin\PrintableBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+use Elcodi\Component\Geo\Entity\Location;
+use Elcodi\Component\Geo\Repository\LocationRepository;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
+use Elcodi\Admin\PrintableBundle\Form\EventListener\DesignCustomerListener;
+
+
 /**
  * Class DesignType
  */
@@ -84,6 +92,17 @@ class DesignType extends AbstractType
                 'class' => 'Elcodi\Component\User\Entity\Customer',
                 'choice_label' => 'email'
             ])
+            ->add('country', EntityType::class, [
+                'class'    => 'Elcodi\Component\Geo\Entity\Location',
+                'query_builder' => function (LocationRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->where('u.type = :type')
+                        ->setParameter('type', 'country');
+                },
+                'choice_label' => 'code',
+                'multiple' => true,
+                'expanded' => true
+            ])
             ->add('foilcolor', EntityType::class, [
                 'class' => 'Elcodi\Bundle\PrintableBundle\Entity\FoilColor',
                 'choice_label' => function($foilcolor) {
@@ -94,11 +113,22 @@ class DesignType extends AbstractType
                 'multiple' => true,
                 'expanded' => true
             ])
-            ->add('enabled', 'checkbox', [
+             ->add('enabled', 'checkbox', [
                 'required' => false,
+            ])
+            ->add('vectorFile', VichFileType::class, [
+                'required'    => false,
+                'allow_delete' => true,
+                'download_link' => true
+            ])
+            ->add('previewFile', VichImageType::class, [
+                'required'    => false,
+                'allow_delete' => true,
+                'download_link' => true
             ]);
 		
         $builder->addEventSubscriber($this->getEntityTranslatorFormEventListener());
+        $builder->addEventSubscriber(new DesignCustomerListener());
     }
 
     /**

@@ -64,7 +64,6 @@
 
 
 {% block content %}
-
     {% if article.id %}
 
         {% if article.principalCategory is null %}
@@ -72,7 +71,7 @@
         {% endif %}        
 
         {{ render(url('admin_article_edit_component', { id: article.id })) }}
-    {% else %}
+	 {% else %}
         {{ render(url('admin_article_new_component')) }}
     {% endif %}
 
@@ -90,11 +89,10 @@
     {% endif %}
 	
 	{% javascripts 
-		'@AdminArticleBundle/Resources/public/js/product-colors-select.js' 
-
+		'@AdminArticleBundle/Resources/public/js/product-colors-select.js' 		
 		filter='?uglifyjs2'
 	%}
-	<script src="{{ asset_url }}" type="text/javascript"></script>
+	<script src="{{ asset_url }}" type="text/javascript"></script>	
     {% endjavascripts %}
 	
 {% endblock content %}

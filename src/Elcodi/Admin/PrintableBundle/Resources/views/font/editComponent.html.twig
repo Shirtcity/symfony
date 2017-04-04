@@ -23,7 +23,7 @@
             <div class="grid">
                 <div class="col-1-3">
                     <div class="box-none">
-                        <h3 class="fw-n">Farbname</h3>
+                        <h3 class="fw-n">Schriftname</h3>
                         {% if elcodi_languages|length > 1 %}
                             <p><i class="icon-star"></i> = {{ 'ui.language.master_language'|trans }}</p>
                         {% endif %}
@@ -85,7 +85,20 @@
                     }}
                 </div>
             </div>
+
+            <div class="grid">
+                <div class="clear"></div>
+
+                <div class="col-1-3">
+                    <div class="box-none">
+                        <h3 class="fw-n">Schriftdatei (.ttf)</h3>
+                    </div>
+                </div>
+                <div class="col-2-3">{{ font.getFontFileName() }}<br>{{ form_widget(form.fontFile) }}</div>
+
+            </div>
         </fieldset>
+
         <div class="grid fixed-bottom animated fade-in-up">
             <div class="col-1-3">
                 &nbsp;
@@ -96,5 +109,4 @@
             </div>
         </div>
     {{ form_end(form) }}
-
 {% endblock content %}

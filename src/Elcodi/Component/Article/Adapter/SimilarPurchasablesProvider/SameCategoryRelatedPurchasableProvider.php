@@ -20,7 +20,7 @@ namespace Elcodi\Component\Article\Adapter\SimilarPurchasablesProvider;
 use Doctrine\Common\Collections\Collection;
 
 use Elcodi\Component\Article\Adapter\SimilarPurchasablesProvider\Interfaces\RelatedPurchasablesProviderInterface;
-use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
+use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 use Elcodi\Component\Article\Repository\PurchasableRepository;
 

@@ -4,9 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "70eb1594d1ebc76be4c5231b928047b2",
-    "content-hash": "d03f8994b5c3fc7b5c0a61fc01ad6181",
+    "hash": "c2e7553ca03287411ddc8283814e3b38",
+    "content-hash": "15ca0698ce1e45db00249d7de5e18ce7",
     "packages": [
+        {
+            "name": "abdielcs/expanded-collection-bundle",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/abdielcs/ExpandedCollectionBundle.git",
+                "reference": "7b46369febe0e20fd1ddf5d3b93e352217d02639"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/abdielcs/ExpandedCollectionBundle/zipball/7b46369febe0e20fd1ddf5d3b93e352217d02639",
+                "reference": "7b46369febe0e20fd1ddf5d3b93e352217d02639",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/framework-bundle": "~2.3|~3.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "abdielcs\\ExpandedCollectionBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Abdiel Carrazana",
+                    "email": "abdielcs@gmail.com"
+                }
+            ],
+            "description": "Symfony 2 and 3 bundle for rendering a collection of entities as an expanded selectable list",
+            "keywords": [
+                "Symfony2",
+                "checkbox",
+                "collection",
+                "expanded",
+                "form",
+                "list",
+                "multiple",
+                "symfony3"
+            ],
+            "time": "2016-04-19 13:03:59"
+        },
         {
             "name": "acasademont/i18n-routing-bundle",
             "version": "2.0.0",
@@ -1287,6 +1338,64 @@
                 "symfony"
             ],
             "time": "2016-02-15 19:15:23"
+        },
+        {
+            "name": "friendsofsymfony/jsrouting-bundle",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfSymfony/FOSJsRoutingBundle.git",
+                "reference": "2f52d924692647db02bbcb27c159fef03bf000c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSJsRoutingBundle/zipball/2f52d924692647db02bbcb27c159fef03bf000c9",
+                "reference": "2f52d924692647db02bbcb27c159fef03bf000c9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/console": "~2.0|3.*",
+                "symfony/framework-bundle": "~2.0|3.*",
+                "symfony/serializer": "~2.0|3.*",
+                "willdurand/jsonp-callback-validator": "~1.0"
+            },
+            "require-dev": {
+                "symfony/expression-language": "~2.4|3.*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FOS\\JsRoutingBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "FriendsOfSymfony Community",
+                    "homepage": "https://github.com/friendsofsymfony/FOSJsRoutingBundle/contributors"
+                },
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com"
+                }
+            ],
+            "description": "A pretty nice way to expose your Symfony2 routing to client applications.",
+            "homepage": "http://friendsofsymfony.github.com",
+            "keywords": [
+                "Js Routing",
+                "javascript",
+                "routing"
+            ],
+            "time": "2015-10-28 15:08:39"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -4896,6 +5005,46 @@
             "time": "2016-12-28 10:59:05"
         },
         {
+            "name": "willdurand/jsonp-callback-validator",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/willdurand/JsonpCallbackValidator.git",
+                "reference": "1a7d388bb521959e612ef50c5c7b1691b097e909"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willdurand/JsonpCallbackValidator/zipball/1a7d388bb521959e612ef50c5c7b1691b097e909",
+                "reference": "1a7d388bb521959e612ef50c5c7b1691b097e909",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "JsonpCallbackValidator": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com",
+                    "homepage": "http://www.willdurand.fr"
+                }
+            ],
+            "description": "JSONP callback validator.",
+            "time": "2014-01-20 22:35:06"
+        },
+        {
             "name": "yokai/many-to-many-matrix-bundle",
             "version": "v1.1",
             "source": {
@@ -6001,16 +6150,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "4.0.7",
+            "version": "4.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "09e2277d14ea467e5a984010f501343ef29ffc69"
+                "reference": "ef7b2f56815df854e66ceaee8ebe9393ae36a40d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/09e2277d14ea467e5a984010f501343ef29ffc69",
-                "reference": "09e2277d14ea467e5a984010f501343ef29ffc69",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ef7b2f56815df854e66ceaee8ebe9393ae36a40d",
+                "reference": "ef7b2f56815df854e66ceaee8ebe9393ae36a40d",
                 "shasum": ""
             },
             "require": {
@@ -6060,7 +6209,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-03-01 09:12:17"
+            "time": "2017-04-02 07:44:40"
         },
         {
             "name": "phpunit/php-file-iterator",

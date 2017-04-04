@@ -19,7 +19,7 @@ namespace Elcodi\Component\CartCoupon\Applicator\ExpressionLanguage;
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
-use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
+use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 
 /**
  * Class CategoryFunction.

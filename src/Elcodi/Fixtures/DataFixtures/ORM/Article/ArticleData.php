@@ -23,7 +23,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Elcodi\Component\Currency\Entity\Interfaces\CurrencyInterface;
 use Elcodi\Component\Currency\Entity\Money;
 use Elcodi\Component\EntityTranslator\Services\Interfaces\EntityTranslatorInterface;
-use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
+use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Fixtures\DataFixtures\ORM\Article\Abstracts\AbstractPurchasableData;
 

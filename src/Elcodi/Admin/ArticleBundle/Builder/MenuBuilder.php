@@ -39,7 +39,7 @@ class MenuBuilder extends AbstractMenuBuilder implements MenuBuilderInterface
                     ->menuNodeFactory
                     ->create()
                     ->setName('admin.article.plural')
-                    ->setCode('barcode')
+                    ->setCode('heart')
                     ->setUrl('admin_article_list')
                     ->setTag('catalog')
                     ->setPriority(35)
@@ -67,7 +67,7 @@ class MenuBuilder extends AbstractMenuBuilder implements MenuBuilderInterface
                                 'admin_attribute_new',
                             ])
                     )
-                    ->addSubnode(
+                    /*->addSubnode(
                         $this
                             ->menuNodeFactory
                             ->create()
@@ -77,7 +77,7 @@ class MenuBuilder extends AbstractMenuBuilder implements MenuBuilderInterface
                                 'admin_category_edit',
                                 'admin_category_new',
                             ])
-                    )
+                    )*/
             );
     }
 }

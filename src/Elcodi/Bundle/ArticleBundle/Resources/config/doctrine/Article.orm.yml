@@ -16,6 +16,18 @@ Elcodi\Component\Article\Entity\Article:
                     attribute_id:
                         referencedColumnName: id
                         onDelete: "CASCADE"
+        sectionCategories:
+            targetEntity: Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface
+            joinTable:
+                name: article_section_category
+                joinColumns:
+                    purchasable_id:
+                        referencedColumnName: id
+                        onDelete: "CASCADE"
+                inverseJoinColumns:
+                    category_id:
+                        referencedColumnName: id
+                        onDelete: "CASCADE"
     
     oneToOne:
         articleProduct:

@@ -16,4 +16,6 @@
 </script>
 <script type="text/javascript" src="{{ asset('bundles/admincore/components/twig.js/twig.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/admincore/components/frontendcore-js/core.js') }}"></script>
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 {{ elcodi_hook("admin.footer_script") }}

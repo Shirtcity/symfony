@@ -1,10 +1,28 @@
 vich_uploader:
     db_driver: orm
+    storage: gaufrette
 
     mappings:
         font_mapping:
-            uri_prefix: /fonts
-            upload_destination: '%kernel.root_dir%/../web/fonts'
+            uri_prefix: download
+            namer: printable.vichuploader.namer.font_namer
+            upload_destination: font_fs
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+        design_preview_mapping:
+            uri_prefix: download/preview
+            namer: printable.vichuploader.namer.design_namer
+            directory_namer:  printable.vichuploader.namer.design_directory_namer
+            upload_destination: design_preview_fs
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+        design_vector_mapping:
+            uri_prefix: download/vector
+            namer: printable.vichuploader.namer.design_namer
+            directory_namer:  printable.vichuploader.namer.design_directory_namer
+            upload_destination: design_vector_fs
             inject_on_load:     false
             delete_on_update:   true
             delete_on_remove:   true

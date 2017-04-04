@@ -5,6 +5,9 @@ namespace Elcodi\Bundle\PrintableBundle\Entity;
 use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\FontInterface;
 use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+
 
 /**
  * Font
@@ -33,10 +36,16 @@ class Font implements FontInterface
      */
     private $minSize;
 
+
     /**
-     * @var File $font
+     * @var \DateTime
      */
-    protected $font;
+    private $updatedAt;
+
+    /**
+     * @var File $fontFile
+     */
+    protected $fontFile;
 
 
     public function __toString()
@@ -47,7 +56,7 @@ class Font implements FontInterface
     /**
      * @var string
      */
-    private $file_name;
+    private $fontFileName;
 
 
     /**
@@ -85,27 +94,27 @@ class Font implements FontInterface
     }
 
     /**
-     * Set fileName
+     * Set fontFileName
      *
-     * @param string $fileName
+     * @param string $fontFileName
      *
      * @return Font
      */
-    public function setFileName($fileName)
+    public function setFontFileName($fontFileName)
     {
-        $this->file_name = $fileName;
+        $this->fontFileName = $fontFileName;
 
         return $this;
     }
 
     /**
-     * Get fileName
+     * Get fontFileName
      *
      * @return string
      */
-    public function getFileName()
+    public function getFontFileName()
     {
-        return $this->file_name;
+        return $this->fontFileName;
     }
 
     /**
@@ -142,17 +151,47 @@ class Font implements FontInterface
         return $this->enabled;
     }
 
-
-    public function setFont(File $font)
+    /**
+     * @param File $font
+     *
+     * @return $this
+     */
+    public function setFontFile(File $fontFile)
     {
-        $this->font = $font;
+        $this->fontFile = $fontFile;
 
         return $this;
     }
 
-    public function getFont()
-    {
-        return $this->font;
+    public function setUpdatedAt( \DateTime $date ){
+        $this->updatedAt = $date;
     }
 
+    /**
+     * @Assert\File(
+     *     mimeTypes = {"font/ttf", "application/x-font-ttf"},
+     *     mimeTypesMessage = "Please upload a valid Font"
+     * )
+     */
+    public function getFontFile()
+    {
+        return $this->fontFile;
+    }
+
+    /**
+     * @Assert\Callback
+     */
+    public function validate(ExecutionContextInterface $context){
+        /*
+        $valid_font_file_extensions = array('ttf');
+        $font_file_extension = $this->font->getClientOriginalExtension();
+        if( !in_array($font_file_extension,$valid_font_file_extensions)){
+            $context
+                ->buildViolation('Falscher Dateityp')
+                ->atPath('font')
+                ->addViolation()
+            ;
+        }
+        */
+    }
 }

@@ -87,10 +87,10 @@ class FontType extends AbstractType
                     ),
                 ],
             ])
-            ->add('font', VichFileType::class, [
-                'required'    => true,
+            ->add('fontFile', VichFileType::class, [
+                'required'    => false,
                 'allow_delete' => true,
-                'download_link' => true,
+                'download_link' => true
             ])
             ->add('minsize', TextType::class, [
                 'required'    => true,

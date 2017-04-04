@@ -57,8 +57,7 @@ class AdminArticleExtension extends AbstractExtension
     public function getConfigFiles(array $config)
     {
         return [
-            'formTypes',
-            'eventListeners',
+            'formTypes',            
             'services',
             'validator',
             'menu',

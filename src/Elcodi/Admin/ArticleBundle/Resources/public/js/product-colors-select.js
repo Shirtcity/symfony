@@ -1,8 +1,8 @@
 $('#article-product').change(function() {
 	var form = $(this).closest('form');
-	
+
 	$.ajax({
-		url : form.attr('action'),
+		url : Routing.generate('admin_article_new_component_update'),
 		type: form.attr('method'),
 		data : form.serialize(),
 		success: function(html) {
