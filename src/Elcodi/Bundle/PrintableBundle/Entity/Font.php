@@ -34,18 +34,18 @@ class Font implements FontInterface
     /**
      * @var integer
      */
-    private $min_size;
+    private $minSize;
 
 
     /**
      * @var \DateTime
      */
-    private $updated_at;
+    private $updatedAt;
 
     /**
-     * @var File $font_file
+     * @var File $fontFile
      */
-    protected $font_file;
+    protected $fontFile;
 
 
     public function __toString()
@@ -56,7 +56,7 @@ class Font implements FontInterface
     /**
      * @var string
      */
-    private $font_file_name;
+    private $fontFileName;
 
 
     /**
@@ -100,9 +100,10 @@ class Font implements FontInterface
      *
      * @return Font
      */
-    public function setFontFileName($font_file_name)
+    public function setFontFileName($fontFileName)
     {
-        $this->font_file_name = $font_file_name;
+        $this->fontFileName = $fontFileName;
+
         return $this;
     }
 
@@ -113,7 +114,7 @@ class Font implements FontInterface
      */
     public function getFontFileName()
     {
-        return $this->font_file_name;
+        return $this->fontFileName;
     }
 
     /**
@@ -137,7 +138,7 @@ class Font implements FontInterface
      */
     public function getMinSize()
     {
-        return $this->min_size;
+        return $this->minSize;
     }
 
     /**
@@ -163,7 +164,7 @@ class Font implements FontInterface
     }
 
     public function setUpdatedAt( \DateTime $date ){
-        $this->updated_at = $date;
+        $this->updatedAt = $date;
     }
 
     /**

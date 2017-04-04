@@ -13,9 +13,11 @@ Elcodi\Bundle\PrintableBundle\Entity\Design:
             type: string
             length: 255
         vectorFileName:
+            column: vector_file_name
             type: string
             nullable: true
         previewFileName:
+            column: preview_file_name
             type: string
             nullable: true
         createdAt:
