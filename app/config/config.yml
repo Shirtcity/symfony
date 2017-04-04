@@ -51,7 +51,6 @@ twig:
     strict_variables: false
     form_themes:
         - "Form/colorPickerType.html.twig"
-        - "Form/entityColorType.html.twig"
         - "VichUploaderBundle:Form:fields.html.twig"
         - "Form/colorCheckboxType.html.twig"
     globals:
