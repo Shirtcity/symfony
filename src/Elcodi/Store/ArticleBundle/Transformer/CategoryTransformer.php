@@ -20,7 +20,7 @@ namespace Elcodi\Store\ArticleBundle\Transformer;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 use Elcodi\Component\EntityTranslator\Services\Interfaces\EntityTranslatorInterface;
-use Elcodi\Component\Article\Entity\Interfaces\CategoryInterface;
+use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Sitemap\Transformer\Interfaces\SitemapTransformerInterface;
 
 /**
