@@ -13,13 +13,16 @@ Elcodi\Bundle\PrintableBundle\Entity\Font:
             type: string
             length: 255
         fontFileName:
+            column: font_file_name
             type: string
             nullable: true
         minSize:
+            column: min_size
             type: integer
         enabled:
             type: boolean
         updatedAt:
+            column: update_at
             type: datetime
             nullable: true
     lifecycleCallbacks: {  }
