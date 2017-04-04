@@ -138,10 +138,13 @@ class ArticleType extends AbstractType
             ->add('metaKeywords', 'text', [
                 'required' => false,
             ])
-			->add('sectionCategories', 'expanded_otm',[
-                'class'  => $this->categoryNamespace,
-                'fields' => ['name',],				
-			])
+			->add('sectionCategories', 'entity', [
+                'class'    => $this->categoryNamespace,
+                'required' => false,
+                'property' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+            ])
 			->add('articleProduct', $this->articleProductType)				
             ->add('images', 'entity', [
                 'class'    => $this->imageNamespace,

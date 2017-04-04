@@ -50,6 +50,17 @@ class MenuBuilder extends AbstractMenuBuilder implements MenuBuilderInterface
 									'admin_product_category_new',
 								])
 						)
+						->addSubnode(
+							$this
+								->menuNodeFactory
+								->create()
+								->setName('admin.design.category.plural')
+								->setUrl('admin_design_category_list')
+								->setActiveUrls([
+									'admin_design_category_edit',
+									'admin_design_category_new',
+								])
+						)
             );
     }
 }

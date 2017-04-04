@@ -18,3 +18,11 @@ services:
         class: Elcodi\Bundle\CategoryBundle\Services\CategoryTree
         arguments:
             - '@elcodi.repository.section_category'
+            
+    #
+    # Design category tree service
+    #
+    elcodi.provider.design_category_tree:
+        class: Elcodi\Bundle\CategoryBundle\Services\CategoryTree
+        arguments:
+            - '@elcodi.repository.design_category'
