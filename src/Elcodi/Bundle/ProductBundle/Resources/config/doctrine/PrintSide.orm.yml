@@ -18,9 +18,17 @@ Elcodi\Bundle\ProductBundle\Entity\PrintSide:
             type: date
             nullable: true
             
+    oneToOne:
+        image:
+            targetEntity: Elcodi\Component\Media\Entity\Interfaces\ImageInterface
+            joinColumn:
+                name: image_id
+                referencedColumnName: id
+                nullable: true
+            
     manyToOne:
         product:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Product
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductInterface
             inversedBy: printSides
             joinColumn:
                 name: product_id
@@ -29,11 +37,24 @@ Elcodi\Bundle\ProductBundle\Entity\PrintSide:
                 onDelete: "CASCADE"
                 
         type:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\PrintSideType
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideTypeInterface
             joinColumn:
                 name: print_side_type_id
                 referencedColumnName: id
                 nullable: true
                 onDelete: "SET NULL"
+                
+    oneToMany:            
+        areas:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideAreaInterface
+            mappedBy: side
+            cascade: [ "all" ]
+            orphanRemoval: true
+            
+        sideProductColors:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideProductColorsInterface
+            mappedBy: side
+            cascade: [ "all" ]
+            orphanRemoval: true
             
     lifecycleCallbacks: {  }

@@ -49,6 +49,22 @@ services:
             - [setEntityNamespace, ["%elcodi.entity.print_side.class%"]]
             
     #
+    # Factory for PrintSideArea entities
+    #
+    elcodi.factory.print_side_area:
+        class: Elcodi\Bundle\ProductBundle\Factory\PrintSideAreaFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.print_side_area.class%"]]
+            
+    #
+    # Factory for PrintSideProductColors entities
+    #
+    elcodi.factory.print_side_product_colors:
+        class: Elcodi\Bundle\ProductBundle\Factory\PrintSideProductColorsFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.print_side_product_colors.class%"]]
+            
+    #
     # Factory for ProductColor entities
     #
     elcodi.factory.product_color:

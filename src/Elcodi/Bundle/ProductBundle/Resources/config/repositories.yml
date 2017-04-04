@@ -25,6 +25,14 @@ services:
             - %elcodi.entity.product_color.class%
             
     #
+    # Repository for entity product colors
+    #
+    elcodi.repository.product_colors:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.product_colors.class%
+            
+    #
     # Repository for entity product size
     #
     elcodi.repository.product_size:

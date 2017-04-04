@@ -32,7 +32,7 @@ class ProductSizes implements ProductSizesInterface
     private $size;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $colors;
 
@@ -129,7 +129,7 @@ class ProductSizes implements ProductSizesInterface
     /**
      * Get colors
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getColors()
     {

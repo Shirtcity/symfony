@@ -2,41 +2,36 @@
 
 namespace Elcodi\Admin\ProductBundle\Form\Type;
 
-use Doctrine\ORM\EntityRepository;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 
-use Elcodi\Admin\ProductBundle\Form\Type\PrintSideType;
-
 /**
- * Class ProductPrintSideType
+ * Class PrintSideProductColorsType
  */
-class ProductPrintSideType extends AbstractType
+class PrintSideProductColorsType extends AbstractType
 {
     use FactoryTrait;    
 	
 	/**
      * @var string
      *
-     * ProductPrintSideFormEventListener namespace
+     * Image namespace
      */
-	protected $productPrintSideFormEventListener;
+    protected $imageNamespace;
 
-	/**
-     * Construct
-     * 
-	 * @param string $productPrintSideFormEventListener	ProductPrintSideFormEventListener namespace
+    /**
+     * PrintSideProductColorsType constructor.
+     *
+	 * @param string $imageNamespace				Image namespace 
      */
     public function __construct(
-		$productPrintSideFormEventListener
-    ) {
-		$this->productPrintSideFormEventListener = $productPrintSideFormEventListener;
+		$imageNamespace
+	)
+    {
+		$this->imageNamespace = $imageNamespace;
     }
 
     /**
@@ -62,11 +57,12 @@ class ProductPrintSideType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('printSides', CollectionType::class, [
-                'entry_type' => PrintSideType::class,
+			->add('image', 'entity', [
+                'class'    => $this->imageNamespace,
+                'required' => false,
+                'multiple' => false,
+                'property' => 'id',
             ]);
-		
-		$builder->addEventSubscriber($this->productPrintSideFormEventListener);
     }
 
     /**
@@ -79,7 +75,7 @@ class ProductPrintSideType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'elcodi_admin_product_print_side_form_type_product';
+        return 'elcodi_admin_product_form_type_print_side_product_colors';
     }
 
     /**

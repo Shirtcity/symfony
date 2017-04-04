@@ -99,6 +99,7 @@ assetic:
         - AdminGeoBundle
         - AdminStoreBundle
         - AdminArticleBundle
+        - AdminProductBundle
     debug:          "%kernel.debug%"
     use_controller: false
     filters:
