@@ -3,10 +3,12 @@ services:
     #
     # Event Listeners
     #
-    elcodi.event_listener.product_print_side_form:
-        class: Elcodi\Bundle\ProductBundle\EventListener\ProductPrintSideFormEventListener
+    elcodi.event_listener.print_side_form:
+        class: Elcodi\Bundle\ProductBundle\EventListener\PrintSideFormEventListener
         arguments:
-            - '@elcodi.repository.print_side_type'
+            - '@elcodi.factory.print_side_area'
+            - '@elcodi.factory.print_side_product_colors'
+            - '@elcodi.repository.product_colors'
             
     elcodi.event_listener.product_colors_form:
         class: Elcodi\Bundle\ProductBundle\EventListener\ProductColorsFormEventListener

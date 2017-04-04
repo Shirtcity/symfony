@@ -10,7 +10,7 @@ Elcodi\Bundle\ProductBundle\Entity\ProductSizes:
                 
     manyToOne:
         product:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Product
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductInterface
             inversedBy: sizes
             joinColumn:
                 name: product_id
@@ -18,7 +18,7 @@ Elcodi\Bundle\ProductBundle\Entity\ProductSizes:
                 nullable: false
                 onDelete: "CASCADE"
         size:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\ProductSize
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductSizeInterface
             joinColumn:
                 name: size_id
                 referencedColumnName: id
@@ -27,7 +27,7 @@ Elcodi\Bundle\ProductBundle\Entity\ProductSizes:
                 
     manyToMany:
         colors:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\ProductColors
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorsInterface
             inversedBy: sizes
             joinTable:
                 name: product_sizes_product_colors

@@ -65,7 +65,7 @@ class PrintSideController extends AbstractAdminController
      *      persist = true
      * )
      * @FormAnnotation(
-     *      class = "elcodi_admin_product_print_side_form_type_product",
+     *      class = "elcodi_admin_product_form_type_product_print_side",
      *      name  = "form",
      *      entity = "product",
      *      handleRequest = true,

@@ -7,6 +7,7 @@ use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\DesignInterface;
 use Elcodi\Component\Core\Entity\Traits\DateTimeTrait;
 use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
 use Elcodi\Bundle\PrintableBundle\Entity\FoilColor;
+use Elcodi\Component\Geo\Entity\Location;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -36,6 +37,11 @@ class Design extends AbstractPrintable implements DesignInterface
     private $foilcolor;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $country;
+
+    /**
      * @var Customer
      */
     private $customer;
@@ -59,6 +65,8 @@ class Design extends AbstractPrintable implements DesignInterface
      * @var File $previewFile
      */
     private $previewFile;
+
+
 
     /**
      * Get id
@@ -154,6 +162,40 @@ class Design extends AbstractPrintable implements DesignInterface
     public function getFoilcolor()
     {
         return $this->foilcolor;
+    }
+
+    /**
+     * Add country
+     *
+     * @param Location $country
+     *
+     * @return Design
+     */
+    public function addCountry(Location $country)
+    {
+        $this->country[] = $country;
+
+        return $this;
+    }
+
+    /**
+     * Remove country
+     *
+     * @param Location $country
+     */
+    public function removeCountry(Location $country)
+    {
+        $this->country->removeElement($country);
+    }
+
+    /**
+     * Get COUNTRY
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 
 

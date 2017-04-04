@@ -123,7 +123,7 @@ class ProductColors implements ProductColorsInterface
     /**
      * Get sizes
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getSizes()
     {

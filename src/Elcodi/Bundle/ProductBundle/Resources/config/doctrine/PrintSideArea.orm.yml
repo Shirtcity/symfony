@@ -1,0 +1,30 @@
+Elcodi\Bundle\ProductBundle\Entity\PrintSideArea:
+    type: entity
+    table: print_side_area
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        width:
+            type: integer
+        height:
+            type: integer
+        posX:
+            type: integer
+        posY:
+            type: integer
+            
+    manyToOne:
+        side:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideInterface
+            inversedBy: areas
+            joinColumn:
+                name: print_side_id
+                referencedColumnName: id
+                nullable: false
+                onDelete: "CASCADE"
+                
+    lifecycleCallbacks: {  }

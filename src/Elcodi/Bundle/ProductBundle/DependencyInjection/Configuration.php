@@ -79,6 +79,20 @@ class Configuration extends AbstractConfiguration
                             'default',
                             true
                         ))
+						->append($this->addMappingNode(
+                            'print_side_area',
+                            'Elcodi\Bundle\ProductBundle\Entity\PrintSideArea',
+                            '@ProductBundle/Resources/config/doctrine/PrintSideArea.orm.yml',
+                            'default',
+                            true
+                        ))
+						->append($this->addMappingNode(
+                            'print_side_product_colors',
+                            'Elcodi\Bundle\ProductBundle\Entity\PrintSideProductColors',
+                            '@ProductBundle/Resources/config/doctrine/PrintSideProductColors.orm.yml',
+                            'default',
+                            true
+                        ))
                     ->end()
                 ->end()
             ->end();
