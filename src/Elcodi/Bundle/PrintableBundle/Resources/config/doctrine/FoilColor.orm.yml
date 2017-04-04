@@ -1,6 +1,6 @@
 Elcodi\Bundle\PrintableBundle\Entity\FoilColor:
     type: entity
-    table: foilColor
+    table: foil_color
     repositoryClass: Elcodi\Bundle\PrintableBundle\Repository\FoilColorRepository
     id:
         id:

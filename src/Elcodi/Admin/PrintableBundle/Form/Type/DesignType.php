@@ -23,9 +23,14 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
+use Elcodi\Admin\PrintableBundle\Form\EventListener\DesignCustomerListener;
+
+
 /**
  * Class DesignType
  */
@@ -94,11 +99,22 @@ class DesignType extends AbstractType
                 'multiple' => true,
                 'expanded' => true
             ])
-            ->add('enabled', 'checkbox', [
+             ->add('enabled', 'checkbox', [
                 'required' => false,
+            ])
+            ->add('vectorFile', VichFileType::class, [
+                'required'    => false,
+                'allow_delete' => true,
+                'download_link' => true
+            ])
+            ->add('previewFile', VichImageType::class, [
+                'required'    => false,
+                'allow_delete' => true,
+                'download_link' => true
             ]);
 		
         $builder->addEventSubscriber($this->getEntityTranslatorFormEventListener());
+        $builder->addEventSubscriber(new DesignCustomerListener());
     }
 
     /**

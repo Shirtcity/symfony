@@ -4,6 +4,25 @@ knp_gaufrette:
             local:
                 directory: '%kernel.root_dir%/../web/local'
                 create: true
+        font_adapter:
+            local:
+                directory: '%kernel.root_dir%/../files/font'
+                create: true
+        design_preview_adapter:
+            local:
+                directory: '%kernel.root_dir%/../files/design/preview'
+                create: true
+        design_vetctor_adapter:
+            local:
+                directory: '%kernel.root_dir%/../files/design/vector'
+                create: true
     filesystems:
         local:
             adapter: local
+        font_fs:
+            adapter: font_adapter
+        design_preview_fs:
+            adapter: design_preview_adapter
+        design_vector_fs:
+            adapter: design_vetctor_adapter
+    stream_wrapper: ~
