@@ -36,6 +36,19 @@ Elcodi\Bundle\PrintableBundle\Entity\Design:
             joinColumn:
                 name: customer_id
                 referencedColumnName: id
+            nullable: true
+        creator:
+            targetEntity: Elcodi\Component\User\Entity\AdminUser
+            joinColumn:
+                name: creator_id
+                referencedColumnName: id
+            nullable: true
+        updater:
+            targetEntity: Elcodi\Component\User\Entity\AdminUser
+            joinColumn:
+                name: updater_id
+                referencedColumnName: id
+            nullable: true
     manyToMany:
         foilcolor:
             targetEntity: Elcodi\Bundle\PrintableBundle\Entity\FoilColor

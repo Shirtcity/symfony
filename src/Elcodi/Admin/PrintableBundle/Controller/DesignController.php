@@ -14,6 +14,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Elcodi\Admin\CoreBundle\Controller\Abstracts\AbstractAdminController;
 use Elcodi\Component\Core\Entity\Interfaces\EnabledInterface;
 use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\DesignInterface;
+use Elcodi\Component\User\Entity\Interfaces\AdminUserInterface;
+
+use Elcodi\Component\User\Entity\AdminUser;
 
 /**
  * Class Controller for Design
@@ -131,11 +134,17 @@ class DesignController extends AbstractAdminController
         DesignInterface $design,
         $isValid
     ) {
+        if( null === $design->getCreator() ){
+            $design->setCreator( $this->getUser() );
+        }
+
         if ($isValid) {
             $this->flush($design);
 
             //Save the file in the entity
             $design->setUpdatedAt( new \DateTime('now') );
+            $design->setUpdater( $this->getUser() );
+
             $this->flush($design);
 
             $this->addFlash(

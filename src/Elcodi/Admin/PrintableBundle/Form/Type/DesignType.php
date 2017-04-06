@@ -28,6 +28,7 @@ use Vich\UploaderBundle\Form\Type\VichFileType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Elcodi\Component\Geo\Entity\Location;
 use Elcodi\Component\Geo\Repository\LocationRepository;
+use Elcodi\Form\Type\CountryCheckboxType;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
@@ -92,7 +93,7 @@ class DesignType extends AbstractType
                 'class' => 'Elcodi\Component\User\Entity\Customer',
                 'choice_label' => 'email'
             ])
-            ->add('country', EntityType::class, [
+            ->add('country', 'country_checkbox', [
                 'class'    => 'Elcodi\Component\Geo\Entity\Location',
                 'query_builder' => function (LocationRepository $er) {
                     return $er->createQueryBuilder('u')

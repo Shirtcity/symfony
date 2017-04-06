@@ -59,3 +59,11 @@ services:
         class: Elcodi\Form\Type\ColorCheckboxType
         tags:
             - { name: form.type, alias: color_checkbox }
+
+    #
+    # It's like the Entity type. But with flag labels.
+    #
+    elcodi.form.type.country_checkbox:
+        class: Elcodi\Form\Type\CountryCheckboxType
+        tags:
+            - { name: form.type, alias: country_checkbox }
