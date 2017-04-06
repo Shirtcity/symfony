@@ -5,7 +5,6 @@
         <ul {{ block('widget_container_attributes') }} class="list-horizontal">
             {% for child in form %}
                 <li>
-                   {# HERE we need to include some country flag sprites #}
                    {{ form_widget(child, {'label_format': ' <div class="flag flag-' ~ child.vars.value|lower ~ '" alt="' ~ child.vars.value|lower ~ '" title="%s"></div>'}) }}
                 </li>
             {% endfor %}
