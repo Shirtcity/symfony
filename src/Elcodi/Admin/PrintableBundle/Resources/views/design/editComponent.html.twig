@@ -134,4 +134,8 @@
         </div>
     {{ form_end(form) }}
 
+    {% stylesheets'bundles/elcodigeo/css/flags.min.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
 {% endblock content %}

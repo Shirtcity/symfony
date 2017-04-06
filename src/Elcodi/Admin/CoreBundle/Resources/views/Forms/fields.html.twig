@@ -191,7 +191,7 @@
                value="{{ value|default(1) }}"
                 {% if checked is defined and checked %}checked="checked"{% endif %}
                 >
-        {{ label|trans }}
+        {% if label_format is defined %}{{ label_format | format(label|trans) | raw }}{% else %} {{ label|trans }}{% endif %}
     </label>
 {% endspaceless %}
 {% endblock checkbox_widget %}
