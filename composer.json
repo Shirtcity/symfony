@@ -128,6 +128,10 @@
             "app/console -n assets:install",
             "app/console -n assetic:dump"
         ],
+        "install-assets":[
+            "app/console -n assets:install",
+            "app/console -n assetic:dump"
+        ],
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
