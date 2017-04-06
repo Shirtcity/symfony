@@ -105,7 +105,13 @@
             </div>
             <div class="col-2-3">
                 <button id="submit-save" type="submit" class="button-primary button-fat pv-s mr-l">{{ 'ui.forms.save'|trans }}</button>
-                <a href="{{ path('admin_product_list') }}">{{ 'ui.forms.cancel'|trans }}</a>
+                <script type="text/javascript">
+                    if ( window!=window.top ) {
+                        var oParent = window.parent,
+                                oModal = oParent.TinyCore.Module.instantiate('modal');
+                    }
+                </script>
+                <a href="{{ path('admin_product_list') }}" onclick="if(oModal !== undefined);oModal.close();">{{ 'ui.forms.cancel'|trans }}</a>
             </div>
         </div>
     {{ form_end(form) }}

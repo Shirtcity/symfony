@@ -35,6 +35,7 @@ class MappingCompilerPass extends AbstractElcodiMappingCompilerPass
 					'print_side_type',
 					'print_side_area',
 					'print_side_product_colors',
+					'print_method',
                 ]
             );
     }

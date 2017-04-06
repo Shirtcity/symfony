@@ -151,7 +151,9 @@ class ProductController extends AbstractAdminController
                 $product->setPrincipalImage($firstImage);
             }
 			
-			$product->setVariants();
+			if(!$product->getId()) {
+				$product->setVariants();
+			}
 			
             $this->flush($product);
 
@@ -265,5 +267,79 @@ class ProductController extends AbstractAdminController
             $entity,
             $this->generateUrl('admin_product_list')
         );
+    }
+	
+	/**
+     * Edit and Saves product variants
+     *
+     * @param FormInterface    $form    Form
+     * @param Product		   $product Product
+     * @param boolean          $isValid Is valid
+     *
+     * @return RedirectResponse Redirect response
+	 * 
+     * @Route(
+     *      path = "/variants/{id}/edit",
+     *      name = "admin_product_variants_edit",
+     *      requirements = {
+     *          "id" = "\d+",
+     *      },
+     *      methods = {"GET"}
+     * )
+     * @Route(
+     *      path = "/variants/{id}/update",
+     *      name = "admin_product_variants_update",
+     *      requirements = {
+     *          "id" = "\d+",
+     *      },
+     *      methods = {"POST"}
+     * )
+     *
+     * @EntityAnnotation(
+     *      class = {
+     *          "factory" = "elcodi.factory.product",
+     *          "method" = "create",
+     *          "static" = false
+     *      },
+     *      mapping = {
+     *          "id" = "~id~"
+     *      },
+     *      mappingFallback = true,
+     *      name = "product",
+     *      persist = true
+     * )
+     * @FormAnnotation(
+     *      class = "elcodi_admin_product_form_type_product_variants",
+     *      name  = "form",
+     *      entity = "product",
+     *      handleRequest = true,
+     *      validate = "isValid"
+     * )
+     *
+     * @Template
+     */
+    public function variantsAction(
+        FormInterface $form,
+        Product $product,
+        $isValid
+    ) {		
+        if ($isValid) {
+			
+            $this->flush($product);
+
+            $this->addFlash(
+                'success',
+                $this
+                    ->get('translator')
+                    ->trans('admin.product.variants_saved')
+            );
+
+            return $this->redirectToRoute('admin_product_edit', ['id' => $product->getId()]);
+        }
+
+        return [
+            'product' => $product,
+            'form'    => $form->createView(),
+        ];
     }
 }

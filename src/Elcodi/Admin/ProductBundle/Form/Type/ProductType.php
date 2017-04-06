@@ -3,27 +3,19 @@
 namespace Elcodi\Admin\ProductBundle\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
 
-use Elcodi\Bundle\PriceBundle\EventListener\PriceFormEventListener;
-
-use Elcodi\Form\Type\EntityColorType;
-
 use Elcodi\Admin\ProductBundle\Form\Type\ProductColorsType;
 use Elcodi\Admin\ProductBundle\Form\Type\ProductSizesType;
-
-use Yokai\ManyToManyMatrixBundle\Form\Type\ManyToManyMatrixType;
 
 /**
  * Class ProductType
@@ -45,6 +37,27 @@ class ProductType extends AbstractType
      * Manufacturer namespace
      */
 	protected $manufacturerNamespace;
+	
+	/**
+     * @var string
+     *
+     * PrintMethod namespace
+     */
+	protected $printMethodNamespace;
+	
+	/**
+     * @var string
+     *
+     * SectionCategory namespace
+     */
+	protected $sectionCategoryNamespace;
+	
+	/**
+     * @var string
+     *
+     * ProductCategory namespace
+     */
+	protected $productCategoryNamespace;
 		
 	/**
      * @var string
@@ -79,6 +92,9 @@ class ProductType extends AbstractType
      * 
 	 * @param string $imageNamespace							Image namespace 
 	 * @param string $manufacturerNamespace						Manufacturer namespace
+	 * @param string $printMethodNamespace						PrintMethod namespace
+	 * @param string $productCategoryNamespace					ProductCategory namespace
+	 * @param string $sectionCategoryNamespace					SectionCategory namespace
 	 * @param string $priceFormEventListener					PriceFormEventListener
 	 * @param string $productColorsFormEventListener			ProductColorsFormEventListener
 	 * @param string $productSizesFormEventListener				ProductSizesFormEventListener
@@ -87,6 +103,9 @@ class ProductType extends AbstractType
     public function __construct(
         $imageNamespace,
 		$manufacturerNamespace,
+		$printMethodNamespace,
+		$productCategoryNamespace,
+		$sectionCategoryNamespace,
 		$priceFormEventListener,
 		$productColorsFormEventListener,
 		$productSizesFormEventListener,
@@ -94,6 +113,9 @@ class ProductType extends AbstractType
     ) {
         $this->imageNamespace = $imageNamespace;
 		$this->manufacturerNamespace = $manufacturerNamespace;
+		$this->printMethodNamespace = $printMethodNamespace;
+		$this->productCategoryNamespace = $productCategoryNamespace;
+		$this->sectionCategoryNamespace = $sectionCategoryNamespace;
 		$this->priceFormEventListener = $priceFormEventListener;	
 		$this->productColorsFormEventListener = $productColorsFormEventListener;
 		$this->productSizesFormEventListener = $productSizesFormEventListener;
@@ -178,30 +200,43 @@ class ProductType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
-			->add('sizes', CollectionType::class, [
+			->add('sizes', 'collection', [
                 'entry_type'    => ProductSizesType::class,
 				'allow_add'     => true,
                 'allow_delete'  => true,
             ])
-			->add('colors', CollectionType::class, [
+			->add('colors', 'collection', [
                 'entry_type'    => ProductColorsType::class,
 				'allow_add'     => true,
                 'allow_delete'  => true,
             ])
-			->add('printSides', CollectionType::class, [
+			->add('printSides', 'collection', [
                 'entry_type'    => ProductPrintSidesType::class,
 				'allow_add'     => true,
                 'allow_delete'  => true,
             ])
-			/*
-			->add('sizes', 'Yokai\ManyToManyMatrixBundle\Form\Type\ManyToManyMatrixType', [
-                'class'    => \Elcodi\Bundle\ProductBundle\Entity\ProductSizes::class,
+			->add('printMethods', 'entity', [
+                'class'    => $this->printMethodNamespace,
                 'required' => false,
-				'association' => 'colors',
+                'property' => 'name',
+                'multiple' => true,
+                'expanded' => true,
             ])
-			 * 
-			 */
-			;
+			->add('sections', 'entity', [
+                'class'    => $this->sectionCategoryNamespace,
+                'required' => false,
+                'property' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+            ])
+			->add('productCategories', 'entity', [
+                'class'    => $this->productCategoryNamespace,
+                'required' => false,
+                'property' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+            ])
+		;
 		
 		$builder->addEventSubscriber($this->priceFormEventListener);
 		$builder->addEventSubscriber($this->productColorsFormEventListener);

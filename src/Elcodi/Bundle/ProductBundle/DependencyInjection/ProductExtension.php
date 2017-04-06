@@ -113,6 +113,11 @@ class ProductExtension extends AbstractExtension implements EntitiesOverridableE
             'elcodi.entity.print_side_product_colors.mapping_file' => $config['mapping']['print_side_product_colors']['mapping_file'],
             'elcodi.entity.print_side_product_colors.manager' => $config['mapping']['print_side_product_colors']['manager'],
             'elcodi.entity.print_side_product_colors.enabled' => $config['mapping']['print_side_product_colors']['enabled'],
+			
+			'elcodi.entity.print_method.class' => $config['mapping']['print_method']['class'],
+            'elcodi.entity.print_method.mapping_file' => $config['mapping']['print_method']['mapping_file'],
+            'elcodi.entity.print_method.manager' => $config['mapping']['print_method']['manager'],
+            'elcodi.entity.print_method.enabled' => $config['mapping']['print_method']['enabled'],
         ];
     }
 
@@ -176,6 +181,7 @@ class ProductExtension extends AbstractExtension implements EntitiesOverridableE
 			'Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideTypeInterface'			=> 'elcodi.entity.print_side_type.class',
 			'Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideAreaInterface'			=> 'elcodi.entity.print_side_area.class',
 			'Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideProductColorsInterface'	=> 'elcodi.entity.print_side_product_colors.class',
+			'Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintMethodInterface'	=> 'elcodi.entity.print_method.class',
         ];
     }
 }

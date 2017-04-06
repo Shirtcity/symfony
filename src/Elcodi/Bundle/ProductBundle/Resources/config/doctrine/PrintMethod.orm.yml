@@ -1,0 +1,19 @@
+Elcodi\Bundle\ProductBundle\Entity\PrintMethod:
+    type: entity
+    table: print_method
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        hexcode:
+            type: string
+            length: 255
+        enabled:
+            type: boolean
+    lifecycleCallbacks: {  }
