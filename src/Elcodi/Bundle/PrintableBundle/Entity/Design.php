@@ -2,6 +2,10 @@
 
 namespace Elcodi\Bundle\PrintableBundle\Entity;
 
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+
 use Elcodi\Bundle\PrintableBundle\Entity\Abstracts\AbstractPrintable;
 use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\DesignInterface;
 use Elcodi\Component\Core\Entity\Traits\DateTimeTrait;
@@ -9,10 +13,9 @@ use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
 use Elcodi\Bundle\PrintableBundle\Entity\FoilColor;
 use Elcodi\Component\Geo\Entity\Location;
 use Elcodi\Component\User\Entity\AdminUser;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Elcodi\Component\User\Entity\Customer;
+
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 /**
  * Design
@@ -20,6 +23,7 @@ use Elcodi\Component\User\Entity\Customer;
 class Design extends AbstractPrintable implements DesignInterface
 {
     use DateTimeTrait,
+        SoftDeleteableEntity,
         EnabledTrait;
 
     /**
@@ -77,6 +81,14 @@ class Design extends AbstractPrintable implements DesignInterface
      */
     private $previewFile;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->foilcolor = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->location = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
@@ -130,15 +142,6 @@ class Design extends AbstractPrintable implements DesignInterface
     public function getEnabled()
     {
         return $this->enabled;
-    }
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->foilcolor = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->location = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

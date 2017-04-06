@@ -134,17 +134,19 @@ class DesignController extends AbstractAdminController
         DesignInterface $design,
         $isValid
     ) {
-        if( null === $design->getCreator() ){
-            $design->setCreator( $this->getUser() );
-        }
+
 
         if ($isValid) {
             $this->flush($design);
 
-            //Save the file in the entity
-            $design->setUpdatedAt( new \DateTime('now') );
-            $design->setUpdater( $this->getUser() );
+            if( null === $design->getCreator() ){
+                $design->setCreator( $this->getUser() );
+            } else {
+                $design->setUpdater( $this->getUser() );
+                $design->setUpdatedAt( new \DateTime('now') );
+            }
 
+            //Save the file in the entity
             $this->flush($design);
 
             $this->addFlash(
