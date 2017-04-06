@@ -76,11 +76,7 @@ FrontendCore.define('variants', ['devicePackage', 'modal'], function () {
 				document.getElementById('variants-list').innerHTML = '<p class="ta-c pa-xl"><i class="icon-spin icon-spinner fz-xl"></i></p>';
 
 				$.get(oResponse.data.url, function (sHtml) {
-
-					document.getElementById('variants-list').innerHTML = sHtml;
-
-					self.bindLinks();
-
+					document.getElementById('variants-list').innerHTML = $(sHtml).find('#variants-list').html();
 				});
 
 			}

@@ -60,12 +60,6 @@
             <span class="label fz-xs">{{ 'admin.product.field.enabled.options.inactive'|trans }}</span>
         {% endif %}
 
-        {% if entity.hasVariants %}
-            <span class="label bg-secondary fz-xs c-background">
-                {{'admin.product.tag.has_variants'|trans}}
-            </span>
-        {% endif %}
-
         {% if entity.principalCategory is null %}
             <span class="label label-ko fz-xs">
                 <i class="icon-warning mr-s"></i>

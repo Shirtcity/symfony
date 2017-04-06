@@ -1,0 +1,12 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'product',
+} %}
+
+{% block content %}
+
+    {{ render(url('admin_product_variants_edit_component', { id: product.id })) }}
+    
+{% endblock content %}

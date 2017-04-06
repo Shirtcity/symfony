@@ -128,6 +128,39 @@ Elcodi\Bundle\ProductBundle\Entity\Product:
                         referencedColumnName: id
                         onDelete: "CASCADE"  
                         unique: true
+                        
+        printMethods:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintMethodInterface
+            joinTable:
+                name: product_print_method
+                joinColumns:
+                    product_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    print_method_id:
+                        referencedColumnName: id
+                        
+        sections:
+            targetEntity: Elcodi\Bundle\CategoryBundle\Entity\SectionCategory
+            joinTable:
+                name: product_section_category
+                joinColumns:
+                    product_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    category_id:
+                        referencedColumnName: id
+                        
+        productCategories:
+            targetEntity: Elcodi\Bundle\CategoryBundle\Entity\ProductCategory
+            joinTable:
+                name: product_product_category
+                joinColumns:
+                    product_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    category_id:
+                        referencedColumnName: id
             
     lifecycleCallbacks:
         preUpdate: [loadUpdateAt]

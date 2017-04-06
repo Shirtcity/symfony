@@ -63,7 +63,7 @@
 
     {% if product.id %}
 
-        {% if product.principalCategory is null %}
+        {% if product.sections is null %}
             <p class="msg-warning">{{ 'admin.product.error.no_category'|trans }}</p>
         {% endif %}
 

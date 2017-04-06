@@ -10,6 +10,8 @@ use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorsInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductSizesInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductManufacturerInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideInterface;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintMethodInterface;
+use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 
 use Elcodi\Component\Core\Entity\Traits\DateTimeTrait;
 use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
@@ -84,6 +86,22 @@ class Product implements ProductInterface
      * @var Collection
      */
     private $printSides;
+	
+	/**
+     * @var Collection
+     */
+    private $printMethods;
+	
+	/**
+     * @var Collection
+     */
+    private $sections;
+
+    /**
+     * @var Collection
+     */
+    private $productCategories;
+
 		
     /**
      * Get id
@@ -366,6 +384,108 @@ class Product implements ProductInterface
 	}
 	
 	/**
+     * Add printMethod
+     *
+     * @param PrintMethodInterface $printMethod
+     *
+     * @return Product
+     */
+    public function addPrintMethod(PrintMethodInterface $printMethod)
+    {
+        $this->printMethods[] = $printMethod;
+
+        return $this;
+    }
+
+    /**
+     * Remove printMethod
+     *
+     * @param PrintMethodInterface $printMethod
+     */
+    public function removePrintMethod(PrintMethodInterface $printMethod)
+    {
+        $this->printMethods->removeElement($printMethod);
+    }
+
+    /**
+     * Get printMethods
+     *
+     * @return Collection
+     */
+    public function getPrintMethods()
+    {
+        return $this->printMethods;
+    }
+	
+	/**
+     * Add section
+     *
+     * @param CategoryInterface $section
+     *
+     * @return Product
+     */
+    public function addSection(CategoryInterface $section)
+    {
+        $this->sections[] = $section;
+
+        return $this;
+    }
+
+    /**
+     * Remove section
+     *
+     * @param CategoryInterface $section
+     */
+    public function removeSection(CategoryInterface $section)
+    {
+        $this->sections->removeElement($section);
+    }
+
+    /**
+     * Get sections
+     *
+     * @return Collection
+     */
+    public function getSections()
+    {
+        return $this->sections;
+    }
+
+    /**
+     * Add productCategory
+     *
+     * @param CategoryInterface $productCategory
+     *
+     * @return Product
+     */
+    public function addProductCategory(CategoryInterface $productCategory)
+    {
+        $this->productCategories[] = $productCategory;
+
+        return $this;
+    }
+
+    /**
+     * Remove productCategory
+     *
+     * @param CategoryInterface $productCategory
+     */
+    public function removeProductCategory(CategoryInterface $productCategory)
+    {
+        $this->productCategories->removeElement($productCategory);
+    }
+
+    /**
+     * Get productCategories
+     *
+     * @return Collection
+     */
+    public function getProductCategories()
+    {
+        return $this->productCategories;
+    }
+	
+	/**
 	 * Return Product Sizes and Colors variants.
 	 * 
 	 * @return array
@@ -393,17 +513,8 @@ class Product implements ProductInterface
 	public function setVariants()
 	{
 		foreach ($this->getSizes() as $size) {
-			foreach ($this->getColors() as $color) {				
-				
-				$colorExists = $size->getColors()->exists(
-					function($key, $entry) use ($color) {
-					   return $color->getId() === $entry->getId();
-					}
-				);
-				
-				if(!$colorExists) {
-					$size->addColor($color);
-				}
+			foreach ($this->getColors() as $color) {	
+				$size->addColor($color);
 			}
 		}
 		return $this;

@@ -8,6 +8,9 @@ services:
         arguments:
             - %elcodi.entity.image.class%
             - %elcodi.entity.product_manufacturer.class%
+            - %elcodi.entity.print_method.class%
+            - %elcodi.entity.product_category.class%
+            - %elcodi.entity.section_category.class%
             - '@elcodi.event_listener.price_form'
             - '@elcodi.event_listener.product_colors_form'
             - '@elcodi.event_listener.product_sizes_form'
@@ -84,3 +87,19 @@ services:
             - [setFactory, ["@elcodi.factory.print_side_product_colors"]]
         tags:
             - { name: form.type, alias: elcodi_admin_product_form_type_print_side_product_colors }
+            
+    elcodi_admin.form_type.product_variants:
+        class: Elcodi\Admin\ProductBundle\Form\Type\ProductVariantsType
+        calls:
+            - [setFactory, ["@elcodi.factory.product"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_product_form_type_product_variants }
+            
+    elcodi_admin.form_type.product_variants_sizes_colors:
+        class: Elcodi\Admin\ProductBundle\Form\Type\ProductVariantsSizesColorsType
+        arguments:
+            - %elcodi.entity.product_colors.class%
+        calls:
+            - [setFactory, ["@elcodi.factory.product_sizes"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_product_form_type_product_variants_sizes_colors }
