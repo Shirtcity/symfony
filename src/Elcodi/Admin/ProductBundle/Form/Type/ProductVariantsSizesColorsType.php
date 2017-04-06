@@ -6,6 +6,8 @@ use Doctrine\ORM\EntityRepository;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -60,14 +62,34 @@ class ProductVariantsSizesColorsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('colors', 'entity', [
-                'class'    => $this->productColorsNamespace,
-                'required' => false,
-                'property' => 'color.name',
-                'multiple' => true,
-                'expanded' => true,
-            ]);
+		$builder
+            ->addEventListener(
+                FormEvents::POST_SET_DATA,
+                function (FormEvent $event) use ($options) {
+                    $entity = $event->getData();
+                    $form = $event->getForm();
+					
+					$productId = $entity
+									->getProduct()
+									->getId();
+					
+					$form
+						->add('colors', 'entity', [
+							'class'    => $this->productColorsNamespace,
+							'required' => false,
+							'property' => 'color.name',
+							'multiple' => true,
+							'expanded' => true,
+							'query_builder' => function(EntityRepository $er) use ($productId) {
+								return $er->createQueryBuilder('pc')
+									->where('pc.product = ?1')
+									->setParameter(1, $productId);
+							},
+						])
+					;
+                }
+            )
+        ;        
     }
 
     /**
