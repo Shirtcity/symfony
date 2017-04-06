@@ -7,3 +7,4 @@ services:
         class: Elcodi\Component\Article\Adapter\SimilarPurchasablesProvider\SameCategoryRelatedPurchasableProvider
         arguments:
             - '@elcodi.repository.purchasable'
+            - '@elcodi.repository.article'

@@ -1,0 +1,37 @@
+Elcodi\Bundle\ProductBundle\Entity\PrintSideProductColors:
+    type: entity
+    table: print_side_product_colors
+    repositoryClass: Elcodi\Bundle\ProductBundle\Repository\PrintSideProductColorsRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+                
+    oneToOne:
+        image:
+            targetEntity: Elcodi\Component\Media\Entity\Interfaces\ImageInterface
+            joinColumn:
+                name: image_id
+                referencedColumnName: id
+                nullable: true
+                
+    manyToOne:
+        side:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideInterface
+            inversedBy: sideProductColors
+            joinColumn:
+                name: print_side_id
+                referencedColumnName: id
+                nullable: false
+                onDelete: "CASCADE"
+        productColors:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorsInterface
+            joinColumn:
+                name: product_colors_id
+                referencedColumnName: id
+                nullable: false
+                onDelete: "CASCADE"
+                
+    lifecycleCallbacks: {  }

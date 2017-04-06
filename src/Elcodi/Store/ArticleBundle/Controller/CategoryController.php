@@ -104,6 +104,7 @@ class CategoryController extends Controller
          * We must check that the article slug is right. Otherwise we must
          * return a Redirection 301 to the right url
          */
+	
         if ($slug !== $category->getSlug()) {
             return $this->redirectToRoute('store_category_purchasables_list', [
                 'id'   => $category->getId(),

@@ -17,6 +17,7 @@ use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
 
 use Elcodi\Bundle\PriceBundle\EventListener\PriceFormEventListener;
+
 use Elcodi\Form\Type\EntityColorType;
 
 use Elcodi\Admin\ProductBundle\Form\Type\ProductColorsType;

@@ -102,6 +102,7 @@ assetic:
         - AdminStoreBundle
         - AdminArticleBundle
         - AdminPrintableBundle
+        - AdminProductBundle
     debug:          "%kernel.debug%"
     use_controller: false
     filters:

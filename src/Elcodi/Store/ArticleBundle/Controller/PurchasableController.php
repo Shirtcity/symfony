@@ -124,16 +124,12 @@ class PurchasableController extends Controller
             ], 301);
         }
 
-        $useStock = $this
-            ->get('elcodi.store')
-            ->getUseStock();
 
         $template = $this->resolveTemplateName($purchasable);
         $variableName = $this->resolveVariableName($purchasable);
 
         return $this->renderTemplate($template, [
             $variableName => $purchasable,
-            'useStock'    => $useStock,
         ]);
     }
 

@@ -64,19 +64,19 @@ Elcodi\Bundle\ProductBundle\Entity\Product:
     oneToMany:
             
         colors:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\ProductColors
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorsInterface
             mappedBy: product
             cascade: [ "all" ]
             orphanRemoval: true
             
         sizes:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\ProductSizes
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductSizesInterface
             mappedBy: product
             cascade: [ "all" ]
             orphanRemoval: true
                     
         printSides:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\PrintSide
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideInterface
             mappedBy: product
             cascade: [ "all" ]
             orphanRemoval: true

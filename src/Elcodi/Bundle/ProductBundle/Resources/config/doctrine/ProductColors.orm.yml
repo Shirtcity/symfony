@@ -1,6 +1,7 @@
 Elcodi\Bundle\ProductBundle\Entity\ProductColors:
     type: entity
     table: product_colors
+    repositoryClass: Elcodi\Bundle\ProductBundle\Repository\ProductColorsRepository
     id:
         id:
             type: integer
@@ -10,7 +11,7 @@ Elcodi\Bundle\ProductBundle\Entity\ProductColors:
                 
     manyToOne:
         product:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Product
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductInterface
             inversedBy: colors
             joinColumn:
                 name: product_id
@@ -18,7 +19,7 @@ Elcodi\Bundle\ProductBundle\Entity\ProductColors:
                 nullable: false
                 onDelete: "CASCADE"
         color:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\ProductColor
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorInterface
             joinColumn:
                 name: color_id
                 referencedColumnName: id
@@ -27,7 +28,7 @@ Elcodi\Bundle\ProductBundle\Entity\ProductColors:
                 
     manyToMany:
         sizes:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\ProductSizes
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductSizesInterface
             mappedBy: colors                        
                 
     lifecycleCallbacks: {  }

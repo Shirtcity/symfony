@@ -103,6 +103,16 @@ class ProductExtension extends AbstractExtension implements EntitiesOverridableE
             'elcodi.entity.print_side_type.mapping_file' => $config['mapping']['print_side_type']['mapping_file'],
             'elcodi.entity.print_side_type.manager' => $config['mapping']['print_side_type']['manager'],
             'elcodi.entity.print_side_type.enabled' => $config['mapping']['print_side_type']['enabled'],
+			
+			'elcodi.entity.print_side_area.class' => $config['mapping']['print_side_area']['class'],
+            'elcodi.entity.print_side_area.mapping_file' => $config['mapping']['print_side_area']['mapping_file'],
+            'elcodi.entity.print_side_area.manager' => $config['mapping']['print_side_area']['manager'],
+            'elcodi.entity.print_side_area.enabled' => $config['mapping']['print_side_area']['enabled'],
+			
+			'elcodi.entity.print_side_product_colors.class' => $config['mapping']['print_side_product_colors']['class'],
+            'elcodi.entity.print_side_product_colors.mapping_file' => $config['mapping']['print_side_product_colors']['mapping_file'],
+            'elcodi.entity.print_side_product_colors.manager' => $config['mapping']['print_side_product_colors']['manager'],
+            'elcodi.entity.print_side_product_colors.enabled' => $config['mapping']['print_side_product_colors']['enabled'],
         ];
     }
 
@@ -156,8 +166,16 @@ class ProductExtension extends AbstractExtension implements EntitiesOverridableE
     public function getEntitiesOverrides()
     {
         return [
-            'Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductInterface' => 'elcodi.entity.product.class',
-			'Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductManufacturerInterface' => 'elcodi.entity.product_manufacturer.class',
+            'Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductInterface'				=> 'elcodi.entity.product.class',
+			'Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductManufacturerInterface'	=> 'elcodi.entity.product_manufacturer.class',	
+			'Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorInterface'			=> 'elcodi.entity.product_color.class',
+			'Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorsInterface'			=> 'elcodi.entity.product_colors.class',			
+			'Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductSizeInterface'			=> 'elcodi.entity.product_size.class',
+			'Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductSizesInterface'			=> 'elcodi.entity.product_sizes.class',
+			'Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideInterface'				=> 'elcodi.entity.print_side.class',
+			'Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideTypeInterface'			=> 'elcodi.entity.print_side_type.class',
+			'Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideAreaInterface'			=> 'elcodi.entity.print_side_area.class',
+			'Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideProductColorsInterface'	=> 'elcodi.entity.print_side_product_colors.class',
         ];
     }
 }

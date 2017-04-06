@@ -52,18 +52,35 @@ services:
         tags:
             - { name: form.type, alias: elcodi_admin_product_form_type_print_sides }
             
-    elcodi_admin.form_type.product_print_side:
-        class: Elcodi\Admin\ProductBundle\Form\Type\ProductPrintSideType
-        arguments:
-            - '@elcodi.event_listener.product_print_side_form'
+    elcodi_admin.form_type.print_sides:
+        class: Elcodi\Admin\ProductBundle\Form\Type\PrintSidesType
         calls:
             - [setFactory, ["@elcodi.factory.product"]]
         tags:
-            - { name: form.type, alias: elcodi_admin_product_print_side_form_type_product }
+            - { name: form.type, alias: elcodi_admin_product_form_type_product_print_side }
             
     elcodi_admin.form_type.print_side:
         class: Elcodi\Admin\ProductBundle\Form\Type\PrintSideType
+        arguments:
+            - %elcodi.entity.image.class%
+            - '@elcodi.event_listener.print_side_form'
         calls:
             - [setFactory, ["@elcodi.factory.print_side"]]
         tags:
             - { name: form.type, alias: elcodi_admin_print_side_form_type_product }
+            
+    elcodi_admin.form_type.print_side_area:
+        class: Elcodi\Admin\ProductBundle\Form\Type\PrintSideAreaType
+        calls:
+            - [setFactory, ["@elcodi.factory.print_side_area"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_product_form_type_print_side_area }
+            
+    elcodi_admin.form_type.print_side_product_colors:
+        class: Elcodi\Admin\ProductBundle\Form\Type\PrintSideProductColorsType
+        arguments:
+            - %elcodi.entity.image.class%
+        calls:
+            - [setFactory, ["@elcodi.factory.print_side_product_colors"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_product_form_type_print_side_product_colors }

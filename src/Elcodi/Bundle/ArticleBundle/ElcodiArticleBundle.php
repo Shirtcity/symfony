@@ -25,6 +25,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Elcodi\Bundle\CoreBundle\Abstracts\AbstractElcodiBundle;
 use Elcodi\Bundle\ArticleBundle\CompilerPass\MappingCompilerPass;
 use Elcodi\Bundle\ArticleBundle\CompilerPass\PurchasableImageResolverCompilerPass;
+use Elcodi\Bundle\ArticleBundle\CompilerPass\ArticleImageResolverCompilerPass;
 use Elcodi\Bundle\ArticleBundle\CompilerPass\PurchasableNameResolverCompilerPass;
 //use Elcodi\Bundle\ArticleBundle\CompilerPass\PurchasableStockUpdaterCompilerPass;
 //use Elcodi\Bundle\ArticleBundle\CompilerPass\PurchasableStockValidatorCompilerPass;
@@ -47,6 +48,7 @@ class ElcodiArticleBundle extends AbstractElcodiBundle implements DependentBundl
        // $container->addCompilerPass(new PurchasableStockValidatorCompilerPass());
        // $container->addCompilerPass(new PurchasableStockUpdaterCompilerPass());
         $container->addCompilerPass(new PurchasableImageResolverCompilerPass());
+		$container->addCompilerPass(new ArticleImageResolverCompilerPass());
     }
 
     /**

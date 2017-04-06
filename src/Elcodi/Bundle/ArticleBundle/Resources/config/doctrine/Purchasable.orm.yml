@@ -22,16 +22,7 @@ Elcodi\Component\Article\Entity\Purchasable:
             column: slug
             type: string
             length: 255
-            nullable: true
-        shortDescription:
-            column: short_description
-            type: string
-            length: 255
-            nullable: true
-        description:
-            column: description
-            type: text
-            nullable: true
+            nullable: true        
         showInHome:
             column: show_in_home
             type: boolean

@@ -53,7 +53,7 @@ Elcodi\Bundle\ProductBundle\Entity\ProductManufacturer:
 
     oneToMany:
         products:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Product
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductInterface
             mappedBy: product_manufacturer
 
     manyToOne:

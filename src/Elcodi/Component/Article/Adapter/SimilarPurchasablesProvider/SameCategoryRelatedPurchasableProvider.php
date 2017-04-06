@@ -23,6 +23,7 @@ use Elcodi\Component\Article\Adapter\SimilarPurchasablesProvider\Interfaces\Rela
 use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 use Elcodi\Component\Article\Repository\PurchasableRepository;
+use Elcodi\Component\Article\Repository\ArticleRepository;
 
 /**
  * Class SameCategoryRelatedPurchasableProvider.
@@ -37,15 +38,24 @@ class SameCategoryRelatedPurchasableProvider implements RelatedPurchasablesProvi
      * Purchasable Repository
      */
     private $purchasableRepository;
+	
+	/**
+     * @var ArticleRepository
+     *
+     * Article Repository
+     */
+    private $articleRepository;
 
     /**
      * Construct method.
      *
      * @param PurchasableRepository $purchasableRepository Purchasable Repository
+	 * @param ArticleRepository $articleRepository Article Repository
      */
-    public function __construct(PurchasableRepository $purchasableRepository)
+    public function __construct(PurchasableRepository $purchasableRepository, ArticleRepository $articleRepository)
     {
         $this->purchasableRepository = $purchasableRepository;
+		$this->articleRepository = $articleRepository;
     }
 
     /**
@@ -81,7 +91,7 @@ class SameCategoryRelatedPurchasableProvider implements RelatedPurchasablesProvi
          * @var PurchasableInterface $article
          */
         foreach ($purchasables as $purchasable) {
-            $category = $purchasable->getPrincipalCategory();
+            $category = $purchasable->getSectionCategories()->first();
             if (
                 $category instanceof CategoryInterface &&
                 !in_array($category, $categories)
@@ -93,13 +103,14 @@ class SameCategoryRelatedPurchasableProvider implements RelatedPurchasablesProvi
         if (empty($categories)) {
             return [];
         }
-
+	
         return $this
-            ->purchasableRepository
-            ->createQueryBuilder('p')
-            ->where('p.principalCategory IN(:categories)')
-            ->andWhere('p NOT IN(:purchasables)')
-            ->andWhere('p.enabled = :enabled')
+            ->articleRepository
+            ->createQueryBuilder('a')
+			->innerJoin('a.sectionCategories', 'c')
+            ->where('c IN(:categories)')
+            ->andWhere('a NOT IN(:purchasables)')
+            ->andWhere('a.enabled = :enabled')
             ->setParameters([
                 'categories' => $categories,
                 'purchasables' => $purchasables,

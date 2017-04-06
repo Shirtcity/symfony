@@ -24,7 +24,7 @@ class PrintSideFactory extends AbstractFactory
         $printSide = new $classNamespace();
 
         $printSide
-            ->setEnabled(false);
+            ->setEnabled(true);
 
         return $printSide;
     }

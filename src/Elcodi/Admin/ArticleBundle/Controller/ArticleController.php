@@ -161,6 +161,7 @@ class ArticleController extends AbstractAdminController
         FormInterface $form,
         ArticleInterface $article
     ) {		
+		//die('<pre>' . var_dump($article->getImages(), true));
 		if ($form->isValid()) {				
             $firstImage = $article
                 ->getSortedImages()
