@@ -1,0 +1,13 @@
+{% form_theme form _self %}
+
+{% block country_checkbox_widget %}
+    {% spaceless %}
+        <ul {{ block('widget_container_attributes') }} class="list-horizontal">
+            {% for child in form %}
+                <li>
+                   {{ form_widget(child, {'label_format': ' <div class="flag flag-' ~ child.vars.value|lower ~ '" alt="' ~ child.vars.value|lower ~ '" title="%s"></div>'}) }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endspaceless %}
+{% endblock %}

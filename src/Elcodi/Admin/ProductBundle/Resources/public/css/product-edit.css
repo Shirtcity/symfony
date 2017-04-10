@@ -1,0 +1,28 @@
+.colors-box > div > div {
+    width: 4%;
+    float: left;
+    margin-bottom: 1em;
+}
+
+.colors-box > div label {
+    padding: 0;
+}
+
+.colors-box .color-preview {
+    margin-left: 0.25em;
+}
+
+.colors-box > div .checkbox {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.sizes-box > div > div {
+    width: 8%;
+    float: left;
+    margin-bottom: 1em;
+}
+
+.sizes-box > div label {
+    padding: 0;
+}

@@ -157,4 +157,55 @@ class ProductComponentController extends AbstractAdminController
             'useStock' => $useStock,
         ];
     }
+	
+	/**
+     * Product variants component action
+     *
+     * As a component, this action should not return all the html macro, but
+     * only the specific component
+     *
+     * @param FormView         $formView Form view
+     * @param Product		   $product  Product
+     *
+     * @return array Result
+     *
+     * @Route(
+     *      path = "/variants/{id}/component",
+     *      name = "admin_product_variants_edit_component",
+     *      requirements = {
+     *          "id" = "\d+",
+     *      },
+     *      methods = {"GET"}
+     * )
+     * @Template("AdminProductBundle:Product:variantsComponent.html.twig")
+     *
+     * @EntityAnnotation(
+     *      class = {
+     *          "factory" = "elcodi.factory.product",
+     *          "method" = "create",
+     *          "static" = false
+     *      },
+     *      name = "product",
+     *      mapping = {
+     *          "id" = "~id~"
+     *      },
+     *      mappingFallback = true,
+     * )
+     * @FormAnnotation(
+     *      class = "elcodi_admin_product_form_type_product_variants",
+     *      name  = "formView",
+     *      entity = "product",
+     *      handleRequest = true,
+     *      validate = "isValid"
+     * )
+     */
+    public function variantsComponentAction(
+        FormView $formView,
+        Product $product
+    ) {
+        return [
+            'product'  => $product,
+            'form'     => $formView,
+        ];
+    }
 }

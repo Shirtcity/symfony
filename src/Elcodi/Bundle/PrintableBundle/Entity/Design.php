@@ -2,16 +2,20 @@
 
 namespace Elcodi\Bundle\PrintableBundle\Entity;
 
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+
 use Elcodi\Bundle\PrintableBundle\Entity\Abstracts\AbstractPrintable;
 use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\DesignInterface;
 use Elcodi\Component\Core\Entity\Traits\DateTimeTrait;
 use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
 use Elcodi\Bundle\PrintableBundle\Entity\FoilColor;
 use Elcodi\Component\Geo\Entity\Location;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Elcodi\Component\User\Entity\AdminUser;
 use Elcodi\Component\User\Entity\Customer;
+
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 /**
  * Design
@@ -19,6 +23,7 @@ use Elcodi\Component\User\Entity\Customer;
 class Design extends AbstractPrintable implements DesignInterface
 {
     use DateTimeTrait,
+        SoftDeleteableEntity,
         EnabledTrait;
 
     /**
@@ -47,6 +52,16 @@ class Design extends AbstractPrintable implements DesignInterface
     private $customer;
 
     /**
+     * @var AdminUser
+     */
+    private $creator;
+
+    /**
+    * @var AdminUser
+    */
+    private $updater;
+
+    /**
      * @var string
      */
     private $vectorFileName;
@@ -66,6 +81,14 @@ class Design extends AbstractPrintable implements DesignInterface
      */
     private $previewFile;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->foilcolor = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->location = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
@@ -119,15 +142,6 @@ class Design extends AbstractPrintable implements DesignInterface
     public function getEnabled()
     {
         return $this->enabled;
-    }
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->foilcolor = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->location = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -222,6 +236,56 @@ class Design extends AbstractPrintable implements DesignInterface
     {
         return $this->customer;
     }
+
+    /**
+     * Set creator
+     *
+     * @param AdminUser $creator
+     *
+     * @return Design
+     */
+    public function setCreator(AdminUser $creator = null)
+    {
+        $this->creator = $creator;
+
+        return $this;
+    }
+
+    /**
+     * Get creator
+     *
+     * @return AdminUser
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
+
+    /**
+     * Set updater
+     *
+     * @param AdminUser $updater
+     *
+     * @return Design
+     */
+    public function setUpdater(AdminUser $updater= null)
+    {
+        $this->updater = $updater;
+
+        return $this;
+    }
+
+    /**
+     * Get creator
+     *
+     * @return AdminUser
+     */
+    public function getUpdater()
+    {
+        return $this->updater;
+    }
+
+
 
     /**
      * Set vectorFileName

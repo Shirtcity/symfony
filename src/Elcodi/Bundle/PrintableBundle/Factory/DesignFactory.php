@@ -24,7 +24,7 @@ class DesignFactory extends AbstractFactory
         $design = new $classNamespace();
 
         $design->setEnabled(true)
-             ->setCreatedAt($this->now())
+            ->setCreatedAt($this->now())
             ->setPosX(0)
             ->setPosY(0);
 

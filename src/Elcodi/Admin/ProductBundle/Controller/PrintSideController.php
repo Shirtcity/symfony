@@ -90,7 +90,7 @@ class PrintSideController extends AbstractAdminController
                     ->trans('admin.product.saved')
             );
 			
-            return $this->redirectToRoute('admin_print_side_edit', ['id' => $product->getId()]);
+            return $this->redirectToRoute('admin_product_edit', ['id' => $product->getId()]);
         }
 
         return [

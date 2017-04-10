@@ -1,6 +1,10 @@
 Elcodi\Bundle\PrintableBundle\Entity\Design:
     type: entity
     table: design
+    gedmo:
+       soft_deleteable:
+          field_name: deletedAt
+          time_aware: false
     repositoryClass: Elcodi\Bundle\PrintableBundle\Repository\DesignRepository
     id:
         id:
@@ -30,12 +34,29 @@ Elcodi\Bundle\PrintableBundle\Entity\Design:
             nullable: false
         enabled:
             type: boolean
+        deletedAt:
+           column: deleted_at
+           type: date
+           nullable: true
     manyToOne:
         customer:
             targetEntity: Elcodi\Component\User\Entity\Customer
             joinColumn:
                 name: customer_id
                 referencedColumnName: id
+            nullable: true
+        creator:
+            targetEntity: Elcodi\Component\User\Entity\AdminUser
+            joinColumn:
+                name: creator_id
+                referencedColumnName: id
+            nullable: true
+        updater:
+            targetEntity: Elcodi\Component\User\Entity\AdminUser
+            joinColumn:
+                name: updater_id
+                referencedColumnName: id
+            nullable: true
     manyToMany:
         foilcolor:
             targetEntity: Elcodi\Bundle\PrintableBundle\Entity\FoilColor

@@ -111,7 +111,9 @@ class ProductSizes implements ProductSizesInterface
      */
     public function addColor(ProductColorsInterface $color)
     {
-        $this->colors[] = $color;
+		if (!$this->colors->contains($color)) {
+			$this->colors[] = $color;
+		}
 
         return $this;
     }

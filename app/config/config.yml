@@ -53,6 +53,7 @@ twig:
         - "Form/colorPickerType.html.twig"
         - "VichUploaderBundle:Form:fields.html.twig"
         - "Form/colorCheckboxType.html.twig"
+        - "Form/countryCheckboxType.html.twig"
     globals:
         elcodi_context: []
         currency_wrapper: "@elcodi.wrapper.currency"
@@ -100,6 +101,7 @@ assetic:
         - AdminGeoBundle
         - AdminStoreBundle
         - AdminArticleBundle
+        - AdminPrintableBundle
         - AdminProductBundle
     debug:          "%kernel.debug%"
     use_controller: false

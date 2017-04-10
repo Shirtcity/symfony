@@ -93,6 +93,13 @@ class Configuration extends AbstractConfiguration
                             'default',
                             true
                         ))
+						->append($this->addMappingNode(
+                            'print_method',
+                            'Elcodi\Bundle\ProductBundle\Entity\PrintMethod',
+                            '@ProductBundle/Resources/config/doctrine/PrintMethod.orm.yml',
+                            'default',
+                            true
+                        ))
                     ->end()
                 ->end()
             ->end();
