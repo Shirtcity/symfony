@@ -6,3 +6,4 @@ services:
     elcodi.resolver.article_options:
         class: Elcodi\Component\Article\Services\ArticleOptionsResolver
 
+

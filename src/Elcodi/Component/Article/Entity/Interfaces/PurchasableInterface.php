@@ -43,7 +43,6 @@ interface PurchasableInterface
     DateTimeInterface,
     ETaggableInterface,
     MetaDataInterface,
-    ImagesContainerWithPrincipalImageInterface,
     EnabledInterface
 {
     /**

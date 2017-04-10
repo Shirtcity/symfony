@@ -79,7 +79,6 @@ class PrintSideController extends AbstractAdminController
         Product $product,
         $isValid
     ) {
-		
         if ($isValid) {
 			
             $this->flush($product);

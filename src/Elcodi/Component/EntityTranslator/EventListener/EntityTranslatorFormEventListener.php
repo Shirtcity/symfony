@@ -200,18 +200,20 @@ class EntityTranslatorFormEventListener implements EventSubscriberInterface
     public function postSubmit(FormEvent $event)
     {
         $form = $event->getForm();
+		
         if (!$form->isValid()) {
             return;
         }
 
         $entity = $event->getData();
+	
         $formHash = $this->getFormHash($form);
         $entityConfiguration = $this->getTranslatableEntityConfiguration($entity);
-
+		
         if (is_null($entityConfiguration)) {
             return null;
-        }
-
+        }		
+		
         $this->translationsBackup[$formHash] = [];
 
         $entityData = [
@@ -220,7 +222,7 @@ class EntityTranslatorFormEventListener implements EventSubscriberInterface
             'alias' => $entityConfiguration['alias'],
             'fields' => [],
         ];
-
+		
         $entityFields = $entityConfiguration['fields'];
 
         foreach ($entityFields as $fieldName => $fieldConfiguration) {
@@ -240,7 +242,7 @@ class EntityTranslatorFormEventListener implements EventSubscriberInterface
                 $entity->$setter($masterLocaleData);
             }
         }
-
+		
         $this->translationsBackup[$formHash][] = $entityData;
     }
 
@@ -254,16 +256,23 @@ class EntityTranslatorFormEventListener implements EventSubscriberInterface
         if (empty($this->translationsBackup)) {
             return null;
         }
+		
+		$executeFlush = false;
 
-        foreach ($this->translationsBackup as $formHash => $entities) {
+        foreach ($this->translationsBackup as $formHash => $entities) {			
             foreach ($entities as $entityData) {
-                $entity = $entityData['object'];
+                $entity = $entityData['object'];				
                 $entityIdGetter = $entityData['idGetter'];
                 $entityAlias = $entityData['alias'];
                 $fields = $entityData['fields'];
-
+				
                 foreach ($fields as $fieldName => $locales) {
                     foreach ($locales as $locale => $translation) {
+						
+						if(empty($translation)){
+							continue;
+						}
+						
                         $this
                             ->entityTranslationProvider
                             ->setTranslation(
@@ -273,14 +282,17 @@ class EntityTranslatorFormEventListener implements EventSubscriberInterface
                                 $translation,
                                 $locale
                             );
+						$executeFlush = true;
                     }
                 }
             }
         }
 
-        $this
-            ->entityTranslationProvider
-            ->flushTranslations();
+		if($executeFlush){
+			$this
+				->entityTranslationProvider
+				->flushTranslations();
+		}
     }
 
     /**

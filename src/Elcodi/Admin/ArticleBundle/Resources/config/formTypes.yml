@@ -8,7 +8,7 @@ services:
         class: Elcodi\Admin\ArticleBundle\Form\Type\ArticleProductType
         arguments:
             - %elcodi.entity.product.class%           
-            - %elcodi.entity.product_color.class%      
+            - %elcodi.entity.product_colors.class%      
         calls:
             - [setFactory, ["@elcodi.factory.article_product"]]
             - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
