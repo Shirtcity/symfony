@@ -37,8 +37,6 @@ class PurchasableRepository extends EntityRepository
     ) {
         $queryBuilder = $this->createQueryBuilder('p');
 
-        $this->addPerformanceJoinsToQueryBuilder($queryBuilder);
-
         $query = $queryBuilder
             ->andWhere('p.enabled = :enabled')
             ->andWhere('p.showInHome = :showInHome')
@@ -68,8 +66,6 @@ class PurchasableRepository extends EntityRepository
     ) {
         $queryBuilder = $this->createQueryBuilder('p');
 
-        $this->addPerformanceJoinsToQueryBuilder($queryBuilder);
-
         $query = $queryBuilder
             ->andWhere('p.enabled = :enabled')
             ->andWhere('p.reducedPrice > 0')
@@ -85,21 +81,4 @@ class PurchasableRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }    
-
-    /**
-     * Add performance joins.
-     *
-     * This method decorates the query builder with non-changing left joins,
-     * only for increasing the performance impact for post lazy queries.
-     *
-     * @param QueryBuilder $queryBuilder QueryBuilder
-     */
-    private function addPerformanceJoinsToQueryBuilder(QueryBuilder $queryBuilder)
-    {
-        $queryBuilder
-            ->select(['p', 'pa', 'i'])
-            ->leftJoin('p.principalImage', 'pa')
-            ->leftJoin('p.images', 'i')
-            ->groupBy('p.id');
-    }
 }

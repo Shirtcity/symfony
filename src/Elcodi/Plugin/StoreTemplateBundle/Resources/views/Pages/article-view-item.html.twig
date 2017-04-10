@@ -29,20 +29,20 @@
 
 {% block content %}
     {% set articleName = article|purchasable_name %}
-    {% set validImage = article|valid_image %}
+    {% set validImage = article|print_side_preview_image('front') %}
 
     <div class="article-view">
        <h1 class="article-title">{{ article.name }}</h1>
        <div class="grid">
            <div class="col-1-2">
             {% block article_image %}
-               <a href="{{ article.images|length > 0 ? article.images.first|resize({
+               <a href="{{ article|print_side_preview_image('front')|length > 0 ? article|print_side_preview_image('front')|resize({
                    'width': 1024,
                    'height': 1024,
                    'type': 5
                }) : '//placehold.it/772x604' }}" alt="{{ article.name }}" class="article-thumbnail">
                 {% if article.inOffer %}<span class="article-badge">{{ 'template.store_template_bundle.article.view_item.offer'|trans }}</span> {% endif %}
-                   <img src="{{ article.images|length > 0 ? article.images.first|resize({
+                   <img src="{{ article|print_side_preview_image('front')|length > 0 ? article|print_side_preview_image('front')|resize({
                        'width': 772,
                        'height': 604,
                        'type': 5
