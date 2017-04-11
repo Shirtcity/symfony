@@ -30,7 +30,7 @@ class CategoryFactory extends AbstractFactory
             ->setPosition(0)
             ->setEnabled(true)
             ->setCreatedAt($this->now());
-//die(var_dump($category));
+
         return $category;
     }
 }

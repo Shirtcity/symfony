@@ -56,6 +56,6 @@ class AppKernel extends AbstractElcodiKernel
     {
         return  $this->name .
                 ucfirst($this->environment) .
-                'DebugProjectContainerArticle';
+                'DebugProjectContainerCategory';
     }
 }

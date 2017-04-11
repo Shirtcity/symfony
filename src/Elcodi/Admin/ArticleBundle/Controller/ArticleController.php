@@ -82,7 +82,8 @@ class ArticleController extends AbstractAdminController
         $orderByField,
         $orderByDirection
     ) {
-        return [
+	
+		return [
             'page'             => $page,
             'limit'            => $limit,
             'orderByField'     => $orderByField,

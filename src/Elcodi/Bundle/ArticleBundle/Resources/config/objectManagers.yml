@@ -12,9 +12,5 @@ services:
         parent: elcodi.abstract_manager
         arguments:
             - %elcodi.entity.article.class%
-   
-    elcodi.object_manager.category:
-        parent: elcodi.abstract_manager
-        arguments:
-            - %elcodi.entity.category.class%
+
 

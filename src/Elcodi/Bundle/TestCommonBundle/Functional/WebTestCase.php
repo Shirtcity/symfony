@@ -200,8 +200,8 @@ abstract class WebTestCase extends PHPUnit_Framework_TestCase
 			$tempPath = sys_get_temp_dir();
 			array_map('unlink', glob( "$tempPath/*.backup.database"));
 			
-			//print_r('load fixtures');
-			//print_r($formattedBundles);
+			print_r('load fixtures');
+			print_r($formattedBundles);
             static::$application->run(new ArrayInput([
                 'command' => 'doctrine:fixtures:load',
                 '--no-interaction' => true,
@@ -209,7 +209,7 @@ abstract class WebTestCase extends PHPUnit_Framework_TestCase
                 '--quiet' => true,
             ]));
         }
-		//print_r(' done ');
+		print_r(' done ');
         return;
     }
 

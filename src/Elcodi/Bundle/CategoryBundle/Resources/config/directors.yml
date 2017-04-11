@@ -1,0 +1,37 @@
+services:
+
+    #
+    # Directors
+    #
+    elcodi.director.category:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.category'
+            - '@elcodi.repository.category'
+            - '@elcodi.factory.category'
+            
+    elcodi.director.section_category:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.section_category'
+            - '@elcodi.repository.section_category'
+            - '@elcodi.factory.section_category'
+            
+    elcodi.director.product_category:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.product_category'
+            - '@elcodi.repository.product_category'
+            - '@elcodi.factory.product_category'
+         
+    elcodi.director.design_category:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.design_category'
+            - '@elcodi.repository.design_category'
+            - '@elcodi.factory.design_category'
+

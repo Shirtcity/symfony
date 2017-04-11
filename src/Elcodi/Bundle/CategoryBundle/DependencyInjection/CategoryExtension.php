@@ -99,6 +99,8 @@ class CategoryExtension extends AbstractExtension implements EntitiesOverridable
             'eventListeners',
 			'factories',
 			'repositories',
+			'directors',
+			'objectManagers',
         ];
     }
 

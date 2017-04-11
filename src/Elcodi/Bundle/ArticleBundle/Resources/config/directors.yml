@@ -11,11 +11,3 @@ services:
             - '@elcodi.repository.article'
             - '@elcodi.factory.article'
 
-    elcodi.director.category:
-        class: Elcodi\Component\Core\Services\ObjectDirector
-        lazy: true
-        arguments:
-            - '@elcodi.object_manager.category'
-            - '@elcodi.repository.category'
-            - '@elcodi.factory.category'
-

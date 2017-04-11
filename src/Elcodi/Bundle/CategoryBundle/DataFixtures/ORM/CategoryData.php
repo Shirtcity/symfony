@@ -15,7 +15,7 @@
  * @author Elcodi Team <tech@elcodi.com>
  */
 
-namespace Elcodi\Bundle\ArticleBundle\DataFixtures\ORM;
+namespace Elcodi\Bundle\CategoryBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -38,8 +38,8 @@ class CategoryData extends AbstractFixture
         /**
          * @var ObjectDirector $categoryDirector
          */
-        $categoryDirector = $this->getDirector('category');
-
+        $categoryDirector = $this->getDirector('section_category');
+		
         /**
          * Category.
          *

@@ -144,10 +144,10 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            'Elcodi\Bundle\CurrencyBundle\DataFixtures\ORM\CurrencyData',
-            'Elcodi\Bundle\ArticleBundle\DataFixtures\ORM\CategoryData',
+            'Elcodi\Bundle\CurrencyBundle\DataFixtures\ORM\CurrencyData',            
             'Elcodi\Bundle\StoreBundle\DataFixtures\ORM\StoreData',
 			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductData',
+			'Elcodi\Bundle\CategoryBundle\DataFixtures\ORM\CategoryData',
         ];
     }
 }

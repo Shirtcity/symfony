@@ -29,7 +29,7 @@
         </testsuite>
 		
 		<testsuite name="articleBundle">     
-			<directory>../src/Elcodi/Bundle/ArticleBundle/Tests</directory>		
+			<directory>../src/Elcodi/Bundle/ArticleBundle/Tests/Functional/Adapter</directory>		
         </testsuite>
 		
 		<testsuite name="articleComponent"> 
