@@ -161,7 +161,10 @@ class ArticleController extends AbstractAdminController
     public function editAction(
         FormInterface $form,
         ArticleInterface $article
-    ) {			
+    ) {	
+		//$articleProductPrintSides = $article->getArticleProduct()->getArticleProductPrintSides();
+		//die(var_dump($articleProductPrintSides->first()->getPrintSide()));
+		//die(var_dump($articleProductPrintSides->first()->getPrintableVariant()));
 		if ($form->isValid()) {	
 			
             $this->flush($article);

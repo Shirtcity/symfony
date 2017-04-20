@@ -98,6 +98,11 @@ class ElcodiArticleExtension extends AbstractExtension implements EntitiesOverri
             'elcodi.entity.article_product.manager' => $config['mapping']['article_product']['manager'],
             'elcodi.entity.article_product.enabled' => $config['mapping']['article_product']['enabled'],
 			
+			'elcodi.entity.article_product_print_side.class' => $config['mapping']['article_product_print_side']['class'],
+            'elcodi.entity.article_product_print_side.mapping_file' => $config['mapping']['article_product_print_side']['mapping_file'],
+            'elcodi.entity.article_product_print_side.manager' => $config['mapping']['article_product_print_side']['manager'],
+            'elcodi.entity.article_product_print_side.enabled' => $config['mapping']['article_product_print_side']['enabled'],
+			
             'elcodi.core.article.load_only_categories_with_articles' => $config['categories']['load_only_categories_with_articles'],
             'elcodi.core.article.cache_key' => $config['categories']['cache_key'],
         ];

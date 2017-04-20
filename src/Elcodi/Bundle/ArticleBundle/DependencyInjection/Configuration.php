@@ -64,6 +64,13 @@ class Configuration extends AbstractConfiguration
                             'default',
                             true
                         ))
+						->append($this->addMappingNode(
+                            'article_product_print_side',
+                            'Elcodi\Component\Article\Entity\ArticleProductPrintSide',
+                            '@ElcodiArticleBundle/Resources/config/doctrine/ArticleProductPrintSide.orm.yml',
+                            'default',
+                            true
+                        ))
                     ->end()
                 ->end()
                 ->arrayNode('articles')

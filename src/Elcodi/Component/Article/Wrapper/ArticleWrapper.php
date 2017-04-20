@@ -5,9 +5,10 @@ namespace Elcodi\Component\Article\Wrapper;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Component\Article\EventDispatcher\ArticleEventDispatcher;
 use Elcodi\Component\Article\Factory\ArticleFactory;
+use Elcodi\Component\Article\Entity\Interfaces\ArticleProductPrintSideInterface;
+use Elcodi\Component\Article\Factory\ArticleProductPrintSideFactory;
 use Elcodi\Component\Core\Wrapper\Interfaces\WrapperInterface;
-use Elcodi\Component\User\Entity\Interfaces\CustomerInterface;
-use Elcodi\Component\User\Wrapper\CustomerWrapper;
+
 
 /**
  * Class ArticleWrapper.
@@ -29,11 +30,19 @@ use Elcodi\Component\User\Wrapper\CustomerWrapper;
  *
  * * get()
  * * clean()
+ * * getArticleProductPrintSide()
  *
  * @api
  */
 class ArticleWrapper implements WrapperInterface
 {
+	/**
+     * @var ArticleInterface
+     *
+     * Article loaded
+     */
+    private $article;
+	
     /**
      * @var ArticleEventDispatcher
      *
@@ -47,27 +56,36 @@ class ArticleWrapper implements WrapperInterface
      * Article Factory
      */
     private $articleFactory;
-
-    /**
-     * @var ArticleInterface
+	
+	/**
+     * @var ArticleProductPrintSide
      *
-     * Article loaded
+     * ArticleProductPrintSide
      */
-    private $article;
+    private $articleProductPrintSide;
+	
+	/**
+     * @var ArticleProductPrintSideFactory
+     *
+     * ArticleProductPrintSide Factory
+     */
+    private $articleProductPrintSideFactory;    
 
     /**
      * Construct method.
      *
      * @param ArticleEventDispatcher $articleEventDispatcher Article EventDispatcher
      * @param ArticleFactory         $articleFactory         Article Factory
-     * @param ArticleSessionWrapper  $articleSessionWrapper  Article Session Wrapper
+     * @param ArticleProductPrintSideFactory  $articleProductPrintSideFactory  ArticleProductPrintSide Factory 
      */
     public function __construct(
         ArticleEventDispatcher $articleEventDispatcher,
-        ArticleFactory $articleFactory
+        ArticleFactory $articleFactory,
+		ArticleProductPrintSideFactory $articleProductPrintSideFactory
     ) {
         $this->articleEventDispatcher = $articleEventDispatcher;
         $this->articleFactory = $articleFactory;
+		$this->articleProductPrintSideFactory = $articleProductPrintSideFactory;
     }
 
     /**
@@ -82,7 +100,7 @@ class ArticleWrapper implements WrapperInterface
             return $this->article;
         }
 
-        $this->article = $this->resolveArticle();
+        $this->resolveArticle();
 
         $this
             ->articleEventDispatcher
@@ -90,6 +108,35 @@ class ArticleWrapper implements WrapperInterface
 
         return $this->article;
     }
+	
+	public function getArticleProduct()
+	{
+		if(null === $this->article) {
+			$this->resolveArticle();
+		}
+		
+		return $this->article->getArticleProduct();
+	}
+	
+	/**
+	 * Get Article Product Print Side
+	 * 
+	 * @return ArticleProductPrintSide object
+	 */
+	public function getArticleProductPrintSide()
+	{
+		if(null === $this->article) {
+			$this->resolveArticle();
+		}	
+		
+		if ($this->articleProductPrintSide instanceof ArticleProductPrintSideInterface) {
+            return $this->articleProductPrintSide;
+        }
+		
+		$this->resolveArticleProductPrintSides();
+		
+		return $this->articleProductPrintSide;
+	}
 
     /**
      * Clean loaded object in order to reload it again.
@@ -110,10 +157,17 @@ class ArticleWrapper implements WrapperInterface
      */
     private function resolveArticle() 
 	{
-        $article = $this
+        $this->article = $this
 			->articleFactory
-			->create();
-            
-        return $article;
+			->create();		
     }
+	
+	private function resolveArticleProductPrintSides()
+	{			
+		$this->articleProductPrintSide = $this
+			->articleProductPrintSideFactory
+			->create();
+		
+		$this->articleProductPrintSide->setArticleProduct($this->article->getArticleProduct());
+	}
 }

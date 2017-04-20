@@ -1,6 +1,8 @@
 <?php
 namespace Elcodi\Component\Article\Entity\Interfaces;
 
+use Doctrine\Common\Collections\Collection;
+
 use Elcodi\Bundle\ProductBundle\Entity\Product;
 use Elcodi\Bundle\ProductBundle\Entity\ProductColors;
 
@@ -36,11 +38,22 @@ interface ArticleProductInterface
      *
      * @return $this Self object;
      */
-	public function setProductColors(ProductColors $productColors);
+	public function setProductColors(ProductColors $productColors);	
 	
-	/*
-	public function getPrintArea();	
-	public function setPrintArea($printArea);
-	 */
+	/**
+     * Sets article product print sides
+     *
+     * @param Collection $articleProductPrintSides Article Product Print Sides
+     *
+     * @return $this Self object
+     */
+    public function setArticleProductPrintSides(Collection $articleProductPrintSides);
+
+    /**
+     * Gets article product print sides.
+     *
+     * @return Collection ArticleProductPrintSide collection
+     */
+    public function getArticleProductPrintSides();
 }
 

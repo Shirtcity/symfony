@@ -4,29 +4,29 @@ namespace Elcodi\Bundle\PrintableBundle\Factory;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-use Elcodi\Bundle\PrintableBundle\Entity\DesignVariant;
+use Elcodi\Bundle\PrintableBundle\Entity\TextVariant;
 use Elcodi\Component\Core\Factory\Abstracts\AbstractFactory;
 use Elcodi\Component\Core\Factory\DateTimeFactory;
 
 
 /**
- * Class DesignVariantFactory.
+ * Class PrintableVariantFactory.
  */
-class DesignVariantFactory extends AbstractFactory
+class PrintableVariantFactory extends AbstractFactory
 {
 	public function create()
     {
         /**
-         * @var DesignVariant $designVariant
+         * @var PrintableVariant $printableVariant
          */
         $classNamespace = $this->getEntityNamespace();
-		
-        $designVariant = new $classNamespace();
 
-        $designVariant
+        $printableVariant = new $classNamespace();
+
+        $printableVariant
             ->setPosX(0)
             ->setPosY(0);
 
-        return $designVariant;
+        return $printableVariant;
     }	
 }

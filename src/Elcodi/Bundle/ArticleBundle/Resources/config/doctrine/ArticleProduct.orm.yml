@@ -20,3 +20,12 @@ Elcodi\Component\Article\Entity\ArticleProduct:
             joinColumn:
                 name: color_id
                 referencedColumnName: id
+
+    oneToMany:
+        articleProductPrintSides:
+            targetEntity: Elcodi\Component\Article\Entity\ArticleProductPrintSide
+            mappedBy: articleProduct
+            orphanRemoval: true
+            cascade:
+                - persist 
+                

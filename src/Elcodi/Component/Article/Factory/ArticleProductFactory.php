@@ -2,7 +2,10 @@
 
 namespace Elcodi\Component\Article\Factory;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Elcodi\Component\Core\Factory\Abstracts\AbstractFactory;
+use Elcodi\Component\Article\Entity\ArticleProductPrintSide;
 
 /**
  * Factory for ArticleProduct entities.
@@ -18,12 +21,13 @@ class ArticleProductFactory extends AbstractFactory
     {
         $classNamespace = $this->getEntityNamespace();
 	
-        $articleProduct = new $classNamespace();       
-
+        $articleProduct = new $classNamespace();
+				
         $articleProduct
             ->setProduct()
-            ->setProductColor();
-
+            ->setProductColors()
+			->setArticleProductPrintSides(new ArrayCollection());
+		
         return $articleProduct;
     }
 }

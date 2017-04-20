@@ -13,8 +13,7 @@ services:
             - "@elcodi.repository.product"
         calls:
             - [setEntityNamespace, ["%elcodi.entity.article.class%"]]
-            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
-    
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]    
     
     #
     # Factory for ArticleProduct entities
@@ -23,5 +22,13 @@ services:
         class: Elcodi\Component\Article\Factory\ArticleProductFactory
         calls:
             - [setEntityNamespace, ["%elcodi.entity.article_product.class%"]]
+            
+    #
+    # Factory for ArticleProductPrintSide entities
+    #
+    elcodi.factory.article_product_print_side:
+        class: Elcodi\Component\Article\Factory\ArticleProductPrintSideFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.article_product_print_side.class%"]]
             
     

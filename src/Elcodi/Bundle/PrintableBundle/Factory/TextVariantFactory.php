@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Elcodi\Bundle\PrintableBundle\Entity\TextVariant;
 use Elcodi\Component\Core\Factory\Abstracts\AbstractFactory;
 use Elcodi\Component\Core\Factory\DateTimeFactory;
+use Elcodi\Bundle\PrintableBundle\Factory\TextFactory;
 
 
 /**
@@ -14,6 +15,21 @@ use Elcodi\Component\Core\Factory\DateTimeFactory;
  */
 class TextVariantFactory extends AbstractFactory
 {
+	/**
+	 * @var TextFactory 
+	 */
+	private $textFactory;
+	
+	/**
+	 * Construct
+	 * 
+	 * @param TextFactory $textFactory
+	 */
+	public function __construct(TextFactory $textFactory) 
+	{
+		$this->textFactory = $textFactory;
+	}
+	
 	public function create()
     {
         /**
@@ -23,10 +39,12 @@ class TextVariantFactory extends AbstractFactory
 
         $textVariant = new $classNamespace();
 
-        $textVariant->setEnabled(true)
-             ->setCreatedAt($this->now())
+        $textVariant
              ->setPosX(0)
-             ->setPosY(0);
+             ->setPosY(0)
+			->setText(
+				$this->textFactory->create()
+			);
 
         return $textVariant;
     }	

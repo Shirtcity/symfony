@@ -2,9 +2,11 @@
 
 namespace Elcodi\Component\Article\Entity;
 
-use Elcodi\Component\Core\Factory\Traits\EntityNamespaceTrait;
+use Doctrine\Common\Collections\Collection;
 
+use Elcodi\Component\Core\Factory\Traits\EntityNamespaceTrait;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleProductInterface;
+use \Elcodi\Component\Article\Entity\Interfaces\ArticleProductPrintSideInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Product;
 use Elcodi\Bundle\ProductBundle\Entity\ProductColors;
 
@@ -25,9 +27,16 @@ class ArticleProduct implements ArticleProductInterface
 	private $product;
 	
 	/**
-	 * @var ProductColor 
+	 * @var Collection 
 	 */
-	private $productColors;
+	private $productColors;	
+	
+	/**
+     * @var Collection
+     *
+     * Lines
+     */
+    protected $articleProductPrintSides;
 	
 	/**
      * Returns product of an article
@@ -75,9 +84,52 @@ class ArticleProduct implements ArticleProductInterface
 		$this->productColors = $productColors;
 		
 		return $this;
+	}	
+	
+    /**
+     * Gets article product print sides.
+     *
+     * @return Collection ArticleProductPrintSide collection
+     */
+    public function getArticleProductPrintSides()
+	{
+		return $this->articleProductPrintSides;
 	}
 	
-
+	/**
+     * Sets article product print sides
+     *
+     * @param Collection $articleProductPrintSides Article Product Print Sides
+     *
+     * @return $this Self object
+     */
+    public function setArticleProductPrintSides(Collection $articleProductPrintSides)
+	{
+		$this->articleProductPrintSides = $articleProductPrintSides;
+		
+		return $this;
+	}
+	
+	/**
+	 * Add new article product print side to the collection
+	 * 
+	 * @param ArticleProductPrintSideInterface $articleProductPrintSide
+	 */
+	public function addArticleProductPrintSide(ArticleProductPrintSideInterface $articleProductPrintSide)
+	{
+		$this->articleProductPrintSides->add($articleProductPrintSide);
+	}
+	
+	/**
+	 * Removes an article product print side from the collection
+	 * 
+	 * @param ArticleProductPrintSideInterface $articleProductPrintSide
+	 */
+	public function removeArticleProductPrintSide(ArticleProductPrintSideInterface $articleProductPrintSide)
+	{
+		$this->articleProductPrintSides->removeElement($articleProductPrintSide);
+	}
+	
     /**
      * Get id
      *

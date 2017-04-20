@@ -17,6 +17,8 @@ services:
 
     elcodi.factory.text_variant:
         class: Elcodi\Bundle\PrintableBundle\Factory\TextVariantFactory
+        arguments:
+            - "@elcodi.factory.text"
         calls:
             - [setEntityNamespace, ["%elcodi.entity.text_variant.class%"]]
             - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
@@ -44,4 +46,10 @@ services:
                     calls:
                         - [setEntityNamespace, ["%elcodi.entity.photo_variant.class%"]]
                         - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
+    
+    elcodi.factory.printable_variant:
+        class: Elcodi\Bundle\PrintableBundle\Factory\PrintableVariantFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.printable_variant.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
     

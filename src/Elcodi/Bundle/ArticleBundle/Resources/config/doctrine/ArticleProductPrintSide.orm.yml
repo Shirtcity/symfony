@@ -1,0 +1,46 @@
+Elcodi\Component\Article\Entity\ArticleProductPrintSide:
+    type: entity
+    repositoryClass: Elcodi\Component\Article\Repository\ArticleProductPrintSideRepository
+    table: article_product_print_side    
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+                
+    manyToOne:
+        printSide:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\PrintSide
+            joinColumn:
+                name: print_side_id
+                referencedColumnName: id
+            cascade:
+                - persist  
+        articleProduct:
+            targetEntity: Elcodi\Component\Article\Entity\Interfaces\ArticleProductInterface
+            inversedBy: articleProductPrintSides
+            joinColumn:
+                name: article_product_id
+                referencedColumnName: id
+                nullable: false
+            cascade:
+                - persist  
+                
+    manyToMany:
+        printableVariants:
+            targetEntity: Elcodi\Bundle\PrintableBundle\Entity\PrintableVariant
+            joinTable:
+                name: article_product_print_side_to_printable_variant
+                joinColumns:
+                    article_product_print_side_id:
+                        referencedColumnName: id
+                        onDelete: "CASCADE" 
+                inverseJoinColumns:
+                    printable_variant_id:
+                        referencedColumnName: id
+                        onDelete: "CASCADE"
+            orphanRemoval: true
+            cascade:
+                - persist
+                - remove

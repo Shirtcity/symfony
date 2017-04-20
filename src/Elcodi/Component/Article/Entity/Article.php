@@ -56,8 +56,8 @@ class Article extends Purchasable implements ArticleInterface
      *
      * Many-to-Many association between articles and section categories.
      */
-    protected $sectionCategories;  
-
+    protected $sectionCategories;
+	
 	/**
      * Constructor
      */
@@ -209,8 +209,8 @@ class Article extends Purchasable implements ArticleInterface
         $this->attributes = $attributes;
 
         return $this;
-    }    
-
+    }
+	
 	/**
      * Get purchasable type.
      *

@@ -43,6 +43,7 @@ class MappingCompilerPass extends AbstractElcodiMappingCompilerPass
                     'article',
                     'category',
 					'article_product',
+					'article_product_print_side',
                 ]
             );
     }

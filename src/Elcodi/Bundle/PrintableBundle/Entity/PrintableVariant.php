@@ -80,4 +80,8 @@ abstract class PrintableVariant
     {
         return $this->posY;
     }
+	
+	public function __toString() {
+		return 'PrintableVariant';
+	}
 }

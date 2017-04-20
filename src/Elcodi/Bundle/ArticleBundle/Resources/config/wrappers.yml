@@ -7,5 +7,6 @@ services:
         class: Elcodi\Component\Article\Wrapper\ArticleWrapper
         arguments:
             - '@elcodi.event_dispatcher.article'
-            - '@elcodi.factory.article'         
+            - '@elcodi.factory.article' 
+            - '@elcodi.factory.article_product_print_side'
     

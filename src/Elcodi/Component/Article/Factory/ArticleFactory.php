@@ -79,7 +79,8 @@ class ArticleFactory extends AbstractFactory
 		
 		$articleProduct
             ->setProduct($product)
-            ->setProductColors($productColors);
+            ->setProductColors($productColors)						
+			->setArticleProductPrintSides(new ArrayCollection());
 		
 		return $articleProduct;
 	}

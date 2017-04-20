@@ -10,3 +10,18 @@ services:
         tags:
             - { name: kernel.event_listener, event: article.onload, method: validateArticleProductColor, priority: 1 }
             - { name: kernel.event_listener, event: article.product_change, method: validateArticleProductColor, priority: 2 }
+            
+            
+    #
+    # Form Event Listeners
+    #            
+    elcodi.event_listener.article.form.article_product_print_sides:
+        class: Elcodi\Component\Article\EventListener\Form\ArticleProductPrintSidesFormEventListener
+        arguments:
+            - '@elcodi.factory.article_product_print_side'  
+            
+    elcodi.event_listener.article.form.article_product_print_side:
+        class: Elcodi\Component\Article\EventListener\Form\ArticleProductPrintSideFormEventListener
+        arguments:
+            - '@elcodi.factory.text_variant'
+            - '@elcodi.factory.design_variant'

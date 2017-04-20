@@ -8,49 +8,44 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
+use Elcodi\Component\Article\EventListener\Form\ArticleProductPrintSidesFormEventListener;
 
 /**
- * Class ArticleProductType
+ * Class ArticleProductPrintSidesType
  */
-class ArticleProductType extends AbstractType
+class ArticleProductPrintSidesType extends AbstractType
 {
     use EntityTranslatableFormTrait, FactoryTrait;
     
-    /**
-     * @var string
-     *
-     * Product namespace
-     */
-    protected $productNamespace;
-
-    /**
-     * @var string
-     *
-     * Product Color namespace
-     */
-    protected $productColorNamespace;
-	
+	/**
+	 * @var ArticleProductPrintSideType 
+	 * 
+	 * Article product print side form type
+	 */	
 	protected $articleProductPrintSideType;
+	
+	/**
+	 * @var ArticleProductPrintSide 
+	 * 
+	 * Article product print sides form event listener
+	 */	
+	protected $articleProductPrintSidesFormEventListener;
 	
     /**
      * Construct
      *
-	 * @param string $productNamespace		Product namespace
-	 * @param string $productColorNamespace	ProductColor namespace
-	 * @param ArticleProductPrintSideType $articleProductPrintSideType ArticleProductPrintSide form type
+	 * @param ArticleProductPrintSideType $articleProductPrintSideType ArticleProductPrintSides form type
+	 * @param ArticleProductPrintSidesFormEventListener $articleProductPrintSidesFormEventListener event listener
      */
     public function __construct(
-		$productNamespace,
-		$productColorNamespace,
-		$articleProductPrintSideType	
-    ) {
-        $this->productNamespace = $productNamespace;
-		$this->productColorNamespace = $productColorNamespace;
+		ArticleProductPrintSideType $articleProductPrintSideType, 
+		ArticleProductPrintSidesFormEventListener $articleProductPrintSidesFormEventListener
+	) {	
 		$this->articleProductPrintSideType = $articleProductPrintSideType;
+		$this->articleProductPrintSidesFormEventListener = $articleProductPrintSidesFormEventListener;
     }
 	
     /**
@@ -61,15 +56,6 @@ class ArticleProductType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {		
         $resolver->setDefaults([
-			'empty_data' => function(FormInterface $form) {
-				$articleProduct = $this
-					->factory
-					->create();
-				
-				return $articleProduct
-					->setProduct($form->get('product')->getData())
-					->setProductColor($form->get('productColor')->getData());				
-			},
             'data_class' => $this
                 ->factory
                 ->getEntityNamespace(),
@@ -84,34 +70,12 @@ class ArticleProductType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {	
-        $builder->add('product', 'entity', [
-			'class'    => $this->productNamespace,
-			'required' => true,
-		]);		
-		
-		$formModifier = function (FormInterface $form, $product = null) {			
-            $form->add('productColors', 'entity', [
-                'class'			=> $this->productColorNamespace,
-                'required'		=> true,
-                'choices'		=> (null === $product) ? [] : $product->getColors(),
-				'choice_label'	=> 'color'
-            ]);
-			
-        };		
-		
-		$builder
-			->addEventListener(	FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($formModifier) {				
-				$product = (null === $event->getData()) ? null : $event->getData()->getProduct();
-				$formModifier($event->getForm(), $product);
-			});			
-		
-        $builder
-			->get('product')
-			->addEventListener(	FormEvents::POST_SUBMIT, function (FormEvent $event) use ($formModifier) {
-				$product = $event->getForm()->getData();					
-				$formModifier($event->getForm()->getParent(), $product);
-			});
-    }
+		$builder			
+			->add('articleProductPrintSides', 'collection', [
+				'entry_type' => $this->articleProductPrintSideType,
+			])
+			->addEventSubscriber($this->articleProductPrintSidesFormEventListener);		
+    }	
 
     /**
      * Returns the prefix of the template block name for this type.
@@ -123,7 +87,7 @@ class ArticleProductType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'elcodi_admin_article_form_type_article_product';
+        return 'elcodi_admin_article_form_type_article_product_print_sides';
     }
 
     /**

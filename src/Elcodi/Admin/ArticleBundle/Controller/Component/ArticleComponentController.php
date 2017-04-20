@@ -169,5 +169,5 @@ class ArticleComponentController extends AbstractAdminController
             'article'  => $article,
             'form'     => $formView
         ];
-    }
+    }	
 }
