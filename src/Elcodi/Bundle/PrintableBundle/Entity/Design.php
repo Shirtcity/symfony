@@ -14,6 +14,7 @@ use Elcodi\Bundle\PrintableBundle\Entity\FoilColor;
 use Elcodi\Component\Geo\Entity\Location;
 use Elcodi\Component\User\Entity\AdminUser;
 use Elcodi\Component\User\Entity\Customer;
+use Elcodi\Bundle\CategoryBundle\Entity\DesignCategory;
 
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
@@ -45,6 +46,11 @@ class Design extends AbstractPrintable implements DesignInterface
      * @var \Doctrine\Common\Collections\Collection
      */
     private $country;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $designCategory;
 
     /**
      * @var Customer
@@ -212,6 +218,33 @@ class Design extends AbstractPrintable implements DesignInterface
         return $this->country;
     }
 
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDesignCategory()
+    {
+        return $this->designCategory;
+    }
+
+    /**
+     * @param DesignCategory $designCategory
+     * @return Design
+     */
+    public function addDesignCategory(DesignCategory $designCategory)
+    {
+        $this->designCategory[] = $designCategory;
+        return $this;
+    }
+
+    /**
+     * Remove Design Category
+     *
+     * @param DesignCategory $designCategory
+     */
+    public function removeDesignCategory(DesignCategory $designCategory)
+    {
+        $this->designCategory->removeElement($designCategory);
+    }
 
     /**
      * Set customer

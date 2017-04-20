@@ -53,7 +53,7 @@ Elcodi\Component\Article\Entity\Purchasable:
         enabled:
             column: enabled
             type: boolean
-            nullable: false    
+            nullable: false
 
     lifecycleCallbacks:
         preUpdate: [loadUpdateAt]

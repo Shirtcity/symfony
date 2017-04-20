@@ -71,7 +71,7 @@ Elcodi\Component\User\Entity\Customer:
         addresses:
             targetEntity: Elcodi\Component\Geo\Entity\Interfaces\AddressInterface
             joinTable:
-                name: customer_address
+                name: customer_to_address
                 joinColumns:
                     customer_id:
                         referencedColumnName: id

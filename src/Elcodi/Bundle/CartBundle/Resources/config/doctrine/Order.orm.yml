@@ -156,7 +156,7 @@ Elcodi\Component\Cart\Entity\Order:
             targetEntity: Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateLineInterface
             cascade: ["persist"]
             joinTable:
-                name: shipping_state_lines
+                name: shipping_to_state_line
                 joinColumns:
                     order_id:
                         referencedColumnName: id
