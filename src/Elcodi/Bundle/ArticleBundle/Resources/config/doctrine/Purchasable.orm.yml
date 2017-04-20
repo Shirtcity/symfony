@@ -80,7 +80,7 @@ Elcodi\Component\Article\Entity\Purchasable:
         images:
             targetEntity: Elcodi\Component\Media\Entity\Interfaces\ImageInterface
             joinTable:
-                name: purchasable_image
+                name: purchasable_to_image
                 joinColumns:
                     article_id:
                         referencedColumnName: id

@@ -69,9 +69,9 @@ Elcodi\Bundle\ProductBundle\Entity\ProductManufacturer:
         images:
             targetEntity: Elcodi\Component\Media\Entity\Interfaces\ImageInterface
             joinTable:
-                name: product_manufacturer_image
+                name: product_manufacturer_to_image
                 joinColumns:
-                    product_id:
+                    product_manufacturer_id:
                         referencedColumnName: id
                         onDelete: "CASCADE"
                 inverseJoinColumns:

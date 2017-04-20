@@ -30,7 +30,7 @@ Elcodi\Bundle\ProductBundle\Entity\ProductSizes:
             targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorsInterface
             inversedBy: sizes
             joinTable:
-                name: product_sizes_product_colors
+                name: product_sizes_to_product_colors
                 joinColumns:
                     product_sizes_id:
                         referencedColumnName: id
