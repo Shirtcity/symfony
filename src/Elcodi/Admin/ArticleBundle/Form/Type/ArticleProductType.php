@@ -84,36 +84,28 @@ class ArticleProductType extends AbstractType
 		]);
 		
 		$formModifier = function (FormInterface $form, $product = null) {			
-            $colors = (is_null($product)) ? 
-				[] : 
-				$product->getColors()->map(function($value){
-					return $value->getColor();
-				});	
-				
-            $form->add('productColor', 'entity', [
-                'class'     => $this->productColorNamespace,
-                'required'	=> true,
-                'choices'   => $colors,
+            $colors = (null === $product) ? [] : $product->getColors();
+					
+            $form->add('productColors', 'entity', [
+                'class'			=> $this->productColorNamespace,
+                'required'		=> true,
+                'choices'		=> $colors,
+				'choice_label'	=> 'color'
             ]);
-        };
+        };		
 		
-		
-		$builder->addEventListener(	FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($formModifier) {							
-				$product = !is_null($event->getData()) ? $event->getData()->getProduct() : null;
-
+		$builder
+			->addEventListener(	FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($formModifier) {							
+				$product = (null === $event->getData()) ? null : $event->getData()->getProduct();
 				$formModifier($event->getForm(), $product);
-			}
-		);
+			});
 		
-        $builder->get('product')
+        $builder
+			->get('product')
 			->addEventListener(	FormEvents::POST_SUBMIT, function (FormEvent $event) use ($formModifier) {
-                $product = $event->getForm()->getData();			
-
-                $formModifier($event->getForm()->getParent(), $product);
-            }
-        );			
-		
-        $builder->addEventSubscriber($this->getEntityTranslatorFormEventListener());
+				$product = $event->getForm()->getData();					
+				$formModifier($event->getForm()->getParent(), $product);
+			});
     }
 
     /**

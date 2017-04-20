@@ -26,12 +26,7 @@ Elcodi\Component\Article\Entity\Purchasable:
         showInHome:
             column: show_in_home
             type: boolean
-            nullable: true                 
-        imagesSort:
-            column: images_sort
-            type: string
-            length: 2048
-            nullable: true
+            nullable: true  
         metaTitle:
             column: meta_title
             type: string
@@ -59,50 +54,6 @@ Elcodi\Component\Article\Entity\Purchasable:
             column: enabled
             type: boolean
             nullable: false
-
-    manyToOne:
-        #principalCategory:
-        #    targetEntity: Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface
-        #    joinColumn:
-        #        name: principal_category_id
-        #        referencedColumnName: id
-        #        nullable: true
-        #        onDelete: "SET NULL"
-        principalImage:
-            targetEntity: Elcodi\Component\Media\Entity\Interfaces\ImageInterface
-            joinColumn:
-                onDelete: SET NULL
-                name: principal_image_id
-                referencedColumnName: id
-                nullable: true
-
-    manyToMany:
-        images:
-            targetEntity: Elcodi\Component\Media\Entity\Interfaces\ImageInterface
-            joinTable:
-                name: purchasable_to_image
-                joinColumns:
-                    article_id:
-                        referencedColumnName: id
-                        onDelete: "CASCADE"
-                inverseJoinColumns:
-                    image_id:
-                        referencedColumnName: id
-                        onDelete: "CASCADE"
-
-        #categories:
-        #    targetEntity: Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface
-        #    inversedBy: purchasables
-        #    joinTable:
-        #        name: purchasable_category
-        #        joinColumns:
-        #            purchasable_id:
-        #                referencedColumnName: id
-        #                onDelete: "CASCADE"
-        #        inverseJoinColumns:
-        #            category_id:
-        #                referencedColumnName: id
-        #                onDelete: "CASCADE"
 
     lifecycleCallbacks:
         preUpdate: [loadUpdateAt]

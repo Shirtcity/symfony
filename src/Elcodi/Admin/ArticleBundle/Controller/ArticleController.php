@@ -137,8 +137,8 @@ class ArticleController extends AbstractAdminController
      *
      * @EntityAnnotation(
      *      class = {
-     *          "factory" = "elcodi.factory.article",
-     *          "method" = "create",
+     *          "factory" = "elcodi.wrapper.article",
+     *          "method" = "get",
      *          "static" = false
      *      },
      *      mapping = {
@@ -160,17 +160,9 @@ class ArticleController extends AbstractAdminController
     public function editAction(
         FormInterface $form,
         ArticleInterface $article
-    ) {		
-		//die('<pre>' . var_dump($article->getImages(), true));
-		if ($form->isValid()) {				
-            $firstImage = $article
-                ->getSortedImages()
-                ->first();
-
-            if ($firstImage instanceof ImageInterface) {
-                $article->setPrincipalImage($firstImage);
-            }
-
+    ) {			
+		if ($form->isValid()) {	
+			
             $this->flush($article);
 
             $this->addFlash(
@@ -188,7 +180,7 @@ class ArticleController extends AbstractAdminController
             'form'    => $form->createView(),
         ];
     }
-
+	
     /**
      * Enable entity
      *

@@ -2,5 +2,11 @@ services:
 
     #
     # Event Listeners
-    #
-    
+    #            
+    elcodi.event_listener.article.validate_product_color:
+        class: Elcodi\Component\Article\EventListener\ValidateArticleProductColorEventListener
+        arguments:
+            - '@elcodi.validator.article_product_color'
+        tags:
+            - { name: kernel.event_listener, event: article.onload, method: validateArticleProductColor, priority: 1 }
+            - { name: kernel.event_listener, event: article.product_change, method: validateArticleProductColor, priority: 2 }

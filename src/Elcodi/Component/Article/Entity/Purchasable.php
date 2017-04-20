@@ -39,7 +39,6 @@ abstract class Purchasable implements PurchasableInterface
         DateTimeTrait,
         ETaggableTrait,
         MetaDataTrait,
-        ImagesContainerTrait,
         PrincipalImageTrait,
         EnabledTrait,
         PriceTrait;
@@ -152,5 +151,5 @@ abstract class Purchasable implements PurchasableInterface
     public function getPurchasableType()
     {
         return 'purchasable';
-}
+	}
 }

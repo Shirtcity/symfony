@@ -1,0 +1,11 @@
+services:
+
+    #
+    # Wrappers
+    #
+    elcodi.wrapper.article:
+        class: Elcodi\Component\Article\Wrapper\ArticleWrapper
+        arguments:
+            - '@elcodi.event_dispatcher.article'
+            - '@elcodi.factory.article'         
+    

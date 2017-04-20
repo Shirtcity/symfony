@@ -36,33 +36,6 @@ FrontendCore.define('variants', ['devicePackage', 'modal'], function () {
 			});
 
 		},
-		bindLinks: function () {
-
-			var self = this;
-
-			$('a', '#variants-list').on('click', function (event) {
-
-				if (this.className.indexOf('icon-trash-o') == -1) {
-
-					event.preventDefault();
-
-					self.modal.open({
-						iframe: true,
-						href: this.href + '?modal=true',
-						width: '90%',
-						height: '90%'
-					});
-				} else {
-
-					var sText = this.getAttribute("data-fc-text") ? this.getAttribute("data-fc-text") : 'Are you sure?',
-						sName = this.getAttribute("data-fc-name") ? this.getAttribute("data-fc-name") : 'Delete this item.';
-
-					if (!confirm("\n" + sName + ":\n" + sText + "\n")) {
-						return false;
-					}
-				}
-			});
-		},
 		updateVariants: function (oResponse) {
 
 			var self = this;
@@ -73,12 +46,9 @@ FrontendCore.define('variants', ['devicePackage', 'modal'], function () {
 					message: document.getElementById('variants-message-ok').value
 				});
 
-				document.getElementById('variants-list').innerHTML = '<p class="ta-c pa-xl"><i class="icon-spin icon-spinner fz-xl"></i></p>';
-
 				$.get(oResponse.data.url, function (sHtml) {
 					document.getElementById('variants-list').innerHTML = $(sHtml).find('#variants-list').html();
 				});
-
 			}
 
 			this.modal.close();

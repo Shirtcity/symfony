@@ -55,8 +55,6 @@ class ArticleFactory extends AbstractFactory
             ->setShowInHome(true)
             ->setAttributes(new ArrayCollection())
             ->setSectionCategories(new ArrayCollection())
-            ->setImages(new ArrayCollection())
-            ->setImagesSort('')
             ->setEnabled(true)
 			->setArticleProduct($this->getDefaultArticleProduct())
             ->setCreatedAt($this->now());
@@ -75,10 +73,13 @@ class ArticleFactory extends AbstractFactory
 		$articleProduct = new ArticleProduct();
 		
 		$product = $this->productRepository->findOneBy([]);
-	
+		$productColors = $product
+				->getColors()
+				->first();
+		
 		$articleProduct
             ->setProduct($product)
-            ->setProductColor();
+            ->setProductColors($productColors);
 		
 		return $articleProduct;
 	}
