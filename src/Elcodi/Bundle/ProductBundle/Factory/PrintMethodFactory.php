@@ -6,20 +6,16 @@ use Elcodi\Component\Core\Factory\Abstracts\AbstractFactory;
 
 
 /**
- * Class ProductColorsFactory.
+ * Class PrintMethodFactory.
  */
-class ProductSizeFactory extends AbstractFactory
+class PrintMethodFactory extends AbstractFactory
 {
 	public function create()
     {
         $classNamespace = $this->getEntityNamespace();
 		
-        $productSize = new $classNamespace();
+        $printMethod = new $classNamespace();
 
-        $productSize
-			->setName('undefined')
-			->setEnabled(0);
-
-        return $productSize;
+        return $printMethod;
     }	
 }

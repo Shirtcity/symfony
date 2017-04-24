@@ -8,6 +8,7 @@ use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Elcodi\Component\Core\Entity\Traits\ExistsTrait;
 use Elcodi\Component\Media\Entity\Interfaces\ImageInterface;
+use Elcodi\Component\Media\Entity\Traits\ImagesContainerTrait;
 
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideTypeInterface;
@@ -22,7 +23,8 @@ class PrintSide implements PrintSideInterface
 {
 	use EnabledTrait,
 		SoftDeleteableEntity,
-		ExistsTrait;
+		ExistsTrait,
+        ImagesContainerTrait;
 	
     /**
      * @var integer

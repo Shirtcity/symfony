@@ -18,16 +18,16 @@ use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
  */
 class PrintSideType extends AbstractType
 {
-    use FactoryTrait;    
-	
-	/**
+    use FactoryTrait;
+    
+    /**
      * @var string
      *
      * Image namespace
      */
     protected $imageNamespace;
-	
-	/**
+    
+    /**
      * PrintSideFormEventListener
      */
     protected $printSideFormEventListener;
@@ -35,15 +35,14 @@ class PrintSideType extends AbstractType
     /**
      * PrintSidesType constructor.
      *
-	 * @param string $imageNamespace				Image namespace 
+     * @param string $imageNamespace				Image namespace
      * @param string $printSideFormEventListener	PrintSideFormEventListener
      */
     public function __construct(
-		$imageNamespace,
-		$printSideFormEventListener
-	)
-    {
-		$this->imageNamespace = $imageNamespace;
+        $imageNamespace,
+        $printSideFormEventListener
+    ) {
+        $this->imageNamespace = $imageNamespace;
         $this->printSideFormEventListener = $printSideFormEventListener;
     }
 
@@ -71,28 +70,28 @@ class PrintSideType extends AbstractType
     {
         $builder
             ->add('enabled', CheckboxType::class, [
-				'required' => false,
-			])
-			->add('areas', CollectionType::class, [
+                'required' => false,
+            ])
+            ->add('areas', CollectionType::class, [
                 'entry_type'    => PrintSideAreaType::class,
-				'allow_add'     => true,
+                'allow_add'     => true,
                 'allow_delete'  => true,
-				'by_reference'	=> false,
+                'by_reference'	=> false,
             ])
-			->add('sideProductColors', CollectionType::class, [
+            ->add('sideProductColors', CollectionType::class, [
                 'entry_type'    => PrintSideProductColorsType::class,
-				'allow_add'     => true,
+                'allow_add'     => true,
                 'allow_delete'  => true,
-				'by_reference'	=> false,
+                'by_reference'	=> false,
             ])
-			->add('image', 'entity', [
+            ->add('image', 'entity', [
                 'class'    => $this->imageNamespace,
                 'required' => false,
                 'multiple' => false,
                 'property' => 'id',
             ]);
-		
-		$builder->addEventSubscriber($this->printSideFormEventListener);
+        
+        $builder->addEventSubscriber($this->printSideFormEventListener);
     }
 
     /**

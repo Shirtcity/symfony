@@ -4,6 +4,7 @@ namespace Elcodi\Bundle\ProductBundle\Entity\Interfaces;
 
 use Elcodi\Component\Core\Entity\Interfaces\EnabledInterface;
 use Elcodi\Component\Media\Entity\Interfaces\ImageInterface;
+use Elcodi\Component\Media\Entity\Interfaces\ImagesContainerInterface;
 
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideTypeInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductInterface;
@@ -13,7 +14,10 @@ use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideProductColorsInterfac
 /**
  * Interface PrintSideInterface.
  */
-interface PrintSideInterface extends EnabledInterface
+interface PrintSideInterface 
+    extends 
+    EnabledInterface,
+    ImagesContainerInterface
 {
 	/**
      * Get id

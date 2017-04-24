@@ -12,9 +12,6 @@ class PrintSideProductColorsFactory extends AbstractFactory
 {
 	public function create()
     {
-        /**
-         * @var PrintSideProductColorsFactory $sideProductColors
-         */
         $classNamespace = $this->getEntityNamespace();
 		
         $sideProductColors = new $classNamespace();

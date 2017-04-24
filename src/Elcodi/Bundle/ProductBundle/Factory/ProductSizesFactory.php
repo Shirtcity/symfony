@@ -12,9 +12,6 @@ class ProductSizesFactory extends AbstractFactory
 {
 	public function create()
     {
-        /**
-         * @var Product $product
-         */
         $classNamespace = $this->getEntityNamespace();
 		
         $productSizes = new $classNamespace();

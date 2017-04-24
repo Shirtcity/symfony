@@ -8,9 +8,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Elcodi\Bundle\CoreBundle\DataFixtures\ORM\Abstracts\AbstractFixture;
 
 /**
- * Class ProductSizeData.
+ * Class ProductSizesData.
  */
-class ProductSizeData extends AbstractFixture implements DependentFixtureInterface
+class ProductSizesData extends AbstractFixture implements DependentFixtureInterface
 {  
 
 	/**
@@ -20,17 +20,18 @@ class ProductSizeData extends AbstractFixture implements DependentFixtureInterfa
      */
     public function load(ObjectManager $manager)
     {
-        $productSizeDirector = $this->getDirector('product_size');
+        $productSizesDirector = $this->getDirector('product_sizes');
+        
+        $product = $this->getReference('product');
+        $productSize = $this->getReference('productSize');
 
-        $productSize = $productSizeDirector
+        $productSizes = $productSizesDirector
             ->create()
-            ->setName('M')
-            ->setOrderAsc(1)
-            ->setEnabled(true);
+            ->setProduct($product)
+            ->setSize($productSize);
 
-        $productSizeDirector->save($productSize);
-        $this->addReference('productSize', $productSize);
-
+        $productSizesDirector->save($productSizes);
+        $this->addReference('productSizes', $productSizes);
     }
 
     /**
@@ -43,6 +44,8 @@ class ProductSizeData extends AbstractFixture implements DependentFixtureInterfa
     {
         return [
             'Elcodi\Bundle\StoreBundle\DataFixtures\ORM\StoreData',
+            'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductSizeData',
+            'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductData',
         ];
     }
 }

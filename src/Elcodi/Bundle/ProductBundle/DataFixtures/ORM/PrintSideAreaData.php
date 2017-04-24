@@ -8,9 +8,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Elcodi\Bundle\CoreBundle\DataFixtures\ORM\Abstracts\AbstractFixture;
 
 /**
- * Class ProductSizeData.
+ * Class PrintSideAreaData.
  */
-class ProductSizeData extends AbstractFixture implements DependentFixtureInterface
+class PrintSideAreaData extends AbstractFixture implements DependentFixtureInterface
 {  
 
 	/**
@@ -20,17 +20,20 @@ class ProductSizeData extends AbstractFixture implements DependentFixtureInterfa
      */
     public function load(ObjectManager $manager)
     {
-        $productSizeDirector = $this->getDirector('product_size');
+        $printSideAreaDirector = $this->getDirector('print_side_area');
+        
+        $printSide = $this->getReference('printSide');
 
-        $productSize = $productSizeDirector
+        $printSideArea = $printSideAreaDirector
             ->create()
-            ->setName('M')
-            ->setOrderAsc(1)
-            ->setEnabled(true);
+            ->setWidth(200)
+            ->setHeight(300)
+            ->setPosX(155)
+            ->setPosY(100)
+            ->setSide($printSide);
 
-        $productSizeDirector->save($productSize);
-        $this->addReference('productSize', $productSize);
-
+        $printSideAreaDirector->save($printSideArea);
+        $this->addReference('printSideArea', $printSideArea);
     }
 
     /**
@@ -43,6 +46,7 @@ class ProductSizeData extends AbstractFixture implements DependentFixtureInterfa
     {
         return [
             'Elcodi\Bundle\StoreBundle\DataFixtures\ORM\StoreData',
+            'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\PrintSideData',
         ];
     }
 }
