@@ -116,7 +116,15 @@ class ArticleComponentController extends AbstractAdminController
      *      requirements = {
      *          "id" = "\d+",
      *      },
-     *      methods = {"GET"}
+     *      methods = {"GET","POST"}
+     * )
+	 * * @Route(
+     *      path = "/{id}/component",
+     *      name = "admin_article_update_component",
+     *      requirements = {
+     *          "id" = "\d+",
+     *      },
+     *      methods = {"POST"}
      * )
      * @Route(
      *      path = "/new/component",
@@ -132,8 +140,8 @@ class ArticleComponentController extends AbstractAdminController
      *
      * @EntityAnnotation(
      *      class = {
-     *          "factory" = "elcodi.factory.article",
-     *          "method" = "create",
+     *          "factory" = "elcodi.wrapper.article",
+     *          "method" = "get",
      *          "static" = false
      *      },
      *      name = "article",
@@ -153,7 +161,10 @@ class ArticleComponentController extends AbstractAdminController
     public function editComponentAction(
         FormView $formView,
         ArticleInterface $article
-    ) {   
+    ) {  
+	
+		$this->get('elcodi.event_dispatcher.article')->dispatchArticleEditEvents($article);
+
         return [
             'article'  => $article,
             'form'     => $formView

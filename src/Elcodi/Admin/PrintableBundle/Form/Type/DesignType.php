@@ -29,6 +29,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 use Elcodi\Component\Geo\Entity\Location;
 use Elcodi\Component\Geo\Repository\LocationRepository;
 use Elcodi\Form\Type\CountryCheckboxType;
+use Elcodi\Bundle\CategoryBundle\Entity\DesignCategory;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
@@ -126,6 +127,11 @@ class DesignType extends AbstractType
                 'required'    => false,
                 'allow_delete' => true,
                 'download_link' => true
+            ])
+            ->add('designCategory', EntityType::class, [
+                'class'    => 'Elcodi\Bundle\CategoryBundle\Entity\DesignCategory',
+                'choice_label' => 'name',
+                'multiple' => true
             ]);
 		
         $builder->addEventSubscriber($this->getEntityTranslatorFormEventListener());

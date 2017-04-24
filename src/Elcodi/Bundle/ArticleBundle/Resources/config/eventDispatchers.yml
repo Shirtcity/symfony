@@ -1,0 +1,9 @@
+services:
+
+    #
+    # EventDispatchers
+    #
+    elcodi.event_dispatcher.article:
+        class: Elcodi\Component\Article\EventDispatcher\ArticleEventDispatcher
+        parent: elcodi.event_dispatcher.abstract
+

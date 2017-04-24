@@ -6,7 +6,7 @@ use Elcodi\Component\Core\Factory\Traits\EntityNamespaceTrait;
 
 use Elcodi\Component\Article\Entity\Interfaces\ArticleProductInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Product;
-use Elcodi\Bundle\ProductBundle\Entity\ProductColor;
+use Elcodi\Bundle\ProductBundle\Entity\ProductColors;
 
 /**
  * Class ArticleProduct entity.
@@ -27,7 +27,7 @@ class ArticleProduct implements ArticleProductInterface
 	/**
 	 * @var ProductColor 
 	 */
-	private $productColor;
+	private $productColors;
 	
 	/**
      * Returns product of an article
@@ -58,21 +58,21 @@ class ArticleProduct implements ArticleProductInterface
      *
      * @return ProductColor;
      */
-	public function getProductColor()
+	public function getProductColors()
 	{
-		return $this->productColor;
+		return $this->productColors;
 	}
 	
 	/**
      * Adds product color
      *
-     * @param ProductColor $productColor
+     * @param ProductColors $productColors
      *
      * @return $this Self object;
      */
-	public function setProductColor(ProductColor $productColor = null)
+	public function setProductColors(ProductColors $productColors = null)
 	{
-		$this->productColor = $productColor;
+		$this->productColors = $productColors;
 		
 		return $this;
 	}

@@ -61,7 +61,7 @@ Elcodi\Bundle\PrintableBundle\Entity\Design:
         foilcolor:
             targetEntity: Elcodi\Bundle\PrintableBundle\Entity\FoilColor
             joinTable:
-                name: designs_foilcolors
+                name: design_to_foilcolor
                 joinColumns:
                   design_id:
                     referencedColumnName: id
@@ -71,7 +71,7 @@ Elcodi\Bundle\PrintableBundle\Entity\Design:
         country:
             targetEntity: Elcodi\Component\Geo\Entity\Location
             joinTable:
-                name: designs_countries
+                name: design_to_country
                 joinColumns:
                   design_id:
                     referencedColumnName: id
@@ -80,6 +80,17 @@ Elcodi\Bundle\PrintableBundle\Entity\Design:
                     referencedColumnName: id
             cascade:
                 - persist
+        designCategory:
+            targetEntity: Elcodi\Bundle\CategoryBundle\Entity\DesignCategory
+            joinTable:
+                name: design_to_design_category
+                joinColumns:
+                  design_id:
+                    referencedColumnName: id
+                inverseJoinColumns:
+                  category_id:
+                    referencedColumnName: id
+
     lifecycleCallbacks:
         preUpdate: [loadUpdateAt]
         prePersist: [loadUpdateAt]

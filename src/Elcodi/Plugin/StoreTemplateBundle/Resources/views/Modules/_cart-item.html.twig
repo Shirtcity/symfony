@@ -4,7 +4,7 @@
 {% set purchasableRouteName = masterPurchasable.articles ? 'store_purchasable_pack_view' : 'store_article_view' %}
 {% set purchasableRoute = url(purchasableRouteName, { slug: masterPurchasable.slug, id: masterPurchasable.id }) %}
 {% set purchasableName = purchasable|purchasable_name %}
-{% set validImage = purchasable|valid_image %}
+{% set validImage = purchasable|print_side_preview_image('front') %}
 {% set purchasablePrice = purchasable.resolvedPrice %}
 
 <dl class="cart-item">

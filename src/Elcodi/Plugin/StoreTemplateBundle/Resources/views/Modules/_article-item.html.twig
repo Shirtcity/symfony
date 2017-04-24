@@ -14,7 +14,7 @@
     {% block pin_image %}
         <a href="{{ articleRoute }}" class="article-thumbnail">
             {% if article.inOffer %}<span class="article-badge">{{ 'template.store_template_bundle.article.item.offer'|trans }}</span> {% endif %}
-            {% set validImage = article|valid_image %}
+            {% set validImage = article|print_side_preview_image('front') %}
             <img class="image" src="{{ validImage ? validImage|resize({
                 'width': 372,
                 'height': 291,

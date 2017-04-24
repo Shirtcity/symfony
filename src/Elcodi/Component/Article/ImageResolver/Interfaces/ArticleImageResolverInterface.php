@@ -17,7 +17,7 @@ interface ArticleImageResolverInterface extends PurchasableImageResolverInterfac
      *
      * @param ArticleInterface $article Article
      *
-     * @return ImageInterface|false Image resolved
+     * @return Array Image resolved
      */
-    public function getPreviewImage(ArticleInterface $article);
+    public function getPreviewImages(ArticleInterface $article);
 }

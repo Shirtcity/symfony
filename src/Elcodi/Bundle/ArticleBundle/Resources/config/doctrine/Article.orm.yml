@@ -7,7 +7,7 @@ Elcodi\Component\Article\Entity\Article:
         attributes:
             targetEntity: Elcodi\Component\Attribute\Entity\Interfaces\AttributeInterface
             joinTable:
-                name: article_attribute
+                name: article_to_attribute
                 joinColumns:
                     article_id:
                         referencedColumnName: id
@@ -19,7 +19,7 @@ Elcodi\Component\Article\Entity\Article:
         sectionCategories:
             targetEntity: Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface
             joinTable:
-                name: article_section_category
+                name: article_to_section_category
                 joinColumns:
                     purchasable_id:
                         referencedColumnName: id

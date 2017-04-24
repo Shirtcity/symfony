@@ -15,8 +15,8 @@ Elcodi\Component\Article\Entity\ArticleProduct:
             joinColumn:
                 name: product_id
                 referencedColumnName: id
-        productColor:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\ProductColor
+        productColors:
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\ProductColors
             joinColumn:
                 name: color_id
                 referencedColumnName: id

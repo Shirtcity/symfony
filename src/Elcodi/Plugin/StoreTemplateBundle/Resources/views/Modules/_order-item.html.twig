@@ -3,7 +3,7 @@
 {% set purchasableRouteName = purchasable.articles ? 'store_purchasable_pack_view' : 'store_article_view' %}
 {% set purchasableRoute = url(purchasableRouteName, { slug: purchasable.slug, id: purchasable.id }) %}
 {% set articleName = purchasable|purchasable_name %}
-{% set validImage = purchasable|valid_image %}
+{% set validImage = purchasable|print_side_preview_image('front') %}
 
 <dl class="{{ class|default('cart-item') }}">
     <dt class="cart-item-image">{{ 'template.store_template_bundle.order.item.image'|trans }}</dt>

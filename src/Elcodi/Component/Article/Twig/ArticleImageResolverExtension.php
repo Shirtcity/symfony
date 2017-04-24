@@ -37,9 +37,13 @@ final class ArticleImageResolverExtension extends Twig_Extension
     public function getFilters()
     {
         return [
-            new Twig_SimpleFilter('preview_image', [
+            new Twig_SimpleFilter('preview_images', [
                 $this->articleImageResolver,
-                'getPreviewImage',
+                'getPreviewImages',
+            ]),
+			new Twig_SimpleFilter('print_side_preview_image', [
+                $this->articleImageResolver,
+                'getPrintSidePreviewImage',
             ]),
         ];
     }

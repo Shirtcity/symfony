@@ -1,27 +1,15 @@
 <?php
 
-/*
- * This file is part of the Elcodi package.
- *
- * Copyright (c) 2014-2016 Elcodi Networks S.L.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * Feel free to edit as you please, and have fun.
- *
- * @author Marc Morera <yuhu@mmoreram.com>
- * @author Aldo Chiecchia <zimage@tiscali.it>
- * @author Elcodi Team <tech@elcodi.com>
- */
-
 namespace Elcodi\Component\Article\ImageResolver;
+
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Elcodi\Component\Media\Entity\Interfaces\ImageInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 use Elcodi\Component\Article\ImageResolver\Abstracts\AbstractImageResolverWithImageResolver;
 use Elcodi\Component\Article\ImageResolver\Interfaces\ArticleImageResolverInterface;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideInterface;
 
 /**
  * Class ArticleImageResolver.
@@ -65,7 +53,59 @@ class ArticleImageResolver extends AbstractImageResolverWithImageResolver implem
 	 * 
 	 * @param ArticleInterface $article
 	 */
-	public function getPreviewImage(ArticleInterface $article) {
-		return '123';
+	public function getPreviewImages(ArticleInterface $article) 
+	{
+		if(null === $article->getArticleProduct() || null === $article->getArticleProduct()->getProduct()){			
+			return null;
+		}	
+	
+		$images = $article
+			->getArticleProduct()
+			->getProduct()
+			->getPrintSides()
+			->map(function($printSide) use ($article){
+				return $this->obtainPrintSideImage($article, $printSide);
+			});		
+		
+		return $images;		
 	}
+	
+	
+	public function getPrintSidePreviewImage(ArticleInterface $article, string $printSideType)
+	{
+		if(null === $article->getArticleProduct()){
+			return null;
+		}
+		
+		$printSide = $article
+			->getArticleProduct()
+			->getProduct()
+			->getPrintSides()
+			->filter(function($value) use ($printSideType){
+				return $value->getType()->getName() == $printSideType;
+			})
+			->first();	
+			
+		$image = $this->obtainPrintSideImage($article, $printSide);
+		
+		return $image;
+	}
+	
+	private function obtainPrintSideImage(ArticleInterface $article, PrintSideInterface $printSide)
+	{
+		$printSideMatchedColor = $printSide
+			->getSideProductColors()
+			->filter(function($value) use ($article){
+				if(null === $article->getArticleProduct()->getProductColors()) {
+					return false;
+				}
+				
+				return $value->getProductColors()->getColor() == $article->getArticleProduct()->getProductColors()->getColor();
+			})
+			->first();			
+			
+		return (false !== $printSideMatchedColor) ? $printSideMatchedColor->getImage() : null;
+	}
+	
+	
 }

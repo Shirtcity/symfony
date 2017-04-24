@@ -2,7 +2,7 @@
 namespace Elcodi\Component\Article\Entity\Interfaces;
 
 use Elcodi\Bundle\ProductBundle\Entity\Product;
-use Elcodi\Bundle\ProductBundle\Entity\ProductColor;
+use Elcodi\Bundle\ProductBundle\Entity\ProductColors;
 
 interface ArticleProductInterface
 {
@@ -23,20 +23,20 @@ interface ArticleProductInterface
 	public function setProduct(Product $product);
 	
 	/**
-     * Returns product color
+     * Returns product colors
      *
-     * @return ProductColor;
+     * @return ProductColors;
      */
-	public function getProductColor();
+	public function getProductColors();
 	
 	/**
      * Adds product color
      *
-     * @param ProductColor $productColor
+     * @param ProductColors $productColors
      *
      * @return $this Self object;
      */
-	public function setProductColor(ProductColor $productColor);
+	public function setProductColors(ProductColors $productColors);
 	
 	/*
 	public function getPrintArea();	
