@@ -19,6 +19,14 @@ services:
             - '@elcodi.repository.product_color'
             - '@elcodi.factory.product_color'
             
+    elcodi.director.product_colors:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.product_colors'
+            - '@elcodi.repository.product_colors'
+            - '@elcodi.factory.product_colors'
+            
     elcodi.director.product_size:
         class: Elcodi\Component\Core\Services\ObjectDirector
         lazy: true
@@ -26,4 +34,52 @@ services:
             - '@elcodi.object_manager.product_size'
             - '@elcodi.repository.product_size'
             - '@elcodi.factory.product_size'
+            
+    elcodi.director.product_sizes:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.product_sizes'
+            - '@elcodi.repository.product_sizes'
+            - '@elcodi.factory.product_sizes'
+            
+    elcodi.director.print_method:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.print_method'
+            - '@elcodi.repository.print_method'
+            - '@elcodi.factory.print_method'
+            
+    elcodi.director.print_side:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.print_side'
+            - '@elcodi.repository.print_side'
+            - '@elcodi.factory.print_side'
+            
+    elcodi.director.print_side_type:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.print_side_type'
+            - '@elcodi.repository.print_side_type'
+            - '@elcodi.factory.print_side_type'
+            
+    elcodi.director.print_side_area:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.print_side_area'
+            - '@elcodi.repository.print_side_area'
+            - '@elcodi.factory.print_side_area'
+            
+    elcodi.director.print_side_product_colors:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.print_side_product_colors'
+            - '@elcodi.repository.print_side_product_colors'
+            - '@elcodi.factory.print_side_product_colors'
 

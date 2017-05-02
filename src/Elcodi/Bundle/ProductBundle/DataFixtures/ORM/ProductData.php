@@ -1,20 +1,5 @@
 <?php
 
-/*
- * This file is part of the Elcodi package.
- *
- * Copyright (c) 2014-2016 Elcodi Networks S.L.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * Feel free to edit as you please, and have fun.
- *
- * @author Marc Morera <yuhu@mmoreram.com>
- * @author Aldo Chiecchia <zimage@tiscali.it>
- * @author Elcodi Team <tech@elcodi.com>
- */
-
 namespace Elcodi\Bundle\ProductBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -25,12 +10,16 @@ use Elcodi\Bundle\CoreBundle\DataFixtures\ORM\Abstracts\AbstractFixture;
 use Elcodi\Component\Core\Services\ObjectDirector;
 use Elcodi\Component\Currency\Entity\Interfaces\CurrencyInterface;
 use Elcodi\Component\Currency\Entity\Money;
+use Elcodi\Component\Media\Entity\Interfaces\ImagesContainerWithPrincipalImageInterface;
+
+use Elcodi\Bundle\MediaBundle\DataFixtures\ORM\Traits\ImageManagerTrait;
 
 /**
  * Class ProductData.
  */
 class ProductData extends AbstractFixture implements DependentFixtureInterface
-{  
+{
+    use ImageManagerTrait;
 
 	/**
      * Load data fixtures with the passed EntityManager.
@@ -48,17 +37,11 @@ class ProductData extends AbstractFixture implements DependentFixtureInterface
         $currency = $this->getReference('currency-dollar');
         $productReference = $this->getDirector('product');
 		
-		$productColor = $this->getReference('productColor');		
-		$productColors = new ArrayCollection();
-		$productColors[] = $productColor;
-		
-		$productSize = $this->getReference('productSize');
-		$productSizes = new ArrayCollection();
-		$productSizes[] = $productSize;
-		
 		$productPrices = new ArrayCollection();
 		$productPrices[] = Money::create(10, $currency);
-		
+        
+        $printMethod = $this->getReference('printMethod');
+        
         $product = $productReference
             ->create()
             ->setName('T-Shirt')
@@ -69,15 +52,41 @@ class ProductData extends AbstractFixture implements DependentFixtureInterface
 			->setdepth(10)
 			->setWeight(10)
             ->setEnabled(true)
-			->setProductColors($productColors)
-			->setProductSizes($productSizes)
-			->setPrices($productPrices);
+			->setPrices($productPrices)
+            ->addPrintMethod($printMethod);
+        
+        $this->storeProductImage(
+            $product,
+            'product.jpg'
+        );
 
         $productReference->save($product);
         $this->addReference('product', $product);
 
     }
+    
+    /**
+     * Steps necessary to store an image.
+     *
+     * @param ImagesContainerWithPrincipalImageInterface $imageContainer Image Container
+     * @param string                                     $imageName      Image name
+     *
+     * @return $this Self object
+     */
+    protected function storeProductImage(
+        ImagesContainerWithPrincipalImageInterface $imageContainer,
+        $imageName
+    ) {
+        $imagePath = realpath(__DIR__ . '/../images/' . $imageName);
+        
+        $image = $this->storeImage($imagePath);
 
+        $imageContainer->addImage($image);
+        $imageContainer->setPrincipalImage($image);
+
+        return $this;
+    }
+    
     /**
      * This method must return an array of fixtures classes
      * on which the implementing class depends on.
@@ -89,8 +98,7 @@ class ProductData extends AbstractFixture implements DependentFixtureInterface
         return [
             'Elcodi\Bundle\CurrencyBundle\DataFixtures\ORM\CurrencyData',
             'Elcodi\Bundle\StoreBundle\DataFixtures\ORM\StoreData',
-			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductColorData',
-			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductSizeData',
+			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\PrintMethodData',
         ];
     }
 }

@@ -512,9 +512,10 @@ class Product implements ProductInterface
 	 */
 	public function setVariants()
 	{
-		foreach ($this->getSizes() as $size) {
-			foreach ($this->getColors() as $color) {	
+		foreach ($this->getSizes() as $size) {            
+			foreach ($this->getColors() as $color) {                
 				$size->addColor($color);
+                $color->addSize($size);
 			}
 		}
 		return $this;

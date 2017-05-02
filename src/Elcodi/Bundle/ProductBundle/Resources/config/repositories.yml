@@ -39,3 +39,43 @@ services:
         parent: elcodi.abstract_repository
         arguments:
             - %elcodi.entity.product_size.class%
+            
+    #
+    # Repository for entity product sizes
+    #
+    elcodi.repository.product_sizes:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.product_sizes.class%
+            
+    #
+    # Repository for entity print method
+    #
+    elcodi.repository.print_method:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.print_method.class%
+            
+    #
+    # Repository for entity print side
+    #
+    elcodi.repository.print_side:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.print_side.class%
+            
+    #
+    # Repository for entity print side area
+    #
+    elcodi.repository.print_side_area:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.print_side_area.class%
+            
+    #
+    # Repository for entity print side product colors
+    #
+    elcodi.repository.print_side_product_colors:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.print_side_product_colors.class%

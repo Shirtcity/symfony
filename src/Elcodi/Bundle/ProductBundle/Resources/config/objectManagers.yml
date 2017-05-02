@@ -12,9 +12,43 @@ services:
         parent: elcodi.abstract_manager
         arguments:
             - %elcodi.entity.product_color.class%
+            
+    elcodi.object_manager.product_colors:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.product_colors.class%
    
     elcodi.object_manager.product_size:
         parent: elcodi.abstract_manager
         arguments:
             - %elcodi.entity.product_size.class%
+            
+    elcodi.object_manager.product_sizes:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.product_sizes.class%
 
+    elcodi.object_manager.print_method:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.print_method.class%
+            
+    elcodi.object_manager.print_side:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.print_side.class%
+            
+    elcodi.object_manager.print_side_type:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.print_side_type.class%
+            
+    elcodi.object_manager.print_side_area:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.print_side_area.class%
+            
+    elcodi.object_manager.print_side_product_colors:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.print_side_product_colors.class%

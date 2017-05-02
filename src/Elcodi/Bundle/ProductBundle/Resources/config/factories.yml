@@ -80,3 +80,19 @@ services:
         class: Elcodi\Bundle\ProductBundle\Factory\ProductSizeFactory
         calls:
             - [setEntityNamespace, ["%elcodi.entity.product_size.class%"]]
+            
+    #
+    # Factory for PrintMethod entities
+    #
+    elcodi.factory.print_method:
+        class: Elcodi\Bundle\ProductBundle\Factory\PrintMethodFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.print_method.class%"]]
+            
+    #
+    # Factory for PrintSideType entities
+    #
+    elcodi.factory.print_side_type:
+        class: Elcodi\Bundle\ProductBundle\Factory\PrintSideTypeFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.print_side_type.class%"]]

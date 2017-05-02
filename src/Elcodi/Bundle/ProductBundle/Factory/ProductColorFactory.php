@@ -12,9 +12,6 @@ class ProductColorFactory extends AbstractFactory
 {
 	public function create()
     {
-        /**
-         * @var Product $product
-         */
         $classNamespace = $this->getEntityNamespace();
 		
         $productColor = new $classNamespace();

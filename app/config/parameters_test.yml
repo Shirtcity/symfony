@@ -4,4 +4,4 @@ parameters:
 
     database_driver: pdo_sqlite
     database_name: shirtcity.dev2
-    database_path: /srv/www/shirtcity.dev2/shirtcity.dev2
+    database_path: /srv/www/el.igor/shirtcity.dev2

@@ -8,9 +8,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Elcodi\Bundle\CoreBundle\DataFixtures\ORM\Abstracts\AbstractFixture;
 
 /**
- * Class ProductSizeData.
+ * Class PrintSideTypeData.
  */
-class ProductSizeData extends AbstractFixture implements DependentFixtureInterface
+class PrintSideTypeData extends AbstractFixture implements DependentFixtureInterface
 {  
 
 	/**
@@ -20,17 +20,14 @@ class ProductSizeData extends AbstractFixture implements DependentFixtureInterfa
      */
     public function load(ObjectManager $manager)
     {
-        $productSizeDirector = $this->getDirector('product_size');
+        $printSideTypeDirector = $this->getDirector('print_side_type');
 
-        $productSize = $productSizeDirector
+        $printSideType = $printSideTypeDirector
             ->create()
-            ->setName('M')
-            ->setOrderAsc(1)
-            ->setEnabled(true);
+            ->setName('front');
 
-        $productSizeDirector->save($productSize);
-        $this->addReference('productSize', $productSize);
-
+        $printSideTypeDirector->save($printSideType);
+        $this->addReference('printSideType', $printSideType);
     }
 
     /**

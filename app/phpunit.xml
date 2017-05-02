@@ -35,6 +35,10 @@
 		<testsuite name="articleComponent"> 
 			<directory>../src/Elcodi/Component/Article/Tests</directory> 			
         </testsuite>
+        
+        <testsuite name="productBundle">     
+			<directory>../src/Elcodi/Bundle/ProductBundle/Tests</directory>		
+        </testsuite>
     </testsuites>
 
 	<filter>

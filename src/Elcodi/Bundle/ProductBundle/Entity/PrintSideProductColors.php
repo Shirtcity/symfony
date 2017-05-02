@@ -3,6 +3,7 @@
 namespace Elcodi\Bundle\ProductBundle\Entity;
 
 use Elcodi\Component\Media\Entity\Interfaces\ImageInterface;
+use Elcodi\Component\Media\Entity\Traits\ImagesContainerTrait;
 
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideProductColorsInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorsInterface;
@@ -13,6 +14,8 @@ use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideInterface;
  */
 class PrintSideProductColors implements PrintSideProductColorsInterface
 {
+    use ImagesContainerTrait;
+    
     /**
      * @var integer
      */
