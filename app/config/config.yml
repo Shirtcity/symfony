@@ -175,17 +175,20 @@ http_headers:
             values:
                 - This E-commerce is built using Elcodi and Symfony
 
+   
 #
 # Elcodi media resize adapter. By default, Bamboo uses internal PHP GD adapter,
 # but there are more available adapters. You can configure them by changing here
 # the value
 #
-# elcodi_media:
-#     images:
-#         resize:
-#             adapter: elcodi.media_resize.imagemagick
-#             converter_bin_path: /usr/bin/convert
-#
+elcodi_media:
+    images:
+        resize:
+            adapter: elcodi.media_resize_adapter.imagemagick
+            converter_bin_path: /usr/bin/convert
+        combine:
+            adapter: elcodi.media_combine_adapter.imagemagick
+            converter_bin_path: /usr/bin/convert
 
 #
 # Location manager. If your location is going to be managed through another

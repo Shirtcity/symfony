@@ -2,31 +2,41 @@ services:
 
     #
     # Form Types
-    #    
-    elcodi_admin.form_type.article_product:
-        class: Elcodi\Admin\ArticleBundle\Form\Type\ArticleProductType
-        arguments:
-            - %elcodi.entity.product.class%           
-            - %elcodi.entity.product_colors.class%
-            - '@elcodi_admin.form_type.article_product_print_side'
-        calls:
-            - [setFactory, ["@elcodi.factory.article_product"]]
-            - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
-        tags:
-            - { name: form.type, alias: elcodi_admin_article_form_type_article_product }
-            
+    # 
+    
+    #
+    # Article
+    #
     elcodi_admin.form_type.article:
         class: Elcodi\Admin\ArticleBundle\Form\Type\ArticleType
         arguments:
             - %elcodi.entity.section_category.class%
             - %elcodi.entity.image.class%
-            - '@elcodi_admin.form_type.article_product'           
+            - '@elcodi_admin.form_type.article_product' 
         calls:
             - [setFactory, ["@elcodi.factory.article"]]
             - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
         tags:
             - { name: form.type, alias: elcodi_admin_article_form_type_article }
             
+    #
+    # Article Product
+    #
+    elcodi_admin.form_type.article_product:
+        class: Elcodi\Admin\ArticleBundle\Form\Type\ArticleProductType
+        arguments:
+            - %elcodi.entity.product.class%           
+            - %elcodi.entity.product_colors.class%
+            - '@elcodi.event_listener.article.form.article_product'
+        calls:
+            - [setFactory, ["@elcodi.factory.article_product"]]
+            - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_article_form_type_article_product }    
+    
+    # 
+    # Article Product Print Sides
+    #
     elcodi_admin.form_type.article_product_print_sides:
         class: Elcodi\Admin\ArticleBundle\Form\Type\ArticleProductPrintSidesType
         arguments:           
@@ -37,7 +47,10 @@ services:
             - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
         tags:
             - { name: form.type, alias: elcodi_admin_article_form_type_article_product_print_sides }
-            
+    
+    #
+    # Article Product Print Side
+    #
     elcodi_admin.form_type.article_product_print_side:
         class: Elcodi\Admin\ArticleBundle\Form\Type\ArticleProductPrintSideType
         arguments:           

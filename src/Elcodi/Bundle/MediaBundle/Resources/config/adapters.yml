@@ -11,3 +11,12 @@ services:
 
     elcodi.media_resize_adapter.gd:
         class: Elcodi\Component\Media\Adapter\Resizer\GDResizeAdapter
+        
+    #
+    # Combine
+    #
+    elcodi.media_combine_adapter.imagemagick:
+        class: Elcodi\Component\Media\Adapter\Combine\ImageMagickCombineAdapter
+        arguments:
+            - %elcodi.image_combine_converter_bin_path%
+            - %elcodi.image_combine_converter_default_profile%

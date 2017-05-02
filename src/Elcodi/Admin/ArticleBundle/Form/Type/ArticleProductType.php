@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
+use Elcodi\Component\Article\EventListener\Form\ArticleProductFormEventListener;
 
 /**
  * Class ArticleProductType
@@ -34,23 +35,29 @@ class ArticleProductType extends AbstractType
      */
     protected $productColorNamespace;
 	
-	protected $articleProductPrintSideType;
+	/**
+	 * @var ArticleProductFormEventListener
+	 *  
+	 * Article Product Form Event Listener
+	 */
+	protected $articleProductEventListener;
 	
     /**
      * Construct
      *
 	 * @param string $productNamespace		Product namespace
 	 * @param string $productColorNamespace	ProductColor namespace
-	 * @param ArticleProductPrintSideType $articleProductPrintSideType ArticleProductPrintSide form type
+	 * @param ArticleProductFormEventListener $articleProductEventListener ArticleProductForm event listener
      */
     public function __construct(
 		$productNamespace,
 		$productColorNamespace,
-		$articleProductPrintSideType	
+		$articleProductEventListener	
     ) {
         $this->productNamespace = $productNamespace;
 		$this->productColorNamespace = $productColorNamespace;
-		$this->articleProductPrintSideType = $articleProductPrintSideType;
+		
+		$this->articleProductEventListener = $articleProductEventListener;
     }
 	
     /**
@@ -111,6 +118,8 @@ class ArticleProductType extends AbstractType
 				$product = $event->getForm()->getData();					
 				$formModifier($event->getForm()->getParent(), $product);
 			});
+			
+		$builder->addEventSubscriber($this->articleProductEventListener);
     }
 
     /**

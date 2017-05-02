@@ -15,11 +15,4 @@ final class ArticleEvents
      */
     const ARTICLE_ONLOAD = 'article.onload';
 	
-	/**
-     * This event is dispatched after Article Product has been changed
-     *
-     * event.name : article.product_change
-     * event.class : ArticleProductChangeEvent
-     */
-    const ARTICLE_PRODUCT_CHANGE = 'article.product_change';    
 }

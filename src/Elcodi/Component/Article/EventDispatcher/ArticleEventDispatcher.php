@@ -29,21 +29,6 @@ class ArticleEventDispatcher extends AbstractEventDispatcher
 	
 	
 	/**
-     * Dispatch article event after article is updated
-     *
-     * @param ArticleInterface $article Article
-     *
-     * @return $this Self object
-     */
-    public function dispatchArticleEditEvents(ArticleInterface $article)
-    {
-        $this->dispatchArticleProductCahngeEvent($article);
-
-        return $this;
-    }
-	
-	
-	/**
      * Dispatch event when Article is loaded.
      *
      * This event considers that all changes related with the entity have
@@ -59,24 +44,6 @@ class ArticleEventDispatcher extends AbstractEventDispatcher
         $this->eventDispatcher->dispatch(
             ArticleEvents::ARTICLE_ONLOAD,
             new ArticleOnLoadEvent($article)
-        );
-
-        return $this;
-    }
-	
-	
-	/**
-     * Dispatch event when Article Product is changed
-	 * 
-     * @param ArticleInterface $article Article
-     *
-     * @return $this Self object
-     */
-    public function dispatchArticleProductCahngeEvent(ArticleInterface $article)
-    {
-        $this->eventDispatcher->dispatch(
-            ArticleEvents::ARTICLE_PRODUCT_CHANGE,
-            new ArticleProductChangeEvent($article)
         );
 
         return $this;

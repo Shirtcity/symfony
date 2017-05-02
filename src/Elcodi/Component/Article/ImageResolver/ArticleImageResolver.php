@@ -5,6 +5,8 @@ namespace Elcodi\Component\Article\ImageResolver;
 use Doctrine\Common\Collections\ArrayCollection;
 
 use Elcodi\Component\Media\Entity\Interfaces\ImageInterface;
+use Elcodi\Component\Media\Services\ImageResolver;
+use Elcodi\Component\Media\Services\ImageManager;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 use Elcodi\Component\Article\ImageResolver\Abstracts\AbstractImageResolverWithImageResolver;
@@ -16,6 +18,26 @@ use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideInterface;
  */
 class ArticleImageResolver extends AbstractImageResolverWithImageResolver implements ArticleImageResolverInterface
 {
+	/**
+	 * @var ImageManager 
+	 * 
+	 * Image manager
+	 */
+	private $imageManager;
+	
+	/**
+	 * Construct
+	 * 
+	 * @param ImageResolver $imageResolver
+	 * @param ImageManager $imageManager
+	 */
+	public function __construct(ImageResolver $imageResolver, ImageManager $imageManager) 
+	{
+		$this->imageManager = $imageManager;
+		
+		parent::__construct($imageResolver);
+	}
+	
     /**
      * Get the entity interface.
      *
@@ -49,9 +71,11 @@ class ArticleImageResolver extends AbstractImageResolverWithImageResolver implem
     }
 	
 	/**
-	 * Get article preview
+	 * Get article previews
 	 * 
 	 * @param ArticleInterface $article
+	 * 
+	 * @return ImageInterface image
 	 */
 	public function getPreviewImages(ArticleInterface $article) 
 	{
@@ -70,7 +94,14 @@ class ArticleImageResolver extends AbstractImageResolverWithImageResolver implem
 		return $images;		
 	}
 	
-	
+	/**
+	 * Gets article preview image
+	 * 
+	 * @param ArticleInterface $article
+	 * @param string $printSideType
+	 * 
+	 * @return ImageInterface image
+	 */
 	public function getPrintSidePreviewImage(ArticleInterface $article, string $printSideType)
 	{
 		if(null === $article->getArticleProduct()){
@@ -86,11 +117,19 @@ class ArticleImageResolver extends AbstractImageResolverWithImageResolver implem
 			})
 			->first();	
 			
-		$image = $this->obtainPrintSideImage($article, $printSide);
+		$image = $this->obtainPrintSideImage($article, $printSide);		
 		
 		return $image;
 	}
 	
+	/**
+	 * Obtains article product print side image 
+	 * 
+	 * @param ArticleInterface $article
+	 * @param PrintSideInterface $printSide
+	 * 
+	 * @return ImageInterface image
+	 */
 	private function obtainPrintSideImage(ArticleInterface $article, PrintSideInterface $printSide)
 	{
 		$printSideMatchedColor = $printSide
@@ -102,8 +141,47 @@ class ArticleImageResolver extends AbstractImageResolverWithImageResolver implem
 				
 				return $value->getProductColors()->getColor() == $article->getArticleProduct()->getProductColors()->getColor();
 			})
-			->first();			
+			->first();
+		
+		if (empty($printSideMatchedColor)) {
+			return null;
+		}
 			
+		$articleProductImage = $printSideMatchedColor->getImage();
+		
+		$articleProductPrintSides = $article
+			->getArticleProduct()
+			->getArticleProductPrintSides()
+			->filter(function($articleProductPrintSide) use ($printSide){
+				return $articleProductPrintSide->getPrintSide()->getId() == $printSide->getId();
+			});
+			
+		$text = [];
+		$design = [];
+		
+		foreach ($articleProductPrintSides as $articleProductPrintSide) {
+			
+			$printableVariants = $articleProductPrintSide->getPrintableVariants();
+			
+			foreach ($printableVariants as $printableVariant) {
+				
+				if($printableVariant instanceof \Elcodi\Bundle\PrintableBundle\Entity\TextVariant) {
+					$text[] = $printableVariant;
+				} elseif ($printableVariant instanceof \Elcodi\Bundle\PrintableBundle\Entity\DesignVariant) {
+					$design[] = $printableVariant;
+				}
+			}
+		}
+		
+		$getArticleProductPrintSides = $article->getArticleProduct()->getArticleProductPrintSides();
+		$getArticleProductPrintSides->map(function($printSide){
+			//var_dump($printSide->getPrintSide()->getId());
+		});
+		
+		$image = $this->imageManager->combine($articleProductImage, $text, $design);
+		//(var_dump($printSideMatchedColor->getImage()));
+		//die(var_dump($image));
+		return $image;
 		return (false !== $printSideMatchedColor) ? $printSideMatchedColor->getImage() : null;
 	}
 	

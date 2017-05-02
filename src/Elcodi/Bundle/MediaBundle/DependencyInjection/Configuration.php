@@ -97,6 +97,28 @@ class Configuration extends AbstractConfiguration
                                 ->end()
                             ->end()
                         ->end()
+				
+						->arrayNode('combine')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+
+                                /**
+                                 * This elements should be defined as an enumValue.
+                                 *
+                                 * While only one element is defined,
+                                 * defined as scalarNode
+                                 */
+                                ->scalarNode('adapter')
+                                    ->defaultValue('elcodi.media_combine_adapter.imagemagick')
+                                ->end()
+                                ->scalarNode('converter_bin_path')
+                                    ->defaultValue('/usr/bin/convert')
+                                ->end()
+                                ->scalarNode('converter_default_profile')
+                                    ->defaultValue('/usr/share/color/icc/colord/sRGB.icc')
+                                ->end()
+                            ->end()
+                        ->end()
                     ->end()
 
                 ->end()

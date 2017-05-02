@@ -9,6 +9,7 @@ services:
             - '@elcodi.factory.image'
             - '@elcodi.manager.media_file'
             - '@elcodi.media_resize_adapter'
+            - '@elcodi.media_combine_adapter.imagemagick'
 
     elcodi.manager.media_file:
         class: Elcodi\Component\Media\Services\FileManager

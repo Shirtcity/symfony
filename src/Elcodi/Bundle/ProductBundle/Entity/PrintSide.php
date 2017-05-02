@@ -227,4 +227,5 @@ class PrintSide implements PrintSideInterface
     {
         return $this->sideProductColors;
     }
+	
 }

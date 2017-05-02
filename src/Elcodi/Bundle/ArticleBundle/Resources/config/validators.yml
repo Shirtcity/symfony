@@ -1,8 +1,0 @@
-services:
-
-    #
-    # Validators
-    #  
-    elcodi.validator.article_product_color:
-        class: Elcodi\Component\Article\Validator\ArticleProductColorValidator
-

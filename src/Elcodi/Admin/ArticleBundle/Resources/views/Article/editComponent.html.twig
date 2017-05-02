@@ -84,7 +84,7 @@
 									{% for image in article|preview_images %}
 										{% if image|length > 0 %}
 											<span class="thumbnail">
-												<img src="{{image|resize({ height: 150, width: 150, type: 5 })}}" />
+												<img src="{{image|combine}}" />
 											</span>
 										{% endif %}
 									{% endfor %}
@@ -169,7 +169,8 @@
 					<div class="col-2-3" data-fc-modules="variants">
                         <div class="box">
                             {% if article.articleProduct.id %}                                
-                                <input id="variants-message-ok" type="hidden" value="{{ 'admin.variant.saved'|trans }}" />                                
+                                <input id="variants-message-ok" type="hidden" value="{{ 'admin.variant.saved'|trans }}" /> 
+								
 								{% for articleProductPrintSide in article.articleProduct.articleProductPrintSides %}
 									<h3>{{ articleProductPrintSide.printSide.type.name }}</h3>
 									{% for printableVariant in articleProductPrintSide.printableVariants %}

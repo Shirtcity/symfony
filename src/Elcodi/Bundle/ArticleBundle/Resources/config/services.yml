@@ -2,8 +2,28 @@ services:
 
     #
     # Services
-    #  
+    # 
+    
+    #
+    # Article options resolver
+    #
     elcodi.resolver.article_options:
         class: Elcodi\Component\Article\Services\ArticleOptionsResolver
+     
+    #
+    # ArticleProduct color resolver
+    #
+    elcodi.resolver.article_product_color:
+        class: Elcodi\Component\Article\Services\ArticleProductColorResolver
+        
+    #
+    # ArticleProduct print sides manager
+    #
+    elcodi.manager.article_product_print_sides:
+        class: Elcodi\Component\Article\Services\ArticleProductPrintSidesManager
+        arguments:
+            - '@elcodi.repository.print_side_type'
+            - '@elcodi.factory.print_side'
+            - '@elcodi.factory.article_product_print_side'
 
 

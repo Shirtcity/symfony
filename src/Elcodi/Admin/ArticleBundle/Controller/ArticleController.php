@@ -162,9 +162,14 @@ class ArticleController extends AbstractAdminController
         FormInterface $form,
         ArticleInterface $article
     ) {	
-		//$articleProductPrintSides = $article->getArticleProduct()->getArticleProductPrintSides();
-		//die(var_dump($articleProductPrintSides->first()->getPrintSide()));
-		//die(var_dump($articleProductPrintSides->first()->getPrintableVariant()));
+		$articleProductPrintSides = $article->getArticleProduct()->getArticleProductPrintSides();
+		
+		foreach ($articleProductPrintSides as $articleProductPrintSide) {
+			if (null === $articleProductPrintSide->getPrintSide()->getId()) {
+				$article->getArticleProduct()->removeArticleProductPrintSide($articleProductPrintSide);
+			}
+		}		
+		
 		if ($form->isValid()) {	
 			
             $this->flush($article);

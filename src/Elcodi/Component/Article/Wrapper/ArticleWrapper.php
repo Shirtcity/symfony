@@ -108,35 +108,6 @@ class ArticleWrapper implements WrapperInterface
 
         return $this->article;
     }
-	
-	public function getArticleProduct()
-	{
-		if(null === $this->article) {
-			$this->resolveArticle();
-		}
-		
-		return $this->article->getArticleProduct();
-	}
-	
-	/**
-	 * Get Article Product Print Side
-	 * 
-	 * @return ArticleProductPrintSide object
-	 */
-	public function getArticleProductPrintSide()
-	{
-		if(null === $this->article) {
-			$this->resolveArticle();
-		}	
-		
-		if ($this->articleProductPrintSide instanceof ArticleProductPrintSideInterface) {
-            return $this->articleProductPrintSide;
-        }
-		
-		$this->resolveArticleProductPrintSides();
-		
-		return $this->articleProductPrintSide;
-	}
 
     /**
      * Clean loaded object in order to reload it again.
@@ -161,13 +132,4 @@ class ArticleWrapper implements WrapperInterface
 			->articleFactory
 			->create();		
     }
-	
-	private function resolveArticleProductPrintSides()
-	{			
-		$this->articleProductPrintSide = $this
-			->articleProductPrintSideFactory
-			->create();
-		
-		$this->articleProductPrintSide->setArticleProduct($this->article->getArticleProduct());
-	}
 }

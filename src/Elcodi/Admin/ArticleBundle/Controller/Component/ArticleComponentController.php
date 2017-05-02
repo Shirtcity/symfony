@@ -162,9 +162,6 @@ class ArticleComponentController extends AbstractAdminController
         FormView $formView,
         ArticleInterface $article
     ) {  
-	
-		$this->get('elcodi.event_dispatcher.article')->dispatchArticleEditEvents($article);
-
         return [
             'article'  => $article,
             'form'     => $formView

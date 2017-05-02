@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 use Elcodi\Component\Core\Factory\Abstracts\AbstractFactory;
 use Elcodi\Component\Article\Entity\ArticleProductPrintSide;
+use Elcodi\Bundle\ProductBundle\Repository\PrintSideTypeRepository;
 
 /**
  * Factory for ArticleProduct entities.
@@ -22,7 +23,7 @@ class ArticleProductFactory extends AbstractFactory
         $classNamespace = $this->getEntityNamespace();
 	
         $articleProduct = new $classNamespace();
-				
+			
         $articleProduct
             ->setProduct()
             ->setProductColors()

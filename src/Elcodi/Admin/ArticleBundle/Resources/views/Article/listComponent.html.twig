@@ -37,7 +37,7 @@
     <td data-test="article-{{ entity.id }}">
         {% if entity|print_side_preview_image('front')|length > 0 %}
             <a href="{{ url('admin_article_edit', { id: entity.id }) }}" class="thumbnail">
-                <img src="{{ entity|print_side_preview_image('front')|resize({ height: 150, width: 150, type: 5 }) }}" />
+                <img src="{{ entity|print_side_preview_image('front')|combine }}" />
             </a>
         {% endif %}
     </td>

@@ -116,6 +116,7 @@ class ImageExtension extends Twig_Extension
         return [
             new Twig_SimpleFilter('resize', [$this, 'resize']),
             new Twig_SimpleFilter('viewImage', [$this, 'viewImage']),
+			new Twig_SimpleFilter('combine', [$this, 'combine']),
         ];
     }
 
@@ -150,8 +151,20 @@ class ImageExtension extends Twig_Extension
 
         return $generatedRoute;
     }
+	
+	/**
+	 * Combine printables for article image
+	 * 
+	 * @param ImageInterface $imageMedia
+	 * 
+	 * @return binary string
+	 */
+	public function combine(ImageInterface $imageMedia)
+	{
+		return 'data:image/png;base64,'.base64_encode($imageMedia->getContent());
+	}
 
-    /**
+	/**
      * Return route of image.
      *
      * @param ImageInterface $imageMedia  Imagemedia element

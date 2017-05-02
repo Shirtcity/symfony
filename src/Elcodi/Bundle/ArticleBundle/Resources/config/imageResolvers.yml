@@ -11,6 +11,8 @@ services:
     elcodi.image_resolver.article:
         class: Elcodi\Component\Article\ImageResolver\ArticleImageResolver
         parent: elcodi.image_resolver.abstract_article
+        arguments:
+            - '@elcodi.manager.media_image'
         tags:
             - { name: elcodi.purchasable_image_resolver }
 

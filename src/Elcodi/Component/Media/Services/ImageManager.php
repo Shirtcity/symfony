@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use Elcodi\Component\Media\Adapter\Resizer\Interfaces\ResizeAdapterInterface;
+use Elcodi\Component\Media\Adapter\Combine\Interfaces\CombineAdapterInterface;
 use Elcodi\Component\Media\ElcodiMediaImageResizeTypes;
 use Elcodi\Component\Media\Entity\Interfaces\ImageInterface;
 use Elcodi\Component\Media\Exception\InvalidImageException;
@@ -58,6 +59,13 @@ class ImageManager
      * ResizerAdapter
      */
     private $resizeAdapter;
+	
+	/**
+     * @var CombineAdapterInterface
+     *
+     * CombineAdapter
+     */
+    private $combineAdapter;
 
     /**
      * Construct method.
@@ -65,15 +73,18 @@ class ImageManager
      * @param ImageFactory           $imageFactory  Image Factory
      * @param FileManager            $fileManager   File Manager
      * @param ResizeAdapterInterface $resizeAdapter Resize Adapter
+	 * @param CombineAdapterInterface $combineAdapter Combine Adapter
      */
     public function __construct(
         ImageFactory $imageFactory,
         FileManager $fileManager,
-        ResizeAdapterInterface $resizeAdapter
+        ResizeAdapterInterface $resizeAdapter,
+		CombineAdapterInterface $combineAdapter	
     ) {
         $this->imageFactory = $imageFactory;
         $this->fileManager = $fileManager;
         $this->resizeAdapter = $resizeAdapter;
+		$this->combineAdapter = $combineAdapter;
     }
 
     /**
@@ -171,6 +182,49 @@ class ImageManager
         $image->setContent($resizedImageData);
 
         unlink($resizedFile);
+
+        return $image;
+    }
+	
+	/**
+     * Given an article product image, combine it with printables.
+     *
+     * @param ImageInterface $image  Image
+     * @param int            $height Height
+     * @param int            $width  Width
+     * @param int            $type   Type
+     *
+     * @return ImageInterface New Image instance
+     */
+    public function combine(
+        ImageInterface $image,
+        $text,
+		$design
+    ) {
+        $imageData = $this
+            ->fileManager
+            ->downloadFile($image)
+            ->getContent();
+
+        $combinedImageData = $this
+            ->combineAdapter
+            ->combine($imageData, $text, $design);
+		//die(var_dump($resizedImageData));
+        /**
+         * We need to physically store the new resized
+         * image in order to access its metadata, such as
+         * file size, image dimensions, mime type etc.
+         * Ideally, we should be doing this in memory.
+         */
+		
+        $combinedFile = new File(tempnam(sys_get_temp_dir(), '_generated_combine'));
+		//die(var_dump($resizedFile));
+        file_put_contents($combinedFile, $combinedImageData);
+
+        $image = $this->createImage($combinedFile);
+        $image->setContent($combinedImageData);
+
+        unlink($combinedFile);
 
         return $image;
     }

@@ -11,6 +11,7 @@ services:
         class: Elcodi\Component\Article\Factory\ArticleFactory
         arguments:
             - "@elcodi.repository.product"
+            - "@elcodi.factory.article_product"
         calls:
             - [setEntityNamespace, ["%elcodi.entity.article.class%"]]
             - [setDateTimeFactory, ["@elcodi.factory.datetime"]]    
@@ -19,7 +20,7 @@ services:
     # Factory for ArticleProduct entities
     #
     elcodi.factory.article_product:
-        class: Elcodi\Component\Article\Factory\ArticleProductFactory
+        class: Elcodi\Component\Article\Factory\ArticleProductFactory        
         calls:
             - [setEntityNamespace, ["%elcodi.entity.article_product.class%"]]
             

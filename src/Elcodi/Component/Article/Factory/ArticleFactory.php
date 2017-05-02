@@ -3,12 +3,13 @@
 namespace Elcodi\Component\Article\Factory;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\EntityRepository;
 
 use Elcodi\Component\Core\Factory\Abstracts\AbstractFactory;
 use Elcodi\Component\Article\ElcodiArticleTypes;
 use Elcodi\Component\Article\Entity\Article;
 use Elcodi\Component\Article\Entity\ArticleProduct;
+use Elcodi\Component\Article\Factory\ArticleProductFactory;
+use Elcodi\Bundle\ProductBundle\Repository\ProductRepository;
 
 
 /**
@@ -24,12 +25,22 @@ class ArticleFactory extends AbstractFactory
 	private $productRepository;
 	
 	/**
+	 * @var $articleProductFactory ArticleProductFactory
+	 * 
+	 * Article Product Factory
+	 */
+	private $articleProductFactory;
+	
+	/**
 	 * Construct 
 	 * 
-	 * @param EntityRepository $productRepository
+	 * @param ProductRepository $productRepository
+	 * @param ArticleProductFactory $articleProductFactory
 	 */
-	public function __construct(EntityRepository $productRepository) {
+	public function __construct(ProductRepository $productRepository, AbstractFactory $articleProductFactory) 
+	{
 		$this->productRepository = $productRepository;
+		$this->articleProductFactory = $articleProductFactory;
 	}
 	
     
@@ -70,17 +81,18 @@ class ArticleFactory extends AbstractFactory
 	 */
 	private function getDefaultArticleProduct()
 	{
-		$articleProduct = new ArticleProduct();
+		$articleProduct = $this
+			->articleProductFactory
+			->create();
 		
 		$product = $this->productRepository->findOneBy([]);
 		$productColors = $product
 				->getColors()
-				->first();
+				->first();		
 		
 		$articleProduct
             ->setProduct($product)
-            ->setProductColors($productColors)						
-			->setArticleProductPrintSides(new ArrayCollection());
+            ->setProductColors($productColors);
 		
 		return $articleProduct;
 	}
