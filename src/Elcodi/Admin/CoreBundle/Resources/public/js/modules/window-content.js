@@ -11,10 +11,16 @@ FrontendCore.define('window-content', ['devicePackage','modal' ], function () {
 			$(aTargets).each(function () {
 				self.autobind(this);
 			});
-
+            
 			this.mediator.subscribe( ['new:category'], this.updateCategory, this );
 			this.mediator.subscribe( ['new:manufacturer'], this.updateManufacturer, this );
+            this.mediator.subscribe( ['new:product_color'], this.updateProductColor, this );
+            
+            this.mediator.subscribe(['response:success'], this.closeModal, this);
 
+		},
+        closeModal: function() {
+			this.oModal.close();
 		},
 		updateSelect: function( id, value, innerHTML ) {
 
@@ -29,6 +35,14 @@ FrontendCore.define('window-content', ['devicePackage','modal' ], function () {
 
 			oSelect.appendChild(oOption);
 		},
+        updateList: function( id, url ) {
+            var self = this;
+            
+            $.get(url, function (sHtml) {
+                document.getElementById(id).innerHTML = $(sHtml).find('#' + id).html();
+                self.onStart();
+            });
+        },
 		updateCategory: function( oResponse ) {
 
 			this.updateSelect( 'elcodi_admin_article_form_type_article_principalCategory', oResponse.data.id, oResponse.data.name );
@@ -39,8 +53,12 @@ FrontendCore.define('window-content', ['devicePackage','modal' ], function () {
 			this.updateSelect( 'elcodi_admin_product_form_type_product_product_manufacturer', oResponse.data.id, oResponse.data.name );
 
 		},
-		autobind: function( oTarget ){
+        updateProductColor: function( oResponse ) {
+			this.updateList( 'product-color-list', oResponse.data.url );
 
+		},
+		autobind: function( oTarget ){
+            
 			var self = this,
 				nWindowWidth,
 				nModalWidth = '95%',
@@ -104,4 +122,3 @@ FrontendCore.define('window-content', ['devicePackage','modal' ], function () {
 		}
 	};
 });
-

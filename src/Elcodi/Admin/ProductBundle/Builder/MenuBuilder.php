@@ -64,6 +64,16 @@ class MenuBuilder extends AbstractMenuBuilder implements MenuBuilderInterface
                                 'admin_manufacturer_edit',
                                 'admin_manufacturer_new',
                             ])
+                    )->addSubnode(
+                        $this
+                            ->menuNodeFactory
+                            ->create()
+                            ->setName('admin.product_color.plural')
+                            ->setUrl('admin_product_color_list')
+                            ->setActiveUrls([
+                                'admin_manufacturer_edit',
+                                'admin_manufacturer_new',
+                            ])
                     )
             );
     }
