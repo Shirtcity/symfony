@@ -1,0 +1,39 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'product_color',
+} %}
+
+{% block body_down %}
+{% endblock body_down %}
+
+{% block header_actions %}
+{% endblock header_actions %}
+
+
+{% block breadcrumb %}
+
+    {% set title = 'admin.product_color.plural'|trans %}
+    {%
+        set header = productColor.id
+            ? 'admin.product_color.edit'|trans({ '%name%': productColor.name })
+            : 'admin.product_color.new'|trans
+    %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: title, url: url('admin_product_color_list'), },
+            { name: header, active: true, },
+        ]
+    } %}
+
+{% endblock breadcrumb %}
+
+{% block content %}
+    {% if productColor.id %}
+        {{ render(url('admin_product_color_edit_component', { id: productColor.id })) }}
+    {% else %}
+        {{ render(url('admin_product_color_new_component')) }}
+    {% endif %}
+{% endblock content %}

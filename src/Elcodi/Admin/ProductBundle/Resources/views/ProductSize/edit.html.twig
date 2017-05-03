@@ -1,0 +1,39 @@
+{% extends 'AdminCoreBundle::layout.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'product_size',
+} %}
+
+{% block body_down %}
+{% endblock body_down %}
+
+{% block header_actions %}
+{% endblock header_actions %}
+
+
+{% block breadcrumb %}
+
+    {% set title = 'admin.product_size.plural'|trans %}
+    {%
+        set header = productSize.id
+            ? 'admin.product_size.edit'|trans({ '%name%': productSize.name })
+            : 'admin.product_size.new'|trans
+    %}
+
+    {% include '@AdminCore/Common/breadcrumb.html.twig' with {
+        breadcrumb: [
+            { name: title, url: url('admin_product_size_list'), },
+            { name: header, active: true, },
+        ]
+    } %}
+
+{% endblock breadcrumb %}
+
+{% block content %}
+    {% if productSize.id %}
+        {{ render(url('admin_product_size_edit_component', { id: productSize.id })) }}
+    {% else %}
+        {{ render(url('admin_product_size_new_component')) }}
+    {% endif %}
+{% endblock content %}

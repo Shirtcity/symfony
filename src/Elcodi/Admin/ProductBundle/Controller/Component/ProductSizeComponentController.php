@@ -1,20 +1,5 @@
 <?php
 
-/*
- * This file is part of the Elcodi package.
- *
- * Copyright (c) 2014-2016 Elcodi.com
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * Feel free to edit as you please, and have fun.
- *
- * @author Marc Morera <yuhu@mmoreram.com>
- * @author Aldo Chiecchia <zimage@tiscali.it>
- * @author Elcodi Team <tech@elcodi.com>
- */
-
 namespace Elcodi\Admin\ProductBundle\Controller\Component;
 
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -27,16 +12,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\FormView;
 
 use Elcodi\Admin\CoreBundle\Controller\Abstracts\AbstractAdminController;
-use Elcodi\Bundle\ProductBundle\Entity\Product;
+
+use Elcodi\Bundle\ProductBundle\Entity\ProductSize;
 
 /**
- * Class ProductComponentController
+ * Class ProductSizeComponentController
  *
  * @Route(
- *      path = "product"
+ *      path = "product_size"
  * )
  */
-class ProductComponentController extends AbstractAdminController
+class ProductSizeComponentController extends AbstractAdminController
 {
     /**
      * Component for entity list.
@@ -55,7 +41,7 @@ class ProductComponentController extends AbstractAdminController
      *
      * @Route(
      *      path = "s/component/{page}/{limit}/{orderByField}/{orderByDirection}",
-     *      name = "admin_product_list_component",
+     *      name = "admin_product_size_list_component",
      *      requirements = {
      *          "page" = "\d*",
      *          "limit" = "\d*",
@@ -68,11 +54,11 @@ class ProductComponentController extends AbstractAdminController
      *      },
      *      methods = {"GET"}
      * )
-     * @Template("AdminProductBundle:Product:listComponent.html.twig")
+     * @Template("AdminProductBundle:ProductSize:listComponent.html.twig")
      *
      * @PaginatorAnnotation(
      *      attributes = "paginatorAttributes",
-     *      class = "elcodi.entity.product.class",
+     *      class = "elcodi.entity.product_size.class",
      *      page = "~page~",
      *      limit = "~limit~",
      *      orderBy = {
@@ -106,13 +92,13 @@ class ProductComponentController extends AbstractAdminController
      * only the specific component
      *
      * @param FormView         $formView Form view
-     * @param Product		   $product  Product
+     * @param ProductSize	   $productSize  ProductSize
      *
      * @return array Result
      *
      * @Route(
      *      path = "/{id}/component",
-     *      name = "admin_product_edit_component",
+     *      name = "admin_product_size_edit_component",
      *      requirements = {
      *          "id" = "\d+",
      *      },
@@ -120,88 +106,37 @@ class ProductComponentController extends AbstractAdminController
      * )
      * @Route(
      *      path = "/new/component",
-     *      name = "admin_product_new_component",
+     *      name = "admin_product_size_new_component",
      *      methods = {"GET"}
      * )
-     * @Template("AdminProductBundle:Product:editComponent.html.twig")
+     * @Template("AdminProductBundle:ProductSize:editComponent.html.twig")
      *
      * @EntityAnnotation(
      *      class = {
-     *          "factory" = "elcodi.factory.product",
+     *          "factory" = "elcodi.factory.product_size",
      *          "method" = "create",
      *          "static" = false
      *      },
-     *      name = "product",
+     *      name = "productSize",
      *      mapping = {
      *          "id" = "~id~"
      *      },
      *      mappingFallback = true,
      * )
      * @FormAnnotation(
-     *      class = "elcodi_admin_product_form_type_product",
+     *      class = "elcodi_admin_product_size_form_type",
      *      name  = "formView",
-     *      entity = "product",
+     *      entity = "productSize",
      *      handleRequest = true,
      *      validate = "isValid"
      * )
      */
     public function editComponentAction(
         FormView $formView,
-        Product $product
+        ProductSize $productSize
     ) {
         return [
-            'product'  => $product,
-            'form'     => $formView,
-        ];
-    }
-	
-	/**
-     * Product variants component action
-     *
-     * As a component, this action should not return all the html macro, but
-     * only the specific component
-     *
-     * @param FormView         $formView Form view
-     * @param Product		   $product  Product
-     *
-     * @return array Result
-     *
-     * @Route(
-     *      path = "/variants/{id}/component",
-     *      name = "admin_product_variants_edit_component",
-     *      requirements = {
-     *          "id" = "\d+",
-     *      },
-     *      methods = {"GET"}
-     * )
-     * @Template("AdminProductBundle:Product:variantsComponent.html.twig")
-     *
-     * @EntityAnnotation(
-     *      class = {
-     *          "factory" = "elcodi.factory.product",
-     *          "method" = "create",
-     *          "static" = false
-     *      },
-     *      name = "product",
-     *      mapping = {
-     *          "id" = "~id~"
-     *      },
-     *      mappingFallback = true,
-     * )
-     * @FormAnnotation(
-     *      class = "elcodi_admin_product_form_type_product_variants",
-     *      name  = "formView",
-     *      entity = "product",
-     *      handleRequest = true,
-     *      validate = "isValid"
-     * )
-     */
-    public function variantsComponentAction(
-        FormView $formView,
-        Product $product
-    ) {
-        return [
-            'product'  => $product,
+            'productSize'  => $productSize,
             'form'     => $formView,
         ];
     }

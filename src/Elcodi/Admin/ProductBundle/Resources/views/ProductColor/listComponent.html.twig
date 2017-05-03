@@ -1,0 +1,73 @@
+{% extends 'AdminCoreBundle::Common/listComponent.html.twig' %}
+
+
+{% set elcodi_context = {
+    entity_type: 'product_color'
+} %}
+
+
+{% block title 'admin.product_color.list'|trans %}
+
+
+{% block no_items
+    lists.no_items(
+        'admin.product_color.single'|trans,
+        'admin.product_color.plural'|trans,
+        url('admin_product_color_new')
+    )
+%}
+
+
+{% block table_head %}
+
+
+    {% set stockClass = 'ta-r' %}
+    {% if not store.useStock %}
+        {% set stockClass = 'd-n ta-r' %}
+    {% endif %}
+
+    {% include '@AdminCore/Tables/head.html.twig' with {
+        rows: [
+            { name: 'admin.product.field.name.title'|trans },
+            { name: 'admin.product.field.stock.title'|trans, class: stockClass }
+        ],
+        class: 'product-colors',
+    } %}
+
+{% endblock table_head %}
+
+
+{% block table_body_row %}
+    <td>
+        <a href="{{ url('admin_product_color_edit', { id: entity.id }) }}" data-fc-modules="window-content">            
+            <div style="
+                    width: 1.4rem;
+                    height: 1.4rem;
+                    background-color: {{ entity.code }};
+                    display: inline-block;
+                    border: 1px solid black;
+                    margin-right: 10px;
+                "
+            ></div>
+            <strong>{{ entity.name }}</strong>
+        </a>        
+        {% if entity.enabled %}
+            <span class="label-ok fz-xs">{{ 'admin.product.field.enabled.options.active'|trans }}</span>
+        {% else %}
+            <span class="label fz-xs">{{ 'admin.product.field.enabled.options.inactive'|trans }}</span>
+        {% endif %}
+    </td>
+    {% include '@AdminCore/Tables/actions.html.twig' with {
+        entity: entity,
+        class: 'product_color',
+    } %}
+
+{% endblock table_body_row %}
+
+
+{% block table_paginator_links %}
+
+    {% set url = 'admin_product_color_list' %}
+    {{ parent() }}
+
+{% endblock table_paginator_links %}

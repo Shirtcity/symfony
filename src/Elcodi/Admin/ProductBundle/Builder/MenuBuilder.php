@@ -58,6 +58,26 @@ class MenuBuilder extends AbstractMenuBuilder implements MenuBuilderInterface
                         $this
                             ->menuNodeFactory
                             ->create()
+                            ->setName('admin.product_color.plural')
+                            ->setUrl('admin_product_color_list')
+                            ->setActiveUrls([
+                                'admin_product_color_edit',
+                                'admin_product_color_new',
+                            ])
+                    )->addSubnode(
+                        $this
+                            ->menuNodeFactory
+                            ->create()
+                            ->setName('admin.product_size.plural')
+                            ->setUrl('admin_product_size_list')
+                            ->setActiveUrls([
+                                'admin_product_size_edit',
+                                'admin_product_size_new',
+                            ])
+                    )->addSubnode(
+                        $this
+                            ->menuNodeFactory
+                            ->create()
                             ->setName('admin.manufacturer.plural')
                             ->setUrl('admin_manufacturer_list')
                             ->setActiveUrls([
