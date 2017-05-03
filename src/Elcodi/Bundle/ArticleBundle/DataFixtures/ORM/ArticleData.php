@@ -1,45 +1,19 @@
 <?php
 
-/*
- * This file is part of the Elcodi package.
- *
- * Copyright (c) 2014-2016 Elcodi Networks S.L.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * Feel free to edit as you please, and have fun.
- *
- * @author Marc Morera <yuhu@mmoreram.com>
- * @author Aldo Chiecchia <zimage@tiscali.it>
- * @author Elcodi Team <tech@elcodi.com>
- */
-
 namespace Elcodi\Bundle\ArticleBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 use Elcodi\Bundle\CoreBundle\DataFixtures\ORM\Abstracts\AbstractFixture;
-use Elcodi\Bundle\ArticleBundle\DataFixtures\ORM\Traits\ArticleWithImagesTrait;
-use Elcodi\Component\Core\Services\ObjectDirector;
-use Elcodi\Component\Currency\Entity\Interfaces\CurrencyInterface;
-use Elcodi\Component\Currency\Entity\Money;
-use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
-use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Component\Article\Entity\ArticleProduct;
 
-use Elcodi\Bundle\ProductBundle\Entity\Product;
-use Elcodi\Bundle\ProductBundle\Entity\ProductColor;
-use Elcodi\Bundle\ProductBundle\Entity\ProductSize;
-use Elcodi\Bundle\ProductBundle\Entity\PrintSide;
 
 /**
  * Class ArticleData.
  */
 class ArticleData extends AbstractFixture implements DependentFixtureInterface
 {
-    use ArticleWithImagesTrait;
 
 	/**
      * Load data fixtures with the passed EntityManager.
@@ -48,18 +22,8 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        /**
-         * Article.
-         *
-         * @var CategoryInterface     $category
-         * @var CurrencyInterface     $currency
-         * @var ObjectDirector        $articleDirector
-         */
-        $category = $this->getReference('category');
-        $rootCategory = $this->getReference('rootCategory');
-		
 		$product = $this->getReference('product');
-		$productColor = $this->getReference('productColor');
+		$productColors = $this->getReference('productColors');
 		
         $currency = $this->getReference('currency-dollar');
         $articleDirector = $this->getDirector('article');
@@ -67,14 +31,12 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
 		$articleProduct = new ArticleProduct();
 		$articleProduct
             ->setProduct($product)
-            ->setProductColor($productColor);
+            ->setProductColors($productColors);
 
         $article = $articleDirector
             ->create()
             ->setName('article')
             ->setSlug('article')
-            ->addCategory($category)
-            ->setPrincipalCategory($category)
             ->setEnabled(true)
 			->setArticleProduct($articleProduct);
 
@@ -92,42 +54,28 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
 		$articleProduct1 = new ArticleProduct();
 		$articleProduct1
             ->setProduct($product)
-            ->setProductColor($productColor);
+            ->setProductColors($productColors);
 		
         $articleReduced = $articleDirector
             ->create()
             ->setName('article-reduced')
             ->setSlug('article-reduced')
-			->addCategory($category)
             ->setShowInHome(true)
             ->setEnabled(true)
 			->setArticleProduct($articleProduct1);
 
-        $this->storeArticleImage(
-            $articleReduced,
-            'article.jpg'
-        );
-
         $articleDirector->save($articleReduced);
         $this->addReference('article-reduced', $articleReduced);
-        
-        /**
-         * Root category article.
-         *
-         * @var ArticleInterface $rootCategoryArticle
-         */
-		
+       		
 		$articleProduct2 = new ArticleProduct();
 		$articleProduct2
             ->setProduct($product)
-            ->setProductColor($productColor);
+            ->setProductColors($productColors);
 		
         $rootCategoryArticle = $articleDirector
             ->create()
             ->setName('Root category article')
             ->setSlug('root-category')
-            ->addCategory($rootCategory)
-            ->setPrincipalCategory($rootCategory)
             ->setEnabled(true)
 			->setArticleProduct($articleProduct2);
 
@@ -147,6 +95,7 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             'Elcodi\Bundle\CurrencyBundle\DataFixtures\ORM\CurrencyData',            
             'Elcodi\Bundle\StoreBundle\DataFixtures\ORM\StoreData',
 			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductData',
+			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductColorsData',
 			'Elcodi\Bundle\CategoryBundle\DataFixtures\ORM\CategoryData',
         ];
     }
