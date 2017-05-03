@@ -17,7 +17,8 @@ class ProductSizeFactory extends AbstractFactory
         $productSize = new $classNamespace();
 
         $productSize
-			->setEnabled(1);
+            ->setOrderAsc(0)
+			->setEnabled(true);
 
         return $productSize;
     }	

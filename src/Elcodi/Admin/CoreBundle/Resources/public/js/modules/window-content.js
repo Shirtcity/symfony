@@ -15,6 +15,7 @@ FrontendCore.define('window-content', ['devicePackage','modal' ], function () {
 			this.mediator.subscribe( ['new:category'], this.updateCategory, this );
 			this.mediator.subscribe( ['new:manufacturer'], this.updateManufacturer, this );
             this.mediator.subscribe( ['new:product_color'], this.updateProductColor, this );
+            this.mediator.subscribe( ['new:product_size'], this.updateProductSize, this );
             
             this.mediator.subscribe(['response:success'], this.closeModal, this);
 
@@ -55,6 +56,10 @@ FrontendCore.define('window-content', ['devicePackage','modal' ], function () {
 		},
         updateProductColor: function( oResponse ) {
 			this.updateList( 'product-color-list', oResponse.data.url );
+
+		},
+        updateProductSize: function( oResponse ) {
+			this.updateList( 'product-size-list', oResponse.data.url );
 
 		},
 		autobind: function( oTarget ){

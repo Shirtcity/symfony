@@ -22,6 +22,10 @@ elcodi_entity_translator:
             alias: product_color
             fields:
                 name: ~
+        Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductSizeInterface:
+            alias: product_size
+            fields:
+                name: ~
         Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface:
             alias: category
             fields:
