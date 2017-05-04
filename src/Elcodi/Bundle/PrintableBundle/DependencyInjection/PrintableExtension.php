@@ -139,16 +139,14 @@ class PrintableExtension extends AbstractExtension implements EntitiesOverridabl
             'services',
             'repositories',
             'factories',
+			'objectManagers',
+            'directors',
             /*
             'wrappers',
             'commands',
             'adapters',
             'expressionLanguage',
-
-            'objectManagers',
-
             'twig',
-            'directors',
             */
         ];
     }

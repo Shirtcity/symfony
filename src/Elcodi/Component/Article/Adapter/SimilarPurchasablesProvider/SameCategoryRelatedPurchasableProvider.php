@@ -24,6 +24,7 @@ use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 use Elcodi\Component\Article\Repository\PurchasableRepository;
 use Elcodi\Component\Article\Repository\ArticleRepository;
+use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 
 /**
  * Class SameCategoryRelatedPurchasableProvider.
@@ -91,6 +92,10 @@ class SameCategoryRelatedPurchasableProvider implements RelatedPurchasablesProvi
          * @var PurchasableInterface $article
          */
         foreach ($purchasables as $purchasable) {
+			if ($purchasable instanceof ArticleInterface !== true) {
+				continue;
+			}
+			
             $category = $purchasable->getSectionCategories()->first();
             if (
                 $category instanceof CategoryInterface &&

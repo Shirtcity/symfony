@@ -80,9 +80,9 @@ class SameCategoryRelatedPurchasablesProviderTest extends WebTestCase
         /**
          * For this test, we emulate that article 2 has category 1.
          */
-        $category2 = $this->find('category', 2);
+        $category2 = $this->find('sectionCategory', 2);
         $purchasable2 = $this->find('purchasable', 2);
-        $purchasable2->setPrincipalCategory($category2);
+        $purchasable2->addSectionCategory($category2);
         $this->flush($purchasable2);
 
         /**
@@ -101,9 +101,9 @@ class SameCategoryRelatedPurchasablesProviderTest extends WebTestCase
         /**
          * For this test, we emulate that article 2 has category 1.
          */
-        $category1 = $this->find('category', 1);
+        $category1 = $this->find('sectionCategory', 1);
         $purchasable2 = $this->find('purchasable', 2);
-        $purchasable2->setPrincipalCategory($category1);
+        $purchasable2->addSectionCategory($category1);
         $this->flush($purchasable2);
 
         /**

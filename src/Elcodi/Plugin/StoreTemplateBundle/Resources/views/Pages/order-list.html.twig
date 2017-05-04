@@ -15,7 +15,7 @@
                 {% set purchasable = order.orderLines.first.purchasable %}
                 {% set purchasableName = purchasable|purchasable_name %}
                 {% set validImage = purchasable|print_side_preview_image('front') %}
-                <img src="{{ validImage ? validImage|resize({
+                <img src="{{ validImage ? validImage|combine({
                    'width': 80,
                    'height': 80,
                    'type': 5

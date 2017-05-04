@@ -40,7 +40,7 @@ class ProductData extends AbstractFixture implements DependentFixtureInterface
 		$productPrices = new ArrayCollection();
 		$productPrices[] = Money::create(10, $currency);
         
-        $printMethod = $this->getReference('printMethod');
+        $printMethod = $this->getReference('print-method');
         
         $product = $productReference
             ->create()

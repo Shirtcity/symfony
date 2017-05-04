@@ -1,18 +1,19 @@
 <?php
 
-namespace Elcodi\Bundle\ProductBundle\DataFixtures\ORM;
+namespace Elcodi\Bundle\PrintableBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Elcodi\Bundle\CoreBundle\DataFixtures\ORM\Abstracts\AbstractFixture;
+use Elcodi\Component\Core\Services\ObjectDirector;
 
 /**
- * Class PrintSideAreaData.
+ * Class DesignData.
  */
-class PrintSideAreaData extends AbstractFixture implements DependentFixtureInterface
-{  
-
+class DesignData extends AbstractFixture implements DependentFixtureInterface
+{
 	/**
      * Load data fixtures with the passed EntityManager.
      *
@@ -20,22 +21,20 @@ class PrintSideAreaData extends AbstractFixture implements DependentFixtureInter
      */
     public function load(ObjectManager $manager)
     {
-        $printSideAreaDirector = $this->getDirector('print_side_area');
+        $designDirector = $this->getDirector('design');
         
-        $printSide = $this->getReference('print-side');
-
-        $printSideArea = $printSideAreaDirector
+        $design = $designDirector
             ->create()
-            ->setWidth(200)
-            ->setHeight(300)
-            ->setPosX(155)
-            ->setPosY(100)
-            ->setSide($printSide);
+			->setEnabled(true)
+            ->setName('Design')
+            ->setVectorFileName('design.png')
+            ->setPreviewFileName('design.png');
 
-        $printSideAreaDirector->save($printSideArea);
-        $this->addReference('printSideArea', $printSideArea);
+        $designDirector->save($design);
+        $this->addReference('design', $design);
+
     }
-
+    
     /**
      * This method must return an array of fixtures classes
      * on which the implementing class depends on.
@@ -46,7 +45,6 @@ class PrintSideAreaData extends AbstractFixture implements DependentFixtureInter
     {
         return [
             'Elcodi\Bundle\StoreBundle\DataFixtures\ORM\StoreData',
-            'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\PrintSideData',
         ];
     }
 }

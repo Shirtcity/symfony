@@ -1,0 +1,38 @@
+services:
+
+    #
+    # Directors
+    #
+    elcodi.director.design:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.design'
+            - '@elcodi.repository.design'
+            - '@elcodi.factory.design'
+            
+    elcodi.director.text:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.text'
+            - '@elcodi.repository.text'
+            - '@elcodi.factory.text'
+            
+    elcodi.director.font:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.font'
+            - '@elcodi.repository.font'
+            - '@elcodi.factory.font'
+            
+    elcodi.director.foilcolor:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.foilcolor'
+            - '@elcodi.repository.foilcolor'
+            - '@elcodi.factory.foilcolor'
+
+

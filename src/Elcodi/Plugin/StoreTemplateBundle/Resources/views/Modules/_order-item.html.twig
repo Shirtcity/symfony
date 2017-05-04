@@ -9,7 +9,7 @@
     <dt class="cart-item-image">{{ 'template.store_template_bundle.order.item.image'|trans }}</dt>
     <dd class="cart-item-image">
         <a href="{{ articleRoute }}">
-            <img src="{{ validImage ? validImage|resize({
+            <img src="{{ validImage ? validImage|combine({
                 width: 150,
                 height: 150,
                 type: 5 }) : '//placehold.it/150x150'

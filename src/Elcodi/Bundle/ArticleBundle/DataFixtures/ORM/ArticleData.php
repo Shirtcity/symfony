@@ -4,10 +4,13 @@ namespace Elcodi\Bundle\ArticleBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Elcodi\Bundle\CoreBundle\DataFixtures\ORM\Abstracts\AbstractFixture;
 use Elcodi\Component\Article\Entity\ArticleProduct;
-
+use Elcodi\Component\Article\Entity\ArticleProductPrintSide;
+use Elcodi\Bundle\PrintableBundle\Entity\DesignVariant;
+use Elcodi\Bundle\PrintableBundle\Entity\TextVariant;
 
 /**
  * Class ArticleData.
@@ -22,10 +25,20 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+		$this->loadSimpleArticle();
+		$this->loadArticleWithPrintables();
+		$this->loadArticleWithSectionCategories();
+    }
+	
+	/**
+	 * Loads Fixtures for simple article
+	 */
+	private function loadSimpleArticle()
+	{
 		$product = $this->getReference('product');
-		$productColors = $this->getReference('productColors');
+		$productColors = $this->getReference('product-colors');	
+		$sectionCategory = $this->getReference('section-category');
 		
-        $currency = $this->getReference('currency-dollar');
         $articleDirector = $this->getDirector('article');
 				
 		$articleProduct = new ArticleProduct();
@@ -38,52 +51,104 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setName('article')
             ->setSlug('article')
             ->setEnabled(true)
-			->setArticleProduct($articleProduct);
-
-		$articlePrice = $this
-			->get('price_resolver.article')
-			->getPrice($article, $currency);
+			->setArticleProduct($articleProduct)			
+			->setSectionCategories(new ArrayCollection())
+			->addSectionCategory($sectionCategory);
 		
         $articleDirector->save($article);
         $this->addReference('article', $article);
-
-        /**
-         * Reduced Article.
-         */
+	}
+	
+	/**
+	 * Loads fixtures for an article with printables
+	 */
+	private function loadArticleWithPrintables()
+	{
+		$product = $this->getReference('product');
+		$productColors = $this->getReference('product-colors');		
+        $articleDirector = $this->getDirector('article');
 		
-		$articleProduct1 = new ArticleProduct();
-		$articleProduct1
+		$articleProduct = new ArticleProduct();
+		$articleProduct
             ->setProduct($product)
-            ->setProductColors($productColors);
+            ->setProductColors($productColors)
+			->setArticleProductPrintSides(new ArrayCollection());
 		
-        $articleReduced = $articleDirector
+		$productPrintSide = $product
+			->getPrintSides()
+			->first();
+		
+		$articleProductPrintSide = new ArticleProductPrintSide();
+		$articleProductPrintSide
+			->setArticleProduct($articleProduct)
+			->setPrintSide($productPrintSide)
+			->setPrintableVariants(new ArrayCollection());
+	
+		
+		$printableVariantDesign = new DesignVariant();
+		$design = $this->getReference('design');
+		
+		$printableVariantDesign
+			->setDesign($design)
+			->setPosX(10)
+			->setPosY(10);
+		
+		$articleProductPrintSide->addPrintableVariant($printableVariantDesign);		
+		
+		$printableVariantText = new TextVariant();
+		$text = $this->getReference('text');
+		
+		$printableVariantText
+			->setText($text)
+			->setPosX(10)
+			->setPosY(10);
+		
+		$articleProductPrintSide->addPrintableVariant($printableVariantText);			
+		
+		$articleProduct->addArticleProductPrintSide($articleProductPrintSide);
+		
+        $articleWithPrintables = $articleDirector
             ->create()
-            ->setName('article-reduced')
-            ->setSlug('article-reduced')
+            ->setName('Article with printables')
+            ->setSlug('article-with-printables')
             ->setShowInHome(true)
             ->setEnabled(true)
-			->setArticleProduct($articleProduct1);
-
-        $articleDirector->save($articleReduced);
-        $this->addReference('article-reduced', $articleReduced);
-       		
-		$articleProduct2 = new ArticleProduct();
-		$articleProduct2
+			->setArticleProduct($articleProduct);
+	
+        $articleDirector->save($articleWithPrintables);
+        $this->addReference('articleWithPrintables', $articleWithPrintables);
+	}
+	
+	/**
+	 * Loads fixtures for an article with section categories
+	 */
+	private function loadArticleWithSectionCategories()
+	{
+		$product = $this->getReference('product');
+		$productColors = $this->getReference('product-colors');
+		$sectionCategory = $this->getReference('section-category');
+		
+        $articleDirector = $this->getDirector('article');
+		
+		$articleProduct = new ArticleProduct();
+		$articleProduct
             ->setProduct($product)
             ->setProductColors($productColors);
 		
-        $rootCategoryArticle = $articleDirector
+        $sectionCategoryArticle = $articleDirector
             ->create()
-            ->setName('Root category article')
-            ->setSlug('root-category')
+            ->setName('Article with section category')
+            ->setSlug('article-with-section-category')
             ->setEnabled(true)
-			->setArticleProduct($articleProduct2);
+			->setArticleProduct($articleProduct)
+			->setSectionCategories(new ArrayCollection())
+			->addSectionCategory($sectionCategory);
 
-        $articleDirector->save($rootCategoryArticle);
-        $this->addReference('rootCategoryArticle', $rootCategoryArticle);
-    }
+        $articleDirector->save($sectionCategoryArticle);
+        $this->addReference('sectionCategoryArticle', $sectionCategoryArticle);
+	}
 
-    /**
+	/**
      * This method must return an array of fixtures classes
      * on which the implementing class depends on.
      *
@@ -96,7 +161,10 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             'Elcodi\Bundle\StoreBundle\DataFixtures\ORM\StoreData',
 			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductData',
 			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductColorsData',
+			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\PrintSideData',
 			'Elcodi\Bundle\CategoryBundle\DataFixtures\ORM\CategoryData',
+			'Elcodi\Bundle\PrintableBundle\DataFixtures\ORM\DesignData',
+			'Elcodi\Bundle\PrintableBundle\DataFixtures\ORM\TextData',
         ];
     }
 }

@@ -23,7 +23,7 @@ class ProductColorsData extends AbstractFixture implements DependentFixtureInter
         $productColorsDirector = $this->getDirector('product_colors');
         
         $product = $this->getReference('product');
-        $productColor = $this->getReference('productColor');        
+        $productColor = $this->getReference('product-color');        
 
         $productColors = $productColorsDirector
             ->create()
