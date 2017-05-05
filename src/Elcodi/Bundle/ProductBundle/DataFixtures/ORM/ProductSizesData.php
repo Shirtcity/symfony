@@ -23,7 +23,7 @@ class ProductSizesData extends AbstractFixture implements DependentFixtureInterf
         $productSizesDirector = $this->getDirector('product_sizes');
         
         $product = $this->getReference('product');
-        $productSize = $this->getReference('productSize');
+        $productSize = $this->getReference('product-size');
 
         $productSizes = $productSizesDirector
             ->create()

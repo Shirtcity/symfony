@@ -35,7 +35,12 @@ class CategoryData extends AbstractFixture
      */
     public function load(ObjectManager $manager)
     {
-        /**
+        $this->loadSectionCategory();
+    }
+	
+	private function loadSectionCategory()
+	{
+		/**
          * @var ObjectDirector $categoryDirector
          */
         $categoryDirector = $this->getDirector('section_category');
@@ -45,15 +50,15 @@ class CategoryData extends AbstractFixture
          *
          * @var CategoryInterface $rootCategory
          */
-        $rootCategory = $categoryDirector
+        $sectionCategory = $categoryDirector
             ->create()
-            ->setName('root-category')
-            ->setSlug('root-category')
+            ->setName('section-category')
+            ->setSlug('section-category')
             ->setEnabled(true)
             ->setRoot(true);
 
-        $categoryDirector->save($rootCategory);
-        $this->addReference('rootCategory', $rootCategory);
+        $categoryDirector->save($sectionCategory);
+        $this->addReference('sectionCategory', $sectionCategory);
 
         /**
          * Category.
@@ -65,7 +70,7 @@ class CategoryData extends AbstractFixture
             ->setName('category')
             ->setSlug('category')
             ->setEnabled(true)
-            ->setParent($rootCategory)
+            ->setParent($sectionCategory)
             ->setRoot(false);
 
         $categoryDirector->save($category);
@@ -86,5 +91,5 @@ class CategoryData extends AbstractFixture
 
         $categoryDirector->save($secondLevelCategory);
         $this->addReference('secondLevelCategory', $secondLevelCategory);
-    }
+	}
 }

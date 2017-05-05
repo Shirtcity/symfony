@@ -1,0 +1,26 @@
+services:
+
+    #
+    # Object Managers
+    #
+    elcodi.object_manager.design:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.design.class%
+            
+    elcodi.object_manager.text:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.text.class%
+            
+    elcodi.object_manager.font:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.font.class%
+            
+    elcodi.object_manager.foilcolor:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.foilcolor.class%
+
+ 

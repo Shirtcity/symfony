@@ -25,8 +25,8 @@ class PrintSideProductColorsData extends AbstractFixture implements DependentFix
     {
         $printSideProductColorsDirector = $this->getDirector('print_side_product_colors');
         
-        $printSide = $this->getReference('printSide');
-        $productColors = $this->getReference('productColors');
+        $printSide = $this->getReference('print-side');
+        $productColors = $this->getReference('product-colors');
 
         $printSideProductColors = $printSideProductColorsDirector
             ->create()

@@ -1,18 +1,19 @@
 <?php
 
-namespace Elcodi\Bundle\ProductBundle\DataFixtures\ORM;
+namespace Elcodi\Bundle\PrintableBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Elcodi\Bundle\CoreBundle\DataFixtures\ORM\Abstracts\AbstractFixture;
+use Elcodi\Component\Core\Services\ObjectDirector;
 
 /**
- * Class PrintSideAreaData.
+ * Class TextData.
  */
-class PrintSideAreaData extends AbstractFixture implements DependentFixtureInterface
-{  
-
+class FontData extends AbstractFixture implements DependentFixtureInterface
+{
 	/**
      * Load data fixtures with the passed EntityManager.
      *
@@ -20,22 +21,20 @@ class PrintSideAreaData extends AbstractFixture implements DependentFixtureInter
      */
     public function load(ObjectManager $manager)
     {
-        $printSideAreaDirector = $this->getDirector('print_side_area');
+        $fontDirector = $this->getDirector('font');
         
-        $printSide = $this->getReference('print-side');
-
-        $printSideArea = $printSideAreaDirector
+        $font = $fontDirector
             ->create()
-            ->setWidth(200)
-            ->setHeight(300)
-            ->setPosX(155)
-            ->setPosY(100)
-            ->setSide($printSide);
+			->setName('Arial')
+            ->setMinSize(5)
+            ->setFontFileName('1_font_arial.ttf')
+            ->setEnabled(true);
 
-        $printSideAreaDirector->save($printSideArea);
-        $this->addReference('printSideArea', $printSideArea);
+        $fontDirector->save($font);
+        $this->addReference('font', $font);
+
     }
-
+    
     /**
      * This method must return an array of fixtures classes
      * on which the implementing class depends on.
@@ -46,7 +45,6 @@ class PrintSideAreaData extends AbstractFixture implements DependentFixtureInter
     {
         return [
             'Elcodi\Bundle\StoreBundle\DataFixtures\ORM\StoreData',
-            'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\PrintSideData',
         ];
     }
 }
