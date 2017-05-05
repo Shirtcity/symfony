@@ -29,7 +29,7 @@ class PrintMethodData extends AbstractFixture implements DependentFixtureInterfa
             ->setEnabled(true);
 
         $printMethodDirector->save($printMethod);
-        $this->addReference('printMethod', $printMethod);
+        $this->addReference('print-method', $printMethod);
     }
 
     /**

@@ -31,7 +31,7 @@ class ProductSizesData extends AbstractFixture implements DependentFixtureInterf
             ->setSize($productSize);
 
         $productSizesDirector->save($productSizes);
-        $this->addReference('productSizes', $productSizes);
+        $this->addReference('product-sizes', $productSizes);
     }
 
     /**

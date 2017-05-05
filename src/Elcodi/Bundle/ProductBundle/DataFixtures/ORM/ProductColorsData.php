@@ -31,7 +31,7 @@ class ProductColorsData extends AbstractFixture implements DependentFixtureInter
             ->setColor($productColor);
 
         $productColorsDirector->save($productColors);
-        $this->addReference('productColors', $productColors);
+        $this->addReference('product-colors', $productColors);
     }
 
     /**

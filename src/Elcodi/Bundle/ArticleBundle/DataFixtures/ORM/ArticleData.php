@@ -116,7 +116,7 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
 			->setArticleProduct($articleProduct);
 	
         $articleDirector->save($articleWithPrintables);
-        $this->addReference('articleWithPrintables', $articleWithPrintables);
+        $this->addReference('article-with-printables', $articleWithPrintables);
 	}
 	
 	/**
@@ -145,7 +145,7 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
 			->addSectionCategory($sectionCategory);
 
         $articleDirector->save($sectionCategoryArticle);
-        $this->addReference('sectionCategoryArticle', $sectionCategoryArticle);
+        $this->addReference('section-category-article', $sectionCategoryArticle);
 	}
 
 	/**

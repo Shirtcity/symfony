@@ -41,7 +41,7 @@ class PrintSideData extends AbstractFixture implements DependentFixtureInterface
         );
 
         $printSideDirector->save($printSide);
-        $this->addReference('printSide', $printSide);
+        $this->addReference('print-side', $printSide);
     }
 
     /**

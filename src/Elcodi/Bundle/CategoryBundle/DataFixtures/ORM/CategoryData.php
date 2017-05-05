@@ -58,7 +58,7 @@ class CategoryData extends AbstractFixture
             ->setRoot(true);
 
         $categoryDirector->save($sectionCategory);
-        $this->addReference('sectionCategory', $sectionCategory);
+        $this->addReference('section-category', $sectionCategory);
 
         /**
          * Category.
@@ -90,6 +90,6 @@ class CategoryData extends AbstractFixture
             ->setRoot(false);
 
         $categoryDirector->save($secondLevelCategory);
-        $this->addReference('secondLevelCategory', $secondLevelCategory);
+        $this->addReference('second-level-category', $secondLevelCategory);
 	}
 }
