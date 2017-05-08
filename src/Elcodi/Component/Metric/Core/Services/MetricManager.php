@@ -96,7 +96,7 @@ class MetricManager
 
         $this->entryObjectManager->persist($entry);
         $this->entryObjectManager->flush($entry);
-
+        
         $this
             ->metricsBucket
             ->add($entry);

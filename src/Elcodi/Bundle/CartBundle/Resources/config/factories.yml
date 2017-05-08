@@ -23,6 +23,7 @@ services:
         calls:
             - [setPaymentMachineManager, ["@elcodi.order_payment_states_machine_manager"]]
             - [setShippingMachineManager, ["@elcodi.order_shipping_states_machine_manager"]]
+            - [setProductionMachineManager, ["@elcodi.order_production_states_machine_manager"]]
             - [setEntityNamespace, ["%elcodi.entity.order.class%"]]
             - [setDateTimeFactory, ["@elcodi.factory.datetime"]]
 

@@ -124,7 +124,16 @@ class OrderController extends AbstractAdminController
                     ->getLastStateLine()
                     ->getName()
             );
-
+        
+        $nextProductionTransitions = $this
+            ->get('elcodi.order.production_states_machine')
+            ->getAvailableStates(
+                $order
+                    ->getProductionStateLineStack()
+                    ->getLastStateLine()
+                    ->getName()
+            );
+        
         $allStates = array_merge(
             $order
                 ->getPaymentStateLineStack()
@@ -132,6 +141,10 @@ class OrderController extends AbstractAdminController
                 ->toArray(),
             $order
                 ->getShippingStateLineStack()
+                ->getStateLines()
+                ->toArray(),
+            $order
+                ->getProductionStateLineStack()
                 ->getStateLines()
                 ->toArray()
         );
@@ -153,6 +166,7 @@ class OrderController extends AbstractAdminController
             'order'                   => $order,
             'nextPaymentTransitions'  => $nextPaymentTransitions,
             'nextShippingTransitions' => $nextShippingTransitions,
+            'nextProductionTransitions' => $nextProductionTransitions,
             'allStates'               => $allStates,
             'deliveryInfo'            => $deliveryInfo,
             'billingInfo'             => $billingInfo,
@@ -246,6 +260,52 @@ class OrderController extends AbstractAdminController
             );
 
         $order->setShippingStateLineStack($stateLineStack);
+        $this->flush($order);
+
+        return $this->redirect($request->headers->get('referer'));
+    }
+    
+    /**
+     * Change production state
+     *
+     * @param Request        $request    Request
+     * @param OrderInterface $order      Order
+     * @param string         $transition Verb to apply
+     *
+     * @return RedirectResponse Back to referrer
+     *
+     * @Route(
+     *      path = "/{id}/production/{transition}",
+     *      name = "admin_order_change_production_state",
+     *      requirements = {
+     *          "id" = "\d+",
+     *      },
+     *      methods = {"GET"}
+     * )
+     *
+     * @EntityAnnotation(
+     *      class = "elcodi.entity.order.class",
+     *      name = "order",
+     *      mapping = {
+     *          "id" = "~id~"
+     *      }
+     * )
+     */
+    public function changeProductionStateAction(
+        Request $request,
+        OrderInterface $order,
+        $transition
+    ) {
+        $stateLineStack = $this
+            ->get('elcodi.order_production_states_machine_manager')
+            ->transition(
+                $order,
+                $order->getProductionStateLineStack(),
+                $transition,
+                ''
+            );
+
+        $order->setProductionStateLineStack($stateLineStack);
         $this->flush($order);
 
         return $this->redirect($request->headers->get('referer'));

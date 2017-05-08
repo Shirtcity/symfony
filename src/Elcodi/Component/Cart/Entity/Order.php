@@ -148,6 +148,13 @@ class Order implements OrderInterface
      * Last stateLine in shipping stateLine stack
      */
     protected $shippingLastStateLine;
+    
+    /**
+     * @var StateLineInterface
+     *
+     * Last stateLine in production stateLine stack
+     */
+    protected $productionLastStateLine;
 
     /**
      * @var Collection
@@ -162,6 +169,13 @@ class Order implements OrderInterface
      * StateLines for shipping
      */
     protected $shippingStateLines;
+    
+    /**
+     * @var Collection
+     *
+     * StateLines for production
+     */
+    protected $productionStateLines;    
 
     /**
      * @var AddressInterface
@@ -478,7 +492,7 @@ class Order implements OrderInterface
      * @return StateLineStack PaymentStateLineStack
      */
     public function getPaymentStateLineStack()
-    {
+    {        
         return StateLineStack::create(
             $this->paymentStateLines,
             $this->paymentLastStateLine
@@ -524,6 +538,34 @@ class Order implements OrderInterface
     {
         $this->shippingStateLines = $shippingStateLineStack->getStateLines();
         $this->shippingLastStateLine = $shippingStateLineStack->getLastStateLine();
+
+        return $this;
+    }
+    
+    /**
+     * Get ProductionStateLineStack.
+     *
+     * @return StateLineStack ProductionStateLineStack
+     */
+    public function getProductionStateLineStack()
+    {
+        return StateLineStack::create(
+            $this->productionStateLines,
+            $this->productionLastStateLine
+        );
+    }
+
+    /**
+     * Sets ProductionStateLineStack.
+     *
+     * @param StateLineStack $productionStateLineStack ProductionStateLineStack
+     *
+     * @return $this Self object
+     */
+    public function setProductionStateLineStack(StateLineStack $productionStateLineStack)
+    {
+        $this->productionStateLines = $productionStateLineStack->getStateLines();
+        $this->productionLastStateLine = $productionStateLineStack->getLastStateLine();
 
         return $this;
     }

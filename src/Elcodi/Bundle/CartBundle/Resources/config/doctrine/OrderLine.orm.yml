@@ -31,7 +31,7 @@ Elcodi\Component\Cart\Entity\OrderLine:
         depth:
             column: depth
             type: integer
-            nullable: false
+            nullable: true
         weight:
             column: weight
             type: integer

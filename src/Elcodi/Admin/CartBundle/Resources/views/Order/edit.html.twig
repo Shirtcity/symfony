@@ -97,6 +97,8 @@
                                     <i class="{{ iconClass }} {{ colorClass }} mr-s"></i>
                                     <em></em>
                                     {{ "common.order.states.#{stateLine.name}"|trans }}
+                                    <em></em>
+                                    ( {{ stateLine.description }} )
                                 </td>
                                 <td class="ta-r">
                                     {% include 'AdminCartBundle:Order:date.html.twig' with {
@@ -129,6 +131,16 @@
                     }) }}" class="button-secondary">
                         <i class="icon-truck"></i>
                         {{ "admin.order.transition.#{shippingTransition.name}"|trans }}
+                    </a>
+                {% endfor %}
+                
+                {% for productionTransition in nextProductionTransitions %}
+                    <a href="{{ url('admin_order_change_production_state', {
+                        id: order.id,
+                        transition: productionTransition.name
+                    }) }}" class="button-secondary">
+                        <i class="icon-truck"></i>
+                        {{ "admin.order.transition.#{productionTransition.name}"|trans }}
                     </a>
                 {% endfor %}
             </div>

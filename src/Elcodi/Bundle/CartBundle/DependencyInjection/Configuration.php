@@ -114,6 +114,24 @@ class Configuration extends AbstractConfiguration
                                 ['in delivery', 'cancel', 'cancelled'],
                                 ['in delivery', 'return', 'returned'],
                                 ['delivered', 'return', 'returned'],
+                                ['preparing', 'test', 'test order'],
+                                ['test order', 'not_realy_a_test', 'preparing'],
+                            ])
+                        ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('production_states_machine')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('identifier')
+                            ->defaultValue('order_production_states_machine')
+                        ->end()
+                        ->scalarNode('point_of_entry')
+                            ->defaultValue('not produced')
+                        ->end()
+                        ->variableNode('states')
+                            ->defaultValue([
+                                ['not produced', 'produce', 'in production'],
                             ])
                         ->end()
                     ->end()

@@ -91,6 +91,14 @@ Elcodi\Component\Cart\Entity\Order:
                 name: shipping_last_state_line_id
                 referencedColumnName: id
                 nullable: false
+                
+        productionLastStateLine:
+            targetEntity: Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateLineInterface
+            cascade: ["persist"]
+            joinColumn:
+                name: production_last_state_line_id
+                referencedColumnName: id
+                nullable: false
 
     manyToOne:
         customer:
@@ -168,7 +176,19 @@ Elcodi\Component\Cart\Entity\Order:
             targetEntity: Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateLineInterface
             cascade: ["persist"]
             joinTable:
-                name: payment_state_lines
+                name: payment_to_state_line
+                joinColumns:
+                    order_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    state_line_id:
+                        referencedColumnName: id
+                        
+        productionStateLines:
+            targetEntity: Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateLineInterface
+            cascade: ["persist"]
+            joinTable:
+                name: production_to_state_line
                 joinColumns:
                     order_id:
                         referencedColumnName: id

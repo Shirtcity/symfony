@@ -42,6 +42,13 @@ class OrderFactory extends AbstractPurchasableFactory
      * Machine Manager for Shipping
      */
     protected $shippingMachineManager;
+    
+    /**
+     * @var MachineManager
+     *
+     * Machine Manager for Production
+     */
+    protected $productionMachineManager;
 
     /**
      * Sets PaymentMachineManager.
@@ -67,6 +74,20 @@ class OrderFactory extends AbstractPurchasableFactory
     public function setShippingMachineManager(MachineManager $shippingMachineManager)
     {
         $this->shippingMachineManager = $shippingMachineManager;
+
+        return $this;
+    }
+    
+    /**
+     * Sets ProductionMachineManager.
+     *
+     * @param MachineManager $productionMachineManager ProductionMachineManager
+     *
+     * @return $this Self object
+     */
+    public function setProductionMachineManager(MachineManager $productionMachineManager)
+    {
+        $this->productionMachineManager = $productionMachineManager;
 
         return $this;
     }
@@ -122,7 +143,20 @@ class OrderFactory extends AbstractPurchasableFactory
             );
 
         $order->setShippingStateLineStack($shippingStateLineStack);
+        
+        $productionStateLineStack = $this
+            ->productionMachineManager
+            ->initialize(
+                $order,
+                StateLineStack::create(
+                    new ArrayCollection(),
+                    null
+                ),
+                'Preparing to produce Order'
+            );
 
+        $order->setProductionStateLineStack($productionStateLineStack);
+        
         return $order;
     }
 }
