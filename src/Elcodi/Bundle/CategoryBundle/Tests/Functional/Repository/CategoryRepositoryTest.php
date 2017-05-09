@@ -15,11 +15,10 @@
  * @author Elcodi Team <tech@elcodi.com>
  */
 
-namespace Elcodi\Bundle\ArticleBundle\Tests\Functional\Repository;
+namespace Elcodi\Bundle\CategoryBundle\Tests\Functional\Repository;
 
 use Elcodi\Bundle\TestCommonBundle\Functional\WebTestCase;
-use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
-use Elcodi\Bundle\CategoryBundle\Repository\CategoryRepository;
+use Elcodi\Component\Core\Services\ObjectDirector;
 
 /**
  * Class CategoryRepositoryTest.
@@ -53,7 +52,7 @@ class CategoryRepositoryTest extends WebTestCase
     {
         parent::setUp();
 
-        $this->categoryRepository = $this->get('elcodi.repository.category');
+        $this->categoryRepository = $this->get('elcodi.repository.section_category');
     }
 
     /**
@@ -63,7 +62,7 @@ class CategoryRepositoryTest extends WebTestCase
     {
         $this->assertInstanceOf(
             'Doctrine\Common\Persistence\ObjectRepository',
-            $this->get('elcodi.repository.category')
+            $this->get('elcodi.repository.section_category')
         );
     }
 
@@ -78,7 +77,7 @@ class CategoryRepositoryTest extends WebTestCase
          */
         $rootCategory = $this
             ->categoryRepository
-            ->findOneBy(['slug' => 'root-category']);
+            ->findOneBy(['slug' => 'section-category']);
 
         $childrenCategories = $this->categoryRepository->getChildrenCategories(
             $rootCategory
@@ -102,7 +101,7 @@ class CategoryRepositoryTest extends WebTestCase
          */
         $rootCategory = $this
             ->categoryRepository
-            ->findOneBy(['slug' => 'root-category']);
+            ->findOneBy(['slug' => 'section-category']);
 
         $childrenCategories = $this->categoryRepository->getChildrenCategories(
             $rootCategory,

@@ -15,7 +15,7 @@
  * @author Elcodi Team <tech@elcodi.com>
  */
 
-namespace Elcodi\Bundle\ArticleBundle\Tests\Functional\app;
+namespace Elcodi\Bundle\CategoryBundle\Tests\Functional\app;
 
 use Mmoreram\SymfonyBundleDependencies\CachedBundleDependenciesResolver;
 
@@ -43,7 +43,9 @@ class AppKernel extends AbstractElcodiKernel
             'Elcodi\Bundle\ArticleBundle\ElcodiArticleBundle',
 			'Elcodi\Bundle\ProductBundle\ProductBundle',
 			'Elcodi\Bundle\PriceBundle\PriceBundle',
+			'Elcodi\Bundle\PrintableBundle\PrintableBundle',
 			'Elcodi\Bundle\CategoryBundle\CategoryBundle',
+			'Elcodi\Bundle\UserBundle\ElcodiUserBundle',
         ]);
     }
 

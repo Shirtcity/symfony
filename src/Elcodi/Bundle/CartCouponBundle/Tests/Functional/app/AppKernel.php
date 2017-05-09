@@ -43,6 +43,8 @@ class AppKernel extends AbstractElcodiKernel
             'Elcodi\Bundle\CartCouponBundle\ElcodiCartCouponBundle',
 			'Elcodi\Bundle\ProductBundle\ProductBundle',
 			'Elcodi\Bundle\PriceBundle\PriceBundle',
+			'Elcodi\Bundle\PrintableBundle\PrintableBundle',
+			'Elcodi\Bundle\CategoryBundle\CategoryBundle',
         ]);
     }
 

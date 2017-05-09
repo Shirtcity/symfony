@@ -77,68 +77,6 @@ class PurchasableRepositoryTest extends WebTestCase
     }
 
     /**
-     * Test when getting purchasables from a category with not empty subcategories.
-     */
-    public function testGettingPurchasablesFromOneCategoryWithSubcategories()
-    {
-        /**
-         * @var $rootCategory CategoryInterface
-         */
-        $rootCategory = $this
-            ->categoryRepository
-            ->findOneBy(['slug' => 'root-category']);
-
-        $purchasables = $this
-            ->purchasableRepository
-            ->getAllFromCategories([$rootCategory]);
-
-        $this->assertCount(
-            1,
-            $purchasables,
-            'It should only return one purchasable on the root category'
-        );
-
-        $purchasable = $purchasables[0];
-
-        $this->assertEquals(
-            $purchasable->getName(),
-            'Root category article',
-            'The purchasable expected was the one on the root category'
-        );
-    }
-
-    /**
-     * Test when getting purchasables from multiple categories.
-     */
-    public function testGettingPurchasablesFromMultipleCategories()
-    {
-        /**
-         * @var $rootCategory CategoryInterface
-         */
-        $rootCategory = $this
-            ->categoryRepository
-            ->findOneBy(['slug' => 'root-category']);
-
-        $category = $this
-            ->categoryRepository
-            ->findOneBy(['slug' => 'category']);
-
-        $purchasables = $this
-            ->purchasableRepository
-            ->getAllFromCategories(
-                [
-                    $rootCategory,
-                    $category,
-                ]
-            );
-
-        $this->assertCount(
-            3,
-            $purchasables
-        );
-    }
-
-    /**
      * Test get home purchasables.
      *
      * @dataProvider dataGetHomePurchasables

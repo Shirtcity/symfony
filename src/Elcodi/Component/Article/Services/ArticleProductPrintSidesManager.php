@@ -66,10 +66,12 @@ class ArticleProductPrintSidesManager
 	{
 		$this->articleProduct = $articleProduct;
 		
-		$printSideTypes = $this->printSideTypeRepository
+		$printSideTypes = $this
+			->printSideTypeRepository
 			->findAll();
 		
-		$productPrintSides = $this->articleProduct
+		$productPrintSides = $this
+			->articleProduct
 			->getProduct()
 			->getPrintSides();
 		
@@ -80,7 +82,7 @@ class ArticleProductPrintSidesManager
 					return $productPrintSide->getType() == $printSideType;
 				});			
 	
-			if(!$printSideTypeIsAvailable) {
+			if (!$printSideTypeIsAvailable) {
 				$this->generateMissingPrintSides($printSideType);				
 			}			
 		}

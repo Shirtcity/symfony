@@ -22,15 +22,24 @@ class ProductColorData extends AbstractFixture implements DependentFixtureInterf
     {
         $productColorDirector = $this->getDirector('product_color');
 
-        $productColor = $productColorDirector
+        $productColorWhite = $productColorDirector
             ->create()
             ->setName('white')
 			->setCode('fff')
 			->setEnabled(true);
 
-        $productColorDirector->save($productColor);
-        $this->addReference('product-color', $productColor);
-
+        $productColorDirector->save($productColorWhite);
+		$this->addReference('product-color-white', $productColorWhite);
+		
+		$productColorGrey = $productColorDirector
+            ->create()
+            ->setName('grey')
+			->setCode('ccc')
+			->setEnabled(true);
+		
+		$productColorDirector->save($productColorGrey);
+		
+        $this->addReference('product-color-grey', $productColorGrey);
     }
 
     /**

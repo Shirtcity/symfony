@@ -62,7 +62,22 @@ class ProductData extends AbstractFixture implements DependentFixtureInterface
 
         $productReference->save($product);
         $this->addReference('product', $product);
-
+		
+		$productChildren = $productReference
+            ->create()
+            ->setName('Children T-Shirt')
+            ->setSlug('children-t-shirt')
+            ->setDescription('Children T-Shirt description')
+            ->setHeight(10)
+			->setWidth(10)
+			->setdepth(10)
+			->setWeight(10)
+            ->setEnabled(true)
+			->setPrices($productPrices)
+            ->addPrintMethod($printMethod);
+		
+		$productReference->save($productChildren);
+		$this->addReference('product-children', $productChildren);
     }
     
     /**

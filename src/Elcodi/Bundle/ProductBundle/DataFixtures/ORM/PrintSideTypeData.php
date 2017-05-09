@@ -22,12 +22,33 @@ class PrintSideTypeData extends AbstractFixture implements DependentFixtureInter
     {
         $printSideTypeDirector = $this->getDirector('print_side_type');
 
-        $printSideType = $printSideTypeDirector
+        $printSideTypeFront = $printSideTypeDirector
             ->create()
             ->setName('front');
 
-        $printSideTypeDirector->save($printSideType);
-        $this->addReference('print-side-type', $printSideType);
+        $printSideTypeDirector->save($printSideTypeFront);
+        $this->addReference('print-side-type-front', $printSideTypeFront);
+		
+		$printSideTypeBack = $printSideTypeDirector
+            ->create()
+            ->setName('back');
+
+        $printSideTypeDirector->save($printSideTypeBack);
+        $this->addReference('print-side-type-back', $printSideTypeBack);
+		
+		$printSideTypeLeft = $printSideTypeDirector
+            ->create()
+            ->setName('left');
+
+        $printSideTypeDirector->save($printSideTypeLeft);
+        $this->addReference('print-side-type-left', $printSideTypeLeft);
+		
+		$printSideTypeRight = $printSideTypeDirector
+            ->create()
+            ->setName('right');
+
+        $printSideTypeDirector->save($printSideTypeRight);
+        $this->addReference('print-side-type-right', $printSideTypeRight);
     }
 
     /**
