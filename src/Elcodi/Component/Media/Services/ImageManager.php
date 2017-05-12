@@ -26,6 +26,8 @@ use Elcodi\Component\Media\ElcodiMediaImageResizeTypes;
 use Elcodi\Component\Media\Entity\Interfaces\ImageInterface;
 use Elcodi\Component\Media\Exception\InvalidImageException;
 use Elcodi\Component\Media\Factory\ImageFactory;
+use Elcodi\Bundle\PrintableBundle\Entity\Text;
+use Elcodi\Bundle\PrintableBundle\Entity\Design;
 
 /**
  * Class ImageManager.
@@ -190,16 +192,15 @@ class ImageManager
      * Given an article product image, combine it with printables.
      *
      * @param ImageInterface $image  Image
-     * @param int            $height Height
-     * @param int            $width  Width
-     * @param int            $type   Type
+     * @param array          $texts	 Texts
+     * @param array          $designs Designs
      *
      * @return ImageInterface New Image instance
      */
     public function combine(
         ImageInterface $image,
-        $text,
-		$design
+        array $texts,
+		array $designs
     ) {
         $imageData = $this
             ->fileManager
@@ -208,8 +209,8 @@ class ImageManager
 
         $combinedImageData = $this
             ->combineAdapter
-            ->combine($imageData, $text, $design);
-		//die(var_dump($resizedImageData));
+            ->combine($imageData, $texts, $designs);
+	
         /**
          * We need to physically store the new resized
          * image in order to access its metadata, such as
@@ -218,7 +219,7 @@ class ImageManager
          */
 		
         $combinedFile = new File(tempnam(sys_get_temp_dir(), '_generated_combine'));
-		//die(var_dump($resizedFile));
+		
         file_put_contents($combinedFile, $combinedImageData);
 
         $image = $this->createImage($combinedFile);

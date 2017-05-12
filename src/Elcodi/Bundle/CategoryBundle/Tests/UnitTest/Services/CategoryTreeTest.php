@@ -15,11 +15,11 @@
  * @author Elcodi Team <tech@elcodi.com>
  */
 
-namespace Elcodi\Component\Article\Tests\UnitTest\Services;
+namespace Elcodi\Bundle\ArticleBundle\Tests\UnitTest\Services;
 
 use PHPUnit_Framework_TestCase;
 
-use Elcodi\Bundle\CategoryBundle\Entity\Category;
+use Elcodi\Bundle\CategoryBundle\Entity\SectionCategory;
 use Elcodi\Bundle\CategoryBundle\Repository\CategoryRepository;
 use Elcodi\Bundle\CategoryBundle\Services\CategoryTree;
 
@@ -145,7 +145,7 @@ class CategoryTreeTest extends PHPUnit_Framework_TestCase
          * All this params are set to avoid original constructor to be called.
          */
         $categoryRepositoryMock = $this->createMock(
-            'Elcodi\Component\Article\Repository\CategoryRepository',
+            'Elcodi\Bundle\CategoryBundle\Repository\CategoryRepository',
             [],
             [],
             '',
@@ -182,7 +182,7 @@ class CategoryTreeTest extends PHPUnit_Framework_TestCase
      */
     public function getCategoryEntity($id, $isRoot, $parentCategory)
     {
-        $category = new Category();
+        $category = new SectionCategory();
         $category->setId($id);
         $category->setRoot($isRoot);
         $category->setParent($parentCategory);

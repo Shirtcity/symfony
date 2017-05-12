@@ -15,7 +15,7 @@
  * @author Elcodi Team <tech@elcodi.com>
  */
 
-namespace Elcodi\Component\Media\Tests\UnitTest\Transformer;
+namespace Elcodi\Component\Media\Tests\UnitTest\Services;
 
 use PHPUnit_Framework_TestCase;
 use Symfony\Component\HttpFoundation\File\File;
@@ -54,11 +54,16 @@ class ImageManagerTest extends PHPUnit_Framework_TestCase
         $mockResizeAdapter = $this->createMock(
             'Elcodi\Component\Media\Adapter\Resizer\Interfaces\ResizeAdapterInterface'
         );
+		
+		$mockCombineAdapter = $this->createMock(
+            'Elcodi\Component\Media\Adapter\Combine\Interfaces\CombineAdapterInterface'
+        );
 
         $imageManager = new ImageManager(
             $mockImageFactory,
             $mockFileManager,
-            $mockResizeAdapter
+            $mockResizeAdapter,
+			$mockCombineAdapter
         );
 
         $this->imageManager = $imageManager;

@@ -20,3 +20,4 @@ services:
         arguments:
             - %elcodi.image_combine_converter_bin_path%
             - %elcodi.image_combine_converter_default_profile%
+            - '%kernel.root_dir%/../files/design/preview'

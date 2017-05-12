@@ -35,10 +35,14 @@ class CategoryData extends AbstractFixture
      */
     public function load(ObjectManager $manager)
     {
-        $this->loadSectionCategory();
+        $this->loadSectionCategories();
+		$this->loadDesignCategories();
     }
 	
-	private function loadSectionCategory()
+	/**
+	 * Load Section Categories
+	 */
+	private function loadSectionCategories()
 	{
 		/**
          * @var ObjectDirector $categoryDirector
@@ -58,7 +62,7 @@ class CategoryData extends AbstractFixture
             ->setRoot(true);
 
         $categoryDirector->save($sectionCategory);
-        $this->addReference('sectionCategory', $sectionCategory);
+        $this->addReference('section-category', $sectionCategory);
 
         /**
          * Category.
@@ -90,6 +94,56 @@ class CategoryData extends AbstractFixture
             ->setRoot(false);
 
         $categoryDirector->save($secondLevelCategory);
-        $this->addReference('secondLevelCategory', $secondLevelCategory);
+        $this->addReference('second-level-category', $secondLevelCategory);
+	}
+	
+	/**
+	 * Load Design Categories
+	 */
+	private function loadDesignCategories()
+	{
+        $categoryDirector = $this->getDirector('design_category');
+		
+        $designCategoryLevel1 = $categoryDirector
+            ->create()
+            ->setName('design-category-level-1')
+            ->setSlug('design-category-level-1')
+            ->setEnabled(true)
+            ->setRoot(true);
+
+        $categoryDirector->save($designCategoryLevel1);
+        $this->addReference('design-category-level-1', $designCategoryLevel1);
+
+        /**
+         * Category.
+         *
+         * @var CategoryInterface $category
+         */
+        $designCategoryLevel2 = $categoryDirector
+            ->create()
+            ->setName('design-category-level-2')
+            ->setSlug('design-category-level-2')
+            ->setEnabled(true)
+            ->setParent($designCategoryLevel1)
+            ->setRoot(false);
+
+        $categoryDirector->save($designCategoryLevel2);
+        $this->addReference('design-category-level-2', $designCategoryLevel2);
+
+        /**
+         * Second level category.
+         *
+         * @var CategoryInterface $secondLevelCategory
+         */
+        $designCategoryLevel3 = $categoryDirector
+            ->create()
+            ->setName('design-category-level-3')
+            ->setSlug('design-category-level-3')
+            ->setEnabled(true)
+            ->setParent($designCategoryLevel2)
+            ->setRoot(false);
+
+        $categoryDirector->save($designCategoryLevel3);
+        $this->addReference('design-category-level-3', $designCategoryLevel3);
 	}
 }

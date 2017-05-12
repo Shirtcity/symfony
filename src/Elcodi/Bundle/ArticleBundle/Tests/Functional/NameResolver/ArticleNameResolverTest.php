@@ -43,13 +43,13 @@ class ArticleNameResolverTest extends WebTestCase
     {
         $article = $this->find('article', 2);
         $this->assertEquals(
-            'article-reduced',
+            'Article with printables',
             $this
                 ->get('elcodi.name_resolver.article')
                 ->resolveName($article)
         );
         $this->assertEquals(
-            'article-reduced',
+            'Article with printables',
             $this
                 ->get('elcodi.name_resolver.purchasable')
                 ->resolveName($article)

@@ -12,6 +12,8 @@ use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 use Elcodi\Component\Article\ImageResolver\Abstracts\AbstractImageResolverWithImageResolver;
 use Elcodi\Component\Article\ImageResolver\Interfaces\ArticleImageResolverInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideInterface;
+use Elcodi\Bundle\PrintableBundle\Entity\TextVariant;
+use Elcodi\Bundle\PrintableBundle\Entity\DesignVariant;
 
 /**
  * Class ArticleImageResolver.
@@ -75,11 +77,11 @@ class ArticleImageResolver extends AbstractImageResolverWithImageResolver implem
 	 * 
 	 * @param ArticleInterface $article
 	 * 
-	 * @return ImageInterface image
+	 * @return ArrayCollection images
 	 */
 	public function getPreviewImages(ArticleInterface $article) 
 	{
-		if(null === $article->getArticleProduct() || null === $article->getArticleProduct()->getProduct()){			
+		if(null === $article->getArticleProduct() || null === $article->getArticleProduct()->getProduct()){	
 			return null;
 		}	
 	
@@ -143,7 +145,7 @@ class ArticleImageResolver extends AbstractImageResolverWithImageResolver implem
 			})
 			->first();
 		
-		if (empty($printSideMatchedColor)) {
+		if (empty($printSideMatchedColor)) {			
 			return null;
 		}
 			
@@ -165,24 +167,20 @@ class ArticleImageResolver extends AbstractImageResolverWithImageResolver implem
 			
 			foreach ($printableVariants as $printableVariant) {
 				
-				if($printableVariant instanceof \Elcodi\Bundle\PrintableBundle\Entity\TextVariant) {
+				if($printableVariant instanceof TextVariant) {
 					$text[] = $printableVariant;
-				} elseif ($printableVariant instanceof \Elcodi\Bundle\PrintableBundle\Entity\DesignVariant) {
+				} elseif ($printableVariant instanceof DesignVariant) {
 					$design[] = $printableVariant;
 				}
 			}
-		}
+		}		
 		
-		$getArticleProductPrintSides = $article->getArticleProduct()->getArticleProductPrintSides();
-		$getArticleProductPrintSides->map(function($printSide){
-			//var_dump($printSide->getPrintSide()->getId());
-		});
+		$image = $this
+			->imageManager
+			->combine($articleProductImage, $text, $design);
 		
-		$image = $this->imageManager->combine($articleProductImage, $text, $design);
-		//(var_dump($printSideMatchedColor->getImage()));
-		//die(var_dump($image));
+		
 		return $image;
-		return (false !== $printSideMatchedColor) ? $printSideMatchedColor->getImage() : null;
 	}
 	
 	

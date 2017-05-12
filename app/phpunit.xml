@@ -15,7 +15,7 @@
     <testsuites>
 		<testsuite name="current">          
 			<directory>../src/Elcodi/*/*Bundle/Resources</directory>
-			<directory>../src/Elcodi/Bundle/ArticleBundle/Tests/Functional/Entity</directory> 			
+			<directory>../src/Elcodi/Bundle/CategoryBundle/Tests/</directory>			
         </testsuite>
 		
         <testsuite name="bundles">          

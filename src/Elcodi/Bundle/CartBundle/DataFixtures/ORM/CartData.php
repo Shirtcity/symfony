@@ -65,15 +65,15 @@ class CartData extends AbstractFixture implements DependentFixtureInterface
         $customer2 = $this->getReference('customer-2');
 		
         $article = $this->getReference('article');
-        $articleReduced = $this->getReference('article-reduced');
+        $articleWithPrintables = $this->getReference('article-with-printables');
 		
 		$articlePrice = $this
 			->get('price_resolver.article')
 			->getPrice($article, $currency);
 		
-		$articleReducedPrice = $this
+		$articleWithPrintablesPrice = $this
                 ->get('price_resolver.article')
-                ->getPrice($articleReduced, $currency);
+                ->getPrice($articleWithPrintables, $currency);
 		
         $address1 = $this->getReference('address-sant-celoni');
         $address2 = $this->getReference('address-viladecavalls');
@@ -106,9 +106,9 @@ class CartData extends AbstractFixture implements DependentFixtureInterface
 
         $cartLine2 = $cartLineDirector
             ->create()
-            ->setPurchasable($articleReduced)
-            ->setPurchasableAmount($articleReducedPrice)
-            ->setAmount($articleReducedPrice)
+            ->setPurchasable($articleWithPrintables)
+            ->setPurchasableAmount($articleWithPrintablesPrice)
+            ->setAmount($articleWithPrintablesPrice)
             ->setQuantity(2)
             ->setCart($fullCart);
 

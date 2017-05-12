@@ -36,16 +36,18 @@ class ArticleProductTest extends WebTestCase
     }
 	
 	/**
-     * Test article product color
+     * Test article product colors
      */
-    public function testArticleProductColor()
+    public function testArticleProductColors()
     {
         $article = $this->find('article', 1);
-        $articleProductColor = $this->find('product_color', 1);
+        $articleProductColors = $this->find('product_colors', 1);
 		
 		$this->assertEquals(
-            $article->getArticleProduct()->getProductColor(),
-            $articleProductColor
+            $article->getArticleProduct()->getProductColors(),
+            $articleProductColors
         );
     }
+	
 }
+

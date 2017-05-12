@@ -15,7 +15,7 @@
  * @author Elcodi Team <tech@elcodi.com>
  */
 
-namespace Elcodi\Bundle\ArticleBundle\Tests\Functional\EventListener;
+namespace Elcodi\Bundle\CategoryBundle\Tests\Functional\EventListener;
 
 use Elcodi\Bundle\TestCommonBundle\Functional\WebTestCase;
 use Elcodi\Component\Core\Services\ObjectDirector;
@@ -29,9 +29,16 @@ class RootCategoryEventListenerTest extends WebTestCase
     /**
      * @var ObjectDirector
      *
-     * The category director.
+     * The section category director.
      */
-    protected $categoryDirector;
+    protected $sectionCategoryDirector;
+	
+	/**
+     * @var ObjectDirector
+     *
+     * The design category director.
+     */
+    protected $designCategoryDirector;
 
     /**
      * Setup.
@@ -40,7 +47,8 @@ class RootCategoryEventListenerTest extends WebTestCase
     {
         parent::setUp();
 
-        $this->categoryDirector = $this->get('elcodi.director.category');
+        $this->sectionCategoryDirector = $this->get('elcodi.director.section_category');
+		$this->designCategoryDirector = $this->get('elcodi.director.design_category');
     }
 
     /**
@@ -56,33 +64,33 @@ class RootCategoryEventListenerTest extends WebTestCase
     }
 
     /**
-     * Test that creating a new root category the parent category should be null.
+     * Test that creating a new section category the parent category should be null.
      */
-    public function testNewRootCategoryIsSavedWithoutParent()
+    public function testNewSectionCategoryIsSavedWithoutParent()
     {
         /**
          * @var $rootCategory CategoryInterface
          */
         $rootCategory = $this
-            ->categoryDirector
-            ->findOneBy(['slug' => 'root-category']);
+            ->sectionCategoryDirector
+            ->findOneBy(['slug' => 'section-category']);
 
-        $category = $this->categoryDirector->create();
+        $category = $this->sectionCategoryDirector->create();
         $category->setRoot(true);
         $category->setParent($rootCategory);
-        $category->setName('New root category');
-        $category->setSlug('new-root-category');
+        $category->setName('New section category');
+        $category->setSlug('new-section-category');
 
         $this
-            ->categoryDirector
+            ->sectionCategoryDirector
             ->save($category);
 
         /**
          * @var $category CategoryInterface
          */
         $category = $this
-            ->categoryDirector
-            ->findOneBy(['slug' => 'new-root-category']);
+            ->sectionCategoryDirector
+            ->findOneBy(['slug' => 'new-section-category']);
 
         $this->assertNull(
             $category->getParent(),
@@ -91,41 +99,135 @@ class RootCategoryEventListenerTest extends WebTestCase
     }
 
     /**
-     * Test that modifying a new root category the parent category should be
+     * Test that modifying a new category the parent category should be
      * null.
      */
-    public function testEditRootCategoryIsSavedWithoutParent()
+    public function testEditSectionCategoryIsSavedWithParent()
     {
         /**
          * @var $rootCategory CategoryInterface
          */
         $rootCategory = $this
-            ->categoryDirector
-            ->findOneBy(['slug' => 'root-category']);
+            ->sectionCategoryDirector
+            ->findOneBy(['slug' => 'section-category']);
 
         /**
          * @var $anotherCategory CategoryInterface
          */
         $anotherCategory = $this
-            ->categoryDirector
+            ->sectionCategoryDirector
             ->findOneBy(['slug' => 'category']);
 
         $rootCategory->setParent($anotherCategory);
 
         $this
-            ->categoryDirector
+            ->sectionCategoryDirector
             ->save($rootCategory);
 
         /**
          * @var $category CategoryInterface
          */
         $category = $this
-            ->categoryDirector
-            ->findOneBy(['slug' => 'root-category']);
+            ->sectionCategoryDirector
+            ->findOneBy(['slug' => 'section-category']);
 
         $this->assertNull(
             $category->getParent(),
             'The parent for a root category should always be null'
+        );
+    }
+	
+	/**
+     * Test that creating a new section category the parent category should be null.
+     */
+    public function testDesignCategoryIsSavedWithoutParent()
+    {
+        /**
+         * @var $rootCategory CategoryInterface
+         */
+        $rootCategory = $this
+            ->designCategoryDirector
+            ->findOneBy(['slug' => 'design-category-level-1']);
+
+        $category = $this->designCategoryDirector->create();
+        $category->setRoot(true);
+        $category->setParent($rootCategory);
+        $category->setName('New design category level 1');
+        $category->setSlug('new-design-category-level-1');
+
+        $this
+            ->designCategoryDirector
+            ->save($category);
+
+        /**
+         * @var $category CategoryInterface
+         */
+        $category = $this
+            ->designCategoryDirector
+            ->findOneBy(['slug' => 'new-design-category-level-1']);
+
+        $this->assertNull(
+            $category->getParent(),
+            'The parent for a root category should always be null'
+        );
+    }
+	
+	/**
+     * Test that creating a new section category the parent category should be null.
+     */
+    public function testDesignCategoriesAreSavedWithParent()
+    {
+        $designCategoryLevel1 = $this
+            ->designCategoryDirector
+            ->findOneBy(['slug' => 'design-category-level-1']);
+		
+        $designCategoryLevel2 = $this
+            ->designCategoryDirector
+            ->findOneBy(['slug' => 'design-category-level-2']);		
+		
+        $designCategoryLevel3 = $this
+            ->designCategoryDirector
+            ->findOneBy(['slug' => 'design-category-level-3']);
+		
+        $designCategoryLevel2->setParent($designCategoryLevel1);
+		$designCategoryLevel3->setParent($designCategoryLevel2);
+
+        $this
+            ->designCategoryDirector
+            ->save($designCategoryLevel2);
+		
+		$this
+            ->designCategoryDirector
+            ->save($designCategoryLevel3);
+
+        /**
+         * @var $category CategoryInterface
+         */
+        $designCategoryLevel1 = $this
+            ->designCategoryDirector
+            ->findOneBy(['slug' => 'design-category-level-1']);
+
+        $this->assertNull(
+            $designCategoryLevel1->getParent(),
+            'The parent for a root category should always be null'
+        );
+		
+		$designCategoryLevel2 = $this
+            ->designCategoryDirector
+            ->findOneBy(['slug' => 'design-category-level-2']);
+
+        $this->assertEquals(
+            $designCategoryLevel2->getParent(),
+            $designCategoryLevel1
+        );
+		
+		$designCategoryLevel3 = $this
+            ->designCategoryDirector
+            ->findOneBy(['slug' => 'design-category-level-3']);
+		
+		$this->assertEquals(
+            $designCategoryLevel3->getParent(),
+            $designCategoryLevel2
         );
     }
 }

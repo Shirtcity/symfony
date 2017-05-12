@@ -46,4 +46,10 @@ services:
                 class: Elcodi\Bundle\PrintableBundle\Repository\TextVariantRepository
                 arguments:
                     - %elcodi.entity.text_variant.class%
+                    
+    elcodi.repository.printable_variant:
+                parent: elcodi.abstract_repository
+                class: Elcodi\Bundle\PrintableBundle\Repository\PrintableVariantRepository
+                arguments:
+                    - %elcodi.entity.printable_variant.class%
             

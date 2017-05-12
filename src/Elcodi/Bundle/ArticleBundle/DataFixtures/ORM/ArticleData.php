@@ -65,7 +65,8 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
 	private function loadArticleWithPrintables()
 	{
 		$product = $this->getReference('product');
-		$productColors = $this->getReference('product-colors');		
+		$productColors = $this->getReference('product-colors');
+		
         $articleDirector = $this->getDirector('article');
 		
 		$articleProduct = new ArticleProduct();
@@ -116,7 +117,7 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
 			->setArticleProduct($articleProduct);
 	
         $articleDirector->save($articleWithPrintables);
-        $this->addReference('articleWithPrintables', $articleWithPrintables);
+        $this->addReference('article-with-printables', $articleWithPrintables);
 	}
 	
 	/**
@@ -145,7 +146,7 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
 			->addSectionCategory($sectionCategory);
 
         $articleDirector->save($sectionCategoryArticle);
-        $this->addReference('sectionCategoryArticle', $sectionCategoryArticle);
+        $this->addReference('section-category-article', $sectionCategoryArticle);
 	}
 
 	/**
@@ -162,6 +163,9 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
 			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductData',
 			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\ProductColorsData',
 			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\PrintSideData',
+			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\PrintSideAreaData',
+			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\PrintSideProductColorsData',
+			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\PrintSideTypeData',
 			'Elcodi\Bundle\CategoryBundle\DataFixtures\ORM\CategoryData',
 			'Elcodi\Bundle\PrintableBundle\DataFixtures\ORM\DesignData',
 			'Elcodi\Bundle\PrintableBundle\DataFixtures\ORM\TextData',

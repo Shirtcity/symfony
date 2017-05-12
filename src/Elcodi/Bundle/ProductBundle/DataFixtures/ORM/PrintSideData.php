@@ -26,7 +26,7 @@ class PrintSideData extends AbstractFixture implements DependentFixtureInterface
     {
         $printSideDirector = $this->getDirector('print_side');
         
-        $printSideType = $this->getReference('print-side-type');
+        $printSideType = $this->getReference('print-side-type-front');
         $product = $this->getReference('product');
 
         $printSide = $printSideDirector
@@ -41,7 +41,7 @@ class PrintSideData extends AbstractFixture implements DependentFixtureInterface
         );
 
         $printSideDirector->save($printSide);
-        $this->addReference('printSide', $printSide);
+        $this->addReference('print-side', $printSide);
     }
 
     /**

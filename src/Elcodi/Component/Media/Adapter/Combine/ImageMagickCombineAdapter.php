@@ -26,35 +26,43 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
      * Default ICC profile path
      */
     private $profile;
+	
+	/**
+	 * @var string
+	 * 
+	 * Designs preview path 
+	 */
+	private $designsPreviewPath;
 
     /**
      * Constructor method.
      *
-     * @param string $imageConverterBin Path of image converter
-     * @param string $profile           Default ICC profile path
+     * @param string $imageConverterBin  Path of image converter
+     * @param string $profile            Default ICC profile path
+	 * @param string $designsPreviewPath Designs preview path
      */
-    public function __construct($imageConverterBin, $profile)
+    public function __construct($imageConverterBin, $profile, $designsPreviewPath)
     {
         $this->imageConverterBin = $imageConverterBin;
         $this->profile = $profile;
+		$this->designsPreviewPath = $designsPreviewPath;
     }
 
     /**
      * Generate Thumbnail images with ImageMagick.
      *
      * @param string $imageData Image Data
-     * @param int    $height    Height value
-     * @param int    $width     Width value
-     * @param int    $type      Type
+     * @param array  $texts    Texts
+     * @param array  $designs  Designs
      *
-     * @return string Resized image data
+     * @return string Combined image data
      *
      * @throws \RuntimeException
      */
     public function combine(
         $imageData,
-        $text,
-		$design
+        $texts,
+		$designs
     ) {
         $originalFile = new File(tempnam(sys_get_temp_dir(), '_original'));
         $resizedFile = new File(tempnam(sys_get_temp_dir(), '_resize'));
@@ -71,8 +79,8 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
             ->add('-profile')
             ->add($this->profile);
 
-		if (!empty($text)) {
-			foreach ($text as $textVariant) {
+		if (!empty($texts)) {
+			foreach ($texts as $textVariant) {
 				// set text color
 				$pb->add('-fill')->add($textVariant->getText()->getFoilColor()->getCode());
 				// set font
@@ -91,11 +99,12 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
 			}
 		}		
 		
-		if (!empty($design)) {
-			foreach ($design as $designVariant) {
-				$designPath = '/srv/www/shirtcity.dev2/files/design/preview/';
-				$designName = $designPath . $designVariant->getDesign()->getId() . '/0/0/'. $designVariant->getDesign()->getPreviewFileName();
-			
+		if (!empty($designs)) {
+			foreach ($designs as $designVariant) {				
+				$designName = $this->designsPreviewPath . '/' .
+					$designVariant->getDesign()->getId() . '/0/0/'. 
+					$designVariant->getDesign()->getPreviewFileName();
+				
 				$pb->add($designName);
 				$pb->add('-geometry')->add('+'.$textVariant->getPosX().'+'.$textVariant->getPosY());
 				$pb->add('-composite');				

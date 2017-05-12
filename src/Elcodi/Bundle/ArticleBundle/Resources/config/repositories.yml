@@ -18,6 +18,22 @@ services:
     elcodi.repository.article:
         parent: elcodi.abstract_repository
         arguments:
-            - %elcodi.entity.article.class%    
+            - %elcodi.entity.article.class% 
+            
+    #
+    # Repository for entity article product
+    #
+    elcodi.repository.article_product:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.article_product.class% 
+            
+    #
+    # Repository for entity article product print side
+    #
+    elcodi.repository.article_product_print_side:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.article_product_print_side.class% 
 
     

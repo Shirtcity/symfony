@@ -33,7 +33,7 @@ class PrintSideAreaData extends AbstractFixture implements DependentFixtureInter
             ->setSide($printSide);
 
         $printSideAreaDirector->save($printSideArea);
-        $this->addReference('printSideArea', $printSideArea);
+        $this->addReference('print-side-area', $printSideArea);
     }
 
     /**
