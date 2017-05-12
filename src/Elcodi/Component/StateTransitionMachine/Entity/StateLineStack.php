@@ -107,6 +107,16 @@ class StateLineStack
     {
         return $this->lastStateLine;
     }
+    
+    /**
+     * Get HasStateLine.
+     *
+     * @return StateLineInterface HasStateLine
+     */
+    public function hasStateLine()
+    {
+        return $this->lastStateLine ? true : false;
+    }
 
     /**
      * Create new StateLineStack.

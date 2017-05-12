@@ -73,3 +73,27 @@ services:
             - '@elcodi.order.production_states_machine'
             - '@elcodi.event_dispatcher.machine'
             - '@elcodi.factory.state_transition_machine_state_line'
+            
+    #
+    # Order state machine for Order Workflow
+    #
+    elcodi.order_workflow_states_machine_builder:
+        class: Elcodi\Component\StateTransitionMachine\Machine\MachineBuilder
+        arguments:
+            - '@elcodi.factory.state_transition_machine'
+            - %elcodi.order_workflow_states_machine_identifier%
+            - %elcodi.order_workflow_states_machine_states%
+            - %elcodi.order_workflow_states_machine_point_of_entry%
+
+    elcodi.order.workflow_states_machine:
+        class: Elcodi\Component\StateTransitionMachine\Machine\Machine
+        factory:
+            - '@elcodi.order_workflow_states_machine_builder'
+            - compile
+
+    elcodi.order_workflow_states_machine_manager:
+        class: Elcodi\Component\StateTransitionMachine\Machine\MachineManager
+        arguments:
+            - '@elcodi.order.workflow_states_machine'
+            - '@elcodi.event_dispatcher.machine'
+            - '@elcodi.factory.state_transition_machine_state_line'

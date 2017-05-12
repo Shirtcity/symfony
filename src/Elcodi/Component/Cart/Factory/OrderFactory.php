@@ -32,6 +32,13 @@ class OrderFactory extends AbstractPurchasableFactory
     /**
      * @var MachineManager
      *
+     * Machine Manager for Order Workflow
+     */
+    protected $workflowMachineManager;
+    
+    /**
+     * @var MachineManager
+     *
      * Machine Manager for Payment
      */
     protected $paymentMachineManager;
@@ -49,6 +56,20 @@ class OrderFactory extends AbstractPurchasableFactory
      * Machine Manager for Production
      */
     protected $productionMachineManager;
+    
+    /**
+     * Sets WorkflowMachineManager.
+     *
+     * @param MachineManager $workflowMachineManager WorkflowMachineManager
+     *
+     * @return $this Self object
+     */
+    public function setWorkflowMachineManager(MachineManager $workflowMachineManager)
+    {
+        $this->workflowMachineManager = $workflowMachineManager;
+
+        return $this;
+    }
 
     /**
      * Sets PaymentMachineManager.
@@ -130,32 +151,19 @@ class OrderFactory extends AbstractPurchasableFactory
             );
 
         $order->setPaymentStateLineStack($paymentStateLineStack);
-
-        $shippingStateLineStack = $this
-            ->shippingMachineManager
-            ->initialize(
-                $order,
-                StateLineStack::create(
-                    new ArrayCollection(),
-                    null
-                ),
-                'Preparing Order'
-            );
-
-        $order->setShippingStateLineStack($shippingStateLineStack);
         
-        $productionStateLineStack = $this
-            ->productionMachineManager
+        $workflowStateLineStack = $this
+            ->workflowMachineManager
             ->initialize(
                 $order,
                 StateLineStack::create(
                     new ArrayCollection(),
                     null
                 ),
-                'Preparing to produce Order'
+                'Order created'
             );
 
-        $order->setProductionStateLineStack($productionStateLineStack);
+        $order->setWorkflowStateLineStack($workflowStateLineStack);
         
         return $order;
     }

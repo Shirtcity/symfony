@@ -111,6 +111,10 @@ class ElcodiCartExtension extends AbstractExtension implements EntitiesOverridab
             'elcodi.order_production_states_machine_states' => $config['production_states_machine']['states'],
             'elcodi.order_production_states_machine_identifier' => $config['production_states_machine']['identifier'],
             'elcodi.order_production_states_machine_point_of_entry' => $config['production_states_machine']['point_of_entry'],
+            
+            'elcodi.order_workflow_states_machine_states' => $config['workflow_states_machine']['states'],
+            'elcodi.order_workflow_states_machine_identifier' => $config['workflow_states_machine']['identifier'],
+            'elcodi.order_workflow_states_machine_point_of_entry' => $config['workflow_states_machine']['point_of_entry'],
         ];
     }
 

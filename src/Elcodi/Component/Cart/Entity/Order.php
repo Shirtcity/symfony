@@ -134,7 +134,14 @@ class Order implements OrderInterface
      * delivery address
      */
     protected $deliveryAddress;
-
+    
+    /**
+     * @var StateLineInterface
+     *
+     * Last stateLine in workflow stateLine stack
+     */
+    protected $workflowLastStateLine;
+    
     /**
      * @var StateLineInterface
      *
@@ -155,6 +162,13 @@ class Order implements OrderInterface
      * Last stateLine in production stateLine stack
      */
     protected $productionLastStateLine;
+    
+    /**
+     * @var Collection
+     *
+     * StateLines for workflow
+     */
+    protected $workflowStateLines;
 
     /**
      * @var Collection
@@ -482,6 +496,34 @@ class Order implements OrderInterface
     public function setDeliveryAddress(AddressInterface $deliveryAddress = null)
     {
         $this->deliveryAddress = $deliveryAddress;
+
+        return $this;
+    }
+    
+    /**
+     * Get WorkflowStateLineStack.
+     *
+     * @return StateLineStack WorkflowStateLineStack
+     */
+    public function getWorkflowStateLineStack()
+    {        
+        return StateLineStack::create(
+            $this->workflowStateLines,
+            $this->workflowLastStateLine
+        );
+    }
+
+    /**
+     * Sets WorkflowStateLineStack.
+     *
+     * @param StateLineStack $workflowStateLineStack WorkflowStateLineStack
+     *
+     * @return $this Self object
+     */
+    public function setWorkflowStateLineStack(StateLineStack $workflowStateLineStack)
+    {
+        $this->workflowStateLines = $workflowStateLineStack->getStateLines();
+        $this->workflowLastStateLine = $workflowStateLineStack->getLastStateLine();
 
         return $this;
     }

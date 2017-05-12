@@ -21,6 +21,7 @@ services:
         class: Elcodi\Component\Cart\Factory\OrderFactory
         parent: elcodi.factory.abstract.purchasable
         calls:
+            - [setWorkflowMachineManager, ["@elcodi.order_workflow_states_machine_manager"]]
             - [setPaymentMachineManager, ["@elcodi.order_payment_states_machine_manager"]]
             - [setShippingMachineManager, ["@elcodi.order_shipping_states_machine_manager"]]
             - [setProductionMachineManager, ["@elcodi.order_production_states_machine_manager"]]
