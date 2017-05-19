@@ -269,4 +269,54 @@ class CustomerController extends AbstractAdminController
             $this->generateUrl('admin_customer_list')
         );
     }
+
+
+    /**
+     * @Route(
+     *     path = "/search",
+     *     name = "admin_customer_search",
+     *     methods = {"GET", "POST"}
+     * )
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function searchCustomerAction(Request $request)
+    {
+        $q = $request->query->get('term');
+        $customerRepository = $this->get('elcodi.provider.repository')->getRepositoryByEntityParameter('elcodi.entity.customer.class');
+        $queryBuilder = $customerRepository->createQueryBuilder('o');
+
+        $query = $queryBuilder
+            ->where( $queryBuilder->expr()->like('o.email',':email') )
+            ->orWhere( $queryBuilder->expr()->like('o.id',':id') )
+            ->setParameter('email', $q . '%' )
+            ->setParameter('id', $q . '%' )
+            ->getQuery();
+
+        $results = $query->getResult();
+
+
+
+
+        return $this->render('@AdminUser/Customer/autocomplete.html.twig', ['results' => $results]);
+    }
+
+    /**
+     * @Route(
+     *     path = "/get",
+     *     name = "admin_customer_get",
+     *     methods = {"GET", "POST"}
+     * )
+     *
+     * @param null $id
+     * @return Response
+     */
+    public function getCustomerAction($id = null)
+    {
+        $customer_repository = $this->get('elcodi.provider.repository')->getRepositoryByEntityParameter('elcodi.entity.customer.class');
+        $customer = $customer_repository->find($id);
+
+        return new Response($customer->getEmail());
+    }
 }

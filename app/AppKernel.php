@@ -72,6 +72,10 @@ class AppKernel extends Kernel
 			'FOS\JsRoutingBundle\FOSJsRoutingBundle',
 			'Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle',
 
+            'Vich\UploaderBundle\VichUploaderBundle',
+            'PUGX\AutocompleterBundle\PUGXAutocompleterBundle',
+            'Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle',
+
             /**
              * Elcodi core bundles
              */
@@ -170,8 +174,6 @@ class AppKernel extends Kernel
 
 
             /* Shirtcity Bundles */
-            'Vich\UploaderBundle\VichUploaderBundle',
-
             'Elcodi\Bundle\ProductBundle\ProductBundle',
             'Elcodi\Admin\ProductBundle\AdminProductBundle',
 

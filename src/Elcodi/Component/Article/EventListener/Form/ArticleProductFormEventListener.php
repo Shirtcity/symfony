@@ -108,7 +108,7 @@ class ArticleProductFormEventListener implements EventSubscriberInterface
 		$articleProduct = $event->getData();
 		
 		$this->updateProductColor($articleProduct);		
-		$this->updateArticleProductPrintSides($articleProduct);
+		$this->preSetArticleProductPrintSides($articleProduct);
     }
 
 	/**
