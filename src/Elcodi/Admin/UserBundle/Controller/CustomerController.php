@@ -284,7 +284,7 @@ class CustomerController extends AbstractAdminController
     public function searchCustomerAction(Request $request)
     {
         $q = $request->query->get('term');
-        $customerRepository = $this->get('elcodi.provider.repository')->getRepositoryByEntityParameter('elcodi.entity.customer.class');
+        $customerRepository = $this->getDoctrine()->getRepository('Elcodi\Component\User\Entity\Customer');
         $queryBuilder = $customerRepository->createQueryBuilder('o');
 
         $query = $queryBuilder
@@ -295,9 +295,6 @@ class CustomerController extends AbstractAdminController
             ->getQuery();
 
         $results = $query->getResult();
-
-
-
 
         return $this->render('@AdminUser/Customer/autocomplete.html.twig', ['results' => $results]);
     }
@@ -314,8 +311,8 @@ class CustomerController extends AbstractAdminController
      */
     public function getCustomerAction($id = null)
     {
-        $customer_repository = $this->get('elcodi.provider.repository')->getRepositoryByEntityParameter('elcodi.entity.customer.class');
-        $customer = $customer_repository->find($id);
+        $customerRepository = $this->getDoctrine()->getRepository('Elcodi\Component\User\Entity\Customer');
+        $customer = $customerRepository->find($id);
 
         return new Response($customer->getEmail());
     }
