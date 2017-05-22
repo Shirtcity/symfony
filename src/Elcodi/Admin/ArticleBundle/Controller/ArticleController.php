@@ -167,13 +167,13 @@ class ArticleController extends AbstractAdminController
             // delete disabled print sides
             // @TODO: move to doctrine preFlush event listener?
             $articleProductPrintSides = $article->getArticleProduct()->getArticleProductPrintSides();
-        
-            foreach ($articleProductPrintSides as $articleProductPrintSide) {            
-                if (null === $articleProductPrintSide->getPrintSide()->getId()) {
+            
+            foreach ($articleProductPrintSides as $articleProductPrintSide) { 
+                if (!$articleProductPrintSide->isEnabled()) {
                     $article->getArticleProduct()->removeArticleProductPrintSide($articleProductPrintSide);
                 }
             }
-			
+		
             $this->flush($article);
 
             $this->addFlash(

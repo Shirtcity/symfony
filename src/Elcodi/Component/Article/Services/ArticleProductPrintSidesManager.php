@@ -5,6 +5,7 @@ namespace Elcodi\Component\Article\Services;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleProductInterface;
 use Elcodi\Bundle\ProductBundle\Repository\PrintSideTypeRepository;
 use Elcodi\Bundle\ProductBundle\Factory\PrintSideFactory;
+use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideTypeInterface;
 use Elcodi\Component\Article\Factory\ArticleProductPrintSideFactory;
 
 class ArticleProductPrintSidesManager
@@ -53,45 +54,6 @@ class ArticleProductPrintSidesManager
 		$this->printSideFactory = $printSideFactory;
 		$this->articleProductPrintSideFactory = $articleProductPrintSideFactory;
 	}
-
-	/**
-     * Presets article product print sides
-	 * 
-	 * Generates new print side for each not available for selected product print side types
-	 * Existing printable variants will be copied to corresponding product print sides
-     *
-     * @param ArticleProductInterface $articleProduct ArticleProduct
-     * @return $this
-     */
-	public function preSetArticleProductPrintSides(ArticleProductInterface $articleProduct)
-	{
-		$this->articleProduct = $articleProduct;
-		
-		$printSideTypes = $this
-			->printSideTypeRepository
-			->findAll();
-		
-		$productPrintSides = $this
-			->articleProduct
-			->getProduct()
-			->getPrintSides();
-		
-		foreach ($printSideTypes as $printSideType) {
-			
-			$printSideTypeIsAvailable = $productPrintSides
-				->exists(function($id, $productPrintSide) use ($printSideType){				
-					return $productPrintSide->getType() == $printSideType;
-				});			
-	
-			if (!$printSideTypeIsAvailable) {
-				$this->generateMissingPrintSides($printSideType);				
-			}			
-		}
-		
-		$this->movePrintableVariantsToCorrespondingPrintSides();
-        
-        return $this;
-	}
     
     /**
      * Generates default empty print sides for an article product
@@ -123,13 +85,76 @@ class ArticleProductPrintSidesManager
         
         return $this;
     }
+
+	/**
+     * Presets article product print sides
+	 * 
+	 * Generates new print side for each not available for selected product print side types
+	 * Existing printable variants will be copied to corresponding product print sides
+     *
+     * @param ArticleProductInterface $articleProduct ArticleProduct
+     * @return $this
+     */
+	public function preSetArticleProductPrintSides(ArticleProductInterface $articleProduct)
+	{
+		$this->articleProduct = $articleProduct;
+		
+		$printSideTypes = $this
+			->printSideTypeRepository
+			->findAll();
+		
+		$productPrintSides = $this
+			->articleProduct
+			->getProduct()
+			->getPrintSides();
+		
+		foreach ($printSideTypes as $printSideType) {
+			
+			$printSideTypeIsAvailable = $productPrintSides
+				->exists(function($id, $productPrintSide) use ($printSideType){				
+					return $productPrintSide->getType() == $printSideType;
+				});             
 	
+			if (!$printSideTypeIsAvailable) {                 
+                $this->handleNotAvailablePrintSide($printSideType);  
+            }			
+		}
+		
+		$this->movePrintableVariantsToCorrespondingPrintSides();        
+        
+        return $this;
+	} 
+	
+    /**
+     * Handles not available print sides
+     * 
+     * @param PrintSideTypeInterface $printSideType
+     * @return $this
+     */
+    private function handleNotAvailablePrintSide(PrintSideTypeInterface $printSideType)
+    {
+        $printSideTypeExistsInArticle = $this
+            ->articleProduct
+            ->getArticleProductPrintSides()
+            ->exists(function($id, $articleProductPrintSide) use ($printSideType){				
+                return $articleProductPrintSide->getPrintSide()->getType() == $printSideType;
+            });
+            
+        if ($printSideTypeExistsInArticle) {
+            $this->disableNotAvailablePrintSide($printSideType);
+        } else {
+            $this->generateMissingPrintSide($printSideType);
+        }
+        
+        return $this;
+    }
+    
 	/**
 	 * Generates missing print sides from all existing print side types in the system
 	 * 
-	 * @param PrintSideType $printSideType
+	 * @param PrintSideTypeInterface $printSideType
 	 */
-	private function generateMissingPrintSides($printSideType)
+	private function generateMissingPrintSide(PrintSideTypeInterface $printSideType)
 	{
 		$printSide = $this
 			->printSideFactory
@@ -150,6 +175,29 @@ class ArticleProductPrintSidesManager
 			->articleProduct
 			->addArticleProductPrintSide($articleProductPrintSide);
 	}
+    
+    /**
+     * Disables not available print side
+     * 
+     * @param PrintSideTypeInterface $printSideType
+     * @return $this
+     */
+    private function disableNotAvailablePrintSide(PrintSideTypeInterface $printSideType)
+    {
+        $this
+            ->articleProduct
+            ->getArticleProductPrintSides()
+            ->map(
+                function($articleProductPrintSide) use ($printSideType) {	
+                    
+                    if ($articleProductPrintSide->getPrintSide()->getType() == $printSideType) {
+                        $articleProductPrintSide->disable();
+                    }
+                }
+            );	
+            
+        return $this;
+    }
 	
 	/**
 	 * Move printable variants to corresponding print sides
