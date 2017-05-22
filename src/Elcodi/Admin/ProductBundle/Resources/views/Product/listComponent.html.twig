@@ -30,9 +30,6 @@
         rows: [
             { name: 'admin.product.field.image.title'|trans, width: 10 },
             { name: 'admin.product.field.name_details.title'|trans },
-            { name: 'admin.product.field.main_category.title'|trans, width: 15 },
-            { name: 'admin.product.field.price.title'|trans, width: 10, class: 'ta-r' },
-            { name: 'admin.product.field.stock.title'|trans, class: stockClass }
         ],
         class: 'product',
     } %}
@@ -66,26 +63,6 @@
                 {{'admin.product.tag.no_category'|trans}}
             </span>
         {% endif %}
-    </td>
-    <td>
-        {% if entity.principalCategory %}
-            <a href="{{ url('admin_category_edit', { id: entity.principalCategory.id }) }}">
-                {{ entity.principalCategory.name }}
-            </a>
-        {% endif %}
-    </td>
-    <td class="ta-r">
-        {{ entity.price|print_money }}
-    </td>
-    <td class="ta-r {% if not store.useStock %}d-n{% endif %}">
-        {% if entity.stock >= 5 %}
-            {% set stockColor = 'c-ok' %}
-        {% elseif entity.stock > 0 and entity.stock < 10 %}
-            {% set stockColor = 'c-warning' %}
-        {% else %}
-            {% set stockColor = 'c-ko' %}
-        {% endif %}
-        <span class="{{ stockColor }}"> {{ entity.stock }}</span>
     </td>
     {% include '@AdminCore/Tables/actions.html.twig' with {
         entity: entity,

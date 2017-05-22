@@ -77,6 +77,25 @@ class Configuration extends AbstractConfiguration
                         ->end()
                     ->end()
                 ->end()
+                ->arrayNode('workflow_states_machine')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('identifier')
+                            ->defaultValue('order_workflow_states_machine')
+                        ->end()
+                        ->scalarNode('point_of_entry')
+                            ->defaultValue('preparing')
+                        ->end()
+                        ->variableNode('states')
+                            ->defaultValue([
+                                ['preparing', 'cancel', 'cancelled'],
+                                ['cancelled', 'prepare', 'preparing'],
+                                ['preparing', 'stop', 'paused'],
+                                ['paused', 'continue', 'preparing'],
+                            ])
+                        ->end()
+                    ->end()
+                ->end()
                 ->arrayNode('payment_states_machine')
                     ->addDefaultsIfNotSet()
                     ->children()
@@ -88,8 +107,34 @@ class Configuration extends AbstractConfiguration
                         ->end()
                         ->variableNode('states')
                             ->defaultValue([
-                                ['unpaid', 'pay', 'paid'],
+                                ['unpaid', 'pay', 'payment in process'],
+                                ['payment in process', 'payment success', 'paid'],
+                                ['payment in process', 'payment failed', 'unpaid'],
                                 ['paid', 'refund', 'refunded'],
+                                ['refunded', 'refund to unpaid', 'unpaid'],
+                            ])
+                        ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('production_states_machine')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('identifier')
+                            ->defaultValue('order_shipping_states_machine')
+                        ->end()
+                        ->scalarNode('point_of_entry')
+                            ->defaultValue('ready for produce')
+                        ->end()
+                        ->variableNode('states')
+                            ->defaultValue([
+                                ['ready for produce', 'start production', 'production started'],
+                                ['production started', 'make order colection', 'order collection ready'],   
+                                ['order collection ready', 'print working sheet', 'working sheet printed'],
+                                ['working sheet printed', 'print delivery sheet', 'delivery sheet printed'],
+                                ['delivery sheet printed', 'print post sheet', 'post sheet printed'],
+                                ['post sheet printed', 'print pdf invoice', 'pdf invoice printed'],
+                                ['pdf invoice printed', 'produce order', 'order producing in progress'],                             
+                                ['order producing in progress', 'finish production', 'produced'],
                             ])
                         ->end()
                     ->end()
@@ -98,22 +143,19 @@ class Configuration extends AbstractConfiguration
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('identifier')
-                            ->defaultValue('order_shipping_states_machine')
+                            ->defaultValue('order_production_states_machine')
                         ->end()
                         ->scalarNode('point_of_entry')
-                            ->defaultValue('preparing')
+                            ->defaultValue('ready for delivery')
                         ->end()
                         ->variableNode('states')
                             ->defaultValue([
-                                ['preparing', 'order ready', 'processed'],
-                                ['processed', 'picked up by carrier', 'in delivery'],
-                                ['processed', 'picked up on store', 'delivered'],
-                                ['in delivery', 'delivered', 'delivered'],
-                                ['preparing', 'cancel', 'cancelled'],
-                                ['processed', 'cancel', 'cancelled'],
-                                ['in delivery', 'cancel', 'cancelled'],
+                                ['ready for delivery', 'pack', 'packed'],                                
+                                ['packed', 'send', 'in delivery'],
+                                ['in delivery', 'delivered', 'delivered'],                                
                                 ['in delivery', 'return', 'returned'],
                                 ['delivered', 'return', 'returned'],
+                                ['returned', 'delivery failed', 'delivery failed'],
                             ])
                         ->end()
                     ->end()

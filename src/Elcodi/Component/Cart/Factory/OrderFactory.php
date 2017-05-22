@@ -32,6 +32,13 @@ class OrderFactory extends AbstractPurchasableFactory
     /**
      * @var MachineManager
      *
+     * Machine Manager for Order Workflow
+     */
+    protected $workflowMachineManager;
+    
+    /**
+     * @var MachineManager
+     *
      * Machine Manager for Payment
      */
     protected $paymentMachineManager;
@@ -42,6 +49,27 @@ class OrderFactory extends AbstractPurchasableFactory
      * Machine Manager for Shipping
      */
     protected $shippingMachineManager;
+    
+    /**
+     * @var MachineManager
+     *
+     * Machine Manager for Production
+     */
+    protected $productionMachineManager;
+    
+    /**
+     * Sets WorkflowMachineManager.
+     *
+     * @param MachineManager $workflowMachineManager WorkflowMachineManager
+     *
+     * @return $this Self object
+     */
+    public function setWorkflowMachineManager(MachineManager $workflowMachineManager)
+    {
+        $this->workflowMachineManager = $workflowMachineManager;
+
+        return $this;
+    }
 
     /**
      * Sets PaymentMachineManager.
@@ -67,6 +95,20 @@ class OrderFactory extends AbstractPurchasableFactory
     public function setShippingMachineManager(MachineManager $shippingMachineManager)
     {
         $this->shippingMachineManager = $shippingMachineManager;
+
+        return $this;
+    }
+    
+    /**
+     * Sets ProductionMachineManager.
+     *
+     * @param MachineManager $productionMachineManager ProductionMachineManager
+     *
+     * @return $this Self object
+     */
+    public function setProductionMachineManager(MachineManager $productionMachineManager)
+    {
+        $this->productionMachineManager = $productionMachineManager;
 
         return $this;
     }
@@ -109,20 +151,20 @@ class OrderFactory extends AbstractPurchasableFactory
             );
 
         $order->setPaymentStateLineStack($paymentStateLineStack);
-
-        $shippingStateLineStack = $this
-            ->shippingMachineManager
+        
+        $workflowStateLineStack = $this
+            ->workflowMachineManager
             ->initialize(
                 $order,
                 StateLineStack::create(
                     new ArrayCollection(),
                     null
                 ),
-                'Preparing Order'
+                'Order created'
             );
 
-        $order->setShippingStateLineStack($shippingStateLineStack);
-
+        $order->setWorkflowStateLineStack($workflowStateLineStack);
+        
         return $order;
     }
 }

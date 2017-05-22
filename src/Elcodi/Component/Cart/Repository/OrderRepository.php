@@ -34,8 +34,8 @@ class OrderRepository extends EntityRepository
     public function getOrdersToPrepare()
     {
         $res = $this->createQueryBuilder('o')
-            ->innerJoin('o.shippingLastStateLine', 'sl')
-            ->where('sl.name = \'preparing\'')
+            ->innerJoin('o.paymentLastStateLine', 'sl')
+            ->where('sl.name = \'paid\'')
             ->orderBy('o.updatedAt', 'ASC')
             ->getQuery()
             ->getResult();

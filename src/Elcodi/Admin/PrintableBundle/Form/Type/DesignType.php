@@ -35,6 +35,8 @@ use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
 use Elcodi\Admin\PrintableBundle\Form\EventListener\DesignCustomerListener;
 
+use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
+
 
 /**
  * Class DesignType
@@ -90,9 +92,8 @@ class DesignType extends AbstractType
             ->add('name', TextType::class, [
                 'required'    => true
             ])
-            ->add('customer', EntityType::class, [
-                'class' => 'Elcodi\Component\User\Entity\Customer',
-                'choice_label' => 'email'
+            ->add('customer', AutocompleteType::class, [
+                'class' => 'Elcodi\Component\User\Entity\Customer'
             ])
             ->add('country', 'country_checkbox', [
                 'class'    => 'Elcodi\Component\Geo\Entity\Location',

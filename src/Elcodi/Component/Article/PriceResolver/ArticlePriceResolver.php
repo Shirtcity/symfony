@@ -40,17 +40,18 @@ class ArticlePriceResolver extends ContainerAware implements ArticlePriceResolve
      */
     public function resolvePrice() 
 	{        
-		if(is_null($this->currency)) {
-			$this->currency = $this->container->get('elcodi.store')->getDefaultCurrency();
+		if (is_null($this->currency)) {
+			$this->currency = $this
+                                ->container
+                                ->get('elcodi.store')
+                                ->getDefaultCurrency();
 		}
 		
-		$articleProduct = $this->article->getArticleProduct();
-		if(!is_null($articleProduct)) {
-			$product = $articleProduct->getProduct();
-		} else {
-			$product = $this->container->get('elcodi.repository.product')->find(1);
-		}
-		
+		$product = $this
+                        ->article
+                        ->getArticleProduct()
+                        ->getProduct();
+        
 		$currency = $this->currency;
 		
 		return $product->getPrices()->filter(

@@ -97,6 +97,8 @@
                                     <i class="{{ iconClass }} {{ colorClass }} mr-s"></i>
                                     <em></em>
                                     {{ "common.order.states.#{stateLine.name}"|trans }}
+                                    <em></em>
+                                    ( {{ stateLine.description }} )
                                 </td>
                                 <td class="ta-r">
                                     {% include 'AdminCartBundle:Order:date.html.twig' with {
@@ -112,7 +114,7 @@
         </div>
         <div class="col-4-12">
             <div class="box-background ta-c mb-n">
-                {% for paymentTransition in nextPaymentTransitions %}
+                {% for paymentTransition in nextPaymentTransitions %}                    
                     <a href="{{ url('admin_order_change_payment_state', {
                         id: order.id,
                         transition: paymentTransition.name,
@@ -121,7 +123,35 @@
                         {{ "admin.order.transition.#{paymentTransition.name}"|trans }}
                     </a>
                 {% endfor %}
-
+            </div>
+            <div class="box-background ta-c mb-n">
+                {% if nextProductionTransitions is empty %}
+                    <a href="{{ url('admin_order_initialize_production_state_machine', {
+                        id: order.id
+                    }) }}" class="button-secondary">
+                        <i class="icon-truck"></i>
+                        Ready for produce
+                    </a>
+                {% endif %}
+                {% for productionTransition in nextProductionTransitions %}
+                    <a href="{{ url('admin_order_change_production_state', {
+                        id: order.id,
+                        transition: productionTransition.name
+                    }) }}" class="button-secondary">
+                        <i class="icon-truck"></i>
+                        {{ "admin.order.transition.#{productionTransition.name}"|trans }}
+                    </a>
+                {% endfor %}
+            </div>
+            <div class="box-background ta-c mb-n">
+                {% if nextShippingTransitions is empty %}
+                    <a href="{{ url('admin_order_initialize_shipping_state_machine', {
+                        id: order.id
+                    }) }}" class="button-secondary">
+                        <i class="icon-truck"></i>
+                        Ready for shipping
+                    </a>
+                {% endif %}
                 {% for shippingTransition in nextShippingTransitions %}
                     <a href="{{ url('admin_order_change_shipping_state', {
                         id: order.id,
@@ -129,6 +159,17 @@
                     }) }}" class="button-secondary">
                         <i class="icon-truck"></i>
                         {{ "admin.order.transition.#{shippingTransition.name}"|trans }}
+                    </a>
+                {% endfor %}
+            </div>            
+            <div class="box-background ta-c mb-n">
+                {% for workflowTransition in nextWorkflowTransitions %}
+                    <a href="{{ url('admin_order_change_workflow_state', {
+                        id: order.id,
+                        transition: workflowTransition.name
+                    }) }}" class="button-secondary">
+                        <i class="icon-truck"></i>
+                        {{ "admin.order.transition.#{workflowTransition.name}"|trans }}
                     </a>
                 {% endfor %}
             </div>

@@ -84,11 +84,11 @@ class RedisMetricsBucket extends AbstractMetricsBucket
         }
 
         return (int)
-        $this->doRedisQuery(function () use ($keys) {
-            $this
-                ->redis
-                ->pfCount($keys);
-        }, 0);
+            $this->doRedisQuery(function () use ($keys) {
+                return $this
+                    ->redis
+                    ->pfCount($keys);
+            }, 0);
     }
 
     /**
@@ -112,7 +112,7 @@ class RedisMetricsBucket extends AbstractMetricsBucket
             );
 
             $total += $this->doRedisQuery(function () use ($key) {
-                $this
+                return $this
                     ->redis
                     ->get($key . '_total');
             }, 0);
@@ -142,7 +142,7 @@ class RedisMetricsBucket extends AbstractMetricsBucket
             );
 
             $total += $this->doRedisQuery(function () use ($key) {
-                $this
+                return $this
                     ->redis
                     ->get($key . '_accum');
             }, 0);
@@ -178,7 +178,7 @@ class RedisMetricsBucket extends AbstractMetricsBucket
             );
 
             $partials = $this->doRedisQuery(function () use ($key) {
-                $this
+                return $this
                     ->redis
                     ->hgetall($key . '_distr');
             }, []);

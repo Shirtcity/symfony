@@ -22,10 +22,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Elcodi\Admin\CoreBundle\Controller\Abstracts\AbstractAdminController;
 use Elcodi\Component\Cart\Entity\Interfaces\OrderInterface;
 use Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateLineInterface;
+use Elcodi\Component\StateTransitionMachine\Entity\StateLineStack;
 
 /**
  * Class Controller for Order
@@ -107,33 +109,79 @@ class OrderController extends AbstractAdminController
      */
     public function editAction(OrderInterface $order)
     {
-        $nextPaymentTransitions = $this
-            ->get('elcodi.order.payment_states_machine')
-            ->getAvailableStates(
-                $order
-                    ->getPaymentStateLineStack()
-                    ->getLastStateLine()
-                    ->getName()
-            );
+        $workflowStateLineStack = $order->getWorkflowStateLineStack();
+        
+        if ($workflowStateLineStack->hasStateLine()) {
+            
+            $nextWorkflowTransitions = $this
+                ->get('elcodi.order.workflow_states_machine')
+                ->getAvailableStates(
+                    $workflowStateLineStack
+                        ->getLastStateLine()
+                        ->getName()
+                );
+        } else {
+            $nextWorkflowTransitions = [];
+        }
+        
+        $paymentStateLineStack = $order->getPaymentStateLineStack();
+        
+        if ($paymentStateLineStack->hasStateLine()) {
+            
+            $nextPaymentTransitions = $this
+                ->get('elcodi.order.payment_states_machine')
+                ->getAvailableStates(
+                    $paymentStateLineStack
+                        ->getLastStateLine()
+                        ->getName()
+                );
+        } else {
+            $nextPaymentTransitions = [];
+        }
+        
 
-        $nextShippingTransitions = $this
-            ->get('elcodi.order.shipping_states_machine')
-            ->getAvailableStates(
-                $order
-                    ->getShippingStateLineStack()
-                    ->getLastStateLine()
-                    ->getName()
-            );
-
+        $shippingStateLineStack = $order->getShippingStateLineStack();
+        
+        if ($shippingStateLineStack->hasStateLine()) {
+            $nextShippingTransitions = $this
+                ->get('elcodi.order.shipping_states_machine')
+                ->getAvailableStates(
+                    $shippingStateLineStack
+                        ->getLastStateLine()
+                        ->getName()
+                );
+        } else {
+            $nextShippingTransitions = [];
+        }
+        
+        
+        $productionStateLineStack = $order->getProductionStateLineStack();
+        
+        if ($productionStateLineStack->hasStateLine()) {
+            $nextProductionTransitions = $this
+                ->get('elcodi.order.production_states_machine')
+                ->getAvailableStates(
+                    $productionStateLineStack
+                        ->getLastStateLine()
+                        ->getName()
+                );
+        } else {
+            $nextProductionTransitions = [];
+        }
+        
         $allStates = array_merge(
-            $order
-                ->getPaymentStateLineStack()
+            $workflowStateLineStack
                 ->getStateLines()
                 ->toArray(),
-            $order
-                ->getShippingStateLineStack()
+            $paymentStateLineStack
                 ->getStateLines()
-                ->toArray()
+                ->toArray(),
+            $shippingStateLineStack
+                ->getStateLines()
+                ->toArray(),
+            $productionStateLineStack
+                ->getStateLines()
+                ->toArray()            
         );
 
         usort($allStates, function (StateLineInterface $a, StateLineInterface $b) {
@@ -150,12 +198,14 @@ class OrderController extends AbstractAdminController
         $billingInfo      = $addressFormatter->toArray($billingAddress);
 
         return [
-            'order'                   => $order,
-            'nextPaymentTransitions'  => $nextPaymentTransitions,
-            'nextShippingTransitions' => $nextShippingTransitions,
-            'allStates'               => $allStates,
-            'deliveryInfo'            => $deliveryInfo,
-            'billingInfo'             => $billingInfo,
+            'order'                     => $order,
+            'nextWorkflowTransitions'    => $nextWorkflowTransitions,
+            'nextPaymentTransitions'    => $nextPaymentTransitions,
+            'nextShippingTransitions'   => $nextShippingTransitions,
+            'nextProductionTransitions' => $nextProductionTransitions,
+            'allStates'                 => $allStates,
+            'deliveryInfo'              => $deliveryInfo,
+            'billingInfo'               => $billingInfo,
         ];
     }
 
@@ -196,7 +246,7 @@ class OrderController extends AbstractAdminController
                 $order,
                 $order->getPaymentStateLineStack(),
                 $transition,
-                ''
+                $transition
             );
 
         $order->setPaymentStateLineStack($stateLineStack);
@@ -242,10 +292,194 @@ class OrderController extends AbstractAdminController
                 $order,
                 $order->getShippingStateLineStack(),
                 $transition,
-                ''
+                $transition
             );
 
         $order->setShippingStateLineStack($stateLineStack);
+        $this->flush($order);
+
+        return $this->redirect($request->headers->get('referer'));
+    }
+    
+    /**
+     * Change production state
+     *
+     * @param Request        $request    Request
+     * @param OrderInterface $order      Order
+     * @param string         $transition Verb to apply
+     *
+     * @return RedirectResponse Back to referrer
+     *
+     * @Route(
+     *      path = "/{id}/production/{transition}",
+     *      name = "admin_order_change_production_state",
+     *      requirements = {
+     *          "id" = "\d+",
+     *      },
+     *      methods = {"GET"}
+     * )
+     *
+     * @EntityAnnotation(
+     *      class = "elcodi.entity.order.class",
+     *      name = "order",
+     *      mapping = {
+     *          "id" = "~id~"
+     *      }
+     * )
+     */
+    public function changeProductionStateAction(
+        Request $request,
+        OrderInterface $order,
+        $transition
+    ) {
+        $stateLineStack = $this
+            ->get('elcodi.order_production_states_machine_manager')
+            ->transition(
+                $order,
+                $order->getProductionStateLineStack(),
+                $transition,
+                $transition
+            );
+
+        $order->setProductionStateLineStack($stateLineStack);
+        $this->flush($order);
+
+        return $this->redirect($request->headers->get('referer'));
+    }
+    
+    /**
+     * Change workflow state
+     *
+     * @param Request        $request    Request
+     * @param OrderInterface $order      Order
+     * @param string         $transition Verb to apply
+     *
+     * @return RedirectResponse Back to referrer
+     *
+     * @Route(
+     *      path = "/{id}/workflow/{transition}",
+     *      name = "admin_order_change_workflow_state",
+     *      requirements = {
+     *          "id" = "\d+",
+     *      },
+     *      methods = {"GET"}
+     * )
+     *
+     * @EntityAnnotation(
+     *      class = "elcodi.entity.order.class",
+     *      name = "order",
+     *      mapping = {
+     *          "id" = "~id~"
+     *      }
+     * )
+     */
+    public function changeWorkflowStateAction(
+        Request $request,
+        OrderInterface $order,
+        $transition
+    ) {
+        $stateLineStack = $this
+            ->get('elcodi.order_workflow_states_machine_manager')
+            ->transition(
+                $order,
+                $order->getWorkflowStateLineStack(),
+                $transition,
+                $transition
+            );
+
+        $order->setWorkflowStateLineStack($stateLineStack);
+        $this->flush($order);
+
+        return $this->redirect($request->headers->get('referer'));
+    }
+    
+    /**
+     * Change production state
+     *
+     * @param Request        $request    Request
+     * @param OrderInterface $order      Order
+     *
+     * @return RedirectResponse Back to referrer
+     *
+     * @Route(
+     *      path = "/{id}/initialize-production-state-machine",
+     *      name = "admin_order_initialize_production_state_machine",
+     *      requirements = {
+     *          "id" = "\d+",
+     *      },
+     *      methods = {"GET"}
+     * )
+     *
+     * @EntityAnnotation(
+     *      class = "elcodi.entity.order.class",
+     *      name = "order",
+     *      mapping = {
+     *          "id" = "~id~"
+     *      }
+     * )
+     */
+    public function initializeProductionStateMachineAction(
+        Request $request,
+        OrderInterface $order
+    ) {
+        $productionStateLineStack = $this
+            ->get('elcodi.order_production_states_machine_manager')
+            ->initialize(
+                $order,
+                StateLineStack::create(
+                    new ArrayCollection(),
+                    null
+                ),
+                'Manual initializated'
+            );
+
+        $order->setProductionStateLineStack($productionStateLineStack);
+        $this->flush($order);
+
+        return $this->redirect($request->headers->get('referer'));
+    }
+    
+    /**
+     * Change shipping state
+     *
+     * @param Request        $request    Request
+     * @param OrderInterface $order      Order
+     *
+     * @return RedirectResponse Back to referrer
+     *
+     * @Route(
+     *      path = "/{id}/initialize-shipping-state-machine",
+     *      name = "admin_order_initialize_shipping_state_machine",
+     *      requirements = {
+     *          "id" = "\d+",
+     *      },
+     *      methods = {"GET"}
+     * )
+     *
+     * @EntityAnnotation(
+     *      class = "elcodi.entity.order.class",
+     *      name = "order",
+     *      mapping = {
+     *          "id" = "~id~"
+     *      }
+     * )
+     */
+    public function initializeShippingStateMachineAction(
+        Request $request,
+        OrderInterface $order
+    ) {
+        $shippingStateLineStack = $this
+            ->get('elcodi.order_shipping_states_machine_manager')
+            ->initialize(
+                $order,
+                StateLineStack::create(
+                    new ArrayCollection(),
+                    null
+                ),
+                'Manual initializated'
+            );
+
+        $order->setShippingStateLineStack($shippingStateLineStack);
         $this->flush($order);
 
         return $this->redirect($request->headers->get('referer'));
