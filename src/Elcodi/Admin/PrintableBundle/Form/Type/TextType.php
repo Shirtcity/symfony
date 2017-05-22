@@ -58,7 +58,7 @@ class TextType extends AbstractType
     {
         $resolver->setDefaults([
             'empty_data' => function () {
-                $this
+                return $this
                     ->factory
                     ->create();
             },

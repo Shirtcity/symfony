@@ -12,7 +12,8 @@ use Symfony\Component\Form\FormEvents;
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
 use Elcodi\Component\Article\EventListener\Form\ArticleProductPrintSideFormEventListener;
-use Elcodi\Admin\PrintableBundle\Form\Type\PrintableVariantType;
+use Elcodi\Admin\ArticleBundle\Form\Type\DesignPrintableVariantType;
+use Elcodi\Admin\ArticleBundle\Form\Type\TextPrintableVariantType;
 
 
 /**
@@ -23,32 +24,31 @@ class ArticleProductPrintSideType extends AbstractType
     use EntityTranslatableFormTrait, FactoryTrait;
     
     /**
-     * @var PrintableVariantType
+     * @var DesignPrintableVariantType
      *
-     * Printable variant form type
+     * Design Printable variant form type
      */
-	protected $printableVariantType;
-	
-	/**
-     * @var ArticleProductPrintSideFormEventListener
+	protected $designPrintableVariantType;
+    
+    /**
+     * @var TextPrintableVariantType
      *
-     * Article product print side form event listener
+     * Text Printable variant form type
      */
-    protected $articleProductPrintSideFormEventListener;
-	
+	protected $textPrintableVariantType;	
 	
     /**
      * Construct
      *
-	 * @param PrintableVariantType $printableVariantType Printable variant form type
-	 * @param ArticleProductPrintSideFormEventListener $articleProductPrintSideFormEventListener Article product print side form event listener
+	 * @param DesignPrintableVariantType $designPrintableVariantType Design Printable variant form type
+     * @param TextPrintableVariantType $textPrintableVariantType Design Printable variant form type
      */
     public function __construct(
-		PrintableVariantType $printableVariantType,
-		ArticleProductPrintSideFormEventListener $articleProductPrintSideFormEventListener
+		DesignPrintableVariantType $designPrintableVariantType,
+        TextPrintableVariantType $textPrintableVariantType
     ) {		
-		$this->printableVariantType = $printableVariantType;
-		$this->articleProductPrintSideFormEventListener = $articleProductPrintSideFormEventListener;
+		$this->designPrintableVariantType = $designPrintableVariantType;
+        $this->textPrintableVariantType = $textPrintableVariantType;
     }
 	
     /**
@@ -74,10 +74,18 @@ class ArticleProductPrintSideType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {	
 		$builder			
-			->add('printableVariants', 'collection', [
-				'entry_type' => $this->printableVariantType,
+			->add('designPrintableVariants', 'collection', [
+				'entry_type'    => $this->designPrintableVariantType,
+				'allow_add'     => true,
+                'allow_delete'  => true,
+                'by_reference'  => false,
 			])
-			->addEventSubscriber($this->articleProductPrintSideFormEventListener);
+            ->add('textPrintableVariants', 'collection', [
+				'entry_type'    => $this->textPrintableVariantType,
+				'allow_add'     => true,
+                'allow_delete'  => true,
+                'by_reference'  => false,
+			]);
 		
     }	
 

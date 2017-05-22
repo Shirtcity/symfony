@@ -13,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
 use Elcodi\Component\Article\EventListener\Form\ArticleProductFormEventListener;
+use Elcodi\Admin\ArticleBundle\Form\Type\ArticleProductPrintSideType;
+use Elcodi\Component\Article\EventListener\Form\ArticleProductPrintSidesFormEventListener;
 
 /**
  * Class ArticleProductType
@@ -42,22 +44,33 @@ class ArticleProductType extends AbstractType
 	 */
 	protected $articleProductEventListener;
 	
+	/**
+	 * @var ArticleProductPrintSideType 
+	 * 
+	 * Article product print side type
+	 */
+	protected $articleProductPrintSideType;
+	
     /**
      * Construct
      *
 	 * @param string $productNamespace		Product namespace
 	 * @param string $productColorNamespace	ProductColor namespace
 	 * @param ArticleProductFormEventListener $articleProductEventListener ArticleProductForm event listener
+	 * @param ArticleProductPrintSideType $articleProductPrintSideType article product print side type
      */
     public function __construct(
 		$productNamespace,
 		$productColorNamespace,
-		$articleProductEventListener	
+		ArticleProductFormEventListener $articleProductEventListener,
+		ArticleProductPrintSideType $articleProductPrintSideType
     ) {
         $this->productNamespace = $productNamespace;
-		$this->productColorNamespace = $productColorNamespace;
+		$this->productColorNamespace = $productColorNamespace;		
 		
 		$this->articleProductEventListener = $articleProductEventListener;
+        
+		$this->articleProductPrintSideType = $articleProductPrintSideType;
     }
 	
     /**
@@ -80,6 +93,7 @@ class ArticleProductType extends AbstractType
             'data_class' => $this
                 ->factory
                 ->getEntityNamespace(),
+			'allow_extra_fields' => true,
         ]);			
     }
 
@@ -90,11 +104,16 @@ class ArticleProductType extends AbstractType
      * @param array                $options the options for this form
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {	
-        $builder->add('product', 'entity', [
-			'class'    => $this->productNamespace,
-			'required' => true,
-		]);		
+    {
+        $builder
+			->add('product', 'entity', [
+				'class'    => $this->productNamespace,
+				'required' => true,
+			])
+			->add('articleProductPrintSides', 'collection', [
+				'entry_type' => $this->articleProductPrintSideType,
+				'allow_extra_fields' => true,
+			]);		
 		
 		$formModifier = function (FormInterface $form, $product = null) {			
             $form->add('productColors', 'entity', [
@@ -119,7 +138,8 @@ class ArticleProductType extends AbstractType
 				$formModifier($event->getForm()->getParent(), $product);
 			});
 			
-		$builder->addEventSubscriber($this->articleProductEventListener);
+		$builder
+			->addEventSubscriber($this->articleProductEventListener);
     }
 
     /**

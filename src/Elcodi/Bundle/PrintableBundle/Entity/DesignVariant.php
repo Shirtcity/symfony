@@ -42,4 +42,14 @@ class DesignVariant extends PrintableVariant implements DesignVariantInterface
     {
         return $this->design;
     }
+    
+    /**
+     * Get type
+     * 
+     * @return string
+     */
+    public function getType() 
+    {
+        return 'DesignVariant';
+    }
 }

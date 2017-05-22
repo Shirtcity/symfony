@@ -41,4 +41,14 @@ class TextVariant extends PrintableVariant implements TextVariantInterface
     {
         return $this->text;
     }
+    
+    /**
+     * Get type
+     * 
+     * @return string
+     */
+    public function getType() 
+    {
+        return 'TextVariant';
+    }
 }

@@ -61,6 +61,7 @@ class ArticleProductPrintSidesManager
 	 * Existing printable variants will be copied to corresponding product print sides
      *
      * @param ArticleProductInterface $articleProduct ArticleProduct
+     * @return $this
      */
 	public function preSetArticleProductPrintSides(ArticleProductInterface $articleProduct)
 	{
@@ -87,8 +88,41 @@ class ArticleProductPrintSidesManager
 			}			
 		}
 		
-		$this->movePrintableVariantsToCorrespondingPrintSides();	
+		$this->movePrintableVariantsToCorrespondingPrintSides();
+        
+        return $this;
 	}
+    
+    /**
+     * Generates default empty print sides for an article product
+     * 
+     * @param ArticleProductInterface $articleProduct
+     * @return $this
+     */
+    public function generateDefaultPrintSides(ArticleProductInterface $articleProduct)
+    {
+        $productPrintSides = $articleProduct
+            ->getProduct()
+            ->getPrintSides();
+     
+		if($articleProduct->getArticleProductPrintSides()->isEmpty()) {
+
+			$productPrintSides->map(function($printSide) use ($articleProduct){
+				
+                $articleProductPrintSide = $this
+                    ->articleProductPrintSideFactory
+                    ->create();
+				
+                $articleProductPrintSide
+					->setPrintSide($printSide)
+					->setArticleProduct($articleProduct);
+                
+				$articleProduct->addArticleProductPrintSide($articleProductPrintSide);
+			});							
+		}
+        
+        return $this;
+    }
 	
 	/**
 	 * Generates missing print sides from all existing print side types in the system
@@ -109,7 +143,8 @@ class ArticleProductPrintSidesManager
 
 		$articleProductPrintSide
 			->setPrintSide($printSide)
-			->setArticleProduct($this->articleProduct);
+			->setArticleProduct($this->articleProduct)
+            ->disable();
 
 		$this
 			->articleProduct

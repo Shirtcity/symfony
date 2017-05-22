@@ -80,7 +80,10 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
             ->add($this->profile);
 
 		if (!empty($texts)) {
-			foreach ($texts as $textVariant) {
+			foreach ($texts as $textVariant) { 
+                if ( null === $textVariant->getText()) {
+                    continue;
+                }
 				// set text color
 				$pb->add('-fill')->add($textVariant->getText()->getFoilColor()->getCode());
 				// set font
@@ -100,13 +103,17 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
 		}		
 		
 		if (!empty($designs)) {
-			foreach ($designs as $designVariant) {				
+			foreach ($designs as $designVariant) {
+                if ($designVariant->getDesign() === null) {
+                    continue;
+                }
+                
 				$designName = $this->designsPreviewPath . '/' .
 					$designVariant->getDesign()->getId() . '/0/0/'. 
 					$designVariant->getDesign()->getPreviewFileName();
 				
 				$pb->add($designName);
-				$pb->add('-geometry')->add('+'.$textVariant->getPosX().'+'.$textVariant->getPosY());
+				$pb->add('-geometry')->add('+'.$designVariant->getPosX().'+'.$designVariant->getPosY());
 				$pb->add('-composite');				
 			}
 		}
