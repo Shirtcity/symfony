@@ -31,7 +31,7 @@ abstract class PrintableVariant
      * @var integer
      */
     private $posY;
-
+    
 
     /**
      * Set posX
@@ -90,4 +90,11 @@ abstract class PrintableVariant
 	{
 		return 'PrintableVariant';
 	}
+    
+    /**
+     * Returns the Entity Type
+     * 
+     * @return string
+     */
+    public abstract function getType();
 }

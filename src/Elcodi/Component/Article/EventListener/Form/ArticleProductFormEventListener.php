@@ -81,7 +81,7 @@ class ArticleProductFormEventListener implements EventSubscriberInterface
     public function preSetData(FormEvent $event)
     {
 		$articleProduct = $event->getData();
-		
+	
 		$this->updateProductColor($articleProduct);
 		$this->preSetArticleProductPrintSides($articleProduct);
     }
@@ -108,7 +108,7 @@ class ArticleProductFormEventListener implements EventSubscriberInterface
 		$articleProduct = $event->getData();
 		
 		$this->updateProductColor($articleProduct);		
-		$this->updateArticleProductPrintSides($articleProduct);
+		$this->preSetArticleProductPrintSides($articleProduct);
     }
 
 	/**
@@ -126,15 +126,16 @@ class ArticleProductFormEventListener implements EventSubscriberInterface
 	/**
      * Update article product print sides
 	 * 
-	 * Generates new print side for each not available for selected product print side types
+	 * Generates default print sides and new print side for each not available for selected product print side types
 	 * Existing printable variants will be copied to corresponding product print sides
      *
      * @param ArticleProductInterface $articleProduct ArticleProduct
      */
 	private function preSetArticleProductPrintSides(ArticleProductInterface $articleProduct)
-	{
+	{           
 		$this
 			->articleProductPrintSidesManager
+            ->generateDefaultPrintSides($articleProduct)
 			->preSetArticleProductPrintSides($articleProduct);
 	}
 }

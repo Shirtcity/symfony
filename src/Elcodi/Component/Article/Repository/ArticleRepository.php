@@ -35,7 +35,7 @@ class ArticleRepository extends EntityRepository
     public function getAllFromCategories(array $categories)
     {		
         $queryBuilder = $this->createQueryBuilder('p');
-        $this->addPerformanceJoinsToQueryBuilder($queryBuilder);
+       // $this->addPerformanceJoinsToQueryBuilder($queryBuilder);
 
         return $queryBuilder
             ->innerJoin('p.sectionCategories', 'c')

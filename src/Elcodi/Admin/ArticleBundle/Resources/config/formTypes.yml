@@ -28,9 +28,9 @@ services:
             - %elcodi.entity.product.class%           
             - %elcodi.entity.product_colors.class%
             - '@elcodi.event_listener.article.form.article_product'
+            - '@elcodi_admin.form_type.article_product_print_side'
         calls:
             - [setFactory, ["@elcodi.factory.article_product"]]
-            - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
         tags:
             - { name: form.type, alias: elcodi_admin_article_form_type_article_product }    
     
@@ -40,11 +40,9 @@ services:
     elcodi_admin.form_type.article_product_print_sides:
         class: Elcodi\Admin\ArticleBundle\Form\Type\ArticleProductPrintSidesType
         arguments:           
-            - '@elcodi_admin.form_type.article_product_print_side'
-            - '@elcodi.event_listener.article.form.article_product_print_sides'
+            - '@elcodi_admin.form_type.article_product_print_side'            
         calls:
             - [setFactory, ["@elcodi.factory.article_product"]]
-            - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
         tags:
             - { name: form.type, alias: elcodi_admin_article_form_type_article_product_print_sides }
     
@@ -54,13 +52,37 @@ services:
     elcodi_admin.form_type.article_product_print_side:
         class: Elcodi\Admin\ArticleBundle\Form\Type\ArticleProductPrintSideType
         arguments:           
-            - '@elcodi_admin.form_type.printable_variant'
-            - '@elcodi.event_listener.article.form.article_product_print_side'
+            - '@elcodi_admin.form_type.article_design_printable_variant'
+            - '@elcodi_admin.form_type.article_text_printable_variant'
         calls:
             - [setFactory, ["@elcodi.factory.article_product_print_side"]]
-            - [setEntityTranslatorFormEventListener, ["@elcodi.entity_translator_form_event_listener"]]
         tags:
             - { name: form.type, alias: elcodi_admin_article_form_type_article_product_print_side }
+            
+    #
+    # Design Printable Variant
+    #
+    elcodi_admin.form_type.article_design_printable_variant:
+        class: Elcodi\Admin\ArticleBundle\Form\Type\DesignPrintableVariantType  
+        arguments:
+            - %elcodi.entity.design.class%
+        calls:
+            - [setFactory, ["@elcodi.factory.design_variant"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_article_form_type_design_printable_variant }
+            
+    #
+    # Text Printable Variant
+    #
+    elcodi_admin.form_type.article_text_printable_variant:
+        class: Elcodi\Admin\ArticleBundle\Form\Type\TextPrintableVariantType  
+        arguments:
+            - %elcodi.entity.text.class%
+            - '@elcodi_admin.form_type.text'
+        calls:
+            - [setFactory, ["@elcodi.factory.text_variant"]]
+        tags:
+            - { name: form.type, alias: elcodi_admin_article_form_type_text_printable_variant }
          
     
     

@@ -161,17 +161,19 @@ class ArticleController extends AbstractAdminController
     public function editAction(
         FormInterface $form,
         ArticleInterface $article
-    ) {	
-		$articleProductPrintSides = $article->getArticleProduct()->getArticleProductPrintSides();
-		
-		foreach ($articleProductPrintSides as $articleProductPrintSide) {
-			if (null === $articleProductPrintSide->getPrintSide()->getId()) {
-				$article->getArticleProduct()->removeArticleProductPrintSide($articleProductPrintSide);
-			}
-		}		
-		
+    ) {			
 		if ($form->isValid()) {	
-			
+            
+            // delete disabled print sides
+            // @TODO: move to doctrine preFlush event listener?
+            $articleProductPrintSides = $article->getArticleProduct()->getArticleProductPrintSides();
+            
+            foreach ($articleProductPrintSides as $articleProductPrintSide) { 
+                if (!$articleProductPrintSide->isEnabled()) {
+                    $article->getArticleProduct()->removeArticleProductPrintSide($articleProductPrintSide);
+                }
+            }
+		
             $this->flush($article);
 
             $this->addFlash(

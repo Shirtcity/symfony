@@ -47,8 +47,9 @@
                     {{
                     form_row(form.customer, {
                         label: 'Kunde',
+                        value: design.customer.email,
                         attr: {
-                            placeholder: 'Kunde',
+                            placeholder: 'Email',
                         }
                     })
                     }}
@@ -154,6 +155,20 @@
 
     {% stylesheets'bundles/elcodigeo/css/flags.min.css' filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     {% endstylesheets %}
 
+    {% block javascripts %}
+        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#elcodi_admin_printable_form_type_design_customer').autocompleter({
+                    url_list: '/admin/user/customer/search',
+                    url_get: '/admin/user/customer/get'
+                });
+            });
+        </script>
+    {% endblock %}
 {% endblock content %}

@@ -1,6 +1,6 @@
 <?php
 
-namespace Elcodi\Admin\PrintableBundle\Form\Type;
+namespace Elcodi\Admin\ArticleBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -11,46 +11,43 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
-use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
-
 use Elcodi\Admin\PrintableBundle\Form\Type\TextType;
-use Elcodi\Bundle\PrintableBundle\Entity\TextVariant;
-use Elcodi\Bundle\PrintableBundle\Entity\DesignVariant;
 
 /**
- * Class PrintableVariantType
+ * Class TextPrintableVariantType
  */
-class PrintableVariantType extends AbstractType
+class TextPrintableVariantType extends AbstractType
 {
-    use EntityTranslatableFormTrait, FactoryTrait;
+    use FactoryTrait;
     
-    /**
-     * @var TextType
-     *
-     * Printable text form type
-     */
-    protected $printableTextType;
 
     /**
      * @var stirng
      *
-     * Printable design namespace
+     * Text Printable namespace
      */
-	protected $printableDesignNamespace;
+	protected $textPrintableNamespace;
+    
+    /**
+     * @var stirng
+     *
+     * Text form type
+     */
+	protected $textFormType;
+    
 	
     /**
      * Construct
      *
-	 * @param TextType	$printableTextType			Printable text form type
-	 * @param string	$printableDesignNamespace	Printable design namespace
+	 * @param string   $textPrintableNamespace	Printable namespace
+     * @param TextType $textFormType            Text form type
      */
     public function __construct(
-		TextType $printableTextType,
-		string $printableDesignNamespace
+		string $textPrintableNamespace,
+        TextType $textFormType
     ) {
-		
-		$this->printableTextType = $printableTextType;
-		$this->printableDesignNamespace = $printableDesignNamespace;
+		$this->textPrintableNamespace = $textPrintableNamespace;
+        $this->textFormType = $textFormType;
     }
 	
     /**
@@ -84,6 +81,7 @@ class PrintableVariantType extends AbstractType
                         ]
                     ),
                 ],
+                'label' => 'PosX',
             ])
 			->add('posY',  'integer', [
                 'constraints' => [
@@ -93,26 +91,9 @@ class PrintableVariantType extends AbstractType
                         ]
                     ),
                 ],
-            ]);
-		
-		$builder
-			->addEventListener(	FormEvents::PRE_SET_DATA, function (FormEvent $event){
-				
-				$printable = $event->getData();
-				$form = $event->getForm();
-
-				if($printable instanceof TextVariant){
-					
-					$form->add('text', $this->printableTextType);
-					
-				} elseif ($printable instanceof DesignVariant){
-					
-					$form->add('design', 'entity',[
-						'class'			=> $this->printableDesignNamespace,
-						'choice_label'	=> 'name',
-					]);
-				}				
-			});
+                'label' => 'PosY',
+            ])
+            ->add('text', $this->textFormType);	        	
     }	
 
     /**
@@ -125,7 +106,7 @@ class PrintableVariantType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'elcodi_admin_article_form_type_article_product_print_side';
+        return 'elcodi_admin_article_form_type_text_printable_variant';
     }
 
     /**

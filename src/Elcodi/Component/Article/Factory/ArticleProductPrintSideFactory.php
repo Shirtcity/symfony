@@ -24,7 +24,8 @@ class ArticleProductPrintSideFactory extends AbstractFactory
 
         $articleProductPrintSide
             ->setPrintSide()
-            ->setPrintableVariants(new ArrayCollection());
+            ->setPrintableVariants(new ArrayCollection())
+            ->enable();
 
         return $articleProductPrintSide;
     }	

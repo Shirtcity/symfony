@@ -41,4 +41,14 @@ class PhotoVariant extends PrintableVariant implements PhotoVariantInterface
     {
         return $this->photo;
     }
+    
+    /**
+     * Get type
+     * 
+     * @return string
+     */
+    public function getType() 
+    {
+        return 'PhotoVariant';
+    }
 }

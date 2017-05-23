@@ -8,47 +8,35 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Validator\Constraints;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
-use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
-use Elcodi\Component\Article\EventListener\Form\ArticleProductPrintSideFormEventListener;
-use Elcodi\Admin\ArticleBundle\Form\Type\DesignPrintableVariantType;
-use Elcodi\Admin\ArticleBundle\Form\Type\TextPrintableVariantType;
-
 
 /**
- * Class ArticleProductPrintSideType
+ * Class DesignPrintableVariantType
  */
-class ArticleProductPrintSideType extends AbstractType
+class DesignPrintableVariantType extends AbstractType
 {
-    use EntityTranslatableFormTrait, FactoryTrait;
+    use FactoryTrait;
     
+
     /**
-     * @var DesignPrintableVariantType
+     * @var stirng
      *
-     * Design Printable variant form type
+     * Design Printable namespace
      */
-	protected $designPrintableVariantType;
+	protected $designPrintableNamespace;
     
-    /**
-     * @var TextPrintableVariantType
-     *
-     * Text Printable variant form type
-     */
-	protected $textPrintableVariantType;	
 	
     /**
      * Construct
      *
-	 * @param DesignPrintableVariantType $designPrintableVariantType Design Printable variant form type
-     * @param TextPrintableVariantType $textPrintableVariantType Design Printable variant form type
+	 * @param string $designPrintableNamespace	Printable namespace
      */
     public function __construct(
-		DesignPrintableVariantType $designPrintableVariantType,
-        TextPrintableVariantType $textPrintableVariantType
-    ) {		
-		$this->designPrintableVariantType = $designPrintableVariantType;
-        $this->textPrintableVariantType = $textPrintableVariantType;
+		string $designPrintableNamespace
+    ) {
+		$this->designPrintableNamespace = $designPrintableNamespace;
     }
 	
     /**
@@ -73,19 +61,32 @@ class ArticleProductPrintSideType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {	
-		$builder			
-			->add('designPrintableVariants', 'collection', [
-				'entry_type'    => $this->designPrintableVariantType,
-				'allow_add'     => true,
-                'allow_delete'  => true,
-                'by_reference'  => false,
-			])
-            ->add('textPrintableVariants', 'collection', [
-				'entry_type'    => $this->textPrintableVariantType,
-				'allow_add'     => true,
-                'allow_delete'  => true,
-                'by_reference'  => false,
-			]);
+		$builder
+			->add('posX',  'integer', [
+                'constraints' => [
+                    new Constraints\Length(
+                        [
+                            'max' => 65,
+                        ]
+                    ),
+                ],
+                'label' => 'PosX',
+            ])
+			->add('posY',  'integer', [
+                'constraints' => [
+                    new Constraints\Length(
+                        [
+                            'max' => 65,
+                        ]
+                    ),
+                ],
+                'label' => 'PosY',
+            ])
+            ->add('design', 'entity',[
+                'class'			=> $this->designPrintableNamespace,
+                'choice_label'	=> 'name',
+                'label' => 'Design',
+            ]);	
 		
     }	
 
@@ -99,7 +100,7 @@ class ArticleProductPrintSideType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'elcodi_admin_article_form_type_article_product_print_side';
+        return 'elcodi_admin_article_form_type_design_printable_variant';
     }
 
     /**
