@@ -17,15 +17,16 @@
 
 namespace Elcodi\Component\StateTransitionMachine\Machine;
 
-use Elcodi\Component\StateTransitionMachine\Definition\State;
 use Elcodi\Component\StateTransitionMachine\Definition\Transition;
 use Elcodi\Component\StateTransitionMachine\Definition\TransitionChain;
 use Elcodi\Component\StateTransitionMachine\Exception\CyclesNotAllowedException;
 use Elcodi\Component\StateTransitionMachine\Exception\InconsistentTransitionConfigurationException;
 use Elcodi\Component\StateTransitionMachine\Exception\InvalidPointOfEntryException;
+use Elcodi\Component\StateTransitionMachine\Exception\StateNotFoundException;
 use Elcodi\Component\StateTransitionMachine\Exception\StateNotValidException;
 use Elcodi\Component\StateTransitionMachine\Exception\TransitionNotValidException;
 use Elcodi\Component\StateTransitionMachine\Factory\MachineFactory;
+use Elcodi\Component\StateTransitionMachine\Repository\StateRepository;
 
 /**
  * Class MachineBuilder.
@@ -38,6 +39,13 @@ class MachineBuilder
      * Machine factory
      */
     private $machineFactory;
+    
+    /**
+     * @var StateRepository
+     *
+     * Machine factory
+     */
+    private $stateRepository;
 
     /**
      * @var string
@@ -77,19 +85,22 @@ class MachineBuilder
     /**
      * construct method.
      *
-     * @param MachineFactory $machineFactory Machine factory
-     * @param string         $machineId      Machine id
-     * @param array          $configuration  State configuration
-     * @param string         $pointOfEntry   Point of entry
+     * @param MachineFactory    $machineFactory     Machine factory
+     * @param StateRepository   $stateRepository    State Repository
+     * @param string            $machineId          Machine id
+     * @param array             $configuration      State configuration
+     * @param string            $pointOfEntry       Point of entry
      */
     public function __construct(
         MachineFactory $machineFactory,
-        $machineId,
+        StateRepository $stateRepository,
+        $machineId,        
         array $configuration,
         $pointOfEntry
     ) {
         $this->machineFactory = $machineFactory;
-        $this->machineId = $machineId;
+        $this->stateRepository = $stateRepository;
+        $this->machineId = $machineId;        
         $this->configuration = $configuration;
         $this->transitionChain = TransitionChain::create();
         $this->pointOfEntry = $pointOfEntry;
@@ -137,6 +148,8 @@ class MachineBuilder
                 $this->pointOfEntry,
                 $nodesVisited
             );
+        
+        $entryState = $this->getState($this->pointOfEntry);
 
         /**
          * Once checked we compile the structure.
@@ -155,10 +168,33 @@ class MachineBuilder
             ->generate(
                 $this->machineId,
                 $this->transitionChain,
-                $this->pointOfEntry
+                $entryState
             );
 
         return $machine;
+    }
+    
+    /**
+     * Returns State by name
+     * 
+     * @param string $stateName Description
+     * 
+     * @return State
+     * @throws EntryStateNotFoundException
+     */
+    private function getState($stateName)
+    {
+        $state = $this
+            ->stateRepository
+            ->findOneBy(
+                ['name' => $stateName]
+            );
+        
+        if (empty($state)) {
+            throw new StateNotFoundException($stateName);
+        }
+        
+        return $state;
     }
 
     /**
@@ -272,8 +308,8 @@ class MachineBuilder
                 $finalStateName
                 ) = $transitionConfiguration;
 
-            $startState = new State($startStateName);
-            $finalState = new State($finalStateName);
+            $startState = $this->getState($startStateName);
+            $finalState = $this->getState($finalStateName);
             $transition = new Transition(
                 $transitionName,
                 $startState,
@@ -342,7 +378,7 @@ class MachineBuilder
          */
         foreach ($transitionChain->getTransitions() as $transition) {
             $initialStateName = $transition->getStart()->getName();
-
+            
             if ($initialStateName === $this->pointOfEntry) {
                 continue;
             }
@@ -351,7 +387,7 @@ class MachineBuilder
                 throw new StateNotValidException($initialStateName);
             }
         }
-
+        
         return $this;
     }
 }

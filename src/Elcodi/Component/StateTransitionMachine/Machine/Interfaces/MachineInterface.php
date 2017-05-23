@@ -35,11 +35,11 @@ interface MachineInterface
     public function getId();
 
     /**
-     * Get point of entry.
+     * Get Entry State.
      *
-     * @return string Point of entry
+     * @return State Entry State
      */
-    public function getPointOfEntry();
+    public function getEntryState();
 
     /**
      * Applies a transition from a state.

@@ -17,8 +17,11 @@
 
 namespace Elcodi\Component\StateTransitionMachine\Tests\UnitTest\Machine;
 
+use \Prophecy\Argument;
+
 use Elcodi\Component\StateTransitionMachine\Machine\MachineBuilder;
 use Elcodi\Component\StateTransitionMachine\Tests\UnitTest\Fixtures\AbstractStateTransitionTest;
+use Elcodi\Component\StateTransitionMachine\Factory\StateFactory;
 
 /**
  * Class MachineBuilderTest.
@@ -44,13 +47,15 @@ class MachineBuilderTest extends AbstractStateTransitionTest
     public function testCompileOk($configuration)
     {
         $machineFactory = $this->createMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
+                
         $machineBuilder = new MachineBuilder(
             $machineFactory,
+            $this->getStateRepository(),
             'id',
             $configuration,
             'unpaid'
         );
-
+        
         $machineBuilder->allowCycles(true);
         $machineBuilder->compile();
     }
@@ -91,6 +96,7 @@ class MachineBuilderTest extends AbstractStateTransitionTest
         $machineFactory = $this->createMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
         $machineBuilder = new MachineBuilder(
             $machineFactory,
+            $this->getStateRepository(),
             'id',
             [$transition],
             'unpaid'
@@ -142,6 +148,7 @@ class MachineBuilderTest extends AbstractStateTransitionTest
         $machineFactory = $this->createMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
         $machineBuilder = new MachineBuilder(
             $machineFactory,
+            $this->getStateRepository(),
             'id',
             $configuration,
             $pointOfEntry
@@ -203,6 +210,7 @@ class MachineBuilderTest extends AbstractStateTransitionTest
         $machineFactory = $this->createMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
         $machineBuilder = new MachineBuilder(
             $machineFactory,
+            $this->getStateRepository(),
             'id',
             $configuration,
             'unpaid'
@@ -240,6 +248,7 @@ class MachineBuilderTest extends AbstractStateTransitionTest
         $machineFactory = $this->createMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
         $machineBuilder = new MachineBuilder(
             $machineFactory,
+            $this->getStateRepository(),
             'id',
             $configuration,
             'unpaid'
@@ -277,6 +286,7 @@ class MachineBuilderTest extends AbstractStateTransitionTest
         $machineFactory = $this->createMock('Elcodi\Component\StateTransitionMachine\Factory\MachineFactory');
         $machineBuilder = new MachineBuilder(
             $machineFactory,
+            $this->getStateRepository(),
             'id',
             $configuration,
             'unpaid'

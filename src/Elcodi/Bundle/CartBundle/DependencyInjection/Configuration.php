@@ -85,7 +85,7 @@ class Configuration extends AbstractConfiguration
                         ->end()
                         ->scalarNode('point_of_entry')
                             ->defaultValue('preparing')
-                        ->end()
+                        ->end()                        
                         ->variableNode('states')
                             ->defaultValue([
                                 ['preparing', 'cancel', 'cancelled'],
@@ -120,10 +120,19 @@ class Configuration extends AbstractConfiguration
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('identifier')
-                            ->defaultValue('order_shipping_states_machine')
+                            ->defaultValue('order_production_states_machine')
                         ->end()
                         ->scalarNode('point_of_entry')
                             ->defaultValue('ready for produce')
+                        ->end()
+                        ->scalarNode('workflow_state_line_stack_getter_name')
+                            ->defaultValue('getWorkflowStateLineStack')
+                        ->end()
+                        ->scalarNode('workflow_block_states')
+                            ->defaultValue([
+                                'paused', 
+                                'cancelled',
+                            ])
                         ->end()
                         ->variableNode('states')
                             ->defaultValue([
@@ -143,10 +152,19 @@ class Configuration extends AbstractConfiguration
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('identifier')
-                            ->defaultValue('order_production_states_machine')
+                            ->defaultValue('order_shipping_states_machine')
                         ->end()
                         ->scalarNode('point_of_entry')
                             ->defaultValue('ready for delivery')
+                        ->end()
+                        ->scalarNode('workflow_state_line_stack_getter_name')
+                            ->defaultValue('getWorkflowStateLineStack')
+                        ->end()
+                        ->scalarNode('workflow_block_states')
+                            ->defaultValue([
+                                'paused', 
+                                'cancelled',
+                            ])
                         ->end()
                         ->variableNode('states')
                             ->defaultValue([

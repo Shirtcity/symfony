@@ -35,7 +35,8 @@ class OrderRepository extends EntityRepository
     {
         $res = $this->createQueryBuilder('o')
             ->innerJoin('o.paymentLastStateLine', 'sl')
-            ->where('sl.name = \'paid\'')
+            ->innerJoin('sl.state', 's')
+            ->where('s.name = \'paid\'')
             ->orderBy('o.updatedAt', 'ASC')
             ->getQuery()
             ->getResult();

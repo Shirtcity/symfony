@@ -11,3 +11,11 @@ services:
         parent: elcodi.abstract_repository
         arguments:
             - %elcodi.entity.state_transition_machine.state_line.class%
+            
+    #
+    # Repository for entity state
+    #
+    elcodi.repository.state:
+        parent: elcodi.abstract_repository
+        arguments:
+            - %elcodi.entity.state_transition_machine.state.class%

@@ -8,11 +8,6 @@ Elcodi\Component\StateTransitionMachine\Entity\StateLine:
             generator:
                 strategy: AUTO
     fields:
-        name:
-            column: name
-            type: string
-            length: 255
-            nullable: false
         description:
             column: description
             type: string
@@ -24,6 +19,14 @@ Elcodi\Component\StateTransitionMachine\Entity\StateLine:
         updatedAt:
             column: updated_at
             type: datetime
+            
+    manyToOne:
+        state:
+            targetEntity: Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateInterface
+            joinColumn:
+                name: state_id
+                referencedColumnName: id
+                nullable: false
 
     lifecycleCallbacks:
         preUpdate: [loadUpdateAt]

@@ -111,32 +111,34 @@ class OrderController extends AbstractAdminController
     {
         $workflowStateLineStack = $order->getWorkflowStateLineStack();
         
-        if ($workflowStateLineStack->hasStateLine()) {
-            
+        if ($workflowStateLineStack->hasStateLine()) {            
             $nextWorkflowTransitions = $this
-                ->get('elcodi.order.workflow_states_machine')
+                ->get('elcodi.order_workflow_states_machine_manager')
                 ->getAvailableStates(
+                    $order,
                     $workflowStateLineStack
                         ->getLastStateLine()
+                        ->getState()
                         ->getName()
                 );
         } else {
-            $nextWorkflowTransitions = [];
+            $nextWorkflowTransitions = null;
         }
         
         $paymentStateLineStack = $order->getPaymentStateLineStack();
         
-        if ($paymentStateLineStack->hasStateLine()) {
-            
+        if ($paymentStateLineStack->hasStateLine()) {            
             $nextPaymentTransitions = $this
-                ->get('elcodi.order.payment_states_machine')
+                ->get('elcodi.order_payment_states_machine_manager')
                 ->getAvailableStates(
+                    $order,
                     $paymentStateLineStack
                         ->getLastStateLine()
+                        ->getState()
                         ->getName()
                 );
         } else {
-            $nextPaymentTransitions = [];
+            $nextPaymentTransitions = null;
         }
         
 
@@ -144,14 +146,16 @@ class OrderController extends AbstractAdminController
         
         if ($shippingStateLineStack->hasStateLine()) {
             $nextShippingTransitions = $this
-                ->get('elcodi.order.shipping_states_machine')
+                ->get('elcodi.order_shipping_states_machine_manager')
                 ->getAvailableStates(
+                    $order,
                     $shippingStateLineStack
                         ->getLastStateLine()
+                        ->getState()
                         ->getName()
                 );
         } else {
-            $nextShippingTransitions = [];
+            $nextShippingTransitions = null;
         }
         
         
@@ -159,14 +163,16 @@ class OrderController extends AbstractAdminController
         
         if ($productionStateLineStack->hasStateLine()) {
             $nextProductionTransitions = $this
-                ->get('elcodi.order.production_states_machine')
+                ->get('elcodi.order_production_states_machine_manager')
                 ->getAvailableStates(
+                    $order,
                     $productionStateLineStack
                         ->getLastStateLine()
+                        ->getState()
                         ->getName()
                 );
         } else {
-            $nextProductionTransitions = [];
+            $nextProductionTransitions = null;
         }
         
         $allStates = array_merge(
@@ -183,7 +189,7 @@ class OrderController extends AbstractAdminController
                 ->getStateLines()
                 ->toArray()            
         );
-
+        
         usort($allStates, function (StateLineInterface $a, StateLineInterface $b) {
             return $a->getCreatedAt() == $b->getCreatedAt()
                 ? $a->getId() > $b->getId()
@@ -199,7 +205,7 @@ class OrderController extends AbstractAdminController
 
         return [
             'order'                     => $order,
-            'nextWorkflowTransitions'    => $nextWorkflowTransitions,
+            'nextWorkflowTransitions'   => $nextWorkflowTransitions,
             'nextPaymentTransitions'    => $nextPaymentTransitions,
             'nextShippingTransitions'   => $nextShippingTransitions,
             'nextProductionTransitions' => $nextProductionTransitions,
@@ -240,13 +246,15 @@ class OrderController extends AbstractAdminController
         OrderInterface $order,
         $transition
     ) {
+        $description = $transition;
+        
         $stateLineStack = $this
             ->get('elcodi.order_payment_states_machine_manager')
             ->transition(
                 $order,
                 $order->getPaymentStateLineStack(),
                 $transition,
-                $transition
+                $description
             );
 
         $order->setPaymentStateLineStack($stateLineStack);
@@ -286,13 +294,15 @@ class OrderController extends AbstractAdminController
         OrderInterface $order,
         $transition
     ) {
+        $description = $transition;
+        
         $stateLineStack = $this
             ->get('elcodi.order_shipping_states_machine_manager')
             ->transition(
                 $order,
                 $order->getShippingStateLineStack(),
                 $transition,
-                $transition
+                $description
             );
 
         $order->setShippingStateLineStack($stateLineStack);
@@ -332,13 +342,15 @@ class OrderController extends AbstractAdminController
         OrderInterface $order,
         $transition
     ) {
+        $description = $transition;
+        
         $stateLineStack = $this
             ->get('elcodi.order_production_states_machine_manager')
             ->transition(
                 $order,
                 $order->getProductionStateLineStack(),
                 $transition,
-                $transition
+                $description
             );
 
         $order->setProductionStateLineStack($stateLineStack);
@@ -378,13 +390,15 @@ class OrderController extends AbstractAdminController
         OrderInterface $order,
         $transition
     ) {
+        $description = $transition;
+        
         $stateLineStack = $this
             ->get('elcodi.order_workflow_states_machine_manager')
             ->transition(
                 $order,
                 $order->getWorkflowStateLineStack(),
                 $transition,
-                $transition
+                $description
             );
 
         $order->setWorkflowStateLineStack($stateLineStack);
