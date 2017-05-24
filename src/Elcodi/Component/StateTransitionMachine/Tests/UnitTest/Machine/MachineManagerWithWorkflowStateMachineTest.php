@@ -40,16 +40,9 @@ class MachineManagerWithWorkflowStateMachineTest extends AbstractStateTransition
      * @expectedException \Elcodi\Component\StateTransitionMachine\Exception\InvalidWorkflowLineStackGetterException
      */
     public function testInvalidWorkflowStateLineStackGetterName($blockStates)
-    {
-        $machine = $this->getMachine();
-        $stateLineFactory = $this->getStateLineFactory();
-        $eventDispatcher = $this->getMachineEventDispatcher();
-		
-        $machineManager = new MachineManager(
-            $machine,
-            $eventDispatcher,
-            $stateLineFactory,
-            'getInvalidWorkflowStateLineStackGetterName',
+    {        
+        $machineManager = $this->getMachineManager(
+            'getInvalidWorkflowStateLineStackGetterName', 
             $blockStates
         );
         
@@ -78,17 +71,7 @@ class MachineManagerWithWorkflowStateMachineTest extends AbstractStateTransition
      */
     public function testMissingWorkflowStateLineStackGetterName($blockStates)
     {
-        $machine = $this->getMachine();
-        $stateLineFactory = $this->getStateLineFactory();
-        $eventDispatcher = $this->getMachineEventDispatcher();
-		
-        $machineManager = new MachineManager(
-            $machine,
-            $eventDispatcher,
-            $stateLineFactory,
-            null,
-            $blockStates
-        );
+        $machineManager = $this->getMachineManager(null, $blockStates);
         
         $order = new Order();
         $stateLineStack = StateLineStack::create(
@@ -130,25 +113,12 @@ class MachineManagerWithWorkflowStateMachineTest extends AbstractStateTransition
         $blockStates,
         $workflowStateName,
         $expectedStateName
-    ) {
-        /**
-         * Create MachineManager
-         */
-        $machine = $this->getMachine();
-        $stateLineFactory = $this->getStateLineFactory();
-        $eventDispatcher = $this->getMachineEventDispatcher();
-		
-        $machineManager = new MachineManager(
-            $machine,
-            $eventDispatcher,
-            $stateLineFactory,
-            'getWorkflowStateLineStack',
+    ) {        
+        $machineManager = $this->getMachineManager(
+            'getWorkflowStateLineStack', 
             $blockStates
         );
         
-        /**
-         * Set StateLineStack for current StateMachine
-         */
         $order = new Order();
         
         $stateLineStack = StateLineStack::create(
@@ -163,25 +133,7 @@ class MachineManagerWithWorkflowStateMachineTest extends AbstractStateTransition
         );
         $order->setStateLineStack($stateLineStack);
         
-        
-        /**
-         * Set StateLineStack for Workflow StateMachine
-         */
-        
-        $workflowState = $this->getState($workflowStateName);
-        $workflowStateLine = $stateLineFactory
-            ->create()
-            ->setState($workflowState);
-        
-        $workflowStateLines = new ArrayCollection();
-        $workflowStateLines[] = $workflowStateLine;
-        
-        $workflowStateLineStack = StateLineStack::create(
-            $workflowStateLines,
-            $workflowStateLine
-        );
-        $order->setWorkflowStateLineStack($workflowStateLineStack);
-        
+        $this->setWorkflowState($order, $workflowStateName);
         
         $stateLineStack = $machineManager->transition(
             $order,
@@ -190,12 +142,12 @@ class MachineManagerWithWorkflowStateMachineTest extends AbstractStateTransition
             ''
         );
         
-        $lastState = $stateLineStack
+        $lastStateName = $stateLineStack
             ->getLastStateLine()
             ->getState()
             ->getName();
         
-        $this->assertEquals($expectedStateName, $lastState);
+        $this->assertEquals($expectedStateName, $lastStateName);
     }
     
     /**
@@ -223,24 +175,11 @@ class MachineManagerWithWorkflowStateMachineTest extends AbstractStateTransition
         $workflowStateName,
         $expectedAvailableStateNames
     ) {
-        /**
-         * Create MachineManager
-         */
-        $machine = $this->getMachine();
-        $stateLineFactory = $this->getStateLineFactory();
-        $eventDispatcher = $this->getMachineEventDispatcher();
-		
-        $machineManager = new MachineManager(
-            $machine,
-            $eventDispatcher,
-            $stateLineFactory,
-            'getWorkflowStateLineStack',
+        $machineManager = $this->getMachineManager(
+            'getWorkflowStateLineStack', 
             $blockStates
         );
         
-        /**
-         * Set StateLineStack for current StateMachine
-         */
         $order = new Order();
         
         $stateLineStack = StateLineStack::create(
@@ -255,24 +194,7 @@ class MachineManagerWithWorkflowStateMachineTest extends AbstractStateTransition
         );
         $order->setStateLineStack($stateLineStack);
         
-        
-        /**
-         * Set StateLineStack for Workflow StateMachine
-         */
-        
-        $workflowState = $this->getState($workflowStateName);
-        $workflowStateLine = $stateLineFactory
-            ->create()
-            ->setState($workflowState);
-        
-        $workflowStateLines = new ArrayCollection();
-        $workflowStateLines[] = $workflowStateLine;
-        
-        $workflowStateLineStack = StateLineStack::create(
-            $workflowStateLines,
-            $workflowStateLine
-        );
-        $order->setWorkflowStateLineStack($workflowStateLineStack);
+        $this->setWorkflowState($order, $workflowStateName);
                 
         $availableStates = $machineManager->getAvailableStates($order, 'unpaid');   
         $availableStateNames = [];

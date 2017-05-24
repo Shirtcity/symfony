@@ -20,13 +20,16 @@ namespace Elcodi\Component\StateTransitionMachine\Tests\UnitTest\Fixtures;
 use PHPUnit_Framework_TestCase;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Elcodi\Component\Core\Factory\DateTimeFactory;
 use Elcodi\Component\StateTransitionMachine\Definition\Transition;
 use Elcodi\Component\StateTransitionMachine\Definition\TransitionChain;
 use Elcodi\Component\StateTransitionMachine\Factory\StateLineFactory;
+use Elcodi\Component\StateTransitionMachine\Factory\StateFactory;
 use Elcodi\Component\StateTransitionMachine\Machine\Machine;
 use Elcodi\Component\StateTransitionMachine\Machine\MachineManager;
-use Elcodi\Component\StateTransitionMachine\Factory\StateFactory;
+use Elcodi\Component\StateTransitionMachine\Entity\StateLineStack;
 
 /**
  * Class MachineMockery.
@@ -123,11 +126,15 @@ abstract class AbstractStateTransitionTest extends PHPUnit_Framework_TestCase
 
     /**
      * Return MachineManager.
-     *
+     * 
+     * @param string    $workflowStateLineStackGetterName Getter name for workflowStateLineStack
+     * @param array     $blockStates array of blocking states
      * @return MachineManager Machine Manager
      */
-    public function getMachineManager()
-    {
+    public function getMachineManager(
+        $workflowStateLineStackGetterName = null,
+        $blockStates = null
+    ) {
         $machine = $this->getMachine();
         $stateLineFactory = $this->getStateLineFactory();
         $eventDispatcher = $this->getMachineEventDispatcher();
@@ -135,7 +142,9 @@ abstract class AbstractStateTransitionTest extends PHPUnit_Framework_TestCase
         $machineManager = new MachineManager(
             $machine,
             $eventDispatcher,
-            $stateLineFactory
+            $stateLineFactory,
+            $workflowStateLineStackGetterName,
+            $blockStates
         );
 
         return $machineManager;
@@ -168,5 +177,33 @@ abstract class AbstractStateTransitionTest extends PHPUnit_Framework_TestCase
 			->setMockClassName('')
 			->disableOriginalConstructor(true)
 			->getMock();
+    }
+    
+    /**
+     * Set workflow State
+     * 
+     * @param Object    $order
+     * @param string    $stateName
+     */
+    protected function setWorkflowState(
+        $order, 
+        $stateName
+    ) {
+        $stateLineFactory = $this->getStateLineFactory();
+        
+        $workflowState = $this->getState($stateName);
+        $workflowStateLine = $stateLineFactory
+            ->create()
+            ->setState($workflowState);
+        
+        $workflowStateLines = new ArrayCollection();
+        $workflowStateLines[] = $workflowStateLine;
+        
+        $workflowStateLineStack = StateLineStack::create(
+            $workflowStateLines,
+            $workflowStateLine
+        );
+        
+        $order->setWorkflowStateLineStack($workflowStateLineStack);
     }
 }
