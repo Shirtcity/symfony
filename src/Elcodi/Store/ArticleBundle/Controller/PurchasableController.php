@@ -83,16 +83,7 @@ class PurchasableController extends Controller
      *      path = "/article/{slug}/{id}",
      *      name = "store_article_view",
      *      requirements = {
-     *          "slug": "[\w-]+",
-     *          "id": "\d+",
-     *      },
-     *      methods = {"GET"}
-     * )
-     * @Route(
-     *      path = "/pack/{slug}/{id}",
-     *      name = "store_purchasable_pack_view",
-     *      requirements = {
-     *          "slug": "[\w-]+",
+     *          "slug": "(.*)",
      *          "id": "\d+",
      *      },
      *      methods = {"GET"}
@@ -112,7 +103,7 @@ class PurchasableController extends Controller
          * We must check that the purchasable slug is right. Otherwise we must
          * return a Redirection 301 to the right url
          */
-        if ($slug !== $purchasable->getSlug()) {
+        /*if ($slug !== $purchasable->getSlug()) {
             $route = $this
                 ->get('request_stack')
                 ->getCurrentRequest()
@@ -122,7 +113,7 @@ class PurchasableController extends Controller
                 'id'   => $purchasable->getId(),
                 'slug' => $purchasable->getSlug(),
             ], 301);
-        }
+        }*/
 
 
         $template = $this->resolveTemplateName($purchasable);

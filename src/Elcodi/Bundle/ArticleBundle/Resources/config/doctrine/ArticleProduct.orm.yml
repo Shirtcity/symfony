@@ -27,5 +27,6 @@ Elcodi\Component\Article\Entity\ArticleProduct:
             mappedBy: articleProduct
             orphanRemoval: true
             cascade:
-                - persist 
+                - persist
+                - remove
                 

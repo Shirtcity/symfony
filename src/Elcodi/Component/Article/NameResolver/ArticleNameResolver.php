@@ -27,6 +27,27 @@ use Elcodi\Component\Article\NameResolver\Interfaces\PurchasableNameResolverInte
 class ArticleNameResolver implements PurchasableNameResolverInterface
 {
     /**
+     * @var PurchasableInterface 
+     * 
+     * Article
+     */
+    private $article;
+    
+    /**
+     * @var string
+     *
+     * Name separator
+     */
+    private $separator;
+    
+    /**
+     * @var string
+     * 
+     * Article name 
+     */
+    private $articleName;
+    
+    /**
      * Get the entity interface.
      *
      * @return string Namespace
@@ -37,25 +58,82 @@ class ArticleNameResolver implements PurchasableNameResolverInterface
     }
 
     /**
-     * Given a purchasable, resolve the name.
+     * Given an article, resolve the name.
      *
-     * @param PurchasableInterface $purchasable Purchasable
-     * @param string               $separator   Separator
+     * @param PurchasableInterface  $article    Article
+     * @param string                $separator  Separator
      *
      * @return false|string Name resolved or false if invalid object
      */
     public function resolveName(
-        PurchasableInterface $purchasable,
-        $separator = null
+        PurchasableInterface $article,
+        $separator = self::DEFAULT_SEPARATOR
     ) {
+        
         $namespace = $this->getPurchasableNamespace();
-        if (!$purchasable instanceof $namespace) {
+        if (!$article instanceof $namespace) {
             return false;
         }
+        
+        $this->separator = $separator;
+        $this->article = $article;
+        
+        if (!empty($this->article->getName())) {
+            
+            $this->articleName = $this->article->getName();
+            
+        } else {
+            
+            $this
+                ->obtainArticleDesignsNames()
+                ->addProductName();
+            
+        }
+        
+        return $this->articleName;
+    }
 
-        /**
-         * @var $purchasable ArticleInterface
-         */
-        return $purchasable->getName();
+    /**
+     * Obtains designs names from the first not empty printable area of an article
+     * 
+     * @return string
+     */
+    private function obtainArticleDesignsNames()
+    {
+        $designName = null;
+        
+        $this
+            ->article
+            ->getArticleProduct()
+            ->getArticleProductPrintSides()
+            ->filter( function ($articleProductPrintSide) {
+                
+                return $articleProductPrintSide->getPrintableVariants()->count() > 0;
+                
+            })
+            ->first()
+            ->getPrintableVariants()
+            ->map( function ($printableVariant) use (&$designName) {  
+                
+                if ($printableVariant->getType() == 'DesignVariant') {
+                    $designName .= $printableVariant->getDesign()->getName() . $this->separator;
+                } 
+                
+            });
+        
+        $this->articleName = $designName;
+        
+        return $this;
+    }
+    
+    private function addProductName()
+    {
+        $this->articleName .= $this
+            ->article
+            ->getArticleProduct()
+            ->getProduct()
+            ->getName();
+        
+        return $this;
     }
 }

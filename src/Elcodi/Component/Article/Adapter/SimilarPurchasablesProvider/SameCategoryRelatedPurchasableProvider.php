@@ -96,7 +96,7 @@ class SameCategoryRelatedPurchasableProvider implements RelatedPurchasablesProvi
 				continue;
 			}
 			
-            $category = $purchasable->getSectionCategories()->first();
+            $category = $purchasable->getArticleProduct()->getProduct()->getSections()->first();
             if (
                 $category instanceof CategoryInterface &&
                 !in_array($category, $categories)
@@ -112,7 +112,9 @@ class SameCategoryRelatedPurchasableProvider implements RelatedPurchasablesProvi
         return $this
             ->articleRepository
             ->createQueryBuilder('a')
-			->innerJoin('a.sectionCategories', 'c')
+            ->innerJoin('a.articleProduct', 'ap')
+            ->innerJoin('ap.product', 'product')
+			->innerJoin('product.sections', 'c')
             ->where('c IN(:categories)')
             ->andWhere('a NOT IN(:purchasables)')
             ->andWhere('a.enabled = :enabled')

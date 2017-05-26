@@ -94,7 +94,7 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('name', 'text', [
-                'required'    => true,
+                'required'    => false,
                 'constraints' => [
                     new Constraints\Length(
                         [
@@ -104,7 +104,7 @@ class ArticleType extends AbstractType
                 ],
             ])
             ->add('slug', 'text', [
-                'required'    => true,
+                'required'    => false,
                 'constraints' => [
                     new Constraints\Length(
                         [
@@ -134,13 +134,6 @@ class ArticleType extends AbstractType
             ])
             ->add('metaKeywords', 'text', [
                 'required' => false,
-            ])
-			->add('sectionCategories', 'entity', [
-                'class'    => $this->categoryNamespace,
-                'required' => false,
-                'property' => 'name',
-                'multiple' => true,
-                'expanded' => true,
             ])
 			->add('articleProduct', $this->articleProductType);
 

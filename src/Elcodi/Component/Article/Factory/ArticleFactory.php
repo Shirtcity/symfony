@@ -65,7 +65,6 @@ class ArticleFactory extends AbstractFactory
             ->setType(ElcodiArticleTypes::TYPE_PRODUCT_PHYSICAL)
             ->setShowInHome(true)
             ->setAttributes(new ArrayCollection())
-            ->setSectionCategories(new ArrayCollection())
             ->setEnabled(true)
 			->setArticleProduct($this->getDefaultArticleProduct())
             ->setCreatedAt($this->now());
