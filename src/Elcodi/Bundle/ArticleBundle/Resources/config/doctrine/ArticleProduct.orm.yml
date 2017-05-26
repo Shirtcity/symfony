@@ -11,19 +11,19 @@ Elcodi\Component\Article\Entity\ArticleProduct:
                 
     manyToOne:
         product:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Product
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductInterface
             joinColumn:
                 name: product_id
                 referencedColumnName: id
         productColors:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\ProductColors
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\ProductColorsInterface
             joinColumn:
                 name: color_id
                 referencedColumnName: id
 
     oneToMany:
         articleProductPrintSides:
-            targetEntity: Elcodi\Component\Article\Entity\ArticleProductPrintSide
+            targetEntity: Elcodi\Component\Article\Entity\Interfaces\ArticleProductPrintSideInterface
             mappedBy: articleProduct
             orphanRemoval: true
             cascade:

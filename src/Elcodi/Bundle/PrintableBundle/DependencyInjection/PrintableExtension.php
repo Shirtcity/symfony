@@ -166,6 +166,8 @@ class PrintableExtension extends AbstractExtension implements EntitiesOverridabl
             'Elcodi\Bundle\PrintableBundle\Entity\Interfaces\FoilColorInterface' => 'elcodi.entity.foilcolor.class',
 
             'Elcodi\Bundle\PrintableBundle\Entity\Interfaces\FontInterface' => 'elcodi.entity.font.class',
+            
+            'Elcodi\Bundle\PrintableBundle\Entity\Interfaces\PrintableVariantInterface' => 'elcodi.entity.printable_variant.class',
 
             'Elcodi\Bundle\PrintableBundle\Entity\Interfaces\DesignInterface' => 'elcodi.entity.design.class',
             'Elcodi\Bundle\PrintableBundle\Entity\Interfaces\DesignVariantInterface' => 'elcodi.entity.design_variant.class',

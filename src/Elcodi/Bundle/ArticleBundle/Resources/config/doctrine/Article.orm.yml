@@ -19,7 +19,7 @@ Elcodi\Component\Article\Entity\Article:
     
     oneToOne:
         articleProduct:
-            targetEntity: Elcodi\Component\Article\Entity\ArticleProduct
+            targetEntity: Elcodi\Component\Article\Entity\Interfaces\ArticleProductInterface
             joinColumn:
                 name: article_product_id
                 referencedColumnName: id

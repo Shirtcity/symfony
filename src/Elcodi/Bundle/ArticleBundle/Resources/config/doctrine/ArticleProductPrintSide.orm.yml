@@ -11,7 +11,7 @@ Elcodi\Component\Article\Entity\ArticleProductPrintSide:
                 
     manyToOne:
         printSide:
-            targetEntity: Elcodi\Bundle\ProductBundle\Entity\PrintSide
+            targetEntity: Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideInterface
             joinColumn:
                 name: print_side_id
                 referencedColumnName: id
@@ -29,7 +29,7 @@ Elcodi\Component\Article\Entity\ArticleProductPrintSide:
                 
     manyToMany:
         printableVariants:
-            targetEntity: Elcodi\Bundle\PrintableBundle\Entity\PrintableVariant
+            targetEntity: Elcodi\Bundle\PrintableBundle\Entity\Interfaces\PrintableVariantInterface
             joinTable:
                 name: article_product_print_side_to_printable_variant
                 joinColumns:
