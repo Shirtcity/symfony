@@ -20,6 +20,7 @@ namespace Elcodi\Component\StateTransitionMachine\Entity;
 use Elcodi\Component\Core\Entity\Traits\DateTimeTrait;
 use Elcodi\Component\Core\Entity\Traits\IdentifiableTrait;
 use Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateLineInterface;
+use Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateInterface;
 
 /**
  * Class StateLine.
@@ -27,13 +28,11 @@ use Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateLineInterface
 class StateLine implements StateLineInterface
 {
     use IdentifiableTrait, DateTimeTrait;
-
+    
     /**
-     * @var string
-     *
-     * State name
+     * @var State
      */
-    protected $name;
+    protected $state;
 
     /**
      * @var string
@@ -48,29 +47,29 @@ class StateLine implements StateLineInterface
      * StateLine Stack
      */
     protected $stateLineStack;
-
+    
     /**
-     * Sets Name.
+     * Sets State.
      *
-     * @param string $name Name
+     * @param State $state
      *
      * @return $this Self object
      */
-    public function setName($name)
+    public function setState(StateInterface $state)
     {
-        $this->name = $name;
+        $this->state = $state;
 
         return $this;
     }
 
     /**
-     * Get Name.
+     * Get State.
      *
-     * @return string Name
+     * @return State
      */
-    public function getName()
+    public function getState()
     {
-        return $this->name;
+        return $this->state;
     }
 
     /**

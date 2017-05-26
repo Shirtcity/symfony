@@ -10,3 +10,11 @@ services:
             - '@elcodi.object_manager.state_transition_machine_state_line'
             - '@elcodi.repository.state_transition_machine_state_line'
             - '@elcodi.factory.state_transition_machine_state_line'
+
+    elcodi.director.state:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.state'
+            - '@elcodi.repository.state'
+            - '@elcodi.factory.state'

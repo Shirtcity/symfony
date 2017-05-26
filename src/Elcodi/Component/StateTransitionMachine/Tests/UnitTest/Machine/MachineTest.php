@@ -35,13 +35,13 @@ class MachineTest extends AbstractStateTransitionTest
     }
 
     /**
-     * Test get point of view.
+     * Test get entry State.
      */
-    public function testGetPointOfEntry()
+    public function testGetEntryState()
     {
         $machine = $this->getMachine();
 
-        $this->assertEquals('unpaid', $machine->getPointOfEntry());
+        $this->assertEquals('unpaid', $machine->getEntryState()->getName());
     }
 
     /**

@@ -41,6 +41,15 @@ class Configuration extends AbstractConfiguration
                             true
                         ))
                     ->end()
+                    ->children()
+                        ->append($this->addMappingNode(
+                            'state',
+                            'Elcodi\Component\StateTransitionMachine\Entity\State',
+                            '@ElcodiStateTransitionMachineBundle/Resources/config/doctrine/State.orm.yml',
+                            'default',
+                            true
+                        ))
+                    ->end()
                 ->end()
             ->end();
     }

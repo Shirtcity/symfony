@@ -132,6 +132,7 @@ class TransitionChain
         $stateName,
         $transitionName
     ) {
+     
         $transition = array_filter(
             $this->transitions,
             function (Transition $transition) use ($stateName, $transitionName) {
@@ -140,7 +141,7 @@ class TransitionChain
                     $transition->getStart()->getName() === $stateName;
             }
         );
-
+        
         return !empty($transition)
             ? reset($transition)
             : null;

@@ -1,0 +1,19 @@
+Elcodi\Component\StateTransitionMachine\Entity\State:
+    table: state
+    type: entity
+    repositoryClass: Elcodi\Component\StateTransitionMachine\Repository\StateRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+            unique: true
+        icon:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

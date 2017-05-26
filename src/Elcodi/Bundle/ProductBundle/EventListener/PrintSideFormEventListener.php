@@ -91,7 +91,7 @@ class PrintSideFormEventListener implements EventSubscriberInterface
     public function preSetData(FormEvent $event)
     {
         $entity = $event->getData();
-		
+        
 		if($entity->hasAreas() === false) {
 			$area = $this
 				->printSideAreaFactory
@@ -116,8 +116,8 @@ class PrintSideFormEventListener implements EventSubscriberInterface
 						->getId();
 		
 		$productColors = $this
-			->productColorsRepository
-			->findByProduct($productId);
+                            ->productColorsRepository
+                            ->findByProduct($productId);
 		
 		foreach($productColors as $productColor) {		
 			
@@ -128,6 +128,7 @@ class PrintSideFormEventListener implements EventSubscriberInterface
 			);
 			
 			if($productColorExists === false) {
+                
 				$sideProductColor = $this
 										->printSideProductColorsFactory
 										->create();

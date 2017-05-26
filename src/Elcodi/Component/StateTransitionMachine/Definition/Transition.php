@@ -17,6 +17,8 @@
 
 namespace Elcodi\Component\StateTransitionMachine\Definition;
 
+use Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateInterface;
+
 use DateTime;
 
 /**
@@ -59,7 +61,7 @@ class Transition
      * @param State  $start Starting state
      * @param State  $final Final state
      */
-    public function __construct($name, State $start, State $final)
+    public function __construct($name, StateInterface $start, StateInterface $final)
     {
         $this->name = $name;
         $this->start = $start;

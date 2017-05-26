@@ -26,11 +26,11 @@ use Elcodi\Component\Core\Entity\Interfaces\IdentifiableInterface;
 interface StateLineInterface extends IdentifiableInterface, DateTimeInterface
 {
     /**
-     * Get Name.
+     * Get State.
      *
-     * @return string Name
+     * @return State
      */
-    public function getName();
+    public function getState();
 
     /**
      * Get Description.

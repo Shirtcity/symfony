@@ -71,15 +71,15 @@ class LoggableMachine implements MachineInterface
     }
 
     /**
-     * Get point of entry.
+     * Get Entry State.
      *
-     * @return string Point of entry
+     * @return State Entry State
      */
-    public function getPointOfEntry()
+    public function getEntryState()
     {
         return $this
             ->machine
-            ->getPointOfEntry();
+            ->getEntryState();
     }
 
     /**

@@ -81,6 +81,11 @@ class ElcodiStateTransitionMachineExtension extends AbstractExtension implements
             'elcodi.entity.state_transition_machine.state_line.mapping_file' => $config['mapping']['state_line']['mapping_file'],
             'elcodi.entity.state_transition_machine.state_line.manager' => $config['mapping']['state_line']['manager'],
             'elcodi.entity.state_transition_machine.state_line.enabled' => $config['mapping']['state_line']['enabled'],
+            
+            'elcodi.entity.state_transition_machine.state.class' => $config['mapping']['state']['class'],
+            'elcodi.entity.state_transition_machine.state.mapping_file' => $config['mapping']['state']['mapping_file'],
+            'elcodi.entity.state_transition_machine.state.manager' => $config['mapping']['state']['manager'],
+            'elcodi.entity.state_transition_machine.state.enabled' => $config['mapping']['state']['enabled'],
         ];
     }
 
@@ -109,6 +114,7 @@ class ElcodiStateTransitionMachineExtension extends AbstractExtension implements
     {
         return [
             'Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateLineInterface' => 'elcodi.entity.state_transition_machine.state_line.class',
+            'Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateInterface' => 'elcodi.entity.state_transition_machine.state.class',
         ];
     }
 

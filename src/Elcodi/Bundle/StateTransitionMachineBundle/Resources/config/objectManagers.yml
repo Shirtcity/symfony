@@ -7,3 +7,8 @@ services:
         parent: elcodi.abstract_manager
         arguments:
             - %elcodi.entity.state_transition_machine.state_line.class%
+            
+    elcodi.object_manager.state:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.state_transition_machine.state.class%

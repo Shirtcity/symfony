@@ -40,6 +40,7 @@ class MappingCompilerPass extends AbstractElcodiMappingCompilerPass
                 $container,
                 [
                     'state_transition_machine.state_line',
+                    'state_transition_machine.state',
                 ]
             );
     }

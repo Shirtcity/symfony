@@ -72,8 +72,13 @@ class MachineManagerTest extends AbstractStateTransitionTest
             $stateLineStack,
             ''
         );
-
-        $this->assertEquals('unpaid', $stateLineStack->getLastStateLine()->getName());
+        
+        $lastStateName = $stateLineStack
+            ->getLastStateLine()
+            ->getState()
+            ->getName();
+        
+        $this->assertEquals('unpaid', $lastStateName);
         $this->assertCount(1, $stateLineStack->getStateLines());
     }
 
@@ -128,8 +133,8 @@ class MachineManagerTest extends AbstractStateTransitionTest
             ''
         );
 
-        $this->assertEquals('paid', $stateLineStack->getLastStateLine()->getName());
-        $this->assertEquals('paid', $stateLineStack->getStateLines()->last()->getName());
+        $this->assertEquals('paid', $stateLineStack->getLastStateLine()->getState()->getName());
+        $this->assertEquals('paid', $stateLineStack->getStateLines()->last()->getState()->getName());
     }
 
     /**
@@ -183,7 +188,7 @@ class MachineManagerTest extends AbstractStateTransitionTest
             ''
         );
 
-        $this->assertEquals('paid', $stateLineStack->getLastStateLine()->getName());
-        $this->assertEquals('paid', $stateLineStack->getStateLines()->last()->getName());
+        $this->assertEquals('paid', $stateLineStack->getLastStateLine()->getState()->getName());
+        $this->assertEquals('paid', $stateLineStack->getStateLines()->last()->getState()->getName());
     }
 }

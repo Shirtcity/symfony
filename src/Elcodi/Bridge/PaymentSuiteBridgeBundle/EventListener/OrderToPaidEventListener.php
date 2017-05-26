@@ -84,7 +84,7 @@ class OrderToPaidEventListener
                 'Cannot retrieve Order from PaymentBridge'
             );
         }
-
+        
         /**
          * We create the new entry in the payment state machine
          */
@@ -100,7 +100,7 @@ class OrderToPaidEventListener
             );
 
         $order->setPaymentStateLineStack($stateLineStack);
-
+        
         /**
          * We save all the data
          */

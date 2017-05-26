@@ -107,10 +107,14 @@ class ElcodiCartExtension extends AbstractExtension implements EntitiesOverridab
             'elcodi.order_shipping_states_machine_states' => $config['shipping_states_machine']['states'],
             'elcodi.order_shipping_states_machine_identifier' => $config['shipping_states_machine']['identifier'],
             'elcodi.order_shipping_states_machine_point_of_entry' => $config['shipping_states_machine']['point_of_entry'],
+            'elcodi.order_shipping_states_machine_workflow_state_line_stack_getter_name' => $config['shipping_states_machine']['workflow_state_line_stack_getter_name'],
+            'elcodi.order_shipping_states_machine_workflow_block_states' => $config['shipping_states_machine']['workflow_block_states'],
             
             'elcodi.order_production_states_machine_states' => $config['production_states_machine']['states'],
             'elcodi.order_production_states_machine_identifier' => $config['production_states_machine']['identifier'],
             'elcodi.order_production_states_machine_point_of_entry' => $config['production_states_machine']['point_of_entry'],
+            'elcodi.order_production_states_machine_workflow_state_line_stack_getter_name' => $config['production_states_machine']['workflow_state_line_stack_getter_name'],
+            'elcodi.order_production_states_machine_workflow_block_states' => $config['production_states_machine']['workflow_block_states'],
             
             'elcodi.order_workflow_states_machine_states' => $config['workflow_states_machine']['states'],
             'elcodi.order_workflow_states_machine_identifier' => $config['workflow_states_machine']['identifier'],

@@ -23,6 +23,7 @@ use Elcodi\Component\StateTransitionMachine\Exception\StateNotReachableException
 use Elcodi\Component\StateTransitionMachine\Exception\TransitionNotAccessibleException;
 use Elcodi\Component\StateTransitionMachine\Exception\TransitionNotValidException;
 use Elcodi\Component\StateTransitionMachine\Machine\Interfaces\MachineInterface;
+use Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateInterface;
 
 /**
  * Class Machine.
@@ -46,23 +47,23 @@ class Machine implements MachineInterface
     /**
      * @var string
      *
-     * Point of entry
+     * Entry State
      */
-    private $pointOfEntry;
+    private $entryState;
 
     /**
      * @param int             $machineId       Machine id
      * @param TransitionChain $transitionChain Transition Chain
-     * @param string          $pointOfEntry    Point of entry
+    * @param State           $entryState       Entry State
      */
     public function __construct(
         $machineId,
         TransitionChain $transitionChain,
-        $pointOfEntry
+        StateInterface $entryState
     ) {
         $this->machineId = $machineId;
         $this->transitionChain = $transitionChain;
-        $this->pointOfEntry = $pointOfEntry;
+        $this->entryState = $entryState;
     }
 
     /**
@@ -76,13 +77,13 @@ class Machine implements MachineInterface
     }
 
     /**
-     * Get point of entry.
+     * Get Entry State.
      *
-     * @return string Point of entry
+     * @return State Entry State
      */
-    public function getPointOfEntry()
+    public function getEntryState()
     {
-        return $this->pointOfEntry;
+        return $this->entryState;
     }
 
     /**
@@ -103,7 +104,7 @@ class Machine implements MachineInterface
         if (!$this->transitionChain->hasTransition($transitionName)) {
             throw new TransitionNotValidException($transitionName);
         }
-
+        
         $transition = $this
             ->transitionChain
             ->getTransitionByStartingStateAndTransitionName(

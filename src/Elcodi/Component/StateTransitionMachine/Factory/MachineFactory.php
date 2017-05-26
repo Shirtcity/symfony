@@ -20,6 +20,7 @@ namespace Elcodi\Component\StateTransitionMachine\Factory;
 use Elcodi\Component\StateTransitionMachine\Definition\TransitionChain;
 use Elcodi\Component\StateTransitionMachine\Machine\Interfaces\MachineInterface;
 use Elcodi\Component\StateTransitionMachine\Machine\Machine;
+use Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateInterface;
 
 /**
  * Class MachineFactory.
@@ -31,19 +32,19 @@ class MachineFactory
      *
      * @param int             $machineId       Machine id
      * @param TransitionChain $transitionChain Transition Chain
-     * @param string          $pointOfEntry    Point of entry
+     * @param State           $entryState      State of entry
      *
      * @return MachineInterface new Machine
      */
     public function generate(
         $machineId,
         TransitionChain $transitionChain,
-        $pointOfEntry
+        StateInterface $entryState
     ) {
         $machine = new Machine(
             $machineId,
             $transitionChain,
-            $pointOfEntry
+            $entryState
         );
 
         return $machine;

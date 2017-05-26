@@ -20,13 +20,16 @@ namespace Elcodi\Component\StateTransitionMachine\Tests\UnitTest\Fixtures;
 use PHPUnit_Framework_TestCase;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Elcodi\Component\Core\Factory\DateTimeFactory;
-use Elcodi\Component\StateTransitionMachine\Definition\State;
 use Elcodi\Component\StateTransitionMachine\Definition\Transition;
 use Elcodi\Component\StateTransitionMachine\Definition\TransitionChain;
 use Elcodi\Component\StateTransitionMachine\Factory\StateLineFactory;
+use Elcodi\Component\StateTransitionMachine\Factory\StateFactory;
 use Elcodi\Component\StateTransitionMachine\Machine\Machine;
 use Elcodi\Component\StateTransitionMachine\Machine\MachineManager;
+use Elcodi\Component\StateTransitionMachine\Entity\StateLineStack;
 
 /**
  * Class MachineMockery.
@@ -39,17 +42,17 @@ abstract class AbstractStateTransitionTest extends PHPUnit_Framework_TestCase
      * @return Machine Machine instance
      */
     public function getMachine()
-    {
+    {        
         $transitionChain = TransitionChain::create();
         $transitionChain
-            ->addTransition(new Transition('pay', new State('unpaid'), new State('paid')))
-            ->addTransition(new Transition('revise', new State('unpaid'), new State('revised')))
-            ->addTransition(new Transition('ship', new State('revised'), new State('shipped')));
+            ->addTransition(new Transition('pay', $this->getState('unpaid'), $this->getState('paid')))
+            ->addTransition(new Transition('revise', $this->getState('unpaid'), $this->getState('revised')))
+            ->addTransition(new Transition('ship', $this->getState('revised'), $this->getState('shipped')));
 
         $machine = new Machine(
             'id',
             $transitionChain,
-            'unpaid'
+            $this->getState('unpaid')
         );
 
         return $machine;
@@ -64,43 +67,143 @@ abstract class AbstractStateTransitionTest extends PHPUnit_Framework_TestCase
     {
         $transition = new Transition(
             'pay',
-            new State('unpaid'),
-            new State('paid')
+            $this->getState('unpaid'),
+            $this->getState('paid')
         );
 
         return $transition;
     }
+    
+    /**
+     * Return State
+     * 
+     * @param string $name
+     * @return State
+     */
+    protected function getState($name)
+    {
+        $stateFactory = new StateFactory;        
+        $stateFactory->setEntityNamespace('Elcodi\Component\StateTransitionMachine\Entity\State');
+        
+        $state = $stateFactory->create();
+        $state->setName($name);
+        
+        return $state;
+    }
+    
+    /**
+     * Return StateRepository
+     * 
+     * @return StateRepository
+     */
+    protected function getStateRepository()
+    {
+        $stateRepository = $this
+            ->getMockBuilder('Elcodi\Component\StateTransitionMachine\Repository\StateRepository')
+            ->disableOriginalConstructor()
+            ->getMock();
+        
+        $stateRepository
+            ->method('findOneBy')
+            ->will($this->returnCallback([$this, 'mockState']));
+        
+        return $stateRepository;
+    }
+    
+    /**
+     * Callback function for function getStateRepository.
+     * Return State.
+     *  
+     * @return State
+     */
+    public function mockState()
+    {
+        $args = func_get_args();        
+        $stateName = $args[0]['name'];
+        
+        return $this->getState($stateName);
+    }
 
     /**
      * Return MachineManager.
-     *
-     * @param string $stateLineNamespace StateLine Entity Namespace
-     *
+     * 
+     * @param string    $workflowStateLineStackGetterName Getter name for workflowStateLineStack
+     * @param array     $blockStates array of blocking states
      * @return MachineManager Machine Manager
      */
-    public function getMachineManager($stateLineNamespace = 'Elcodi\Component\StateTransitionMachine\Entity\StateLine')
-    {
+    public function getMachineManager(
+        $workflowStateLineStackGetterName = null,
+        $blockStates = null
+    ) {
         $machine = $this->getMachine();
-        $stateLineFactory = new StateLineFactory();
-        $stateLineFactory->setEntityNamespace($stateLineNamespace);
-        $stateLineFactory->setDateTimeFactory(new DateTimeFactory());
+        $stateLineFactory = $this->getStateLineFactory();
+        $eventDispatcher = $this->getMachineEventDispatcher();
+		
+        $machineManager = new MachineManager(
+            $machine,
+            $eventDispatcher,
+            $stateLineFactory,
+            $workflowStateLineStackGetterName,
+            $blockStates
+        );
 
-        /**
-         * @var EventDispatcherInterface $eventDispatcher
-         */
-        $eventDispatcher = $this
+        return $machineManager;
+    }
+    
+    /**
+     * Retrun StateLineFactory
+     * 
+     * @return StateLineFactory
+     */
+    protected function getStateLineFactory()
+    {
+        $stateLineFactory = new StateLineFactory();
+        $stateLineFactory->setEntityNamespace('Elcodi\Component\StateTransitionMachine\Entity\StateLine');
+        $stateLineFactory->setDateTimeFactory(new DateTimeFactory());
+        
+        return $stateLineFactory;
+    }
+    
+    /**
+     * Return Mock of MachineEventDispatcher
+     * 
+     * @return MachineEventDispatcher
+     */
+    protected function getMachineEventDispatcher()
+    {
+        return $this
 			->getMockBuilder('Elcodi\Component\StateTransitionMachine\EventDispatcher\MachineEventDispatcher')
 			->setMethods([])
 			->setMockClassName('')
 			->disableOriginalConstructor(true)
 			->getMock();
-		
-        $machineManager = new MachineManager(
-            $machine,
-            $eventDispatcher,
-            $stateLineFactory
+    }
+    
+    /**
+     * Set workflow State
+     * 
+     * @param Object    $order
+     * @param string    $stateName
+     */
+    protected function setWorkflowState(
+        $order, 
+        $stateName
+    ) {
+        $stateLineFactory = $this->getStateLineFactory();
+        
+        $workflowState = $this->getState($stateName);
+        $workflowStateLine = $stateLineFactory
+            ->create()
+            ->setState($workflowState);
+        
+        $workflowStateLines = new ArrayCollection();
+        $workflowStateLines[] = $workflowStateLine;
+        
+        $workflowStateLineStack = StateLineStack::create(
+            $workflowStateLines,
+            $workflowStateLine
         );
-
-        return $machineManager;
+        
+        $order->setWorkflowStateLineStack($workflowStateLineStack);
     }
 }

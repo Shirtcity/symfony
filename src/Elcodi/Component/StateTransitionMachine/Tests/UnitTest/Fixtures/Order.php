@@ -41,6 +41,20 @@ class Order
      * StateLines for
      */
     protected $stateLines;
+    
+    /**
+     * @var StateLineInterface
+     *
+     * Last stateLine in workflowStateLine stack
+     */
+    protected $lastWorkflowStateLine;
+
+    /**
+     * @var Collection
+     *
+     * StateLines for
+     */
+    protected $workflowStateLines;
 
     /**
      * Get StateLineStack.
@@ -66,6 +80,34 @@ class Order
     {
         $this->stateLines = $stateLineStack->getStateLines();
         $this->lastStateLine = $stateLineStack->getLastStateLine();
+
+        return $this;
+    }
+    
+    /**
+     * Get WorkflowStateLineStack.
+     *
+     * @return StateLineStack StateLineStack
+     */
+    public function getWorkflowStateLineStack()
+    {
+        return StateLineStack::create(
+            $this->workflowStateLines,
+            $this->lastWorkflowStateLine
+        );
+    }
+
+    /**
+     * Sets WorkflowStateLineStack.
+     *
+     * @param StateLineStack $stateLineStack StateLineStack
+     *
+     * @return $this Self object
+     */
+    public function setWorkflowStateLineStack(StateLineStack $stateLineStack)
+    {
+        $this->workflowStateLines = $stateLineStack->getStateLines();
+        $this->lastWorkflowStateLine = $stateLineStack->getLastStateLine();
 
         return $this;
     }

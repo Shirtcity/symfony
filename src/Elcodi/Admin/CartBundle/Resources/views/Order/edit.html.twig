@@ -81,22 +81,22 @@
                             </td>
                         </tr>
                         {% for stateLine in allStates %}
-                            {% if 'un' in stateLine.name or 'no' in stateLine.name %}
+                            {% if 'un' in stateLine.state.name or 'no' in stateLine.state.name %}
                                 {% set colorClass = 'bg-warning' %}
                             {% else  %}
                                 {% set colorClass = 'bg-ok' %}
                             {% endif %}
 
-                            {% if 'paid' in stateLine.name  %}
+                            {% if 'paid' in stateLine.state.name  %}
                                 {% set iconClass = 'icon-credit-card' %}
-                            {% elseif 'ship' in stateLine.name  %}
+                            {% elseif 'ship' in stateLine.state.name  %}
                                 {% set iconClass = 'icon-truck' %}
                             {% endif %}
                             <tr>
                                 <td>
                                     <i class="{{ iconClass }} {{ colorClass }} mr-s"></i>
                                     <em></em>
-                                    {{ "common.order.states.#{stateLine.name}"|trans }}
+                                    {{ "common.order.states.#{stateLine.state.name}"|trans }}
                                     <em></em>
                                     ( {{ stateLine.description }} )
                                 </td>
@@ -125,7 +125,7 @@
                 {% endfor %}
             </div>
             <div class="box-background ta-c mb-n">
-                {% if nextProductionTransitions is empty %}
+                {% if nextProductionTransitions is null %}
                     <a href="{{ url('admin_order_initialize_production_state_machine', {
                         id: order.id
                     }) }}" class="button-secondary">
@@ -144,7 +144,7 @@
                 {% endfor %}
             </div>
             <div class="box-background ta-c mb-n">
-                {% if nextShippingTransitions is empty %}
+                {% if nextShippingTransitions is null %}
                     <a href="{{ url('admin_order_initialize_shipping_state_machine', {
                         id: order.id
                     }) }}" class="button-secondary">
