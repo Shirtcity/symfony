@@ -116,14 +116,6 @@ class StateData extends AbstractFixture
                 'name' => 'delivery failed',
                 'icon' => 'rocket',
             ),
-            array( // row #22
-                'name' => 'test!',
-                'icon' => 'train',
-            ),
-            array( // row #23
-                'name' => 'test',
-                'icon' => 'train',
-            ),
         );
         
         foreach ($states as $stateData) {

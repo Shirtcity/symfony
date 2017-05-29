@@ -315,9 +315,8 @@ class MachineManager
     {
         $this->checkBlockingByWorkflowStateMachineConfiguration();
         
-        return $this->workflowBlockStates && $this->workflowStateLineStackGetterName
-                ? true
-                : false;
+        return $this->workflowBlockStates && 
+               $this->workflowStateLineStackGetterName;
     }
     
     /**
@@ -376,11 +375,12 @@ class MachineManager
     {
         $workflowStateLineStackGetterName = $this->workflowStateLineStackGetterName;
         
-        $this->checkWorkflowStateLineStackGetterName($object, $workflowStateLineStackGetterName);   
+        $this->checkWorkflowStateLineStackGetterName(
+            $object, 
+            $workflowStateLineStackGetterName
+        );
         
-        $workflowStateLineStack = $object->$workflowStateLineStackGetterName();
-        
-        return $workflowStateLineStack;
+        return $object->$workflowStateLineStackGetterName();
     }
     
     
