@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Process\ProcessBuilder;
 
 use Elcodi\Component\Media\Adapter\Combine\Interfaces\CombineAdapterInterface;
-use Elcodi\Component\Media\ElcodiMediaImageResizeTypes;
 
 /**
  * Class ImageMagickResizerAdapter.
@@ -34,8 +33,27 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
 	 */
 	private $designsPreviewPath;
     
+    /**
+     * @var ProcessBuilder
+     * 
+     * Process builder
+     */
     private $processBuilder;
 
+    /**
+     * @var File 
+     * 
+     * Original image file
+     */
+    private $originalFile;
+    
+    /**     
+     * @var File
+     * 
+     * Combined image file 
+     */
+    private $combinedFile;
+    
     /**
      * Constructor method.
      *
@@ -53,9 +71,9 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
     /**
      * Generate Thumbnail images with ImageMagick.
      *
-     * @param string $imageData Image Data
-     * @param array  $texts    Texts
-     * @param array  $designs  Designs
+     * @param string $imageData             Image Data
+     * @param array  $textVariantsArray     Texts
+     * @param array  $designVariantsArray   Designs
      *
      * @return string Combined image data
      *
@@ -63,66 +81,57 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
      */
     public function combine(
         $imageData,
-        $texts,
-		$designs
-    ) {
-        $originalFile = new File(tempnam(sys_get_temp_dir(), '_original'));
-        $resizedFile = new File(tempnam(sys_get_temp_dir(), '_resize'));
-
-        file_put_contents($originalFile, $imageData);
-
-        //ImageMagick params
-        $this->processBuilder = new ProcessBuilder();        
-        $this->setDefaultImageSettings($originalFile);      
+        $textVariantsArray,
+		$designVariantsArray
+    ) {    
+        $this->createImageFilesObjects();
         
+        file_put_contents($this->originalFile, $imageData);
 
-		if (!empty($texts)) {
-            
-            $this->setTexts($texts);
-			
-		}		
-		
-		if (!empty($designs)) {
-			foreach ($designs as $designVariant) {
-                if ($designVariant->getDesign() === null) {
-                    continue;
-                }
-                
-				$designName = $this->designsPreviewPath . '/' .
-					$designVariant->getDesign()->getId() . '/0/0/'. 
-					$designVariant->getDesign()->getPreviewFileName();
-				
-				$this->processBuilder->add($designName);
-				$this->processBuilder->add('-geometry')->add('+'.$designVariant->getPosX().'+'.$designVariant->getPosY());
-				$this->processBuilder->add('-composite');				
-			}
-		}
+        $this->processBuilder = new ProcessBuilder();
+        
+        $this
+            ->setDefaultImageSettings()
+            ->setTexts($textVariantsArray)
+            ->setDesigns($designVariantsArray)
+            ->processCombineImage();	        
 
-        $proc = $this->processBuilder
-			->add('-resize')->add(200)
-            ->add($resizedFile->getPathname())
-            ->getProcess();
+        $imageContent = file_get_contents($this->combinedFile->getRealPath());
 
-        $proc->run();
-
-        if (false !== strpos($proc->getOutput(), 'ERROR')) {
-            throw new \RuntimeException($proc->getOutput());
-        }
-
-        $imageContent = file_get_contents($resizedFile->getRealPath());
-
-        unlink($originalFile);
-        unlink($resizedFile);
+        $this->deleteImageFilesObjects();
 
         return $imageContent;
     }
     
-    private function setDefaultImageSettings($originalFile)
+    /**
+     * Creates files objects
+     */
+    private function createImageFilesObjects()
+    {
+        $this->originalFile = new File(tempnam(sys_get_temp_dir(), '_original'));
+        $this->combinedFile = new File(tempnam(sys_get_temp_dir(), '_resize'));
+    }
+    
+    /**
+     * Delets files objects
+     */
+    private function deleteImageFilesObjects()
+    {
+        unlink($this->originalFile);
+        unlink($this->combinedFile);
+    }
+    
+    /**
+     * Sets default settings
+     * 
+     * @return $this
+     */
+    private function setDefaultImageSettings()
     {
         $this->processBuilder
             ->add($this->imageConverterBin)
             //Crop white surrounding image
-            ->add($originalFile->getPathname())
+            ->add($this->originalFile->getPathname())
             //We use a CMKY profile and a sRGB
             ->add('-profile')
             ->add($this->profile);
@@ -130,89 +139,63 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
         return $this;
     }
     
-    private function setTexts($texts)
+    /**
+     * Sets texts
+     * 
+     * @param Array $textVariantsArray
+     * @return $this
+     */
+    private function setTexts($textVariantsArray)
+    {   
+        $textCombineAdapter = new TextCombineAdapter(
+            $this->processBuilder, 
+            $textVariantsArray
+        );
+        
+        $this->processBuilder = $textCombineAdapter
+            ->setTexts();
+        
+        return $this;
+    }  
+    
+    /**
+     * Sets designs
+     * 
+     * @param array $designVariantsArray
+     * @return $this
+     */
+    private function setDesigns($designVariantsArray)
     {
-        foreach ($texts as $textVariant) { 
-            
-            if ( null === $textVariant->getText()) {
-                continue;
-            }
-            
-            $this
-                ->setFoilColor($textVariant)
-                ->setFont($textVariant)
-                ->setPosition($textVariant)
-                ->setFontSize()
-                ->setTextContent($textVariant);
+        $designCombineAdapter = new DesignCombineAdapter(
+            $this->processBuilder, 
+            $designVariantsArray, 
+            $this->designsPreviewPath
+        );
+        
+        $this->processBuilder = $designCombineAdapter
+            ->setDesigns();
+        
+        return $this;        
+    }
+    
+    /**
+     * Process image combine
+     * 
+     * @return $this
+     * @throws \RuntimeException
+     */
+    private function processCombineImage()
+    {        
+        $processor = $this->processBuilder
+			->add('-resize')->add(200)
+            ->add($this->combinedFile->getPathname())
+            ->getProcess();
+        
+        $processor->run();
+        
+        if (false !== strpos($processor->getOutput(), 'ERROR')) {
+            throw new \RuntimeException($processor->getOutput());
         }
-        
-        return $this;
-    }
-    
-    private function setFoilColor($textVariant)
-    {
-        $foilColorHexCode = $textVariant
-            ->getText()
-            ->getFoilColor()
-            ->getCode();        
-      
-        $this->processBuilder
-            ->add('-fill')
-            ->add($foilColorHexCode);
-        
-        return $this;
-    }
-    
-    private function setFont($textVariant)
-    {
-        $fontName = $textVariant
-            ->getText()
-            ->getFont()
-            ->getName();
-        
-        $this->processBuilder
-            ->add('-font')
-            ->add($fontName);
-        
-        return $this;
-    }
-    
-    private function setPosition($textVariant)
-    {
-        $positionX = $textVariant->getPosX();
-        $positionY = $textVariant->getPosY();
-        
-        $this->processBuilder
-            ->add('-gravity')
-            ->add('NorthWest')
-            ->add('-annotate')
-            ->add("+$positionX+$positionY");
-        
-        return $this;
-    }
-    
-    private function setFontSize()
-    {
-        $this->processBuilder
-            ->add('-weight')
-            ->add(14);
-
-        $this->processBuilder
-            ->add('-pointsize')
-            ->add(20);
-        
-        return $this;
-    }
-    
-    private function setTextContent($textVariant)
-    {
-        $textContnet = $textVariant
-            ->getText()
-            ->getContent();            
-        
-        $this
-            ->processBuilder
-            ->add($textContnet);
         
         return $this;
     }
