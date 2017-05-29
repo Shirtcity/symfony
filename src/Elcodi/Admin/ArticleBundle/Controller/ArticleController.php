@@ -168,8 +168,8 @@ class ArticleController extends AbstractAdminController
             // @TODO: move to doctrine preFlush event listener?
             $articleProductPrintSides = $article->getArticleProduct()->getArticleProductPrintSides();
             
-            foreach ($articleProductPrintSides as $articleProductPrintSide) { 
-                if (!$articleProductPrintSide->isEnabled()) {
+            foreach ($articleProductPrintSides as $articleProductPrintSide) {
+                if ($articleProductPrintSide->isEnabled() === false) {
                     $article->getArticleProduct()->removeArticleProductPrintSide($articleProductPrintSide);
                 }
             }

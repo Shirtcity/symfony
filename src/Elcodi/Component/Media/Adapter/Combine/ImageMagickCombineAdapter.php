@@ -33,6 +33,8 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
 	 * Designs preview path 
 	 */
 	private $designsPreviewPath;
+    
+    private $processBuilder;
 
     /**
      * Constructor method.
@@ -70,36 +72,14 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
         file_put_contents($originalFile, $imageData);
 
         //ImageMagick params
-        $pb = new ProcessBuilder();
-        $pb
-            ->add($this->imageConverterBin)
-            //Crop white surrounding image
-            ->add($originalFile->getPathname())
-            //We use a CMKY profile and a sRGB
-            ->add('-profile')
-            ->add($this->profile);
+        $this->processBuilder = new ProcessBuilder();        
+        $this->setDefaultImageSettings($originalFile);      
+        
 
 		if (!empty($texts)) {
-			foreach ($texts as $textVariant) { 
-                if ( null === $textVariant->getText()) {
-                    continue;
-                }
-				// set text color
-				$pb->add('-fill')->add($textVariant->getText()->getFoilColor()->getCode());
-				// set font
-				$pb->add('-font')->add($textVariant->getText()->getFont()->getName());
-				// set coords start point
-				$pb->add('-gravity')->add('NorthWest');
-				// set font size
-				$pb->add('-weight')->add(14);
-				$pb->add('-pointsize')->add(20);
-				// set coords and text
-				$pb
-					->add('-annotate')
-					->add('+'.$textVariant->getPosX().'+'.$textVariant->getPosY())
-					->add($textVariant->getText()->getContent());
-				
-			}
+            
+            $this->setTexts($texts);
+			
 		}		
 		
 		if (!empty($designs)) {
@@ -112,13 +92,13 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
 					$designVariant->getDesign()->getId() . '/0/0/'. 
 					$designVariant->getDesign()->getPreviewFileName();
 				
-				$pb->add($designName);
-				$pb->add('-geometry')->add('+'.$designVariant->getPosX().'+'.$designVariant->getPosY());
-				$pb->add('-composite');				
+				$this->processBuilder->add($designName);
+				$this->processBuilder->add('-geometry')->add('+'.$designVariant->getPosX().'+'.$designVariant->getPosY());
+				$this->processBuilder->add('-composite');				
 			}
 		}
 
-        $proc = $pb
+        $proc = $this->processBuilder
 			->add('-resize')->add(200)
             ->add($resizedFile->getPathname())
             ->getProcess();
@@ -135,5 +115,105 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
         unlink($resizedFile);
 
         return $imageContent;
+    }
+    
+    private function setDefaultImageSettings($originalFile)
+    {
+        $this->processBuilder
+            ->add($this->imageConverterBin)
+            //Crop white surrounding image
+            ->add($originalFile->getPathname())
+            //We use a CMKY profile and a sRGB
+            ->add('-profile')
+            ->add($this->profile);
+        
+        return $this;
+    }
+    
+    private function setTexts($texts)
+    {
+        foreach ($texts as $textVariant) { 
+            
+            if ( null === $textVariant->getText()) {
+                continue;
+            }
+            
+            $this
+                ->setFoilColor($textVariant)
+                ->setFont($textVariant)
+                ->setPosition($textVariant)
+                ->setFontSize()
+                ->setTextContent($textVariant);
+        }
+        
+        return $this;
+    }
+    
+    private function setFoilColor($textVariant)
+    {
+        $foilColorHexCode = $textVariant
+            ->getText()
+            ->getFoilColor()
+            ->getCode();        
+      
+        $this->processBuilder
+            ->add('-fill')
+            ->add($foilColorHexCode);
+        
+        return $this;
+    }
+    
+    private function setFont($textVariant)
+    {
+        $fontName = $textVariant
+            ->getText()
+            ->getFont()
+            ->getName();
+        
+        $this->processBuilder
+            ->add('-font')
+            ->add($fontName);
+        
+        return $this;
+    }
+    
+    private function setPosition($textVariant)
+    {
+        $positionX = $textVariant->getPosX();
+        $positionY = $textVariant->getPosY();
+        
+        $this->processBuilder
+            ->add('-gravity')
+            ->add('NorthWest')
+            ->add('-annotate')
+            ->add("+$positionX+$positionY");
+        
+        return $this;
+    }
+    
+    private function setFontSize()
+    {
+        $this->processBuilder
+            ->add('-weight')
+            ->add(14);
+
+        $this->processBuilder
+            ->add('-pointsize')
+            ->add(20);
+        
+        return $this;
+    }
+    
+    private function setTextContent($textVariant)
+    {
+        $textContnet = $textVariant
+            ->getText()
+            ->getContent();            
+        
+        $this
+            ->processBuilder
+            ->add($textContnet);
+        
+        return $this;
     }
 }
