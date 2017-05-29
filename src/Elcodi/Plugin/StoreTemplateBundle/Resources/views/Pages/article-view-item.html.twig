@@ -4,7 +4,7 @@
 {% extends '@StoreTemplate/Layout/_layout.html.twig' %}
 
 
-{% block title %}Bamboo - {{ 'template.store_template_bundle.article.view_item.article'|trans }} {{ article.name }}{% endblock title %}
+{% block title %}Shirtcity - {{ 'template.store_template_bundle.article.view_item.article'|trans }} {{ article.name }}{% endblock title %}
 
 {% block meta_tags %}
     {% if article.metaTitle is not empty %}
@@ -20,7 +20,7 @@
 
 {% block breadcrumb %}
     <li>
-        <a href="{{ url('store_category_purchasables_list', { slug: article.sectionCategories.first.slug, id: article.sectionCategories.first.id }) }}">{{ article.sectionCategories.first }}</a> <i class="fa fa-angle-right"></i>
+        <a href="{{ url('store_category_purchasables_list', { slug: article.articleProduct.product.sections.first.slug, id: article.articleProduct.product.sections.first.id }) }}">{{ article.articleProduct.product.sections.first }}</a> <i class="fa fa-angle-right"></i>
     </li>
     <li>
         <a href="{{ url('store_article_view', { 'slug': article.slug, 'id': article.id }) }}"><strong>{{ article.name }}</strong></a>
@@ -32,7 +32,7 @@
     {% set validImage = article|print_side_preview_image('front') %}
 
     <div class="article-view">
-       <h1 class="article-title">{{ article.name }}</h1>
+       <h1 class="article-title">{{ articleName }}</h1>
        <div class="grid">
            <div class="col-1-2">
             {% block article_image %}

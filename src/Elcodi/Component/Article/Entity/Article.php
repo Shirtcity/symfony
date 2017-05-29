@@ -49,14 +49,7 @@ class Article extends Purchasable implements ArticleInterface
 	 * 
 	 * Article products
      */
-    protected $articleProduct;
-	
-	/**
-     * @var Collection
-     *
-     * Many-to-Many association between articles and section categories.
-     */
-    protected $sectionCategories;
+    protected $articleProduct;	
 	
 	/**
      * Constructor
@@ -64,68 +57,7 @@ class Article extends Purchasable implements ArticleInterface
     public function __construct()
     {
         $this->attributes = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-	
-    /**
-     * Set section categories.
-     *
-     * @param Collection $sectionCategories SectionCategories
-     *
-     * @return $this Self object
-     */
-    public function setSectionCategories(Collection $sectionCategories)
-    {
-        $this->sectionCategories = $sectionCategories;
-
-        return $this;
-    }
-
-    /**
-     * Add section category.
-     *
-     * @param CategoryInterface $sectionCategory SectionCategory
-     *
-     * @return $this Self object
-     */
-    public function addSectionCategory(CategoryInterface $sectionCategory)
-    {
-        if (!$this
-            ->sectionCategories
-            ->contains($sectionCategory)
-        ) {
-            $this
-                ->sectionCategories
-                ->add($sectionCategory);
-        }
-
-        return $this;
-    }
-	
-	/**
-     * Get section categories.
-     *
-     * @return Collection SectionCategories
-     */
-    public function getSectionCategories()
-	{
-		return $this->sectionCategories;
-	}
-
-    /**
-     * Remove section category.
-     *
-     * @param CategoryInterface $sectionCategory SectionCategory
-     *
-     * @return $this Self object
-     */
-    public function removeSectionCategory(CategoryInterface $sectionCategory)
-    {
-        $this
-            ->sectionCategories
-            ->removeElement($sectionCategory);
-
-        return $this;
-    }       
+    }          
 
     /**
      * Sets Type.

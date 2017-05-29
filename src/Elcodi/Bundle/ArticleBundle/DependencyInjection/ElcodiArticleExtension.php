@@ -153,6 +153,7 @@ class ElcodiArticleExtension extends AbstractExtension implements EntitiesOverri
             'Elcodi\Component\Article\Entity\Interfaces\ArticleInterface' => 'elcodi.entity.article.class',
             'Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface' => 'elcodi.entity.category.class',
 			'Elcodi\Component\Article\Entity\Interfaces\ArticleProductInterface' => 'elcodi.entity.article_product.class',
+            'Elcodi\Component\Article\Entity\Interfaces\ArticleProductPrintSideInterface' => 'elcodi.entity.article_product_print_side.class',
         ];
     }
 

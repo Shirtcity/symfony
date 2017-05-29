@@ -24,7 +24,7 @@ use Elcodi\Component\Attribute\Entity\Interfaces\AttributeInterface;
 /**
  * Interface ArticleInterface.
  */
-interface ArticleInterface extends PurchasableInterface, CategorizableInterface
+interface ArticleInterface extends PurchasableInterface
 {
     /**
      * Adds an attribute if not already in the collection.
@@ -91,11 +91,4 @@ interface ArticleInterface extends PurchasableInterface, CategorizableInterface
      * @return ArticleProductInterface
      */
     public function getArticleProduct();
-	
-	/**
-     * Get section categories.
-     *
-     * @return Collection SectionCategories
-     */
-    public function getSectionCategories();
 }

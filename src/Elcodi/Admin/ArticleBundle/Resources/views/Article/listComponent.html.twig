@@ -42,12 +42,10 @@
         {% endif %}
     </td>
     <td>
-        <a href="{{ url('admin_article_edit', { id: entity.id }) }}">
-            <strong>{{ entity.name }}</strong>
-        </a>
-
-        {% set path = url('store_article_view', { id: entity.id, slug: entity.slug }) %}
-        {% set relativePath = path('store_article_view', { id: entity.id, slug: entity.slug }) %}
+        <a href="{{ url('admin_article_edit', { id: entity.id }) }}"><strong>{{ entity|purchasable_name }}</strong></a>
+		
+		{% set path = url('store_article_view', { id: entity.id, slug: entity.slug }) %}
+		{% set relativePath = path('store_article_view', { id: entity.id, slug: entity.slug }) %}
         <p class="fz-s">
             <a target="_blank" href="{{ path }}">{{ relativePath }}</a>
         </p>

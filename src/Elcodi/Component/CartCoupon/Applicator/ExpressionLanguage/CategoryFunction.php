@@ -40,7 +40,9 @@ class CategoryFunction implements ExpressionLanguageFunctionInterface
             $purchasable = $arguments['purchasable'];
 
             $categoryIds = $purchasable
-                ->getSectionCategories()
+                ->getArticleProduct()
+                ->getProduct()
+                ->getSections()
                 ->map(function (CategoryInterface $category) {
                     return $category->getId();
                 })
