@@ -108,16 +108,14 @@ class ArticleNameResolver implements PurchasableNameResolverInterface
             ->getArticleProductPrintSides()
             ->filter( function ($articleProductPrintSide) {
                 
-                return $articleProductPrintSide->getPrintableVariants()->count() > 0;
+                return $articleProductPrintSide->getDesignPrintableVariants()->count() > 0;
                 
             })
             ->first()
-            ->getPrintableVariants()
+            ->getDesignPrintableVariants()
             ->map( function ($printableVariant) use (&$designName) {  
                 
-                if ($printableVariant->getType() == 'DesignVariant') {
-                    $designName .= $printableVariant->getDesign()->getName() . $this->separator;
-                } 
+                $designName .= $printableVariant->getDesign()->getName() . $this->separator; 
                 
             });
         

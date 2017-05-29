@@ -42,6 +42,8 @@ class ProductData extends AbstractFixture implements DependentFixtureInterface
         
         $printMethod = $this->getReference('print-method');
         
+        $sectionCategory = $this->getReference('section-category');
+        
         $product = $productReference
             ->create()
             ->setName('T-Shirt')
@@ -53,7 +55,8 @@ class ProductData extends AbstractFixture implements DependentFixtureInterface
 			->setWeight(10)
             ->setEnabled(true)
 			->setPrices($productPrices)
-            ->addPrintMethod($printMethod);
+            ->addPrintMethod($printMethod)
+			->addSection($sectionCategory);
         
         $this->storeProductImage(
             $product,
@@ -114,6 +117,7 @@ class ProductData extends AbstractFixture implements DependentFixtureInterface
             'Elcodi\Bundle\CurrencyBundle\DataFixtures\ORM\CurrencyData',
             'Elcodi\Bundle\StoreBundle\DataFixtures\ORM\StoreData',
 			'Elcodi\Bundle\ProductBundle\DataFixtures\ORM\PrintMethodData',
+            'Elcodi\Bundle\CategoryBundle\DataFixtures\ORM\CategoryData',
         ];
     }
 }
