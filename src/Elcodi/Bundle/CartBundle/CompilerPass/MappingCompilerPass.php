@@ -43,6 +43,7 @@ class MappingCompilerPass extends AbstractElcodiMappingCompilerPass
                     'cart_line',
                     'order',
                     'order_line',
+                    'order_event',
                 ]
             );
     }

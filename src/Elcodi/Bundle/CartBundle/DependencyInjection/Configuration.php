@@ -64,6 +64,13 @@ class Configuration extends AbstractConfiguration
                             'default',
                             true
                         ))
+                        ->append($this->addMappingNode(
+                            'order_event',
+                            'Elcodi\Component\Cart\Entity\OrderEvent',
+                            '@ElcodiCartBundle/Resources/config/doctrine/OrderEvent.orm.yml',
+                            'default',
+                            true
+                        ))
                     ->end()
                 ->end()
                 ->arrayNode('cart')

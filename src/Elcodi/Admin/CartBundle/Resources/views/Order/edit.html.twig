@@ -77,33 +77,33 @@
                             </td>
                             <td class="ta-r">
                                 {% include 'AdminCartBundle:Order:date.html.twig' with {
-                                date: allStates.0.createdAt,
+                                    date: allStatesAndEvents.0.createdAt,
                                 } %}
                             </td>
                         </tr>
-                        {% for stateLine in allStates %}
-                            {% if 'un' in stateLine.state.name or 'no' in stateLine.state.name %}
+                        {% for line in allStatesAndEvents %}
+                            {% if 'un' in line.name or 'no' in line.name %}
                                 {% set colorClass = 'bg-warning' %}
                             {% else  %}
                                 {% set colorClass = 'bg-ok' %}
                             {% endif %}
 
-                            {% if 'paid' in stateLine.state.name  %}
-                                {% set iconClass = 'icon-credit-card' %}
-                            {% elseif 'ship' in stateLine.state.name  %}
-                                {% set iconClass = 'icon-truck' %}
+                            {% if line.state.icon  %}
+                                {% set iconClass = 'icon-' ~ line.state.icon %}
+                            {% else %}
+                                {% set iconClass = 'icon-space-shuttle' %}
                             {% endif %}
                             <tr>
                                 <td>
                                     <i class="{{ iconClass }} {{ colorClass }} mr-s"></i>
                                     <em></em>
-                                    {{ "common.order.states.#{stateLine.state.name}"|trans }}
+                                    {{ line.name }}
                                     <em></em>
-                                    ( {{ stateLine.description }} )
+                                    ( {{ line.description }} )
                                 </td>
                                 <td class="ta-r">
                                     {% include 'AdminCartBundle:Order:date.html.twig' with {
-                                    date: stateLine.createdAt,
+                                        date: line.createdAt,
                                     } %}
                                 </td>
                             </tr>

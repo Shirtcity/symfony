@@ -137,7 +137,8 @@ class OrderFactory extends AbstractPurchasableFactory
             ->setPurchasableAmount($this->createZeroAmountMoney())
             ->setAmount($this->createZeroAmountMoney())
             ->setCouponAmount($this->createZeroAmountMoney())
-            ->setShippingAmount($this->createZeroAmountMoney());
+            ->setShippingAmount($this->createZeroAmountMoney())
+            ->setOrderEvents(new ArrayCollection());
 
         $paymentStateLineStack = $this
             ->paymentMachineManager

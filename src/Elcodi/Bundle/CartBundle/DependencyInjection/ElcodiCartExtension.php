@@ -96,6 +96,11 @@ class ElcodiCartExtension extends AbstractExtension implements EntitiesOverridab
             'elcodi.entity.order_line.mapping_file' => $config['mapping']['order_line']['mapping_file'],
             'elcodi.entity.order_line.manager' => $config['mapping']['order_line']['manager'],
             'elcodi.entity.order_line.enabled' => $config['mapping']['order_line']['enabled'],
+            
+            'elcodi.entity.order_event.class' => $config['mapping']['order_event']['class'],
+            'elcodi.entity.order_event.mapping_file' => $config['mapping']['order_event']['mapping_file'],
+            'elcodi.entity.order_event.manager' => $config['mapping']['order_event']['manager'],
+            'elcodi.entity.order_event.enabled' => $config['mapping']['order_event']['enabled'],
 
             'elcodi.cart_save_in_session' => $config['cart']['save_in_session'],
             'elcodi.cart_session_field_name' => $config['cart']['session_field_name'],
@@ -161,6 +166,7 @@ class ElcodiCartExtension extends AbstractExtension implements EntitiesOverridab
             'Elcodi\Component\Cart\Entity\Interfaces\OrderInterface' => 'elcodi.entity.order.class',
             'Elcodi\Component\Cart\Entity\Interfaces\CartLineInterface' => 'elcodi.entity.cart_line.class',
             'Elcodi\Component\Cart\Entity\Interfaces\OrderLineInterface' => 'elcodi.entity.order_line.class',
+            'Elcodi\Component\Cart\Entity\Interfaces\OrderEventInterface' => 'elcodi.entity.order_event.class',
         ];
     }
 

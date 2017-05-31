@@ -173,7 +173,7 @@ class DoctrineContext extends AbstractElcodiContext
         if (!$this->debug) {
             $command .= '--quiet ';
         }
-
+        
         $input = new StringInput($command);
         $this
             ->application
