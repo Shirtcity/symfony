@@ -2,10 +2,12 @@
 
 namespace Elcodi\Bundle\PrintableBundle\Entity;
 
+use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\PrintableVariantInterface;
+
 /**
  * PrintableVariant
  */
-abstract class PrintableVariant
+abstract class PrintableVariant implements PrintableVariantInterface
 {
     /**
      * @var integer

@@ -1,29 +1,14 @@
 <?php
 
-/*
- * This file is part of the Elcodi package.
- *
- * Copyright (c) 2014-2016 Elcodi Networks S.L.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * Feel free to edit as you please, and have fun.
- *
- * @author Marc Morera <yuhu@mmoreram.com>
- * @author Aldo Chiecchia <zimage@tiscali.it>
- * @author Elcodi Team <tech@elcodi.com>
- */
-
 namespace Elcodi\Component\Article\Entity;
 
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 use Elcodi\Component\Attribute\Entity\Interfaces\AttributeInterface;
-use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleProductInterface;
-use Elcodi\Component\Article\PriceResolver\ArticlePriceResolver;
+use Elcodi\Component\Article\Validator\Constraint\PrintablePosition;
 
 /**
  * Class Article entity.
@@ -176,4 +161,10 @@ class Article extends Purchasable implements ArticleInterface
     {
         return $this->articleProduct;
     }	
+    /*
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addConstraint(new \Elcodi\Component\Article\Validator\Constraint\ArticleConstraint());
+        $metadata->addConstraint(new \Elcodi\Component\Article\Validator\Constraint\ArticleProductConstraint());
+    }*/
 }

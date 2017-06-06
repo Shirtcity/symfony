@@ -161,7 +161,10 @@ class ArticleController extends AbstractAdminController
     public function editAction(
         FormInterface $form,
         ArticleInterface $article
-    ) {			
+    ) {	
+      /* foreach ($form->getErrors() as $key => $error) {
+	var_dump($error);
+}*/
 		if ($form->isValid()) {	
             
             // delete disabled print sides

@@ -8,3 +8,9 @@ services:
         arguments:
             - '@elcodi.repository.purchasable'
             - '@elcodi.repository.article'
+            
+    #
+    # Printable Position Adapter
+    #
+    elcodi.article.adapter.printable_position:
+        class: Elcodi\Component\Article\Adapter\PrintablePositionAdapter

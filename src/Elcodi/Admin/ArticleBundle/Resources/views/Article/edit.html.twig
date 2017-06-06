@@ -65,6 +65,13 @@
 
 {% block content %}
     {% if article.id %}
+
+		{% if form.vars.errors|length > 0 %}
+			{% for error in form.vars.errors %}
+				<p class="msg-warning">{{ error.message }}</p>
+			{% endfor %}
+		{% endif %}  
+
         {{ render(url('admin_article_edit_component', { id: article.id })) }}
 	 {% else %}
         {{ render(url('admin_article_new_component')) }}

@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Process\ProcessBuilder;
 
 use Elcodi\Component\Media\Adapter\Combine\Interfaces\CombineAdapterInterface;
-
+use Elcodi\Component\Media\Adapter\Resizer\ImageMagickResizeAdapter;
 /**
  * Class ImageMagickResizerAdapter.
  */
@@ -166,10 +166,13 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
      */
     private function setDesigns($designVariantsArray)
     {
+        $resizeAdapter = new ImageMagickResizeAdapter($this->imageConverterBin, $this->profile);
+        
         $designCombineAdapter = new DesignCombineAdapter(
             $this->processBuilder, 
             $designVariantsArray, 
-            $this->designsPreviewPath
+            $this->designsPreviewPath,
+            $resizeAdapter
         );
         
         $this->processBuilder = $designCombineAdapter
