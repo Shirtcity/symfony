@@ -160,12 +160,16 @@ class ArticleController extends AbstractAdminController
      */
     public function editAction(
         FormInterface $form,
-        ArticleInterface $article
+        ArticleInterface $article,
+        Request $request
     ) {	
-      /* foreach ($form->getErrors() as $key => $error) {
-	var_dump($error);
+       
+       /*foreach ($form->getErrors(true) as $key => $error) {
+	//echo $error->getMessage();
+         //  var_dump($error);
 }*/
-		if ($form->isValid()) {	
+        
+		if ($form->isValid() && !$request->isXmlHttpRequest()) {	
             
             // delete disabled print sides
             // @TODO: move to doctrine preFlush event listener?
@@ -188,12 +192,12 @@ class ArticleController extends AbstractAdminController
 			
 			return $this->redirectToRoute('admin_article_list');
         }
-		
+        
         return [
             'article' => $article,
             'form'    => $form->createView(),
         ];
-    }
+    }    
 	
     /**
      * Enable entity

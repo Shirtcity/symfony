@@ -32,6 +32,38 @@ interface PrintableVariantInterface
     public function setPosY($posY);
     
     /**
+     * Get printable width
+     * 
+     * @return integer
+     */
+    public function getWidth();
+
+    /**
+     * Set printable width
+     * 
+     * @param integer $width
+     * 
+     * @return AbstractPrintable
+     */
+    public function setWidth($width);
+
+    /**
+     * Get printable height
+     * 
+     * @return integer
+     */
+    public function getHeight();
+
+    /**
+     * Set printable height
+     * 
+     * @param integer $height
+     * 
+     * @return AbstractPrintable
+     */
+    public function setHeight($height);
+    
+    /**
      * Returns the Entity Type
      * 
      * @return string

@@ -24,14 +24,20 @@ services:
             
      
     #
-    # Logic
+    # Printables Validation
     #
-    elcodi.validator.article.printables_position:
-        class: Elcodi\Component\Article\Validator\PrintablesPositionValidator
+    
+    #
+    # Printable position
+    #
+    elcodi.validator.article.printable_position:
+        class: Elcodi\Component\Article\Validator\PrintablePositionValidator
         arguments:
             - '@elcodi.article.adapter.printable_position'
+            - '@elcodi.article.adapter.printable_size'
         tags:
-            - { name: validator.constraint_validator, alias: elcodi.validator.article.printables_position }
+            - { name: validator.constraint_validator, alias: elcodi.validator.article.printable_position }
+    
             
 
 

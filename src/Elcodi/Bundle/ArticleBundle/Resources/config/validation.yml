@@ -18,6 +18,6 @@ Elcodi\Component\Article\Entity\ArticleProduct:
 Elcodi\Component\Article\Entity\ArticleProductPrintSide:
     constraints:
         - Elcodi\Component\Article\Validator\Constraint\ArticleProductPrintSideConstraint: ~
-        - Elcodi\Component\Article\Validator\Constraint\PrintablesPositionConstraint: ~
+        - Elcodi\Component\Article\Validator\Constraint\PrintablePositionConstraint: ~
     
 

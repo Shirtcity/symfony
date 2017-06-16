@@ -14,12 +14,14 @@
             ? url('admin_article_update', { id: article.id })
             : url('admin_article_save')
      %}
-	 
-    {{ form_start(form, { action: formAction}) }}		
+	
+    {{ form_start(form, { action: formAction }) }}		
         <fieldset data-fc-article-id="{{article.id }}">
+			
             {{ elcodi_hook("admin.article_top", {
                 'article': article
             }) }}
+			
 			<div class="box-background pv-s mb-n">
 				<a data-fc-modules="toggle" href="#article-name"><i class="icon-plus-circle"></i> {{ 'admin.article.name.title'|trans }}</a>
 			</div>
@@ -147,7 +149,7 @@
                     </div>
 						
 					<div class="col-2-3">
-						<div data-fc-modules="tabs" class="tabs-box loading">
+						<div data-fc-modules="tabs" class="tabs-box loading">							
 							<section id="tab-design" data-fc-name="design">
 								<div class="box">									
 									{% if article.articleProduct.articleProductPrintSides|length > 0 %} 								

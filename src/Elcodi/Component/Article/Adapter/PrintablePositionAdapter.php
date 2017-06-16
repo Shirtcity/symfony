@@ -53,7 +53,7 @@ class PrintablePositionAdapter
      * 
      * @return Collection
      */
-    private function findPrintAreasClosestX(int $posX)
+    private function findPrintAreasClosestX($posX)
     {        
         $closestX = $this->findClosestXValue($posX);
         
@@ -72,7 +72,7 @@ class PrintablePositionAdapter
      * 
      * @return int
      */
-    private function findClosestXValue(int $posX)
+    private function findClosestXValue($posX)
     {
         $closestX = null;
         
@@ -98,7 +98,7 @@ class PrintablePositionAdapter
      * @return PrintSideAreaInterface
      */
     private function findPrintAreaClosestY(
-        int $posY,
+        $posY,
         Collection $closestPrintAreasPosX
     ) {
         $printSideAreaClosestY = null;

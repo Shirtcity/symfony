@@ -14,3 +14,15 @@ services:
     #
     elcodi.article.adapter.printable_position:
         class: Elcodi\Component\Article\Adapter\PrintablePositionAdapter
+        
+    #
+    # Printable Variant Size Adapter
+    #
+    elcodi.article.adapter.printable_size:
+        class: Elcodi\Component\Article\Adapter\PrintableSizeAdapter
+
+    #
+    # Printable Variant Height Adapter
+    #
+    elcodi.adapter.printable_height:
+        class: Elcodi\Component\Article\Adapter\PrintableHeightAdapter

@@ -12,3 +12,11 @@ services:
         arguments:            
             - '@elcodi.resolver.article_product_color'
             - '@elcodi.manager.article_product_print_sides'
+            
+    #
+    # Printable Varaint
+    #
+    elcodi.event_listener.article.form.printable_variant:
+        class: Elcodi\Component\Article\EventListener\Form\PrintableVariantFormEventListener
+        arguments:            
+            - '@elcodi.adapter.printable_height'

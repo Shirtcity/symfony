@@ -14,16 +14,6 @@ abstract class PrintableVariant implements PrintableVariantInterface
      */
     private $id;
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
     /**
      * @var integer
      */
@@ -34,6 +24,29 @@ abstract class PrintableVariant implements PrintableVariantInterface
      */
     private $posY;
     
+    /**
+     * @var integer
+     * 
+     * Printable width
+     */
+    private $width;
+    
+    /**
+     * @var integer
+     * 
+     * Printable height
+     */
+    private $height;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    } 
 
     /**
      * Set posX
@@ -81,6 +94,52 @@ abstract class PrintableVariant implements PrintableVariantInterface
     public function getPosY()
     {
         return $this->posY;
+    }
+    
+    /**
+     * Get printable width
+     * 
+     * @return integer
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * Set printable width
+     * 
+     * @param integer $width
+     * 
+     * @return AbstractPrintable
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+        return $this;
+    }
+
+    /**
+     * Get printable height
+     * 
+     * @return integer
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    /**
+     * Set printable height
+     * 
+     * @param integer $height
+     * 
+     * @return AbstractPrintable
+     */
+    public function setHeight($height)
+    {
+        $this->height = $height;
+        return $this;
     }
 	
 	/**
