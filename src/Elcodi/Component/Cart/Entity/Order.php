@@ -34,6 +34,7 @@ use Elcodi\Component\Shipping\Entity\ShippingMethod;
 use Elcodi\Component\StateTransitionMachine\Entity\Interfaces\StateLineInterface;
 use Elcodi\Component\StateTransitionMachine\Entity\StateLineStack;
 use Elcodi\Component\User\Entity\Interfaces\CustomerInterface;
+use Elcodi\Component\Cart\Entity\Interfaces\OrderEventInterface;
 
 use Elcodi\Bundle\ProductBundle\Entity\Traits\DimensionsTrait;
 
@@ -197,6 +198,13 @@ class Order implements OrderInterface
      * billing address
      */
     protected $billingAddress;
+    
+    /**
+     * @var Collection
+     *
+     * Order events
+     */
+    protected $orderEvents;
 
     /**
      * Sets Customer.
@@ -632,6 +640,44 @@ class Order implements OrderInterface
     public function setBillingAddress(AddressInterface $billingAddress = null)
     {
         $this->billingAddress = $billingAddress;
+
+        return $this;
+    }
+    
+    /**
+     * Set order Events.
+     *
+     * @param Collection $orderEvents Order events
+     *
+     * @return $this Self object
+     */
+    public function setOrderEvents(Collection $orderEvents)
+    {
+        $this->orderEvents = $orderEvents;
+
+        return $this;
+    }
+
+    /**
+     * Get order events.
+     *
+     * @return Collection Order events
+     */
+    public function getOrderEvents()
+    {
+        return $this->orderEvents;
+    }
+
+    /**
+     * Add order event.
+     *
+     * @param OrderEventInterface $orderEvent Order event
+     *
+     * @return $this Self object
+     */
+    public function addOrderEvent(OrderEventInterface $orderEvent)
+    {
+		$this->orderEvents->add($orderEvent);
 
         return $this;
     }

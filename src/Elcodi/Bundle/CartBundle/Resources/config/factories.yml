@@ -45,3 +45,12 @@ services:
         parent: elcodi.factory.abstract.purchasable
         calls:
             - [setEntityNamespace, ["%elcodi.entity.order_line.class%"]]
+            
+    #
+    # Factory for entity order_event
+    #
+    elcodi.factory.order_event:
+        class: Elcodi\Component\Cart\Factory\OrderEventFactory
+        calls:
+            - [setEntityNamespace, ["%elcodi.entity.order_event.class%"]]
+            - [setDateTimeFactory, ["@elcodi.factory.datetime"]]

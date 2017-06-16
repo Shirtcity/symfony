@@ -44,7 +44,7 @@ class CategoryData extends AbstractFixture
         $categoryFactory = $this->get('elcodi.factory.category');
         $categoryObjectManager = $this->get('elcodi.object_manager.category');
         $entityTranslator = $this->get('elcodi.entity_translator');
-
+        
         /**
          * Women's Category
          *
@@ -60,7 +60,7 @@ class CategoryData extends AbstractFixture
             ->setEnabled(true)
             ->setRoot(true)
             ->setPosition(0);
-
+        
         $categoryObjectManager->persist($womenCategory);
         $this->addReference('category-women', $womenCategory);
         $categoryObjectManager->flush($womenCategory);
