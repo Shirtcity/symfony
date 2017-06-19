@@ -2,10 +2,3 @@ Elcodi\Bundle\CategoryBundle\Entity\ProductCategory:
     type: entity
     table: product_category
     repositoryClass: Elcodi\Bundle\CategoryBundle\Repository\CategoryRepository
-
-    #manyToOne:
-    #    category:
-    #        targetEntity: Elcodi\Bundle\CategoryBundle\Entity\Category
-    #        joinColumn:
-    #            name: product_category_id
-    #            referencedColumnName: id

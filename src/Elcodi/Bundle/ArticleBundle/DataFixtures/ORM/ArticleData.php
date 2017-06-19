@@ -36,8 +36,7 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
 	private function loadSimpleArticle()
 	{
 		$product = $this->getReference('product');
-		$productColors = $this->getReference('product-colors');	
-		$sectionCategory = $this->getReference('section-category');
+		$productColors = $this->getReference('product-colors');
 		
         $articleDirector = $this->getDirector('article');
 				
@@ -51,9 +50,7 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setName('article')
             ->setSlug('article')
             ->setEnabled(true)
-			->setArticleProduct($articleProduct)			
-			->setSectionCategories(new ArrayCollection())
-			->addSectionCategory($sectionCategory);
+			->setArticleProduct($articleProduct);
 		
         $articleDirector->save($article);
         $this->addReference('article', $article);
@@ -92,7 +89,9 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
 		$printableVariantDesign
 			->setDesign($design)
 			->setPosX(10)
-			->setPosY(10);
+			->setPosY(10)
+            ->setWidth(100)
+            ->setHeight(100);
 		
 		$articleProductPrintSide->addPrintableVariant($printableVariantDesign);		
 		
@@ -102,7 +101,9 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
 		$printableVariantText
 			->setText($text)
 			->setPosX(10)
-			->setPosY(10);
+			->setPosY(10)
+            ->setWidth(20)
+            ->setHeight(100);
 		
 		$articleProductPrintSide->addPrintableVariant($printableVariantText);			
 		
@@ -127,7 +128,6 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
 	{
 		$product = $this->getReference('product');
 		$productColors = $this->getReference('product-colors');
-		$sectionCategory = $this->getReference('section-category');
 		
         $articleDirector = $this->getDirector('article');
 		
@@ -141,9 +141,7 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
             ->setName('Article with section category')
             ->setSlug('article-with-section-category')
             ->setEnabled(true)
-			->setArticleProduct($articleProduct)
-			->setSectionCategories(new ArrayCollection())
-			->addSectionCategory($sectionCategory);
+			->setArticleProduct($articleProduct);
 
         $articleDirector->save($sectionCategoryArticle);
         $this->addReference('section-category-article', $sectionCategoryArticle);

@@ -71,6 +71,16 @@ class StateLine implements StateLineInterface
     {
         return $this->state;
     }
+    
+    /**
+     * Get name of State.
+     *
+     * @return string name of State
+     */
+    public function getName()
+    {
+        return $this->state->getName();
+    }
 
     /**
      * Sets Description.

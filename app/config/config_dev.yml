@@ -38,3 +38,6 @@ swiftmailer:
 
 store_core:
     error_templates: false
+    
+twig:
+    cache:  false

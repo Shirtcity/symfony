@@ -66,3 +66,10 @@ services:
             - '@elcodi.object_manager.cart'
         tags:
             - { name: kernel.event_listener, event: address.onclone, method: updateCarts, priority: 0}
+            
+    elcodi.event_listener.order_logging:
+        class: Elcodi\Component\Cart\EventListener\OrderLoggingEventListener
+        arguments:
+            - '@elcodi.factory.order_event'
+        tags:
+            - { name: kernel.event_listener, event: order.oncreated, method: logOrderEvent, priority: 0}

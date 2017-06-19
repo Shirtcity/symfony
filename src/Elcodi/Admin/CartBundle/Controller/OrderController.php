@@ -175,7 +175,7 @@ class OrderController extends AbstractAdminController
             $nextProductionTransitions = null;
         }
         
-        $allStates = array_merge(
+        $allStatesAndEvents = array_merge(
             $workflowStateLineStack
                 ->getStateLines()
                 ->toArray(),
@@ -187,10 +187,13 @@ class OrderController extends AbstractAdminController
                 ->toArray(),
             $productionStateLineStack
                 ->getStateLines()
-                ->toArray()            
+                ->toArray(),
+            $order
+                ->getOrderEvents()
+                ->toArray()
         );
         
-        usort($allStates, function (StateLineInterface $a, StateLineInterface $b) {
+        usort($allStatesAndEvents, function ($a, $b) {
             return $a->getCreatedAt() == $b->getCreatedAt()
                 ? $a->getId() > $b->getId()
                 : $a->getCreatedAt() > $b->getCreatedAt();
@@ -209,7 +212,7 @@ class OrderController extends AbstractAdminController
             'nextPaymentTransitions'    => $nextPaymentTransitions,
             'nextShippingTransitions'   => $nextShippingTransitions,
             'nextProductionTransitions' => $nextProductionTransitions,
-            'allStates'                 => $allStates,
+            'allStatesAndEvents'                 => $allStatesAndEvents,
             'deliveryInfo'              => $deliveryInfo,
             'billingInfo'               => $billingInfo,
         ];

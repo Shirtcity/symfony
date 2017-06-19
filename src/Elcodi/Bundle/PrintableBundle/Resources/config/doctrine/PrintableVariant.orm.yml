@@ -18,8 +18,13 @@ Elcodi\Bundle\PrintableBundle\Entity\PrintableVariant:
 
     fields:
         posX:
-            type: integer
+            type: integer            
         posY:
             type: integer
+        width:
+            type: integer
+        height:
+            type: integer
+            
 
 

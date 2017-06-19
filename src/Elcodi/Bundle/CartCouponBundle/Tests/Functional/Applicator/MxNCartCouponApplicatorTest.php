@@ -117,7 +117,7 @@ class MxNCartCouponApplicatorTest extends WebTestCase
             ['2x1:c(2)&p("3,7"):K', 90],
             ['2x1:p(9):P', 90],
             ['2x1:p(9):K', 90],
-            ['2x1:c(1)', 60],
+            ['2x1:c(1)', 50],
             ['2x1:c(2)', 90],
             ['3x2:c(2)', 90],
             ['10x1:c(2)', 90],

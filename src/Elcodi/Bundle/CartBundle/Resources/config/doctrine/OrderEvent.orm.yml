@@ -1,0 +1,38 @@
+Elcodi\Component\Cart\Entity\OrderEvent:
+    type: entity
+    repositoryClass: Elcodi\Component\Cart\Repository\OrderEventRepository
+    table: order_event
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            column: name
+            type: string
+            nullable: false
+        description:
+            column: description
+            type: string
+            nullable: true
+        createdAt:
+            column: created_at
+            type: datetime
+        updatedAt:
+            column: updated_at
+            type: datetime
+
+    manyToOne:
+        order:
+            targetEntity: Elcodi\Component\Cart\Entity\Interfaces\OrderInterface
+            inversedBy: orderEvents
+            cascade: [ "all" ]
+            joinColumn:
+                name: order_id
+                referencedColumnName: id
+                nullable: false
+                
+    lifecycleCallbacks:
+        preUpdate: [loadUpdateAt]
+        prePersist: [loadUpdateAt]

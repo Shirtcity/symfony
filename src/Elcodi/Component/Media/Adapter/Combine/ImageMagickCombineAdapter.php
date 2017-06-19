@@ -6,8 +6,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Process\ProcessBuilder;
 
 use Elcodi\Component\Media\Adapter\Combine\Interfaces\CombineAdapterInterface;
-use Elcodi\Component\Media\ElcodiMediaImageResizeTypes;
-
+use Elcodi\Component\Media\Adapter\Resizer\ImageMagickResizeAdapter;
 /**
  * Class ImageMagickResizerAdapter.
  */
@@ -33,7 +32,28 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
 	 * Designs preview path 
 	 */
 	private $designsPreviewPath;
+    
+    /**
+     * @var ProcessBuilder
+     * 
+     * Process builder
+     */
+    private $processBuilder;
 
+    /**
+     * @var File 
+     * 
+     * Original image file
+     */
+    private $originalFile;
+    
+    /**     
+     * @var File
+     * 
+     * Combined image file 
+     */
+    private $combinedFile;
+    
     /**
      * Constructor method.
      *
@@ -51,9 +71,9 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
     /**
      * Generate Thumbnail images with ImageMagick.
      *
-     * @param string $imageData Image Data
-     * @param array  $texts    Texts
-     * @param array  $designs  Designs
+     * @param string $imageData             Image Data
+     * @param array  $textVariantsArray     Texts
+     * @param array  $designVariantsArray   Designs
      *
      * @return string Combined image data
      *
@@ -61,79 +81,125 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
      */
     public function combine(
         $imageData,
-        $texts,
-		$designs
-    ) {
-        $originalFile = new File(tempnam(sys_get_temp_dir(), '_original'));
-        $resizedFile = new File(tempnam(sys_get_temp_dir(), '_resize'));
+        $textVariantsArray,
+		$designVariantsArray
+    ) {    
+        $this->createImageFilesObjects();
+        
+        file_put_contents($this->originalFile, $imageData);
 
-        file_put_contents($originalFile, $imageData);
+        $this->processBuilder = new ProcessBuilder();
+        
+        $this
+            ->setDefaultImageSettings()
+            ->setTexts($textVariantsArray)
+            ->setDesigns($designVariantsArray)
+            ->processCombineImage();	        
 
-        //ImageMagick params
-        $pb = new ProcessBuilder();
-        $pb
+        $imageContent = file_get_contents($this->combinedFile->getRealPath());
+
+        $this->deleteImageFilesObjects();
+
+        return $imageContent;
+    }
+    
+    /**
+     * Creates files objects
+     */
+    private function createImageFilesObjects()
+    {
+        $this->originalFile = new File(tempnam(sys_get_temp_dir(), '_original'));
+        $this->combinedFile = new File(tempnam(sys_get_temp_dir(), '_resize'));
+    }
+    
+    /**
+     * Delets files objects
+     */
+    private function deleteImageFilesObjects()
+    {
+        unlink($this->originalFile);
+        unlink($this->combinedFile);
+    }
+    
+    /**
+     * Sets default settings
+     * 
+     * @return $this
+     */
+    private function setDefaultImageSettings()
+    {
+        $this->processBuilder
             ->add($this->imageConverterBin)
             //Crop white surrounding image
-            ->add($originalFile->getPathname())
+            ->add($this->originalFile->getPathname())
             //We use a CMKY profile and a sRGB
             ->add('-profile')
             ->add($this->profile);
-
-		if (!empty($texts)) {
-			foreach ($texts as $textVariant) { 
-                if ( null === $textVariant->getText()) {
-                    continue;
-                }
-				// set text color
-				$pb->add('-fill')->add($textVariant->getText()->getFoilColor()->getCode());
-				// set font
-				$pb->add('-font')->add($textVariant->getText()->getFont()->getName());
-				// set coords start point
-				$pb->add('-gravity')->add('NorthWest');
-				// set font size
-				$pb->add('-weight')->add(14);
-				$pb->add('-pointsize')->add(20);
-				// set coords and text
-				$pb
-					->add('-annotate')
-					->add('+'.$textVariant->getPosX().'+'.$textVariant->getPosY())
-					->add($textVariant->getText()->getContent());
-				
-			}
-		}		
-		
-		if (!empty($designs)) {
-			foreach ($designs as $designVariant) {
-                if ($designVariant->getDesign() === null) {
-                    continue;
-                }
-                
-				$designName = $this->designsPreviewPath . '/' .
-					$designVariant->getDesign()->getId() . '/0/0/'. 
-					$designVariant->getDesign()->getPreviewFileName();
-				
-				$pb->add($designName);
-				$pb->add('-geometry')->add('+'.$designVariant->getPosX().'+'.$designVariant->getPosY());
-				$pb->add('-composite');				
-			}
-		}
-
-        $proc = $pb
+        
+        return $this;
+    }
+    
+    /**
+     * Sets texts
+     * 
+     * @param Array $textVariantsArray
+     * @return $this
+     */
+    private function setTexts($textVariantsArray)
+    {   
+        $textCombineAdapter = new TextCombineAdapter(
+            $this->processBuilder, 
+            $textVariantsArray
+        );
+        
+        $this->processBuilder = $textCombineAdapter
+            ->setTexts();
+        
+        return $this;
+    }  
+    
+    /**
+     * Sets designs
+     * 
+     * @param array $designVariantsArray
+     * @return $this
+     */
+    private function setDesigns($designVariantsArray)
+    {
+        $resizeAdapter = new ImageMagickResizeAdapter($this->imageConverterBin, $this->profile);
+        
+        $designCombineAdapter = new DesignCombineAdapter(
+            $this->processBuilder, 
+            $designVariantsArray, 
+            $this->designsPreviewPath,
+            $resizeAdapter
+        );
+        
+        $this->processBuilder = $designCombineAdapter
+            ->setDesigns();
+        
+        return $this;        
+    }
+    
+    /**
+     * Process image combine
+     * 
+     * @return $this
+     * @throws \RuntimeException
+     */
+    private function processCombineImage()
+    {        
+        $processor = $this->processBuilder
 			->add('-resize')->add(200)
-            ->add($resizedFile->getPathname())
+            ->add($this->combinedFile->getPathname())
             ->getProcess();
-
-        $proc->run();
-
-        if (false !== strpos($proc->getOutput(), 'ERROR')) {
-            throw new \RuntimeException($proc->getOutput());
+        
+        $processor->run();
+        
+        if (false !== strpos($processor->getOutput(), 'ERROR')) {
+            throw new \RuntimeException($processor->getOutput());
         }
-
-        $imageContent = file_get_contents($resizedFile->getRealPath());
-
-        unlink($originalFile);
-        unlink($resizedFile);
-
-        return $imageContent;
+        
+        return $this;
     }
 }

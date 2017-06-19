@@ -166,6 +166,13 @@ Elcodi\Component\Cart\Entity\Order:
             mappedBy: order
             cascade: [ "all" ]
             orphanRemoval: true
+            
+        orderEvents:
+            targetEntity: Elcodi\Component\Cart\Entity\Interfaces\OrderEventInterface
+            mappedBy: order
+            cascade: [ "all" ]
+            orphanRemoval: true
+
 
     manyToMany:
         workflowStateLines:

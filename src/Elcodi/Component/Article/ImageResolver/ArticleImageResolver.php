@@ -134,54 +134,62 @@ class ArticleImageResolver extends AbstractImageResolverWithImageResolver implem
 	 */
 	private function obtainPrintSideImage(ArticleInterface $article, PrintSideInterface $printSide)
 	{
-		$printSideMatchedColor = $printSide
+		$articleProductImage = $this->getArticleProductImage($article, $printSide);
+		
+        $texts = $designs = [];
+        
+		$article
+			->getArticleProduct()
+			->getArticleProductPrintSides()
+			->filter(function($articleProductPrintSide) use ($printSide){
+				return $articleProductPrintSide->getPrintSide()->getId() == $printSide->getId();
+			})
+            ->map( function($articleProductPrintSide) use (&$texts, &$designs) {
+              
+                $texts = $articleProductPrintSide
+                    ->getTextPrintableVariants()
+                    ->toArray();
+            
+                $designs = $articleProductPrintSide
+                    ->getDesignPrintableVariants()
+                    ->toArray();
+            });			
+		
+		$image = $this
+			->imageManager
+			->combine($articleProductImage, $texts, $designs);		
+		
+		return $image;
+	}
+    
+    /**
+     * Returns image of article product
+     * 
+     * @param ArticleInterface $article
+     * @param PrintSideInterface $printSide
+     * @return ImageInterface image
+     */
+    private function getArticleProductImage(ArticleInterface $article, PrintSideInterface $printSide)
+    {
+        if(null === $article->getArticleProduct()->getProductColors()) {
+            return null;
+        }
+                
+        $printSideMatchedColor = $printSide
 			->getSideProductColors()
-			->filter(function($value) use ($article){
-				if(null === $article->getArticleProduct()->getProductColors()) {
-					return false;
-				}
-				
-				return $value->getProductColors()->getColor() == $article->getArticleProduct()->getProductColors()->getColor();
+			->filter(function($sideProductColor) use ($article){
+				return $sideProductColor->getProductColors()->getColor() == 
+                       $article->getArticleProduct()->getProductColors()->getColor();
 			})
 			->first();
 		
 		if (empty($printSideMatchedColor)) {			
 			return null;
 		}
-			
-		$articleProductImage = $printSideMatchedColor->getImage();
-		
-		$articleProductPrintSides = $article
-			->getArticleProduct()
-			->getArticleProductPrintSides()
-			->filter(function($articleProductPrintSide) use ($printSide){
-				return $articleProductPrintSide->getPrintSide()->getId() == $printSide->getId();
-			});
-			
-		$text = [];
-		$design = [];
-		
-		foreach ($articleProductPrintSides as $articleProductPrintSide) {
-			
-			$printableVariants = $articleProductPrintSide->getPrintableVariants();
-			
-			foreach ($printableVariants as $printableVariant) {
-				
-				if($printableVariant instanceof TextVariant) {
-					$text[] = $printableVariant;
-				} elseif ($printableVariant instanceof DesignVariant) {
-					$design[] = $printableVariant;
-				}
-			}
-		}		
-		
-		$image = $this
-			->imageManager
-			->combine($articleProductImage, $text, $design);
-		
-		
-		return $image;
-	}
+        
+        return $printSideMatchedColor->getImage();
+    }
+    
 	
 	
 }

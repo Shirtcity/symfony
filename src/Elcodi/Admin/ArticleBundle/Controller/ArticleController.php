@@ -160,16 +160,23 @@ class ArticleController extends AbstractAdminController
      */
     public function editAction(
         FormInterface $form,
-        ArticleInterface $article
-    ) {			
-		if ($form->isValid()) {	
+        ArticleInterface $article,
+        Request $request
+    ) {	
+       
+       /*foreach ($form->getErrors(true) as $key => $error) {
+	//echo $error->getMessage();
+         //  var_dump($error);
+}*/
+        
+		if ($form->isValid() && !$request->isXmlHttpRequest()) {	
             
             // delete disabled print sides
             // @TODO: move to doctrine preFlush event listener?
             $articleProductPrintSides = $article->getArticleProduct()->getArticleProductPrintSides();
             
-            foreach ($articleProductPrintSides as $articleProductPrintSide) { 
-                if (!$articleProductPrintSide->isEnabled()) {
+            foreach ($articleProductPrintSides as $articleProductPrintSide) {
+                if ($articleProductPrintSide->isEnabled() === false) {
                     $article->getArticleProduct()->removeArticleProductPrintSide($articleProductPrintSide);
                 }
             }
@@ -185,12 +192,12 @@ class ArticleController extends AbstractAdminController
 			
 			return $this->redirectToRoute('admin_article_list');
         }
-		
+        
         return [
             'article' => $article,
             'form'    => $form->createView(),
         ];
-    }
+    }    
 	
     /**
      * Enable entity

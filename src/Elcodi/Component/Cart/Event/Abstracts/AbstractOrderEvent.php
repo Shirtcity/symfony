@@ -40,19 +40,30 @@ abstract class AbstractOrderEvent extends Event
      * Order
      */
     private $order;
+    
+    /**
+     * @var string
+     *
+     * description
+     */
+    private $description;
+
 
     /**
      * construct method.
      *
      * @param CartInterface  $cart  Cart
      * @param OrderInterface $order Order
+     * @param string         $description event description
      */
     public function __construct(
         CartInterface $cart,
-        OrderInterface $order
+        OrderInterface $order,
+        string $description = null
     ) {
         $this->cart = $cart;
         $this->order = $order;
+        $this->description = $description;
     }
 
     /**
@@ -74,4 +85,14 @@ abstract class AbstractOrderEvent extends Event
     {
         return $this->order;
     }
+    
+    /**
+     * Return description.
+     *
+     * @return string Event description
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }    
 }

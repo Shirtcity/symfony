@@ -2,10 +2,3 @@ Elcodi\Bundle\CategoryBundle\Entity\SectionCategory:
     type: entity
     table: section_category
     repositoryClass: Elcodi\Bundle\CategoryBundle\Repository\CategoryRepository
-
-    #manyToOne:
-    #    category:
-    #        targetEntity: Elcodi\Bundle\CategoryBundle\Entity\Category
-    #        joinColumn:
-    #            name: section_category_id
-    #            referencedColumnName: id

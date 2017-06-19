@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Admin\PrintableBundle\Form\Type\TextType;
+use Elcodi\Bundle\PrintableBundle\PrintableDefaultParameters;
 
 /**
  * Class TextPrintableVariantType
@@ -73,26 +74,23 @@ class TextPrintableVariantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {	
 		$builder
-			->add('posX',  'integer', [
-                'constraints' => [
-                    new Constraints\Length(
-                        [
-                            'max' => 65,
-                        ]
-                    ),
-                ],
+			->add('posX',  'integer', [                
                 'label' => 'PosX',
             ])
 			->add('posY',  'integer', [
+                'label' => 'PosY',
+            ])
+            ->add('width',  'integer', [
                 'constraints' => [
-                    new Constraints\Length(
+                    new Constraints\GreaterThanOrEqual(
                         [
-                            'max' => 65,
+                            'value' => PrintableDefaultParameters::MIN_DESIGN_PRINTABLE_VARIANT_WIDTH,
                         ]
                     ),
                 ],
-                'label' => 'PosY',
-            ])
+                'label' => 'Width',
+                'error_bubbling' => true,
+            ])			
             ->add('text', $this->textFormType);	        	
     }	
 

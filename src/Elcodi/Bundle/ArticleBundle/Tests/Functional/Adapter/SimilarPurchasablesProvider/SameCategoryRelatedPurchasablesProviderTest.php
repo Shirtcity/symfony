@@ -47,7 +47,6 @@ class SameCategoryRelatedPurchasablesProviderTest extends WebTestCase
          */
         $relatedPurchasablesProvider = $this->get('elcodi.related_purchasables_provider.same_category');
         $purchasable = $this->find('purchasable', 1);
-		//print_r(var_dump($purchasable));
 
         /**
          * Testing when limit 0 is requested.
@@ -82,7 +81,7 @@ class SameCategoryRelatedPurchasablesProviderTest extends WebTestCase
          */
         $category2 = $this->find('sectionCategory', 2);
         $purchasable2 = $this->find('purchasable', 2);
-        $purchasable2->addSectionCategory($category2);
+        $purchasable2->getArticleProduct()->getProduct()->addSection($category2);
         $this->flush($purchasable2);
 
         /**
@@ -103,7 +102,7 @@ class SameCategoryRelatedPurchasablesProviderTest extends WebTestCase
          */
         $category1 = $this->find('sectionCategory', 1);
         $purchasable2 = $this->find('purchasable', 2);
-        $purchasable2->addSectionCategory($category1);
+        $purchasable2->getArticleProduct()->getProduct()->addSection($category1);
         $this->flush($purchasable2);
 
         /**
