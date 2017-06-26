@@ -118,7 +118,7 @@ class ArticleImageResolver extends AbstractImageResolverWithImageResolver implem
 				return $value->getType()->getName() == $printSideType;
 			})
 			->first();	
-			
+            
 		$image = $this->obtainPrintSideImage($article, $printSide);		
 		
 		return $image;
@@ -152,8 +152,8 @@ class ArticleImageResolver extends AbstractImageResolverWithImageResolver implem
                 $designs = $articleProductPrintSide
                     ->getDesignPrintableVariants()
                     ->toArray();
-            });			
-		
+            });
+            
 		$image = $this
 			->imageManager
 			->combine($articleProductImage, $texts, $designs);		
@@ -173,7 +173,7 @@ class ArticleImageResolver extends AbstractImageResolverWithImageResolver implem
         if(null === $article->getArticleProduct()->getProductColors()) {
             return null;
         }
-                
+        
         $printSideMatchedColor = $printSide
 			->getSideProductColors()
 			->filter(function($sideProductColor) use ($article){
@@ -181,7 +181,7 @@ class ArticleImageResolver extends AbstractImageResolverWithImageResolver implem
                        $article->getArticleProduct()->getProductColors()->getColor();
 			})
 			->first();
-		
+        
 		if (empty($printSideMatchedColor)) {			
 			return null;
 		}

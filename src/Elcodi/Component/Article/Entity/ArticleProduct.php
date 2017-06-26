@@ -14,7 +14,7 @@ use Elcodi\Bundle\ProductBundle\Entity\ProductColors;
  * Class ArticleProduct entity.
  */
 class ArticleProduct implements ArticleProductInterface
-{	
+{
 	use EntityNamespaceTrait;
     /**
      * @var integer

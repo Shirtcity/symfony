@@ -46,7 +46,7 @@ class ArticlePriceResolver extends ContainerAware implements ArticlePriceResolve
                                 ->get('elcodi.store')
                                 ->getDefaultCurrency();
 		}
-		
+        
 		$product = $this
                         ->article
                         ->getArticleProduct()
