@@ -14,9 +14,10 @@
             ? url('admin_article_update', { id: article.id })
             : url('admin_article_save')
      %}
-	 
-    {{ form_start(form, { action: formAction}) }}		
+	
+    {{ form_start(form, { action: formAction }) }}		
         <fieldset data-fc-article-id="{{article.id }}">
+			
             {{ elcodi_hook("admin.article_top", {
                 'article': article
             }) }}
@@ -117,7 +118,6 @@
                                         label_help: 'admin.article.field.article_product.placeholder'|trans,
                                     })
                                     }}
-									{{ form_errors(form.articleProduct.product) }}
                                 </div>
                             </li>
 							<li class="col-1-2 pb-n" id="article-product-color">
@@ -149,7 +149,7 @@
                     </div>
 						
 					<div class="col-2-3">
-						<div data-fc-modules="tabs" class="tabs-box loading">
+						<div data-fc-modules="tabs" class="tabs-box loading">							
 							<section id="tab-design" data-fc-name="design">
 								<div class="box">									
 									{% if article.articleProduct.articleProductPrintSides|length > 0 %} 								

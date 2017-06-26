@@ -1,0 +1,23 @@
+#
+# Validation constraints for Entities
+#
+Elcodi\Component\Article\Entity\Article:
+    constraints:
+        - Elcodi\Component\Article\Validator\Constraint\ArticleConstraint: ~
+    properties:
+        articleProduct:
+            - Valid: ~
+        
+Elcodi\Component\Article\Entity\ArticleProduct:
+    constraints:
+        - Elcodi\Component\Article\Validator\Constraint\ArticleProductConstraint: ~
+    properties:
+        articleProductPrintSides:
+            - Valid: ~
+        
+Elcodi\Component\Article\Entity\ArticleProductPrintSide:
+    constraints:
+        - Elcodi\Component\Article\Validator\Constraint\ArticleProductPrintSideConstraint: ~
+        - Elcodi\Component\Article\Validator\Constraint\PrintablePositionConstraint: ~
+    
+

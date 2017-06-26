@@ -66,6 +66,7 @@ services:
         class: Elcodi\Admin\ArticleBundle\Form\Type\DesignPrintableVariantType  
         arguments:
             - %elcodi.entity.design.class%
+            - '@elcodi.event_listener.article.form.printable_variant'
         calls:
             - [setFactory, ["@elcodi.factory.design_variant"]]
         tags:
@@ -79,6 +80,7 @@ services:
         arguments:
             - %elcodi.entity.text.class%
             - '@elcodi_admin.form_type.text'
+            - '@elcodi.event_listener.article.form.printable_variant'
         calls:
             - [setFactory, ["@elcodi.factory.text_variant"]]
         tags:

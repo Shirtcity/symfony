@@ -11,6 +11,8 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
+use Elcodi\Bundle\PrintableBundle\PrintableDefaultParameters;
+
 
 /**
  * Class DesignPrintableVariantType
@@ -27,6 +29,7 @@ class DesignPrintableVariantType extends AbstractType
      */
 	protected $designPrintableNamespace;
     
+    protected $printableVariantEventListener;
 	
     /**
      * Construct
@@ -34,9 +37,11 @@ class DesignPrintableVariantType extends AbstractType
 	 * @param string $designPrintableNamespace	Printable namespace
      */
     public function __construct(
-		string $designPrintableNamespace
+		$designPrintableNamespace,
+        $printableVariantEventListener
     ) {
 		$this->designPrintableNamespace = $designPrintableNamespace;
+        $this->printableVariantEventListener = $printableVariantEventListener;
     }
 	
     /**
@@ -50,6 +55,7 @@ class DesignPrintableVariantType extends AbstractType
             'data_class' => $this
                 ->factory
                 ->getEntityNamespace(),
+            'cascade_validation' => true,
         ]);			
     }
 
@@ -63,31 +69,29 @@ class DesignPrintableVariantType extends AbstractType
     {	
 		$builder
 			->add('posX',  'integer', [
-                'constraints' => [
-                    new Constraints\Length(
-                        [
-                            'max' => 65,
-                        ]
-                    ),
-                ],
                 'label' => 'PosX',
             ])
 			->add('posY',  'integer', [
+                'label' => 'PosY',
+            ])
+            ->add('width',  'integer', [
                 'constraints' => [
-                    new Constraints\Length(
+                    new Constraints\GreaterThanOrEqual(
                         [
-                            'max' => 65,
+                            'value' => PrintableDefaultParameters::MIN_DESIGN_PRINTABLE_VARIANT_WIDTH,
                         ]
                     ),
                 ],
-                'label' => 'PosY',
+                'label'             => 'Width',
+                'error_bubbling'    => true,
             ])
             ->add('design', 'entity',[
                 'class'			=> $this->designPrintableNamespace,
                 'choice_label'	=> 'name',
-                'label' => 'Design',
-            ]);	
-		
+                'label'         => 'Design',
+            ]);
+        
+        $builder->addEventSubscriber($this->printableVariantEventListener);		
     }	
 
     /**

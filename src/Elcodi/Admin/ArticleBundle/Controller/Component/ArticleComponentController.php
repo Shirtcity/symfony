@@ -154,17 +154,17 @@ class ArticleComponentController extends AbstractAdminController
      *      class = "elcodi_admin_article_form_type_article",
      *      name  = "formView",
      *      entity = "article",
-     *      handleRequest = true,
-     *      validate = "isValid"
+     *      handleRequest = true
      * )
      */
     public function editComponentAction(
         FormView $formView,
-        ArticleInterface $article
+        ArticleInterface $article        
     ) {  
+        
         return [
             'article'  => $article,
-            'form'     => $formView
+            'form'     => $formView,
         ];
     }	
 }

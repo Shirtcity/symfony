@@ -5,11 +5,24 @@ use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\PrintableInterface;
 
 abstract class AbstractPrintable implements PrintableInterface
 {
+    /**
+     * @var integer
+     * 
+     * Printable position X
+     */
     protected $posX;
-    protected $posY;
+    
+    /**
+     * @var integer
+     * 
+     * Printable position Y
+     */
+    protected $posY; 
 
     /**
-     * @return mixed
+     * Get printable position X
+     * 
+     * @return integer
      */
     public function getPosX()
     {
@@ -17,7 +30,10 @@ abstract class AbstractPrintable implements PrintableInterface
     }
 
     /**
-     * @param mixed $posX
+     * Set printable position X
+     * 
+     * @param integer $posX
+     * 
      * @return AbstractPrintable
      */
     public function setPosX($posX)
@@ -27,7 +43,9 @@ abstract class AbstractPrintable implements PrintableInterface
     }
 
     /**
-     * @return mixed
+     * Get printable position Y
+     * 
+     * @return integer
      */
     public function getPosY()
     {
@@ -35,7 +53,10 @@ abstract class AbstractPrintable implements PrintableInterface
     }
 
     /**
-     * @param mixed $posY
+     * Set printable position Y
+     * 
+     * @param integer $posY
+     * 
      * @return AbstractPrintable
      */
     public function setPosY($posY)
@@ -45,7 +66,7 @@ abstract class AbstractPrintable implements PrintableInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     abstract public function getType();
 }

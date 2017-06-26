@@ -4,6 +4,8 @@ namespace Elcodi\Component\Media\Adapter\Combine;
 
 use Symfony\Component\Process\ProcessBuilder;
 
+use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\TextVariantInterface;
+
 /**
  * Class TextCombineAdapter.
  */
@@ -63,10 +65,10 @@ class TextCombineAdapter
     /**
      * Sets text foil color 
      * 
-     * @param TextVariant $textVariant
+     * @param TextVariantInterface $textVariant
      * @return $this
      */
-    private function setTextFoilColor($textVariant)
+    private function setTextFoilColor(TextVariantInterface $textVariant)
     {
         $foilColorHexCode = $textVariant
             ->getText()
@@ -83,10 +85,10 @@ class TextCombineAdapter
     /**
      * Sets font
      * 
-     * @param TextVariant $textVariant
+     * @param TextVariantInterface $textVariant
      * @return $this
      */
-    private function setFont($textVariant)
+    private function setFont(TextVariantInterface $textVariant)
     {
         $fontName = $textVariant
             ->getText()
@@ -103,10 +105,10 @@ class TextCombineAdapter
     /**
      * Sets text position
      * 
-     * @param TextVariant $textVariant
+     * @param TextVariantInterface $textVariant
      * @return $this
      */
-    private function setTextPosition($textVariant)
+    private function setTextPosition(TextVariantInterface $textVariant)
     {
         $positionX = $textVariant->getPosX();
         $positionY = $textVariant->getPosY();
@@ -141,10 +143,10 @@ class TextCombineAdapter
     /**
      * Sets text content
      * 
-     * @param TextVariant $textVariant
+     * @param TextVariantInterface $textVariant
      * @return $this
      */
-    private function setTextContent($textVariant)
+    private function setTextContent(TextVariantInterface $textVariant)
     {
         $textContnet = $textVariant
             ->getText()

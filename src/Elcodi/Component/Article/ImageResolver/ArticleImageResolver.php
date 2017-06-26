@@ -145,6 +145,7 @@ class ArticleImageResolver extends AbstractImageResolverWithImageResolver implem
 				return $articleProductPrintSide->getPrintSide()->getId() == $printSide->getId();
 			})
             ->map( function($articleProductPrintSide) use (&$texts, &$designs) {
+              
                 $texts = $articleProductPrintSide
                     ->getTextPrintableVariants()
                     ->toArray();
