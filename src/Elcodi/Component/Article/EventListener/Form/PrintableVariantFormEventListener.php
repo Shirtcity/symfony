@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 
 use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\PrintableVariantInterface;
-use Elcodi\Component\Article\Adapter\PrintableHeightAdapter;
+use Elcodi\Component\Article\Adapter\PrintableSizeAdapter;
 
 /**
  * Class ArticleProductPrintSideFormEventListener.
@@ -16,21 +16,21 @@ use Elcodi\Component\Article\Adapter\PrintableHeightAdapter;
 class PrintableVariantFormEventListener implements EventSubscriberInterface
 {
 	/**
-	 * @var PrintableHeightAdapter 
+	 * @var PrintableSizeAdapter 
 	 * 
-	 * PrintableVariant height adapter 
+	 * PrintableVariant size adapter 
 	 */
-	protected $printableHeightAdapter;
+	protected $printableSizeAdapter;
 
 	/**
      * Constructor
      *
-	 * @param PrintableHeightAdapter $printableVariantHeightAdapter PrintableVariant height adapter
+	 * @param PrintableSizeAdapter $printableSizeAdapter PrintableVariant size adapter
      */
     public function __construct(
-		PrintableHeightAdapter $printableHeightAdapter
+		PrintableSizeAdapter $printableSizeAdapter
     ) {
-		$this->printableHeightAdapter = $printableHeightAdapter;
+		$this->printableSizeAdapter = $printableSizeAdapter;
 	}
 	
     /**
@@ -41,7 +41,7 @@ class PrintableVariantFormEventListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-			FormEvents::POST_SUBMIT		=> 'postSubmit',
+			FormEvents::POST_SUBMIT	=> 'postSubmit',
         ];
     }    
 	
@@ -54,21 +54,20 @@ class PrintableVariantFormEventListener implements EventSubscriberInterface
     {
 		$printableVariant = $event->getData();
 		
-        if ((int)$printableVariant->getHeight() == 0) {
-            $this->adaptPrintableHeight($printableVariant);
-        }
+        $this->scalePrintableHeight($printableVariant);
     }
 
 	/**
-     * Adapt printable variant height according to printable variant width
+     * Scale printable variant height according to printable variant width
      *
      * @param PrintableVariantInterface $printableVariant
      */
-	private function adaptPrintableHeight(PrintableVariantInterface $printableVariant)
+	private function scalePrintableHeight(PrintableVariantInterface $printableVariant)
 	{
 		$this
-			->printableHeightAdapter
-			->adaptPrintableHeight($printableVariant);
+			->printableSizeAdapter
+            ->setPrintableVariant($printableVariant)
+			->scalePrintableHeight();
 	}	
 	
 }

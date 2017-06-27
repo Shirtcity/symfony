@@ -20,4 +20,18 @@ final class PrintableDefaultParameters
      * Minimal possible height of printable
      */
     const MIN_DESIGN_PRINTABLE_VARIANT_HEIGHT = 50;
+    
+     /**
+     * @var int
+     * 
+     * Maximal possible width of design
+     */
+    const MAX_DESIGN_WIDTH = 500;
+    
+    /**
+     * @var int 
+     * 
+     * Maximal possible height of design
+     */
+    const MAX_DESIGN_HEIGHT = 500;
 }

@@ -115,7 +115,9 @@ class PrintablePositionValidator extends ConstraintValidator
 
             $printableResized = $this
                 ->printableSizeAdapter
-                ->adaptPrintableSize($printableVariant, $printSideArea);
+                ->setPrintSideArea($printSideArea)
+                ->setPrintableVariant($printableVariant)
+                ->adaptPrintableSize();
 
             if ($printableResized) {                                        
                 $this->createConstraintViolation($printableVariant, $this->constraint->messagePrintableResized);
