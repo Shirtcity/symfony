@@ -41,7 +41,7 @@ class CategoryData extends AbstractFixture
          * @var ObjectManager             $categoryObjectManager
          * @var EntityTranslatorInterface $entityTranslator
          */
-        $categoryFactory = $this->get('elcodi.factory.category');
+        $categoryFactory = $this->get('elcodi.factory.section_category');
         $categoryObjectManager = $this->get('elcodi.object_manager.category');
         $entityTranslator = $this->get('elcodi.entity_translator');
         
@@ -64,7 +64,7 @@ class CategoryData extends AbstractFixture
         $categoryObjectManager->persist($womenCategory);
         $this->addReference('category-women', $womenCategory);
         $categoryObjectManager->flush($womenCategory);
-
+        
         $entityTranslator->save($womenCategory, [
             'en' => [
                 'name' => 'Women\'s',

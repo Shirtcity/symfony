@@ -13,4 +13,13 @@ services:
         arguments:
             - %elcodi.entity.article.class%
 
+    elcodi.object_manager.article_product:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.article_product.class%
+            
+    elcodi.object_manager.article_product_print_side:
+        parent: elcodi.abstract_manager
+        arguments:
+            - %elcodi.entity.article_product.class%
 

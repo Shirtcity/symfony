@@ -10,4 +10,11 @@ services:
             - '@elcodi.object_manager.article'
             - '@elcodi.repository.article'
             - '@elcodi.factory.article'
-
+            
+    elcodi.director.article_product:
+        class: Elcodi\Component\Core\Services\ObjectDirector
+        lazy: true
+        arguments:
+            - '@elcodi.object_manager.article_product'
+            - '@elcodi.repository.article'
+            - '@elcodi.factory.article'

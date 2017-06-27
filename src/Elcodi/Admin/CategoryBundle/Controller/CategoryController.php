@@ -83,7 +83,6 @@ class CategoryController extends AbstractAdminController
      *
      * @EntityAnnotation(
      *      class = {
-     *          "factory" = "elcodi.factory.category",
      *          "method" = "create",
      *          "static" = false
      *      },
