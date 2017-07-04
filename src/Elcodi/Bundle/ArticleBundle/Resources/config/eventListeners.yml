@@ -17,6 +17,6 @@ services:
     # Printable Varaint
     #
     elcodi.event_listener.article.form.printable_variant:
-        class: Elcodi\Component\Article\EventListener\Form\PrintableVariantFormEventListener
+        class: Elcodi\Component\Article\EventListener\Form\ArticlePrintableVariantFormEventListener
         arguments:            
-            - '@elcodi.article.adapter.printable_size'
+            - '@elcodi.article.adapter.printable_variant_size'

@@ -8,29 +8,29 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 
 use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\PrintableVariantInterface;
-use Elcodi\Component\Article\Adapter\PrintableSizeAdapter;
+use Elcodi\Component\Article\Adapter\ArticlePrintableVariantSizeAdapter;
 
 /**
- * Class ArticleProductPrintSideFormEventListener.
+ * Class ArticlePrintableVariantFormEventListener.
  */
-class PrintableVariantFormEventListener implements EventSubscriberInterface
+class ArticlePrintableVariantFormEventListener implements EventSubscriberInterface
 {
 	/**
-	 * @var PrintableSizeAdapter 
+	 * @var ArticlePrintableVariantSizeAdapter 
 	 * 
-	 * PrintableVariant size adapter 
+	 * Article PrintableVariant size adapter 
 	 */
-	protected $printableSizeAdapter;
+	protected $articlePrintableVariantSizeAdapter;
 
 	/**
      * Constructor
      *
-	 * @param PrintableSizeAdapter $printableSizeAdapter PrintableVariant size adapter
+	 * @param ArticlePrintableVariantSizeAdapter $articlePrintableVariantSizeAdapter Article PrintableVariant size adapter
      */
     public function __construct(
-		PrintableSizeAdapter $printableSizeAdapter
+		ArticlePrintableVariantSizeAdapter $articlePrintableVariantSizeAdapter
     ) {
-		$this->printableSizeAdapter = $printableSizeAdapter;
+		$this->articlePrintableVariantSizeAdapter = $articlePrintableVariantSizeAdapter;
 	}
 	
     /**
@@ -65,7 +65,7 @@ class PrintableVariantFormEventListener implements EventSubscriberInterface
 	private function scalePrintableHeight(PrintableVariantInterface $printableVariant)
 	{
 		$this
-			->printableSizeAdapter
+			->articlePrintableVariantSizeAdapter
             ->setPrintableVariant($printableVariant)
 			->scalePrintableHeight();
 	}	

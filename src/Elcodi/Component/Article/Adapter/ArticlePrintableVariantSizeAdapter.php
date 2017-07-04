@@ -8,9 +8,9 @@ use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideAreaInterface;
 
 
 /**
- * Class PrintablePositionAdapter
+ * Class ArticlePrintableVariantSizeAdapter
  */
-class PrintableSizeAdapter
+class ArticlePrintableVariantSizeAdapter
 {    
     /**
      * Default width of printable image

@@ -12,13 +12,13 @@ services:
     #
     # Printable Position Adapter
     #
-    elcodi.article.adapter.printable_position:
-        class: Elcodi\Component\Article\Adapter\PrintablePositionAdapter
+    elcodi.article.adapter.printable_variant_position:
+        class: Elcodi\Component\Article\Adapter\ArticlePrintableVariantPositionAdapter
         
     #
     # Printable Variant Size Adapter
     #
-    elcodi.article.adapter.printable_size:
-        class: Elcodi\Component\Article\Adapter\PrintableSizeAdapter
+    elcodi.article.adapter.printable_variant_size:
+        class: Elcodi\Component\Article\Adapter\ArticlePrintableVariantSizeAdapter
    
         

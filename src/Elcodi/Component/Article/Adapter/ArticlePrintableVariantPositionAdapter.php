@@ -9,9 +9,9 @@ use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\PrintableVariantInterface;
 
 
 /**
- * Class PrintablePositionAdapter
+ * Class ArticlePrintableVariantPositionAdapter
  */
-class PrintablePositionAdapter
+class ArticlePrintableVariantPositionAdapter
 {
     
     private $printSideAreas;

@@ -6,12 +6,12 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 use Elcodi\Component\Article\Entity\Interfaces\ArticleProductPrintSideInterface;
-use Elcodi\Component\Article\Adapter\PrintablePositionAdapter;
-use Elcodi\Component\Article\Adapter\PrintableSizeAdapter;
+use Elcodi\Component\Article\Adapter\ArticlePrintableVariantPositionAdapter;
+use Elcodi\Component\Article\Adapter\ArticlePrintableVariantSizeAdapter;
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideAreaInterface;
 use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\PrintableVariantInterface;
 
-class PrintablePositionValidator extends ConstraintValidator
+class ArticlePrintableVariantPositionValidator extends ConstraintValidator
 {
     /**
      * @var Constraint 
@@ -21,31 +21,31 @@ class PrintablePositionValidator extends ConstraintValidator
     private $constraint;
     
     /**
-     * @var PrintablePositionAdapter
+     * @var ArticlePrintableVariantPositionAdapter
      * 
      * Printable position adapter 
      */
-    private $printablePositionAdapter;   
+    private $articlePrintableVariantPositionAdapter;   
     
     /**
-     * @var PrintableSizeAdapter
+     * @var ArticlePrintableVariantSizeAdapter
      * 
-     * Printable size adapter 
+     * Article Printable size adapter 
      */
-    private $printableSizeAdapter;   
+    private $articlePrintableVariantSizeAdapter;   
     
     /**
      * Construct
      * 
-     * @param PrintablePositionAdapter $printablePositionAdapter
-     * @param PrintableSizeAdapter $printableSizeAdapter
+     * @param ArticlePrintableVariantPositionAdapter $articlePrintableVariantPositionAdapter
+     * @param ArticlePrintableVariantSizeAdapter $articlePrintableVariantSizeAdapter
      */
     public function __construct(
-        PrintablePositionAdapter $printablePositionAdapter,
-        $printableSizeAdapter
+        ArticlePrintableVariantPositionAdapter $articlePrintableVariantPositionAdapter,
+        ArticlePrintableVariantSizeAdapter $articlePrintableVariantSizeAdapter
     ) {
-        $this->printablePositionAdapter = $printablePositionAdapter;
-        $this->printableSizeAdapter = $printableSizeAdapter;
+        $this->articlePrintableVariantPositionAdapter = $articlePrintableVariantPositionAdapter;
+        $this->articlePrintableVariantSizeAdapter = $articlePrintableVariantSizeAdapter;
     }
 
     /**
@@ -64,7 +64,7 @@ class PrintablePositionValidator extends ConstraintValidator
           
             if ($printSideArea === false) {
                 $this
-                    ->printablePositionAdapter
+                    ->articlePrintableVariantPositionAdapter
                     ->adaptPrintablePosition($printableVariant, $articleProductPrintSide);
                 
                 $this->createConstraintViolation($printableVariant, $this->constraint->messageWrongPosition);
@@ -114,7 +114,7 @@ class PrintablePositionValidator extends ConstraintValidator
         if (!$printableFitsToArea) {
 
             $printableResized = $this
-                ->printableSizeAdapter
+                ->articlePrintableVariantSizeAdapter
                 ->setPrintSideArea($printSideArea)
                 ->setPrintableVariant($printableVariant)
                 ->adaptPrintableSize();
