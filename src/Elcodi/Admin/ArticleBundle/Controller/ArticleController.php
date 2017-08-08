@@ -168,7 +168,47 @@ class ArticleController extends AbstractAdminController
 	//echo $error->getMessage();
          //  var_dump($error);
 }*/
+        $validator = $this->get('validator');
+        $errors = $validator->validate($article);
         
+        die(var_dump($validator));
+        
+        $articleProductPrintSide = $article
+            ->getArticleProduct()
+            ->getArticleProductPrintSides()
+            ->first();
+        
+        $printableVariantDesign = $articleProductPrintSide
+            ->getDesignPrintableVariants()
+            ->first();
+        
+        $printSideArea = $article->getArticleProduct()
+            ->getArticleProductPrintSides()
+            ->first()
+            ->getPrintSide()
+            ->getAreas()
+            ->first();
+        
+        $printSideAreaPosX = $printSideArea->getPosX();
+        $printSideAreaPosY = $printSideArea->getPosY();
+        $printSideAreaWidth = $printSideArea->getWidth();
+        $printSideAreaHeight = $printSideArea->getHeight();
+        
+        // Invalid data
+        $invalidPosX = $printSideAreaPosX - 5000;
+        $invalidPosY = $printSideAreaPosX - 5000;
+        $invalidWidth = $printSideAreaWidth + 5000;
+        $invalidHeight = $printSideAreaHeight + 50000; 
+
+        // valid data test
+        $printableVariantDesign
+			->setPosX($invalidPosX)
+			->setPosY($invalidPosY)
+            ->setWidth($invalidWidth);
+        
+        $errors = $validator->validate($article);
+        
+        die(var_dump(count($errors)));
 		if ($form->isValid() && !$request->isXmlHttpRequest()) {	
             
             // delete disabled print sides

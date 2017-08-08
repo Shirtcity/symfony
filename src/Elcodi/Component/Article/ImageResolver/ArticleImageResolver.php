@@ -12,8 +12,6 @@ use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 use Elcodi\Component\Article\ImageResolver\Abstracts\AbstractImageResolverWithImageResolver;
 use Elcodi\Component\Article\ImageResolver\Interfaces\ArticleImageResolverInterface;
 use Elcodi\Bundle\ProductBundle\Entity\Interfaces\PrintSideInterface;
-use Elcodi\Bundle\PrintableBundle\Entity\TextVariant;
-use Elcodi\Bundle\PrintableBundle\Entity\DesignVariant;
 
 /**
  * Class ArticleImageResolver.
