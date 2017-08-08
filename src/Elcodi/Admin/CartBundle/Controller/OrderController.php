@@ -212,7 +212,7 @@ class OrderController extends AbstractAdminController
             'nextPaymentTransitions'    => $nextPaymentTransitions,
             'nextShippingTransitions'   => $nextShippingTransitions,
             'nextProductionTransitions' => $nextProductionTransitions,
-            'allStatesAndEvents'                 => $allStatesAndEvents,
+            'allStatesAndEvents'        => $allStatesAndEvents,
             'deliveryInfo'              => $deliveryInfo,
             'billingInfo'               => $billingInfo,
         ];

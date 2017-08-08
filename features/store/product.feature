@@ -8,7 +8,3 @@ Feature: Store product
     Given I am on the product 6 page
     Then I should see product 6 name
     And the response should contain a "add-product-6-to-cart" test attribute
-
-  Scenario: Product redirection
-    Given I am on "product/ibiza-lips-en-false/1"
-    Then I should be on "product/ibiza-lips-en/1"

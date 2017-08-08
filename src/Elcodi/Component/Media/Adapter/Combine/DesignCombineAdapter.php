@@ -5,7 +5,6 @@ namespace Elcodi\Component\Media\Adapter\Combine;
 use Symfony\Component\Process\ProcessBuilder;
 
 use Elcodi\Bundle\PrintableBundle\Entity\Interfaces\DesignVariantInterface;
-use Elcodi\Component\Media\ElcodiMediaImageResizeTypes;
 
 /**
  * Class DesignCombineAdapter.
@@ -87,14 +86,13 @@ class DesignCombineAdapter
         
         $imageData = file_get_contents($designFileName);
         $tempFileName = tempnam(sys_get_temp_dir(), '_desine_resized'); 
-        
+       
         $resizedFileContent = $this
             ->resizeAdapter
             ->resize(
                 $imageData, 
                 $designVariant->getHeight(), 
-                $designVariant->getWidth(), 
-                ElcodiMediaImageResizeTypes::INSET
+                $designVariant->getWidth()
             );
         
         file_put_contents($tempFileName, $resizedFileContent);

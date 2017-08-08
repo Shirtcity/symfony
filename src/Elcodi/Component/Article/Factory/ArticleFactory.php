@@ -60,7 +60,7 @@ class ArticleFactory extends AbstractFactory
         $classNamespace = $this->getEntityNamespace();
 		
         $article = new $classNamespace();
-
+        
         $article
             ->setType(ElcodiArticleTypes::TYPE_PRODUCT_PHYSICAL)
             ->setShowInHome(true)
@@ -68,7 +68,7 @@ class ArticleFactory extends AbstractFactory
             ->setEnabled(true)
 			->setArticleProduct($this->getDefaultArticleProduct())
             ->setCreatedAt($this->now());
-
+        
         return $article;
     }
 	
@@ -87,8 +87,8 @@ class ArticleFactory extends AbstractFactory
 		$product = $this->productRepository->findOneBy([]);
 		$productColors = $product
 				->getColors()
-				->first();		
-		
+				->first();
+        
 		$articleProduct
             ->setProduct($product)
             ->setProductColors($productColors);

@@ -4,12 +4,10 @@ namespace Elcodi\Component\Article\Validator\Constraint;
 
 use Symfony\Component\Validator\Constraint;
 
-use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
-
 /**
  * Class Constraint
  */
-class PrintablePositionConstraint extends Constraint
+class ArticlePrintableVariantPositionConstraint extends Constraint
 {
     public $messageWrongPosition = "{{ printableType }} \"{{ printableName }}\" doesn't fit to any of print areas. The print position has been corrected.";
     public $messagePrintableResized = "{{ printableType }} \"{{ printableName }}\" was too big and has been resized.";
@@ -22,6 +20,6 @@ class PrintablePositionConstraint extends Constraint
     
     public function validatedBy()
     {
-        return 'elcodi.validator.article.printable_position';
+        return 'elcodi.validator.article.printable_variant_position';
     }
 }

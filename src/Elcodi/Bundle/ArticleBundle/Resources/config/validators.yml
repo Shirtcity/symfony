@@ -5,38 +5,47 @@ services:
     #
     
     #
-    # Entities
+    # Article Printable Variant Position
+    #
+    elcodi.validator.article.printable_variant_position:
+        class: Elcodi\Component\Article\Validator\ArticlePrintableVariantPositionValidator
+        arguments:
+            - '@elcodi.article.adapter.printable_variant_position'
+            - '@elcodi.article.adapter.printable_variant_size'
+        tags:
+            - { name: validator.constraint_validator, alias: elcodi.validator.article.printable_variant_position }
+    
+    
+    #
+    # Entity Validators
+    #
+    
+    #
+    # Article
     #
     elcodi.validator.article:
         class: Elcodi\Component\Article\Validator\ArticleValidator
         tags:
             - { name: validator.constraint_validator, alias: elcodi.validator.article }
-            
+    
+    #
+    # Article Product
+    #
     elcodi.validator.article_product:
         class: Elcodi\Component\Article\Validator\ArticleProductValidator
         tags:
             - { name: validator.constraint_validator, alias: elcodi.validator.article_product }
             
+    #
+    # Article Product Print Side
+    #
     elcodi.validator.article_product_print_side:
         class: Elcodi\Component\Article\Validator\ArticleProductPrintSideValidator
         tags:
             - { name: validator.constraint_validator, alias: elcodi.validator.article_product_print_side }
             
-     
-    #
-    # Printables Validation
-    #
+         
     
-    #
-    # Printable position
-    #
-    elcodi.validator.article.printable_position:
-        class: Elcodi\Component\Article\Validator\PrintablePositionValidator
-        arguments:
-            - '@elcodi.article.adapter.printable_position'
-            - '@elcodi.article.adapter.printable_size'
-        tags:
-            - { name: validator.constraint_validator, alias: elcodi.validator.article.printable_position }
     
             
 

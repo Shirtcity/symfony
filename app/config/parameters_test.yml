@@ -3,5 +3,5 @@ parameters:
     locale: en
 
     database_driver: pdo_sqlite
-    database_name: shirtcity.dev2
-    database_path: /srv/www/el.shirtcity/test.database.sqlite
+    database_name: test_db_file
+    database_path: /srv/www/el.codi/test.database.sqlite

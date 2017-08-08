@@ -38,7 +38,7 @@ class CategoryFunction implements ExpressionLanguageFunctionInterface
         }, function ($arguments, $ids) {
             $ids = explode(',', $ids);
             $purchasable = $arguments['purchasable'];
-
+            
             $categoryIds = $purchasable
                 ->getArticleProduct()
                 ->getProduct()

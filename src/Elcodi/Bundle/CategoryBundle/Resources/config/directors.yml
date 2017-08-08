@@ -3,13 +3,6 @@ services:
     #
     # Directors
     #
-    elcodi.director.category:
-        class: Elcodi\Component\Core\Services\ObjectDirector
-        lazy: true
-        arguments:
-            - '@elcodi.object_manager.category'
-            - '@elcodi.repository.category'
-            - '@elcodi.factory.category'
             
     elcodi.director.section_category:
         class: Elcodi\Component\Core\Services\ObjectDirector

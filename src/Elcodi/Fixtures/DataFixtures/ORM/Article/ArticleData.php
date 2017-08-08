@@ -25,12 +25,12 @@ use Elcodi\Component\Currency\Entity\Money;
 use Elcodi\Component\EntityTranslator\Services\Interfaces\EntityTranslatorInterface;
 use Elcodi\Bundle\CategoryBundle\Entity\Interfaces\CategoryInterface;
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
-use Elcodi\Fixtures\DataFixtures\ORM\Article\Abstracts\AbstractPurchasableData;
+use Elcodi\Bundle\CoreBundle\DataFixtures\ORM\Abstracts\AbstractFixture;
 
 /**
  * Class ArticleData
  */
-class ArticleData extends AbstractPurchasableData implements DependentFixtureInterface
+class ArticleData extends AbstractFixture implements DependentFixtureInterface
 {
 
     /**
@@ -41,49 +41,41 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
     public function load(ObjectManager $manager)
     {
         /**
-         * @var CategoryInterface         $menCategory
-         * @var CategoryInterface         $womenCategory
          * @var CurrencyInterface         $currencyUsd
          * @var CurrencyInterface         $currencyEur
          * @var ObjectManager             $articleObjectManager
          * @var EntityTranslatorInterface $entityTranslator
-         */
+         */        
         $articleFactory = $this->getFactory('article');
-        $menCategory = $this->getReference('category-men');
-        $womenCategory = $this->getReference('category-women');
         $currencyUsd = $this->getReference('currency-USD');
         $currencyEur = $this->getReference('currency-EUR');
         $articleObjectManager = $this->get('elcodi.object_manager.article');
         $entityTranslator = $this->get('elcodi.entity_translator');
-
+        
+        $articleProduct = $this->getReference('article-product-t-shirt');
+        
         /**
          * Ibiza Lips
          *
          * @var ArticleInterface $article
          */
         $article = $articleFactory->create();
+        
         $article
             ->setName('Ibiza Lips English')
             ->setSlug('ibiza-lips-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('Ibiza Lips English')
             ->setMetaDescription('Ibiza Lips English')
             ->setMetaKeywords('Ibiza Lips English')
-            ->addCategory($womenCategory)
-            ->setPrincipalCategory($womenCategory)
             ->setShowInHome(true)
-            ->setPrice(Money::create(799, $currencyUsd))
-            ->setEnabled(true);
-
-       
+            ->setArticleProduct($articleProduct)
+            ->setPrice(Money::create(799, $currencyUsd));
 
         $articleObjectManager->persist($article);
 
         $this->addReference('article-ibiza-lips', $article);
         $articleObjectManager->flush($article);
-
+        
         $entityTranslator->save($article, [
             'en' => [
                 'name'            => 'Ibiza Lips English',
@@ -127,11 +119,29 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-1.jpg'
-        );
+        $articleObjectManager->flush();        
+    }
 
+    /**
+     * This method must return an array of fixtures classes
+     * on which the implementing class depends on
+     *
+     * @return array
+     */
+    public function getDependencies()
+    {
+        return [
+            'Elcodi\Fixtures\DataFixtures\ORM\Currency\CurrencyData',
+            'Elcodi\Fixtures\DataFixtures\ORM\Category\CategoryData',
+            'Elcodi\Fixtures\DataFixtures\ORM\Attribute\AttributeData',
+            'Elcodi\Fixtures\DataFixtures\ORM\Store\StoreData',
+            'Elcodi\Fixtures\DataFixtures\ORM\Article\ArticleProductData',
+        ];
+    }
+    
+    private function someDataDoNotAsk()
+    {
+        
         /**
          * Ibiza Banana
          *
@@ -141,17 +151,10 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('Ibiza Banana English')
             ->setSlug('ibiza-banana-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('Ibiza Banana English')
             ->setMetaDescription('Ibiza Banana English')
             ->setMetaKeywords('Ibiza Banana English')
-            ->setShowInHome(true)
-            ->addCategory($womenCategory)
-            ->setPrincipalCategory($womenCategory)
-            ->setPrice(Money::create(399, $currencyEur))
-            ->setEnabled(true);
+            ->setShowInHome(true);
 
         $articleObjectManager->persist($article);
         $this->addReference('article-ibiza-banana', $article);
@@ -200,11 +203,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-2.jpg'
-        );
-
         /**
          * I Was There
          *
@@ -214,18 +212,10 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('I Was There English')
             ->setSlug('i-was-there-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('I Was There English')
             ->setMetaDescription('I Was There English')
             ->setMetaKeywords('I Was There English')
-            ->setShowInHome(true)
-            ->setShowInHome(true)
-            ->addCategory($womenCategory)
-            ->setPrincipalCategory($womenCategory)
-            ->setPrice(Money::create(2105, $currencyUsd))
-            ->setEnabled(true);
+            ->setShowInHome(true);
 
         $articleObjectManager->persist($article);
         $this->addReference('article-i-was-there', $article);
@@ -274,11 +264,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-3.jpg'
-        );
-
         /**
          * A Life Style
          *
@@ -288,18 +273,10 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('A Life Style English')
             ->setSlug('a-life-style-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('A Life Style English')
             ->setMetaDescription('A Life Style English')
             ->setMetaKeywords('A Life Style English')
-            ->setShowInHome(true)
-            ->setShowInHome(true)
-            ->addCategory($womenCategory)
-            ->setPrincipalCategory($womenCategory)
-            ->setPrice(Money::create(1290, $currencyUsd))
-            ->setEnabled(true);
+            ->setShowInHome(true);
 
         $articleObjectManager->persist($article);
         $this->addReference('article-a-life-style', $article);
@@ -348,11 +325,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-4.jpg'
-        );
-
         /**
          * A.M. Nesia Ibiza
          *
@@ -362,18 +334,10 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('A.M. Nesia Ibiza English')
             ->setSlug('a-m-nesia-ibiza-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('A.M. Nesia Ibiza English')
             ->setMetaDescription('A.M. Nesia Ibiza English')
             ->setMetaKeywords('A.M. Nesia Ibiza English')
-            ->setShowInHome(true)
-            ->setShowInHome(true)
-            ->addCategory($womenCategory)
-            ->setPrincipalCategory($womenCategory)
-            ->setPrice(Money::create(1190, $currencyUsd))
-            ->setEnabled(true);
+            ->setShowInHome(true);
 
         $articleObjectManager->persist($article);
         $this->addReference('article-a-m-nesia-ibiza', $article);
@@ -422,11 +386,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-5.jpg'
-        );
-
         /**
          * Amnesia poem
          *
@@ -436,18 +395,10 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('Amnesia Poem English')
             ->setSlug('amnesia-poem-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('Amnesia Poem English')
             ->setMetaDescription('Amnesia Poem English')
             ->setMetaKeywords('Amnesia Poem English')
-            ->setShowInHome(true)
-            ->setShowInHome(true)
-            ->addCategory($womenCategory)
-            ->setPrincipalCategory($womenCategory)
-            ->setPrice(Money::create(1390, $currencyUsd))
-            ->setEnabled(true);
+            ->setShowInHome(true);
 
         $articleObjectManager->persist($article);
         $this->addReference('article-amnesia-poem', $article);
@@ -496,11 +447,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-6.jpg'
-        );
-
         /**
          * Pyramid
          *
@@ -510,18 +456,11 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('Pyramid English')
             ->setSlug('pyramid-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('Pyramid English')
             ->setMetaDescription('Pyramid English')
             ->setMetaKeywords('Pyramid English')
             ->setShowInHome(true)
-            ->setShowInHome(true)
-            ->addCategory($womenCategory)
-            ->setPrincipalCategory($womenCategory)
-            ->setPrice(Money::create(1090, $currencyUsd))
-            ->setEnabled(true);
+            ->setPrice(Money::create(1090, $currencyUsd));
 
         $articleObjectManager->persist($article);
         $this->addReference('article-pyramid', $article);
@@ -570,11 +509,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-7.jpg'
-        );
-
         /**
          * Amnesia pink
          *
@@ -584,18 +518,10 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('Amnesia Pink English')
             ->setSlug('amnesia-pink-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('Amnesia Pink English')
             ->setMetaDescription('Amnesia Pink English')
             ->setMetaKeywords('Amnesia Pink English')
-            ->setShowInHome(true)
-            ->setShowInHome(true)
-            ->addCategory($womenCategory)
-            ->setPrincipalCategory($womenCategory)
-            ->setPrice(Money::create(1290, $currencyUsd))
-            ->setEnabled(true);
+            ->setShowInHome(true);
 
         $articleObjectManager->persist($article);
         $this->addReference('article-amnesia-pink', $article);
@@ -644,11 +570,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-8.jpg'
-        );
-
         /**
          * Pinky fragments
          *
@@ -658,18 +579,10 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('Pinky Fragments English')
             ->setSlug('pinky-fragments-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('Pinky Fragments English')
             ->setMetaDescription('Pinky Fragments English')
             ->setMetaKeywords('Pinky Fragments English')
-            ->setShowInHome(true)
-            ->setShowInHome(true)
-            ->addCategory($womenCategory)
-            ->setPrincipalCategory($womenCategory)
-            ->setPrice(Money::create(1190, $currencyUsd))
-            ->setEnabled(true);
+            ->setShowInHome(true);
 
         $articleObjectManager->persist($article);
         $this->addReference('article-pinky-fragments', $article);
@@ -718,11 +631,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-9.jpg'
-        );
-
         /**
          * I Was There II
          *
@@ -732,18 +640,10 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('I was there II English')
             ->setSlug('i-was-there-ii-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('I was there II English')
             ->setMetaDescription('I was there II English')
             ->setMetaKeywords('I was there II English')
-            ->setShowInHome(true)
-            ->setShowInHome(true)
-            ->addCategory($menCategory)
-            ->setPrincipalCategory($menCategory)
-            ->setPrice(Money::create(1190, $currencyUsd))
-            ->setEnabled(true);
+            ->setShowInHome(true);
 
         $articleObjectManager->persist($article);
         $this->addReference('article-i-was-there-ii', $article);
@@ -792,11 +692,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-10.jpg'
-        );
-
         /**
          * Amnesia
          *
@@ -806,18 +701,10 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('Amnesia English')
             ->setSlug('amnesia-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('Amnesia English')
             ->setMetaDescription('Amnesia English')
             ->setMetaKeywords('Amnesia English')
-            ->setShowInHome(true)
-            ->setShowInHome(true)
-            ->addCategory($menCategory)
-            ->setPrincipalCategory($menCategory)
-            ->setPrice(Money::create(1800, $currencyUsd))
-            ->setEnabled(true);
+            ->setShowInHome(true);
 
         $articleObjectManager->persist($article);
         $this->addReference('article-amnesia', $article);
@@ -866,11 +753,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-11.jpg'
-        );
-
         /**
          * Amnesia 100%
          *
@@ -880,18 +762,10 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('Amnesia 100% English')
             ->setSlug('amnesia-100-percent-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('Amnesia 100% English')
             ->setMetaDescription('Amnesia 100% English')
             ->setMetaKeywords('Amnesia 100% English')
-            ->setShowInHome(true)
-            ->setShowInHome(true)
-            ->addCategory($menCategory)
-            ->setPrincipalCategory($menCategory)
-            ->setPrice(Money::create(1650, $currencyUsd))
-            ->setEnabled(true);
+            ->setShowInHome(true);
 
         $articleObjectManager->persist($article);
         $this->addReference('article-amnesia-100-percent', $article);
@@ -940,11 +814,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-12.jpg'
-        );
-
         /**
          * A life style
          *
@@ -954,18 +823,10 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('A life style II English')
             ->setSlug('a-life-style-ii-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('A life style II English')
             ->setMetaDescription('A life style II English')
             ->setMetaKeywords('A life style II English')
-            ->setShowInHome(true)
-            ->setShowInHome(true)
-            ->addCategory($menCategory)
-            ->setPrincipalCategory($menCategory)
-            ->setPrice(Money::create(1550, $currencyUsd))
-            ->setEnabled(true);
+            ->setShowInHome(true);
 
         $articleObjectManager->persist($article);
         $this->addReference('article-a-life-style-ii', $article);
@@ -1014,11 +875,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-13.jpg'
-        );
-
         /**
          * All night long
          *
@@ -1028,18 +884,10 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('All night long English')
             ->setSlug('all-night-long-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('All night long English')
             ->setMetaDescription('All night long English')
             ->setMetaKeywords('All night long English')
-            ->setShowInHome(true)
-            ->setShowInHome(true)
-            ->addCategory($menCategory)
-            ->setPrincipalCategory($menCategory)
-            ->setPrice(Money::create(1710, $currencyUsd))
-            ->setEnabled(true);
+            ->setShowInHome(true);
 
         $articleObjectManager->persist($article);
         $this->addReference('article-all-night-long', $article);
@@ -1088,11 +936,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-14.jpg'
-        );
-
         /**
          * A.M. Nesia Ibiza II
          *
@@ -1103,18 +946,10 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('A.M. Nesia Ibiza II English')
             ->setSlug('a-m-nesia-ibiza-ii-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('A.M. Nesia Ibiza II English')
             ->setMetaDescription('A.M. Nesia Ibiza II English')
             ->setMetaKeywords('A.M. Nesia Ibiza II English')
-            ->setShowInHome(true)
-            ->setShowInHome(true)
-            ->addCategory($menCategory)
-            ->setPrincipalCategory($menCategory)
-            ->setPrice(Money::create(18000, $currencyUsd))
-            ->setEnabled(true);
+            ->setShowInHome(true);
 
         $articleObjectManager->persist($article);
         $this->addReference('article-a-m-nesia-ibiza-ii', $article);
@@ -1163,11 +998,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-15.jpg'
-        );
-
         /**
          * High Pyramid
          *
@@ -1178,18 +1008,10 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('High Pyramid English')
             ->setSlug('high-pyramid-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('High Pyramid English')
             ->setMetaDescription('High Pyramid English')
             ->setMetaKeywords('High Pyramid English')
-            ->setShowInHome(true)
-            ->setShowInHome(true)
-            ->addCategory($menCategory)
-            ->setPrincipalCategory($menCategory)
-            ->setPrice(Money::create(2000, $currencyUsd))
-            ->setEnabled(true);
+            ->setShowInHome(true);
 
         $articleObjectManager->persist($article);
         $this->addReference('article-high-pyramid', $article);
@@ -1238,11 +1060,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-16.jpg'
-        );
-
         /**
          * Star Amnesia
          *
@@ -1253,18 +1070,10 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('Star Amnesia English')
             ->setSlug('star-amnesia-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('Star Amnesia English')
             ->setMetaDescription('Star Amnesia English')
             ->setMetaKeywords('Star Amnesia English')
-            ->setShowInHome(true)
-            ->setShowInHome(true)
-            ->addCategory($menCategory)
-            ->setPrincipalCategory($menCategory)
-            ->setPrice(Money::create(1145, $currencyUsd))
-            ->setEnabled(true);
+            ->setShowInHome(true);
 
         $articleObjectManager->persist($article);
         $this->addReference('article-star-amnesia', $article);
@@ -1313,11 +1122,6 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
             ],
         ]);
 
-        $this->storePurchasableImage(
-            $article,
-            'article-17.jpg'
-        );
-
         /**
          * Ibiza 4 Ever
          *
@@ -1327,18 +1131,10 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
         $article
             ->setName('Ibiza 4 Ever English')
             ->setSlug('ibiza-4-ever-en')
-            ->setDescription('Sed venenatis mauris eros, sit amet dapibus turpis consectetur et.
-                Etiam blandit erat libero. Integer a elit a tortor scelerisque
-                bibendum quis eget tortor. Donec vitae tempor tellus.')
             ->setMetaTitle('Ibiza 4 Ever English')
             ->setMetaDescription('Ibiza 4 Ever English')
             ->setMetaKeywords('Ibiza 4 Ever English')
-            ->setShowInHome(true)
-            ->setShowInHome(true)
-            ->addCategory($menCategory)
-            ->setPrincipalCategory($menCategory)
-            ->setPrice(Money::create(1020, $currencyUsd))
-            ->setEnabled(true);
+            ->setShowInHome(true);
 
         $articleObjectManager->persist($article);
         $this->addReference('article-ibiza-4-ever', $article);
@@ -1386,28 +1182,5 @@ class ArticleData extends AbstractPurchasableData implements DependentFixtureInt
                 'metaKeywords'    => 'Ibiza 4 Ever Català',
             ],
         ]);
-
-        $this->storePurchasableImage(
-            $article,
-            'article-18.jpg'
-        );
-
-        $articleObjectManager->flush();
-    }
-
-    /**
-     * This method must return an array of fixtures classes
-     * on which the implementing class depends on
-     *
-     * @return array
-     */
-    public function getDependencies()
-    {
-        return [
-            'Elcodi\Fixtures\DataFixtures\ORM\Currency\CurrencyData',
-            'Elcodi\Fixtures\DataFixtures\ORM\Category\CategoryData',
-            'Elcodi\Fixtures\DataFixtures\ORM\Attribute\AttributeData',
-            'Elcodi\Fixtures\DataFixtures\ORM\Store\StoreData',
-        ];
     }
 }
