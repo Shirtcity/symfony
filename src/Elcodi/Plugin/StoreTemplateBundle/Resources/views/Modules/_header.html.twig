@@ -6,7 +6,7 @@
         <div class="col-1-2">
             <a href="{{ url('store_homepage') }}" class="logo">
                 {% if store.logo %}
-                    <img src="{{ store.logo|resize({ height: 100, width: 300, type: 2 })  }}" />
+                    <img src="{{ store.logo|resize({ height: 46, width: 162, type: 2 })  }}" />
                 {% else %}
                     {{ store.name }}
                 {% endif %}

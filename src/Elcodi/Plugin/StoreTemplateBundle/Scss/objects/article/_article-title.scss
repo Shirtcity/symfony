@@ -1,4 +1,4 @@
-.product-title {
+.article-title {
 	font-family: $font-face-title;
 	font-size: $font-size-xxl;
 	margin: 0 0 $spacing/4;
@@ -6,19 +6,19 @@
 	text-shadow: 1px 1px 0 $color-foreground;
 }
 
-h1.product-title {
+h1.article-title {
 	font-size: $font-size-xxxl;
 }
 
-h3.product-title {
+h3.article-title {
 	color: $color-primary;
 }
 
-h4.product-title {
+h4.article-title {
 	margin: 0;
 }
 
-h5.product-title {
+h5.article-title {
 	margin: 0 0 $spacing/4;
 	font-size: $font-size-m;
 }

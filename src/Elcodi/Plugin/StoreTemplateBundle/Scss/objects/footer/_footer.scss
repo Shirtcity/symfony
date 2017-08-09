@@ -2,15 +2,15 @@
 	& {
 		clear: both;
 		text-align: left;
-		background: rgba($color-primary, .9);
-		color: rgba($color-background, .7);
+		background: rgba($color-box-light, .9);
+		color: rgba($color-foreground-dark, .7);
 		box-shadow: 0 0 2px rgba($color-foreground, .1);
 		min-height: 150px;
 		margin-top: $spacing;
 	}
 
 	a {
-		color: $color-background;
+		color: $color-foreground-dark;
 	}
 	.leitmotiv {
 		margin-top: $spacing/2;
@@ -22,7 +22,7 @@
 			font-size: $font-size-xxl;
 			display: inline-block;
 			padding: 0 $spacing/2;
-			color: $color-background;
+			color: $color-foreground-dark;
 			text-shadow: 1px 1px $color-foreground;
 		}
 		&:hover {
