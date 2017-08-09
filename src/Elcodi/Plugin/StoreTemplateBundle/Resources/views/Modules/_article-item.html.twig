@@ -5,12 +5,6 @@
     {% set articleRoute = url('store_article_view', { 'slug': article.slug, 'id': article.id }) %}
     {% set articleName = article|purchasable_name %}
 
-    {% block pin_title %}
-    <h4 class="article-title">
-        <a href="{{ articleRoute }}">{{ articleName }}</a>
-    </h4>
-    {% endblock %}
-
     {% block pin_image %}
         <a href="{{ articleRoute }}" class="article-thumbnail">
             {% if article.inOffer %}<span class="article-badge">{{ 'template.store_template_bundle.article.item.offer'|trans }}</span> {% endif %}
@@ -21,6 +15,12 @@
                 'type': 5
             }) : '//placehold.it/372x291'  }}" alt="{{ articleName }}" />
         </a>
+    {% endblock %}
+
+    {% block pin_title %}
+        <span class="article-title">
+            <a href="{{ articleRoute }}">{{ articleName }}</a>
+        </span>
     {% endblock %}
 
     <p class="article-actions">
@@ -43,7 +43,7 @@
                    'id': article.id
                }) }}#variant-add-to-cart"></a>
         {% else %}
-            <a class="fa fa-shopping-cart button button-secondary"
+            <a class="fa fa-shopping-cart button button-primary"
                data-test="add-article-{{ article.id }}-to-cart"
                href="{{ url('store_cart_add_purchasable', { id: article.id }) }}"
                title="{{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }} {{ articleName }}"></a>

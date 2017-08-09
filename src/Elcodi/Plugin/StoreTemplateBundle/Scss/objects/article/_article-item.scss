@@ -2,6 +2,10 @@
 	& {
 		padding: $spacing/2;
 	}
+	a{
+		color: $color-foreground-dark;
+	}
+
 }
 .article-actions {
 	& {
