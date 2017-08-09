@@ -163,6 +163,7 @@ template:
                 no_articles_in_category: 'Sorry, we don''t have articles for this category'
             view_item:
                 add_to_cart: 'Add to cart'
+                show_product: 'Show product'
                 delivery: Delivery
                 description: Description
                 in_stock: 'This item is in stock and ready to ship!'

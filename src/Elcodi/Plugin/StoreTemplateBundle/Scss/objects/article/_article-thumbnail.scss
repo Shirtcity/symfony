@@ -8,7 +8,7 @@
 		position: relative;
 		overflow: hidden;
 		background: $color-box-light;
-		border-radius: 5px;
+		border-radius: $default-border-radius;
 	}
 	&:hover {
 		opacity: .9;
@@ -18,5 +18,6 @@
 		max-width: 100%;
 		display: block;
 		margin: auto;
+		margin-top: 10px;
 	}
 }

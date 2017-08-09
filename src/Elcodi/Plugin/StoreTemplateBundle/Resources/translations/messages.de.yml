@@ -157,6 +157,7 @@ template:
                 no_articles_in_category: 'Sorry, wir haben keine Produkte in dieser Kategorie'
             view_item:
                 add_to_cart: 'In den Einkaufswagen hinzufügen'
+                show_product: 'Produkt anzeigen'
                 delivery: Auslieferung
                 description: Bezeichnung
                 in_stock: 'Dieser Artikel ist auf Lager und sofort lieferbar!'

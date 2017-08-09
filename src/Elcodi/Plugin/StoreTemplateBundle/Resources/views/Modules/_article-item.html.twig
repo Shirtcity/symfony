@@ -25,9 +25,10 @@
 
     <p class="article-actions">
         {% block pin_button_view %}
-            <a class="fa fa-eye button button"
+            <a class="button button-ugly"
+               style="position: absolute; left: 0;"
                title="View details for {{ articleName }}"
-               href="{{ articleRoute }}"></a>
+               href="{{ articleRoute }}">{{ 'template.store_template_bundle.article.view_item.show_product'|trans }}</a>
         {% endblock %}
         {% if article.inOffer %}
             <span class="article-pricing article-pricing-before">{{ article|article_price|print_convert_money() }}</span>
