@@ -1,5 +1,5 @@
 
-<header class="header" {% if store.headerImage %}style="background-image:url('{{ store.headerImage|resize({ height: 1200, width: 1200, type: 2 })  }}')"{% endif %}>
+<header class="header">
     {{ render(url('store_currency_nav')) }}
     {{ render(url('store_language_nav')) }}
     <div class="grid">
@@ -21,4 +21,12 @@
 <div class="grid desktop">
     {{ render(url('store_categories_nav')) }}
 </div>
+
+{% if page %}
+    {% if store.headerImage %}
+        <div class="grid desktop" style="height:498px;background-image:url('{{ store.headerImage|resize({ height: 1200, width: 1200, type: 2 })  }}')"></div>
+    {% endif %}
+{% endif %}
+
+
 <a href="#mobile-menu" class="button mobile"><i class="fa fa-arrow-down"></i> {{ 'template.store_template_bundle.header.menu'|trans }}</a>
