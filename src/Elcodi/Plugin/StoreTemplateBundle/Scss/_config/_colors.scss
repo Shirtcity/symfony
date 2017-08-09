@@ -32,13 +32,13 @@ $color-background: #FFF !global;
  * Color used for the html body element background.
  * @group colors
  */
-$color-body: #EDEDED !global;
+$color-body: #FFF !global;
 
 /**
  * Primary color used for the objects. It should be your brand primary color.
  * @group colors
  */
-$color-primary:  #66CCCC !global;
+$color-primary:  #77af00 !global;
 
 /**
  * Secondary color used for the objects. It should be your brand secondary color. If you don't have one, a black or grey could be a great alternative.
@@ -50,7 +50,7 @@ $color-secondary: #ff884c !global;
  * Color used for the links.
  * @group colors
  */
-$color-link: #ff884c !global;
+$color-link: #77af00 !global;
 
 /**
  * Color used for the default box. Grey can be a great candidate here.
@@ -64,7 +64,7 @@ $color-box: #CCC !global;
  * You can specify a color in your $colors map to avoid the auto color.
  * @group colors
  */
-$color-box-light: #EDEDED !global;
+$color-box-light: #EEEEEE !global;
 
 /**
  * Dark variant of $color-box.

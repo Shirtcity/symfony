@@ -10,7 +10,7 @@ html {
 .header {
 	& {
 		text-align: center;
-		background: rgba($color-primary, .9);
+		background: rgba($color-background, .9);
 		box-shadow: 0 0 2px rgba($color-foreground, .1);
 		background-position: center center;
 		background-repeat: no-repeat;
@@ -23,7 +23,7 @@ html {
 		overflow: visible;
 	}
 	a {
-		color: $color-background;
+		color: $color-foreground-dark;
 	}
 	.logo {
 		& {
@@ -31,8 +31,9 @@ html {
 			font-size: $font-size-xxxl;
 			display: inline-block;
 			padding: 0 $spacing/2;
-			color: $color-background;
+			color: $color-foreground-dark;
 			text-shadow: 1px 1px $color-foreground;
+			margin-top: 20px;
 		}
 		&:hover {
 			text-decoration: none;
