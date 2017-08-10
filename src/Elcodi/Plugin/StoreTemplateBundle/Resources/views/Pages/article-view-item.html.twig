@@ -34,7 +34,7 @@
     <div class="article-view">
        <h1 class="article-title">{{ articleName }}</h1>
        <div class="grid">
-           <div class="col-1-2">
+           <div class="col-2-3">
             {% block article_image %}
                <a href="{{ article|print_side_preview_image('front')|length > 0 ? article|print_side_preview_image('front')|combine({
                    'width': 1024,
@@ -50,7 +50,7 @@
                </a>
             {% endblock %}
            </div>
-           <div class="col-1-2">
+           <div class="col-1-3">
                {% block article_info %}
                    {% block article_info_add_basket %}
                        <div class= "article-to-basket">

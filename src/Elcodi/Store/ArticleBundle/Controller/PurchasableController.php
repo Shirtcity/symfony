@@ -80,7 +80,7 @@ class PurchasableController extends Controller
      * @throws EntityNotFoundException Purchasable not found
      *
      * @Route(
-     *      path = "/article/{slug}/{id}",
+     *      path = "/{slug}-{id}",
      *      name = "store_article_view",
      *      requirements = {
      *          "slug": "(.*)",
