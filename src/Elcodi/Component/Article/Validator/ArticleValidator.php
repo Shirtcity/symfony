@@ -11,8 +11,6 @@ class ArticleValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        /* $this->context->buildViolation($constraint->message)
-             ->setParameter('{{ string }}', $value->getId())
-             ->addViolation();*/
+        
     }
 }

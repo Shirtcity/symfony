@@ -13,9 +13,6 @@ class ArticleProductPrintSideValidator extends ConstraintValidator
     
     public function validate($articleProductPrintSide, Constraint $constraint)
     {
-        /*$this->constraint = $constraint;
         
-        $this->context->buildViolation($this->constraint->message)
-            ->addViolation();*/
     }
 }

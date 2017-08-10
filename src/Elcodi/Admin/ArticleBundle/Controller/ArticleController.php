@@ -163,11 +163,6 @@ class ArticleController extends AbstractAdminController
         ArticleInterface $article,
         Request $request
     ) {	
-       
-       /*foreach ($form->getErrors(true) as $key => $error) {
-	//echo $error->getMessage();
-         //  var_dump($error);
-}*/
         
 		if ($form->isValid() && !$request->isXmlHttpRequest()) {	
             

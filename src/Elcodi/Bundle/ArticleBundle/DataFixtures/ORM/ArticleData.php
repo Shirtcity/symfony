@@ -88,10 +88,10 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
 		
 		$printableVariantDesign
 			->setDesign($design)
-			->setPosX(10)
-			->setPosY(10)
-            ->setWidth(100)
-            ->setHeight(100);
+			->setPosX(165)
+			->setPosY(110)
+            ->setWidth(50)
+            ->setHeight(50);
 		
 		$articleProductPrintSide->addPrintableVariant($printableVariantDesign);		
 		
@@ -100,10 +100,10 @@ class ArticleData extends AbstractFixture implements DependentFixtureInterface
 		
 		$printableVariantText
 			->setText($text)
-			->setPosX(10)
-			->setPosY(10)
-            ->setWidth(20)
-            ->setHeight(100);
+			->setPosX(165)
+			->setPosY(110)
+            ->setWidth(50)
+            ->setHeight(50);
 		
 		$articleProductPrintSide->addPrintableVariant($printableVariantText);			
 		

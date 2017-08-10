@@ -1,5 +1,11 @@
 {% extends '@StoreTemplate/Layout/_layout.html.twig' %}
 
+{% block header_image %}
+    {% if store.headerImage %}
+       <div class="grid desktop" style="height:498px;background-image:url('{{ store.headerImage|resize({ height: 1200, width: 1200, type: 2 })  }}')"></div>
+    {% endif %}
+{% endblock header_image %}
+
 
 {% block breadcrumb_container %}{% endblock breadcrumb_container %}
 

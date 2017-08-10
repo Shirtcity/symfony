@@ -11,8 +11,6 @@ class ArticleProductValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        /*$this->context->buildViolation($constraint->message)
-            ->setParameter('{{ printableType }}', $value->getId())
-            ->addViolation();*/
+        
     }
 }
