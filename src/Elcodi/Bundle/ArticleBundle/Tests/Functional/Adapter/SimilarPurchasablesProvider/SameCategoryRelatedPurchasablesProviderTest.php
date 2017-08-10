@@ -23,7 +23,7 @@ use Elcodi\Component\Article\Adapter\SimilarPurchasablesProvider\SameCategoryRel
 /**
  * Class SameCategoryRelatedPurchasablesProviderTest.
  */
-class SameCategoryRelatedPurchasablesProviderTest extends WebTestCase
+class SameCategoryRelatedPurchasablesProviderTest333 extends WebTestCase
 {
     /**
      * Load fixtures of these bundles.
