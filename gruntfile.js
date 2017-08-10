@@ -12,6 +12,15 @@ module.exports = function (grunt) {
 					ext: '.css'
 				}]
 			},
+            store: {
+                files: [{
+                    expand: true,
+                    cwd: 'src/Elcodi/Plugin/StoreTemplateBundle/Scss',
+                    src: ['*.scss'],
+                    dest: 'src/Elcodi/Plugin/StoreTemplateBundle/Resources/public/css',
+                    ext: '.css'
+                }]
+            },
 			options: {
 				sourceMap: false,
 				outputStyle: 'compressed',

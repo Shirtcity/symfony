@@ -84,7 +84,7 @@ class PurchasableController extends Controller
      *      name = "store_article_view",
      *      requirements = {
      *          "slug": "(.*)",
-     *          "id": "\d+",
+     *          "id": "(.*)",
      *      },
      *      methods = {"GET"}
      * )

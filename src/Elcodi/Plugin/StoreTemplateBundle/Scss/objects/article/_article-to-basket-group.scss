@@ -1,13 +1,13 @@
-.product-to-basket-group {
+.article-to-basket-group {
 	& {
 		overflow: hidden;
 		margin-bottom: $spacing;
 	}
 }
 
-@mixin product-to-basket-group-desktop () {
-	.product-to-basket-group {
-		.product-to-basket {
+@mixin article-to-basket-group-desktop () {
+	.article-to-basket-group {
+		.article-to-basket {
 			width: 44%;
 			margin: 0 3% 3% 0;
 			float: left;

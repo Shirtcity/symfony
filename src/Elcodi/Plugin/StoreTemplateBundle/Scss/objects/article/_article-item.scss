@@ -1,9 +1,13 @@
-.product-item {
+.article-item {
 	& {
 		padding: $spacing/2;
 	}
+	a{
+		color: $color-foreground-dark;
+	}
+
 }
-.product-actions {
+.article-actions {
 	& {
 		padding: $spacing/4 0;
 		text-align: right;
@@ -20,7 +24,7 @@
 	}
 }
 
-.product-badge {
+.article-badge {
 	& {
 		position: absolute;
 		right: -30px;
@@ -35,7 +39,7 @@
 	}
 }
 
-.product-pricing {
+.article-pricing {
 	& {
 		display: inline-block;
 		position: relative;
@@ -81,7 +85,7 @@
 	}
 }
 
-.product-pricing-before {
+.article-pricing-before {
 	& {
 		text-decoration: line-through;
 		color: $color-ko;
@@ -96,7 +100,7 @@
 		border-color:transparent transparent transparent lighten($color-ko, 35%);
 	}
 }
-.product-pricing-now {
+.article-pricing-now {
 	& {
 		font-weight: bold;
 		color: $color-ok;

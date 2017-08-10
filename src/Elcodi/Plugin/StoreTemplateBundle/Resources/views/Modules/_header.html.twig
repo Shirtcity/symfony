@@ -1,12 +1,12 @@
 
-<header class="header" {% if store.headerImage %}style="background-image:url('{{ store.headerImage|resize({ height: 1200, width: 1200, type: 2 })  }}')"{% endif %}>
+<header class="header">
     {{ render(url('store_currency_nav')) }}
     {{ render(url('store_language_nav')) }}
     <div class="grid">
         <div class="col-1-2">
             <a href="{{ url('store_homepage') }}" class="logo">
                 {% if store.logo %}
-                    <img src="{{ store.logo|resize({ height: 100, width: 300, type: 2 })  }}" />
+                    <img src="{{ store.logo|resize({ height: 46, width: 162, type: 2 })  }}" />
                 {% else %}
                     {{ store.name }}
                 {% endif %}
@@ -21,4 +21,5 @@
 <div class="grid desktop">
     {{ render(url('store_categories_nav')) }}
 </div>
+
 <a href="#mobile-menu" class="button mobile"><i class="fa fa-arrow-down"></i> {{ 'template.store_template_bundle.header.menu'|trans }}</a>

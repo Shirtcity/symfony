@@ -20,7 +20,7 @@
 
 {% block breadcrumb %}
     <li>
-        <a href="{{ url('store_category_purchasables_list', { slug: article.articleProduct.product.sections.first.slug, id: article.articleProduct.product.sections.first.id }) }}">{{ article.articleProduct.product.sections.first }}</a> <i class="fa fa-angle-right"></i>
+       <a href="{{ url('store_category_purchasables_list', { slug: article.articleProduct.product.sections.first.slug, id: article.articleProduct.product.sections.first.id }) }}">{{ article.articleProduct.product.sections.first }}</a> <i class="fa fa-angle-right"></i>
     </li>
     <li>
         <a href="{{ url('store_article_view', { 'slug': article.slug, 'id': article.id }) }}"><strong>{{ article.name }}</strong></a>

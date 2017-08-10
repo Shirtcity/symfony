@@ -19,8 +19,9 @@
         {% include '@StoreTemplate/Modules/_header.html.twig' %}
     {% endblock header %}
 
-    {% block container %}
+    {% block header_image %}{% endblock header_image %}
 
+     {% block container %}
         {% block messages %}
             {% include "@StoreTemplate/Modules/_message-list.html.twig" %}
         {% endblock messages %}

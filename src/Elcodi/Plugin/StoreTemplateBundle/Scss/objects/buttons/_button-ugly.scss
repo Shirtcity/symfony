@@ -1,0 +1,10 @@
+.button-ugly {
+	& {
+		background: $color-body;
+		color: $color-primary !important;
+		border: 2px solid $color-primary;
+		font-size: $font-size-xs;
+		font-weight: bold;
+		border-radius: $default-border-radius;
+	}
+}

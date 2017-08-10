@@ -1,4 +1,4 @@
-.product-to-basket {
+.article-to-basket {
 	& {
 		background: rgba($color-foreground, .1);
 		padding: 0;
@@ -16,7 +16,7 @@
 		z-index: 100;
 		width: 100%;
 	}
-	.product-actions {
+	.article-actions {
 		& {
 			background: $color-background;
 			padding: $spacing/4;
@@ -30,7 +30,7 @@
 			box-shadow: 0 2px 2px rgba($color-foreground, .2);
 		}
 	}
-	.product-pricing {
+	.article-pricing {
 		&:after {
 			background: $color-background;
 
