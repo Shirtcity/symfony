@@ -64,16 +64,22 @@
 
 
 {% block content %}
-    {% if article.id %}
-		
-		<span id="form-errors">
+	<span id="form-errors">			
 		{% if form.vars.errors|length > 0 %}
 			{% for error in form.vars.errors %}
-				<p class="msg-warning">{{ error.message }}</p>
+				<p class="msg-warning">	
+					{% if error.origin.config.attributes|first.label|length > 0 %}
+						<span>
+							{{error.origin.parent.parent.config.attributes|first.label}}
+							{{error.origin.config.attributes|first.label}}: 
+						</span>
+					{% endif %}							
+					{{ error.message }}
+				</p>
 			{% endfor %}
 		{% endif %}
-		</span>
-		
+	</span>
+    {% if article.id %}
         {{ render(url('admin_article_edit_component', { id: article.id })) }}
 	 {% else %}
         {{ render(url('admin_article_new_component')) }}

@@ -24,8 +24,7 @@ $('#article-product, #article-product-color, .printable-variants input, .printab
 					newInputValue = $(html).find("#"+inputId).val();
 							
 				$(this).val(newInputValue);
-			});
-	
+			});	
 		}
 	});
 });

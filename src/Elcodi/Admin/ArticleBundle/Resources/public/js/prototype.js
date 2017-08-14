@@ -31,17 +31,16 @@ function addPrintableForm($collectionHolder, $newLink) {
 	$collectionHolder.data('index', index + 1);					
 
 	var $newForm = $(newFormPrototype);
-
+    
 	addTagFormDeleteLink($newForm);
 	$newLink.before($newForm);					
 }
 
 function addTagFormDeleteLink($tagForm) {
-	var $removeFormA = $('<a href="#">Delete this variant</a>');
-
+	var $removeFormA = $('<a class="delete-printable-variant" href="#">Delete this variant</a>');
 	$tagForm.append($removeFormA);
 
-	$removeFormA.on('click', function(e) {
+	$tagForm.find('.delete-printable-variant').on('click', function(e) {		
 		e.preventDefault();
 		$tagForm.remove();
 	});
