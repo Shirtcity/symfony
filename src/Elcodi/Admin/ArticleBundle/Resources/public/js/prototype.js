@@ -1,16 +1,16 @@
- // add a delete link to all of the existing tag form li elements
+// add a delete link to all of the existing tag form li elements
 $('.printable-variants > div').children('div').each(function() {
 	addTagFormDeleteLink($(this));
 });
 
-$('.add-design-printable').on('click', function(e) {
+$('.add-printable-variant').on('click', function(e) {
 	e.preventDefault();
 
 	var $collectionHolder = $(this).closest('.printable-variants');
-	var $newLink = $(this).closest('.add-design-printable');
+	var $newLink = $(this).closest('.add-printable-variant');
 
 	// count of elements in the current collection
-	$collectionHolder.data('index', $collectionHolder.find(' > div').children('div').length);
+	$collectionHolder.data('index', $('.printable-variants-block .printable-variant-block').length);
 
 	// add a new tag form 
 	addPrintableForm($collectionHolder, $newLink);
@@ -33,15 +33,24 @@ function addPrintableForm($collectionHolder, $newLink) {
 	var $newForm = $(newFormPrototype);
     
 	addTagFormDeleteLink($newForm);
+	addFunctionUpdateImagePreview($newForm);
+	
 	$newLink.before($newForm);					
 }
 
 function addTagFormDeleteLink($tagForm) {
-	var $removeFormA = $('<a class="delete-printable-variant" href="#">Delete this variant</a>');
+	var $removeFormA = $('<a class="delete-printable-variant" href="#"><i class="icon-trash-o"></i> Delete this variant</a>');
 	$tagForm.append($removeFormA);
 
 	$tagForm.find('.delete-printable-variant').on('click', function(e) {		
-		e.preventDefault();
-		$tagForm.remove();
+		e.preventDefault();		
+		$tagForm.remove();		
+		updateArticlePreviewImages(this);
+	});		
+}
+
+function addFunctionUpdateImagePreview($tagForm){
+	$tagForm.find('input, select').on('change', function(){		
+		updateArticlePreviewImages(this);
 	});
 }

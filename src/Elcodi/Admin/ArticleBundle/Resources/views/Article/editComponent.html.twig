@@ -88,14 +88,17 @@
                                 <div class="pr-l">																	
 									{% for image in article|preview_images %}
 										{% if image|length > 0 %}
-											<span class="thumbnail">
-												<img src="{{image|combine}}" />
+											<span class="thumbnail article-preview">
+												<img src="{{image|combine}}" />												
 											</span>
 										{% endif %}
 									{% endfor %}
+									<span class="thumbnail loading-gif" style="display:none; width:210px; height: 210px; text-align: center;">
+										<img src="/bundles/admincore/images/loading.gif"/>
+									</span>
 								</div>
                             </li>                            
-                        </ol>
+                        </ol>						
                     </div>
                 </div>
             </div>		
@@ -146,7 +149,7 @@
                     </div>
 						
 					<div class="col-2-3">
-						<div data-fc-modules="tabs" class="tabs-box loading">							
+						<div data-fc-modules="tabs" class="tabs-box printable-variants-block">							
 							<section id="tab-design" data-fc-name="design">
 								<div class="box">									
 									{% if article.articleProduct.articleProductPrintSides|length > 0 %} 								
@@ -155,19 +158,20 @@
 												<div 
 													class="printable-variants" 
 													data-prototype="{{
-														form_widget(
-															articleProductPrintSide.designPrintableVariants.vars.prototype, 
-															{'attr': {'class': 'printable-variant-block'} }
-														)|e('html_attr')
+														include(
+															'@AdminArticleBundle/Resources/views/PrintableVaraint/designPrintableVariant.html.twig', 
+															{'form': articleProductPrintSide.designPrintableVariants.vars.prototype })|e 
 													}}"
 												>
-													<h4>{{ articleProductPrintSide.vars.value.printSide.type.name }}</h4>													
-													{{ form_row(
-															articleProductPrintSide.designPrintableVariants, 
-															{'attr': {'class': 'printable-variant-block'} }) 
-													}}
+													<h4>{{ articleProductPrintSide.vars.value.printSide.type.name }}</h4>
+													{% for designPrintableVariant in articleProductPrintSide.designPrintableVariants %}
+														{{  include(
+																'@AdminArticleBundle/Resources/views/PrintableVaraint/designPrintableVariant.html.twig', 
+																{'form': designPrintableVariant})
+														}}
+													{% endfor %}
 													<br/>
-													<a href="#" class="add-design-printable button">Add a design</a>													
+													<a href="#" class="add-printable-variant button">Add a design</a>													
 													<hr>
 												</div>
 											{% endif %}
@@ -183,18 +187,21 @@
 												<div 
 													class="printable-variants" 
 													data-prototype="{{ 
-														form_widget(
-															articleProductPrintSide.textPrintableVariants.vars.prototype, 
-															{'attr': {'class': 'printable-variant-block'} }
-														)|e('html_attr') }}"
+														include(
+															'@AdminArticleBundle/Resources/views/PrintableVaraint/textPrintableVariant.html.twig', 
+															{'form': articleProductPrintSide.textPrintableVariants.vars.prototype })|e 
+														}}"
 												>
 													<h4>{{ articleProductPrintSide.vars.value.printSide.type.name }}</h4>
-													{{ form_row(
-															articleProductPrintSide.textPrintableVariants, 
-															{'attr': {'class': 'printable-variant-block'} })
-													}}													
+													{% for textPrintableVariant in articleProductPrintSide.textPrintableVariants %}
+														{{ 
+															include(
+																'@AdminArticleBundle/Resources/views/PrintableVaraint/textPrintableVariant.html.twig', 
+																{'form': textPrintableVariant})
+														}}
+													{% endfor %}
 													<br/>
-													<a href="#" class="add-design-printable button">Add a text</a>
+													<a href="#" class="add-printable-variant button">Add a text</a>
 													<hr>
 												</div>
 											{% endif %}
@@ -305,23 +312,10 @@
 				
     {{ form_end(form) }}
 <style>	
-	.printable-variant-block {
-		margin-bottom: 30px;
-		clear: both; 
-		width:100%;
+	.printable-variant-block textarea{
+		min-height: 50px;
 	}
 	
-	.printable-variant-block input,
-	.printable-variant-block label,
-	.printable-variant-block select{
-		float: left;
-		margin-right: 5px;
-	}
-	
-	.printable-variant-block input,
-	.printable-variant-block select{
-		width: 15%;
-	}
 </style>
 
 {% endblock content %}

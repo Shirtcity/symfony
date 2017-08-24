@@ -67,12 +67,9 @@
 	<span id="form-errors">			
 		{% if form.vars.errors|length > 0 %}
 			{% for error in form.vars.errors %}
-				<p class="msg-warning">	
-					{% if error.origin.config.attributes|first.label|length > 0 %}
-						<span>
-							{{error.origin.parent.parent.config.attributes|first.label}}
-							{{error.origin.config.attributes|first.label}}: 
-						</span>
+				<p class="msg-warning">
+					{% if error.origin.data.printSide.type.name|length > 0 %}
+						<span>{{error.origin.data.printSide.type.name}}: </span>
 					{% endif %}							
 					{{ error.message }}
 				</p>

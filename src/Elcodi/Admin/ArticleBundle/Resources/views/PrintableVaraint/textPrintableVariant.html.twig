@@ -1,0 +1,19 @@
+<div class="printable-variant-block" data-fc-variant-id="{{form.vars.name}}">
+	<div>
+		<span class="text-printable-variant-formatting">
+			{{ form_row(form.text.content)}}
+			{{ form_row(form.text.font)}}
+			{{ form_row(form.text.foilcolor)}}
+		</span>
+		
+		<span class="text-printable-variant-position">
+			{{ form_row(form.posX)}}
+			{{ form_row(form.posY)}}
+			{{ form_row(form.width)}}
+		</span>	
+
+		{% do form.setRendered %}
+	</div>
+</div>
+
+

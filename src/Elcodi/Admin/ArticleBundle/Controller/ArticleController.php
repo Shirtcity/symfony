@@ -167,11 +167,11 @@ class ArticleController extends AbstractAdminController
         /*$rticleProductPrintSides = $article->getArticleProduct()->getArticleProductPrintSides();
         
         foreach ($rticleProductPrintSides as $printSide) {
-            $printableVariants = $printSide->getTextPrintableVariants();
+            $printableVariants = $printSide->getPrintableVariants();
             
             foreach ($printableVariants as $printableVariant) {
-               // var_dump($printableVariant);
-                var_dump($printableVariant->getHeight());
+                var_dump($printableVariant);
+                //var_dump($printableVariant->getHeight());
             }
             
         } 

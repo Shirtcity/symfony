@@ -78,15 +78,18 @@ class TextType extends AbstractType
     {
         $builder
             ->add('content', TextareaType::class, [
-                'required'    => true
+                'required'    => true,
+                'label'       => 'Text',
             ])
             ->add('font', EntityType::class, [
                 'class' =>  'Elcodi\Bundle\PrintableBundle\Entity\Font',
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+                'label'        => 'Font',
             ])
             ->add('foilcolor', EntityType::class, [
                 'class' => 'Elcodi\Bundle\PrintableBundle\Entity\FoilColor',
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+                'label'        => 'Foil Color',
             ])
             ->add('enabled', 'checkbox', [
                 'required' => false,
