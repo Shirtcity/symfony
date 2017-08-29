@@ -163,6 +163,23 @@ class ArticleController extends AbstractAdminController
         ArticleInterface $article,
         Request $request
     ) {	
+        # DEBUG CODE
+        /*$rticleProductPrintSides = $article->getArticleProduct()->getArticleProductPrintSides();
+        
+        foreach ($rticleProductPrintSides as $printSide) {
+            $printableVariants = $printSide->getPrintableVariants();
+            
+            foreach ($printableVariants as $printableVariant) {
+                var_dump($printableVariant);
+                //var_dump($printableVariant->getHeight());
+            }
+            
+        } 
+        die;*/
+        /*foreach ($form->getErrors(true) as $key => $error) {
+            echo $error->getMessage();
+        }*/
+        # DEBUG CODE
         
 		if ($form->isValid() && !$request->isXmlHttpRequest()) {	
             

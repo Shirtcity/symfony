@@ -1,0 +1,44 @@
+.printable-variant-block {
+	margin-bottom: 30px;
+	clear: both; 
+	width:100%;
+		
+	input,
+	label,
+	select{
+		float: left;
+		margin-right: 5px;
+	}
+	input,
+	select{
+		width: 15%;
+	}
+	
+	label{
+		margin-top: 5px;
+	}
+	
+	.text-printable-variant-position,
+	.text-printable-variant-formatting{
+		width: 100%;
+		float: left;
+	}	
+
+	.text-printable-variant-formatting{
+		margin: 10px 0;
+		
+		textarea{
+			width:50%;
+			float:left;
+			margin-right: 5px;
+		}
+	}
+}
+
+
+
+
+	
+	
+	
+	

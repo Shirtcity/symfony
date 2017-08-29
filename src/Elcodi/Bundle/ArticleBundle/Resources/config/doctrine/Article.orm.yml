@@ -26,5 +26,3 @@ Elcodi\Component\Article\Entity\Article:
             cascade:
                 - persist
                 - remove
-
-   

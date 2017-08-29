@@ -17,6 +17,7 @@
 
 namespace Elcodi\Store\CartBundle\Controller;
 
+use DeepCopy\DeepCopy;
 use Doctrine\ORM\EntityNotFoundException;
 use Mmoreram\ControllerExtraBundle\Annotation\Entity as AnnotationEntity;
 use Mmoreram\ControllerExtraBundle\Annotation\Form as AnnotationForm;
@@ -156,8 +157,11 @@ class CartController extends Controller
         
         $quantity = $form
             ->get('quantity')
-            ->getData(); 
+            ->getData();
         
+        /**
+         * We need to clone Article before addPurchasable
+         */
         $this
             ->get('elcodi.manager.cart')
             ->addPurchasable(

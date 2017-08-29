@@ -1,0 +1,31 @@
+{% for articleProductPrintSide in article.articleProduct.articleProductPrintSides %}										
+										
+	{% if articleProductPrintSide.enabled is not sameas(false) %}
+		{% set printSideType = articleProductPrintSide.printSide.type.name %}
+		{% set previewImage = article|print_side_preview_image(printSideType)%}
+		{% set thumbnailSizeToOrigin = 0.5 %}
+		{% set imageWidth = previewImage.width * thumbnailSizeToOrigin %}
+
+		<span class="thumbnail article-preview" style="width:{{imageWidth}}px;">
+			
+			{% for area in articleProductPrintSide.printSide.areas %}													
+				<span style="
+					width: {{ area.width * thumbnailSizeToOrigin }}px;
+					height: {{ area.height  * thumbnailSizeToOrigin }}px;
+					margin-left: {{ area.posX * thumbnailSizeToOrigin }}px;
+					margin-top: {{ area.posY * thumbnailSizeToOrigin }}px;
+					border: 1px solid grey;
+					position: absolute;
+				"></span>
+			{% endfor %}
+
+			<img src="{{article|print_side_preview_image(articleProductPrintSide.printSide.type.name)|combine}}"/>										
+		</span>
+
+	{% endif %}	
+
+{% endfor %}
+
+<span class="thumbnail loading-gif" style="display:none; width:210px; height: 210px; text-align: center;">
+	<img src="/bundles/admincore/images/loading.gif"/>
+</span>

@@ -190,7 +190,6 @@ class ImageMagickCombineAdapter implements CombineAdapterInterface
     private function processCombineImage()
     {        
         $processor = $this->processBuilder
-			->add('-resize')->add(520)
             ->add($this->combinedFile->getPathname())
             ->getProcess();
         

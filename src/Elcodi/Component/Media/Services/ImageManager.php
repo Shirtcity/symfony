@@ -102,9 +102,9 @@ class ImageManager
      * @throws InvalidImageException File is not an image
      */
     public function createImage(File $file)
-    {
+    {     
         $fileMime = $file->getMimeType();
-
+        
         if ('application/octet-stream' === $fileMime) {
             $imageSizeData = getimagesize($file->getPathname());
             $fileMime = $imageSizeData['mime'];
@@ -113,11 +113,15 @@ class ImageManager
         if (strpos($fileMime, 'image/') !== 0) {
             throw new InvalidImageException();
         }
-
+        
         $extension = $file->getExtension();
 
         if (!$extension && $file instanceof UploadedFile) {
             $extension = $file->getClientOriginalExtension();
+        }
+        
+        if (empty($extension)) {
+            $extension = $file->guessExtension();
         }
 
         /**

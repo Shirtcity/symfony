@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints;
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Admin\PrintableBundle\Form\Type\TextType;
 use Elcodi\Bundle\PrintableBundle\PrintableDefaultParameters;
+use Elcodi\Component\Article\EventListener\Form\ArticlePrintableVariantFormEventListener;
 
 /**
  * Class TextPrintableVariantType
@@ -36,19 +37,29 @@ class TextPrintableVariantType extends AbstractType
      */
 	protected $textFormType;
     
+   /**
+     * @var ArticlePrintableVariantFormEventListener 
+     * 
+     * ArticlePrintableVariantFormEventListener
+     */
+    protected $printableVariantEventListener;
+    
 	
     /**
      * Construct
      *
 	 * @param string   $textPrintableNamespace	Printable namespace
      * @param TextType $textFormType            Text form type
+     * @param ArticlePrintableVariantFormEventListener $printableVariantEventListener Article printable variant EventListener
      */
     public function __construct(
 		string $textPrintableNamespace,
-        TextType $textFormType
+        TextType $textFormType,
+        ArticlePrintableVariantFormEventListener $printableVariantEventListener
     ) {
 		$this->textPrintableNamespace = $textPrintableNamespace;
         $this->textFormType = $textFormType;
+        $this->printableVariantEventListener = $printableVariantEventListener;
     }
 	
     /**
@@ -62,6 +73,7 @@ class TextPrintableVariantType extends AbstractType
             'data_class' => $this
                 ->factory
                 ->getEntityNamespace(),
+            'cascade_validation' => true,
         ]);			
     }
 
@@ -91,7 +103,9 @@ class TextPrintableVariantType extends AbstractType
                 'label' => 'Width',
                 'error_bubbling' => true,
             ])			
-            ->add('text', $this->textFormType);	        	
+            ->add('text', $this->textFormType);	 
+
+        $builder->addEventSubscriber($this->printableVariantEventListener);	
     }	
 
     /**

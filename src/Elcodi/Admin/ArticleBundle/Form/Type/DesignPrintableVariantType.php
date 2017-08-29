@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Bundle\PrintableBundle\PrintableDefaultParameters;
+use Elcodi\Component\Article\EventListener\Form\ArticlePrintableVariantFormEventListener;
 
 
 /**
@@ -29,16 +30,22 @@ class DesignPrintableVariantType extends AbstractType
      */
 	protected $designPrintableNamespace;
     
+    /**
+     * @var ArticlePrintableVariantFormEventListener 
+     * 
+     * ArticlePrintableVariantFormEventListener
+     */
     protected $printableVariantEventListener;
 	
     /**
      * Construct
      *
 	 * @param string $designPrintableNamespace	Printable namespace
+     * @param ArticlePrintableVariantFormEventListener $printableVariantEventListener Article printable variant EventListener
      */
     public function __construct(
 		$designPrintableNamespace,
-        $printableVariantEventListener
+        ArticlePrintableVariantFormEventListener $printableVariantEventListener
     ) {
 		$this->designPrintableNamespace = $designPrintableNamespace;
         $this->printableVariantEventListener = $printableVariantEventListener;
