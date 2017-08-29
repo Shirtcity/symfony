@@ -20,6 +20,11 @@
 		}
 		.article-thumbnail {
 			min-height: 266px;
+            background: $color-box-light;
+            border-radius: $default-border-radius;
+            &:hover {
+                box-shadow: 0 0 2px 1px rgba($color-link, 0.4);
+            }
 		}
 	}
 }

@@ -3,10 +3,12 @@
 	font-size: $font-size-s;
 	margin: 0 0 $spacing/4;
 	font-weight: normal;
+    color: $color-foreground-dark;
 }
 
 h1.article-title {
-	font-size: $font-size-xxxl;
+	font-size: $font-size-xxl;
+    font-weight: bold;
 }
 
 h3.article-title {

@@ -11,6 +11,9 @@
 
 
 {% block content %}
+    <div class="grid desktop">
+        {{ render(url('store_categories_nav')) }}
+    </div>
     {% include '@StoreTemplate/Modules/_purchasable-list.html.twig' with {
         purchasables: purchasables
     } %}

@@ -84,32 +84,3 @@
 		padding: $spacing/4.5;
 	}
 }
-
-.article-pricing-before {
-	& {
-		text-decoration: line-through;
-		color: $color-ko;
-		opacity: .8;
-		position: absolute;
-		margin-left: -65px;
-		margin-top:0;
-		background-color: lighten($color-ko, 35%);
-
-	}
-	&:before {
-		border-color:transparent transparent transparent lighten($color-ko, 35%);
-	}
-}
-.article-pricing-now {
-	& {
-		font-weight: bold;
-		color: $color-ok;
-		background-color: lighten($color-ok, 35%);
-		font-size: $font-size-l;
-		padding:$spacing/6 $spacing/2 $spacing/6 $spacing/2;
-	}
-	&:before {
-		border-color:transparent transparent transparent lighten($color-ok, 35%);
-	}
-
-}

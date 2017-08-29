@@ -99,6 +99,7 @@ class StoreArticleExtension extends AbstractExtension
             'services',
             'eventListeners',
             'sitemapTransformers',
+            'formTypes',
         ];
     }
 
