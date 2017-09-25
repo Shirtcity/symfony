@@ -111,15 +111,15 @@ class ProductType extends AbstractType
 		$productSizesFormEventListener,
 		$productPrintSidesFormEventListener
     ) {
-        $this->imageNamespace = $imageNamespace;
-		$this->manufacturerNamespace = $manufacturerNamespace;
-		$this->printMethodNamespace = $printMethodNamespace;
-		$this->productCategoryNamespace = $productCategoryNamespace;
-		$this->sectionCategoryNamespace = $sectionCategoryNamespace;
-		$this->priceFormEventListener = $priceFormEventListener;	
-		$this->productColorsFormEventListener = $productColorsFormEventListener;
-		$this->productSizesFormEventListener = $productSizesFormEventListener;
-		$this->productPrintSidesFormEventListener = $productPrintSidesFormEventListener;
+        $this->imageNamespace                       = $imageNamespace;
+		$this->manufacturerNamespace                = $manufacturerNamespace;
+		$this->printMethodNamespace                 = $printMethodNamespace;
+		$this->productCategoryNamespace             = $productCategoryNamespace;
+		$this->sectionCategoryNamespace             = $sectionCategoryNamespace;
+		$this->priceFormEventListener               = $priceFormEventListener;	
+		$this->productColorsFormEventListener       = $productColorsFormEventListener;
+		$this->productSizesFormEventListener        = $productSizesFormEventListener;
+		$this->productPrintSidesFormEventListener   = $productPrintSidesFormEventListener;
     }
 
     /**

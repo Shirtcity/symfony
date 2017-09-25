@@ -17,6 +17,7 @@
 
 namespace Elcodi\Store\CartBundle\Controller;
 
+use DeepCopy\DeepCopy;
 use Doctrine\ORM\EntityNotFoundException;
 use Mmoreram\ControllerExtraBundle\Annotation\Entity as AnnotationEntity;
 use Mmoreram\ControllerExtraBundle\Annotation\Form as AnnotationForm;
@@ -31,6 +32,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Elcodi\Component\Cart\Entity\Interfaces\CartInterface;
 use Elcodi\Component\Cart\Entity\Interfaces\CartLineInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
+use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Store\CoreBundle\Controller\Traits\TemplateRenderTrait;
 
 /**
@@ -107,7 +109,7 @@ class CartController extends Controller
      *      requirements = {
      *          "id": "\d+"
      *      },
-     *      methods = {"GET", "POST"}
+     *      methods = {"POST"}
      * )
      *
      * @AnnotationEntity(
@@ -118,30 +120,54 @@ class CartController extends Controller
      *      },
      *      name = "cart"
      * )
+     * 
+     * @AnnotationEntity(
+     *      class = {
+     *          "factory" = "elcodi.wrapper.article",
+     *          "method" = "get",
+     *          "static" = false
+     *      },
+     *      mapping = {
+     *          "id" = "~id~"
+     *      },
+     *      mappingFallback = true,
+     *      name = "article",
+     *      persist = true
+     * )
+     * 
+     * @AnnotationForm(
+     *      class = "elcodi_store_article_simple_form_type_article",
+     *      name  = "form",
+     *      entity = "article",
+     *      handleRequest = true
+     * )
      */
     public function addPurchasableAction(
-        Request $request,
-        CartInterface $cart,
-        $id
+        Request             $request,
+        FormInterface       $form,
+        ArticleInterface    $article,
+        CartInterface       $cart,
+        $id        
     ) {
-        $purchasable = $this
-            ->get('elcodi.repository.purchasable')
-            ->find($id);
-
-        if (!$purchasable instanceof PurchasableInterface) {
-            throw new EntityNotFoundException('Purchasable not found');
-        }
-
-        $cartQuantity = (int) $request
-            ->request
-            ->get('add-cart-quantity', 1);
-
+        
+        $size = $form
+            ->get('size')
+            ->getData()
+            ->getSize();
+        
+        $quantity = $form
+            ->get('quantity')
+            ->getData();
+        
+        /**
+         * We need to clone Article before addPurchasable
+         */
         $this
             ->get('elcodi.manager.cart')
             ->addPurchasable(
                 $cart,
-                $purchasable,
-                $cartQuantity
+                $article,
+                $quantity
             );
 
         return $this->redirect(

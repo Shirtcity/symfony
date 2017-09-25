@@ -54,3 +54,5 @@ Elcodi\Component\Cart\Entity\CartLine:
                 name: purchasable_id
                 referencedColumnName: id
                 nullable: true
+            cascade:
+                - persist

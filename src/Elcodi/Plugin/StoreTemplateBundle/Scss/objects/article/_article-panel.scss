@@ -1,0 +1,46 @@
+.article-panel {
+	.article-panel-section {
+		border-radius: $default-border-radius;
+        background: $color-box-light;
+        margin-top: 10px;
+	}
+    
+    .article-panel-section .article-panel-section-title {
+        background-color: #95acba;
+        color: #fff;
+        line-height: 35px;
+        font-size: 15px;
+        font-weight: bold;
+        border-radius: $default-border-radius $default-border-radius 0 0;
+        text-align: center;
+    }
+    
+    .article-panel-section .article-panel-section-content {
+        padding: 10px;
+        text-align: center;
+    }
+    
+    .article-pricing-before {
+        & {
+            text-decoration: line-through;
+            font-size: $font-size-xxl;
+        }
+    }
+    .article-pricing-now {
+        & {
+            font-weight: bold;
+            font-size: $font-size-xxl;
+        }
+    }
+    
+    .article-add-to-cart-button-wrapper > a {
+        border-radius: $default-border-radius;
+            width: 100%;
+            padding: 0;
+            margin: 10px 0 0 0;
+            height: 56px;
+            font-size: $font-size-xl;
+            line-height: 54px;
+            font-weight: bold;
+    }
+}

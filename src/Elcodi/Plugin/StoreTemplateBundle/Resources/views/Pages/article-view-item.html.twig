@@ -30,27 +30,96 @@
 {% block content %}
     {% set articleName = article|purchasable_name %}
     {% set validImage = article|print_side_preview_image('front') %}
-
+    
     <div class="article-view">
-       <h1 class="article-title">{{ articleName }}</h1>
-       <div class="grid">
-           <div class="col-1-2">
+        
+        {{ 
+            form_start(form, {
+                action : url('store_cart_add_purchasable', { id: article.id })
+            }) 
+        }}
+        
+        <h1 class="article-title">{{ articleName }}</h1>
+        <div class="grid">
+           <div class="col-2-3">
             {% block article_image %}
-               <a href="{{ article|print_side_preview_image('front')|length > 0 ? article|print_side_preview_image('front')|combine({
-                   'width': 1024,
-                   'height': 1024,
-                   'type': 5
-               }) : '//placehold.it/772x604' }}" alt="{{ article.name }}" class="article-thumbnail">
+               <div class="article-thumbnail">
                 {% if article.inOffer %}<span class="article-badge">{{ 'template.store_template_bundle.article.view_item.offer'|trans }}</span> {% endif %}
                    <img src="{{ article|print_side_preview_image('front')|length > 0 ? article|print_side_preview_image('front')|combine({
                        'width': 772,
                        'height': 604,
                        'type': 5
                    }) : '//placehold.it/772x604' }}" alt="{{ article.name }}"/>
-               </a>
+               </div>
             {% endblock %}
            </div>
-           <div class="col-1-2">
+           <div class="col-1-3">
+               {% block article_product_configuration %}
+                   <div class="article-panel">
+                       <div class="article-panel-section">
+                           <div class="article-panel-section-title">{{ 'designer_choose_your_product'|trans }}</div>
+                           <div class="article-panel-section-content">
+                                {{
+                                    form_row(form.articleProduct.product, {
+                                        label: 'store.article.field.article_product.title',
+                                        label_help: 'store.article.field.article_product.placeholder'|trans,
+                                    })
+                                }}
+                                {{
+                                    form_row(form.articleProduct.productColors, {
+                                        label: 'store.article.field.article_productColor.title',
+                                        label_help: 'store.article.field.article_productColor.placeholder'|trans,
+                                    })
+                                }}
+                           </div>                     
+                       </div>
+                       <div class="article-panel-section">
+                           <div class="article-panel-section-content">
+                               <b>{{ 'designer_choose_product_size'|trans }}</b>
+                               {{
+                                    form_row(form.quantity, {
+                                        label: 'store.article.field.quantity.title',
+                                        label_help: 'store.article.field.quantity.placeholder'|trans,
+                                    })
+                                }}
+                                {{
+                                    form_row(form.size, {
+                                        label: 'store.article.field.size.title',
+                                        label_help: 'store.article.field.size.placeholder'|trans,
+                                    })
+                                }}
+                           </div>
+                       </div>
+                       <div class="article-panel-section">
+                           <div class="article-panel-section-content">
+                                <div class="article-price-wrapper">
+                                    <span class="article-pricing-before">
+                                        {{ article|article_price|print_convert_money() }}
+                                    </span>
+                                    <span class="article-pricing-now">
+                                        {{ article|article_reduced_price|print_convert_money() }}
+                                    </span>
+                                </div>
+                                <div class="article-add-to-cart-button-wrapper">
+                                    {{
+                                        form_row(form.addToCart, {
+                                            label: 'template.store_template_bundle.article.view_item.add_to_cart',
+                                        })
+                                    }}
+                                    <a 
+                                        title="{{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }}"
+                                        class="fa fa-shopping-cart button button-secondary"
+                                        data-test="add-article-{{ article.id }}-to-cart"
+                                        href="{{ url('store_cart_add_purchasable', { id: article.id }) }}"
+                                    >
+                                        {{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }}
+                                    </a>
+                                </div>
+                           </div>
+                       </div>
+                   </div>                   
+               {% endblock %}
+               <!--
                {% block article_info %}
                    {% block article_info_add_basket %}
                        <div class= "article-to-basket">
@@ -63,23 +132,29 @@
                                    <span class="article-pricing">{{ article|article_price|print_convert_money() }}</span>
                                {% endif %}
                                
-                               <a title="{{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }}"
-                                  class="fa fa-shopping-cart button button-secondary"
-                                  data-test="add-article-{{ article.id }}-to-cart"
-                                  href="{{ url('store_cart_add_purchasable', { id: article.id }) }}"> {{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }}</a>
+                               <a 
+                                    title="{{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }}"
+                                    class="fa fa-shopping-cart button button-secondary"
+                                    data-test="add-article-{{ article.id }}-to-cart"
+                                    href="{{ url('store_cart_add_purchasable', { id: article.id }) }}"
+                                >
+                                    {{ 'template.store_template_bundle.article.view_item.add_to_cart'|trans }}
+                               </a>
                                
                            </p>
                        </div>
                    {% endblock %}
-
+                   
                    {% block article_info_details %}
                        <p>{{ article.description }}</p>
 					   <p>{{ article.articleProduct.product }}</p>
 					   <p>{{ article.articleProduct.productColor }}</p>
-                   {% endblock %}				   
+                   {% endblock %}
+                   -->
                {% endblock %}
            </div>
-       </div>
+        </div>
+        {{ form_end(form) }}
     </div>
     <div class="grid">
         <div class="col-1-1">

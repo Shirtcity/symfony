@@ -31,7 +31,7 @@ store_pack_view: '/pack/{slug}/{id}'
 store_password_recover: /password/recover
 store_password_recover_sent: /password/sent
 store_password_remember: /password/remember
-store_article_view: '/article/{slug}/{id}'
+store_article_view: '/{slug}-{id}'
 store_register: /register
 store_user: /user
 store_user_edit: /user/edit

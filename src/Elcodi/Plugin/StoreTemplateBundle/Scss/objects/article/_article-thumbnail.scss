@@ -7,12 +7,9 @@
 		margin-bottom: $spacing/2;
 		position: relative;
 		overflow: hidden;
-		background: $color-box-light;
-		border-radius: $default-border-radius;
 	}
 	&:hover {
 		opacity: .9;
-		box-shadow: 0 0 2px 1px rgba($color-link, 0.4);
 	}
 	img {
 		max-width: 100%;

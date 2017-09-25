@@ -21,6 +21,11 @@ use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Mmoreram\ControllerExtraBundle\Annotation\Form as FormAnnotation;
+use Mmoreram\ControllerExtraBundle\Annotation\Entity as EntityAnnotation;
+
+use Symfony\Component\Form\FormInterface;
+
 use Elcodi\Component\Article\Entity\Interfaces\ArticleInterface;
 use Elcodi\Component\Article\Entity\Interfaces\PurchasableInterface;
 use Elcodi\Store\CoreBundle\Controller\Traits\TemplateRenderTrait;
@@ -80,17 +85,39 @@ class PurchasableController extends Controller
      * @throws EntityNotFoundException Purchasable not found
      *
      * @Route(
-     *      path = "/article/{slug}/{id}",
+     *      path = "/{slug}-{id}",
      *      name = "store_article_view",
      *      requirements = {
      *          "slug": "(.*)",
-     *          "id": "(.*)",
+     *          "id": "\d+",
      *      },
      *      methods = {"GET"}
      * )
+     * @EntityAnnotation(
+     *      class = {
+     *          "factory" = "elcodi.wrapper.article",
+     *          "method" = "get",
+     *          "static" = false
+     *      },
+     *      mapping = {
+     *          "id" = "~id~"
+     *      },
+     *      mappingFallback = true,
+     *      name = "article",
+     *      persist = true
+     * )
+     * @FormAnnotation(
+     *      class = "elcodi_store_article_simple_form_type_article",
+     *      name  = "form",
+     *      entity = "article",
+     *      handleRequest = true
+     * )
      */
-    public function viewAction($id, $slug)
-    {
+    public function viewAction(
+        FormInterface $form,
+        $id,
+        $slug
+    ) {
         $purchasable = $this
             ->get('elcodi.repository.purchasable')
             ->find($id);
@@ -118,9 +145,10 @@ class PurchasableController extends Controller
 
         $template = $this->resolveTemplateName($purchasable);
         $variableName = $this->resolveVariableName($purchasable);
-
+        
         return $this->renderTemplate($template, [
-            $variableName => $purchasable,
+            $variableName   => $purchasable,
+            'form'          => $form->createView(),
         ]);
     }
 
