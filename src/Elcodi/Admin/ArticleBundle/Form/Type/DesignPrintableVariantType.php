@@ -26,9 +26,9 @@ class DesignPrintableVariantType extends AbstractType
     /**
      * @var stirng
      *
-     * Design Printable namespace
+     * Design namespace
      */
-	protected $designPrintableNamespace;
+	protected $designNamespace;
     
     /**
      * @var ArticlePrintableVariantFormEventListener 
@@ -40,14 +40,14 @@ class DesignPrintableVariantType extends AbstractType
     /**
      * Construct
      *
-	 * @param string $designPrintableNamespace	Printable namespace
+	 * @param string $designNamespace	Design namespace
      * @param ArticlePrintableVariantFormEventListener $printableVariantEventListener Article printable variant EventListener
      */
     public function __construct(
-		$designPrintableNamespace,
+		$designNamespace,
         ArticlePrintableVariantFormEventListener $printableVariantEventListener
     ) {
-		$this->designPrintableNamespace = $designPrintableNamespace;
+		$this->designNamespace = $designNamespace;
         $this->printableVariantEventListener = $printableVariantEventListener;
     }
 	
@@ -93,7 +93,7 @@ class DesignPrintableVariantType extends AbstractType
                 'error_bubbling'    => true,
             ])
             ->add('design', 'entity',[
-                'class'			=> $this->designPrintableNamespace,
+                'class'			=> $this->designNamespace,
                 'choice_label'	=> 'name',
                 'label'         => 'Design',
             ]);

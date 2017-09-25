@@ -38,12 +38,17 @@ function updateArticlePreviewImages(element) {
 				});				
 		
 				$('#tab-text input').each(function(){				
-					var inputId = $(this).attr('id'),				
+					var inputId = $(this).attr('id'),
+						inputClass = $(this).attr('class'),
 						newInputValue = $(html).find("#"+inputId).val();
 
 					if (typeof newInputValue !== 'undefined') {
 						$(this).val(newInputValue);
 					}
+					
+					if (typeof inputClass !== 'undefined') {
+						$(this).attr('class', inputClass);
+					}					
 				});	
 		
 				$('.loading-gif').fadeOut();				
