@@ -27,7 +27,7 @@ class PrintSideProductColorsTest extends WebTestCase
     public function testPrintSideProductColorsProductColors()
     {
         $printSideProductColors = $this->find('printSideProductColors', 1);
-        $productColors = $this->find('productColors', 1);
+        $productColors          = $this->find('productColors', 1);
         
 		$this->assertEquals(
             $productColors,

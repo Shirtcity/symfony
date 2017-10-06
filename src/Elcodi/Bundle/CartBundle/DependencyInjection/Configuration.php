@@ -95,10 +95,26 @@ class Configuration extends AbstractConfiguration
                         ->end()                        
                         ->variableNode('states')
                             ->defaultValue([
-                                ['preparing', 'cancel', 'cancelled'],
-                                ['cancelled', 'prepare', 'preparing'],
-                                ['preparing', 'stop', 'paused'],
-                                ['paused', 'continue', 'preparing'],
+                                [
+                                    'preparing',
+                                    'cancel',
+                                    'cancelled',
+                                ],
+                                [
+                                    'cancelled',
+                                    'prepare',
+                                    'preparing',
+                                ],
+                                [
+                                    'preparing',
+                                    'stop',
+                                    'paused',
+                                ],
+                                [
+                                    'paused',
+                                    'continue',
+                                    'preparing',
+                                ],
                             ])
                         ->end()
                     ->end()
