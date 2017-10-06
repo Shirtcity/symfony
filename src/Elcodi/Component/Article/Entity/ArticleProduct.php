@@ -27,7 +27,7 @@ class ArticleProduct implements ArticleProductInterface
 	private $product;
 	
 	/**
-	 * @var Collection 
+	 * @var ProductColors 
 	 */
 	private $productColors;	
 	

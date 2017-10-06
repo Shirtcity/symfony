@@ -11,7 +11,6 @@ use Symfony\Component\Form\FormEvents;
 
 use Elcodi\Component\Core\Factory\Traits\FactoryTrait;
 use Elcodi\Component\EntityTranslator\EventListener\Traits\EntityTranslatableFormTrait;
-use Elcodi\Component\Article\EventListener\Form\ArticleProductPrintSidesFormEventListener;
 
 /**
  * Class ArticleProductPrintSidesType
@@ -26,26 +25,16 @@ class ArticleProductPrintSidesType extends AbstractType
 	 * Article product print side form type
 	 */	
 	protected $articleProductPrintSideType;
-	
-	/**
-	 * @var ArticleProductPrintSide 
-	 * 
-	 * Article product print sides form event listener
-	 */	
-	protected $articleProductPrintSidesFormEventListener;
-	
+		
     /**
      * Construct
      *
 	 * @param ArticleProductPrintSideType $articleProductPrintSideType ArticleProductPrintSides form type
-	 * @param ArticleProductPrintSidesFormEventListener $articleProductPrintSidesFormEventListener event listener
      */
     public function __construct(
-		ArticleProductPrintSideType $articleProductPrintSideType, 
-		ArticleProductPrintSidesFormEventListener $articleProductPrintSidesFormEventListener
+		ArticleProductPrintSideType $articleProductPrintSideType
 	) {	
 		$this->articleProductPrintSideType = $articleProductPrintSideType;
-		$this->articleProductPrintSidesFormEventListener = $articleProductPrintSidesFormEventListener;
     }
 	
     /**
